@@ -5,6 +5,12 @@ import Modal from "@/components/atoms/Modal";
 import { useState } from "react";
 const RegistroTransporte = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [data, setData] = useState([
+        {usuario: 'lorem', nombre: 'lorem', apellido: 'lorem', puesto:'lorem', grupo: 'lorem'},
+        {usuario: 'lorem2', nombre: 'lorem2', apellido: 'lorem2', puesto:'lorem2', grupo: 'lorem2'},
+        {usuario: 'lorem3', nombre: 'lorem3', apellido: 'lorem3', puesto:'lorem3', grupo: 'lorem3'},
+        {usuario: 'lorem4', nombre: 'lorem4', apellido: 'lorem4', puesto:'lorem4', grupo: 'lorem4'}
+    ])
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -18,13 +24,13 @@ const RegistroTransporte = () => {
         <div>
             <div>
                 <Navigation/>
-                <NavDashboard section="Usuarios"/>
+                <NavDashboard section="Transporte" id="transporte"/>
             </div>
             <div className="wrapper">
-                <h2 className="text-xl mt-5 mb-5">Usuarios existentes</h2>
+                <h2 className="text-xl mt-5 mb-5">Transportes existentes</h2>
                 <div className="flex justify-between">
                     <div className="flex inner-search">
-                        <div className="">
+                        <div className="p-1">
                             <input type="text" placeholder="Buscar"/>
                         </div>
                         <div className="inner-search-icon">
@@ -45,136 +51,212 @@ const RegistroTransporte = () => {
                     </div>
                 </div>
                 <div className="mt-10">
-                    <Table/>
+                    <Table data={data}/>
                 </div>
                 <div className="mt-10 flex justify-end">
                     <button className="button" onClick={openModal}>Agregar usuario</button>
                     <Modal isOpen={isModalOpen} onClose={closeModal}>
                         <div className="flex justify-between modal-header">
                             <div>
-                                <h1 className="modal-title pb-10">Agregar Datos</h1>
+                                <h1 className="modal-title">Agregar Datos</h1>
                             </div>
                             <div>
                                 <button onClick={closeModal}>Cerrar Modal</button>
                             </div>
                         </div>
-                        <form className="form-container">
-                            <div className="modal-cel">
+                        <form className="form-container pt-10">
+                            <div className="modal-cel pt-10">
                                 <div className="modal-item w-1/3">
                                     <div>
-                                        <label htmlFor="username" className="modal-label">Username:</label>
+                                        <label htmlFor="fecha" className="modal-label">Fecha:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="text" id="username" name="username" className="modal-input" required/>
+                                        <input type="date" id="fecha" name="fecha" className="modal-input" required/>
                                     </div>
                                 </div>
                                 <div className="modal-item w-1/3">
                                     <div>
-                                        <label htmlFor="password" className="modal-label">Password:</label>
+                                        <label htmlFor="granja" className="modal-label">Granja:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="password" id="password" name="password" className="modal-input" required/>
+                                        <input type="text" id="granja" name="granja" className="modal-input" required/>
                                     </div>
                                 </div>
                                 <div className="modal-item w-1/3">
                                     <div >
-                                        <label htmlFor="email" className="modal-label">Email:</label>
+                                        <label htmlFor="camion" className="modal-label">Camión:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="email" id="email" name="email" className="modal-input" required/>
+                                        <input type="text" id="camion" name="camion" className="modal-input" required/>
                                     </div>
                                 </div>
                             </div>
                             <div className="modal-cel">
                                 <div className="modal-item w-1/3">
                                     <div>
-                                        <label htmlFor="nombre" className="modal-label">Nombre:</label>
+                                        <label htmlFor="jaula" className="modal-label">Jaula:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="text" id="nombre" name="nombre" className="modal-input "required/>
+                                        <input type="text" id="jaula" name="jaula" className="modal-input "required/>
                                     </div>
                                 </div>
                                 <div className="modal-item w-1/3">
                                     <div>
-                                        <label htmlFor="apellido" className="modal-label">Apellido:</label>
+                                        <label htmlFor="operador" className="modal-label">Operador:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="text" id="apellido" name="apellido" className="modal-input" required/>
+                                        <input type="text" id="operador" name="operador" className="modal-input" required/>
                                     </div>
                                 </div>
                                 <div className="modal-item w-1/3">
                                     <div>
-                                        <label htmlFor="fechaNacimiento" className="modal-label">Fecha de Nacimiento:</label>
+                                        <label htmlFor="cliente" className="modal-label">Cliente:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" className="modal-input" required/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="modal-cel">
-                                <div className="modal-item w-1/3">
-                                    <div>
-                                        <label htmlFor="genero" className="modal-label">Género:</label>
-                                    </div>
-                                    <div className="modal-input-container">
-                                        <select id="genero" name="genero" className="modal-input" required>
-                                            <option value="masculino">Masculino</option>
-                                            <option value="femenino">Femenino</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="modal-item w-1/3">
-                                    <div>
-                                        <label htmlFor="puesto" className="modal-label">Puesto:</label>
-                                    </div>
-                                    <div className="modal-input-container">
-                                        <input type="text" id="puesto" name="puesto" className="modal-input" required/>
-                                    </div>
-                                </div>
-                                <div className="modal-item w-1/3">
-                                    <div>
-                                        <label htmlFor="calle" className="modal-label">Calle:</label>
-                                    </div>
-                                    <div className="modal-input-container">
-                                        <input type="text" id="calle" name="calle" className="modal-input" required/>
+                                        <input type="text" id="cliente" name="cliente" className="modal-input" required/>
                                     </div>
                                 </div>
                             </div>
                             <div className="modal-cel">
                                 <div className="modal-item w-1/3">
                                     <div>
-                                        <label htmlFor="ciudad" className="modal-label">Ciudad:</label>
+                                        <label htmlFor="destino" className="modal-label">Destino:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="text" id="ciudad" name="ciudad" className="modal-input" required/>
+                                        <input type="text" id="destino" name="destino" className="modal-input" required/>
                                     </div>
                                 </div>
                                 <div className="modal-item w-1/3">
                                     <div>
-                                        <label htmlFor="estado" className="modal-label">Estado:</label>
+                                        <label htmlFor="hora-salida" className="modal-label">Hora salida de granja:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="text" id="estado" name="estado" className="modal-input" required/>
+                                        <input type="time" id="hora-salida" name="hora-salida" className="modal-input" required/>
                                     </div>
                                 </div>
                                 <div className="modal-item w-1/3">
                                     <div>
-                                        <label htmlFor="codigoPostal" className="modal-label">Código Postal:</label>
+                                        <label htmlFor="hora-llegada" className="modal-label">Hora de llegada:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="text" id="codigoPostal" name="codigoPostal" className="modal-input" required/>
+                                        <input type="time" id="hora-llegada" name="hora-llegada" className="modal-input" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="modal-cel">
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="tiempo-recorrido" className="modal-label">Tiempo recorrido granja destino:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="tiempo-recorrido" name="tiempo-recorrido" className="modal-input" required/>
+                                    </div>
+                                </div>
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="hora-inicio-desembarque" className="modal-label">Hora inicio desembarque:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="time" id="hora-inicio-desembarque" name="hora-inicio-desembarque" className="modal-input" required/>
+                                    </div>
+                                </div>
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="hora-final-desembarque" className="modal-label">Hora final desembarque:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="hora-final-desembarque" name="hora-final-desembarque" className="modal-input" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="modal-cel">
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="kg-salida" className="modal-label">KG a salida de granja:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="kg-salida" name="kg-salida" className="modal-input" required/>
+                                    </div>
+                                </div>
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="kg-desembarque" className="modal-label">KG al desembarque:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="kg-desembarque" name="kg-desembarque" className="modal-input" required/>
+                                    </div>
+                                </div>
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="merma" className="modal-label">Merma:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="merma" name="merma" className="modal-input" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="modal-cel">
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="cantidad-cerdos" className="modal-label">Cantidad de cerdos:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="cantidad-cerdos" name="cantidad-cerdos" className="modal-input" required/>
+                                    </div>
+                                </div>
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="rango" className="modal-label">Rango programado:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="rango" name="rango" className="modal-input" required/>
+                                    </div>
+                                </div>
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="muertos" className="modal-label">Muertos en viaje:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="muertos" name="muertos" className="modal-input" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="modal-cel">
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="paradas" className="modal-label">Paradas en viaje:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="paradas" name="paradas" className="modal-input" required/>
+                                    </div>
+                                </div>
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="revision" className="modal-label">Revisión de cerdo:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="revision" name="revision" className="modal-input" required/>
+                                    </div>
+                                </div>
+                                <div className="modal-item w-1/3">
+                                    <div>
+                                        <label htmlFor="auditor" className="modal-label">Auditor:</label>
+                                    </div>
+                                    <div className="modal-input-container">
+                                        <input type="text" id="auditor" name="auditor" className="modal-input" required/>
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div className="modal-item w-1/3">
                                     <div>
-                                        <label htmlFor="nombreGrupo" className="modal-label">Nombre del Grupo:</label>
+                                        <label htmlFor="incidencias" className="modal-label">Incidencias de viaje:</label>
                                     </div>
                                     <div className="modal-input-container">
-                                        <input type="text" id="nombreGrupo" name="nombreGrupo" className="modal-input" required/>
+                                        <input type="text" id="incidencias" name="incidencias" className="modal-input" required/>
                                     </div>
                                 </div>
+            
                             </div>
                             <div className="flex justify-center">
                                 <div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Selector from "../../atoms/Selector";
 import { useRouter } from 'next/router';
+import Link from "next/link";
 
 const Navigation = () => {
     const router = useRouter();
@@ -21,16 +22,14 @@ const Navigation = () => {
     <header className={navbarClass}>
     <div className="navigation">
         <div className="flex items-center">
-            <div className="mr-5 flex">
-            {currentPage === '/' ?
-                <img src="images/icon/logo_blanco.png"/>
-                :
-                <img src="images/icon/logo_color.png"/>
-            }
-            </div>
-            <div className="flex justify-center items-center">
-                <label>Constanza</label>
-            </div>  
+            <Link href="/" className="flex items-center">
+                <div className="mr-5 flex">
+                    <img src="images/icon/logo_color.png"/>
+                </div>
+                <div className="flex justify-center items-center">
+                    <label className="font-semibold">Constanza</label>
+                </div>  
+            </Link>
         </div>
         <div className="flex searchbar justify-center items-center">
             <div className="searchbar-icon">
@@ -50,7 +49,12 @@ const Navigation = () => {
                 </svg>
             </div>
             <div className="flex">
-                <Selector/>
+                <Link href="../../RegistroUsuarios" className="pr-2">
+                    Usuarios
+                </Link>
+                <Link href="../../RegistroTransporte" className="pr-2">
+                    Transportes
+                </Link>
             </div>  
         </div>
     </div>
