@@ -19,11 +19,11 @@ const Selector = () => {
             </button>
         </div>
         {isOpen && (
-        <div className="menu" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+        <div className="menu" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
             <div className="pt-1 pt-2" role="none">
-            <a href="#" className="item" role="menuitem" tabindex="-1" id="menu-item-0">La purísima</a>
-            <a href="#" className="item" role="menuitem" tabindex="-1" id="menu-item-1">Opcion 2</a>
-            <a href="#" className="item" role="menuitem" tabindex="-1" id="menu-item-2">Opcion 3</a>
+            <a href="#" className="item" role="menuitem" tabIndex="-1" id="menu-item-0">La purísima</a>
+            <a href="#" className="item" role="menuitem" tabIndex="-1" id="menu-item-1">Opcion 2</a>
+            <a href="#" className="item" role="menuitem" tabIndex="-1" id="menu-item-2">Opcion 3</a>
             </div>
         </div>
         )}

@@ -1,12 +1,6 @@
 import { useState } from "react";
 
-const Table = () => {
-    const [data, setData] = useState([
-        {usuario: 'lorem', nombre: 'lorem', apellido: 'lorem', puesto:'lorem', grupo: 'lorem'},
-        {usuario: 'lorem2', nombre: 'lorem2', apellido: 'lorem2', puesto:'lorem2', grupo: 'lorem2'},
-        {usuario: 'lorem3', nombre: 'lorem3', apellido: 'lorem3', puesto:'lorem3', grupo: 'lorem3'},
-        {usuario: 'lorem4', nombre: 'lorem4', apellido: 'lorem4', puesto:'lorem4', grupo: 'lorem4'}
-    ])
+const Table = ({ data }) => {
     return (
         <div className="table">
             <table className="table-container">
