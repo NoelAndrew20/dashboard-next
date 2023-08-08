@@ -1,9 +1,14 @@
-import { useState } from "react";
-
+import { useRouter } from 'next/router';
 const Table = ({ data }) => {
+    const router = useRouter();
+
     return (
         <div className="table">
             <table className="table-container">
+            {router.pathname === "/RegistroUsuarios"
+            ? 
+            (
+                <>
                 <thead>
                 <tr>
                     <th>Usuario</th>
@@ -14,6 +19,7 @@ const Table = ({ data }) => {
                 </tr>
                 </thead>
                 <tbody>
+
                 {data.map((item, index) => (
                     <tr key={index} className="table-cel">
                         <td>{item.usuario}</td>
@@ -24,6 +30,39 @@ const Table = ({ data }) => {
                     </tr>
                 ))}
                 </tbody>
+                </>
+            )
+            : (
+                <>
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Camion</th>
+                    <th>Destino</th>
+                    <th>Hora salida granja</th>
+                    <th>Hora llegada destino</th>
+                    <th>Cantidad de cerdos</th>
+                    <th>Auditor</th>
+                </tr>
+                </thead>
+                <tbody>
+                {data.map((item, index) => (
+                    <tr key={index} className="table-cel">
+                        <td>{item.fecha}</td>
+                        <td>{item.camion}</td>
+                        <td>{item.destino}</td>
+                        <td>{item.hrSalida}</td>
+                        <td>{item.hrLlegada}</td>
+                        <td>{item.ctCerdos}</td>
+                        <td>{item.auditor}</td>
+
+                    </tr>
+                ))}
+                </tbody>
+                </>
+                )
+
+            }
             </table>
         </div>
     )
