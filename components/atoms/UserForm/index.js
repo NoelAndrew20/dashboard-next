@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const UserForm = ({ data, setData, closeModal}) => {
+const UserForm = ({ data, setData, closeModal }) => {
     const [inputUser, setInputUser] = useState("");
     const [inputPsw, setInputPsw] = useState("");
     const [inputEmail, setInputEmail] = useState("");

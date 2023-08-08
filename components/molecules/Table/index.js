@@ -51,7 +51,7 @@ const Table = ({ data }) => {
                         <td>{item.fecha}</td>
                         <td>{item.camion}</td>
                         <td>{item.destino}</td>
-                        <td>{item.hrSalida}</td>
+                        <td>{item.salida}</td>
                         <td>{item.hrLlegada}</td>
                         <td>{item.ctCerdos}</td>
                         <td>{item.auditor}</td>

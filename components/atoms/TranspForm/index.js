@@ -11,11 +11,10 @@ const TranspForm = ({ data, setData, closeModal }) => {
     const [inputHrSalida, setInputHrSalida] = useState("");
     const [inputHrLlegada, setInputHrLlegada] = useState("");
     const [inputTmpRecorrido, setInputTmpRecorrido] = useState("");
-    const [inputHrInicio, setIputHrInicio] = useState("");
-    const [inputHrFinal, setInputHrFinal] = useState("");
+    const [inputHrInicio, setInputHrInicio] = useState("");
+
     const [inputKgSalida, setInputKgSalida] = useState("");
     const [inputKgDesembarque, setInputKgDesembarque] = useState("");
-    const [inputHrDesembarque, setInputHrDesembarque] = useState("");
     const [inputRango, setInputRango] = useState("");
     const [inputMuertos, setInputMuertos] = useState("");
     const [inputParada, setInputParada] = useState("");
@@ -31,81 +30,79 @@ const TranspForm = ({ data, setData, closeModal }) => {
         try {
           if (
             inputFecha !== "", 
-            inputGranja !== "",
-            inputCamion !== "",
-            inputJaula !== "",
-            inputOperador !== "",
-            inputCliente !== "",
-            inputDestino !== "",
+            inputGranja !== "", 
+            inputCamion !== "", 
+            inputJaula !== "", 
+            inputOperador !== "", 
+            inputCliente !== "", 
+            inputDestino !== "", 
             inputHrSalida !== "", 
-            inputHrLlegada !== "",
-            inputTmpRecorrido !== "",
-            inputHrInicio !== "", 
-            inputHrFinal !== "", 
-            inputKgSalida !== "",
-            inputKgDesembarque !== "",
-            inputHrDesembarque !== "", 
+            inputHrLlegada !== "", 
+            inputTmpRecorrido !== "", 
+            inputHrInicio !== "",
+        
+            inputKgSalida !== "", 
+            inputKgDesembarque !== "", 
             inputRango !== "", 
-            inputFinalDesembarque !== "",
-            inputMerma !== "", 
-            inputCtCerdos !== "",
-            inputMuertos !== "",
-            inputParada !== "",
+            inputMuertos !== "", 
+            inputParada !== "", 
             inputAuditor !== "", 
-            inputIncidencias !== "",
-            inputRevision !==""
+            inputIncidencias !== "", 
+            inputRevision !== "", 
+            inputFinalDesembarque !== "", 
+            inputMerma !== "", 
+            inputCtCerdos !== ""
+        
           ) {
             const newTranspot = {
-                fecha: inputFecha, 
-                granja: inputGranja,
-                camion: inputCamion,
-                jaula: inputJaula,
-                operador: inputOperador,
-                cliente: inputCliente,
-                destino: inputDestino,
-                salida: inputHrSalida, 
-                hrLlegada: inputHrLlegada,
-                tmpRecorrido: inputTmpRecorrido,
-                hrInicio: inputHrInicio, 
-                hrFinal: inputHrFinal, 
-                kgSalida: inputKgSalida,
-                kgDesembarque: inputKgDesembarque,
-                hrDesembarque: inputHrDesembarque, 
-                rango: inputRango,
-                finalDesembarque: inputFinalDesembarque,
-                merma: inputMerma,
-                revision: inputRevision, 
-                ctCerdos: inputCtCerdos, 
-                muertos: inputMuertos,
-                parada: inputParada,
-                auditor: inputAuditor, 
-                incidencias: inputIncidencias
+            fecha: inputFecha ,
+            granja: inputGranja ,
+            camion: inputCamion ,
+            jaula: inputJaula ,
+            operador: inputOperador ,
+            cliente: inputCliente ,
+            destino: inputDestino ,
+            salida: inputHrSalida ,
+            hrLlegada: inputHrLlegada ,
+            tmpRecorrido: inputTmpRecorrido ,
+            hrInicio:inputHrInicio,
+        
+            kgSalida: inputKgSalida ,
+            kgDesembarque: inputKgDesembarque ,
+            rango: inputRango ,
+            muertos: inputMuertos ,
+            parada:inputParada ,
+            auditor:inputAuditor ,
+            incidencias:inputIncidencias ,
+            revision:inputRevision ,
+            hrFinal: inputFinalDesembarque ,
+            merma: inputMerma ,
+            ctCerdos: inputCtCerdos ,
             };
             const newData = [...data, newTranspot];
             setData(newData);
             setInputFecha("")
             setInputGranja("")
             setInputCamion("")
-            setnputJaula("")
+            setInputJaula("")
             setInputOperador("")
             setInputCliente("")
             setInputDestino("")
             setInputHrSalida("")
             setInputHrLlegada("")
             setInputTmpRecorrido("")
-            setIputHrInicio("")
-            setInputHrFinal("")
+            setInputHrInicio ("")
             setInputKgSalida("")
             setInputKgDesembarque("")
-            setInputHrDesembarque("")
             setInputRango("")
-            setInputMerma("")
-            setInputCtCerdos("")
             setInputMuertos("")
-            setInputAuditor("")
             setInputParada("")
+            setInputAuditor("")
             setInputIncidencias("")
             setInputRevision("")
+            setInputFinalDesembarque("")
+            setInputMerma("")
+            setInputCtCerdos("")
             setSuccessMessage('Usuario guardado exitosamente');
             setErrorMessage("");
           } else {
@@ -222,7 +219,7 @@ const TranspForm = ({ data, setData, closeModal }) => {
                         <label htmlFor="hora-inicio-desembarque" className="modal-label">Hora inicio desembarque:</label>
                     </div>
                     <div className="modal-input-container">
-                        <input type="time" id="hora-inicio-desembarque" name="hora-inicio-desembarque" className="modal-input" value={inputHrDesembarque} onChange={(event) => setInputHrDesembarque(event.target.value)} required/>
+                        <input type="time" id="hora-inicio-desembarque" name="hora-inicio-desembarque" className="modal-input" value={inputHrInicio} onChange={(event) => setInputHrInicio(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
