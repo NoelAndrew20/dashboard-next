@@ -32,7 +32,9 @@ const Table = ({ data }) => {
                 </tbody>
                 </>
             )
-            : (
+            : router.pathname === "/RegistroTransporte"
+            ?
+            (
                 <>
                 <thead>
                 <tr>
@@ -61,7 +63,32 @@ const Table = ({ data }) => {
                 </tbody>
                 </>
                 )
-
+                :
+                <>
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Camion</th>
+                    <th>Destino</th>
+                    <th>Hora salida granja</th>
+                    <th>Hora llegada destino</th>
+                    <th>Cantidad de cerdos</th>
+                    <th>Auditor</th>
+                </tr>
+                </thead>
+                <tbody>
+               
+                    <tr className="table-cel">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                </>
             }
             </table>
         </div>

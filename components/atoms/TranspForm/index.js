@@ -121,7 +121,7 @@ const TranspForm = ({ data, setData, closeModal }) => {
                 <h1 className="modal-title">Agregar Datos</h1>
             </div>
             <div>
-                <button onClick={()=>{closeModal(), setErrorMessage(""), setSuccessMessage("")}}>Cerrar Modal</button>
+                <button onClick={()=>{closeModal(), setErrorMessage(""), setSuccessMessage("")}}>x</button>
             </div>
         </div>
         {successMessage && <div className="alert-success">{successMessage}</div>}
