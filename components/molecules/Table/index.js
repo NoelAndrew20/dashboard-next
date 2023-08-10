@@ -6,20 +6,18 @@ const Table = ({ data }) => {
         <div className="table">
             <table className="table-container">
             {router.pathname === "/RegistroUsuarios"
-            ? 
-            (
+            ? (
                 <>
                 <thead>
-                <tr>
-                    <th>Usuario</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Puesto</th>
-                    <th>Grupo</th>
-                </tr>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Puesto</th>
+                        <th>Grupo</th>
+                    </tr>
                 </thead>
                 <tbody>
-
                 {data.map((item, index) => (
                     <tr key={index} className="table-cel">
                         <td>{item.usuario}</td>
@@ -31,21 +29,19 @@ const Table = ({ data }) => {
                 ))}
                 </tbody>
                 </>
-            )
-            : router.pathname === "/RegistroTransporte"
-            ?
-            (
+            ) : router.pathname === "/RegistroTransporte"
+            ? (
                 <>
                 <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Camion</th>
-                    <th>Destino</th>
-                    <th>Hora salida granja</th>
-                    <th>Hora llegada destino</th>
-                    <th>Cantidad de cerdos</th>
-                    <th>Auditor</th>
-                </tr>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Camion</th>
+                        <th>Destino</th>
+                        <th>Hora salida granja</th>
+                        <th>Hora llegada destino</th>
+                        <th>Cantidad de cerdos</th>
+                        <th>Auditor</th>
+                    </tr>
                 </thead>
                 <tbody>
                 {data.map((item, index) => (
@@ -62,30 +58,40 @@ const Table = ({ data }) => {
                 ))}
                 </tbody>
                 </>
-                )
-                :
+                ) :
                 <>
                 <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Camion</th>
-                    <th>Destino</th>
-                    <th>Hora salida granja</th>
-                    <th>Hora llegada destino</th>
-                    <th>Cantidad de cerdos</th>
-                    <th>Auditor</th>
-                </tr>
+                    <tr>
+                        <th>lorem</th>
+                        <th>lorem</th>
+                        <th>lorem</th>
+                        <th>lorem</th>
+                    </tr>
                 </thead>
                 <tbody>
-               
                     <tr className="table-cel">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>lorem</td>
+                        <td>lorem</td>
+                        <td>lorem</td>
+                        <td>lorem</td>
+                    </tr>
+                    <tr className="table-cel">
+                        <td>lorem</td>
+                        <td>lorem</td>
+                        <td>lorem</td>
+                        <td>lorem</td>
+                    </tr>
+                    <tr className="table-cel">
+                        <td>lorem</td>
+                        <td>lorem</td>
+                        <td>lorem</td>
+                        <td>lorem</td>
+                    </tr>
+                    <tr className="table-cel">
+                        <td>lorem</td>
+                        <td>lorem</td>
+                        <td>lorem</td>
+                        <td>lorem</td>
                     </tr>
                 </tbody>
                 </>

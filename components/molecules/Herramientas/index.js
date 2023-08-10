@@ -1,4 +1,4 @@
-import InfoCard from "../../atoms/InfoCard";
+import InfoCard from '../../atoms/InfoCard';
 const Herramientas = () => {
     return (
     <div className="herramientas">
