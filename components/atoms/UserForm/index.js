@@ -115,7 +115,9 @@ const UserForm = ({ data, setData, closeModal }) => {
                 <h1 className="modal-title">Agregar Datos</h1>
             </div>
             <div>
-                <button onClick={()=>{closeModal(), setErrorMessage(""), setSuccessMessage("")}}>x</button>
+                <button onClick={()=>{closeModal(), setErrorMessage(""), setSuccessMessage("")}}>
+                    <img src="images/svg/x.svg" height={15} width={15} />
+                </button>
             </div>
         </div>
         {successMessage && <div className="alert-success">{successMessage}</div>}

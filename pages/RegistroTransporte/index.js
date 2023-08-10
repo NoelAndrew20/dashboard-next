@@ -1,10 +1,10 @@
-import NavDashboard from "@/components/molecules/NavDashboard";
-import Navigation from "@/components/molecules/Navigation";
-import Table from "@/components/molecules/Table";
-import Modal from "@/components/atoms/Modal";
-import { useState } from "react";
-import TranspForm from "@/components/atoms/TranspForm";
-import Search from "@/components/atoms/Search";
+import NavDashboard from '@/components/molecules/NavDashboard';
+import Navigation from '@/components/molecules/Navigation';
+import Table from '@/components/molecules/Table';
+import Modal from '@/components/atoms/Modal';
+import { useState } from 'react';
+import TranspForm from '@/components/atoms/TranspForm';
+import Search from '@/components/atoms/Search';
 const RegistroTransporte = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 

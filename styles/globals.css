@@ -606,3 +606,20 @@ label {
   color: #fff;
   font-weight: 600;
 }
+.row-container {
+  justify-content: space-around;
+  width: 100%;
+  display: flex;
+  padding-bottom: 10%;
+}
+.row-container h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+.row-container h2 {
+  font-size: 25px;
+  font-weight: 600;
+}
+.row-container p {
+  
+}

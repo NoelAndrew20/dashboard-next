@@ -9,11 +9,10 @@ export default function Home() {
   return (
     <div>
       <Navigation/>
-
       <main
         className={`flex min-h-screen flex-col items-center p-24`}
       >
-        <div className="flex pb-5">
+        <div className="row-container">
           <div>
             <Table/>
           </div>
@@ -21,7 +20,7 @@ export default function Home() {
             <PieChart/>
           </div>
         </div>
-        <div className="flex pt-3">
+        <div className="row-container">
           <div>
             <h1>Costo tota de medicamentos / vacunas</h1>
             <h2>$12000</h2>
@@ -31,10 +30,9 @@ export default function Home() {
             <Table/>
           </div>
         </div>
-        <div>
+        <div className="h-80 w-full flex justify-center">
           <BarChart/>
         </div>
-       
       </main>
     </div>
 

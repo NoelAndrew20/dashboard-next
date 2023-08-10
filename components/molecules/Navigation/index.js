@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import Selector from "../../atoms/Selector";
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from "next/link";
+import Link from 'next/link';
 
 const Navigation = () => {
     const router = useRouter();
