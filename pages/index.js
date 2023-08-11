@@ -4,10 +4,16 @@ import Navigation from '@/components/molecules/Navigation'
 import Table from '@/components/molecules/Table'
 import PieChart from '@/components/atoms/PieChart'
 import BarChart from '@/components/atoms/BarChart'
+import StaticMeta from '@/components/atoms/StaticMeta'
 
-export default function Home() {
+export default function Home({ title, description, image }) {
   return (
     <div>
+      <StaticMeta
+        title={title}
+        description={description}
+        image={image}
+      />      
       <Navigation/>
       <main
         className={`flex min-h-screen flex-col items-center p-24`}
@@ -38,3 +44,16 @@ export default function Home() {
 
   )
 }
+export const getServerSideProps = async () => {
+  const title = "Constanza";
+  const description =
+    "Dashboard de Constanza";
+  const image = "images/icon/logo-400.png";
+  return {
+    props: {
+      title,
+      description,
+      image,
+    },
+  };
+};

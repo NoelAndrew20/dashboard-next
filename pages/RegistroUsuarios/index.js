@@ -5,7 +5,8 @@ import Modal from '@/components/atoms/Modal';
 import { useState } from 'react';
 import UserForm from '@/components/atoms/UserForm';
 import Search from '@/components/atoms/Search';
-const RegistroUsuarios = () => {
+import StaticMeta from '@/components/atoms/StaticMeta';
+const RegistroUsuarios = ({ title, description, image }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([
         {usuario: 'lorem', password: 'lorem', email: 'lorem', nombre: 'lorem', apellido: 'lorem', fechaNacimiento: 'lorem', genero: 'lorem', puesto: 'lorem', salario: 'lorem', horario: 'lorem', fechaContratacion: 'lorem', departamento: 'lorem', statu: 'lorem', contacto: 'lorem', grupo: 'lorem', calle: 'lorem', ciudad: 'lorem', estado: 'lorem', cp: 'lorem', id: 'lorem', nombreGrupo: 'lorem'},
@@ -34,6 +35,11 @@ const RegistroUsuarios = () => {
 
     return (
         <div>
+            <StaticMeta
+                title={title}
+                description={description}
+                image={image}
+            />     
             <div>
                 <Navigation/>
                 <NavDashboard section="Usuarios"/>
@@ -58,3 +64,17 @@ const RegistroUsuarios = () => {
     )
 }
 export default RegistroUsuarios;
+
+export const getServerSideProps = async () => {
+    const title = "Constanza";
+    const description =
+      "Dashboard de Usuarios";
+    const image = "images/icon/logo-400.png";
+    return {
+      props: {
+        title,
+        description,
+        image,
+      },
+    };
+  };
