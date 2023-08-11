@@ -74,6 +74,22 @@ const UserForm = ({ data, setData, closeModal }) => {
                 id: inputIDGroup, 
                 nombreGrupo: inputGroupName, 
             };
+
+
+            const axios = require('axios');
+            const apiUrl = './api/usuario/registroUsuario';
+            axios.post(apiUrl, newPerson)
+            .then(response => {
+                console.log('Respuesta de la API:', response.data);
+            })
+            .catch(error => {
+                console.error('Error al enviar la solicitud:', error);
+            });
+
+
+
+
+
             const newData = [...data, newPerson];
             setData(newData);
             setInputUser("");

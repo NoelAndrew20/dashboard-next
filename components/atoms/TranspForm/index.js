@@ -79,6 +79,21 @@ const TranspForm = ({ data, setData, closeModal }) => {
             merma: inputMerma ,
             ctCerdos: inputCtCerdos ,
             };
+
+
+            const axios = require('axios');
+            const apiUrl = './api/transporte/registroTransporte';
+            axios.post(apiUrl, newTranspot)
+            .then(response => {
+                console.log('Respuesta de la API:', response.data);
+            })
+            .catch(error => {
+                console.error('Error al enviar la solicitud:', error);
+            });
+
+
+
+
             const newData = [...data, newTranspot];
             setData(newData);
             setInputFecha("")
