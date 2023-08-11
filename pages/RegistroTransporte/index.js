@@ -5,7 +5,8 @@ import Modal from '@/components/atoms/Modal';
 import { useState } from 'react';
 import TranspForm from '@/components/atoms/TranspForm';
 import Search from '@/components/atoms/Search';
-const RegistroTransporte = () => {
+import StaticMeta from '@/components/atoms/StaticMeta';
+const RegistroTransporte = ({ title, description, image }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [data, setData] = useState([
@@ -29,6 +30,11 @@ const RegistroTransporte = () => {
 
     return (
         <div>
+            <StaticMeta
+                title={title}
+                description={description}
+                image={image}
+            />     
             <div>
                 <Navigation/>
                 <NavDashboard section="Transporte" id="transporte"/>
@@ -54,3 +60,17 @@ const RegistroTransporte = () => {
     )
 }
 export default RegistroTransporte;
+
+export const getServerSideProps = async () => {
+    const title = "Constanza";
+    const description =
+      "Dashboard de Transporte";
+    const image = "images/icon/logo-400.png";
+    return {
+      props: {
+        title,
+        description,
+        image,
+      },
+    };
+  };
