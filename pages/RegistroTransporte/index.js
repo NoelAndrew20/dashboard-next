@@ -2,10 +2,15 @@ import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
 import Table from '@/components/molecules/Table';
 import Modal from '@/components/atoms/Modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TranspForm from '@/components/atoms/TranspForm';
 import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
+
+//import axios from 'axios';
+const axios = require('axios');
+//import { postHandler, getHandler } from 'pages/api/transporte/registroTransporte';
+
 const RegistroTransporte = ({ title, description, image }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -27,6 +32,57 @@ const RegistroTransporte = ({ title, description, image }) => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    /*const obtenerValoresTransporte = async() => {
+        axios.get('./api/transporte/registroTransporte')
+          .then(response => {
+            console.log(response.data);
+            //setTransportes(response.data);
+          })
+          .catch(error => {
+            console.error('Error en la petición:', error);
+          });
+      };*/
+
+      
+     /* const obtenerValoresTransporte = async () => {
+        const apiUrl = './api/transporte/registroTransporte';
+        try {
+          const response = await axios.get(apiUrl);
+          console.log(response.data);
+          // setTransportes(response.data);
+        } catch (error) {
+          console.error('Error en la petición:', error);
+        }
+      };*/
+
+
+
+
+     /* useEffect(() => {
+        const obtenerValoresTransporte = async () => {
+            try {
+                const response = await axios.get('./api/transporte/registroTransporte');
+                console.log(response.data);
+                //setTransportes(response.data);
+            } catch (error) {
+                console.error('Error en la petición:', error);
+            }
+        };
+        obtenerValoresTransporte(); // Llamar a la función dentro del useEffect
+    }, []);*/
+
+
+
+    /*useEffect(() => {
+        axios.get('./api/transporte/registroTransporte')
+        .then(response => {
+            console.log(response.data); // Aquí puedes manejar los datos de respuesta
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, [])*/
 
     return (
         <div>
