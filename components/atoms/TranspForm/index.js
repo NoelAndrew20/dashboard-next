@@ -81,14 +81,14 @@ const TranspForm = ({ data, setData, closeModal }) => {
             };
 
 
-            const axios = require('axios');
-            const apiUrl = './api/transporte/registroTransporte';
+            const axios = require("axios");
+            const apiUrl = "./api/transporte/registroTransporte";
             axios.post(apiUrl, newTranspot)
             .then(response => {
-                console.log('Respuesta de la API:', response.data);
+                console.log("Respuesta de la API:", response.data);
             })
             .catch(error => {
-                console.error('Error al enviar la solicitud:', error);
+                console.error("Error al enviar la solicitud:", error);
             });
 
 
@@ -118,14 +118,14 @@ const TranspForm = ({ data, setData, closeModal }) => {
             setInputFinalDesembarque("")
             setInputMerma("")
             setInputCtCerdos("")
-            setSuccessMessage('Usuario guardado exitosamente');
+            setSuccessMessage("Transporte guardado exitosamente");
             setErrorMessage("");
           } else {
-            setErrorMessage('Por favor completa los cambios');
+            setErrorMessage("Por favor completa los cambios");
             setSuccessMessage("");
           }
         } catch (error) {
-          setErrorMessage('Hubo un error al guardar el usuario');
+          setErrorMessage("Hubo un error al guardar el transporte");
           setSuccessMessage("");
         }
       };

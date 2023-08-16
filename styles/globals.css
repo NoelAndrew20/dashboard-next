@@ -557,6 +557,7 @@ label {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10%;
 }
 .modal-title {
   font-size: 36px;
@@ -620,6 +621,20 @@ label {
   font-size: 25px;
   font-weight: 600;
 }
-.row-container p {
-  
+
+.edit-btn {
+  background-color: rgb(58, 219, 58);
+  padding: 5px;
+  justify-content: center;
+  display: inline-flex;
+}
+.delete-btn {
+  background-color: rgb(222, 80, 80);
+  padding: 5px;
+  justify-content: center;
+  display: inline-flex;
+}
+.confirmation {
+  border-radius: 15px;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
