@@ -43,7 +43,7 @@ const RegistroTransporte = ({ title, description, image }) => {
                 <h2 className="text-xl mt-5 mb-5">Transportes existentes</h2>
                 <Search data={data} setData={setData} />
                 <div className="mt-10">
-                    <Table data={data}/>
+                    <Table data={data} setData={setData}/>
                 </div>
                 <div className="mt-10 flex justify-end">
                     <button className="button" onClick={openModal}>Agregar transporte</button>
