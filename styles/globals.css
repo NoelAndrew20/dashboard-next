@@ -14,6 +14,7 @@ html {
 
 h1 {
   font-family: 'Montserrat', sans-serif;
+
 }
 
 :root {
@@ -291,6 +292,7 @@ label {
   width: 100%;
   padding: 0px 70px;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 .dashboard-nav {
   background-color: #F46E66;
@@ -637,4 +639,44 @@ label {
 .confirmation {
   border-radius: 15px;
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.pronostico {
+  margin-top: 40px;
+}
+.pronostico h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+}
+.pronostico h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 40px;
+}
+.pronostico-container {
+  width: 33%;
+}
+.pronostico-input {
+  width: 80%;
+  padding: 5px;
+  background-color: #F4F4F4;
+  border-radius: 10px;
+}
+.pronostico-input input {
+  width: 100%;
+  background-color: #F4F4F4;
+}
+.pronostico-input input:focus {
+  border-color: none;
+  outline: none;
+}
+.pronostico-btn {
+  width: 40%;
+  border: 1px solid #d7d1d1;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 15px;
 }
