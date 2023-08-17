@@ -54,6 +54,9 @@ const Navigation = () => {
                 <Link href="../../RegistroTransporte" className="pr-2">
                     Transportes
                 </Link>
+                <Link href="../../Pronostico" className="pr-2">
+                    Transportes
+                </Link>
             </div>  
         </div>
     </div>
