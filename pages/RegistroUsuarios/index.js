@@ -48,7 +48,7 @@ const RegistroUsuarios = ({ title, description, image }) => {
                 <h2 className="text-xl mt-5 mb-5">Usuarios existentes</h2>
                 <Search data={data} setData={setData} />
                 <div className="mt-10">
-                    <Table data={filteredData} setData={setData}/>
+                    <Table data={data} setData={setData}/>
                 </div>
                 <div className="mt-10 flex justify-end">
                     <Modal isOpen={isModalOpen} onClose={closeModal}>

@@ -55,7 +55,7 @@ const Navigation = () => {
                     Transportes
                 </Link>
                 <Link href="../../Pronostico" className="pr-2">
-                    Transportes
+                    Pronóstico
                 </Link>
             </div>  
         </div>
