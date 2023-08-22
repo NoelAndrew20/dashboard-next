@@ -6,6 +6,18 @@ const Table = ({ data, setData }) => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
     const [editedValues, setEditedValues] = useState({});
+    const entriesPerPage = 10;
+    const totalPages = Math.ceil(data.length / entriesPerPage);
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const startIndex = (currentPage - 1) * entriesPerPage;
+    const endIndex = startIndex + entriesPerPage;
+    const currentEntries = data.slice(startIndex, endIndex);
 
     const handleEdit = (index) => {
         setEditingIndex(index);
@@ -42,9 +54,6 @@ const Table = ({ data, setData }) => {
         <>
         <div className="table">
             <table className="table-container">
-            {router.pathname === "/RegistroUsuarios"
-            ? (
-                <>
                 <thead>
                     <tr>
                         <th>Usuario</th>
@@ -57,10 +66,8 @@ const Table = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item, index) => (
-                    
+                    {currentEntries.map((item, index) => (
                     <tr key={index} className="table-row">
-                        {console.log(data)}
                         <td>{item.usuario}</td>
                         <td>{item.nombre}</td>
                         <td>{item.apellido}</td>
@@ -79,85 +86,24 @@ const Table = ({ data, setData }) => {
                     </tr>
                     ))}
                 </tbody>
-                </>
-
-            ) : router.pathname === "/RegistroTransporte"
-            ? (
-                <>
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Camion</th>
-                        <th>Destino</th>
-                        <th>Hora salida granja</th>
-                        <th>Hora llegada destino</th>
-                        <th>Cantidad de cerdos</th>
-                        <th>Auditor</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {data.map((item, index) => (
-                    <tr key={index} className="table-cel">
-                        <td>{item.fecha}</td>
-                        <td>{item.camion}</td>
-                        <td>{item.destino}</td>
-                        <td>{item.salida}</td>
-                        <td>{item.hrLlegada}</td>
-                        <td>{item.ctCerdos}</td>
-                        <td>{item.auditor}</td>
-                        <td>
-                            <button className="edit-btn"><img src="images/svg/edit.svg" width={15} height={15}/></button>
-                        </td>
-                        <td>
-                            <button className="delete-btn" onClick={() => handleDelete(index)}>
-                                <img src="images/svg/trash.svg" width={10} height={10}/>
-                            </button>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-                </>
-                ) :
-                <>
-                <thead>
-                    <tr>
-                        <th>lorem</th>
-                        <th>lorem</th>
-                        <th>lorem</th>
-                        <th>lorem</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr className="table-cel">
-                        <td>lorem</td>
-                        <td>lorem</td>
-                        <td>lorem</td>
-                        <td>lorem</td>
-                    </tr>
-                    <tr className="table-cel">
-                        <td>lorem</td>
-                        <td>lorem</td>
-                        <td>lorem</td>
-                        <td>lorem</td>
-                    </tr>
-                    <tr className="table-cel">
-                        <td>lorem</td>
-                        <td>lorem</td>
-                        <td>lorem</td>
-                        <td>lorem</td>
-                    </tr>
-                    <tr className="table-cel">
-                        <td>lorem</td>
-                        <td>lorem</td>
-                        <td>lorem</td>
-                        <td>lorem</td>
-                    </tr>
-                </tbody>
-                </>
-            }
             </table>
+        </div>
+        <div className="pagination">
+            <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="button"
+            >
+                Anterior
+            </button>
+            <span>{currentPage} de {totalPages}</span>
+            <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="button"
+            >
+                Siguiente
+            </button>
         </div>
         {showEditModal && (
             <div className="edit-modal bg-white p-4 rounded shadow-md absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-4/4">

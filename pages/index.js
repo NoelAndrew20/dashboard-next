@@ -5,6 +5,7 @@ import Table from '@/components/molecules/Table'
 import PieChart from '@/components/atoms/PieChart'
 import BarChart from '@/components/atoms/BarChart'
 import StaticMeta from '@/components/atoms/StaticMeta'
+import TableIndex from '@/components/atoms/TableIndex'
 
 export default function Home({ title, description, image }) {
   return (
@@ -20,7 +21,7 @@ export default function Home({ title, description, image }) {
       >
         <div className="row-container">
           <div>
-            <Table/>
+            <TableIndex/>
           </div>
           <div>
             <PieChart/>
@@ -33,7 +34,7 @@ export default function Home({ title, description, image }) {
             <p>Periodo de 2023-04-24 a 2023-3-32</p>
           </div>
           <div>
-            <Table/>
+            <TableIndex/>
           </div>
         </div>
         <div className="h-80 w-full flex justify-center">

@@ -559,7 +559,6 @@ label {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  margin-bottom: 10%;
 }
 .modal-title {
   font-size: 36px;
@@ -691,5 +690,11 @@ label {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  margin-bottom: 10%;
+}
+.pagination {
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  width: 20%;
 }
