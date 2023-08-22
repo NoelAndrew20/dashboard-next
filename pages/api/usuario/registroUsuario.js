@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors'); // Import the cors module
 
 const app = express();
+app.use(cors());
+
 app.use(express.json());
 
 const mongoUrl = "mongodb://192.168.100.8:27017/proyectoSRS";
@@ -44,7 +47,7 @@ app.post("/addUsuario", async (req, res) => {
       horario: data.horario,
       fechaContratacion: data.fechaContratacion,
       departamento: data.departamento,
-      estado: data.estado,
+      status: data.estado,
       contacto: data.contacto,
       salario: data.salario,
       puesto: data.puesto,
@@ -66,10 +69,11 @@ app.post("/addUsuario", async (req, res) => {
   }
 });
 
-const PORT = 4001;
+const PORT = 3020;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
 
 
 /*import mongoose from 'mongoose';

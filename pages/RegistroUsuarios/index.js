@@ -2,10 +2,14 @@ import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
 import Table from '@/components/molecules/Table';
 import Modal from '@/components/atoms/Modal';
-import { useState } from 'react';
+//import { useState } from 'react';
+import { useState, useEffect } from 'react';
+const axios = require('axios');
+
 import UserForm from '@/components/atoms/UserForm';
 import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
+
 const RegistroUsuarios = ({ title, description, image }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([
@@ -50,6 +54,17 @@ const RegistroUsuarios = ({ title, description, image }) => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    useEffect(() => {
+        axios.get('http://localhost:3020/getAllUsuario')
+        .then(response => {
+            const jsonData = response.data; // Datos de respuesta en formato JSON
+            setData(jsonData.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, [])
 
     return (
         <div>
