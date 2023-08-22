@@ -1,4 +1,79 @@
-import mongoose from 'mongoose';
+const express = require('express');
+const mongoose = require('mongoose');
+
+const app = express();
+app.use(express.json());
+
+const mongoUrl = "mongodb://192.168.100.8:27017/proyectoSRS";
+
+mongoose.connect(mongoUrl, {
+  useNewUrlParser: true,
+})
+.then(() => {
+  console.log("Connected to database");
+})
+.catch((e) => console.log(e));
+
+require("../schema/schemaTransporte.js");
+const Transporte = mongoose.model("Transporte");
+
+app.get("/getAllTransporte", async (req, res) => {
+  try {
+    const allTransporte = await Transporte.find({});
+    res.send({ status: "ok", data: allTransporte });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "error", message: "Internal server error" });
+  }
+});
+
+
+app.post("/addTransporte", async (req, res) => {
+  try {
+    const data = req.body;
+    console.log(data);
+    const nuevoTransporte = new Transporte({
+      //fecha: data.fecha,
+      granja: data.granja,
+      camion: data.camion,
+      jaula: data.jaula,
+      operador: data.operador,
+      cliente: data.cliente,
+      destino: data.destino,
+      salida: data.salida,
+      hrLlegada: data.hrLlegada,
+      tmpRecorrido: data.tmpRecorrido,
+      hrInicio: data.hrInicio,
+      kgSalida: data.kgSalida,  
+      kgDesembarque: data.kgDesembarque,
+      rango: data.rango,
+      muertos: data.muertos,
+      parada: data.parada,
+      auditor: data.auditor,
+      incidencias: data.incidencias,
+      revision: data.revision,
+      hrFinal: data.hrFinal,
+      merma: data.merma,
+      ctCerdos: data.ctCerdos,
+    });
+
+    await nuevoTransporte.save();
+
+    res.status(200).json({ message: 'Datos guardados con éxito' });
+  } catch (error) {
+    console.error('Error al guardar los datos:', error);
+    res.status(500).json({ message: 'Error al guardar los datos' });
+  }
+});
+
+const PORT = 4000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+
+
+/*import mongoose from 'mongoose';
 
 // Definir un esquema para la colección "transporte"
 const TransporteSchema = new mongoose.Schema({
@@ -82,6 +157,5 @@ export default async function handler(req, res) {
   } else {
     res.status(405).json({ message: 'Método no permitido' });
   }
-}
-
+}*/
 

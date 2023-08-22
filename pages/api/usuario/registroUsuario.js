@@ -1,4 +1,78 @@
-import mongoose from 'mongoose';
+const express = require('express');
+const mongoose = require('mongoose');
+
+const app = express();
+app.use(express.json());
+
+const mongoUrl = "mongodb://192.168.100.8:27017/proyectoSRS";
+
+mongoose.connect(mongoUrl, {
+  useNewUrlParser: true,
+})
+.then(() => {
+  console.log("Connected to database");
+})
+.catch((e) => console.log(e));
+
+require("../schema/schemaUsuario.js");
+const Usuario = mongoose.model("Usuario");
+
+app.get("/getAllUsuario", async (req, res) => {
+  try {
+    const allUsuario = await Usuario.find({});
+    res.send({ status: "ok", data: allUsuario });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "error", message: "Internal server error" });
+  }
+});
+
+app.post("/addUsuario", async (req, res) => {
+  try {
+    const data = req.body;
+    console.log(data);
+    const nuevoUsuario = new Usuario({
+      usuario: data.usuario,
+      nombre: data.nombre,
+      apellido: data.apellido,
+      puesto: data.puesto,
+      grupo: data.grupo,
+      password: data.password,
+      email: data.email,
+      fechaNacimiento: data.fechaNacimiento,
+      genero: data.genero,
+      horario: data.horario,
+      fechaContratacion: data.fechaContratacion,
+      departamento: data.departamento,
+      estado: data.estado,
+      contacto: data.contacto,
+      salario: data.salario,
+      puesto: data.puesto,
+      grupo: data.grupo,
+      calle: data.calle,
+      ciudad: data.ciudad,
+      estado: data.estado,
+      cp: data.cp,
+      id: data.id,
+      nombreGrupo: data.nombreGrupo,
+    });
+
+    await nuevoUsuario.save();
+
+    res.status(200).json({ message: 'Datos guardados con éxito' });
+  } catch (error) {
+    console.error('Error al guardar los datos:', error);
+    res.status(500).json({ message: 'Error al guardar los datos' });
+  }
+});
+
+const PORT = 4001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+
+/*import mongoose from 'mongoose';
 
 // Definir un esquema para la colección "usuarios"
 const UsuarioSchema = new mongoose.Schema({
@@ -83,3 +157,4 @@ export default async function handler(req, res) {
     res.status(405).json({ message: 'Método no permitido' });
   }
 }
+*/
