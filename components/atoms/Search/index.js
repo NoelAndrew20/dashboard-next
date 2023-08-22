@@ -10,7 +10,7 @@ const Search = ({ data, setData }) => {
 
 
     useEffect(() => {
-        const filterKey = router.pathname === '/RegistroUsuarios' ? 'usuario' : 'camion';
+        const filterKey = router.pathname === '/RegistroUsuarios' ? 'usuario' : router.pathname === '/RegistroTransporte' ? 'camion' : router.pathname === '/Medicamento' ? 'PO_Name' : router.pathname === '/MateriasPrimas' ? 'Item_Name' : "";
         const filteredData = search
         ? originalData.filter(item =>
             item[filterKey].toLowerCase().includes(search.toLowerCase())
@@ -25,6 +25,10 @@ const Search = ({ data, setData }) => {
             filterKey = 'usuario';
         } else if (router.pathname === '/RegistroTransporte') {
             filterKey = 'camion';
+        } else if (router.pathname === '/Medicamento') {
+            filterKey = 'PO_Name';
+        } else if (router.pathname === '/MateriasPrimas') {
+            filterKey = 'Item_Name';
         }
         const filteredData = search
             ? originalData.filter(item =>

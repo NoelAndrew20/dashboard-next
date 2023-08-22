@@ -30,6 +30,7 @@ const Navigation = () => {
                 </div>  
             </Link>
         </div>
+        {/*
         <div className="flex searchbar justify-center items-center">
             <div className="searchbar-icon">
             <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,6 +40,7 @@ const Navigation = () => {
             </div>
             <input type="text" placeholder="Buscar en Constanza" size="30" className="search-input"/>
         </div>
+    */}
         <div className="flex justify-center items-center">
             <div className="mr-5 flex">
                 <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,6 +55,12 @@ const Navigation = () => {
                 </Link>
                 <Link href="../../RegistroTransporte" className="pr-2">
                     Transportes
+                </Link>
+                <Link href="../../Medicamento" className="pr-2">
+                    Medicamento
+                </Link>
+                <Link href="../../MateriasPrimas" className="pr-2">
+                    Materias primas
                 </Link>
                 <Link href="../../Pronostico" className="pr-2">
                     Pronóstico

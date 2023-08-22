@@ -183,7 +183,7 @@ label {
   padding-right: 1rem;
 }
 .navigation {
-  display: grid;
+  display: contents;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   width: 100%;
@@ -304,6 +304,12 @@ label {
 }
 #transporte {
   background-color: #C1BD06;
+}
+#medicamento {
+  background-color: #54c2ea;
+}
+#materias {
+  background-color: #e8d153;
 }
 .dashboard-nav h1 {
   font-family: 'Montserrat', sans-serif;

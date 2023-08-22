@@ -102,7 +102,7 @@ const TableTransporte = ({ data, setData }) => {
             >
                 Anterior
             </button>
-            <span>{currentPage} de {totalPages}</span>
+            <span className="text-center">{currentPage} de {totalPages}</span>
             <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
