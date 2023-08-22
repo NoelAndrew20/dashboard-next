@@ -62,7 +62,7 @@ const UserForm = ({ data, setData, closeModal }) => {
                 horario: inputSchedule, 
                 fechaContratacion: inputHireDate, 
                 departamento: inputDepartment,
-                estado: inputStatus,
+                status: inputStatus,
                 contacto: inputContact, 
                 salario: inputSalary,
                 puesto: inputPosition, 

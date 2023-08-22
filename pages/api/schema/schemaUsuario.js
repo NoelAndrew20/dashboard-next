@@ -16,7 +16,7 @@ const UsuarioSchema = new mongoose.Schema(
     horario: String, 
     fechaContratacion: String, 
     departamento: String,
-    estado: String,
+    status: String,
     contacto: String, 
     salario: String,
     calle: String,

@@ -34,23 +34,6 @@ const RegistroTransporte = ({ title, description, image }) => {
         setIsModalOpen(false);
     };
 
-    /*useEffect(() => {
-        fetch('http://localhost:4000/getAllTransporte')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(jsonData => {
-                console.log(jsonData);
-                setData(jsonData);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }, []);*/
-
     useEffect(() => {
         axios.get('http://localhost:3010/getAllTransporte')
         .then(response => {
