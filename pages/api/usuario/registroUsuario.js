@@ -66,7 +66,7 @@ app.post("/addUsuario", async (req, res) => {
   }
 });
 
-const PORT = 4001;
+const PORT = 3020;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
