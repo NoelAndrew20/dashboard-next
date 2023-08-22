@@ -6,6 +6,18 @@ const TableTransporte = ({ data, setData }) => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
     const [editedValues, setEditedValues] = useState({});
+    const entriesPerPage = 10;
+    const totalPages = Math.ceil(data.length / entriesPerPage);
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const startIndex = (currentPage - 1) * entriesPerPage;
+    const endIndex = startIndex + entriesPerPage;
+    const currentEntries = data.slice(startIndex, endIndex);
 
     const handleEdit = (index) => {
         setEditingIndex(index);
@@ -56,7 +68,7 @@ const TableTransporte = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {data.map((item, index) => (
+                {currentEntries.map((item, index) => (
                     <tr key={index} className="table-cel">
                         {console.log(data)}
                         <td>{item.fecha}</td>
@@ -80,6 +92,24 @@ const TableTransporte = ({ data, setData }) => {
                 ))}
                 </tbody>
             </table>
+            
+        </div>
+        <div className="pagination">
+            <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="button"
+            >
+                Anterior
+            </button>
+            <span>{currentPage} de {totalPages}</span>
+            <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="button"
+            >
+                Siguiente
+            </button>
         </div>
         {showEditModal && (
             <div className="edit-modal bg-white p-4 rounded shadow-md absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-4/4">
