@@ -7,29 +7,17 @@ const Search = ({ data, setData }) => {
     const [originalData, setOriginalData] = useState(data);
     const [selectedEntries, setSelectedEntries] = useState("all");
     const router = useRouter();
-
-
+   
     useEffect(() => {
-        const filterKey = router.pathname === '/RegistroUsuarios' ? 'usuario' : router.pathname === '/RegistroTransporte' ? 'camion' : router.pathname === '/Medicamento' ? 'PO_Name' : router.pathname === '/MateriasPrimas' ? 'Item_Name' : "";
-        const filteredData = search
-        ? originalData.filter(item =>
-            item[filterKey].toLowerCase().includes(search.toLowerCase())
-          )
-        : originalData;
-        setData(filteredData);
-    }, [search, originalData]);
-
-    useEffect(() => {
-        let filterKey;
-        if (router.pathname === '/RegistroUsuarios') {
-            filterKey = 'usuario';
-        } else if (router.pathname === '/RegistroTransporte') {
-            filterKey = 'camion';
-        } else if (router.pathname === '/Medicamento') {
-            filterKey = 'PO_Name';
-        } else if (router.pathname === '/MateriasPrimas') {
-            filterKey = 'Item_Name';
-        }
+        const filterKey = 
+        router.pathname === "/RegistroUsuarios" ? "usuario" 
+        : router.pathname === "/RegistroTransporte" ? "camion" 
+        : router.pathname === "/Medicamento" ? "PO_Name" 
+        : router.pathname === "/MateriasPrimas" ? "Item_Name" 
+        : router.pathname === "/Aduana" ? "rfid" 
+        : router.pathname === "/Alertas" ? "Tipo" 
+        : "";
+    
         const filteredData = search
             ? originalData.filter(item =>
                 item[filterKey].toLowerCase().includes(search.toLowerCase())
@@ -37,7 +25,7 @@ const Search = ({ data, setData }) => {
             : originalData;
     
         const numberOfEntries = parseInt(selectedEntries);
-        const slicedData = filteredData.slice(0, selectedEntries === 'all' ? filteredData.length : numberOfEntries);
+        const slicedData = filteredData.slice(0, selectedEntries === "all" ? filteredData.length : numberOfEntries);
     
         setData(slicedData);
     }, [search, selectedEntries, originalData, router.pathname]);
