@@ -311,6 +311,12 @@ label {
 #materias {
   background-color: #e8d153;
 }
+#aduana {
+  background-color: #d459db;
+}
+#alertas {
+  background-color: #E47F13;
+}
 .dashboard-nav h1 {
   font-family: 'Montserrat', sans-serif;
   font-style: bold;
