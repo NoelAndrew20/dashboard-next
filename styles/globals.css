@@ -188,6 +188,10 @@ label {
   gap: 1rem;
   width: 100%;
 }
+.navigation a.active {
+  text-decoration: underline;
+  color: #ECA10C;
+}
 .searchbar {
   display: flex;
   width: 90%;
