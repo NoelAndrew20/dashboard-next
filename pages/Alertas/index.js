@@ -6,10 +6,10 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import TableAlertas from '@/components/molecules/TableAlertas';
 const Alertas = ({ title, description, image }) => {
     const [data, setData] = useState([
-        { Fecha:"2023-08-85", Hora: "14:02", Tipo: "cerdo araña", Imagen: "/images/puerco_araña.jpg" }, 
-        { Fecha:"2023-08-85", Hora: "14:02", Tipo: "cerdo araña", Imagen: "/images/puerco_araña.jpg" }, 
-        { Fecha:"2023-08-85", Hora: "14:02", Tipo: "cerdo araña", Imagen: "/images/puerco_araña.jpg" }, 
-        { Fecha:"2023-08-85", Hora: "14:02", Tipo: "cerdo araña", Imagen: "/images/puerco_araña.jpg" }, 
+        { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
+        { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
+        { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
+        { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
     ])
 
     return (

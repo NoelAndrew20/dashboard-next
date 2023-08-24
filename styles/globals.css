@@ -714,3 +714,8 @@ label {
   margin-top: 15px;
   width: 20%;
 }
+.alert-message {
+  background-color: #ed3131;
+  color: white;
+  padding: 2px;
+}
