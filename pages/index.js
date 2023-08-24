@@ -6,7 +6,7 @@ import PieChart from '@/components/atoms/PieChart'
 import BarChart from '@/components/atoms/BarChart'
 import StaticMeta from '@/components/atoms/StaticMeta'
 import TableIndex from '@/components/atoms/TableIndex'
-
+import { useState } from 'react'
 export default function Home({ title, description, image }) {
   return (
     <div>

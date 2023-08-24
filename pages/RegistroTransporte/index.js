@@ -58,7 +58,7 @@ const RegistroTransporte = ({ title, description, image }) => {
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Transportes existentes</h2>
-                <Search data={data} setData={setData} />
+                <Search data={data} setData={setData} word={"camión"} />
                 <div className="mt-10">
                     {console.log("la data",data)}
                     <TableTransporte data={data} setData={setData}/>
