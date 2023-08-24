@@ -17,6 +17,7 @@ const TableAduana = ({ data, setData }) => {
                 <thead>
                     <tr>
                         <th>Puerta</th>
+                        <th>Puerta</th>
                         <th>Nave</th>
                         <th>Granja</th>
                         <th>RFID</th>

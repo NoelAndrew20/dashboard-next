@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const Search = ({ data, setData }) => {
+const Search = ({ data, setData, word }) => {
     const [search, setSearch] = useState("");
     const [originalData, setOriginalData] = useState(data);
     const [selectedEntries, setSelectedEntries] = useState("all");
@@ -36,7 +36,7 @@ const Search = ({ data, setData }) => {
                 <div>
                     <input
                         type="text"
-                        placeholder="Buscar..."
+                        placeholder={`Buscar por ${word}...`}
                         onChange={(e) => { setSearch(e.target.value) }}
                         className="border border-gray-300 rounded outline-none focus:border-none" 
                     />

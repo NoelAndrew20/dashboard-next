@@ -24,7 +24,7 @@ const Aduana = ({ title, description, image }) => {
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Elementos existentes</h2>
-                <Search data={data} setData={setData} />
+                <Search data={data} setData={setData} word={"RFID"} />
                 <div className="mt-10">
                     <TableAduana data={data} setData={setData}/>
                 </div>

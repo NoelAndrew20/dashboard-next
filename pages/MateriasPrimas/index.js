@@ -27,7 +27,7 @@ const Medicamento = ({ title, description, image }) => {
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Medicamentos existentes</h2>
-                <Search data={data} setData={setData} />
+                <Search data={data} setData={setData} word={"item"}/>
                 <div className="mt-10">
                     <TableMaterias data={data} setData={setData}/>
                 </div>
