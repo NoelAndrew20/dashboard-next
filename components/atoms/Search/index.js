@@ -14,7 +14,7 @@ const Search = ({ data, setData, word }) => {
         : router.pathname === "/RegistroTransporte" ? "camion" 
         : router.pathname === "/Medicamento" ? "PO_Name" 
         : router.pathname === "/MateriasPrimas" ? "Item_Name" 
-        : router.pathname === "/Aduana" ? "rfid" 
+        : router.pathname === "/RFID" ? "rfid" 
         : router.pathname === "/Alertas" ? "Tipo" 
         : "";
     

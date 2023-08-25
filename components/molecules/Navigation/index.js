@@ -46,8 +46,8 @@ const Navigation = () => {
                 <Link href="../../Pronostico" className={`pr-5 ${currentPage === '/Pronostico' ? 'active' : ''}`}>
                     Pronóstico
                 </Link>
-                <Link href="../../Aduana" className={`pr-5 ${currentPage === '/Aduana' ? 'active' : ''}`}>
-                    Aduana
+                <Link href="../../RFID" className={`pr-5 ${currentPage === '/RFID' ? 'active' : ''}`}>
+                    RFID
                 </Link>
             </div>  
         </div>
