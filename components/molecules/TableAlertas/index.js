@@ -1,9 +1,6 @@
-import Image from 'next/image';
 import { useState } from 'react';
 
 const TableAlertas = ({ data, setData }) => {
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [selectedImage, setSelectedImage] = useState("");
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
     const [currentPage, setCurrentPage] = useState(1);
@@ -20,23 +17,31 @@ const TableAlertas = ({ data, setData }) => {
             <table className="table-container">
                 <thead>
                     <tr>
+                        <th>Mensaje</th>
                         <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Tipo</th>
-                        <th>Imagen</th>
+                        <th>Puerta</th>
+                        <th>Area</th>
+                        <th>Nave</th>
+                        <th>Granja</th>
                     </tr>
                 </thead>
                 <tbody>
                 {currentEntries.map((item, index) => (
-                    <tr key={index} className="table-cel">
-                        <td>{item.Fecha}</td>
-                        <td>{item.Hora}</td>
-                        <td>{item.Tipo}</td>
+                    <tr key={index} className="table-cel" >
                         <td>
-                            <button onClick={()=> {setShowEditModal(true), setSelectedImage(item.Imagen)}}>
-                                Ver imagen
-                            </button>
+                        {item.message.split('ALERT').map((part, partIndex) => (
+                            partIndex === 1 ? (
+                            <span key={partIndex}><label className="alert-message">ALERT</label> {part}</span>
+                            ) : (
+                            <span key={partIndex}>{part}</span>
+                            )
+                        ))}
                         </td>
+                        <td>{item.fecha}</td>
+                        <td>{item.puerta}</td>
+                        <td>{item.area}</td>
+                        <td>{item.nave}</td>
+                        <td>{item.granja}</td>
                     </tr>
                 ))}
                 </tbody>
@@ -60,14 +65,6 @@ const TableAlertas = ({ data, setData }) => {
                 Siguiente
             </button>
         </div>
-        {showEditModal && (
-            <div className="edit-modal bg-white p-4 rounded shadow-md absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-4/4">
-                <Image src={selectedImage} width={350} height={350} alt="alerta"/>
-                <div className="mt-5 flex justify-between">
-                    <button className="cancel-btn" onClick={() => setShowEditModal(false)}>Cerrar</button>
-                </div>
-            </div>
-        )}
         </>
     )
 }

@@ -16,7 +16,7 @@ const TableAduana = ({ data, setData }) => {
             <table className="table-container">
                 <thead>
                     <tr>
-                        <th>Puerta</th>
+                        <th>Zona</th>
                         <th>Puerta</th>
                         <th>Nave</th>
                         <th>Granja</th>
