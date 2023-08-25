@@ -1,9 +1,11 @@
 import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
-import { useState } from 'react';
+//import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import TableAlertas from '@/components/molecules/TableAlertas';
+const axios = require('axios');
 const Alertas = ({ title, description, image }) => {
     const [data, setData] = useState([
         { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
@@ -11,6 +13,17 @@ const Alertas = ({ title, description, image }) => {
         { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
         { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
     ])
+
+    useEffect(() => {
+        axios.get('http://localhost:3050/getAllAlerta')
+        .then(response => {
+            const jsonData = response.data; // Datos de respuesta en formato JSON
+            setData(jsonData.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, [])
 
     return (
         <div>
