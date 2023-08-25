@@ -1,5 +1,5 @@
 import { useState } from 'react';
-const TableAduana = ({ data, setData }) => {
+const TableRFID = ({ data, setData }) => {
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
     const [currentPage, setCurrentPage] = useState(1);
@@ -26,10 +26,10 @@ const TableAduana = ({ data, setData }) => {
                 <tbody>
                 {currentEntries.map((item, index) => (
                     <tr key={index} className="table-cel">
-                        <td>{item.config.zona}</td>
-                        <td>{item.config.puerta}</td>
-                        <td>{item.config.nave}</td>
-                        <td>{item.config.granja}</td>
+                        <td>{item.zona}</td>
+                        <td>{item.puerta}</td>
+                        <td>{item.nave}</td>
+                        <td>{item.granja}</td>
                         <td>{item.rfid}</td>
                     </tr>
                 ))}
@@ -57,4 +57,4 @@ const TableAduana = ({ data, setData }) => {
         </>
     )
 }
-export default TableAduana;
+export default TableRFID;
