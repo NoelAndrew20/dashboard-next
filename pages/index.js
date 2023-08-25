@@ -1,7 +1,5 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+
 import Navigation from '@/components/molecules/Navigation'
-import Table from '@/components/molecules/Table'
 import PieChart from '@/components/atoms/PieChart'
 import BarChart from '@/components/atoms/BarChart'
 import StaticMeta from '@/components/atoms/StaticMeta'
@@ -16,28 +14,31 @@ export default function Home({ title, description, image }) {
         image={image}
       />      
       <Navigation/>
+      <div className="bienvenida">
+        <h1>Bienvenido a Constanza</h1>
+      </div>
       <main
         className={`flex min-h-screen flex-col items-center p-24`}
       >
-        <div className="row-container">
-          <div>
+        <div className="row-container mt-10">
+          <div className="grid items-center">
             <TableIndex/>
           </div>
-          <div>
+          <div className='flex'>
             <PieChart/>
           </div>
         </div>
-        <div className="row-container">
+        <div className="row-container mt-10">
           <div>
             <h1>Costo tota de medicamentos / vacunas</h1>
             <h2>$12000</h2>
             <p>Periodo de 2023-04-24 a 2023-3-32</p>
           </div>
-          <div>
+          <div className="grid items-center">
             <TableIndex/>
           </div>
         </div>
-        <div className="h-80 w-full flex justify-center">
+        <div className="row-container mt-10 h-80 w-full flex justify-center">
           <BarChart/>
         </div>
       </main>

@@ -20,8 +20,8 @@ const TableIndex = ({}) => {
     })
     return (
         <>
-        <div className="table">
-            <table className="table-container">
+        <div className="table-index">
+            <table className="table-container-index">
                 <thead>
                     <tr>
                         <th>Valor 1</th>
@@ -43,7 +43,7 @@ const TableIndex = ({}) => {
             </table>
             
         </div>
-        <div className="mt-3">
+        <div className="mt-3 flex justify-center items-center">
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
