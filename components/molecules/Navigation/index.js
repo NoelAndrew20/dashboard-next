@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import burguer from '@/public/images/svg/hamburguer.svg'
 import x from '@/public/images/svg/x-w.svg'
-
+import srs from '@/public/images/icon/srs.png'
 const Navigation = () => {
     const router = useRouter();
     const currentPage = router.pathname;
@@ -66,6 +66,9 @@ const Navigation = () => {
                     <Link href="../../RFID" className={`hover:text-[#ECA10C] ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
                         RFID
                     </Link>
+                    <div className="flex justify-center pt-20">
+                        <Image src={srs} width={100} height={100} alt="srs-logo" />
+                    </div>
                 </div>
             </div>
         </>

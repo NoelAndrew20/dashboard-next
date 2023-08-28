@@ -41,6 +41,9 @@ const RFID = ({ title, description, image }) => {
                 <div className="mt-10">
                     <TableRFID data={data} setData={setData}/>
                 </div>
+                <div className="flex justify-end">
+                    <span>Total de cerdos: </span>
+                </div>
             </div>
         </div>
     )
