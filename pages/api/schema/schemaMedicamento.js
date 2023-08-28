@@ -26,7 +26,7 @@ const MedicamentoSchema = new mongoose.Schema(
     Suma_de_ImportePartida: String,
   },
   {
-    collection: 'ComprasMedicamentoEnero-Diciembre2022Original',
+    collection: 'ComMedEne-Dic2022',
     versionKey: false,
   }
 );

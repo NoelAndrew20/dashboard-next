@@ -28,7 +28,8 @@ const TransporteSchema = new mongoose.Schema(
     ctCerdos: String,
   },
   {
-    collection: 'transportes', // Nombre de la colección en la base de datos
+    //collection: 'transportes', // Nombre de la colección en la base de datos
+    collection: 'trasportePrueba',
     versionKey: false,
   }
 );

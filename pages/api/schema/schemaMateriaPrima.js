@@ -26,7 +26,7 @@ const MateriaPrimaSchema = new mongoose.Schema(
     Suma_de_ImportePartida: String,
   },
   {
-    collection: 'ComprasMateriasPrimasEnero-Diciembre2022Original',
+    collection: 'ComMPEne-Dic2022',
     versionKey: false,
   }
 );
