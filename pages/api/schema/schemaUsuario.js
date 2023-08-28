@@ -27,7 +27,8 @@ const UsuarioSchema = new mongoose.Schema(
     nombreGrupo: String,
 },
   {
-    collection: 'usuarios', // Nombre de la colección en la base de datos
+    //collection: 'usuarios', // Nombre de la colección en la base de datos
+    collection: 'usuarioPrueba',
     versionKey: false,
   }
 );

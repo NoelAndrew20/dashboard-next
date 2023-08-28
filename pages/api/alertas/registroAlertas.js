@@ -7,7 +7,8 @@ app.use(cors());
 
 app.use(express.json());
 
-const mongoUrl = "mongodb://192.168.100.8:27017/maindb";
+//const mongoUrl = "mongodb://192.168.100.8:27017/maindb";
+const mongoUrl = "mongodb://192.168.100.20:27017/C3_LaPurisima";
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
