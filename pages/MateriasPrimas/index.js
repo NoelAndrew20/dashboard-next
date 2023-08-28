@@ -39,7 +39,7 @@ const Medicamento = ({ title, description, image }) => {
                 <NavDashboard section="Materias Primas" id="materias"/>
             </div>
             <div className="wrapper">
-                <h2 className="text-xl mt-5 mb-5">Medicamentos existentes</h2>
+                <h2 className="text-xl mt-5 mb-5">Materias primas existentes</h2>
                 <Search data={data} setData={setData} word={"item"}/>
                 <div className="mt-10">
                     <TableMaterias data={data} setData={setData}/>
