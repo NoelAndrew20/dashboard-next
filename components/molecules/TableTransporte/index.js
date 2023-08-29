@@ -1,3 +1,4 @@
+import RegistroTransporte from '@/pages/RegistroTransporte';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 const TableTransporte = ({ data, setData }) => {
@@ -24,14 +25,60 @@ const TableTransporte = ({ data, setData }) => {
         setEditedValues(data[index]);
         setShowEditModal(true);
     };
+
+    //############################################
+    //aqui wa hacer mi funcion 
     const handleSaveEdit = () => {
-        const newData = [...data];
+        const updatedTransporte = {
+            fecha: editedValues.fecha,
+            granja: editedValues.granja,
+            camion: editedValues.camion,
+            jaula: editedValues.jaula,
+            operador: editedValues.operador,
+            cliente: editedValues.cliente,
+            destino: editedValues.destino,
+            salida: editedValues.salida,
+            hrLlegada: editedValues.hrLlegada,
+            tmpRecorrido: editedValues.tmpRecorrido,
+            hrInicio: editedValues.hrInicio,
+            kgSalida: editedValues.kgSalida,
+            kgDesembarque: editedValues.kgDesembarque,
+            rango: editedValues.rango,
+            muertos: editedValues.muertos,
+            parada: editedValues.parada,
+            auditor: editedValues.auditor,
+            incidencias: editedValues.incidencias,
+            revision: editedValues.revision,
+            hrFinal: editedValues.hrFinal,
+            merma: editedValues.merma,
+            ctCerdos: editedValues.ctCerdos
+        };
+    
+        const axios = require("axios");
+        console.log(updatedTransporte.fecha, updatedTransporte);
+    
+        const apiUrl = 'http://localhost:3010/editTransporte/' + updatedTransporte.fecha;
+        axios.put(apiUrl, updatedTransporte)
+            .then(response => {
+                console.log("Respuesta de la API:", response.data);
+            })
+            .catch(error => {
+                console.error("Error al enviar la solicitud:", error);
+            });
+
+            setShowEditModal(false);
+            setEditedValues({});
+    };
+    
+              
+        /*const newData = [...data];
         newData[editingIndex] = { ...editedValues };
         setData(newData);
         
         setShowEditModal(false);
         setEditedValues({});
-    };
+    };*/
+
     const handleEditInputChange = (event) => {
         const { name, value } = event.target;
         setEditedValues((prevValues) => ({
@@ -41,14 +88,14 @@ const TableTransporte = ({ data, setData }) => {
     };
       
       
-    const handleDelete = (index) => {
+    /*const handleDelete = (index) => {
       const newData = data.filter((_, i) => i !== index);
       setData(newData);
       setShowConfirmation(true);
       setTimeout(() => {
         setShowConfirmation(false);
       }, 1000); 
-    };
+    };*/
 
     return (
         <>
@@ -64,7 +111,7 @@ const TableTransporte = ({ data, setData }) => {
                         <th>Cantidad de cerdos</th>
                         <th>Auditor</th>
                         <th>Editar</th>
-                        <th>Eliminar</th>
+                        {/*<th>Eliminar</th>*/}
                     </tr>
                 </thead>
                 <tbody>
@@ -84,9 +131,9 @@ const TableTransporte = ({ data, setData }) => {
                             </button>
                         </td>
                         <td>
-                            <button className="delete-btn" onClick={() => handleDelete(index)}>
+                            {/*<button className="delete-btn" onClick={() => handleDelete(index)}>
                                 <img src="images/svg/trash.svg" width={10} height={10}/>
-                            </button>
+                            </button>*/}
                         </td>
                     </tr>
                 ))}

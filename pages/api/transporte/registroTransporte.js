@@ -37,7 +37,7 @@ app.post("/addTransporte", async (req, res) => {
     const data = req.body;
     console.log(data);
     const nuevoTransporte = new Transporte({
-      //fecha: data.fecha,
+      fecha: data.fecha,
       granja: data.granja,
       camion: data.camion,
       jaula: data.jaula,
@@ -69,6 +69,56 @@ app.post("/addTransporte", async (req, res) => {
     res.status(500).json({ message: 'Error al guardar los datos' });
   }
 });
+
+
+app.put('/editTransporte/:fecha', async (req, res) => {
+  try {
+    const fecha = req.params.fecha;
+    const newData = req.body;
+
+    const updatedTransporte = await Transporte.findOneAndUpdate(
+      { fecha: fecha },
+      { $set: newData },
+      { new: true }
+    );
+
+    // Si updatedTransporte es null, significa que no se encontró el transporte
+    if (!updatedTransporte) {
+      return res.status(404).json({ message: 'Transporte no encontrado' });
+    }
+
+    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedTransporte });
+  } catch (error) {
+    console.error('Error al actualizar los datos:', error);
+    res.status(500).json({ message: 'Error al actualizar los datos' });
+  }
+});
+
+
+
+/*app.put('/editTransporte/:fecha', async (req, res) => {
+  try {
+    const fecha = req.params.fecha;
+    const newData = req.body;
+
+    const updatedTransporte = await Transporte.findOneAndUpdate(
+      { fecha: fecha },
+      { $set: newData },
+      { new: true }
+    );
+
+    // Si updatedTransporte es null, significa que no se encontró el transporte
+    if (!updatedTransporte) {
+      return res.status(404).json({ message: 'Transporte no encontrado' });
+    }
+
+    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedTransporte });
+  } catch (error) {
+    console.error('Error al actualizar los datos:', error);
+    res.status(500).json({ message: 'Error al actualizar los datos' });
+  }
+});*/
+
 
 const PORT = 3010;
 app.listen(PORT, () => {

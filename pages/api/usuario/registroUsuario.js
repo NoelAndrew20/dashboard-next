@@ -70,6 +70,31 @@ app.post("/addUsuario", async (req, res) => {
   }
 });
 
+
+app.put('/editUsuario/:fechaContratacion', async (req, res) => {
+  try {
+    const fechaContratacion = req.params.fechaContratacion;
+    const newData = req.body;
+
+    const updatedUsuario = await Usuario.findOneAndUpdate(
+      { fechaContratacion: fechaContratacion },
+      { $set: newData },
+      { new: true }
+    );
+
+    // Si updatedTransporte es null, significa que no se encontró el transporte
+    if (!updatedUsuario) {
+      return res.status(404).json({ message: 'Transporte no encontrado' });
+    }
+
+    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedUsuario });
+  } catch (error) {
+    console.error('Error al actualizar los datos:', error);
+    res.status(500).json({ message: 'Error al actualizar los datos' });
+  }
+});
+
+
 const PORT = 3020;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

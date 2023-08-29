@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 // Definir un esquema para la colección "Transporte"
 const TransporteSchema = new mongoose.Schema(
   {
-    fecha: String,
+    fecha: Date,
     granja: String,
     camion: String,
     jaula: String,
@@ -29,7 +29,7 @@ const TransporteSchema = new mongoose.Schema(
   },
   {
     //collection: 'transportes', // Nombre de la colección en la base de datos
-    collection: 'trasportePrueba',
+    collection: 'transportePrueba',
     versionKey: false,
   }
 );

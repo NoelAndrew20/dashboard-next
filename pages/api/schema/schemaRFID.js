@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 // Definir un esquema para la colección "Transporte"
 const RFIDSchema = new mongoose.Schema(
   {
-    fecha: String,
+    fecha: Date,
     unixTime: String,
     sensor: String,
     puerta: String,

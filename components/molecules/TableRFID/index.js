@@ -16,23 +16,24 @@ const TableRFID = ({ data, setData }) => {
             <table className="table-container">
                 <thead>
                     <tr>
+                    <th>Fecha de registro</th>
                         <th>Zona</th>
                         <th>Puerta</th>
                         <th>Nave</th>
                         <th>Granja</th>
-                        <th>RFID</th>
-                        <th>Fecha de registro</th>
+                        <th>RFID</th> 
                     </tr>
                 </thead>
                 <tbody>
                 {currentEntries.map((item, index) => (
                     <tr key={index} className="table-cel">
+                        <td>{item.fecha}</td>
                         <td>{item.zona}</td>
                         <td>{item.puerta}</td>
                         <td>{item.nave}</td>
                         <td>{item.granja}</td>
                         <td>{item.rfid}</td>
-                        <td>{item.fecha.$date}</td>
+                        
                     </tr>
                 ))}
                 </tbody>
