@@ -1,11 +1,12 @@
 import jsonData from '../../../public/api/pronostico/python/output.json'
+import jsonData1 from '../../../public/api/pronostico/python/config.json'
 import { useEffect, useState } from 'react';
-const TableIndex = ({}) => {
+const TableIndexVacuna = ({}) => {
     const [data, setData] = useState([
-        { v1: "Vientre", v2: "", v3: "", v4: jsonData.alimento.costo_total_A.Vientre, },
-        { v1: "Lechon", v2: "", v3: "", v4: jsonData.alimento.costo_total_A.Lechon, },
-        { v1: "CDI", v2: "", v3: "", v4: "", },
-        { v1: "Celador", v2: "", v3: "", v4: "", },
+        { v1: "V1", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V1, v4: "", },
+        { v1: "V2", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V2, v4: "", },
+        { v1: "V3", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V3, v4: "", },
+        { v1: "V4", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V4, v4: "", },
       ])
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
@@ -25,10 +26,10 @@ const TableIndex = ({}) => {
             <table className="table-container-index">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>Precio</th>
+                        <th>Tipo vacuna/medicamento</th>
+                        <th>Número aplicaciones</th>
+                        <th>Precio por aplicación</th>
+                        <th>Costo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,4 +49,4 @@ const TableIndex = ({}) => {
         </>
     )
 }
-export default TableIndex;
+export default TableIndexVacuna;

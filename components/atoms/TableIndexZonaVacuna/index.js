@@ -1,11 +1,10 @@
 import jsonData from '../../../public/api/pronostico/python/output.json'
+import jsonData1 from '../../../public/api/pronostico/python/config.json'
 import { useEffect, useState } from 'react';
-const TableIndex = ({}) => {
+const TableIndexZonaVacuna = ({}) => {
     const [data, setData] = useState([
-        { v1: "Vientre", v2: "", v3: "", v4: jsonData.alimento.costo_total_A.Vientre, },
-        { v1: "Lechon", v2: "", v3: "", v4: jsonData.alimento.costo_total_A.Lechon, },
-        { v1: "CDI", v2: "", v3: "", v4: "", },
-        { v1: "Celador", v2: "", v3: "", v4: "", },
+        { v1: "A", v2: jsonData.vacunas.num_vacunas.Vientre.A, v3: jsonData1.info_tipos.vientre.Kg.$.A, v4: jsonData.alimento.costo_tipo_A.Vientre.A, },
+        { v1: "C", v2: "", v3: jsonData1.info_tipos.sementalCIA.Kg.$.C, v4: "", },
       ])
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
@@ -25,15 +24,17 @@ const TableIndex = ({}) => {
             <table className="table-container-index">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>Precio</th>
+                        <th>.</th>
+                        <th>Tipo Alimento</th>
+                        <th>KG Alimento</th>
+                        <th>Precio por KG</th>
+                        <th>Costo</th>
                     </tr>
                 </thead>
                 <tbody>
                 {currentEntries.map((item, index) => (
                     <tr key={index} className="table-cel">
+                        <td></td>
                         <td>{item.v1}</td>
                         <td>{item.v2}</td>
                         <td>{item.v3}</td>
@@ -48,4 +49,4 @@ const TableIndex = ({}) => {
         </>
     )
 }
-export default TableIndex;
+export default TableIndexZonaVacuna;
