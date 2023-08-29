@@ -21,10 +21,20 @@ mongoose.connect(mongoUrl, {
 require("../schema/schemaUsuario.js");
 const Usuario = mongoose.model("Usuario");
 
-app.get("/getAllUsuario", async (req, res) => {
+/*app.get("/getAllUsuario", async (req, res) => {
   try {
     const allUsuario = await Usuario.find({});
     res.send({ status: "ok", data: allUsuario });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "error", message: "Internal server error" });
+  }
+});*/
+
+app.get("/getAllUsuario", async (req, res) => {
+  try {
+    const activeUsuarios = await Usuario.find({ status: "Activo" });
+    res.send({ status: "ok", data: activeUsuarios });
   } catch (error) {
     console.log(error);
     res.status(500).send({ status: "error", message: "Internal server error" });
