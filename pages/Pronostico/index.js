@@ -28,7 +28,7 @@ const Pronostico = ({ title, description, image }) => {
         };
         const nuevoLoteback = [
             fecha, 
-            cantidadVientres
+            parseInt(cantidadVientres)
         ];
         setLotes([...lotes, nuevoLote]);
         setLoteback([...loteback, nuevoLoteback]);
@@ -44,7 +44,7 @@ const Pronostico = ({ title, description, image }) => {
           };
           const nuevoLotebackSe = [
             fechaSe,
-            cantidadSe
+            parseInt(cantidadSe)
           ];
           setLotesSe([...lotesSe, nuevoLote]);
           setLotesSeback([...lotesSeback,nuevoLotebackSe]);
@@ -60,7 +60,7 @@ const Pronostico = ({ title, description, image }) => {
           };
           const nuevoLotebackGe = [
             fechaGe,
-            cantidadGe
+            parseInt(cantidadGe)
           ];
           setLotesGe([...lotesGe, nuevoLote]);
           setLotesGeback([...lotesGeback, nuevoLotebackGe]);
@@ -96,7 +96,7 @@ const Pronostico = ({ title, description, image }) => {
         
             fecha_inicial: fechainicial,
             fecha_final: fechafinal,
-            n_lechones: descendenciavientre,
+            n_lechones: parseInt(descendenciavientre),
             lotes:{
                     //ingresocuarentenavientres: fecha,
                     //cantidadvientres: cantidadVientres,
