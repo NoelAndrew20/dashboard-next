@@ -21,6 +21,7 @@ const TableRFID = ({ data, setData }) => {
                         <th>Nave</th>
                         <th>Granja</th>
                         <th>RFID</th>
+                        <th>Fecha de registro</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,7 @@ const TableRFID = ({ data, setData }) => {
                         <td>{item.nave}</td>
                         <td>{item.granja}</td>
                         <td>{item.rfid}</td>
+                        <td>{item.fecha.$date}</td>
                     </tr>
                 ))}
                 </tbody>
