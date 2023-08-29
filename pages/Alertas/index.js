@@ -12,6 +12,8 @@ const Alertas = ({ title, description, image }) => {
         { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
         { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
         { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
+        { message: "ALERT: pigs detected at backdoor.", fecha: "2022-07-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
+        { message: "ALERT: pigs detected at backdoor.", fecha: "2021-09-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
     ])
 
     useEffect(() => {
