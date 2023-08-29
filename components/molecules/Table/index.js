@@ -24,14 +24,57 @@ const Table = ({ data, setData }) => {
         setEditedValues(data[index]);
         setShowEditModal(true);
     };
-    const handleSaveEdit = () => {
-        const newData = [...data];
-        newData[editingIndex] = { ...editedValues };
-        setData(newData);
-        
-        setShowEditModal(false);
-        setEditedValues({});
+
+
+    const handleDelete = (index) => {
+        setEditingIndex(index);
+        setEditedValues(data[index]);
+        //setShowEditModal(false);
     };
+ 
+    const handleSaveEdit = () => {
+        const updatedUsuario = { 
+            usuario: editedValues.usuario,
+            nombre: editedValues.nombre,
+            apellido: editedValues.apellido,
+            puesto: editedValues.puesto,
+            grupo: editedValues.grupo,
+            password: editedValues.password,
+            email: editedValues.email,
+            fechaNacimiento: editedValues.fechaNacimiento,
+            genero: editedValues.genero,
+            horario: editedValues.horario,
+            fechaContratacion: editedValues.fechaContratacion,
+            departamento: editedValues.departamento,
+            status: editedValues.status,
+            contacto: editedValues.contacto,
+            salario: editedValues.salario,
+            calle: editedValues.calle,
+            ciudad: editedValues.ciudad,
+            estado: editedValues.estado,
+            cp: editedValues.cp,
+            id: editedValues.id,
+            nombreGrupo: editedValues.nombreGrupo
+        };
+    
+        const axios = require("axios");
+        console.log(updatedUsuario.usuario, updatedUsuario);
+
+        const apiUrl = 'http://localhost:3020/editUsuario/' + updatedUsuario.fechaContratacion;
+        axios.put(apiUrl, updatedUsuario)
+            .then(response => {
+                console.log("Respuesta de la API:", response.data);
+            })
+            .catch(error => {
+                console.error("Error al enviar la solicitud:", error);
+            });
+
+            setShowEditModal(false);
+            setEditedValues({});
+    };
+
+
+
     const handleEditInputChange = (event) => {
         const { name, value } = event.target;
         setEditedValues((prevValues) => ({
@@ -41,7 +84,45 @@ const Table = ({ data, setData }) => {
     };
       
       
-    const handleDelete = (index) => {
+    const handleEditeDelete = (index) => {
+        const updatedUsuario = { 
+            usuario: editedValues.usuario,
+            nombre: editedValues.nombre,
+            apellido: editedValues.apellido,
+            puesto: editedValues.puesto,
+            grupo: editedValues.grupo,
+            password: editedValues.password,
+            email: editedValues.email,
+            fechaNacimiento: editedValues.fechaNacimiento,
+            genero: editedValues.genero,
+            horario: editedValues.horario,
+            fechaContratacion: editedValues.fechaContratacion,
+            departamento: editedValues.departamento,
+            status: 'Inactivo',
+            contacto: editedValues.contacto,
+            salario: editedValues.salario,
+            calle: editedValues.calle,
+            ciudad: editedValues.ciudad,
+            estado: editedValues.estado,
+            cp: editedValues.cp,
+            id: editedValues.id,
+            nombreGrupo: editedValues.nombreGrupo
+        };
+    
+        const axios = require("axios");
+        console.log(updatedUsuario.usuario, updatedUsuario);
+
+        const apiUrl = 'http://localhost:3020/editUsuario/' + updatedUsuario.fechaContratacion;
+        axios.put(apiUrl, updatedUsuario)
+            .then(response => {
+                console.log("Respuesta de la API:", response.data);
+            })
+            .catch(error => {
+                console.error("Error al enviar la solicitud:", error);
+            });
+
+            
+
       const newData = data.filter((_, i) => i !== index);
       setData(newData);
       setShowConfirmation(true);
