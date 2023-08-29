@@ -29,7 +29,7 @@ const Table = ({ data, setData }) => {
     const handleDelete = (index) => {
         setEditingIndex(index);
         setEditedValues(data[index]);
-        //setShowEditModal(false);
+        handleEditeDelete(data[index]);
     };
  
     const handleSaveEdit = () => {
@@ -85,7 +85,94 @@ const Table = ({ data, setData }) => {
       
       
     const handleEditeDelete = (index) => {
-        const updatedUsuario = { 
+        const editedValues = index;
+
+        const updatedUsuario = {
+            usuario: editedValues.usuario,
+            nombre: editedValues.nombre,
+            apellido: editedValues.apellido,
+            puesto: editedValues.puesto,
+            grupo: editedValues.grupo,
+            password: editedValues.password,
+            email: editedValues.email,
+            fechaNacimiento: editedValues.fechaNacimiento,
+            genero: editedValues.genero,
+            horario: editedValues.horario,
+            fechaContratacion: editedValues.fechaContratacion,
+            departamento: editedValues.departamento,
+            status: 'Inactivo',
+            contacto: editedValues.contacto,
+            salario: editedValues.salario,
+            calle: editedValues.calle,
+            ciudad: editedValues.ciudad,
+            estado: editedValues.estado,
+            cp: editedValues.cp,
+            id: editedValues.id,
+            nombreGrupo: editedValues.nombreGrupo
+        };
+
+        const axios = require("axios");
+        console.log(updatedUsuario.usuario, updatedUsuario);
+
+        const apiUrl = 'http://localhost:3020/editUsuario/' + updatedUsuario.fechaContratacion;
+        axios.put(apiUrl, updatedUsuario)
+            .then(response => {
+                console.log("Respuesta de la API:", response.data);
+            })
+            .catch(error => {
+                console.error("Error al enviar la solicitud:", error);
+            });
+
+        /*const usuario = selectedItem.usuario;
+        const nombre = selectedItem.nombre;
+        const apellido = selectedItem.apellido;
+        const puesto = selectedItem.puesto;
+        const grupo = selectedItem.grupo;
+        const password = selectedItem.password;
+        const email = selectedItem.email;
+        const fechaNacimiento = selectedItem.fechaNacimiento;
+        const genero = selectedItem.genero;
+        const horario = selectedItem.horario;
+        const fechaContratacion = selectedItem.fechaContratacion;
+        const departamento = selectedItem.departamento;
+        const status = selectedItem.status;
+        const contacto = selectedItem.contacto;
+        const salario = selectedItem.salario;
+        const calle = selectedItem.calle;
+        const ciudad = selectedItem.ciudad;
+        const estado = selectedItem.estado;
+        const cp = selectedItem.cp;
+        const id = selectedItem.id;
+        const nombreGrupo = selectedItem.nombreGrupo;*/
+
+
+        /*const updatedUsuario = {
+            usuario: selectedItem.usuario,
+            nombre: selectedItem.nombre,
+            apellido: selectedItem.apellido,
+            puesto: selectedItem.puesto,
+            grupo: selectedItem.grupo,
+            password: selectedItem.password,
+            email: selectedItem.email,
+            fechaNacimiento: selectedItem.fechaNacimiento,
+            genero: selectedItem.genero,
+            horario: selectedItem.horario,
+            fechaContratacion: selectedItem.fechaContratacion,
+            departamento: selectedItem.departamento,
+            status: selectedItem.status,
+            contacto: selectedItem.contacto,
+            salario: selectedItem.salario,
+            calle: selectedItem.calle,
+            ciudad: selectedItem.ciudad,
+            estado: selectedItem.estado,
+            cp: selectedItem.cp,
+            id: selectedItem.id,
+            nombreGrupo: selectedItem.nombreGrupo
+        };*/
+        
+
+
+        /*
             usuario: editedValues.usuario,
             nombre: editedValues.nombre,
             apellido: editedValues.apellido,
@@ -128,7 +215,7 @@ const Table = ({ data, setData }) => {
       setShowConfirmation(true);
       setTimeout(() => {
         setShowConfirmation(false);
-      }, 1000); 
+      }, 1000); */
     };
 
     return (
