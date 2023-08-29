@@ -24,7 +24,7 @@ export default function Home({ title, description, image }) {
           <h1>Bienvenido a Constanza</h1>
         </div>
         <main
-          className={`flex min-h-screen flex-col items-center p-24`}
+          className={`flex min-h-screen flex-col items-center pad-index`}
         >
           <div className="row-container mt-10">
             <div>

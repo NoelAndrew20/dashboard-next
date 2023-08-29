@@ -15,9 +15,7 @@ html {
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-style: bold;
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 40px;
+ 
 }
 
 :root {
@@ -669,4 +667,79 @@ label {
   color: #ffffff;
   padding: 20px;
   text-align: center;
+}
+.pad-index {
+  padding: 6rem;
+}
+@media (max-width: 500px) {
+  .wrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    padding-bottom: 50px;
+    padding: 0px 15px;
+  }
+  .row-container {
+    justify-content: space-around;
+    width: 100%;
+    display: flow-root;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 6vh;
+  }
+  .pad-index {
+    padding: 0;
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .table {
+    overflow-x: auto; /* Agrega scroll horizontal si el contenido del hijo excede el tamaño del padre */
+    white-space: nowrap; /* Evita que el contenido se divida en varias líneas */
+    padding: 0;
+    display: grid;
+    justify-content: center; /* Centra el hijo en la pantalla */
+    background-color: #F4F4F4;
+  }
+
+  .table-container {
+    max-width: 100%; /* Permite que el hijo sea más pequeño en dispositivos móviles */
+    width: 100%; /* Asegura que el hijo ocupe todo el ancho del padre */
+    min-width: 100%; /* Establece un ancho mínimo igual al ancho del padre */
+    padding: 10px; /* Espaciado interno para el contenido del hijo */
+    background-color: #F4F4F4;
+    display: inline-block;
+    transition: transform 0.3s ease; /* Agrega una transición suave al mover el hijo */
+  }
+  .table-index {
+    background-color: #fff;
+    overflow-x: auto; /* Agrega scroll horizontal si el contenido del hijo excede el tamaño del padre */
+    white-space: nowrap; /* Evita que el contenido se divida en varias líneas */
+    padding: 0;
+    display: grid;
+    justify-content: center; /* Centra el hijo en la pantalla */
+    border: .5px solid;
+  }
+  .table-container-index {
+  
+    background-color: #fff;
+    max-width: 100%; /* Permite que el hijo sea más pequeño en dispositivos móviles */
+    width: 100%; /* Asegura que el hijo ocupe todo el ancho del padre */
+    min-width: 100%; /* Establece un ancho mínimo igual al ancho del padre */
+    padding: 10px; /* Espaciado interno para el contenido del hijo */
+    display: inline-block;
+    transition: transform 0.3s ease; /* Agrega una transición suave al mover el hijo */
+  }
+  .pagination {
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+  }
+  .inner-search {
+    height: fit-content;
+    align-self: end;
+    margin-right: 5%;
+  }
 }
