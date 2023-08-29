@@ -49,22 +49,34 @@ const Navigation = () => {
                 </div>
                 <div className="flex flex-col space-y-2 pt-10">
                     <Link href="../../RegistroUsuarios" className={`hover:text-[#ECA10C] ${currentPage === '/RegistroUsuarios' ? 'font-semibold' : ''} pt-5`}>
-                        Usuarios
+                        <div className="flex">
+                            <Image src={"/images/svg/user.svg"} width={20} height={20} alt="user" className="mr-2" /> Usuarios
+                        </div>
                     </Link>
                     <Link href="../../RegistroTransporte" className={`hover:text-[#ECA10C] ${currentPage === '/RegistroTransporte' ? 'font-semibold' : ''} pt-5`}>
-                        Transportes
+                        <div className="flex">
+                            <Image src={"/images/svg/truck.svg"} width={20} height={20} alt="transporte" className="mr-2" />Transportes
+                        </div>
                     </Link>
                     <Link href="../../Medicamento" className={`hover:text-[#ECA10C] ${currentPage === '/Medicamento' ? 'font-semibold' : ''} pt-5`}>
-                        Medicamento
+                        <div className="flex">
+                            <Image src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento
+                        </div>
                     </Link>
                     <Link href="../../MateriasPrimas" className={`hover:text-[#ECA10C] ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
-                        Materias primas
+                        <div className="flex">
+                            <Image src={"/images/svg/hammer.svg"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
+                        </div>
                     </Link>
                     <Link href="../../Pronostico" className={`hover:text-[#ECA10C] ${currentPage === '/Pronostico' ? 'font-semibold' : ''} pt-5`}>
-                        Pronóstico
+                        <div className="flex">
+                            <Image src={"/images/svg/calculator.svg"} width={20} height={20} alt="calculator" className="mr-2" />Pronóstico
+                        </div>
                     </Link>
                     <Link href="../../RFID" className={`hover:text-[#ECA10C] ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
-                        RFID
+                        <div className="flex">
+                            <Image src={"/images/svg/label.svg"} width={20} height={20} alt="calculator" className="mr-2" />RFID
+                        </div>
                     </Link>
                     <div className="flex justify-center pt-20">
                         <Image src={srs} width={100} height={100} alt="srs-logo" />
