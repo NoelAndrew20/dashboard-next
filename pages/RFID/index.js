@@ -15,7 +15,7 @@ const RFID = ({ title, description, image }) => {
     ])
 
     useEffect(() => {
-        axios.get('http://localhost:3060/getAllRFID')
+        axios.get('http://192.168.100.20:3060/getAllRFID')
         .then(response => {
             const jsonData = response.data;
             setData(jsonData.data);
@@ -38,11 +38,13 @@ const RFID = ({ title, description, image }) => {
     }, [])*/
 
     useEffect(() => {
-        axios.get('http://localhost:3060/countUniqueRFID')
+        //axios.get('http://localhost:3060/countUniqueRFID')
+        axios.get('http://192.168.100.20:3060/countUniqueRFID')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setTotal(jsonData);
-            axios.put('http://localhost:3060/sendTotal/', jsonData)
+            //axios.put('http://localhost:3060/sendTotal/', jsonData)
+            axios.put('http://192.168.100.20:3060/sendTotal/', jsonData)
             .then(response => {
               console.log('Respuesta del servidor:', response.data);
             })
