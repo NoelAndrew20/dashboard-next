@@ -26,7 +26,7 @@ const TableRFID = ({ data, setData }) => {
                 </thead>
                 <tbody>
                 {currentEntries.map((item, index) => (
-                    <tr key={index} className="table-cel">
+                    <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
                         <td>{item.fecha}</td>
                         <td>{item.zona}</td>
                         <td>{item.puerta}</td>

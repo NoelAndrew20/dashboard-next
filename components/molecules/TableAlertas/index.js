@@ -27,7 +27,7 @@ const TableAlertas = ({ data, setData }) => {
                 </thead>
                 <tbody>
                 {currentEntries.map((item, index) => (
-                    <tr key={index} className="table-cel" >
+                        <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
                         <td>
                         {item.message.split('ALERT').map((part, partIndex) => (
                             partIndex === 1 ? (
