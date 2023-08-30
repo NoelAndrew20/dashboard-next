@@ -48,32 +48,37 @@ const Navigation = () => {
                     <Image src={x} width={20} height={20} alt="x"/>
                 </div>
                 <div className="flex flex-col space-y-2 pt-10">
-                    <Link href="../../RegistroUsuarios" className={`hover:text-[#ECA10C] ${currentPage === '/RegistroUsuarios' ? 'font-semibold' : ''} pt-5`}>
+                    <Link href="/" className={`hover:font-semibold ${currentPage === '/' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
+                        </div>
+                    </Link>
+                    <Link href="../../RegistroUsuarios" className={`hover:font-semibold ${currentPage === '/RegistroUsuarios' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/user.svg"} width={20} height={20} alt="user" className="mr-2" /> Usuarios
                         </div>
                     </Link>
-                    <Link href="../../RegistroTransporte" className={`hover:text-[#ECA10C] ${currentPage === '/RegistroTransporte' ? 'font-semibold' : ''} pt-5`}>
+                    <Link href="../../RegistroTransporte" className={`hover:font-semibold ${currentPage === '/RegistroTransporte' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/truck.svg"} width={20} height={20} alt="transporte" className="mr-2" />Transportes
                         </div>
                     </Link>
-                    <Link href="../../Medicamento" className={`hover:text-[#ECA10C] ${currentPage === '/Medicamento' ? 'font-semibold' : ''} pt-5`}>
+                    <Link href="../../Medicamento" className={`hover:font-semibold ${currentPage === '/Medicamento' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento
                         </div>
                     </Link>
-                    <Link href="../../MateriasPrimas" className={`hover:text-[#ECA10C] ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
+                    <Link href="../../MateriasPrimas" className={`hover:font-semibold ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/hammer.svg"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
                         </div>
                     </Link>
-                    <Link href="../../Pronostico" className={`hover:text-[#ECA10C] ${currentPage === '/Pronostico' ? 'font-semibold' : ''} pt-5`}>
+                    <Link href="../../Pronostico" className={`hover:font-semibold ${currentPage === '/Pronostico' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/calculator.svg"} width={20} height={20} alt="calculator" className="mr-2" />Pronóstico
                         </div>
                     </Link>
-                    <Link href="../../RFID" className={`hover:text-[#ECA10C] ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
+                    <Link href="../../RFID" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/label.svg"} width={20} height={20} alt="calculator" className="mr-2" />RFID
                         </div>
