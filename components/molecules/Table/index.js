@@ -235,7 +235,7 @@ const Table = ({ data, setData }) => {
                 </thead>
                 <tbody>
                     {currentEntries.map((item, index) => (
-                    <tr key={index} className="table-row">
+                    <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
                         <td>{item.usuario}</td>
                         <td>{item.nombre}</td>
                         <td>{item.apellido}</td>
