@@ -78,7 +78,7 @@ const UserForm = ({ data, setData, closeModal }) => {
 
             const axios = require("axios");
             //axios.get('http://localhost:3010/getAllTransporte')
-            //const apiUrl = "./api/transporte/registroTransporte";
+            //const apiUrl = "../api/transporte/registroTransporte";
             const apiUrl = 'http://localhost:3020/addUsuario';
             axios.post(apiUrl, newPerson)
             .then(response => {

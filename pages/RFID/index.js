@@ -7,6 +7,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import TableRFID from '@/components/molecules/TableRFID';
 const axios = require('axios');
 const RFID = ({ title, description, image }) => {
+    const[total, setTotal] = useState([])
     const [data, setData] = useState([
        // { fecha: { $date: "2023-08-22T16:03:12.135Z" }, unixTime: 1692741792, sensor: "120398", puerta: "1", nave: "Desarrollo", granja: "granajPrueba", zona: "Maternidad", rfid: "71D1433F", },
         //{ fecha: { $date: "2023-08-22T16:03:12.135Z" }, unixTime: 1692741792, sensor: "120398", puerta: "1", nave: "Desarrollo", granja: "granajPrueba", zona: "Maternidad", rfid: "71D1433F", },
@@ -16,13 +17,43 @@ const RFID = ({ title, description, image }) => {
     useEffect(() => {
         axios.get('http://localhost:3060/getAllRFID')
         .then(response => {
-            const jsonData = response.data; // Datos de respuesta en formato JSON
+            const jsonData = response.data;
             setData(jsonData.data);
         })
         .catch(error => {
             console.error(error);
         });
     }, [])
+
+
+    /*useEffect(() => {
+        axios.get('http://localhost:3060/countUniqueRFID')
+        .then(response => {
+            const jsonData = response.data; // Datos de respuesta en formato JSON
+            setTotal(jsonData);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, [])*/
+
+    useEffect(() => {
+        axios.get('http://localhost:3060/countUniqueRFID')
+        .then(response => {
+            const jsonData = response.data; // Datos de respuesta en formato JSON
+            setTotal(jsonData);
+            axios.put('http://localhost:3060/sendTotal/', jsonData)
+            .then(response => {
+              console.log('Respuesta del servidor:', response.data);
+            })
+            .catch(error => {
+              console.error('Error al enviar los datos:', error);
+            });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, []);
 
     return (
         <div>
@@ -42,7 +73,7 @@ const RFID = ({ title, description, image }) => {
                     <TableRFID data={data} setData={setData}/>
                 </div>
                 <div className="flex justify-end">
-                    <span>Total de cerdos: </span>
+                    <span>Total de cerdos:  {total.totalUniqueRFID}</span>
                 </div>
             </div>
         </div>
