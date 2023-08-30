@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 html {
-  background-color: #fff;
+  background-color: #f9f9f9;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
 }
@@ -19,7 +19,7 @@ h1 {
 }
 
 :root {
-  --color-bg: #fff;
+  --color-bg: #f9f9f9;
   --color-border: #e5e7eb;
   --color-sidebar-item: #f3f4f6;
 }
@@ -31,7 +31,7 @@ h1 {
 }
 
 body {
-  background-color: #FFFFFF;
+  background-color: #f9f9f9;
   font-family: 'Montserrat', sans-serif;
 }
 label {
@@ -472,7 +472,7 @@ label {
   display: flex;
 }
 .inner-search input {
-  background-color: #EEECEC;
+  background-color: #fff;
   height: 100%;
 }
 .entries-container {
@@ -484,14 +484,14 @@ label {
 }
 .table {
   padding: 20px;
-  background-color: #F4F4F4;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
   width: 100%;
 }
 .table-container {
   width: 100%;
   text-align: center;
-  background-color: #F4F4F4;
+  background-color: #fff;
 }
 .table-index {
   padding: 20px;
@@ -564,11 +564,12 @@ label {
 }
 .row-container {
   justify-content: space-around;
-  width: 100%;
-  display: flex;
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  padding: 6vh;
+    width: 100%;
+    border-radius: 15px;
+    display: flex;
+    background-color: #ffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 6vh;
 }
 .row-container h1 {
   font-size: 30px;
@@ -622,7 +623,7 @@ label {
 }
 .pronostico-input input {
   width: 100%;
-  background-color: #F4F4F4;
+  background-color: #fff;
 }
 .pronostico-input input:focus {
   border-color: none;
@@ -667,9 +668,15 @@ label {
   color: #ffffff;
   padding: 20px;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+
 }
 .pad-index {
-  padding: 6rem;
+  padding: 0px 90px;
 }
 @media (max-width: 500px) {
   .wrapper {
@@ -683,12 +690,14 @@ label {
     justify-content: space-around;
     width: 100%;
     display: flow-root;
-    background-color: #f9f9f9;
+    border-radius: 15px;
+    background-color: #ffff;    
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 6vh;
   }
   .pad-index {
-    padding: 0;
+    padding: 0px 15px;
+    padding-bottom: 50px;
   }
   .sidebar {
     width: 100%;
@@ -699,7 +708,7 @@ label {
     padding: 0;
     display: grid;
     justify-content: center; 
-    background-color: #F4F4F4;
+    background-color: #fff;
   }
 
   .table-container {
@@ -707,7 +716,7 @@ label {
     width: 100%; 
     min-width: 100%; 
     padding: 10px; 
-    background-color: #F4F4F4;
+    background-color: #fff;
     display: inline-block;
     transition: transform 0.3s ease; 
   }
@@ -721,7 +730,6 @@ label {
     border: .5px solid;
   }
   .table-container-index {
-  
     background-color: #fff;
     max-width: 100%; 
     width: 100%; 
@@ -741,5 +749,11 @@ label {
     height: fit-content;
     align-self: end;
     margin-right: 5%;
+  }
+  .modal-content {
+    width: 90%;
+  }
+  .form-container {
+    padding: 0;
   }
 }
