@@ -17,7 +17,7 @@ const Medicamento = ({ title, description, image }) => {
     ])
 
     useEffect(() => {
-        axios.get('http://localhost:3040/getAllMateriaPrima')
+        axios.get('http://192.168.100.20:3040/getAllMateriaPrima')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setData(jsonData.data);
