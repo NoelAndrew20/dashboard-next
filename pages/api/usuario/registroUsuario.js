@@ -33,7 +33,9 @@ const Usuario = mongoose.model("Usuario");
 
 app.get("/getAllUsuario", async (req, res) => {
   try {
-    const activeUsuarios = await Usuario.find({ status: "Activo" });
+    const activeUsuarios = await Usuario.find({ status: "Activo" })
+    .sort({ fechaContratacion: -1 }) 
+    .limit(30);
     res.send({ status: "ok", data: activeUsuarios });
   } catch (error) {
     console.log(error);

@@ -53,7 +53,7 @@ app.get("/countUniqueRFID", async (req, res) => {
 
 
 
-app.put('/sendTotal', async (req, res) => {
+/*app.put('/sendTotal', async (req, res) => {
   try {
     const receivedData = req.body;
     const totalUniqueRFID = receivedData.totalUniqueRFID;
@@ -75,7 +75,7 @@ app.put('/sendTotal', async (req, res) => {
     console.error('Error al actualizar los datos:', error);
     res.status(500).json({ message: 'Error al actualizar los datos' });
   }
-});
+});*/
 
 
 const PORT = 3060;
