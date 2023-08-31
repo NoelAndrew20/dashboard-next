@@ -1,4 +1,3 @@
-
 import Navigation from '@/components/molecules/Navigation'
 import PieChart from '@/components/atoms/PieChart'
 import BarChart from '@/components/atoms/BarChart'
@@ -10,49 +9,56 @@ import jsonData1 from '../public/api/pronostico/python/config.json'
 import { useState } from 'react'
 import TableIndexZona from '@/components/atoms/TableIndexZona'
 export default function Home({ title, description, image }) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
     return (
-      <div>
+      <div className={isDarkMode ? "darkMode" : "lightMode"}>
         <StaticMeta
           title={title}
           description={description}
           image={image}
         />      
-        <Navigation/>
+        <Navigation
+         toggleDarkMode={toggleDarkMode}
+         isDarkMode={isDarkMode}
+        />
         <div className="bienvenida">
           <h1>Bienvenido a Constanza</h1>
         </div>
         <main
           className={`flex min-h-screen flex-col items-center pad-index`}
         >
-          <div className="row-container mt-10">
+          <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
             <div>
               <h1>Costo total</h1>
               <h2>${jsonData.ganancias.ganancia}</h2>
               <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
             </div>
           </div>
-          <div className="row-container mt-10">
+          <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
           <div>
               <h1>Costo total de Alimento</h1>
               <h2>${jsonData.ganancias.kg.vientre+jsonData.ganancias.kg.lechon+jsonData.ganancias.kg.sementalCIA+jsonData.ganancias.kg.sementalG}</h2>
               <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
             </div>
             <div className="grid items-center">
-              <TableIndex/>
+              <TableIndex isDarkMode={ isDarkMode }/>
             </div>
           </div>
-          <div className="row-container mt-10 h-150 w-full flex justify-center">
-            <TableIndexZona/>
-            <div className='flex'>
+          <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 h-150 w-full flex justify-center`}>
+            <TableIndexZona isDarkMode={ isDarkMode }/>
+            <div className="flex">
               <PieChart/>
             </div>
           </div>
-          <div className="row-container mt-10 h-80 w-full flex justify-center">
+          <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} row-container mt-10 h-80 w-full flex justify-center`}>
             <BarChart/>
           </div>
-        <div className="row-container mt-10">
+        <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
           <div>
               <h1>Costo total de Vacunas</h1>
               <h2>${jsonData.vacunas.costo_total_V.Vientre}</h2>
@@ -62,13 +68,13 @@ export default function Home({ title, description, image }) {
               
             </div>
           </div>
-          <div className="row-container mt-10 h-150 w-full flex justify-center">
-              <TableIndex1/>
-            <div className='flex'>
+          <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 h-150 w-full flex justify-center`}>
+              <TableIndex1 isDarkMode={ isDarkMode }/>
+            <div className="flex">
               <PieChart/>
             </div>
           </div>
-          <div className="row-container mt-10 h-80 w-full flex justify-center">
+          <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 pb-50 h-80 w-full flex justify-center`}>
             <BarChart/>
           </div>  
         </main>

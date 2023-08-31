@@ -1,7 +1,7 @@
 import jsonData from '../../../public/api/pronostico/python/output.json'
 import jsonData1 from '../../../public/api/pronostico/python/config.json'
 import { useEffect, useState } from 'react';
-const TableIndexVacuna = ({}) => {
+const TableIndexVacuna = ({ isDarkMode }) => {
     const [data, setData] = useState([
         { v1: "V1", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V1, v4: "", },
         { v1: "V2", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V2, v4: "", },
@@ -22,8 +22,8 @@ const TableIndexVacuna = ({}) => {
     })
     return (
         <>
-        <div className="table-index">
-            <table className="table-container-index">
+         <div className={isDarkMode ? 'table-index-d' : 'table-index'}>
+            <table className={isDarkMode ? 'table-container-index-d' : 'table-container-index'}>
                 <thead>
                     <tr>
                         <th>Tipo vacuna/medicamento</th>

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import burguer from '@/public/images/svg/hamburguer.svg'
 import x from '@/public/images/svg/x-w.svg'
 import srs from '@/public/images/icon/srs.png'
-const Navigation = () => {
+const Navigation = ({ toggleDarkMode, isDarkMode }) => {
     const router = useRouter();
     const currentPage = router.pathname;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -80,9 +80,21 @@ const Navigation = () => {
                     </Link>
                     <Link href="../../RFID" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/label.svg"} width={20} height={20} alt="calculator" className="mr-2" />RFID
+                            <Image src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />RFID
                         </div>
                     </Link>
+                    {currentPage === "/" 
+                    ? (
+                        <div className="flex pt-5" onClick={toggleDarkMode}>
+                            {isDarkMode ? 
+                                <Image src={"/images/svg/moon.svg"} width={50} height={50} alt="moon" />
+                                :
+                                <Image src={"/images/svg/sun.svg"} width={50} height={50} alt="sun" />
+                            }
+                        </div>
+                    )
+                    : ""
+                    }
                     <div className="flex justify-center pt-20">
                         <Image src={srs} width={100} height={100} alt="srs-logo" />
                     </div>
