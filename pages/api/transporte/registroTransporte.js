@@ -23,7 +23,9 @@ const Transporte = mongoose.model("Transporte");
 
 app.get("/getAllTransporte", async (req, res) => {
   try {
-    const allTransporte = await Transporte.find({});
+    const allTransporte = await Transporte.find({})
+    .sort({ fecha: -1 }) // Cambia 'fechaRegistro' al campo apropiado de fecha en tu esquema
+    .limit(30);
     res.send({ status: "ok", data: allTransporte });
   } catch (error) {
     console.log(error);

@@ -23,7 +23,9 @@ const Alerta = mongoose.model("Alerta");
 
 app.get("/getAllAlerta", async (req, res) => {
   try {
-    const allAlerta = await Alerta.find({});
+    const allAlerta = await Alerta.find({})
+    .sort({ fecha: -1 })
+    .limit(30);
     res.send({ status: "ok", data: allAlerta });
   } catch (error) {
     console.log(error);
