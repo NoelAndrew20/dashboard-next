@@ -1,7 +1,7 @@
 import jsonData from '../../../public/api/pronostico/python/output.json'
 import jsonData1 from '../../../public/api/pronostico/python/config.json'
 import { useEffect, useState } from 'react';
-const TableIndexZona = ({}) => {
+const TableIndexZona = ({ isDarkMode }) => {
     const [data, setData] = useState([
         { v1: "A", v2: jsonData.alimento.kg_tipo_A.Vientre.A, v3: jsonData1.info_tipos.vientre.Kg.$.A, v4: jsonData.alimento.costo_tipo_A.Vientre.A, },
         { v1: "C", v2: "", v3: jsonData1.info_tipos.sementalCIA.Kg.$.C, v4: "", },
@@ -26,8 +26,8 @@ const TableIndexZona = ({}) => {
     })
     return (
         <>
-        <div className="table-index">
-            <table className="table-container-index">
+         <div className={isDarkMode ? 'table-index-d' : 'table-index'}>
+            <table className={isDarkMode ? 'table-container-index-d' : 'table-container-index'}>
                 <thead>
                     <tr>
                         <th>.</th>

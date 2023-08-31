@@ -499,13 +499,33 @@ label {
   width: 100%;
   border: .5px solid;
 }
+.table-index-d {
+  padding: 20px;
+  background-color: #2C2C2C;
+  width: 100%;
+  border: .5px solid;
+}
 .table-container-index {
   width: 100%;
   text-align: center;
   background-color: #fff;
 }
+.table-container-index-d {
+  width: 100%;
+  text-align: center;
+  background-color: #2C2C2C;
+}
 .table-cel-index {
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+.lightMode {
+  background-color: #f9f9f9;
+  color: black;
+}
+
+.darkMode {
+  background-color: #2d2a2a;
+  color: black;
 }
 .button {
   background-color: #0961dd;
@@ -571,11 +591,29 @@ label {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 6vh;
 }
+.row-container-d {
+  justify-content: space-around;
+  width: 100%;
+  border-radius: 15px;
+  display: flex;
+  background-color: #1a1818;
+  box-shadow: 0px 4px 4px 0px rgba(224, 222, 222, 0.25);
+  padding: 6vh;
+  color: white;
+}
 .row-container h1 {
   font-size: 30px;
   font-weight: 600;
 }
 .row-container h2 {
+  font-size: 25px;
+  font-weight: 600;
+}
+.row-container-d h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+.row-container-d h2 {
   font-size: 25px;
   font-weight: 600;
 }
