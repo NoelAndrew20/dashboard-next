@@ -1,11 +1,13 @@
 import Navigation from '@/components/molecules/Navigation'
 import PieChart from '@/components/atoms/PieChart'
 import BarChart from '@/components/atoms/BarChart'
+import BarChart1 from '@/components/atoms/BarChart1'
 import StaticMeta from '@/components/atoms/StaticMeta'
 import TableIndex from '@/components/atoms/TableIndex'
 import TableIndex1 from '@/components/atoms/TableIndexVacuna'
 import jsonData from '../public/api/pronostico/python/output.json'
 import jsonData1 from '../public/api/pronostico/python/config.json'
+import Modelo3D from '../components/molecules/3dmodel';
 import { useState } from 'react'
 import TableIndexZona from '@/components/atoms/TableIndexZona'
 export default function Home({ title, description, image }) {
@@ -27,7 +29,7 @@ export default function Home({ title, description, image }) {
          isDarkMode={isDarkMode}
         />
         <div className="bienvenida">
-          <h1>Bienvenido a Constanza</h1>
+          <h1>Bienvenido</h1>
         </div>
         <main
           className={`flex min-h-screen flex-col items-center pad-index`}
@@ -57,11 +59,12 @@ export default function Home({ title, description, image }) {
           </div>
           <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} row-container mt-10 h-80 w-full flex justify-center`}>
             <BarChart/>
+            <BarChart1/>
           </div>
         <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
           <div>
               <h1>Costo total de Vacunas</h1>
-              <h2>${jsonData.vacunas.costo_total_V.Vientre}</h2>
+              <h2>${Math.round(jsonData.vacunas.costo_total_V.Vientre*100)/100}</h2>
               <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
             </div>
             <div className="grid items-center">

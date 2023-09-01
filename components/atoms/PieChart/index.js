@@ -1,16 +1,17 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import jsonData from '../../../public/api/pronostico/python/output.json'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = () => {
     const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['A', 'GV', 'MV', 'ML', 'D', 'E'],
         datasets: [
           {
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [jsonData.alimento.kg_tipo_A.Vientre.A, jsonData.alimento.kg_tipo_A.Vientre.GV, jsonData.alimento.kg_tipo_A.Vientre.MV, jsonData.alimento.kg_tipo_A.Lechon.ML, jsonData.alimento.kg_tipo_A.Lechon.D, jsonData.alimento.kg_tipo_A.Lechon.E,],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
