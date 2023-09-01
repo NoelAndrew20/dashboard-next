@@ -1,5 +1,6 @@
 import StaticMeta from '@/components/atoms/StaticMeta';
 import Navigation from '@/components/molecules/Navigation';
+import ReactModal from 'react-modal';
 import axios from 'axios';
 import { useState,useEffect } from 'react';
 const Pronostico = ({ title, description, image }) => {
@@ -19,7 +20,9 @@ const Pronostico = ({ title, description, image }) => {
     const [cantidadSe, setCantidadSe] = useState("");
     const [cantidadGe, setCantidadGe] = useState("");
     const [message, setMessage] = useState('');
-
+    const [showModificarModal, setShowModificarModal] = useState(false);
+    const [showEjecutarModal, setShowEjecutarModal] = useState(false);
+    
     const agregarLote = () => {
       if (fecha && cantidadVientres) {
         const nuevoLote = {
@@ -165,6 +168,21 @@ const Pronostico = ({ title, description, image }) => {
   } catch (error) {
     console.error('Error al ejecutar el script:', error);
   }
+          };
+          const openModificarModal = () => {
+            setShowModificarModal(true);
+          };
+          
+          const closeModificarModal = () => {
+            setShowModificarModal(false);
+          };
+          
+          const openEjecutarModal = () => {
+            setShowEjecutarModal(true);
+          };
+          
+          const closeEjecutarModal = () => {
+            setShowEjecutarModal(false);
           };
 
     return(
@@ -347,10 +365,29 @@ const Pronostico = ({ title, description, image }) => {
                 </div> 
             </div>   
             <div>
-                <button className="button mt-5" onClick={guardardatosjson}>Modificar</button>
-                <button className="button mt-5" onClick={runcalculadora}>Ejecutar</button>
+                <button className="button mt-5" onClick={() => { guardardatosjson(); openModificarModal();}}>Modificar</button>
+                <button className="button mt-5" onClick={() => { runcalculadora(); openEjecutarModal();}}>Ejecutar</button>
             </div> 
         </div>
+        <ReactModal className="fixed flex justify-center ml-80 mt-80 top-4/8 left-4/8 right-4/8 bottom-4/8 bg-white border rounded-lg shadow-md p-4" isOpen={showModificarModal} onRequestClose={closeModificarModal} contentLabel="Modificar Modal">
+  <div>
+    <h2 className="flex items-center justify-center m-5">JSON Modificado</h2>
+    {/* Agrega aquí el contenido que deseas mostrar en el modal de Modificar */}
+    <img className="flex items-center justify-center w-24 h-24 ml-10" src='../images/icon/logo-400.png'></img>
+    <button className="flex items-center justify-center button ml-14 mt-5" onClick={closeModificarModal}>Cerrar</button>
+  </div>
+</ReactModal>
+
+<ReactModal className="fixed flex justify-center ml-80 mt-80 top-4/8 left-4/8 right-4/8 bottom-4/8 bg-white border rounded-lg shadow-md p-4" isOpen={showEjecutarModal}  onRequestClose={closeEjecutarModal}  contentLabel="Ejecutar Modal">
+  <div>
+    <h2 className="flex items-center justify-center m-5">Si desea visualizar</h2>
+    <h2 className="m-5">los datos regresar a Home</h2>
+    {/* Agrega aquí el contenido que deseas mostrar en el modal de Ejecutar */}
+    <img className="flex items-center justify-center w-24 h-24 ml-14" src='../images/icon/logo-400.png'></img>
+    <button className="flex items-center justify-center button ml-16 mt-5" onClick={closeEjecutarModal}>Cerrar</button>
+  </div>
+</ReactModal>
+
     </>
     )
 }

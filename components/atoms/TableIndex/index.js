@@ -40,8 +40,7 @@ const TableIndex = ({ isDarkMode }) => {
           currentEntries.map((item, index) => (
             <tr
               key={index}
-              
-              className={`table-cel ${index % 2 === 0 ? "bg-blue-100" : "bg-white"} ${
+              className={`table-cel ${index % 2 === 0 ? "bg-amber-300" : "bg-warmGray-300"} ${
                 index % 2 === 0 ? "border-blue-500" : "border-gray-300"
               }`}
             >

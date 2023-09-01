@@ -558,36 +558,13 @@
         }
     },
     "config": {
-        "fecha_inicial": "2023-03-03",
-        "fecha_final": "2025-09-24",
-        "n_lechones": 10,
+        "fecha_inicial": [],
+        "fecha_final": [],
+        "n_lechones": null,
         "lotes": {
-            "vientre": [
-                [
-                    "2023-04-11",
-                    157
-                ],
-                [
-                    "2023-10-30",
-                    138
-                ],
-                [
-                    "2023-01-15",
-                    99
-                ]
-            ],
-            "sementalCIA": [
-                [
-                    "2023-02-17",
-                    5
-                ]
-            ],
-            "sementalG": [
-                [
-                    "2023-07-04",
-                    5
-                ]
-            ]
+            "vientre": [],
+            "sementalCIA": [],
+            "sementalG": []
         }
     }
 }
