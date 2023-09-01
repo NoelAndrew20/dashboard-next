@@ -38,7 +38,8 @@ const TableIndexZona = ({ isDarkMode }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {currentEntries.map((item, index) => (
+                {!isDarkMode 
+                ? currentEntries.map((item, index) => (
                     <tr key={index} className={`table-cel ${index % 2 === 0 ? "bg-blue-100" : "bg-white"} ${
                         index % 2 === 0 ? "border-blue-500" : "border-gray-300"
                       }`}>
@@ -48,7 +49,17 @@ const TableIndexZona = ({ isDarkMode }) => {
                         <td>{item.v3}</td>
                         <td>${item.v4}</td>
                     </tr>
-                ))}
+                ))
+                : currentEntries.map((item, index) => (
+                    <tr key={index} className="table-cel">
+                        <td></td>
+                        <td>{item.v1}</td>
+                        <td>{item.v2}</td>
+                        <td>{item.v3}</td>
+                        <td>${item.v4}</td>
+                    </tr>
+                    ))
+                }
                 </tbody>
             </table>
             
