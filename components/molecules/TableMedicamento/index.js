@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useDarkMode } from '@/context/DarkModeContext';
 
 const TableMedicamento = ({ data }) => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
   const entriesPerPage = 10;
   const totalPages = Math.ceil(data.length / entriesPerPage);
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,8 +31,8 @@ const TableMedicamento = ({ data }) => {
           onChange={e => setSearchTerm(e.target.value.toLocaleLowerCase())}
         />
       </div>
-      <div className="table">
-        <table className="table-container">
+      <div className={isDarkMode ? "table-d" : "table"}>
+          <table className={isDarkMode ? "table-container-d" : "table-container"}>
           <thead>
             <tr>
               <th>Año recibido</th>
@@ -41,7 +43,12 @@ const TableMedicamento = ({ data }) => {
           </thead>
           <tbody>
             {displayDataFinal.slice(startIndex, endIndex).map((item, index) => (
-              <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
+              <tr
+              key={index}
+              className={`table-row ${
+              isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-gray-200')
+              }`}
+          >  
                 <td>{item.AñoRecibo}</td>
                 <td>{item.MesRecibo}</td>
                 <td>{item.Description}</td>

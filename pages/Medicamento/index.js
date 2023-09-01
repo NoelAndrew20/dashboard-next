@@ -6,7 +6,10 @@ import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import TableMedicamentos from '@/components/molecules/TableMedicamento';
 const axios = require('axios');
+import { useDarkMode } from '@/context/DarkModeContext';
+
 const Medicamento = ({ title, description, image }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [data, setData] = useState([ 
         { AñoRecibo: "2022",MesRecibo: "1",Vendor_Packslip_ID: "F-15379201",Project_ID: "139001",Description: "Almacén de Medicamentos",Employee_ID: "ADM68027",Receipt_Employee_ID: "ADM68027",Vendor_ID: "PR12678",PO_Name: "Pisa Agropecuaria SA de CV",Purch_Order_ID: "OC21018740",Item_ID: "401249",Item_Name: "Reakap",Purch_Order_Date: "24/11/2021",Unit_of_Measure: "Pza",Uni_Compra: "191.1",Pur_Conv_Factor: "1",AP_Currency_Rate: "1",SumadeReceipt_Qty: "40",SumadePO_Unit_Price: "191.1",SumadeImportePartida: "7,644.00"},
         { AñoRecibo: "2022",MesRecibo: "1",Vendor_Packslip_ID: "F-15379201",Project_ID: "139001",Description: "Almacén de Medicamentos",Employee_ID: "ADM68027",Receipt_Employee_ID: "ADM68027",Vendor_ID: "PR12678",PO_Name: "Pisa Agropecuaria SA de CV",Purch_Order_ID: "OC21018740",Item_ID: "401249",Item_Name: "Reakap",Purch_Order_Date: "24/11/2021",Unit_of_Measure: "Pza",Uni_Compra: "191.1",Pur_Conv_Factor: "1",AP_Currency_Rate: "1",SumadeReceipt_Qty: "40",SumadePO_Unit_Price: "191.1",SumadeImportePartida: "7,644.00"},
@@ -29,7 +32,7 @@ const Medicamento = ({ title, description, image }) => {
     }, [])
 
     return (
-        <div>
+        <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
             <StaticMeta
                 title={title}
                 description={description}

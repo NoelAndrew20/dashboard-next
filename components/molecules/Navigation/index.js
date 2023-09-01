@@ -5,7 +5,9 @@ import Image from 'next/image';
 import burguer from '@/public/images/svg/hamburguer.svg'
 import x from '@/public/images/svg/x-w.svg'
 import srs from '@/public/images/icon/srs.png'
-const Navigation = ({ toggleDarkMode, isDarkMode }) => {
+import { useDarkMode } from '@/context/DarkModeContext';
+const Navigation = () => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const router = useRouter();
     const currentPage = router.pathname;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -83,8 +85,8 @@ const Navigation = ({ toggleDarkMode, isDarkMode }) => {
                             <Image src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />RFID
                         </div>
                     </Link>
-                    {currentPage === "/" 
-                    ? (
+                   
+                    
                         <div className="flex pt-5" onClick={toggleDarkMode}>
                             {isDarkMode ? 
                                 <Image src={"/images/svg/moon.svg"} width={50} height={50} alt="moon" />
@@ -92,9 +94,7 @@ const Navigation = ({ toggleDarkMode, isDarkMode }) => {
                                 <Image src={"/images/svg/sun.svg"} width={50} height={50} alt="sun" />
                             }
                         </div>
-                    )
-                    : ""
-                    }
+                    
                     <div className="flex justify-center pt-20">
                         <Image src={srs} width={100} height={100} alt="srs-logo" />
                     </div>

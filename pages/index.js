@@ -10,12 +10,9 @@ import jsonData1 from '../public/api/pronostico/python/config.json'
 import Modelo3D from '../components/molecules/3dmodel';
 import { useState } from 'react'
 import TableIndexZona from '@/components/atoms/TableIndexZona'
+import { useDarkMode } from '@/context/DarkModeContext'
 export default function Home({ title, description, image }) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
     return (
       <div className={isDarkMode ? "darkMode" : "lightMode"}>

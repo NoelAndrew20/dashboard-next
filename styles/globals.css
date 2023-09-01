@@ -33,6 +33,7 @@ h1 {
 body {
   background-color: #f9f9f9;
   font-family: 'Montserrat', sans-serif;
+  width: 100%;
 }
 label {
   font-family: 'Montserrat', sans-serif;
@@ -466,6 +467,12 @@ label {
   width: max-content;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+.inner-search-d {
+  background-color: #1a1818;
+  border-radius: 8px;
+  width: max-content;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
 .inner-search-icon {
   width: 50px;
   justify-content: center;
@@ -475,10 +482,21 @@ label {
   background-color: #fff;
   height: 100%;
 }
+.inner-search-d input {
+  background-color: #2C2C2C;
+  height: 100%;
+}
 .entries-container {
   border-radius: 8px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: #EEECEC;
+  text-align: center;
+  padding: 5px;
+}
+.entries-container-d {
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #151515;
   text-align: center;
   padding: 5px;
 }
@@ -498,6 +516,17 @@ label {
   background-color: #fff;
   width: 100%;
   border: .5px solid;
+}
+.table-d {
+  padding: 20px;
+  background-color: #151515;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+.table-container-d {
+  width: 100%;
+  text-align: center;
+  background-color: #151515;
 }
 .table-index-d {
   padding: 20px;
@@ -525,7 +554,10 @@ label {
 
 .darkMode {
   background-color: #2d2a2a;
-  color: black;
+  color: #fff;
+}
+.full-viewport {
+  min-height: 100vh; /* Altura mínima del viewport */
 }
 .button {
   background-color: #0961dd;
