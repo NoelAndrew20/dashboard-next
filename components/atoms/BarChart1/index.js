@@ -30,7 +30,7 @@ const BarChart = ()=>{
         {
           label: 'Lechon',
           data: [Math.round(jsonData.alimento.costo_etapa_A.Lechon.M*100)/100,Math.round(jsonData.alimento.costo_etapa_A.Lechon.D*100)/10,Math.round(jsonData.alimento.costo_etapa_A.Lechon.E*100)/1000,],
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
+          backgroundColor: 'rgba(162, 150, 21, 1)',
         },
       ]
     };

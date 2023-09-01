@@ -35,11 +35,20 @@ export default function Home({ title, description, image }) {
           className={`flex min-h-screen flex-col items-center pad-index`}
         >
           <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
+            <div >
+              <h1>Hola, Usuario</h1>
+              <h2><img src='../images/systemusers_104569.png'></img></h2>
+              <p></p>
+            </div>
             <div>
+            <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
+            <div >
               <h1>Costo total</h1>
               <h2>${jsonData.ganancias.ganancia}</h2>
               <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
             </div>
+            </div>
+          </div>
           </div>
           <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
           <div>
