@@ -38,7 +38,8 @@ const TableIndexZona = ({ isDarkMode }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {currentEntries.map((item, index) => (
+                {!isDarkMode 
+                ? currentEntries.map((item, index) => (
                     <tr key={index} className={`table-cel ${index % 2 === 0 ? "bg-amber-300" : "bg-white"} ${
                         index % 2 === 0 ? "border-blue-500" : "border-gray-300"
                       }`}>
