@@ -43,7 +43,7 @@ export default function Home({ title, description, image }) {
             <div>
             <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
             <div >
-              <h1>Costo total</h1>
+              <h1>Ganancias Totales del Periodo</h1>
               <h2>${jsonData.ganancias.ganancia}</h2>
               <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
             </div>
