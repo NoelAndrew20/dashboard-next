@@ -1,8 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Import the cors module
-const moment = require('moment-timezone');
-const tz = 'America/Monterrey';
 
 const app = express();
 app.use(cors());
@@ -28,12 +26,6 @@ const Total = mongoose.model("Total");
 app.get("/getAllRFID", async (req, res) => {
   try {
     const allRFID = await RFID.find({});
-
-    allRFID.forEach((rfid) => {
-      rfid.fecha = moment(rfid.fecha).tz(tz).format('YYYY-MM-DD HH:mm:ss');
-    });
-
-
     res.send({ status: "ok", data: allRFID });
   } catch (error) {
     console.log(error);
