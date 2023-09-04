@@ -252,7 +252,10 @@ const UserForm = ({ data, setData, closeModal }) => {
                         <label htmlFor="statu" className="modal-label">Status:</label>
                     </div>
                     <div className="modal-input-container">
-                        <input type="text" id="statu" name="statu" className="modal-input" value={inputStatus} onChange={(event) => setInputStatus(event.target.value)} required/>
+                        <select id="statu" name="statu" className="modal-input" value={inputStatus} onChange={(event) => setInputStatus(event.target.value)} required>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">

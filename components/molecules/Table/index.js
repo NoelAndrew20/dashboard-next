@@ -323,7 +323,11 @@ const Table = ({ data, setData }) => {
                     </div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
-                            <p>Status:</p><input className="edit-input-container" name="statu" value={editedValues.statu || ''} onChange={handleEditInputChange} />
+                            <p>Status:</p>
+                            <select className="edit-input-container" name="statu" value={editedValues.statu || ''} onChange={handleEditInputChange} >
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
                         </div>
                         <div className="modal-item w-1/3">
                             <p>Contacto:</p><input className="edit-input-container" name="contacto" value={editedValues.contacto || ''} onChange={handleEditInputChange} />
