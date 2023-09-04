@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Import the cors module
 const moment = require('moment-timezone');
-const tz = 'America/Monterrey';
+const tz = 'America/Merida';
 
 const app = express();
 app.use(cors());
