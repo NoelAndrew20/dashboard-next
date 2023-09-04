@@ -7,7 +7,7 @@ const AlertaSchema = new mongoose.Schema(
     message: String,
     alert_id: String,
     photo_path: String,
-    fecha: String,
+    fecha: Date,
     unixTime: String,
     camera: String,
     camera_rtsp: String,
