@@ -29,7 +29,7 @@ const TableAlertas = ({ data, setData }) => {
                 {currentEntries.map((item, index) => (
                         <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
                         <td>
-                        {item.message.split('ALERT').map((part, partIndex) => (
+                        {item.message.split('[ALERTA]').map((part, partIndex) => (
                             partIndex === 1 ? (
                             <span key={partIndex}><label className="alert-message">ALERT</label> {part}</span>
                             ) : (
