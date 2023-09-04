@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Import the cors module
+const moment = require('moment-timezone');
+const tz = 'America/Mexico_City';
 
 const app = express();
 app.use(cors());
@@ -26,6 +28,11 @@ app.get("/getAllAlerta", async (req, res) => {
     const allAlerta = await Alerta.find({})
     .sort({ fecha: -1 })
     .limit(30);
+
+    allAlerta.forEach((alerta) => {
+      alerta.fecha = moment(alerta.fecha).tz(tz).format('YYYY-MM-DD HH:mm:ss');
+    });
+
     res.send({ status: "ok", data: allAlerta });
   } catch (error) {
     console.log(error);
