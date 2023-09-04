@@ -17,7 +17,8 @@ const Alertas = ({ title, description, image }) => {
     ])
 
     useEffect(() => {
-        axios.get('http://192.168.100.20:3050/getAllAlerta')
+        //axios.get('http://192.168.100.20:3050/getAllAlerta')
+        axios.get('http://localhost:3050/getAllAlerta')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setData(jsonData.data);

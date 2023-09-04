@@ -15,7 +15,8 @@ const RFID = ({ title, description, image }) => {
     ])
 
     useEffect(() => {
-        axios.get('http://192.168.100.20:3060/getAllRFID')
+        //axios.get('http://192.168.100.20:3060/getAllRFID')
+        axios.get('http://localhost:3060/getAllRFID')
         .then(response => {
             const jsonData = response.data;
             setData(jsonData.data);
