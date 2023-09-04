@@ -268,7 +268,7 @@ const Pronostico = ({ title, description, image }) => {
             </div>   
             <div className="mt-5">
                 <div>
-                    <h2>Lotes de sementales CIA</h2>
+                    <h2>Lotes de sementales CDI</h2>
                 </div>
                 <div className="flex justify-between mt-5">
                     <div className="w-1/2">
@@ -317,7 +317,7 @@ const Pronostico = ({ title, description, image }) => {
             </div>   
             <div className="mt-5">
                 <div>
-                    <h2>Lotes de sementales gestión</h2>
+                    <h2>Lotes de sementales Celadores</h2>
                 </div>
                 <div className="flex justify-between mt-5">
                     <div className="w-1/2">
