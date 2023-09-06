@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 const Table = ({ data, setData }) => {
     const router = useRouter();
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -17,7 +18,17 @@ const Table = ({ data, setData }) => {
 
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
-    const currentEntries = data.slice(startIndex, endIndex);
+
+    
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const displayData = searchTerm ? data.filter(item => item.nombre && item.nombre.toLowerCase().includes(searchTerm)) : data;
+    const displayDataFinal = displayData.slice(startIndex, endIndex);
+
+    useEffect(() => {
+      setCurrentPage(1); 
+    }, [searchTerm]);
+
 
     const handleEdit = (index) => {
         setEditingIndex(index);
@@ -220,6 +231,14 @@ const Table = ({ data, setData }) => {
 
     return (
         <>
+        <div className="search-container">
+            <input
+            type="text"
+            placeholder="Buscar por Nombre"
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value.toLocaleLowerCase())}
+            />
+        </div>
         <div className="table">
             <table className="table-container">
                 <thead>
@@ -234,7 +253,7 @@ const Table = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentEntries.map((item, index) => (
+                    {displayDataFinal.map((item, index) => (
                     <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
                         <td>{item.usuario}</td>
                         <td>{item.nombre}</td>

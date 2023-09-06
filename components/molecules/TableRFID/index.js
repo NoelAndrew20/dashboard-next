@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 const TableRFID = ({ data, setData }) => {
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
@@ -8,10 +9,20 @@ const TableRFID = ({ data, setData }) => {
     };
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
-    const currentEntries = data.slice(startIndex, endIndex);
+    const [searchTerm, setSearchTerm] = useState('');
 
+    const displayData = searchTerm ? data.filter(item => item.rfid && item.rfid.toLowerCase().includes(searchTerm)) : data;
+    const displayDataFinal = displayData.slice(startIndex, endIndex);
     return (
         <>
+        <div className="search-container">
+            <input
+            type="text"
+            placeholder="Buscar por RFID"
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value.toLocaleLowerCase())}
+            />
+        </div>
         <div className="table">
             <table className="table-container">
                 <thead>
@@ -25,7 +36,7 @@ const TableRFID = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {currentEntries.map((item, index) => (
+                {displayDataFinal.map((item, index) => (
                     <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
                         <td>{item.fecha}</td>
                         <td>{item.zona}</td>
