@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 const TableMaterias = ({ data, setData }) => {
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
@@ -9,10 +9,26 @@ const TableMaterias = ({ data, setData }) => {
     };
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
-    const currentEntries = data.slice(startIndex, endIndex);
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const displayData = searchTerm ? data.filter(item => item.Item_Name && item.Item_Name.toLowerCase().includes(searchTerm)) : data;
+    const displayDataFinal = displayData.slice(startIndex, endIndex);
+
+    useEffect(() => {
+      setCurrentPage(1); 
+    }, [searchTerm]);
 
     return (
         <>
+        <div className="search-container">
+            <input
+            type="text"
+            placeholder="Buscar por Nombre"
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value.toLocaleLowerCase())}
+            />
+        </div>
         <div className="table">
             <table className="table-container">
                 <thead>
@@ -24,7 +40,7 @@ const TableMaterias = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {currentEntries.map((item, index) => (
+                {displayDataFinal.map((item, index) => (
                     <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
                         {console.log(data)}
                         <td>{item.AñoRecibo}</td>
