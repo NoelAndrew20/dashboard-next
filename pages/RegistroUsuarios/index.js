@@ -2,15 +2,16 @@ import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
 import Table from '@/components/molecules/Table';
 import Modal from '@/components/atoms/Modal';
-//import { useState } from 'react';
-import { useState, useEffect } from 'react';
-const axios = require('axios');
-
 import UserForm from '@/components/atoms/UserForm';
 import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
+import { useDarkMode } from '@/context/DarkModeContext';
+import { useState, useEffect } from 'react';
+
+const axios = require('axios');
 
 const RegistroUsuarios = ({ title, description, image }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([
         {usuario: 'lorem', password: 'lorem', email: 'lorem', nombre: 'lorem', apellido: 'lorem', fechaNacimiento: 'lorem', genero: 'lorem', puesto: 'lorem', salario: 'lorem', horario: 'lorem', fechaContratacion: 'lorem', departamento: 'lorem', statu: 'lorem', contacto: 'lorem', grupo: 'lorem', calle: 'lorem', ciudad: 'lorem', estado: 'lorem', cp: 'lorem', id: 'lorem', nombreGrupo: 'lorem'},
@@ -67,7 +68,7 @@ const RegistroUsuarios = ({ title, description, image }) => {
     }, [])
 
     return (
-        <div>
+        <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
             <StaticMeta
                 title={title}
                 description={description}

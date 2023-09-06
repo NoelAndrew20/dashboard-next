@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
+import { useDarkMode } from '@/context/DarkModeContext';
 
 const Table = ({ data, setData }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const router = useRouter();
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -234,13 +236,14 @@ const Table = ({ data, setData }) => {
         <div className="search-container">
             <input
             type="text"
+            className={isDarkMode ? "bg-black" : "bg-white"}
             placeholder="Buscar por Nombre"
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value.toLocaleLowerCase())}
             />
         </div>
-        <div className="table">
-            <table className="table-container">
+        <div className={isDarkMode ? "table-d" : "table"}>
+            <table className={isDarkMode ? "table-container-d" : "table-container"}>
                 <thead>
                     <tr>
                         <th>Usuario</th>
@@ -254,7 +257,12 @@ const Table = ({ data, setData }) => {
                 </thead>
                 <tbody>
                     {displayDataFinal.map((item, index) => (
-                    <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
+                    <tr
+                        key={index}
+                        className={`table-row ${
+                        isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-gray-200')
+                        }`}
+                    >       
                         <td>{item.usuario}</td>
                         <td>{item.nombre}</td>
                         <td>{item.apellido}</td>
@@ -293,88 +301,88 @@ const Table = ({ data, setData }) => {
             </button>
         </div>
         {showEditModal && (
-            <div className="edit-modal bg-white p-4 rounded shadow-md absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-4/4">
+            <div className={`${isDarkMode ? "edit-modal-d" : "edit-modal" } bg-white p-4 rounded shadow-md absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-4/4`}>
                 <h2>Editar Datos</h2>
                 <div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
-                            <p>Usuario:</p><input className="edit-input-container" name="usuario" value={editedValues.usuario || ''} onChange={handleEditInputChange} />
+                            <p>Usuario:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="usuario" value={editedValues.usuario || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Nombre:</p> <input className="edit-input-container" name="nombre" value={editedValues.nombre || ''} onChange={handleEditInputChange} />
+                            <p>Nombre:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="nombre" value={editedValues.nombre || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Apellido:</p> <input className="edit-input-container" name="apellido" value={editedValues.apellido || ''} onChange={handleEditInputChange} />
-                        </div>
-                    </div>
-                    <div className="flex">
-                        <div className="modal-item w-1/3">
-                            <p>Password:</p><input className="edit-input-container" name="password" value={editedValues.password || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Email:</p><input className="edit-input-container" name="email" value={editedValues.email || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Fecha de Nacimiento:</p><input className="edit-input-container" type="date" id="fechaNacimiento" name="fechaNacimiento" value={editedValues.fechaNacimiento || ''} onChange={handleEditInputChange} />
+                            <p>Apellido:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="apellido" value={editedValues.apellido || ''} onChange={handleEditInputChange} />
                         </div>
                     </div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
-                            <p>Género:</p><input className="edit-input-container" name="genero" value={editedValues.genero || ''} onChange={handleEditInputChange} />
+                            <p>Password:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="password" value={editedValues.password || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Puesto:</p><input className="edit-input-container" name="puesto" value={editedValues.puesto || ''} onChange={handleEditInputChange} />
+                            <p>Email:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="email" value={editedValues.email || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Salario diario:</p><input className="edit-input-container" name="salario" value={editedValues.salario || ''} onChange={handleEditInputChange}/>
+                            <p>Fecha de Nacimiento:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  type="date" id="fechaNacimiento" name="fechaNacimiento" value={editedValues.fechaNacimiento || ''} onChange={handleEditInputChange} />
                         </div>
                     </div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
-                            <p>Horario:</p><input className="edit-input-container" name="horario" value={editedValues.horario || ''} onChange={handleEditInputChange} />
+                            <p>Género:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="genero" value={editedValues.genero || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Fecha de contratacion:</p><input className="edit-input-container" type="date" id="fechaContratacion" name="fechaContratacion" value={editedValues.fechaContratacion || ''} onChange={handleEditInputChange} />
+                            <p>Puesto:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="puesto" value={editedValues.puesto || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Departamento:</p><input className="edit-input-container" name="departamento" value={editedValues.departamento || ''} onChange={handleEditInputChange}/>
+                            <p>Salario diario:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="salario" value={editedValues.salario || ''} onChange={handleEditInputChange}/>
+                        </div>
+                    </div>
+                    <div className="flex">
+                        <div className="modal-item w-1/3">
+                            <p>Horario:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="horario" value={editedValues.horario || ''} onChange={handleEditInputChange} />
+                        </div>
+                        <div className="modal-item w-1/3">
+                            <p>Fecha de contratacion:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  type="date" id="fechaContratacion" name="fechaContratacion" value={editedValues.fechaContratacion || ''} onChange={handleEditInputChange} />
+                        </div>
+                        <div className="modal-item w-1/3">
+                            <p>Departamento:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="departamento" value={editedValues.departamento || ''} onChange={handleEditInputChange}/>
                         </div>
                     </div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
                             <p>Status:</p>
-                            <select className="edit-input-container" name="statu" value={editedValues.statu || ''} onChange={handleEditInputChange} >
+                            <select className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} name="statu" value={editedValues.statu || ''} onChange={handleEditInputChange} >
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>
                             </select>
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Contacto:</p><input className="edit-input-container" name="contacto" value={editedValues.contacto || ''} onChange={handleEditInputChange} />
+                            <p>Contacto:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="contacto" value={editedValues.contacto || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Grupo:</p><input className="edit-input-container" name="grupo" value={editedValues.grupo || ''} onChange={handleEditInputChange}/>
-                        </div>
-                    </div>
-                    <div className="flex">
-                        <div className="modal-item w-1/3">
-                            <p>Calle:</p><input className="edit-input-container" name="calle" value={editedValues.calle || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Ciudad:</p><input className="edit-input-container" name="ciudad" value={editedValues.ciudad || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Estado:</p><input className="edit-input-container" name="estado" value={editedValues.estado || ''} onChange={handleEditInputChange}/>
+                            <p>Grupo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="grupo" value={editedValues.grupo || ''} onChange={handleEditInputChange}/>
                         </div>
                     </div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
-                            <p>Código postal:</p><input className="edit-input-container" name="cp" value={editedValues.cp || ''} onChange={handleEditInputChange} />
+                            <p>Calle:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="calle" value={editedValues.calle || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>ID del grupo:</p><input className="edit-input-container" name="id" value={editedValues.id || ''} onChange={handleEditInputChange} />
+                            <p>Ciudad:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="ciudad" value={editedValues.ciudad || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Nombre del grupo:</p><input className="edit-input-container" name="nombreGrupo" value={editedValues.nombreGrupo || ''} onChange={handleEditInputChange}/>
+                            <p>Estado:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="estado" value={editedValues.estado || ''} onChange={handleEditInputChange}/>
+                        </div>
+                    </div>
+                    <div className="flex">
+                        <div className="modal-item w-1/3">
+                            <p>Código postal:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="cp" value={editedValues.cp || ''} onChange={handleEditInputChange} />
+                        </div>
+                        <div className="modal-item w-1/3">
+                            <p>ID del grupo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="id" value={editedValues.id || ''} onChange={handleEditInputChange} />
+                        </div>
+                        <div className="modal-item w-1/3">
+                            <p>Nombre del grupo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="nombreGrupo" value={editedValues.nombreGrupo || ''} onChange={handleEditInputChange}/>
                         </div>
                     </div>
                 </div>
@@ -385,7 +393,7 @@ const Table = ({ data, setData }) => {
             </div>
         )}
          {showConfirmation && (
-            <div className="confirmation bg-white p-4 rounded shadow-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-4/4 overflow-y-auto">
+            <div className={`${isDarkMode ? " bg-black" : "bg-white"} confirmation bg-white p-4 rounded shadow-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-4/4 overflow-y-auto`}>
                 Elemento eliminado
             </div>
         )}

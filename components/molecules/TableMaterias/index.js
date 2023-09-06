@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useDarkMode } from '@/context/DarkModeContext';
 
 const TableMaterias = ({ data, setData }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
     const [currentPage, setCurrentPage] = useState(1);
@@ -24,13 +26,14 @@ const TableMaterias = ({ data, setData }) => {
         <div className="search-container">
             <input
             type="text"
+            className={isDarkMode ? "bg-black" : "bg-white"}
             placeholder="Buscar por Nombre"
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value.toLocaleLowerCase())}
             />
         </div>
-        <div className="table">
-            <table className="table-container">
+        <div className={isDarkMode ? "table-d" : "table"}>
+            <table className={isDarkMode ? "table-container-d" : "table-container"}>
                 <thead>
                     <tr>
                         <th>Año recibido</th>
@@ -41,8 +44,12 @@ const TableMaterias = ({ data, setData }) => {
                 </thead>
                 <tbody>
                 {displayDataFinal.map((item, index) => (
-                    <tr key={index} className={`table-row ${index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`}>
-                        {console.log(data)}
+                    <tr
+                        key={index}
+                        className={`table-row ${
+                        isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-gray-200')
+                        }`}
+                    > 
                         <td>{item.AñoRecibo}</td>
                         <td>{item.MesRecibo}</td>
                         <td>{item.Description}</td>

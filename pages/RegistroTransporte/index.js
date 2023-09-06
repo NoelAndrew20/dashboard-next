@@ -1,29 +1,27 @@
 import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
-import Table from '@/components/molecules/Table';
 import Modal from '@/components/atoms/Modal';
-//import { useState } from 'react';
-import { useState, useEffect } from 'react';
-//import axios from 'axios';
-const axios = require('axios');
-
 import TranspForm from '@/components/atoms/TranspForm';
 import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import TableTransporte from '@/components/molecules/TableTransporte';
-const RegistroTransporte = ({ title, description, image }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+import { useState, useEffect } from 'react';
+import { useDarkMode } from '@/context/DarkModeContext';
+const axios = require('axios');
 
+const RegistroTransporte = ({ title, description, image }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([
         
-        /*{fecha: "lorem2", granja: "lorem2", camion: "lorem", jaula: "lorem2", operador: "lorem2", cliente: "lorem2", destino: "lorem2", salida: "lorem2", hrLlegada: "lorem2", tmpRecorrido: "lorem2", hrInicio: "lorem2", hrFinal: "lorem2", kgSalida: "lorem2", kgDesembarque: "lorem2", merma: "lorem2", ctCerdos: "lorem2", auditor: "lorem", incidencias:"lorem", revision:"lorem", rango: "lorem", muertos: "lorem", parada: "lorem" },
+        {fecha: "lorem2", granja: "lorem2", camion: "lorem", jaula: "lorem2", operador: "lorem2", cliente: "lorem2", destino: "lorem2", salida: "lorem2", hrLlegada: "lorem2", tmpRecorrido: "lorem2", hrInicio: "lorem2", hrFinal: "lorem2", kgSalida: "lorem2", kgDesembarque: "lorem2", merma: "lorem2", ctCerdos: "lorem2", auditor: "lorem", incidencias:"lorem", revision:"lorem", rango: "lorem", muertos: "lorem", parada: "lorem" },
         {fecha: "lorem2", granja: "lorem2", camion: "lorem", jaula: "lorem2", operador: "lorem2", cliente: "lorem2", destino: "lorem2", salida: "lorem2", hrLlegada: "lorem2", tmpRecorrido: "lorem2", hrInicio: "lorem2", hrFinal: "lorem2", kgSalida: "lorem2", kgDesembarque: "lorem2", merma: "lorem2", ctCerdos: "lorem2", auditor: "lorem", incidencias:"lorem", revision:"lorem", rango: "lorem", muertos: "lorem", parada: "lorem" },
         {fecha: "lorem2", granja: "lorem2", camion: "lorem", jaula: "lorem2", operador: "lorem2", cliente: "lorem2", destino: "lorem2", salida: "lorem2", hrLlegada: "lorem2", tmpRecorrido: "lorem2", hrInicio: "lorem2", hrFinal: "lorem2", kgSalida: "lorem2", kgDesembarque: "lorem2", merma: "lorem2", ctCerdos: "lorem2", auditor: "lorem", incidencias:"lorem", revision:"lorem", rango: "lorem", muertos: "lorem", parada: "lorem" },
         {fecha: "lorem2", granja: "lorem2", camion: "lorem", jaula: "lorem2", operador: "lorem2", cliente: "lorem2", destino: "lorem2", salida: "lorem2", hrLlegada: "lorem2", tmpRecorrido: "lorem2", hrInicio: "lorem2", hrFinal: "lorem2", kgSalida: "lorem2", kgDesembarque: "lorem2", merma: "lorem2", ctCerdos: "lorem2", auditor: "lorem", incidencias:"lorem", revision:"lorem", rango: "lorem", muertos: "lorem", parada: "lorem" },
         {fecha: "lorem2", granja: "lorem2", camion: "lorem", jaula: "lorem2", operador: "lorem2", cliente: "lorem2", destino: "lorem2", salida: "lorem2", hrLlegada: "lorem2", tmpRecorrido: "lorem2", hrInicio: "lorem2", hrFinal: "lorem2", kgSalida: "lorem2", kgDesembarque: "lorem2", merma: "lorem2", ctCerdos: "lorem2", auditor: "lorem", incidencias:"lorem", revision:"lorem", rango: "lorem", muertos: "lorem", parada: "lorem" },
         {fecha: "lorem2", granja: "lorem2", camion: "hola", jaula: "lorem2", operador: "lorem2", cliente: "lorem2", destino: "lorem2", salida: "lorem2", hrLlegada: "lorem2", tmpRecorrido: "lorem2", hrInicio: "lorem2", hrFinal: "lorem2", kgSalida: "lorem2", kgDesembarque: "lorem2", merma: "lorem2", ctCerdos: "lorem2", auditor: "lorem", incidencias:"lorem", revision:"lorem", rango: "lorem", muertos: "lorem", parada: "lorem" },
         {fecha: "lorem2", granja: "lorem2", camion: "hola", jaula: "lorem2", operador: "lorem2", cliente: "lorem2", destino: "lorem2", salida: "lorem2", hrLlegada: "lorem2", tmpRecorrido: "lorem2", hrInicio: "lorem2", hrFinal: "lorem2", kgSalida: "lorem2", kgDesembarque: "lorem2", merma: "lorem2", ctCerdos: "lorem2", auditor: "lorem", incidencias:"lorem", revision:"lorem", rango: "lorem", muertos: "lorem", parada: "lorem" },
-*/
+
     ])
 
     const openModal = () => {
@@ -46,7 +44,7 @@ const RegistroTransporte = ({ title, description, image }) => {
     }, [])
 
     return (
-        <div>
+        <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
             <StaticMeta
                 title={title}
                 description={description}
@@ -60,7 +58,6 @@ const RegistroTransporte = ({ title, description, image }) => {
                 <h2 className="text-xl mt-5 mb-5">Transportes existentes</h2>
                 {/*<Search data={data} setData={setData} word={"camión"} />*/}
                 <div className="mt-10">
-                    {console.log("la data",data)}
                     <TableTransporte data={data} setData={setData}/>
                 </div>
                 <div className="mt-10 flex justify-end">

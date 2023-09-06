@@ -5,8 +5,11 @@ import { useState, useEffect } from 'react';
 import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import TableAlertas from '@/components/molecules/TableAlertas';
+import { useDarkMode } from '@/context/DarkModeContext';
 const axios = require('axios');
+
 const Alertas = ({ title, description, image }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [data, setData] = useState([
         { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
         { message: "ALERT: pigs detected at backdoor.", fecha: "2023-08-01T10:26:57.037Z", puerta: "1", area: "1", nave: "1", granja: "1" },
@@ -29,7 +32,7 @@ const Alertas = ({ title, description, image }) => {
     }, [])
 
     return (
-        <div>
+        <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
             <StaticMeta
                 title={title}
                 description={description}

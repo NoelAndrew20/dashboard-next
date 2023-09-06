@@ -2,8 +2,11 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import Navigation from '@/components/molecules/Navigation';
 import ReactModal from 'react-modal';
 import axios from 'axios';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
+import { useDarkMode } from '@/context/DarkModeContext';
+
 const Pronostico = ({ title, description, image }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [fechainicial, setfechainicial] = useState([]);
     const [fechafinal, setfechafinal] = useState([]);
     const [descendenciavientre, setdescendenciavientre] = useState([]);
@@ -186,7 +189,7 @@ const Pronostico = ({ title, description, image }) => {
           };
 
     return(
-        <>
+    <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
         <StaticMeta
                 title={title}
                 description={description}
@@ -200,19 +203,19 @@ const Pronostico = ({ title, description, image }) => {
             <div className="flex justify-between mt-5">
                 <div className="pronostico-container">
                     <label>Fecha inicial</label>
-                    <div className="pronostico-input">
+                    <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
                         <input type="date"  value={fechainicial} onChange={(e) => setfechainicial(e.target.value)}/>
                     </div>
                 </div>
                 <div className="pronostico-container">
                     <label>Fecha final</label>
-                    <div className="pronostico-input">
+                    <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
                         <input type="date" value={fechafinal} onChange={(e) => setfechafinal(e.target.value)}/>
                     </div>
                 </div>
                 <div className="pronostico-container">
                     <label>Descendencia por vientre</label>
-                    <div className="pronostico-input">
+                    <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
                         <input type="number" value={descendenciavientre} onChange={(e) => setdescendenciavientre(e.target.value)}/>
                     </div>
                 </div>
@@ -225,13 +228,13 @@ const Pronostico = ({ title, description, image }) => {
                     <div className="w-1/2 mt-5">
                         <div>
                             <label>Ingreso a cuarentena</label>
-                            <div className="pronostico-input">
+                            <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
                                 <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} />
                             </div>
                         </div>
                         <div>
                             <label>Vientres en lotes</label>
-                            <div className="pronostico-input">
+                            <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
                                 <input type="number" value={cantidadVientres} onChange={(e) => setCantidadVientres(e.target.value)} />
                             </div>
                         </div>
@@ -244,8 +247,8 @@ const Pronostico = ({ title, description, image }) => {
                         {lotes.length === 0 ? (
                             <h2>No hay lotes para mostrar</h2>
                         ) : (
-                        <div className="table">
-                            <table className="table-container">
+                        <div className={isDarkMode ? "table-d" : "table"}>
+                            <table className={isDarkMode ? "table-container-d" : "table-container"}>
                                 <thead>
                                     <tr>
                                     <th>Ingreso</th>
@@ -274,13 +277,13 @@ const Pronostico = ({ title, description, image }) => {
                     <div className="w-1/2">
                         <div>
                             <label>Ingreso a cuarentena</label>
-                            <div className="pronostico-input">
+                            <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
                                 <input type="date" value={fechaSe} onChange={(e) => setFechaSe(e.target.value)} />
                             </div>
                         </div>
                         <div>
                             <label>Sementales en lotes</label>
-                            <div className="pronostico-input">
+                            <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
                                 <input type="number" value={cantidadSe} onChange={(e) => setCantidadSe(e.target.value)} />
                             </div>
                         </div>
@@ -293,8 +296,8 @@ const Pronostico = ({ title, description, image }) => {
                         {lotesSe.length === 0 ? (
                             <h2>No hay lotes para mostrar</h2>
                         ) : (
-                        <div className="table">
-                            <table className="table-container">
+                        <div className={isDarkMode ? "table-d" : "table"}>
+                            <table className={isDarkMode ? "table-container-d" : "table-container"}>
                                 <thead>
                                     <tr>
                                     <th>Ingreso</th>
@@ -323,13 +326,13 @@ const Pronostico = ({ title, description, image }) => {
                     <div className="w-1/2">
                         <div>
                             <label>Ingreso a cuarentena</label>
-                            <div className="pronostico-input">
+                            <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
                                 <input type="date" value={fechaGe} onChange={(e) => setFechaGe(e.target.value)} />
                             </div>
                         </div>
                         <div>
                             <label>Sementales en lotes</label>
-                            <div className="pronostico-input">
+                            <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
                                 <input type="number" value={cantidadGe} onChange={(e) => setCantidadGe(e.target.value)} />
                             </div>
                         </div>
@@ -342,8 +345,8 @@ const Pronostico = ({ title, description, image }) => {
                         {lotesGe.length === 0 ? (
                             <h2>No hay lotes para mostrar</h2>
                             ) : (
-                            <div className="table">
-                                <table className="table-container">
+                            <div className={isDarkMode ? "table-d" : "table"}>
+                                <table className={isDarkMode ? "table-container-d" : "table-container"}>
                                     <thead>
                                         <tr>
                                         <th>Ingreso</th>
@@ -388,7 +391,7 @@ const Pronostico = ({ title, description, image }) => {
   </div>
 </ReactModal>
 
-    </>
+    </div>
     )
 }
 export default Pronostico;

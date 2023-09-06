@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useDarkMode } from '@/context/DarkModeContext';
 
 const Search = ({ data, setData, word }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [search, setSearch] = useState("");
     const [originalData, setOriginalData] = useState(data);
     const [selectedEntries, setSelectedEntries] = useState("all");
@@ -32,7 +34,7 @@ const Search = ({ data, setData, word }) => {
 
     return (
         <div className="flex justify-between">
-            <div className="flex inner-search">
+            <div className={isDarkMode ? "flex inner-search-d" : "flex inner-search"}>
                 <div>
                     <input
                         type="text"
@@ -51,7 +53,7 @@ const Search = ({ data, setData, word }) => {
             <div>
                 <label>Show entries:</label>
                 <select
-                    className="entries-container focus:border-none"
+                    className={isDarkMode ? "entries-container-d focus:border-none" : "entries-container focus:border-none"}
                     value={selectedEntries}
                     onChange={(e) => setSelectedEntries(e.target.value)}
                 >
