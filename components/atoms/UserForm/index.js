@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useDarkMode } from '@/context/DarkModeContext';
 
 const UserForm = ({ data, setData, closeModal }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [inputUser, setInputUser] = useState("");
     const [inputPsw, setInputPsw] = useState("");
     const [inputEmail, setInputEmail] = useState("");
@@ -144,24 +146,24 @@ const UserForm = ({ data, setData, closeModal }) => {
                     <div>
                         <label htmlFor="username" className="modal-label">Username:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="username" name="username" className="modal-input" value={inputUser} onChange={(event) => setInputUser(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="username" name="username" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputUser} onChange={(event) => setInputUser(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="password" className="modal-label">Password:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="password" id="password" name="password" className="modal-input" value={inputPsw} onChange={(event) => setInputPsw(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="password" id="password" name="password" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputPsw} onChange={(event) => setInputPsw(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div >
                         <label htmlFor="email" className="modal-label">Email:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="email" id="email" name="email" className="modal-input" value={inputEmail} onChange={(event) => setInputEmail(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="email" id="email" name="email" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputEmail} onChange={(event) => setInputEmail(event.target.value)} required/>
                     </div>
                 </div>
             </div>
@@ -170,24 +172,24 @@ const UserForm = ({ data, setData, closeModal }) => {
                     <div>
                         <label htmlFor="nombre" className="modal-label">Nombre:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="nombre" name="nombre" className="modal-input" value={inputName} onChange={(event) => setInputName(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="nombre" name="nombre" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputName} onChange={(event) => setInputName(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="apellido" className="modal-label">Apellido:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="apellido" name="apellido" className="modal-input" value={inputLastName} onChange={(event) => setInputLastName(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="apellido" name="apellido" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputLastName} onChange={(event) => setInputLastName(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="fechaNacimiento" className="modal-label">Fecha de Nacimiento:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" className="modal-input" value={inputBirth} onChange={(event) => setInputBirth(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputBirth} onChange={(event) => setInputBirth(event.target.value)} required/>
                     </div>
                 </div>
             </div>
@@ -196,8 +198,8 @@ const UserForm = ({ data, setData, closeModal }) => {
                     <div>
                         <label htmlFor="genero" className="modal-label">Género:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <select id="genero" name="genero" className="modal-input" value={inputGenre} onChange={(event) => setInputGenre(event.target.value)} required>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <select id="genero" name="genero" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputGenre} onChange={(event) => setInputGenre(event.target.value)} required>
                             <option value="masculino">Masculino</option>
                             <option value="femenino">Femenino</option>
                         </select>
@@ -207,16 +209,16 @@ const UserForm = ({ data, setData, closeModal }) => {
                     <div>
                         <label htmlFor="puesto" className="modal-label">Puesto:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="puesto" name="puesto" className="modal-input" value={inputPosition} onChange={(event) => setInputPosition(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="puesto" name="puesto" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputPosition} onChange={(event) => setInputPosition(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="salario" className="modal-label">Salario Dario:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="salario" name="salario" className="modal-input" value={inputSalary} onChange={(event) => setInputSalary(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="salario" name="salario" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputSalary} onChange={(event) => setInputSalary(event.target.value)} required/>
                     </div>
                 </div>
             </div>
@@ -225,24 +227,24 @@ const UserForm = ({ data, setData, closeModal }) => {
                     <div>
                         <label htmlFor="horario" className="modal-label">Horario:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="horario" name="horario" className="modal-input" value={inputSchedule} onChange={(event) => setInputSchedule(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="horario" name="horario" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputSchedule} onChange={(event) => setInputSchedule(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="fecha-contratacion" className="modal-label">Fecha de contratación:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="fecha-contratacion" name="fecha-contratacion" className="modal-input" value={inputHireDate} onChange={(event) => setInputHireDate(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="fecha-contratacion" name="fecha-contratacion" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputHireDate} onChange={(event) => setInputHireDate(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="departamento" className="modal-label">Departamento:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="departamento" name="departamento" className="modal-input" value={inputDepartment} onChange={(event) => setInputDepartment(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="departamento" name="departamento" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputDepartment} onChange={(event) => setInputDepartment(event.target.value)} required/>
                     </div>
                 </div>
             </div>
@@ -251,27 +253,29 @@ const UserForm = ({ data, setData, closeModal }) => {
                     <div>
                         <label htmlFor="statu" className="modal-label">Status:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <select id="statu" name="statu" className="modal-input" value={inputStatus} onChange={(event) => setInputStatus(event.target.value)} required>
+                        
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="statu" name="statu" className="modal-input" value={inputStatus} onChange={(event) => setInputStatus(event.target.value)} required>
                             <option value="activo">Activo</option>
                             <option value="inactivo">Inactivo</option>
                         </select>
+                    
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="contacto" className="modal-label">Contacto:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="contacto" name="contacto" className="modal-input" value={inputContact} onChange={(event) => setInputContact(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="contacto" name="contacto" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputContact} onChange={(event) => setInputContact(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="grupo" className="modal-label">Grupo:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="grupo" name="grupo" className="modal-input" value={inputGroup} onChange={(event) => setInputGroup(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="grupo" name="grupo" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputGroup} onChange={(event) => setInputGroup(event.target.value)} required/>
                     </div>
                 </div>
             </div>
@@ -280,24 +284,24 @@ const UserForm = ({ data, setData, closeModal }) => {
                     <div>
                         <label htmlFor="calle" className="modal-label">Calle:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="calle" name="calle" className="modal-input" value={inputStreet} onChange={(event) => setInputStreet(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="calle" name="calle" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputStreet} onChange={(event) => setInputStreet(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="ciudad" className="modal-label">Ciudad:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="ciudad" name="ciudad" className="modal-input" value={inputCity} onChange={(event) => setInputCity(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="ciudad" name="ciudad" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputCity} onChange={(event) => setInputCity(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="estado" className="modal-label">Estado:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="estado" name="estado" className="modal-input" value={inputState} onChange={(event) => setInputState(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="estado" name="estado" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputState} onChange={(event) => setInputState(event.target.value)} required/>
                     </div>
                 </div>
             </div>
@@ -306,24 +310,24 @@ const UserForm = ({ data, setData, closeModal }) => {
                     <div>
                         <label htmlFor="cp" className="modal-label">Código postal:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="cp" name="cp" className="modal-input" value={inputCp} onChange={(event) => setInputCp(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="cp" name="cp" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputCp} onChange={(event) => setInputCp(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="IDG" className="modal-label">ID del grupo:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="IDG" name="IDG" className="modal-input" value={inputIDGroup} onChange={(event) => setInputIDGroup(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="IDG" name="IDG" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputIDGroup} onChange={(event) => setInputIDGroup(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="nombreGrupo" className="modal-label">Nombre del Grupo:</label>
                     </div>
-                    <div className="modal-input-container">
-                        <input type="text" id="nombreGrupo" name="nombreGrupo" className="modal-input" value={inputGroupName} onChange={(event) => setInputGroupName(event.target.value)} required/>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="nombreGrupo" name="nombreGrupo" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputGroupName} onChange={(event) => setInputGroupName(event.target.value)} required/>
                     </div>
                 </div>
             </div>

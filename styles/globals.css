@@ -570,6 +570,13 @@ label {
   font-size: 36px;
 }
 .modal-content {
+  background-color: #fff;
+  width: 70%;
+  border-radius: 15px;
+  max-height: 80%;
+}
+.modal-content-d {
+  background-color: #2C2C2C;
   width: 70%;
   border-radius: 15px;
   max-height: 80%;
@@ -590,7 +597,20 @@ label {
   border: 1px solid rgba(0, 0, 0, 0.25) ;
   overflow: hidden;
 }
+
+.modal-input-container-d {
+  background-color: #151515;
+  width: 70%;
+  border: 1px solid rgba(0, 0, 0, 0.25) ;
+  overflow: hidden;
+}
+
 .modal-input {
+  border: none;
+  outline: none;
+}
+.modal-input-d {
+  background-color: #151515;
   border: none;
   outline: none;
 }
@@ -695,6 +715,16 @@ label {
   width: 100%;
   background-color: #fff;
 }
+.pronostico-input-d {
+  width: 80%;
+  padding: 5px;
+  background-color: #151515;
+  border-radius: 10px;
+}
+.pronostico-input-d input {
+  width: 100%;
+  background-color: #151515;
+}
 .pronostico-input input:focus {
   border-color: none;
   outline: none;
@@ -709,6 +739,12 @@ label {
 .edit-input-container {
   width: 80%;
   border: 1px solid rgba(0, 0, 0, 0.25) ;
+  overflow: hidden;
+}
+.edit-input-container-d {
+  background-color: #151515;
+  width: 80%;
+  border: 1px solid rgba(247, 245, 245, 0.505) ;
   overflow: hidden;
 }
 .cancel-btn {
@@ -748,6 +784,12 @@ label {
 .pad-index {
   padding: 0px 90px;
 }
+.edit-modal {
+  background-color: #fff;
+}
+.edit-modal-d {
+  background-color: #1a1818;
+}
 @media (max-width: 500px) {
   .wrapper {
     width: 100%;
@@ -762,6 +804,15 @@ label {
     display: flow-root;
     border-radius: 15px;
     background-color: #ffff;    
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 6vh;
+  }
+  .row-container-d {
+    justify-content: space-around;
+    width: 100%;
+    display: flow-root;
+    border-radius: 15px;
+    background-color: #2C2C2C;    
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 6vh;
   }
@@ -780,13 +831,29 @@ label {
     justify-content: center; 
     background-color: #fff;
   }
-
+  .table-d {
+    overflow-x: auto; 
+    white-space: nowrap;
+    padding: 0;
+    display: grid;
+    justify-content: center; 
+    background-color: #2C2C2C;
+  }
   .table-container {
     max-width: 100%; 
     width: 100%; 
     min-width: 100%; 
     padding: 10px; 
     background-color: #fff;
+    display: inline-block;
+    transition: transform 0.3s ease; 
+  }
+  .table-container-d {
+    max-width: 100%; 
+    width: 100%; 
+    min-width: 100%; 
+    padding: 10px; 
+    background-color: #2C2C2C;
     display: inline-block;
     transition: transform 0.3s ease; 
   }
@@ -799,8 +866,26 @@ label {
     justify-content: center; 
     border: .5px solid;
   }
+  .table-index-d {
+    background-color: #2C2C2C;
+    overflow-x: auto; 
+    white-space: nowrap;
+    padding: 0;
+    display: grid;
+    justify-content: center; 
+    border: .5px solid;
+  }
   .table-container-index {
     background-color: #fff;
+    max-width: 100%; 
+    width: 100%; 
+    min-width: 100%; 
+    padding: 10px; 
+    display: inline-block;
+    transition: transform 0.3s ease; 
+  }
+  .table-container-index-d {
+    background-color: #151515;
     max-width: 100%; 
     width: 100%; 
     min-width: 100%; 
@@ -826,4 +911,22 @@ label {
   .form-container {
     padding: 0;
   }
+  .modal-input-container {
+    background-color: #151515;
+    width: 70%;
+    border: 1px solid rgba(0, 0, 0, 0.25) ;
+    overflow: hidden;
+  }
+  .modal-input-d {
+    background-color: #151515;
+    border: none;
+    outline: none;
+  }
+  .modal-input-container-d {
+    background-color: #151515;
+    width: 70%;
+    border: 1px solid rgba(0, 0, 0, 0.25) ;
+    overflow: hidden;
+  }
+  
 }

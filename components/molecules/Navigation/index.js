@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import burguer from '@/public/images/svg/hamburguer.svg'
 import x from '@/public/images/svg/x-w.svg'
 import srs from '@/public/images/icon/srs.png'
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
+
 const Navigation = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const router = useRouter();
@@ -49,7 +50,7 @@ const Navigation = () => {
                 <div onClick={toggleSidebar} className="flex justify-end items-end pt-1">
                     <Image src={x} width={20} height={20} alt="x"/>
                 </div>
-                <div className="flex flex-col space-y-2 pt-10">
+                <div className="flex flex-col space-y-2">
                     <Link href="/" className={`hover:font-semibold ${currentPage === '/' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
@@ -89,13 +90,13 @@ const Navigation = () => {
                     
                         <div className="flex pt-5" onClick={toggleDarkMode}>
                             {isDarkMode ? 
-                                <Image src={"/images/svg/moon.svg"} width={50} height={50} alt="moon" />
+                                <Image src={"/images/svg/moon.svg"} width={30} height={30} alt="moon" />
                                 :
-                                <Image src={"/images/svg/sun.svg"} width={50} height={50} alt="sun" />
+                                <Image src={"/images/svg/sun.svg"} width={30} height={30} alt="sun" />
                             }
                         </div>
                     
-                    <div className="flex justify-center pt-20">
+                    <div className="flex justify-center pt-2">
                         <Image src={srs} width={100} height={100} alt="srs-logo" />
                     </div>
                 </div>

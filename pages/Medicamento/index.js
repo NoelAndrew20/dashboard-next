@@ -1,12 +1,11 @@
 import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
-//import { useState } from 'react';
-import { useState, useEffect } from 'react';
 import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import TableMedicamentos from '@/components/molecules/TableMedicamento';
-const axios = require('axios');
 import { useDarkMode } from '@/context/DarkModeContext';
+import { useState, useEffect } from 'react';
+const axios = require('axios');
 
 const Medicamento = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();

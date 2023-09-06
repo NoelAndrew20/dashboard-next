@@ -1,13 +1,14 @@
 import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
-//import { useState } from 'react';
-import { useState, useEffect } from 'react';
 import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
-import TableMedicamentos from '@/components/molecules/TableMedicamento';
 import TableMaterias from '@/components/molecules/TableMaterias';
+import { useState, useEffect } from 'react';
+import { useDarkMode } from '@/context/DarkModeContext';
 const axios = require('axios');
+
 const Medicamento = ({ title, description, image }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [data, setData] = useState([ 
         { AñoRecibo: "2022",MesRecibo: "1",VendorPackslip_ID: "5456",Project_ID: "111002",Description: "Planta Alimento 1 Silos y Almacén",Employee_ID: "ADM72440",ReceiptEmployee_ID: "ADM72440",Vendor_ID: "PR12957",PO_Name: "Jose Gonzalez Perez",Purch_Order_ID: "OC22000164",Item_ID: "301100R-Granulado",Item_Name: "Calcio Granulado",Años: "2022",PurchOrder_Date: "ene",Unit_ofMeasure: "Kg",UniCompra: "0.45",Pur_ConvFactor: "1000",AP_CurrencyRate: "1",SumaDeReceipt_Qty: "11.5",SumaDePOUnit_Price: "450",SumaDeImportePartida: "$5,175.00" },
         { AñoRecibo: "2022",MesRecibo: "1",VendorPackslip_ID: "5456",Project_ID: "111002",Description: "Planta Alimento 1 Silos y Almacén",Employee_ID: "ADM72440",ReceiptEmployee_ID: "ADM72440",Vendor_ID: "PR12957",PO_Name: "Jose Gonzalez Perez",Purch_Order_ID: "OC22000164",Item_ID: "301100R-Granulado",Item_Name: "Calcio Granulado",Años: "2022",PurchOrder_Date: "ene",Unit_ofMeasure: "Kg",UniCompra: "0.45",Pur_ConvFactor: "1000",AP_CurrencyRate: "1",SumaDeReceipt_Qty: "11.5",SumaDePOUnit_Price: "450",SumaDeImportePartida: "$5,175.00" },
@@ -28,7 +29,7 @@ const Medicamento = ({ title, description, image }) => {
     }, [])
 
     return (
-        <div>
+        <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
             <StaticMeta
                 title={title}
                 description={description}

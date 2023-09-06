@@ -1,12 +1,14 @@
 import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
-//import { useState } from 'react';
-import { useState, useEffect } from 'react';
 import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import TableRFID from '@/components/molecules/TableRFID';
+import { useState, useEffect } from 'react';
+import { useDarkMode } from '@/context/DarkModeContext';
+
 const axios = require('axios');
 const RFID = ({ title, description, image }) => {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
     const[total, setTotal] = useState([])
     const [data, setData] = useState([
        // { fecha: { $date: "2023-08-22T16:03:12.135Z" }, unixTime: 1692741792, sensor: "120398", puerta: "1", nave: "Desarrollo", granja: "granajPrueba", zona: "Maternidad", rfid: "71D1433F", },
@@ -59,7 +61,7 @@ const RFID = ({ title, description, image }) => {
     }, []);*/
 
     return (
-        <div>
+        <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
             <StaticMeta
                 title={title}
                 description={description}
