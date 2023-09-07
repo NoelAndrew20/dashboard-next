@@ -25,7 +25,7 @@ const Login = ({ title, description, image }) => {
       setEmailError("");
     }
 
-    setIsButtonDisabled(!validateForm(value, password)); // Actualiza el estado del botón
+    setIsButtonDisabled(!validateForm(value, password)); 
   };
 
   const handlePasswordChange = (e) => {
@@ -38,7 +38,7 @@ const Login = ({ title, description, image }) => {
       setPasswordError("");
     }
 
-    setIsButtonDisabled(!validateForm(email, value)); // Actualiza el estado del botón
+    setIsButtonDisabled(!validateForm(email, value)); 
   };
 
   const validateForm = (email, password) => {
