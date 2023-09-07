@@ -8,11 +8,22 @@ import TableIndex1 from '@/components/atoms/TableIndexVacuna'
 import jsonData from '../public/api/pronostico/python/output.json'
 import jsonData1 from '../public/api/pronostico/python/config.json'
 import Modelo3D from '../components/molecules/3dmodel';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TableIndexZona from '@/components/atoms/TableIndexZona'
 import { useDarkMode } from '@/context/DarkModeContext'
 export default function Home({ title, description, image }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    console.log(localStorage)
+    const userDataString = localStorage.getItem('userData');
+    
+    if (userDataString) {
+      const userData = JSON.parse(userDataString);
+      setName(userData.name);
+    }
+  }, []);
 
     return (
       <div className={isDarkMode ? "darkMode" : "lightMode"}>
@@ -33,7 +44,7 @@ export default function Home({ title, description, image }) {
         >
           <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
             <div >
-              <h1>Hola, Usuario</h1>
+              <h1>Hola, {name}</h1>
               <h2><img src='../images/systemusers_104569.png'></img></h2>
               <p></p>
             </div>
