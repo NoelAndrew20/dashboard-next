@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import Link from 'next/link';
+import usuarios from '../../utils/usuarios.json';
+import { useRouter } from 'next/router'
 
 const Login = ({ title, description, image }) => {
   const [email, setEmail] = useState("");
@@ -9,7 +11,10 @@ const Login = ({ title, description, image }) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
+  const router = useRouter()
+  const [dataIndex, setDataIndex] = useState(0);
+  const [error, setError] = useState(null);
+  
   const validateEmail = (value) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(value);
@@ -25,7 +30,7 @@ const Login = ({ title, description, image }) => {
       setEmailError("");
     }
 
-    setIsButtonDisabled(!validateForm(value, password)); // Actualiza el estado del botón
+    setIsButtonDisabled(!validateForm(value, password)); 
   };
 
   const handlePasswordChange = (e) => {
@@ -38,7 +43,7 @@ const Login = ({ title, description, image }) => {
       setPasswordError("");
     }
 
-    setIsButtonDisabled(!validateForm(email, value)); // Actualiza el estado del botón
+    setIsButtonDisabled(!validateForm(email, value)); 
   };
 
   const validateForm = (email, password) => {
@@ -47,15 +52,21 @@ const Login = ({ title, description, image }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (emailError || passwordError) {
-      console.log("Formulario inválido");
-      return;
+    const user = usuarios.find((userData) => userData.email === email);
+    if (!user) {
+      setError("No hay ninguna cuenta con este correo.");
+    } else if (user.password !== password) {
+      setError("Contraseña incorrecta.");
+    } else {
+      router.push("../")
     }
+}
 
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
+  //esta funcion está para rellenar los datos de prueba
+  useEffect(() => {
+    setEmail(usuarios[dataIndex].email);
+    setPassword(usuarios[dataIndex].password);
+  }, [dataIndex]);
 
   return (
     <>
@@ -75,6 +86,12 @@ const Login = ({ title, description, image }) => {
                 <h1 className="text-2xl font-semibold mb-4">Iniciar sesión</h1>
               </div>
             </div>
+            {error && (
+                <div className="text-red-500 font-bold mt-2">
+                    {error}
+                </div>
+            )}
+            <span className="text-xs italic">solo borren la m en .com y vuelvan a ponerla para loguearse</span>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -103,15 +120,13 @@ const Login = ({ title, description, image }) => {
                 {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
               </div>
               <div className="flex justify-center">
-                <Link href="../">
-                    <button
+                <button
                     type="submit"
                     className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
                     disabled={isButtonDisabled}
-                    >
-                        Iniciar sesión
-                    </button>
-                </Link>
+                >
+                    Iniciar sesión
+                </button>
               </div>
             </form>
             <div className="mt-5 text-xs flex justify-center text-blue-500">
