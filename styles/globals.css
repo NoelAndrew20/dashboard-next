@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 html {
-  background-color: #f9f9f9;
+  background-color: #FDF7ED;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
 }
@@ -19,7 +19,7 @@ h1 {
 }
 
 :root {
-  --color-bg: #f9f9f9;
+  --color-bg: #FDF7ED;
   --color-border: #e5e7eb;
   --color-sidebar-item: #f3f4f6;
 }
@@ -31,7 +31,7 @@ h1 {
 }
 
 body {
-  background-color: #f9f9f9;
+  background-color: #FDF7ED;
   font-family: 'Montserrat', sans-serif;
   width: 100%;
 }
@@ -520,7 +520,7 @@ label {
 .table-d {
   padding: 20px;
   background-color: #151515;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+  border: 1px solid #D4AF37;
   width: 100%;
 }
 .table-container-d {
@@ -548,7 +548,7 @@ label {
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 .lightMode {
-  background-color: #f9f9f9;
+  background-color: #FDF7ED;
   color: black;
 }
 
@@ -560,7 +560,7 @@ label {
   min-height: 100vh; /* Altura mínima del viewport */
 }
 .button {
-  background-color: #0961dd;
+  background-color: #E9AE60;
   color: white;
   padding: 10px;
   border-radius: 10px;
@@ -601,7 +601,7 @@ label {
 .modal-input-container-d {
   background-color: #151515;
   width: 70%;
-  border: 1px solid rgba(0, 0, 0, 0.25) ;
+  border: 1px solid #D4AF37;
   overflow: hidden;
 }
 
@@ -636,22 +636,42 @@ label {
 }
 .row-container {
   justify-content: space-around;
-    width: 100%;
-    border-radius: 15px;
-    display: flex;
-    background-color: #ffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 6vh;
+  flex-direction: column;
+  border-radius: 15px;
+  display: flex;
+  background-color: #F8E7CD;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 6vh;
+  margin-right: 20px;
+}
+.row-user-d {
+  justify-content: space-around;
+  width: 50%;
+  border-radius: 15px;
+  display: flex;
+  background: linear-gradient(200deg , #151515, #292928);
+  padding: 6vh;
+  border: 1px solid #D4AF37;
+}
+.row-user {
+  justify-content: space-around;
+  width: 50%;
+  border-radius: 15px;
+  display: flex;
+  background: linear-gradient(200deg , #E9AE60, #F7E3C5);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 6vh;
 }
 .row-container-d {
   justify-content: space-around;
-  width: 100%;
+  flex-direction: column;
   border-radius: 15px;
   display: flex;
   background-color: #1a1818;
-  box-shadow: 0px 4px 4px 0px rgba(224, 222, 222, 0.25);
+  border: 1px solid #D4AF37;
   padding: 6vh;
   color: white;
+  margin-right: 20px;
 }
 .row-container h1 {
   font-size: 30px;
@@ -664,6 +684,7 @@ label {
 .row-container-d h1 {
   font-size: 30px;
   font-weight: 600;
+  color: #D4AF37;;
 }
 .row-container-d h2 {
   font-size: 25px;
@@ -691,10 +712,10 @@ label {
 }
 .pronostico h1 {
   font-family: 'Montserrat', sans-serif;
-  font-style: bold;
   font-weight: 700;
   font-size: 36px;
   line-height: 40px;
+  color: #D4AF37;
 }
 .pronostico h2 {
   font-family: 'Montserrat', sans-serif;
@@ -720,8 +741,11 @@ label {
   padding: 5px;
   background-color: #151515;
   border-radius: 10px;
+  border: 1px solid #D4AF37;
+  outline: none;
 }
 .pronostico-input-d input {
+  outline: none;
   width: 100%;
   background-color: #151515;
 }
@@ -738,14 +762,20 @@ label {
 }
 .edit-input-container {
   width: 80%;
-  border: 1px solid rgba(0, 0, 0, 0.25) ;
+  border: 1px solid rgba(194, 84, 29, 1);
   overflow: hidden;
+  background-color: #F1CD96;
+  border-radius: 5px;
+  padding: 2px
 }
 .edit-input-container-d {
   background-color: #151515;
   width: 80%;
-  border: 1px solid rgba(247, 245, 245, 0.505) ;
+  border: 1px solid #D4AF37;
   overflow: hidden;
+  outline: none;
+  border-radius: 5px;
+  padding: 2px;
 }
 .cancel-btn {
   background-color: #d7d1d1;
@@ -790,7 +820,13 @@ label {
 .edit-modal-d {
   background-color: #1a1818;
 }
-@media (max-width: 500px) {
+.position {
+  display: flex;
+}
+@media (max-width: 750px) {
+  .position {
+    display: contents;
+  }
   .wrapper {
     width: 100%;
     margin: 0 auto;
@@ -803,9 +839,10 @@ label {
     width: 100%;
     display: flow-root;
     border-radius: 15px;
-    background-color: #ffff;    
+    background-color: #F8E7CD;    
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 6vh;
+    margin-right: 0;
   }
   .row-container-d {
     justify-content: space-around;
@@ -815,6 +852,7 @@ label {
     background-color: #2C2C2C;    
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 6vh;
+    margin-right: 0;
   }
   .pad-index {
     padding: 0px 15px;
@@ -838,6 +876,7 @@ label {
     display: grid;
     justify-content: center; 
     background-color: #2C2C2C;
+    border: 1px solid #D4AF37;
   }
   .table-container {
     max-width: 100%; 
@@ -914,7 +953,7 @@ label {
   .modal-input-container {
     background-color: #151515;
     width: 70%;
-    border: 1px solid rgba(0, 0, 0, 0.25) ;
+    border: 1px solid #D4AF37;
     overflow: hidden;
   }
   .modal-input-d {
@@ -925,7 +964,7 @@ label {
   .modal-input-container-d {
     background-color: #151515;
     width: 70%;
-    border: 1px solid rgba(0, 0, 0, 0.25) ;
+    border: 1px solid #D4AF37;
     overflow: hidden;
   }
   

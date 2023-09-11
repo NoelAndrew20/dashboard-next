@@ -255,7 +255,7 @@ const UserForm = ({ data, setData, closeModal }) => {
                     </div>
                         
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="statu" name="statu" className="modal-input" value={inputStatus} onChange={(event) => setInputStatus(event.target.value)} required>
+                        <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="statu" name="statu" value={inputStatus} onChange={(event) => setInputStatus(event.target.value)} required>
                             <option value="activo">Activo</option>
                             <option value="inactivo">Inactivo</option>
                         </select>

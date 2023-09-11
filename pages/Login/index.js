@@ -4,6 +4,9 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import Link from 'next/link';
 import usuarios from '../../utils/usuarios.json';
 import { useRouter } from 'next/router'
+import srs from '@/public/images/icon/srs.png'
+import pig from '@/public/images/imagenes/cerdo1.png'
+
 
 const Login = ({ title, description, image }) => {
   const [email, setEmail] = useState("");
@@ -75,64 +78,72 @@ const Login = ({ title, description, image }) => {
         description={description}
         image={image}
       />
-      <div className="flex min-h-screen flex-col items-center p-24">
-        <div className="wrapper flex justify-center">
-          <div className="pt-10 w-1/2">
-            <div className="flex justify-center">
-              <div className="mr-5">
-                <Image src="/images/icon/logo_color.png" width={30} height={30} alt="logo" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-semibold mb-4">Iniciar sesión</h1>
-              </div>
-            </div>
-            {error && (
-                <div className="text-red-500 font-bold mt-2">
-                    {error}
-                </div>
-            )}
-            <span className="text-xs italic">solo borren la m en .com y vuelvan a ponerla para loguearse</span>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none"
-                  value={email}
-                  onChange={handleEmailChange}
-                />
-                {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
-              </div>
-              <div className="mb-4">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Contraseña:
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none"
-                  value={password}
-                  onChange={handlePasswordChange}
-                />
-                {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
-              </div>
+      <div className="p-5">
+        <Image src={srs} width={100} height={100} alt="srs-logo" />
+      </div>
+      <div className="flex justify-between">
+        <div>
+          <Image src={pig} width={600} height={500} alt="srs-logo" />
+        </div>
+        <div className="flex flex-col p-10">
+          <div className="flex justify-center">
+            <div className="pt-10">
               <div className="flex justify-center">
-                <button
-                    type="submit"
-                    className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
-                    disabled={isButtonDisabled}
-                >
-                    Iniciar sesión
-                </button>
+                <div className="mr-5">
+                  <Image src="/images/icon/logo_color.png" width={30} height={30} alt="logo" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-semibold mb-4 text-[#3E120A]">Hola!</h1>
+                </div>
               </div>
-            </form>
-            <div className="mt-5 text-xs flex justify-center text-blue-500">
-              <Link href="../Register">
-                No tienes cuenta? Registrate
-              </Link>
+              {error && (
+                  <div className="text-red-500 font-bold mt-2">
+                      {error}
+                  </div>
+              )}
+              <span className="text-xs italic">solo borren la m en .com y vuelvan a ponerla para loguearse</span>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                  <label htmlFor="email" className="block text-sm text-xl font-bold text-gray-700 text-[#3E120A]">
+                    Email:
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-[#F8E7CD]"
+                    value={email}
+                    onChange={handleEmailChange}
+                  />
+                  {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="password" className="block text-sm text-xl font-bold text-gray-700 text-[#3E120A]">
+                    Contraseña:
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-[#F8E7CD]"
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
+                  {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
+                </div>
+                <div className="flex justify-center">
+                  <button
+                      type="submit"
+                      className={`px-4 py-2 button text-white rounded-md hover:bg-[#3E120A] ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
+                      disabled={isButtonDisabled}
+                  >
+                      Iniciar sesión
+                  </button>
+                </div>
+              </form>
+              <div className="mt-5 text-xs flex justify-center text-blue-500">
+                <Link href="../Register">
+                  No tienes cuenta? Registrate
+                </Link>
+              </div>
             </div>
           </div>
         </div>
