@@ -39,7 +39,7 @@ const Medicamento = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Medicamento" id="medicamento"/>
+                <NavDashboard section="Medicamento"/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Medicamentos existentes</h2>

@@ -52,7 +52,7 @@ const RegistroTransporte = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Transporte" id="transporte"/>
+                <NavDashboard section="Transporte"/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Transportes existentes</h2>

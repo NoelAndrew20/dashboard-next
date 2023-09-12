@@ -368,7 +368,7 @@ const Pronostico = ({ title, description, image }) => {
                 </div> 
             </div>   
             <div>
-                <button className="button mt-5" onClick={() => { guardardatosjson(); openModificarModal();}}>Modificar</button>
+                <button className="button mt-5 mr-2" onClick={() => { guardardatosjson(); openModificarModal();}}>Modificar</button>
                 <button className="button mt-5" onClick={() => { runcalculadora(); openEjecutarModal();}}>Ejecutar</button>
             </div> 
         </div>
