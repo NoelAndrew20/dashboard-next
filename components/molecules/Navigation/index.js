@@ -50,7 +50,8 @@ const Navigation = () => {
                 <div onClick={toggleSidebar} className="flex justify-end items-end pt-1">
                     <Image src={x} width={20} height={20} alt="x"/>
                 </div>
-                <div className="flex flex-col space-y-2">
+                <div className="side flex flex-col space-y-2 overflow-hidden" >
+                    <div id="inner" className='flex flex-col space-y-2'>
                     <Link href="/" className={`hover:font-semibold ${currentPage === '/' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
@@ -86,7 +87,21 @@ const Navigation = () => {
                             <Image src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />RFID
                         </div>
                     </Link>
-                   
+                    <Link href="../../RegistroAlimentos" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/food.svg"} width={20} height={20} alt="label" className="mr-2" />Alimentos
+                        </div>
+                    </Link>
+                    <Link href="../../RegistroCerdos" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/pig.svg"} width={20} height={20} alt="label" className="mr-2" />Cerdos
+                        </div>
+                    </Link>
+                    <Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/drop.svg"} width={20} height={20} alt="label" className="mr-2" />Inseminacion
+                        </div>
+                    </Link>
                     
                         <div className="flex pt-5" onClick={toggleDarkMode}>
                             {isDarkMode ? 
@@ -98,6 +113,7 @@ const Navigation = () => {
                     
                     <div className="flex justify-center pt-2">
                         <Image src={srs} width={100} height={100} alt="srs-logo" />
+                    </div>
                     </div>
                 </div>
             </div>
