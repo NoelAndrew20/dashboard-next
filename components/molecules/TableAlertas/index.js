@@ -32,7 +32,7 @@ const TableAlertas = ({ data, setData }) => {
                     <tr
                         key={index}
                         className={`table-row ${
-                        isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-gray-200')
+                        isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-[#F1CD96]')
                         }`}
                     >                          <td>
                         {item.message.split('[ALERTA]').map((part, partIndex) => (
