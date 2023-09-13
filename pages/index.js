@@ -43,13 +43,14 @@ export default function Home({ title, description, image }) {
         <main
           className={`flex min-h-screen flex-col items-center pad-index`}
         >
+          
           <div className="position pt-2">
             <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
               <div>
                 <Image src={'/images/systemusers_104569.png'} width={100} height={30}/>
               </div>
               <div>
-                <h1 className="text-lg font-bold">Hola, placeholder</h1>
+                <h1 className="text-lg font-bold">Hola, Usuario</h1>
                 <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
                   <div >
                     <h1>Ganancias Totales del Periodo</h1>
@@ -59,8 +60,11 @@ export default function Home({ title, description, image }) {
                 </div>
               </div>
             </div>
-            <div className="w-1/2 rounded-lg overflow-hidden mt-5">
-              <Image src={"/images/imagenes/place_graph.png"} width={500} height={400}/>
+            
+            <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
+              <div>
+                <Modelo3D />
+              </div>
             </div>
           </div>
           
