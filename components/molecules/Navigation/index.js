@@ -50,6 +50,13 @@ const Navigation = () => {
                 <div onClick={toggleSidebar} className="flex justify-end items-end pt-1">
                     <Image src={x} width={20} height={20} alt="x"/>
                 </div>
+                <div className="flex pt-5" onClick={toggleDarkMode}>
+                    {isDarkMode ? 
+                        <Image src={"/images/svg/moon.svg"} width={30} height={30} alt="moon" />
+                        :
+                        <Image src={"/images/svg/sun.svg"} width={30} height={30} alt="sun" />
+                    }
+                </div>
                 <div className="side flex flex-col space-y-2 overflow-hidden" >
                     <div id="inner" className='flex flex-col space-y-2'>
                     <Link href="/" className={`hover:font-semibold ${currentPage === '/' ? 'font-semibold' : ''} pt-5`}>
@@ -94,26 +101,22 @@ const Navigation = () => {
                     </Link>
                     <Link href="../../RegistroCerdos" className={`hover:font-semibold ${currentPage === '/RegistroCerdos' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/pig.svg"} width={20} height={20} alt="label" className="mr-2" />Cerdos
+                            <Image src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />Cerdos
                         </div>
                     </Link>
                     <Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RegistroInseminacion' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/drop.svg"} width={20} height={20} alt="label" className="mr-2" />Inseminacion
+                            <Image src={"/images/svg/drop.svg"} width={20} height={20} alt="drop" className="mr-2" />Inseminacion
                         </div>
                     </Link>
-                    
-                        <div className="flex pt-5" onClick={toggleDarkMode}>
-                            {isDarkMode ? 
-                                <Image src={"/images/svg/moon.svg"} width={30} height={30} alt="moon" />
-                                :
-                                <Image src={"/images/svg/sun.svg"} width={30} height={30} alt="sun" />
-                            }
+                    <Link href="../../Graphicator" className={`hover:font-semibold ${currentPage === '/Graphicator' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/graph.svg"} width={20} height={20} alt="graph" className="mr-2" />Graficador
                         </div>
-                    
-                    <div className="flex justify-center pt-2">
-                        <Image src={srs} width={100} height={100} alt="srs-logo" />
+                    </Link>
                     </div>
+                    <div className="flex justify-center pt-2 pb-20">
+                        <Image src={srs} width={100} height={100} alt="srs-logo" />
                     </div>
                 </div>
             </div>
