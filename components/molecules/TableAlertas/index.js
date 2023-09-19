@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
-
+import Link from 'next/link';
 const TableAlertas = ({ data, setData }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const entriesPerPage = 10;
@@ -34,14 +34,17 @@ const TableAlertas = ({ data, setData }) => {
                         className={`table-row ${
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-[#F1CD96]')
                         }`}
-                    >                          <td>
-                        {item.message.split('[ALERTA]').map((part, partIndex) => (
-                            partIndex === 1 ? (
-                            <span key={partIndex}><label className="alert-message">ALERTA</label> {part}</span>
-                            ) : (
-                            <span key={partIndex}>{part}</span>
-                            )
-                        ))}
+                        >                       
+                        <td className="hover:text-blue-700">
+                            <Link href="../RegistroAlimentos">
+                            {item.message.split('[ALERTA]').map((part, partIndex) => (
+                                partIndex === 1 ? (
+                                <span key={partIndex}><label className="alert-message">ALERTA</label> {part}</span>
+                                ) : (
+                                <span key={partIndex}>{part}</span>
+                                )
+                            ))}
+                            </Link>
                         </td>
                         <td>{item.fecha}</td>
                         <td>{item.puerta}</td>

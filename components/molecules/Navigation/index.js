@@ -45,8 +45,14 @@ const Navigation = () => {
                     </Link>
                 </div>
             </header>
+            <div
+                className={`fixed inset-0 bg-black opacity-50 z-40 transition-opacity ${
+                    isSidebarOpen ? 'block' : 'hidden'
+                }`}
+                onClick={toggleSidebar}
+            ></div>
 
-            <div className={`sidebar h-screen text-white w-64 p-4 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out fixed top-0 left-0`}>
+            <div className={`sidebar z-50 h-screen text-white w-64 p-4 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out fixed top-0 left-0`}>
                 <div onClick={toggleSidebar} className="flex justify-end items-end pt-1">
                     <Image src={x} width={20} height={20} alt="x"/>
                 </div>
