@@ -11,8 +11,9 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
     const [cantidad, setCantidad] = useState("");
     const [unidad, setUnidad] = useState("");
     const [nombreAlimento, setNombreAlimento] = useState("");
-    const [lotes, setLotes] = useState([]);
+    const [nombreSolicitante, setNombreSolicitante] = useState("")
 
+    const [lotes, setLotes] = useState([]);
 
     const [a1Unidad, setInputA1Unidad] = useState("");
     const [a2Unidad, setInputA2Unidad] = useState("");
@@ -56,7 +57,8 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
             const newPerson = { //crea el nuevo arreglo
                 nivelEntrega: nivelEntrega,
                 fechaEntrega: fechaEntrega,
-                nombreZona: nombreZona
+                nombreZona: nombreZona,
+                nombreSolicitante: nombreSolicitante,
             };
 
 
@@ -66,6 +68,7 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
             setNivelEntrega("");
             setFechaEntrega("");
             setNombreZona("")
+            setNombreSolicitante("")
             setSuccessMessage('Orden guardada exitosamente');
             setErrorMessage("");
           } else {
@@ -178,6 +181,14 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                         <input type="text" id="nombreZona" name="nombreZona" className={isDarkMode ? "modal-input-d" : "modal-input"} value={nombreZona} onChange={(event) => setNombreZona(event.target.value)} required/>
                     </div>
+                </div>
+            </div>
+            <div className="modal-cel">
+                <div>
+                    <label htmlFor="nombreZona" className="modal-label">Nombre del solicitante:</label>
+                </div>
+                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                    <input type="text" id="nombreSolicitante" name="nombreSolicitante" className={isDarkMode ? "modal-input-d" : "modal-input"} value={nombreSolicitante} onChange={(event) => setNombreSolicitante(event.target.value)} required/>
                 </div>
             </div>
             <div className="flex justify-center">
