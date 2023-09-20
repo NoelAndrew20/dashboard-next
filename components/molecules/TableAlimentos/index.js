@@ -68,13 +68,13 @@ const TableAlimentos = ({ data, setData }) => {
                         <td>{item.nombreSolicitante}</td>
                         <td>{item.nombreZona}</td>
                         <td>
-                        <ul>
-                            {item.lotes.map((lote, subIndex) => (
-                            <li key={subIndex}>
-                                {lote.nombreAlimento}: {lote.cantidad} {lote.unidad}
-                            </li>
-                            ))}
-                        </ul>
+                            <ul>
+                                {item.lotes.map((lote, subIndex) => (
+                                <li key={subIndex}>
+                                    {lote.nombreAlimento}: {lote.cantidad} {lote.unidad}
+                                </li>
+                                ))}
+                            </ul>
                         </td>
                         <td>
                             <button className="edit-btn">

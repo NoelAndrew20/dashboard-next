@@ -12,6 +12,7 @@ const TableSolicitud = ({ data, setData }) => {
     const [editedValues, setEditedValues] = useState({});
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
+    const [editedLotes, setEditedLotes] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -25,7 +26,7 @@ const TableSolicitud = ({ data, setData }) => {
     
     const [searchTerm, setSearchTerm] = useState('');
 
-    const displayData = searchTerm ? data.filter(item => item.nombre && item.nombre.toLowerCase().includes(searchTerm)) : data;
+    const displayData = searchTerm ? data.filter(item => item.fechaSolicitud && item.fechaSolicitud.toLowerCase().includes(searchTerm)) : data;
     const displayDataFinal = displayData.slice(startIndex, endIndex);
 
     useEffect(() => {
@@ -33,11 +34,14 @@ const TableSolicitud = ({ data, setData }) => {
     }, [searchTerm]);
 
 
-    const handleEdit = (index) => {
+    const handleEdit = (index) => { // Recibimos el índice como argumento
+        const item = data[index]; // Obtenemos el elemento correspondiente al índice
         setEditingIndex(index);
-        setEditedValues(data[index]);
+        setEditedValues({ ...item }); // Usamos el elemento correspondiente
+        setEditedLotes(item.lotes); // Configura editedLotes con los valores de lotes del elemento seleccionado
         setShowEditModal(true);
     };
+    
 
 
     const handleDelete = (index) => {
@@ -48,27 +52,13 @@ const TableSolicitud = ({ data, setData }) => {
  
     const handleSaveEdit = () => {
         const updatedUsuario = { 
-            usuario: editedValues.usuario,
-            nombre: editedValues.nombre,
-            apellido: editedValues.apellido,
-            puesto: editedValues.puesto,
-            grupo: editedValues.grupo,
-            password: editedValues.password,
-            email: editedValues.email,
-            fechaNacimiento: editedValues.fechaNacimiento,
-            genero: editedValues.genero,
-            horario: editedValues.horario,
-            fechaContratacion: editedValues.fechaContratacion,
-            departamento: editedValues.departamento,
-            status: editedValues.status,
-            contacto: editedValues.contacto,
-            salario: editedValues.salario,
-            calle: editedValues.calle,
-            ciudad: editedValues.ciudad,
-            estado: editedValues.estado,
-            cp: editedValues.cp,
-            id: editedValues.id,
-            nombreGrupo: editedValues.nombreGrupo
+            fechaSolicitud: editedValues.fechaSolicitud,
+            organizacion: editedValues.organizacion,
+            ubicacion: editedValues.ubicacion,
+            nivelEntrega: editedValues.nivelEntrega,
+            fechaEntrega: editedValues.fechaEntrega,
+            nombreZona: editedValues.nombreZona,
+            nombreSolicitante: editedValues.nombreSolicitante,
         };
     
         const axios = require("axios");
@@ -89,40 +79,42 @@ const TableSolicitud = ({ data, setData }) => {
 
 
 
-    const handleEditInputChange = (event) => {
-        const { name, value } = event.target;
+   const handleEditInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name.startsWith("editedLotes[")) {
+        const updatedIndex = parseInt(name.match(/\d+/)[0], 10);
+        const updatedField = name.split(".").pop();
+        const updatedLotesCopy = [...editedLotes];
+        updatedLotesCopy[updatedIndex] = {
+            ...updatedLotesCopy[updatedIndex],
+            [updatedField]: value,
+        };
+        setEditedLotes(updatedLotesCopy);
+    } else {
         setEditedValues((prevValues) => ({
-          ...prevValues,
-          [name]: value,
+            ...prevValues,
+            [name]: value,
         }));
-    };
+    }
+};
+
       
       
     const handleEditeDelete = (index) => {
         const editedValues = index;
 
         const updatedUsuario = {
-            usuario: editedValues.usuario,
-            nombre: editedValues.nombre,
-            apellido: editedValues.apellido,
-            puesto: editedValues.puesto,
-            grupo: editedValues.grupo,
-            password: editedValues.password,
-            email: editedValues.email,
-            fechaNacimiento: editedValues.fechaNacimiento,
-            genero: editedValues.genero,
-            horario: editedValues.horario,
-            fechaContratacion: editedValues.fechaContratacion,
-            departamento: editedValues.departamento,
-            status: 'Inactivo',
-            contacto: editedValues.contacto,
-            salario: editedValues.salario,
-            calle: editedValues.calle,
-            ciudad: editedValues.ciudad,
-            estado: editedValues.estado,
-            cp: editedValues.cp,
-            id: editedValues.id,
-            nombreGrupo: editedValues.nombreGrupo
+            fechaSolicitud: editedValues.fechaSolicitud,
+            organizacion: editedValues.organizacion,
+            ubicacion: editedValues.ubicacion,
+            nivelEntrega: editedValues.nivelEntrega,
+            fechaEntrega: editedValues.fechaEntrega,
+            nombreZona: editedValues.nombreZona,
+            nombreSolicitante: editedValues.nombreSolicitante,
+            nombreAlimento: editedValues.lotes.nombreAlimento,
+            cantidad: editedValues.lotes.cantidad,
+            unidad: editedValues.lotes.unidad
+
         };
 
         const axios = require("axios");
@@ -163,11 +155,12 @@ const TableSolicitud = ({ data, setData }) => {
             <table className={isDarkMode ? "table-container-d" : "table-container"}>
                 <thead>
                     <tr>
-                        <th>Usuario</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Puesto</th>
-                        <th>Grupo</th>
+                        <th>Fecha de solicitud</th>
+                        <th>Organización</th>
+                        <th>Ubicación</th>
+                        <th>Nivel de entrega</th>
+                        <th>Solicitante</th>
+                        <th>Alimentos</th>
                         <th>Editar</th>
                         <th>Enviar</th>
                     </tr>
@@ -180,11 +173,20 @@ const TableSolicitud = ({ data, setData }) => {
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-[#F1CD96]')
                         }`}
                     >       
-                        <td>{item.usuario}</td>
-                        <td>{item.nombre}</td>
-                        <td>{item.apellido}</td>
-                        <td>{item.puesto}</td>
-                        <td>{item.grupo}</td>
+                        <td>{item.fechaSolicitud}</td>
+                        <td>{item.organizacion}</td>
+                        <td>{item.ubicacion}</td>
+                        <td>{item.nivelEntrega}</td>
+                        <td>{item.nombreSolicitante}</td>
+                        <td>
+                            <ul>
+                                {item.lotes.map((lote, subIndex) => (
+                                <li key={subIndex}>
+                                    {lote.nombreAlimento}: {lote.cantidad} {lote.unidad}
+                                </li>
+                                ))}
+                            </ul>
+                        </td>
                         <td>
                             <button onClick={() => handleEdit(index)} className="edit-btn">
                                 <img src="images/svg/edit.svg" width={15} height={15}/>
@@ -225,83 +227,82 @@ const TableSolicitud = ({ data, setData }) => {
                 <div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
-                            <p>Usuario:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="usuario" value={editedValues.usuario || ''} onChange={handleEditInputChange} />
+                            <p>Fecha de solicitud:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="date" name="fechaSolicitud" value={editedValues.fechaSolicitud || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Nombre:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="nombre" value={editedValues.nombre || ''} onChange={handleEditInputChange} />
+                            <p>Organización:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="organizacion" value={editedValues.organizacion || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Apellido:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="apellido" value={editedValues.apellido || ''} onChange={handleEditInputChange} />
-                        </div>
-                    </div>
-                    <div className="flex">
-                        <div className="modal-item w-1/3">
-                            <p>Password:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="password" value={editedValues.password || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Email:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="email" value={editedValues.email || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Fecha de Nacimiento:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  type="date" id="fechaNacimiento" name="fechaNacimiento" value={editedValues.fechaNacimiento || ''} onChange={handleEditInputChange} />
+                            <p>Ubicacion:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="ubicacion" value={editedValues.ubicacion || ''} onChange={handleEditInputChange} />
                         </div>
                     </div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
-                            <p>Género:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="genero" value={editedValues.genero || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Puesto:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="puesto" value={editedValues.puesto || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Salario diario:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="salario" value={editedValues.salario || ''} onChange={handleEditInputChange}/>
-                        </div>
-                    </div>
-                    <div className="flex">
-                        <div className="modal-item w-1/3">
-                            <p>Horario:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="horario" value={editedValues.horario || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Fecha de contratacion:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  type="date" id="fechaContratacion" name="fechaContratacion" value={editedValues.fechaContratacion || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Departamento:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="departamento" value={editedValues.departamento || ''} onChange={handleEditInputChange}/>
-                        </div>
-                    </div>
-                    <div className="flex">
-                        <div className="modal-item w-1/3">
-                            <p>Status:</p>
-                            <select className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} name="statu" value={editedValues.statu || ''} onChange={handleEditInputChange} >
-                                <option value="activo">Activo</option>
-                                <option value="inactivo">Inactivo</option>
+                            <p>Nivel de entrega:</p>
+                            <select className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} name="nivelEntrega" value={editedValues.nivelEntrega || ''} onChange={handleEditInputChange} >
+                                <option value="leve">Leve</option>
+                                <option value="normal">Normal</option>
+                                <option value="urgente">Urgente</option>
                             </select>
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Contacto:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="contacto" value={editedValues.contacto || ''} onChange={handleEditInputChange} />
+                            <p>Nombre de la zona:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="nombreZona" value={editedValues.nombreZona || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Grupo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="grupo" value={editedValues.grupo || ''} onChange={handleEditInputChange}/>
-                        </div>
-                    </div>
-                    <div className="flex">
-                        <div className="modal-item w-1/3">
-                            <p>Calle:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="calle" value={editedValues.calle || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Ciudad:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="ciudad" value={editedValues.ciudad || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Estado:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="estado" value={editedValues.estado || ''} onChange={handleEditInputChange}/>
+                            <p>Fecha de entrega:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  type="date" name="fechaEntrega" value={editedValues.fechaEntrega || ''} onChange={handleEditInputChange} />
                         </div>
                     </div>
                     <div className="flex">
+
                         <div className="modal-item w-1/3">
-                            <p>Código postal:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="cp" value={editedValues.cp || ''} onChange={handleEditInputChange} />
+                            <p>Nombre del solicitante:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  id="nombreSolicitante" name="nombreSolicitante" value={editedValues.nombreSolicitante || ''} onChange={handleEditInputChange} />
                         </div>
-                        <div className="modal-item w-1/3">
-                            <p>ID del grupo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="id" value={editedValues.id || ''} onChange={handleEditInputChange} />
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <p>Nombre del grupo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="nombreGrupo" value={editedValues.nombreGrupo || ''} onChange={handleEditInputChange}/>
+
+
+                    </div>
+                    <div className="flex">
+                        <div>
+                            <p>Alimentos:</p>
+                            <ul>
+                                {editedLotes.map((lote, subIndex) => (
+                                    <div className="flex" key={subIndex}>
+                                        <div className="modal-item w-1/3">
+                                            <p>Nombre del alimento:</p>
+
+                                            <input
+                                                type="text"
+                                                name={`editedLotes[${subIndex}].nombreAlimento`}
+                                                value={lote.nombreAlimento}
+                                                onChange={handleEditInputChange}
+                                                className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
+                                            />
+                                        </div>
+                                        <div className="modal-item w-1/3">
+                                            <p>Cantidad:</p>
+                                            <input
+                                                type="text"
+                                                name={`editedLotes[${subIndex}].cantidad`}
+                                                value={lote.cantidad}
+                                                onChange={handleEditInputChange}
+                                                className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
+                                            />
+                                        </div>
+                                        <div className="modal-item w-1/3">
+                                            <p>Unidad:</p>
+                                             <select 
+                                                name={`editedLotes[${subIndex}].unidad`}
+                                                value={lote.unidad}
+                                                onChange={handleEditInputChange}
+                                                className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} 
+                                            >
+                                                <option value="leve">Leve</option>
+                                                <option value="normal">Normal</option>
+                                                <option value="urgente">Urgente</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </div>
