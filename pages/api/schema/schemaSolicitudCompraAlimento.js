@@ -1,40 +1,25 @@
-//import mongoose from 'mongoose';
 const mongoose = require("mongoose");
 
-// Definir un esquema para la colección "Transporte"
-const AlimentoSchema = new mongoose.Schema(
+// Definir un esquema para la colección "SolicitudAlimento"
+const SolicitudAlimentoSchema = new mongoose.Schema(
   {
-    fecha: Date,
-    granja: String,
-    camion: String,
-    jaula: String,
-    operador: String,
-    cliente: String,
-    destino: String,
-    salida: String,
-    hrLlegada: String,
-    tmpRecorrido: String,
-    hrInicio: String,
-    kgSalida: String,
-    kgDesembarque: String,
-    rango: String,
-    muertos: String,
-    parada: String,
-    auditor: String,
-    incidencias: String,
-    revision: String,
-    hrFinal: String,
-    merma: String,
-    ctCerdos: String,
+    nivelEntrega: String,
+    fechaEntrega: Date,
+    nombreZona: String,
+    nombreSolicitante: String,
+    lotes: [
+      {
+        nombreAlimento: String,
+        cantidad: Number,
+        unidad: String,
+      }
+    ]
   },
   {
-    //collection: 'transportes', // Nombre de la colección en la base de datos
-    collection: 'alimento',
+    collection: 'solicitudAlimento',
     versionKey: false,
   }
 );
 
 // Crear un modelo basado en el esquema
-mongoose.model('Alimento', AlimentoSchema);
-
-//export default Transporte;
+mongoose.model('SolicitudAlimento', SolicitudAlimentoSchema);
