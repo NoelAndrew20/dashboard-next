@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 
 const SolicitudForm = ({ data, setData, closeModal }) => {
@@ -8,57 +8,75 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
 
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [a1Cantidad, setInputA1Cantidad] = useState("");
-    const [a1Unidad, setInputA1Unidad] = useState("");
-    const [a2Unidad, setInputA2Unidad] = useState("");
-    const [a2Cantidad, setInputA2Cantidad] = useState("");
-    const [a3Unidad, setInputA3Unidad] = useState("");
-    const [a3Cantidad, setInputA3Cantidad] = useState("");
+    const [cantidad, setCantidad] = useState("");
+    const [unidad, setUnidad] = useState("");
+    const [nombreAlimento, setNombreAlimento] = useState("");
+    const [nombreSolicitante, setNombreSolicitante] = useState("");
+    const [fechaSolicitud, setFechaSolicitud] = useState("");
+    const [organizacion, setOrganizacion] = useState("");
+    const [ubicacion, setUbicacion] = useState("");
+
+    const [lotes, setLotes] = useState([]);
+
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [nivelEntrega, setNivelEntrega] = useState("");
     const [fechaEntrega, setFechaEntrega] = useState("");
     const [nombreZona, setNombreZona] = useState("");
 
-    const addOrder = async () => {
+    const agregarLote = () => { //crea los lotes que aparecen
+        if (nombreAlimento && cantidad && unidad ) {
+          const nuevoLote = {
+            nombreAlimento,
+            cantidad,
+            unidad,
+          };
+          setLotes([...lotes, nuevoLote]);
+          setNombreAlimento("");
+          setUnidad("");
+          setCantidad("");
+        }
+      };
+      useEffect(() => {
+        // Update the document title using the browser API
+        console.log(data)
+      });
+    const eliminarUltimoLote = () => { //Elimina el ultimo lote
+    if (lotes.length > 0) {
+        const nuevosLotes = [...lotes];
+        nuevosLotes.pop();
+        setLotes(nuevosLotes);
+    }
+    };
+
+    const addOrder = async () => { //Crea el arrelo general
         try {
           if (
-            a1Cantidad !== ""
+            nivelEntrega !== "" && fechaEntrega !== "" && nombreZona != ""
+            && ubicacion  !== "" && organizacion  !== "" && fechaSolicitud !== ""
+            //verifica que lo required no este vacio
           ) {
-            const newPerson = {
-                a1Cantidad: a1Cantidad,
-        
+            const newPerson = { //crea el nuevo arreglo
+                nivelEntrega: nivelEntrega,
+                fechaEntrega: fechaEntrega,
+                nombreZona: nombreZona,
+                nombreSolicitante: nombreSolicitante,
+                ubicacion: ubicacion,
+                organizacion: organizacion,
+                fechaSolicitud: fechaSolicitud
             };
 
 
-            const axios = require("axios");
-            //axios.get('http://localhost:3010/getAllTransporte')
-            //const apiUrl = "../api/transporte/registroTransporte";
-            const apiUrl = 'http://localhost:3020/addUsuario';
-            axios.post(apiUrl, newPerson)
-            .then(response => {
-                console.log("Respuesta de la API:", response.data);
-            })
-            .catch(error => {
-                console.error("Error al enviar la solicitud:", error);
-            });
-
-
-
-            const newData = [...data, newPerson];
+            const newData = [...data, newPerson]; //arregla el nuevo arreglo al arreglo que viene del back
+            newPerson.lotes = lotes //anida el arreglo creado en la tabla
             setData(newData);
-            setInputA1Cantidad("");
-            setInputA1Unidad("");
-            setInputA2Unidad("");
-            setInputA2Cantidad("");
-            setInputA3Unidad("");
-            setInputA3Cantidad("");
             setNivelEntrega("");
             setFechaEntrega("");
-            setNombreZona("")
-            setIsChecked(false);
-            setIsChecked2(false);
-            setIsChecked3(false);
-
+            setNombreZona("");
+            setNombreSolicitante("");
+            setFechaSolicitud("");
+            setOrganizacion("");
+            setUbicacion("");
             setSuccessMessage('Orden guardada exitosamente');
             setErrorMessage("");
           } else {
@@ -70,15 +88,7 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
           setSuccessMessage("");
         }
       };
-      const handleCheckboxChange = () => {
-        setIsChecked(!isChecked);
-      };
-      const handleCheckboxChange2 = () => {
-        setIsChecked2(!isChecked2);
-      };
-      const handleCheckboxChange3 = () => {
-        setIsChecked3(!isChecked3);
-      };
+      
     return(
         <>
         <div className="flex justify-between modal-header">
@@ -96,61 +106,86 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
         <form className="form-container pt-10">
             <div className="modal-cel">
                 <div className="modal-item w-1/3">
-                    <p>
-                        <label>Alimento 1&nbsp;</label>
-                        <input type="checkbox"  onChange={handleCheckboxChange} checked={isChecked} />
-                    </p>
-                    <label htmlFor="a1Cantidad" className="modal-label">Cantidad:</label>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="a1Cantidad" name="a1Cantidad" className={isDarkMode ? "modal-input-d" : "modal-input"} value={a1Cantidad} onChange={(event) => setInputA1Cantidad(event.target.value)} disabled={!isChecked}/>
-                    </div>
-                        <label htmlFor="a1Unidad" className="modal-label">Unidad de medida:</label>
+                        <label>Nombre del alimento</label>
                         <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                            <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="a1Unidad" name="a1Unidad" value={a1Unidad} onChange={(event) => setInputA1Unidad(event.target.value)} disabled={!isChecked}>
-                                <option value=""></option>
-                                <option value="kg">Kg</option>
-                                <option value="lt">Lt</option>
-                            </select>   
+                            <input type="text" value={nombreAlimento} onChange={(e) => setNombreAlimento(e.target.value)}  className={isDarkMode ? "modal-input-d" : "modal-input"}/>
                         </div>
-                </div>
-                <div className="modal-item w-1/3">
-                    <p>
-                        <label>Alimento 2&nbsp;</label>
-                        <input type="checkbox" onChange={handleCheckboxChange2} checked={isChecked2}/>
-                    </p>
-                    <label htmlFor="a2Cantidad" className="modal-label">Cantidad:</label>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="a2Cantidad" name="a1Cantidad" className={isDarkMode ? "modal-input-d" : "modal-input"} value={a2Cantidad} onChange={(event) => setInputA2Cantidad(event.target.value)} disabled={!isChecked2}/>
                     </div>
-                    <label htmlFor="a2Unidad" className="modal-label">Unidad de medida:</label>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="a2Unidad" name="a2Unidad" value={a2Unidad} onChange={(event) => setInputA2Unidad(event.target.value)} disabled={!isChecked2}>
+                    <div className="modal-item w-1/3">
+                        <label>Cantidad</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="number" value={cantidad} onChange={(e) => setCantidad(e.target.value)} className={isDarkMode ? "modal-input-d" : "modal-input"} />
+                        </div>
+                    </div>
+                    <div className="modal-item w-1/3">
+                        <label>Unidad de medida</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="a3Unidad" name="a3Unidad" value={unidad} 
+                        onChange={(e) => setUnidad(e.target.value)} 
+                        >
                             <option value=""></option>
                             <option value="kg">Kg</option>
                             <option value="lt">Lt</option>
-                        </select>   
-                    </div>
-
-                </div>
-                <div className="modal-item w-1/3">
-                    <p>
-                        <label>Alimento 3&nbsp;</label>
-                        <input type="checkbox" onChange={handleCheckboxChange3} checked={isChecked3}/>
-                    </p>
-                    <label htmlFor="a3Cantidad"  className="modal-label">Cantidad:</label>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="a3Cantidad" name="a3Cantidad" className={isDarkMode ? "modal-input-d" : "modal-input"} value={a3Cantidad} onChange={(event) => setInputA3Cantidad(event.target.value)} disabled={!isChecked3}/>
-                    </div>
-                    <label htmlFor="a3Unidad" className="modal-label">Unidad de medida:</label>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="a3Unidad" name="a3Unidad" value={a3Unidad} onChange={(event) => setInputA3Unidad(event.target.value)} disabled={!isChecked3}>
-                            <option value=""></option>
-                            <option value="kg">Kg</option>
-                            <option value="lt">Lt</option>
-                        </select>   
+                        </select> 
+                        </div>
                     </div>
                 </div>
-                </div>
+                <div className="flex justify-center">
+                        <button className="pronostico-btn" onClick={agregarLote}>Agregar lote</button>
+                        <button className="pronostico-btn" onClick={eliminarUltimoLote}>Eliminar último lote</button>
+                    </div>
+                <div className="flex justify-center pt-2">
+                        {lotes.length === 0 ? (
+                            ""
+                            ) : (
+                            <div>
+                                <table >
+                                    <thead>
+                                        <tr>
+                                        <th className='mr-2'>Nombre</th>
+                                        <th className='mr-2'>Cantidad</th>
+                                        <th>Unidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {lotes.map((lote, index) => (
+                                        <tr key={index} className="table-row">
+                                            <td>{lote.nombreAlimento}</td>
+                                            <td>{lote.cantidad}</td>
+                                            <td>{lote.unidad}</td>
+                                        </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
+                    </div>
+                    <div className="modal-cel pt-3">
+                        <div className="modal-item w-1/3">
+                            <div>
+                                <label htmlFor="fechaSolicitud" className="modal-label">Fecha de la solicitud:</label>
+                            </div>
+                            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                <input type="date" id="fechaSolicitud" name="fechaSolicitud" className={isDarkMode ? "modal-input-d" : "modal-input"} value={fechaSolicitud} onChange={(event) => setFechaSolicitud(event.target.value)} required/>
+                            </div>
+                        </div>
+                        <div className="modal-item w-1/3">
+                            <div>
+                                <label htmlFor="organizacion" className="modal-label">Organización:</label>
+                            </div>
+                            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                <input type="text" id="organizacion" name="organizacion" className={isDarkMode ? "modal-input-d" : "modal-input"} value={organizacion} onChange={(event) => setOrganizacion(event.target.value)} required/>
+                            </div>
+                        </div>
+                        <div className="modal-item w-1/3">
+                            <div>
+                                <label htmlFor="ubicacion" className="modal-label">Ubicación:</label>
+                            </div>
+                            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                <input type="text" id="ubicacion" name="ubicacion" className={isDarkMode ? "modal-input-d" : "modal-input"} value={ubicacion} onChange={(event) => setUbicacion(event.target.value)} required/>
+                            </div>
+                        </div>
+                    </div>
             <div className="modal-cel">
                 <div className="modal-item w-1/3">
                     <div>
@@ -180,6 +215,14 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                         <input type="text" id="nombreZona" name="nombreZona" className={isDarkMode ? "modal-input-d" : "modal-input"} value={nombreZona} onChange={(event) => setNombreZona(event.target.value)} required/>
                     </div>
+                </div>
+            </div>
+            <div className="modal-cel">
+                <div>
+                    <label htmlFor="nombreSolicitante" className="modal-label">Nombre del solicitante:</label>
+                </div>
+                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                    <input type="text" id="nombreSolicitante" name="nombreSolicitante" className={isDarkMode ? "modal-input-d" : "modal-input"} value={nombreSolicitante} onChange={(event) => setNombreSolicitante(event.target.value)} required/>
                 </div>
             </div>
             <div className="flex justify-center">
