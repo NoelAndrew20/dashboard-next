@@ -77,7 +77,7 @@ const TableAlimentos = ({ data, setData }) => {
                         </ul>
                         </td>
                         <td>
-                            <button onClick={() => handleEdit(index)} className="edit-btn">
+                            <button className="edit-btn">
                                 <Link href="../SolicitudCompra">
                                     <img src="images/svg/send.svg" width={15} height={15}/>
                                 </Link>
