@@ -18,27 +18,61 @@ mongoose.connect(mongoUrl, {
 })
 .catch((e) => console.log(e));
 
-require("../schema/schemaTransporte.js");
-const Transporte = mongoose.model("Transporte");
+require("../schema/schemaSolicitudAlimento.js");
+const SolicitudAlimento = mongoose.model("SolicitudAlimento");
 
-app.get("/getAllTransporte", async (req, res) => {
+app.get("/getAllSolicitudAlimento", async (req, res) => {
   try {
-    const allTransporte = await Transporte.find({})
-    .sort({ fecha: -1 }) // Cambia 'fechaRegistro' al campo apropiado de fecha en tu esquema
-    .limit(30);
-    res.send({ status: "ok", data: allTransporte });
+    // Consulta la base de datos para obtener todas las solicitudes de alimentos
+    const solicitudes = await SolicitudAlimento.find();
+
+    // Envía las solicitudes al cliente en formato JSON
+    res.json(solicitudes);
   } catch (error) {
-    console.log(error);
-    res.status(500).send({ status: "error", message: "Internal server error" });
+    console.error('Error al obtener las solicitudes de alimentos:', error);
+    res.status(500).json({ mensaje: 'Error al obtener las solicitudes de alimentos' });
   }
 });
 
 
-app.post("/addTransporte", async (req, res) => {
+app.post("/addAlimento", async (req, res) => {
+  try {
+    const newAlimento = req.body;
+    console.log(newAlimento);
+      // Crea una instancia del modelo Entrega con los datos recibidos del cliente
+      const nuevaSolicitud = new SolicitudAlimento({
+          nivelEntrega: req.body.nivelEntrega,
+          fechaEntrega: req.body.fechaEntrega,
+          nombreZona: req.body.nombreZona,
+          nombreSolicitante: req.body.nombreSolicitante,
+          lotes: req.body.lotes
+      });
+
+      // Guarda la nueva entrega en la base de datos
+      await nuevaSolicitud.save();
+
+      // Envía una respuesta al cliente
+      res.status(201).json({ mensaje: 'Entrega guardada correctamente' });
+  } catch (error) {
+      console.error('Error al guardar la entrega:', error);
+      res.status(500).json({ mensaje: 'Error al guardar la entrega' });
+  }
+});
+
+/*app.post("/addAlimento", async (req, res) => {
+
+  const newAlimento = req.body;
+
+  console.log("Datos recibidos desde el cliente:", newAlimento);
+
+  res.send("Datos recibidos correctamente");
+});*/
+
+/*app.post("/addAlimento", async (req, res) => {
   try {
     const data = req.body;
     console.log(data);
-    const nuevoTransporte = new Transporte({
+    const nuevoAlimento = new Alimento({
       fecha: data.fecha,
       granja: data.granja,
       camion: data.camion,
@@ -63,17 +97,28 @@ app.post("/addTransporte", async (req, res) => {
       ctCerdos: data.ctCerdos,
     });
 
-    await nuevoTransporte.save();
+    await nuevoAlimento.save();
+
+    const nuevaSolicitud = new SolicitudAlimento({
+      nivel: nivelEntrega,
+      fecha: fechaEntrega,
+      zona: nombreZona,
+      usuario: nombreSolicitante,
+      lotes: lotes,
+    });
+
+    // Guarda la nueva solicitud en la base de datos
+    await nuevaSolicitud.save();
 
     res.status(200).json({ message: 'Datos guardados con éxito' });
   } catch (error) {
     console.error('Error al guardar los datos:', error);
     res.status(500).json({ message: 'Error al guardar los datos' });
   }
-});
+});*/
 
 
-app.put('/editTransporte/:fecha', async (req, res) => {
+/*app.put('/editTransporte/:fecha', async (req, res) => {
   try {
     const fecha = req.params.fecha;
     const newData = req.body;
@@ -94,7 +139,7 @@ app.put('/editTransporte/:fecha', async (req, res) => {
     console.error('Error al actualizar los datos:', error);
     res.status(500).json({ message: 'Error al actualizar los datos' });
   }
-});
+});*/
 
 
 
@@ -122,7 +167,7 @@ app.put('/editTransporte/:fecha', async (req, res) => {
 });*/
 
 
-const PORT = 3010;
+const PORT = 3080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

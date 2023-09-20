@@ -1,13 +1,15 @@
-import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Link from 'next/link';
+
 
 const TableAlimentos = ({ data, setData }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [showConfirmation, setShowConfirmation] = useState(false);
     const entriesPerPage = 10;
-    const totalPages = Math.ceil(data.length / entriesPerPage);
+    //const totalPages = Math.ceil(data.length / entriesPerPage);
+    const totalPages = data ? Math.ceil(data.length / entriesPerPage) : 0;
     const [currentPage, setCurrentPage] = useState(1);
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -16,7 +18,9 @@ const TableAlimentos = ({ data, setData }) => {
     const endIndex = startIndex + entriesPerPage;
     const [searchTerm, setSearchTerm] = useState('');
     const displayData = searchTerm ? data.filter(item => item.fechaEntrega && item.fechaEntrega.toLowerCase().includes(searchTerm)) : data;
-    const displayDataFinal = displayData.slice(startIndex, endIndex);
+    //const displayDataFinal = displayData.slice(startIndex, endIndex);
+    const displayDataFinal = displayData ? displayData.slice(startIndex, endIndex) : [];
+
 
     useEffect(() => {
       setCurrentPage(1); 

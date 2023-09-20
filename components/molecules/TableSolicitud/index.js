@@ -64,7 +64,7 @@ const TableSolicitud = ({ data, setData }) => {
         const axios = require("axios");
         console.log(updatedUsuario.usuario, updatedUsuario);
 
-        const apiUrl = 'http://192.168.100.20:3020/editUsuario/' + updatedUsuario.fechaContratacion;
+        const apiUrl = 'http://192.168.100.10:3020/editUsuario/' + updatedUsuario.fechaContratacion;
         axios.put(apiUrl, updatedUsuario)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);
@@ -120,7 +120,7 @@ const TableSolicitud = ({ data, setData }) => {
         const axios = require("axios");
         console.log(updatedUsuario.usuario, updatedUsuario);
 
-        const apiUrl = 'http://192.168.100.20:3020/editUsuario/' + updatedUsuario.fechaContratacion;
+        const apiUrl = 'http://192.168.100.10:3020/editUsuario/' + updatedUsuario.fechaContratacion;
         axios.put(apiUrl, updatedUsuario)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);

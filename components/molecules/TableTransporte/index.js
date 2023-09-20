@@ -61,7 +61,8 @@ const TableTransporte = ({ data, setData }) => {
         const axios = require("axios");
         console.log(updatedTransporte.fecha, updatedTransporte);
     
-        const apiUrl = 'http://localhost:3010/editTransporte/' + updatedTransporte.fecha;
+        //const apiUrl = 'http://localhost:3010/editTransporte/' + updatedTransporte.fecha;
+        const apiUrl = 'http://192.168.100.10:3010/editTransporte/' + updatedUsuario.fechaContratacion;
         axios.put(apiUrl, updatedTransporte)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);

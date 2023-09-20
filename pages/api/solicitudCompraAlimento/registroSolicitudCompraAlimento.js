@@ -18,111 +18,49 @@ mongoose.connect(mongoUrl, {
 })
 .catch((e) => console.log(e));
 
-require("../schema/schemaTransporte.js");
-const Transporte = mongoose.model("Transporte");
+require("../schema/schemaSolicitudCompraAlimento.js");
+const SolicitudAlimento = mongoose.model("SolicitudAlimento");
 
-app.get("/getAllTransporte", async (req, res) => {
+app.get("/getAllSolicitudAlimento", async (req, res) => {
   try {
-    const allTransporte = await Transporte.find({})
-    .sort({ fecha: -1 }) // Cambia 'fechaRegistro' al campo apropiado de fecha en tu esquema
-    .limit(30);
-    res.send({ status: "ok", data: allTransporte });
+    // Consulta la base de datos para obtener todas las solicitudes de alimentos
+    const solicitudes = await SolicitudAlimento.find();
+
+    // Envía las solicitudes al cliente en formato JSON
+    res.json(solicitudes);
   } catch (error) {
-    console.log(error);
-    res.status(500).send({ status: "error", message: "Internal server error" });
+    console.error('Error al obtener las solicitudes de alimentos:', error);
+    res.status(500).json({ mensaje: 'Error al obtener las solicitudes de alimentos' });
   }
 });
 
 
-app.post("/addTransporte", async (req, res) => {
+app.post("/addAlimento", async (req, res) => {
   try {
-    const data = req.body;
-    console.log(data);
-    const nuevoTransporte = new Transporte({
-      fecha: data.fecha,
-      granja: data.granja,
-      camion: data.camion,
-      jaula: data.jaula,
-      operador: data.operador,
-      cliente: data.cliente,
-      destino: data.destino,
-      salida: data.salida,
-      hrLlegada: data.hrLlegada,
-      tmpRecorrido: data.tmpRecorrido,
-      hrInicio: data.hrInicio,
-      kgSalida: data.kgSalida,  
-      kgDesembarque: data.kgDesembarque,
-      rango: data.rango,
-      muertos: data.muertos,
-      parada: data.parada,
-      auditor: data.auditor,
-      incidencias: data.incidencias,
-      revision: data.revision,
-      hrFinal: data.hrFinal,
-      merma: data.merma,
-      ctCerdos: data.ctCerdos,
-    });
+    const newAlimento = req.body;
+    console.log(newAlimento);
+      // Crea una instancia del modelo Entrega con los datos recibidos del cliente
+      const nuevaSolicitud = new SolicitudAlimento({
+          nivelEntrega: req.body.nivelEntrega,
+          fechaEntrega: req.body.fechaEntrega,
+          nombreZona: req.body.nombreZona,
+          nombreSolicitante: req.body.nombreSolicitante,
+          lotes: req.body.lotes
+      });
 
-    await nuevoTransporte.save();
+      // Guarda la nueva entrega en la base de datos
+      await nuevaSolicitud.save();
 
-    res.status(200).json({ message: 'Datos guardados con éxito' });
+      // Envía una respuesta al cliente
+      res.status(201).json({ mensaje: 'Entrega guardada correctamente' });
   } catch (error) {
-    console.error('Error al guardar los datos:', error);
-    res.status(500).json({ message: 'Error al guardar los datos' });
+      console.error('Error al guardar la entrega:', error);
+      res.status(500).json({ mensaje: 'Error al guardar la entrega' });
   }
 });
 
 
-app.put('/editTransporte/:fecha', async (req, res) => {
-  try {
-    const fecha = req.params.fecha;
-    const newData = req.body;
-
-    const updatedTransporte = await Transporte.findOneAndUpdate(
-      { fecha: fecha },
-      { $set: newData },
-      { new: true }
-    );
-
-    // Si updatedTransporte es null, significa que no se encontró el transporte
-    if (!updatedTransporte) {
-      return res.status(404).json({ message: 'Transporte no encontrado' });
-    }
-
-    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedTransporte });
-  } catch (error) {
-    console.error('Error al actualizar los datos:', error);
-    res.status(500).json({ message: 'Error al actualizar los datos' });
-  }
-});
-
-
-
-/*app.put('/editTransporte/:fecha', async (req, res) => {
-  try {
-    const fecha = req.params.fecha;
-    const newData = req.body;
-
-    const updatedTransporte = await Transporte.findOneAndUpdate(
-      { fecha: fecha },
-      { $set: newData },
-      { new: true }
-    );
-
-    // Si updatedTransporte es null, significa que no se encontró el transporte
-    if (!updatedTransporte) {
-      return res.status(404).json({ message: 'Transporte no encontrado' });
-    }
-
-    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedTransporte });
-  } catch (error) {
-    console.error('Error al actualizar los datos:', error);
-    res.status(500).json({ message: 'Error al actualizar los datos' });
-  }
-});*/
-
-
-const PORT = 3010;
+const PORT = 3081;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
