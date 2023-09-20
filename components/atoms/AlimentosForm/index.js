@@ -34,13 +34,15 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
             unidad
           };
           setLotes([...lotes, nuevoLote]);
-          console.log(lotes)
           setNombreAlimento("");
           setUnidad("");
           setCantidad("");
         }
       };
-
+      useEffect(() => {
+        // Update the document title using the browser API
+        console.log(data)
+      });
     const eliminarUltimoLote = () => { //Elimina el ultimo lote
     if (lotes.length > 0) {
         const nuevosLotes = [...lotes];
