@@ -25,10 +25,12 @@ const RegistroAlimentos = ({ title, description, image }) => {
     };
 
     useEffect(() => {
-        axios.get('http://192.168.100.20:3030/getAllMedicamento')
+            //axios.get('http://192.168.100.20:3030/getAllMedicamento')
+        axios.get('http://localhost:3080/getAllSolicitudAlimento')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
-            setData(jsonData.data);
+            setData(jsonData);
+            console.log(jsonData);
         })
         .catch(error => {
             console.error(error);

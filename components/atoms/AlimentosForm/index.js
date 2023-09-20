@@ -56,23 +56,38 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
           if (
             nivelEntrega !== "" && fechaEntrega !== "" && nombreZona != "" //verifica que lo required no este vacio
           ) {
-            const newPerson = { //crea el nuevo arreglo
+            const newAlimento = { //crea el nuevo arreglo
                 nivelEntrega: nivelEntrega,
                 fechaEntrega: fechaEntrega,
                 nombreZona: nombreZona,
                 nombreSolicitante: nombreSolicitante,
             };
 
-
-            const newData = [...data, newPerson]; //arregla el nuevo arreglo al arreglo que viene del back
-            newPerson.lotes = lotes //anida el arreglo creado en la tabla
+            
+            const newData = [...data, newAlimento]; //arregla el nuevo arreglo al arreglo que viene del back
+            newAlimento.lotes = lotes //anida el arreglo creado en la tabla
             setData(newData);
             setNivelEntrega("");
             setFechaEntrega("");
             setNombreZona("")
             setNombreSolicitante("")
             setSuccessMessage('Orden guardada exitosamente');
+
+
+            const axios = require("axios");
+            const apiUrl = 'http://localhost:3080/addAlimento';
+            axios.post(apiUrl, newAlimento)
+            .then(response => {
+                console.log("Respuesta de la API:", response.data);
+            })
+            .catch(error => {
+                console.error("Error al enviar la solicitud:", error);
+            });
+            
+
+
             setErrorMessage("");
+
           } else {
             setErrorMessage('Por favor completa los cambios');
             setSuccessMessage("");
