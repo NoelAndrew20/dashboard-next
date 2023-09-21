@@ -1,128 +1,75 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+import axios from 'axios';
+import json from '../../public/api/pronostico/python/Constanza_estable/respuesta.json'
+import Image from 'next/image';
 
 const ChatWindow = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [message, setMessage] = useState(''); // Nuevo estado para el mensaje
+  const [respuestaDelServidor, setRespuestaDelServidor] = useState('');
 
+  
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
-  const handleSubmit = async () => {
-    const num_lotes = document.getElementById('num_lotes').value;
-    const num_cerdos_por_lote = document.getElementById('num_cerdos_por_lote').value;
-    const num_lechones = document.getElementById('num_lechones').value;
-    const segundos_por_dia = document.getElementById('segundos_por_dia').value;
-  
-    // Crear el objeto de mensaje con los valores
-    const mensaje = {
-      num_lotes,
-      num_cerdos_por_lote,
-      num_lechones,
-      segundos_por_dia,
-    };
-  
-    // Convertir el objeto de mensaje a una cadena de texto
-    const mensajeStr = JSON.stringify(mensaje);
 
-    // debe estar MangoNet activada
-// conectando con el middleware
-const SocketClient = require('../Class/SocketClient.js');
-const middleware = new SocketClient('MyPluginName');
-middleware.initialize();
-let socket = middleware.socket; // cliente conectado
-
-// Emitir un evento a la middleware, puedes agregar más variables al objeto
-socket.emit('feed', {
-  socketEvent: 'sensors/rfid/init', // evento que se exportará por el socket
-  message: 'Datos',num_lotes,num_cerdos_por_lote,num_lechones,segundos_por_dia,
-});
-
-// Escuchar un evento de la middleware
-socket.on('sensors/rfid/init', (data) => {
-  // método para enviar un mensaje a un canal
-  console.log(data);
-});
-
-  
+  const handleChange = (e) => {
+    setMessage(e.target.value); // Actualiza el estado del mensaje mientras se escribe
   };
-  
-  const handleSubmit2 = async () => {
-   
-    // debe estar MangoNet activada
-// conectando con el middleware
-const SocketClient = require('../Class/SocketClient.js');
-const middleware = new SocketClient('MyPluginName');
-middleware.initialize();
-let socket = middleware.socket; // cliente conectado
 
-// Emitir un evento a la middleware, puedes agregar más variables al objeto
-socket.emit('feed', {
-  socketEvent: 'sensors/rfid/stop', // evento que se exportará por el socket
-  message: 'Parar',
-});
 
-// Escuchar un evento de la middleware
-socket.on('sensors/rfid/stop', (data) => {
-  // método para enviar un mensaje a un canal
-  console.log(data);
-});
-
-  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Pregunta Next:',message);
+    try {
+      const response = await axios.post('http://localhost:5000/api/pronostico/python/Constanza_estable/apichat', {
+        question: message, // Envía el contenido del textarea como 'question'
+      });
+      console.log(message);
+      if (response.status === 200) {
+        const data = response.data;
+        console.log('Respuesta de Constanza JSON:', data);
+        console.log('Mensaje de Constanza:', data.answer);
+        console.log('Respuesta',respuestaDelServidor);
+        console.log(json.answer)
+        // Puedes mostrar la respuesta en la interfaz de usuario si lo deseas
+        setRespuestaDelServidor(data.answer);
+      } else {
+        console.error('Error al comunicarse con Constanza');
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+    }
   };
-  
 
   return (
     <div className={`chat-window ${isOpen ? 'closed' : ''}`}>
       <div className="chat-header" onClick={toggleChat}>
-      <div className='constanza_gif'></div>
-        <img src="/Logos/Constanzalogo16.png"></img>
-        Simulacion de Constanza
+        <div className='constanza_gif'></div>
+        <img src="/Logos/Constanzalogo16.png" alt="Constanza Logo"></img>
+        Simulación de Constanza
       </div>
       {isOpen && (
-      <div className="chat-content">
-          <div className='avatar_message'>
-            <div></div>
-            <div className='message'>
-            <span className='textomensaje'>Por favor, rellena los campos para que pueda
-iniciar la simulación:</span>
-            </div>
-          </div>
-            <div className='form'>
-              <div className='form1'>
-            <div className='avatar'>
-            <img src="/Logos/Constanzalogo200avatar.png" width="60px" height="60px"></img>
-            </div>
-            <div className='form_inputs'>
-              <div className='form_inputs_1'>
-                <span>Datos para simulacion</span>
-                <div className='form_inputs_2'>
-                  <div>
-                    <span>Numero de lotes:</span>
-                    <input id="num_lotes" label="1-30" />
-                  </div>
-                  <div>
-                    <span>Numero vientres por lote:</span>
-                    <input id="num_cerdos_por_lote" />
-                  </div>
+        <div className="chat-content">
+          <div className="input-container">
+            <form className='max-w-xl w-full'>
+              <textarea
+                id="message-input"
+                type="text"
+                placeholder="Escribe tu mensaje..."
+                className='text-black bg-slate-300 px-3 py-2 w-full rounded-md focus:outline-none'
+                value={message} // Establece el valor del textarea según el estado
+                onChange={handleChange} // Captura los cambios en el textarea
+              ></textarea>
+              <button className="bg-blue-600 text-white px-3 py-2 rounded-md focus:outline-none" onClick={handleSubmit}>Enviar</button>
+                <div className='mr-5 flex'>
+                  <Image src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />
+                  <p>Constanza: {json.answer}</p>
                 </div>
-              </div>
-            <div className='form_inputs_3'>
-                <span>Numero lechones por vientre:</span>
-                <input id="num_lechones" />
-            </div>
-            <span>Datos Temporales</span>
-            <div className='form_inputs_4'>
-                <span>Segundos por dia(para acelerar o desacelerar la simulacion)</span>
-                <input id="segundos_por_dia"></input>
-            </div>
-            <button onClick={handleSubmit}>Iniciar Simulacion</button>
-            <button id='botonparar' onClick={handleSubmit2}>Parar Simulacion</button>
-            </div>
-            </div>
-           
+            </form>
+          </div>
         </div>
-                
-      </div>
       )}
     </div>
   );
