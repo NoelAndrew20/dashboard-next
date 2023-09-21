@@ -9,6 +9,7 @@ import jsonData from '../public/api/pronostico/python/output.json'
 import jsonData1 from '../public/api/pronostico/python/config.json'
 import Image from 'next/image'
 import Modelo3D from '../components/molecules/3dmodel';
+import Chat from '../components/molecules/chatwindow'
 import { useState, useEffect } from 'react'
 import TableIndexZona from '@/components/atoms/TableIndexZona'
 import { useDarkMode } from '@/context/DarkModeContext'
@@ -43,7 +44,7 @@ export default function Home({ title, description, image }) {
         <main
           className={`flex min-h-screen flex-col items-center pad-index`}
         >
-          
+          <Chat/>
           <div className="position pt-2">
             <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
               <div>
