@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Link from 'next/link';
 
-const TableGraph = ({ data, setData }) => {
+const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [showEditModal, setShowEditModal] = useState(false);
     const entriesPerPage = 10;
@@ -21,21 +21,53 @@ const TableGraph = ({ data, setData }) => {
     const [complemento1V, setComplemento1V] = useState("");
     const [complemento2V, setComplemento2V] = useState("");
     const [total, setTotal] = useState("")
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [proteinaObjV, setProteinaObjV] = useState("");
+ 
+    const addOrder = async () => { //Crea el arrelo general
+        try {
+          if (
+            nombreAlimentoV !== "" && cantidadV !== "" && proteinaV != ""
+            && precioV  !== "" && precioVariableV  !== "" && complemento1V !== "" && complemento2V !== ""
+            && proteinaObjV !== ""
+            //verifica que lo required no este vacio
+          ) {
+            const newOrder = { //crea el nuevo arreglo
+                nombreAlimentoV: nombreAlimentoV,
+                cantidadV: cantidadV,
+                proteinaV: proteinaV,
+                precioV: precioV,
+                precioVariableV: precioVariableV,
+                complemento1V: complemento1V,
+                complemento2V: complemento2V,
+                proteinaObjV: proteinaObjV
+            };
 
-    const handleInputChange = (event) => {
-      setInputValue(event.target.value);
-      setNombreAlimentoV(event.target.value);
-      setCantidadV(event.target.value);
-      setProteinaV(event.target.value);
-      setPrecioV(event.target.value);
-      setPrecioVariableV(event.target.value);
-      setComplemento1V(event.target.value);
-      setComplemento2V(event.target.value);
-    };
 
-   useEffect(() => {
-    console.log(data)
-   },[])
+            const newData = [...dataOrder, newOrder]; //arregla el nuevo arreglo al arreglo que viene del back
+            setDataOrder(newData);
+            setNombreAlimentoV("");
+            setCantidadV("");
+            setProteinaV("");
+            setPrecioV("");
+            setPrecioVariableV("");
+            setComplemento1V("");
+            setComplemento2V("");
+            setProteinaObjV("")
+            setSuccessMessage('Orden guardada exitosamente');
+            setErrorMessage("");
+            console.log(dataOrder);
+
+          } else {
+            setErrorMessage('Por favor completa los cambios');
+            setSuccessMessage("");
+          }
+        } catch (error) {
+          setErrorMessage('Hubo un error al guardar el usuario');
+          setSuccessMessage("");
+        }
+      };
     return (
         <>
         <div className="search-container mb-5">
@@ -142,39 +174,56 @@ const TableGraph = ({ data, setData }) => {
                 <h2 className="text-lg">Generar calculo</h2>
                 <div>
                     <div className="flex">
+                        <div className="modal-item w-1/3 relative">
+                            <p>Proteina Objetivo:</p>
+                            <input
+                                className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
+                                type="number"
+                                name="proteinaObjV"
+                                value={proteinaObjV}
+                                onChange={(e) => setProteinaObjV(e.target.value)}
+                                required
+                            />
+                            <span className="absolute bottom-1 right-0 pr-[25%] flex items-end pointer-events-none">
+                                %
+                            </span>
+                            </div>
+
+                        </div>
+                    <div className="flex">
                         <div className="modal-item w-1/3">
-                            <p>Nombre de alimento:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="text" name="NombreAlimento" value={nombreAlimentoV} onChange={handleInputChange} />
+                            <p>Nombre de alimento:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="text" name="NombreAlimento" value={nombreAlimentoV} onChange={(e) => setNombreAlimentoV(e.target.value)} required/>
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Cantidad:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="number" name="cantidad" value={cantidadV} onChange={handleInputChange} />
+                            <p>Cantidad:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="number" name="cantidad" value={cantidadV} onChange={(e) => setCantidadV(e.target.value)} required/>
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>% de Proteina:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="proteina" value={proteinaV} onChange={handleInputChange} />
+                            <p>% de Proteina:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="number" name="proteina" value={proteinaV} onChange={(e) => setProteinaV(e.target.value)} required/>
                         </div>
                     </div>
                     <div className="flex">
                     
                         <div className="modal-item w-1/3">
-                            <p>Precio:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="precio" value={precioV} onChange={handleInputChange} />
+                            <p>Precio:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="number" name="precio" value={precioV} onChange={(e) => setPrecioV(e.target.value)} required/>
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Precio variable:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  type="number" name="precioVariable" value={precioVariableV} onChange={handleInputChange} />
+                            <p>Precio variable:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  type="number" name="precioVariable" value={precioVariableV} onChange={(e) => setPrecioVariableV(e.target.value)} required/>
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Complemento de alimento:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="text" name="complemento1" value={complemento1V} onChange={handleInputChange} />
+                            <p>Complemento de alimento:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="text" name="complemento1" value={complemento1V} onChange={(e) => setComplemento1V(e.target.value)} required/>
                         </div>
                     </div>
                     <div className="flex">
 
                         <div className="modal-item w-1/3">
-                            <p>Complemento de alimento 2:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="text" name="complemento2" value={complemento2V} onChange={handleInputChange} />
+                            <p>Complemento de alimento 2:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} type="text" name="complemento2" value={complemento2V} onChange={(e) => setComplemento2V(e.target.value)} />
                         </div>
                     </div>
                     <div className="flex">
                     </div>
                 </div>
                 <div className="mt-5 flex justify-between">
-                    <button className="button">Generar</button>
+                    <button className="button" onClick={addOrder}>Generar</button>
                 </div>
                 <div className="flex justify-center text-lg bold">
                     <h2>Total: {total}</h2>
