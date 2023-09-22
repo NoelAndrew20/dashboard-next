@@ -82,7 +82,7 @@ const TableAlimentos = ({ data, setData }) => {
                         </td>
                         <td>
                             <button className="edit-btn">
-                                <Link href="../SolicitudCompra">
+                                <Link href="../Graphicator">
                                     <img src="images/svg/send.svg" width={15} height={15}/>
                                 </Link>
                             </button>
