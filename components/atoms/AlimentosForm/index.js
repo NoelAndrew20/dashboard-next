@@ -117,7 +117,15 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
                 <div className="modal-item w-1/3">
                         <label>Nombre del alimento</label>
                         <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                            <input type="text" value={nombreAlimento} onChange={(e) => setNombreAlimento(e.target.value)}  className={isDarkMode ? "modal-input-d" : "modal-input"}/>
+                            <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="nombreAlimento" name="nombreAlimento" value={nombreAlimento} 
+                            onChange={(e) => setNombreAlimento(e.target.value)} 
+                            >
+                                <option value=""></option>
+                                <option value="maiz amarillo">Maíz Amarillo</option>
+                                <option value="sorgo">Sorgo</option>
+                                <option value="trigo">Trigo</option>
+                                <option value="otro">Otro</option>
+                            </select> 
                         </div>
                     </div>
                     <div className="modal-item w-1/3">
@@ -157,7 +165,7 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {lotes.map((lote, index) => (
+                                        {lotes?.map((lote, index) => (
                                         <tr key={index} className="table-row">
                                             <td>{lote.nombreAlimento}</td>
                                             <td>{lote.cantidad}</td>
@@ -196,7 +204,15 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
                         <label htmlFor="nombreZona" className="modal-label">Nombre de zona:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="nombreZona" name="nombreZona" className={isDarkMode ? "modal-input-d" : "modal-input"} value={nombreZona} onChange={(event) => setNombreZona(event.target.value)} required/>
+                        <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="nombreZona" name="nombreZona" value={nombreZona} 
+                            onChange={(e) => setNombreZona(e.target.value)} 
+                            >
+                                <option value=""></option>
+                                <option value="gestacion">Gestación</option>
+                                <option value="sorgo">Maternidad</option>
+                                <option value="adaptacion cuarentena">Adaptación / Cuarentena</option>
+                                <option value="CDI">Engorda / Destete</option>
+                        </select>                    
                     </div>
                 </div>
             </div>

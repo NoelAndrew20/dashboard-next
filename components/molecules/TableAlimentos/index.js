@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 
 const TableAlimentos = ({ data, setData }) => {
+    const router = useRouter();
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [showConfirmation, setShowConfirmation] = useState(false);
     const entriesPerPage = 10;
@@ -56,7 +57,11 @@ const TableAlimentos = ({ data, setData }) => {
                         <th>Nombre del solicitante</th>
                         <th>Zona</th>
                         <th>Alimentos</th>
+                        {router.pathname === "/RegistroAlimentos"
+                        ?
                         <th>Enviar</th>
+                        : ""
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -73,20 +78,23 @@ const TableAlimentos = ({ data, setData }) => {
                         <td>{item.nombreZona}</td>
                         <td>
                             <ul>
-                                {item.lotes.map((lote, subIndex) => (
+                                {item.lotes?.map((lote, subIndex) => (
                                 <li key={subIndex}>
                                     {lote.nombreAlimento}: {lote.cantidad} {lote.unidad}
                                 </li>
                                 ))}
                             </ul>
                         </td>
-                        <td>
+                        {router.pathname === "/RegistroAlimentos"
+                        ? <td>
                             <button className="edit-btn">
                                 <Link href="../Graphicator">
                                     <img src="images/svg/send.svg" width={15} height={15}/>
                                 </Link>
                             </button>
                         </td>
+                        : ""
+                        }
                     </tr>
                     ))}
                 </tbody>
