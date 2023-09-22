@@ -180,7 +180,7 @@ const TableSolicitud = ({ data, setData }) => {
                         <td>{item.nombreSolicitante}</td>
                         <td>
                             <ul>
-                                {item.lotes.map((lote, subIndex) => (
+                                {item.lotes?.map((lote, subIndex) => (
                                 <li key={subIndex}>
                                     {lote.nombreAlimento}: {lote.cantidad} {lote.unidad}
                                 </li>
@@ -264,7 +264,7 @@ const TableSolicitud = ({ data, setData }) => {
                         <div>
                             <p>Alimentos:</p>
                             <ul>
-                                {editedLotes.map((lote, subIndex) => (
+                                {editedLotes?.map((lote, subIndex) => (
                                     <div className="flex" key={subIndex}>
                                         <div className="modal-item w-1/3">
                                             <p>Nombre del alimento:</p>

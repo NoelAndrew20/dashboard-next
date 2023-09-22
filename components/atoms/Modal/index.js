@@ -10,7 +10,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       <div className={`${isDarkMode ? "modal-content-d" : "modal-content " } bg-white p-4 rounded shadow-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-auto z-50`}>
         {children}
       </div>
-  </div>
+    </div>
   );
 };
 
