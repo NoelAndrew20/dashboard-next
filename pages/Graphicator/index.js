@@ -12,7 +12,7 @@ import TableGraph from '@/components/molecules/TableGraph';
 
 const axios = require('axios');
 
-const SolicitudCompra = ({ title, description, image }) => {
+const Graphicator = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([
@@ -40,7 +40,7 @@ const SolicitudCompra = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Solicitud de compra"/>
+                <NavDashboard section="Graficador"/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>
@@ -60,7 +60,7 @@ const SolicitudCompra = ({ title, description, image }) => {
         </div>
     )
 }
-export default SolicitudCompra;
+export default Graphicator;
 
 export const getServerSideProps = async () => {
     const title = "Constanza";
