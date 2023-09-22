@@ -13,6 +13,7 @@ const axios = require('axios');
 const Graphicator = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [dataOrder, setDataOrder] = useState([])
     const [data, setData] = useState([
         {nombreAlimento: 'Maíz amarillo', algo: '2'},
         {nombreAlimento: 'Sorgo', algo: '2'},
@@ -47,7 +48,7 @@ const Graphicator = ({ title, description, image }) => {
                 </div>
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>
-                    <TableGraph data={data} setData={setData}/>
+                    <TableGraph data={data} setData={setData} dataOrder={dataOrder} setDataOrder={setDataOrder}/>
                     <div className="mt-10 flex justify-end">
                         <div className={`modal ${isModalOpen ? 'block' : 'hidden'}`}>
                             <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
@@ -55,7 +56,8 @@ const Graphicator = ({ title, description, image }) => {
                                 <AlimentosForm 
                                     data={data} 
                                     setData={setData} 
-                                    closeModal={closeModal}/>
+                                    closeModal={closeModal}
+                                />
                             </div>
                         </div>                      
                         <button className="button" onClick={openModal}>Agregar compra</button>
