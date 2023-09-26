@@ -15,10 +15,10 @@ const Graphicator = ({ title, description, image }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [dataOrder, setDataOrder] = useState([])
     const [data, setData] = useState([
-        {nombreAlimento: 'Maíz amarillo', algo: '2'},
-        {nombreAlimento: 'Sorgo', algo: '2'},
-        {nombreAlimento: 'Trigo', algo: '2'},
-        {nombreAlimento: 'Otro Alimento', algo: '2'},
+        {nombreAlimento: 'Maíz amarillo', id: '1'},
+        {nombreAlimento: 'Sorgo', id: '2'},
+        {nombreAlimento: 'Trigo', id: '3'},
+        {nombreAlimento: 'Otro Alimento', id: '4'},
     ]);
 
     const openModal = () => {
