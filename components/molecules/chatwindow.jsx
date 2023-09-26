@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
 import axios from 'axios';
 import json from '../../public/api/pronostico/python/Constanza_estable/respuesta.json'
 import Image from 'next/image';
@@ -8,6 +7,7 @@ const ChatWindow = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState(''); // Nuevo estado para el mensaje
   const [respuestaDelServidor, setRespuestaDelServidor] = useState('');
+  const [isSpinning, setIsSpinning] = useState(false);
 
   
   const toggleChat = () => {
@@ -33,6 +33,11 @@ const ChatWindow = () => {
         console.log('Mensaje de Constanza:', data.answer);
         console.log('Respuesta',respuestaDelServidor);
         console.log(json.answer)
+        if (data.answer === "Pensando") {
+          setIsSpinning(true);
+        } else {
+          setIsSpinning(false);
+        }
         // Puedes mostrar la respuesta en la interfaz de usuario si lo deseas
         setRespuestaDelServidor(data.answer);
       } else {
@@ -58,14 +63,29 @@ const ChatWindow = () => {
                 id="message-input"
                 type="text"
                 placeholder="Escribe tu mensaje..."
-                className='text-black bg-slate-300 px-3 py-2 w-full rounded-md focus:outline-none'
+                className='text-black bg-slate-300 px-3 py-2 w-full text-lg rounded-md focus:outline-none'
                 value={message} // Establece el valor del textarea según el estado
                 onChange={handleChange} // Captura los cambios en el textarea
               ></textarea>
-              <button className="bg-blue-600 text-white px-3 py-2 rounded-md focus:outline-none" onClick={handleSubmit}>Enviar</button>
-                <div className='mr-5 flex'>
-                  <Image src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />
-                  <p>Constanza: {json.answer}</p>
+              <button className="bg-red-900 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none" onClick={handleSubmit}>Enviar</button>
+                <div className='mr-5 flex bg-orange-300 rounded-md text-lg text-black'>
+                {json.answer === 'Pensando..' ? (
+    <img
+      src="/images/CerdoChido.gif"
+      width={100}
+      height={100}
+      alt="gif"
+      className="mr-2"
+    />
+  ) : (
+    <Image
+      src="/images/CerdoChido.png"
+      width={100}
+      height={100}
+      alt="pig"
+      className="mr-2"
+    />
+  )}<p>Constanza: {json.answer}</p>
                 </div>
             </form>
           </div>
