@@ -18,7 +18,7 @@ const Graphicator = ({ title, description, image }) => {
         {nombreAlimento: 'Maíz amarillo', id: '1'},
         {nombreAlimento: 'Sorgo', id: '2'},
         {nombreAlimento: 'Trigo', id: '3'},
-        {nombreAlimento: 'Otro Alimento', id: '4'},
+        {nombreAlimento: 'leche', id: '4'},
     ]);
 
     const openModal = () => {

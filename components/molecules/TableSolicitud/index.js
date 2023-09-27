@@ -5,8 +5,6 @@ import Link from 'next/link';
 
 const TableSolicitud = ({ data, setData }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
-    const router = useRouter();
-    const [showConfirmation, setShowConfirmation] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
     const [editedValues, setEditedValues] = useState({});
@@ -40,14 +38,6 @@ const TableSolicitud = ({ data, setData }) => {
         setEditedValues({ ...item }); // Usamos el elemento correspondiente
         setEditedLotes(item.lotes); // Configura editedLotes con los valores de lotes del elemento seleccionado
         setShowEditModal(true);
-    };
-    
-
-
-    const handleDelete = (index) => {
-        setEditingIndex(index);
-        setEditedValues(data[index]);
-        handleEditeDelete(data[index]);
     };
  
     const handleSaveEdit = () => {
@@ -98,37 +88,6 @@ const TableSolicitud = ({ data, setData }) => {
     }
 };
 
-      
-      
-    const handleEditeDelete = (index) => {
-        const editedValues = index;
-
-        const updatedUsuario = {
-            fechaSolicitud: editedValues.fechaSolicitud,
-            organizacion: editedValues.organizacion,
-            ubicacion: editedValues.ubicacion,
-            nivelEntrega: editedValues.nivelEntrega,
-            fechaEntrega: editedValues.fechaEntrega,
-            nombreZona: editedValues.nombreZona,
-            nombreSolicitante: editedValues.nombreSolicitante,
-            nombreAlimento: editedValues.lotes.nombreAlimento,
-            cantidad: editedValues.lotes.cantidad,
-            unidad: editedValues.lotes.unidad
-
-        };
-
-        const axios = require("axios");
-        console.log(updatedUsuario.usuario, updatedUsuario);
-
-        const apiUrl = 'http://192.168.100.10:3020/editUsuario/' + updatedUsuario.fechaContratacion;
-        axios.put(apiUrl, updatedUsuario)
-            .then(response => {
-                console.log("Respuesta de la API:", response.data);
-            })
-            .catch(error => {
-                console.error("Error al enviar la solicitud:", error);
-            });
-    };
 
     return (
         <>

@@ -38,6 +38,13 @@ body {
 label {
   font-family: 'Montserrat', sans-serif;
 }
+input {
+
+}
+input:focus {
+  outline: none;
+}
+
 th {
   color: #D4AF37;
 }

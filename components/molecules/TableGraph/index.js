@@ -1,12 +1,9 @@
-import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
-import Link from 'next/link';
 import CalcuForm from '@/components/atoms/CalcuForm';
 
 const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
-    const [showEditModal, setShowEditModal] = useState(false);
     const entriesPerPage = 10;
     const [currentPage, setCurrentPage] = useState(1);
     const startIndex = (currentPage - 1) * entriesPerPage;
@@ -20,8 +17,6 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [complemento1V, setComplemento1V] = useState("");
     const [complemento2V, setComplemento2V] = useState("");
     const [total, setTotal] = useState("")
-    const [successMessage, setSuccessMessage] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
     const [proteinaObjV, setProteinaObjV] = useState("");
     const [showForm0, setShowForm0] = useState(false);
     const [showForm1, setShowForm1] = useState(false);
@@ -64,7 +59,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [showForm38, setShowForm38] = useState(false);
     const [showForm39, setShowForm39] = useState(false);
     const [showForm40, setShowForm40] = useState(false);
-
+    const [otroAlimento, setOtroAlimento] = useState("");
 
     const addOrder = async () => { //Crea el arrelo general
         try {
@@ -109,9 +104,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
           setSuccessMessage("");
         }
       };
-      const handleCheckboxChange = () => {
-        setShowForm(true);
-      };
+
     return (
         <>
         <div className="search-container mb-5">
@@ -156,28 +149,34 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                     </li>
                     ))}
                 </ul>
+                
+                <div>
+                    <p>Otro alimento</p>
+                    <input type="text" name="otro alimento" value={otroAlimento} onChange={(e) => setOtroAlimento(e.target.value)} className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}/>
+                </div>
+            
             </div>
             <div className="w-1/3">
                 <ul>
                     <h2>Complemento de Alimento</h2>
                     <li>
                         <label>
-                            <input type="checkbox" name="complemento" value="Pasta de soya" onChange={()=> setShowForm33(!showForm33)}/> Pasta de soya
+                            <input type="checkbox" name="complemento" value="Pasta de soya" onChange={()=> setShowForm31(!showForm31)}/> Pasta de soya
                         </label>
                     </li>
                     <li>
                         <label>
-                            <input type="checkbox" name="complemento" value="Harina de carne" onChange={()=> setShowForm34(!showForm34)}/> Harina de carne
+                            <input type="checkbox" name="complemento" value="Harina de carne" onChange={()=> setShowForm32(!showForm32)}/> Harina de carne
                         </label>
                     </li>
                     <li>
                         <label>
-                            <input type="checkbox" name="complemento" value="Harina de sangre" onChange={()=> setShowForm35(!showForm35)}/> Harina de sangre
+                            <input type="checkbox" name="complemento" value="Harina de sangre" onChange={()=> setShowForm33(!showForm33)}/> Harina de sangre
                         </label>
                     </li>
                     <li>
                         <label>
-                            <input type="checkbox" name="complemento" value="Harina de pescado" onChange={()=> setShowForm36(!showForm36)}/> Harina de pescado
+                            <input type="checkbox" name="complemento" value="Harina de pescado" onChange={()=> setShowForm34(!showForm34)}/> Harina de pescado
                         </label>
                     </li>
           
@@ -188,7 +187,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                     <h2>Complementos</h2>
                     <li>
                         <label>
-                            <input type="checkbox" name="complemento" value="cslcio" onChange={()=> setShowForm37(!showForm37)}/> Calcio
+                            <input type="checkbox" name="complemento" value="cslcio" onChange={()=> setShowForm35(!showForm35)}/> Calcio
                         </label>
                     </li>
                     <li>
@@ -309,22 +308,22 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
             <CalcuForm addOrder={addOrder} alimento={data[28]?.nombreAlimento} />
          : ""
         }{showForm29 ? 
-            <CalcuForm addOrder={addOrder}/>
-         : ""
-        }{showForm30 ? 
             <CalcuForm addOrder={addOrder} alimento={data[29]?.nombreAlimento} />
          : ""
+        }{otroAlimento !== "" ? 
+            <CalcuForm addOrder={addOrder} alimento={otroAlimento} />
+         : ""
         }{showForm31 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[30]?.nombreAlimento} />
+            <CalcuForm addOrder={addOrder} alimento={"Pasta de soya"} />
          : ""
         }{showForm32 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[31]?.nombreAlimento} />
+            <CalcuForm addOrder={addOrder} alimento={"Harina de carne"} />
          : ""
         }{showForm33 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[32]?.nombreAlimento} />
+            <CalcuForm addOrder={addOrder} alimento={"Harina de sangre"} />
          : ""
         }{showForm34 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[33]?.nombreAlimento} />
+            <CalcuForm addOrder={addOrder} alimento={"Harina de pescado"} />
          : ""
         }{showForm35 ? 
             <CalcuForm addOrder={addOrder} alimento={"Calcio"} />
