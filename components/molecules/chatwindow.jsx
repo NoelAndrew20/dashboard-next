@@ -52,7 +52,7 @@ const ChatWindow = () => {
     <div className={`chat-window ${isOpen ? 'closed' : ''}`}>
       <div className="chat-header" onClick={toggleChat}>
         <div className='constanza_gif'></div>
-        <img src="/Logos/Constanzalogo16.png" alt="Constanza Logo"></img>
+        <img src="/Logos/Constanzalogo16.png" alt="Constanza Logo" className="mr-12"></img>
         Simulación de Constanza
       </div>
       {isOpen && (
