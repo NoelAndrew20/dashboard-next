@@ -18,7 +18,9 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [complemento2V, setComplemento2V] = useState("");
     const [total, setTotal] = useState("")
     const [proteinaObjV, setProteinaObjV] = useState("");
-    const [showForm0, setShowForm0] = useState(false);
+    const [showForms, setShowForms] = useState({});
+
+    /*const [showForm0, setShowForm0] = useState(false);
     const [showForm1, setShowForm1] = useState(false);
     const [showForm2, setShowForm2] = useState(false);
     const [showForm3, setShowForm3] = useState(false);
@@ -58,8 +60,50 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [showForm37, setShowForm37] = useState(false);
     const [showForm38, setShowForm38] = useState(false);
     const [showForm39, setShowForm39] = useState(false);
-    const [showForm40, setShowForm40] = useState(false);
+    const [showForm40, setShowForm40] = useState(false);*/
     const [otroAlimento, setOtroAlimento] = useState("");
+
+    const [complementoData, setComplementoData] = useState([]);
+    const [complementoData2, setComplementoData2] = useState([]);
+
+    const axios = require('axios');
+
+    useEffect(() => {
+        axios.get('http://localhost:3081/getAllalimentot0')
+        .then(response => {
+            const jsonData = response.data; // Datos de respuesta en formato JSON
+            setData(jsonData);
+            console.log(jsonData)
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:3081/getAllalimentot1')
+        .then(response => {
+            const jsonData = response.data;
+            setComplementoData(jsonData);
+            console.log(jsonData)
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, []);
+
+    useEffect(() => {
+        axios.get('http://localhost:3081/getAllalimentot2')
+        .then(response => {
+            const jsonData = response.data;
+            setComplementoData2(jsonData);
+            console.log(jsonData);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, []);
+    
 
     const addOrder = async () => { //Crea el arrelo general
         try {
@@ -138,11 +182,12 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                             name="alimento"
                             value={item.nombreAlimento}
                             onChange={() => {
-                                const setShowForm = eval(`setShowForm${index}`);
-                                setShowForm((prevValue) => !prevValue);
-                              }}
-                              checked={eval(`showForm${index}`)}
-                  
+                                setShowForms(prevShowForms => ({
+                                    ...prevShowForms,
+                                    [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
+                                }));
+                            }}
+                            checked={showForms[item.nombreAlimento]}
                         />
                         &nbsp;{item.nombreAlimento}
                         </label>
@@ -159,192 +204,60 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
             <div className="w-1/3">
                 <ul>
                     <h2>Complemento de Alimento</h2>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="Pasta de soya" onChange={()=> setShowForm31(!showForm31)}/> Pasta de soya
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="Harina de carne" onChange={()=> setShowForm32(!showForm32)}/> Harina de carne
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="Harina de sangre" onChange={()=> setShowForm33(!showForm33)}/> Harina de sangre
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="Harina de pescado" onChange={()=> setShowForm34(!showForm34)}/> Harina de pescado
-                        </label>
-                    </li>
-          
+                    {complementoData.map((item, index) => (
+                        <li key={item.nombreAlimento}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="complemento"
+                                    value={item.nombreAlimento}
+                                    onChange={() => {
+                                        setShowForms(prevShowForms => ({
+                                            ...prevShowForms,
+                                            [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
+                                        }));
+                                    }}
+                                    checked={showForms[item.nombreAlimento]}
+                                />
+                                &nbsp;{item.nombreAlimento}
+                            </label>
+                        </li>
+                    ))}
                 </ul>
             </div>
             <div className="w-1/3">
-                <ul>
-                    <h2>Complementos</h2>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="cslcio" onChange={()=> setShowForm35(!showForm35)}/> Calcio
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="Acido de grasas" onChange={()=> setShowForm36(!showForm36)}/> Acido de grasas
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="Ortofosfato" onChange={()=> setShowForm37(!showForm37)}/> Ortofosfato
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="Lisina" onChange={()=> setShowForm38(!showForm38)}/> Lisina
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="Metionina" onChange={()=> setShowForm39(!showForm39)}/> Metionina
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="complemento" value="Sal" onChange={()=> setShowForm40(!showForm40)}/> Sal
-                        </label>
-                    </li>
-                </ul>
+    <ul>
+        <h2>Complemento extra de Alimento </h2>
+        {complementoData2.map((item, index) => (
+            <li key={item._id}>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="complemento2"
+                        value={item.nombreAlimento}
+                        onChange={() => {
+                            setShowForms(prevShowForms => ({
+                                ...prevShowForms,
+                                [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
+                            }));
+                        }}
+                        checked={showForms[item.nombreAlimento]}
+                    />
+                    &nbsp;{item.nombreAlimento}
+                </label>
+            </li>
+        ))}
+     </ul>
             </div>
         </div>
-        {showForm0 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[0]?.nombreAlimento}/>
-         : ""
-        }
-        {showForm1 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[1]?.nombreAlimento} />
-         : ""
-        }
-        {showForm2 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[2]?.nombreAlimento} />
-         : ""
-        }{showForm3 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[3]?.nombreAlimento} />
-         : ""
-        }{showForm4 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[4]?.nombreAlimento} />
-         : ""
-        }{showForm5 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[5]?.nombreAlimento} />
-         : ""
-        }{showForm6 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[6]?.nombreAlimento} />
-         : ""
-        }{showForm7 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[7]?.nombreAlimento} />
-         : ""
-        }{showForm8 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[8]?.nombreAlimento} />
-         : ""
-        }{showForm9 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[9]?.nombreAlimento} />
-         : ""
-        }{showForm10 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[10]?.nombreAlimento} />
-         : ""
-        }{showForm11 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[11]?.nombreAlimento} />
-         : ""
-        }{showForm12 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[12]?.nombreAlimento} />
-         : ""
-        }{showForm13 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[13]?.nombreAlimento} />
-         : ""
-        }{showForm14 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[14]?.nombreAlimento} />
-         : ""
-        }{showForm15 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[15]?.nombreAlimento} />
-         : ""
-        }{showForm16 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[16]?.nombreAlimento} />
-         : ""
-        }{showForm17 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[17]?.nombreAlimento} />
-         : ""
-        }{showForm18 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[18]?.nombreAlimento} />
-         : ""
-        }{showForm19 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[19]?.nombreAlimento} />
-         : ""
-        }{showForm20 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[20]?.nombreAlimento} />
-         : ""
-        }{showForm21 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[21]?.nombreAlimento} />
-         : ""
-        }{showForm22 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[22]?.nombreAlimento} />
-         : ""
-        }{showForm23 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[23]?.nombreAlimento} />
-         : ""
-        }{showForm24 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[24]?.nombreAlimento} />
-         : ""
-        }{showForm25 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[25]?.nombreAlimento} />
-         : ""
-        }{showForm26 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[26]?.nombreAlimento} />
-         : ""
-        }{showForm27 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[27]?.nombreAlimento} />
-         : ""
-        }{showForm28 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[28]?.nombreAlimento} />
-         : ""
-        }{showForm29 ? 
-            <CalcuForm addOrder={addOrder} alimento={data[29]?.nombreAlimento} />
-         : ""
-        }{otroAlimento !== "" ? 
-            <CalcuForm addOrder={addOrder} alimento={otroAlimento} />
-         : ""
-        }{showForm31 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Pasta de soya"} />
-         : ""
-        }{showForm32 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Harina de carne"} />
-         : ""
-        }{showForm33 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Harina de sangre"} />
-         : ""
-        }{showForm34 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Harina de pescado"} />
-         : ""
-        }{showForm35 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Calcio"} />
-         : ""
-        }{showForm36 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Acido de grasas"} />
-         : ""
-        }{showForm37 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Ortofosfato"} />
-         : ""
-        }{showForm38 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Lisina"} />
-         : ""
-        }{showForm39 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Metionina"} />
-         : ""
-        }{showForm40 ? 
-            <CalcuForm addOrder={addOrder} alimento={"Sal"} />
-         : ""
-        }
+        {Object.entries(showForms).map(([alimento, showForm]) => {
+            if (showForm) {
+                return <CalcuForm key={alimento} addOrder={addOrder} alimento={alimento} />;
+            }
+            return null;
+        })}
         </>
     )
 }
+
 export default TableGraph;

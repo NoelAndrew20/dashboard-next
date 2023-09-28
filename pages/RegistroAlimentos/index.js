@@ -30,7 +30,6 @@ const RegistroAlimentos = ({ title, description, image }) => {
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setData(jsonData);
-            console.log(jsonData);
         })
         .catch(error => {
             console.error(error);

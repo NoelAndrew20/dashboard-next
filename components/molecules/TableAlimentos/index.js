@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Link from 'next/link';
+const axios = require('axios');
 
 
 const TableAlimentos = ({ data, setData }) => {
@@ -26,6 +27,39 @@ const TableAlimentos = ({ data, setData }) => {
     useEffect(() => {
       setCurrentPage(1); 
     }, [searchTerm]);
+
+    useEffect(() => {
+        console.log(data)
+      });
+
+
+      const handleSendRequest = () => {
+        const updatedAlimento = {
+            fecha: data[0].fecha,
+            nivelentrega: data[0].nivelEntrega,
+            fechaentrega: data[0].fechaEntrega,
+            nombreZona: data[0].nombreZona,
+            nombreSolicitante: data[0].nombreSolicitante,
+            estatus: 1,
+        };
+    
+        if (data[0].lotes && data[0].lotes.length > 0) {
+          updatedAlimento.nombreAlimento = data[0].lotes[0].nombreAlimento;
+          updatedAlimento.cantidad = data[0].lotes[0].cantidad;
+          updatedAlimento.unidad = data[0].lotes[0].unidad;
+        }
+        console.log(updatedAlimento.fecha);
+        
+        //const apiUrl = 'http://192.168.100.10:3010/editTransporte/' + updatedUsuario.fechaContratacion;  
+        const apiUrl = 'http://localhost:3080/editAlimento/';
+        axios.put(apiUrl, updatedAlimento)
+        .then(response => {
+            console.log("Respuesta de la API:", response.data);
+        })
+        .catch(error => {
+            console.error("Error al enviar la solicitud:", error);
+        });
+    };
 
     return (
         <>
@@ -87,8 +121,8 @@ const TableAlimentos = ({ data, setData }) => {
                         </td>
                         {router.pathname === "/RegistroAlimentos"
                         ? <td>
-                            <button className="edit-btn">
-                                <Link href="../Graphicator">
+                            <button className="edit-btn" onClick={handleSendRequest}>
+                                <Link href="../RegistroAlimentos">
                                     <img src="images/svg/send.svg" width={15} height={15}/>
                                 </Link>
                             </button>

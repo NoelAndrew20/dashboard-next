@@ -14,12 +14,8 @@ const Graphicator = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [dataOrder, setDataOrder] = useState([])
-    const [data, setData] = useState([
-        {nombreAlimento: 'Maíz amarillo', id: '1'},
-        {nombreAlimento: 'Sorgo', id: '2'},
-        {nombreAlimento: 'Trigo', id: '3'},
-        {nombreAlimento: 'leche', id: '4'},
-    ]);
+    const [data, setData] = useState([]);
+    const [dataGraph, setDataGraph] = useState([]);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -28,6 +24,25 @@ const Graphicator = ({ title, description, image }) => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+
+    useEffect(() => {
+        axios.get('http://localhost:3080/getAllSolicitudCompraAlimento')
+          .then(response => {
+            const jsonData = response.data; // Datos de respuesta en formato JSON
+            setData(jsonData);
+            
+            // Recorre los objetos en la respuesta y sus lotes para imprimir los nombres de alimentos
+            jsonData.forEach(solicitud => {
+              solicitud.lotes.forEach(lote => {
+                console.log(lote.nombreAlimento);
+              });
+            });
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }, []);
 
 
     return (
@@ -48,7 +63,7 @@ const Graphicator = ({ title, description, image }) => {
                 </div>
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>
-                    <TableGraph data={data} setData={setData} dataOrder={dataOrder} setDataOrder={setDataOrder}/>
+                    <TableGraph data={dataGraph} setData={setDataGraph} dataOrder={dataOrder} setDataOrder={setDataOrder}/>
                     <div className="mt-10 flex justify-end">
                         <div className={`modal ${isModalOpen ? 'block' : 'hidden'}`}>
                             <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
