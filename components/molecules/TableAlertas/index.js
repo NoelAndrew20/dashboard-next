@@ -21,10 +21,6 @@ const TableAlertas = ({ data, setData }) => {
                     <tr>
                         <th>Mensaje</th>
                         <th>Fecha</th>
-                        <th>Puerta</th>
-                        <th>Area</th>
-                        <th>Nave</th>
-                        <th>Granja</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,10 +43,6 @@ const TableAlertas = ({ data, setData }) => {
                             </Link>
                         </td>
                         <td>{item.fecha}</td>
-                        <td>{item.puerta}</td>
-                        <td>{item.area}</td>
-                        <td>{item.nave}</td>
-                        <td>{item.granja}</td>
                     </tr>
                 ))}
                 </tbody>

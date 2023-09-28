@@ -39,10 +39,7 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
           setCantidad("");
         }
       };
-      useEffect(() => {
-        // Update the document title using the browser API
-        console.log(data)
-      });
+     
     const eliminarUltimoLote = () => { //Elimina el ultimo lote
     if (lotes.length > 0) {
         const nuevosLotes = [...lotes];
@@ -121,10 +118,10 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
                             onChange={(e) => setNombreAlimento(e.target.value)} 
                             >
                                 <option value=""></option>
-                                <option value="maiz amarillo">Maíz Amarillo</option>
-                                <option value="sorgo">Sorgo</option>
-                                <option value="trigo">Trigo</option>
-                                <option value="otro">Otro</option>
+                                <option value="Maiz amarillo">Maíz Amarillo</option>
+                                <option value="Sorgo">Sorgo</option>
+                                <option value="Trigo">Trigo</option>
+                                <option value="Otro">Otro</option>
                             </select> 
                         </div>
                     </div>
@@ -141,8 +138,8 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
                         onChange={(e) => setUnidad(e.target.value)} 
                         >
                             <option value=""></option>
-                            <option value="kg">Kg</option>
-                            <option value="lt">Lt</option>
+                            <option value="Kg">Kg</option>
+                            <option value="Lt">Lt</option>
                         </select> 
                         </div>
                     </div>
@@ -185,9 +182,9 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                         <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="nivelEntrega" name="nivelEntrega" value={nivelEntrega} onChange={(event) => setNivelEntrega(event.target.value)} required>
                             <option value=""></option>
-                            <option value="leve">Leve</option>
-                            <option value="normal">Normal</option>
-                            <option value="urgente">Urgente</option>
+                            <option value="Leve">Leve</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Urgente">Urgente</option>
                         </select>                    
                     </div>
                 </div>
@@ -208,10 +205,12 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
                             onChange={(e) => setNombreZona(e.target.value)} 
                             >
                                 <option value=""></option>
-                                <option value="gestacion">Gestación</option>
-                                <option value="sorgo">Maternidad</option>
-                                <option value="adaptacion cuarentena">Adaptación / Cuarentena</option>
-                                <option value="CDI">Engorda / Destete</option>
+                                <option value="Gestacion">Gestación</option>
+                                <option value="Maternidad">Maternidad</option>
+                                <option value="Adaptacion_Cuarentena">Adaptación / Cuarentena</option>
+                                <option value="Destete">Destete</option>
+                                <option value="Engorda">Engorda</option>
+                                <option value="CDI">CDI</option>
                         </select>                    
                     </div>
                 </div>

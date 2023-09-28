@@ -1,14 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Import the cors module
-
 const app = express();
 app.use(cors());
-
 app.use(express.json());
-
-//const mongoUrl = "mongodb://192.168.100.8:27017/proyectoSRS";
-const mongoUrl = "mongodb://192.168.100.10:27017/C3_LaPurisima";
+const config = require('../../../config.json');
+const mongoUrl = config.mongodesarrollo;
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
@@ -18,13 +15,64 @@ mongoose.connect(mongoUrl, {
 })
 .catch((e) => console.log(e));
 
-require("../schema/schemaSolicitudCompraAlimento.js");
-const SolicitudAlimento = mongoose.model("SolicitudAlimento");
+const db = mongoose.connection.useDb("C3_LaPurisima");
+db.on('error', console.error.bind(console, 'Error al conectar a la base de datos:'));
+db.once('open', () => {
+  console.log('Conexión exitosa a la base de datos.');
+});
 
-app.get("/getAllSolicitudAlimento", async (req, res) => {
+const alimentoSchema = new mongoose.Schema(
+  {
+    fecha: Date,
+    nombreAlimento: String,
+    tipo: Number,
+    proteina: Number,
+    precio: Number,
+    precioVariable: Number,
+  },
+  {
+    collection: 'alimento',
+    versionKey: false,
+  }
+);
+
+const SolicitudAlimento = db.model('alimento', alimentoSchema);
+
+app.get("/getAllalimentot0", async (req, res) => {
+  try {
+    const solicitudes = await SolicitudAlimento.find({ tipo: 0});
+    res.json(solicitudes);
+  } catch (error) {
+    console.error('Error al obtener las solicitudes de alimentos:', error);
+    res.status(500).json({ mensaje: 'Error al obtener las solicitudes de alimentos' });
+  }
+});
+
+app.get("/getAllalimentot1", async (req, res) => {
+  try {
+    const solicitudes = await SolicitudAlimento.find({ tipo: 1});
+    res.json(solicitudes);
+  } catch (error) {
+    console.error('Error al obtener las solicitudes de alimentos:', error);
+    res.status(500).json({ mensaje: 'Error al obtener las solicitudes de alimentos' });
+  }
+});
+
+app.get("/getAllalimentot2", async (req, res) => {
+  try {
+    const solicitudes = await SolicitudAlimento.find({ tipo: 2});
+    res.json(solicitudes);
+  } catch (error) {
+    console.error('Error al obtener las solicitudes de alimentos:', error);
+    res.status(500).json({ mensaje: 'Error al obtener las solicitudes de alimentos' });
+  }
+});
+
+
+/*app.get("/getAllSolicitudCompraAlimento", async (req, res) => {
   try {
     // Consulta la base de datos para obtener todas las solicitudes de alimentos
-    const solicitudes = await SolicitudAlimento.find();
+    const solicitudes = await SolicitudAlimento.find({ estatus: 1 });
 
     // Envía las solicitudes al cliente en formato JSON
     res.json(solicitudes);
@@ -35,17 +83,20 @@ app.get("/getAllSolicitudAlimento", async (req, res) => {
 });
 
 
+
 app.post("/addAlimento", async (req, res) => {
   try {
     const newAlimento = req.body;
     console.log(newAlimento);
       // Crea una instancia del modelo Entrega con los datos recibidos del cliente
       const nuevaSolicitud = new SolicitudAlimento({
-          nivelEntrega: req.body.nivelEntrega,
-          fechaEntrega: req.body.fechaEntrega,
-          nombreZona: req.body.nombreZona,
-          nombreSolicitante: req.body.nombreSolicitante,
-          lotes: req.body.lotes
+        fecha: Date.now(),
+        nivelEntrega: req.body.nivelEntrega,
+        fechaEntrega: req.body.fechaEntrega,
+        nombreZona: req.body.nombreZona,
+        nombreSolicitante: req.body.nombreSolicitante,
+        estatus: 0,
+        lotes: req.body.lotes
       });
 
       // Guarda la nueva entrega en la base de datos
@@ -60,176 +111,30 @@ app.post("/addAlimento", async (req, res) => {
 });
 
 
+app.put('/editAlimento', async (req, res) => {
+  try {
+    const newData = req.body;
+
+    const updatedAlimento = await SolicitudAlimento.findOneAndUpdate(
+      { fecha: newData.fecha }, // Filtro por _id o el campo adecuado
+      { $set: newData }, // Los nuevos datos a actualizar
+      { new: true }
+    );
+
+    // Si updatedAlimento es null, significa que no se encontró el alimento
+    if (!updatedAlimento) {
+      return res.status(404).json({ message: 'Alimento no encontrado' });
+    }
+
+    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedAlimento });
+  } catch (error) {
+    console.error('Error al actualizar los datos:', error);
+    res.status(500).json({ message: 'Error al actualizar los datos' });
+  }
+});*/
+
 const PORT = 3081;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
-/*const express = require('express');
-const mongoose = require('mongoose');
-
-const cors = require('cors');
-
-
-
-const app = express();
-app.use(express.json());
-
-const mongoUrl = "mongodb://192.168.100.8:27017/proyectoSRS";
-
-mongoose.connect(mongoUrl, {
-  useNewUrlParser: true,
-})
-.then(() => {
-  console.log("Connected to database");
-})
-.catch((e) => console.log(e));
-
-require("../schema/schemaTransporte.js");
-const Transporte = mongoose.model("Transporte");
-
-app.get("/getAllTransporte", async (req, res) => {
-  try {
-    const allTransporte = await Transporte.find({});
-    res.send({ status: "ok", data: allTransporte });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ status: "error", message: "Internal server error" });
-  }
-});
-
-
-app.post("/addTransporte", async (req, res) => {
-  try {
-    const data = req.body;
-    console.log(data);
-    const nuevoTransporte = new Transporte({
-      //fecha: data.fecha,
-      granja: data.granja,
-      camion: data.camion,
-      jaula: data.jaula,
-      operador: data.operador,
-      cliente: data.cliente,
-      destino: data.destino,
-      salida: data.salida,
-      hrLlegada: data.hrLlegada,
-      tmpRecorrido: data.tmpRecorrido,
-      hrInicio: data.hrInicio,
-      kgSalida: data.kgSalida,  
-      kgDesembarque: data.kgDesembarque,
-      rango: data.rango,
-      muertos: data.muertos,
-      parada: data.parada,
-      auditor: data.auditor,
-      incidencias: data.incidencias,
-      revision: data.revision,
-      hrFinal: data.hrFinal,
-      merma: data.merma,
-      ctCerdos: data.ctCerdos,
-    });
-
-    await nuevoTransporte.save();
-
-    res.status(200).json({ message: 'Datos guardados con éxito' });
-  } catch (error) {
-    console.error('Error al guardar los datos:', error);
-    res.status(500).json({ message: 'Error al guardar los datos' });
-  }
-});
-
-const PORT = 4000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});*/
-
-
-
-/*import mongoose from 'mongoose';
-
-// Definir un esquema para la colección "transporte"
-const TransporteSchema = new mongoose.Schema({
-  fecha: String,
-  granja: String,
-  camion: String,
-  jaula: String,
-  operador: String,
-  cliente: String,
-  destino: String,
-  salida: String,
-  hrLlegada: String,
-  tmpRecorrido: String,
-  hrInicio: String,
-  kgSalida: String,
-  kgDesembarque: String,
-  rango: String,
-  muertos: String,
-  parada: String,
-  auditor: String,
-  incidencias: String,
-  revision: String,
-  hrFinal: String,
-  merma: String,
-  ctCerdos: String,
-}, { versionKey: false });
-
-// Crear un modelo basado en el esquema
-const Transporte = mongoose.model('Transporte', TransporteSchema);
-
-
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const data = req.body; // Obtener los datos del cuerpo de la solicitud POST
-
-    // Conectar a la base de datos MongoDB
-    await mongoose.connect('mongodb://192.168.100.8:27017/proyectoSRS', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    
-
-    try {
-      // Crear una nueva instancia del modelo con los datos recibidos
-      const nuevoTransporte = new Transporte({
-        fecha: data.fecha,
-        granja: data.granja,
-        camion: data.camion,
-        jaula: data.jaula,
-        operador: data.operador,
-        cliente: data.cliente,
-        destino: data.destino,
-        salida: data.salida,
-        hrLlegada: data.hrLlegada,
-        tmpRecorrido: data.tmpRecorrido,
-        hrInicio: data.hrInicio,
-        kgSalida: data.kgSalida,
-        kgDesembarque: data.kgDesembarque,
-        rango: data.rango,
-        muertos: data.muertos,
-        parada: data.parada,
-        auditor: data.auditor,
-        incidencias: data.incidencias,
-        revision: data.revision,
-        hrFinal: data.hrFinal,
-        merma: data.merma,
-        ctCerdos: data.ctCerdos,
-      });
-
-      // Guardar el nuevo transporte en la base de datos
-      await nuevoTransporte.save();
-
-      // Cerrar la conexión a la base de datos
-      await mongoose.connection.close();
-
-      res.status(200).json({ message: 'Datos guardados con éxito' });
-    } catch (error) {
-      console.error('Error al guardar los datos:', error);
-      res.status(500).json({ message: 'Error al guardar los datos' });
-    }
-  } else {
-    res.status(405).json({ message: 'Método no permitido' });
-  }
-}*/
 
