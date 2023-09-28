@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import json from '../../public/api/pronostico/python/Constanza_estable/respuesta.json'
+import json from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/respuesta.json'
 import Image from 'next/image';
+import jsondata from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/requisitos_2.json'
+import Formulario from '@/components/molecules/Formulariodinamico'
+import Modal from '../atoms/Modal';
 
 const ChatWindow = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState(''); // Nuevo estado para el mensaje
   const [respuestaDelServidor, setRespuestaDelServidor] = useState('');
-  const [isSpinning, setIsSpinning] = useState(false);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -18,7 +20,16 @@ const ChatWindow = () => {
     setMessage(e.target.value); // Actualiza el estado del mensaje mientras se escribe
   };
 
-
+  const abrirModal = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+    console.log("abrir modal");
+  };
+  
+  const cerrarModal = () => {
+    setIsModalOpen(false);
+  }
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Pregunta Next:',message);
@@ -48,6 +59,7 @@ const ChatWindow = () => {
     }
   };
 
+  
   return (
     <div className={`chat-window ${isOpen ? 'closed' : ''}`}>
       <div className="chat-header" onClick={toggleChat}>
@@ -58,6 +70,11 @@ const ChatWindow = () => {
       {isOpen && (
         <div className="chat-content">
           <div className="input-container">
+          
+            <div>
+              <Modal isOpen={isModalOpen} onClose={cerrarModal}>
+                  <Formulario jsonFile="requisitos_2" closeModal={cerrarModal}/>
+              </Modal></div> 
             <form className='max-w-xl w-full'>
               <textarea
                 id="message-input"
@@ -67,7 +84,12 @@ const ChatWindow = () => {
                 value={message} // Establece el valor del textarea según el estado
                 onChange={handleChange} // Captura los cambios en el textarea
               ></textarea>
+              <div>
+                
+                <button className="bg-red-900 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none" onClick={abrirModal}>Abrir Modal</button>
+              </div>
               <button className="bg-red-900 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none" onClick={handleSubmit}>Enviar</button>
+              
                 <div className='mr-5 flex bg-orange-300 rounded-md text-lg text-black'>
                 {json.answer === 'Pensando..' ? (
     <img
