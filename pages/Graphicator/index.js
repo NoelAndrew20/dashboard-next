@@ -5,8 +5,8 @@ import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
 import TableGraph from '@/components/molecules/TableGraph';
 import TableAlimentos from '@/components/molecules/TableAlimentos';
-import AlimentosForm from '@/components/atoms/AlimentosForm';
 import TableSolicitud from '@/components/molecules/TableSolicitud';
+import SolicitudForm from '@/components/atoms/SolicitudForm';
 
 const axios = require('axios');
 
@@ -67,8 +67,8 @@ const Graphicator = ({ title, description, image }) => {
                     <div className="mt-10 flex justify-end">
                         <div className={`modal ${isModalOpen ? 'block' : 'hidden'}`}>
                             <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
-                            <div className={`${isDarkMode ? "modal-content-d" : "modal-content " } bg-white p-4 rounded shadow-md absolute top-[90vh] left-1/2 transform -translate-x-1/2 overflow-y-auto z-50`}>
-                                <AlimentosForm 
+                            <div className={`${isDarkMode ? "modal-content-d" : "modal-content " } bg-white p-4 rounded shadow-md absolute top-[50vh] left-1/2 transform -translate-x-1/2 overflow-y-auto z-50`}>
+                                <SolicitudForm 
                                     data={data} 
                                     setData={setData} 
                                     closeModal={closeModal}
