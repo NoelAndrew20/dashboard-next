@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import json from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/respuesta.json'
+//import json from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/respuesta.json'
 import Image from 'next/image';
-import jsondata from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/requisitos_2.json'
+//import jsondata from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/requisitos_2.json'
 import Formulario from '@/components/molecules/Formulariodinamico'
 import Modal from '../atoms/Modal';
 
