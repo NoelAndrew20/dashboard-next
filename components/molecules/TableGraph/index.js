@@ -19,50 +19,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [total, setTotal] = useState("")
     const [proteinaObjV, setProteinaObjV] = useState("");
     const [showForms, setShowForms] = useState({});
-
-    /*const [showForm0, setShowForm0] = useState(false);
-    const [showForm1, setShowForm1] = useState(false);
-    const [showForm2, setShowForm2] = useState(false);
-    const [showForm3, setShowForm3] = useState(false);
-    const [showForm4, setShowForm4] = useState(false);
-    const [showForm5, setShowForm5] = useState(false);
-    const [showForm6, setShowForm6] = useState(false);
-    const [showForm7, setShowForm7] = useState(false);
-    const [showForm8, setShowForm8] = useState(false);
-    const [showForm9, setShowForm9] = useState(false);
-    const [showForm10, setShowForm10] = useState(false);
-    const [showForm11, setShowForm11] = useState(false);
-    const [showForm12, setShowForm12] = useState(false);
-    const [showForm13, setShowForm13] = useState(false);
-    const [showForm14, setShowForm14] = useState(false);
-    const [showForm15, setShowForm15] = useState(false);
-    const [showForm16, setShowForm16] = useState(false);
-    const [showForm17, setShowForm17] = useState(false);
-    const [showForm18, setShowForm18] = useState(false);
-    const [showForm19, setShowForm19] = useState(false);
-    const [showForm20, setShowForm20] = useState(false);
-    const [showForm21, setShowForm21] = useState(false);
-    const [showForm22, setShowForm22] = useState(false);
-    const [showForm23, setShowForm23] = useState(false);
-    const [showForm24, setShowForm24] = useState(false);
-    const [showForm25, setShowForm25] = useState(false);
-    const [showForm26, setShowForm26] = useState(false);
-    const [showForm27, setShowForm27] = useState(false);
-    const [showForm28, setShowForm28] = useState(false);
-    const [showForm29, setShowForm29] = useState(false);
-    const [showForm30, setShowForm30] = useState(false);
-    const [showForm31, setShowForm31] = useState(false);
-    const [showForm32, setShowForm32] = useState(false);
-    const [showForm33, setShowForm33] = useState(false);
-    const [showForm34, setShowForm34] = useState(false);
-    const [showForm35, setShowForm35] = useState(false);
-    const [showForm36, setShowForm36] = useState(false);
-    const [showForm37, setShowForm37] = useState(false);
-    const [showForm38, setShowForm38] = useState(false);
-    const [showForm39, setShowForm39] = useState(false);
-    const [showForm40, setShowForm40] = useState(false);*/
     const [otroAlimento, setOtroAlimento] = useState("");
-
     const [complementoData, setComplementoData] = useState([]);
     const [complementoData2, setComplementoData2] = useState([]);
 
@@ -226,30 +183,34 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                 </ul>
             </div>
             <div className="w-1/3">
-    <ul>
-        <h2>Complemento extra de Alimento </h2>
-        {complementoData2.map((item, index) => (
-            <li key={item._id}>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="complemento2"
-                        value={item.nombreAlimento}
-                        onChange={() => {
-                            setShowForms(prevShowForms => ({
-                                ...prevShowForms,
-                                [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
-                            }));
-                        }}
-                        checked={showForms[item.nombreAlimento]}
-                    />
-                    &nbsp;{item.nombreAlimento}
-                </label>
-            </li>
-        ))}
-     </ul>
+                <ul>
+                    <h2>Complemento extra de Alimento </h2>
+                    {complementoData2.map((item, index) => (
+                        <li key={item._id}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="complemento2"
+                                    value={item.nombreAlimento}
+                                    onChange={() => {
+                                        setShowForms(prevShowForms => ({
+                                            ...prevShowForms,
+                                            [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
+                                        }));
+                                    }}
+                                    checked={showForms[item.nombreAlimento]}
+                                />
+                                &nbsp;{item.nombreAlimento}
+                            </label>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
+        {otroAlimento !== "" ? 
+            <CalcuForm addOrder={addOrder} alimento={otroAlimento} />
+         : ""
+        }
         {Object.entries(showForms).map(([alimento, showForm]) => {
             if (showForm) {
                 return <CalcuForm key={alimento} addOrder={addOrder} alimento={alimento} />;
