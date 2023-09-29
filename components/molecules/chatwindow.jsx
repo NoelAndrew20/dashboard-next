@@ -99,6 +99,14 @@ const ChatWindow = () => {
       alt="gif"
       className="mr-2"
     />
+  ) : json.answer === 'Puedes Abrir el cuestionario' ? (
+    <Image
+      src="/images/Cerdocomiendo.gif"
+      width={100}
+      height={100}
+      alt="pig"
+      className="mr-2"
+    />
   ) : (
     <Image
       src="/images/CerdoChido.png"
