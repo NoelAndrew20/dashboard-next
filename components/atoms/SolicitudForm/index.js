@@ -42,11 +42,11 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
         console.log(data)
       });
     const eliminarUltimoLote = () => { //Elimina el ultimo lote
-    if (lotes.length > 0) {
-        const nuevosLotes = [...lotes];
-        nuevosLotes.pop();
-        setLotes(nuevosLotes);
-    }
+        if (lotes.length > 0) {
+            const nuevosLotes = [...lotes];
+            nuevosLotes.pop();
+            setLotes(nuevosLotes);
+        }
     };
 
     const addOrder = async () => { //Crea el arrelo general
@@ -141,7 +141,7 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
                 <div className="flex justify-center">
                         <button className="pronostico-btn" onClick={agregarLote}>Agregar lote</button>
                         <button className="pronostico-btn" onClick={eliminarUltimoLote}>Eliminar último lote</button>
-                    </div>
+                </div>
                 <div className="flex justify-center pt-2">
                         {lotes.length === 0 ? (
                             ""
