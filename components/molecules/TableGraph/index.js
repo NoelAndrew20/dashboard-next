@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 import CalcuForm from '@/components/atoms/CalcuForm';
+import CalcuFormOther from '@/components/atoms/CalcuFormOther';
 
 const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -10,7 +11,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const endIndex = startIndex + entriesPerPage;
     const [searchTerm, setSearchTerm] = useState("");
     const [nombreAlimentoV, setNombreAlimentoV] = useState("");
-    const [cantidadV, setCantidadV] = useState("");
+    const [tipoV, setTipoV] = useState("");
     const [proteinaV, setProteinaV] = useState("");
     const [precioV, setPrecioV] = useState("");
     const [precioVariableV, setPrecioVariableV] = useState("");
@@ -22,9 +23,51 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [otroAlimento, setOtroAlimento] = useState("");
     const [complementoData, setComplementoData] = useState([]);
     const [complementoData2, setComplementoData2] = useState([]);
+    const [selectedFoodData, setSelectedFoodData] = useState(); // Estado para almacenar los datos del alimento seleccionado
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const [ dataAux, setDataAux ] = useState([
+        {id: "65159F7913c9cfc79957544e",
+        nombreAlimento: "Maíz amarillo",
+        tipo: 0,
+        proteina: 7.5,
+        precio: 7.5,
+        precioVariable: 8.25
+        },
+        {id: "45645",
+        nombreAlimento: "Sorgo",
+        tipo: 1,
+        proteina: 52,
+        precio: 7.8,
+        precioVariable: 8.16
+        }
+    ])
+    const [dataAuxComplemento, setDataAuxComplemento] = useState([
+        {id: "65159F7913c9cfc79957544e",
+        nombreAlimento: "Pasta de soya",
+        tipo: 0,
+        proteina: 7.5,
+        precio: 7.5,
+        precioVariable: 8.25
+        }
+    ])
+    const [dataAuxComplemento2, setDataAuxComplemento2] = useState([
+        {id: "65159F7913c9cfc79957544e",
+        nombreAlimento: "Pasta de soya",
+        tipo: 0,
+        proteina: 7.5,
+        precio: 7.5,
+        precioVariable: 8.25
+        }
+    ])
     const axios = require('axios');
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
 
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
     useEffect(() => {
         axios.get('http://localhost:3081/getAllalimentot0')
         .then(response => {
@@ -65,14 +108,13 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const addOrder = async () => { //Crea el arrelo general
         try {
           if (
-            nombreAlimentoV !== "" && cantidadV !== "" && proteinaV != ""
-            && precioV  !== "" && precioVariableV  !== "" && complemento1V !== "" && complemento2V !== ""
-            && proteinaObjV !== ""
+            nombreAlimentoV !== "" && tipoV !== "" && proteinaV != ""
+            && precioV  !== "" && precioVariableV  !== ""
             //verifica que lo required no este vacio
           ) {
             const newOrder = { //crea el nuevo arreglo
                 nombreAlimentoV: nombreAlimentoV,
-                cantidadV: cantidadV,
+                tipoV: tipoV,
                 proteinaV: proteinaV,
                 precioV: precioV,
                 precioVariableV: precioVariableV,
@@ -85,13 +127,10 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
             const newData = [...dataOrder, newOrder]; //arregla el nuevo arreglo al arreglo que viene del back
             setDataOrder(newData);
             setNombreAlimentoV("");
-            setCantidadV("");
+            setTipoV("");
             setProteinaV("");
             setPrecioV("");
             setPrecioVariableV("");
-            setComplemento1V("");
-            setComplemento2V("");
-            setProteinaObjV("")
             setSuccessMessage('Orden guardada exitosamente');
             setErrorMessage("");
             console.log(dataOrder);
@@ -133,30 +172,39 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                     <h2>Nombre de Alimento</h2>
                     {data.map((item, index) => (
                     <li key={item.nombreAlimento}>
-                        <label>
+                    <label>
                         <input
-                            type="checkbox"
-                            name="alimento"
-                            value={item.nombreAlimento}
-                            onChange={() => {
-                                setShowForms(prevShowForms => ({
-                                    ...prevShowForms,
-                                    [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
-                                }));
-                            }}
-                            checked={showForms[item.nombreAlimento]}
+                        type="checkbox"
+                        name="alimento"
+                        value={item.nombreAlimento}
+                        onChange={() => {
+                            const selectedFood = dataAux.find(food => food.nombreAlimento === item.nombreAlimento);
+                            setSelectedFoodData(selectedFood);
+                            setShowForms(prevShowForms => ({
+                            ...prevShowForms,
+                            [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
+                            }));
+                        }}
+                        checked={showForms[item.nombreAlimento]}
                         />
                         &nbsp;{item.nombreAlimento}
-                        </label>
+                    </label>
                     </li>
-                    ))}
-                </ul>
-                
-                <div>
-                    <p>Otro alimento</p>
-                    <input type="text" name="otro alimento" value={otroAlimento} onChange={(e) => setOtroAlimento(e.target.value)} className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}/>
+                ))}
+                </ul>           
+                <div className="">
+                    <div className={`modal ${isModalOpen ? 'block' : 'hidden'}`}>
+                        <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
+                        <div className={`${isDarkMode ? "modal-content-d" : "modal-content " } bg-white p-4 rounded shadow-md absolute top-[60vh] left-1/2 transform -translate-x-1/2 overflow-y-auto z-50`}>
+                            <CalcuFormOther 
+                                data={data} 
+                                setData={setData} 
+                                closeModal={closeModal}
+                            />
+                        </div>
+                    </div>                      
+                    <button className="button" onClick={openModal}>Agregar compra</button>
                 </div>
-            
             </div>
             <div className="w-1/3">
                 <ul>
@@ -169,6 +217,9 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                                     name="complemento"
                                     value={item.nombreAlimento}
                                     onChange={() => {
+                                        const selectedFood = dataAuxComplemento.find(food => food.nombreAlimento === item.nombreAlimento);
+                                        {console.log(selectedFood)}
+                                        setSelectedFoodData(selectedFood);
                                         setShowForms(prevShowForms => ({
                                             ...prevShowForms,
                                             [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
@@ -193,6 +244,8 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                                     name="complemento2"
                                     value={item.nombreAlimento}
                                     onChange={() => {
+                                        const selectedFood = dataAuxComplemento2.find(food => food.nombreAlimento === item.nombreAlimento);
+                                        setSelectedFoodData(selectedFood);
                                         setShowForms(prevShowForms => ({
                                             ...prevShowForms,
                                             [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
@@ -208,15 +261,22 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
             </div>
         </div>
         {otroAlimento !== "" ? 
-            <CalcuForm addOrder={addOrder} alimento={otroAlimento} />
+            <CalcuFormOther addOrder={addOrder} alimento={otroAlimento} />
          : ""
         }
         {Object.entries(showForms).map(([alimento, showForm]) => {
-            if (showForm) {
-                return <CalcuForm key={alimento} addOrder={addOrder} alimento={alimento} />;
-            }
-            return null;
+        if (showForm) {
+            return <CalcuForm
+            selectedFoodData={selectedFoodData}
+            key={alimento}
+            addOrder={addOrder}
+            alimento={alimento}
+            />;
+        }
+        return null;
         })}
+
+
         </>
     )
 }
