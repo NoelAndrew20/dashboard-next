@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const Formulario = ({ jsonFile, onSubmit }) => {
   const [formData, setFormData] = useState({});
@@ -74,12 +75,13 @@ const Formulario = ({ jsonFile, onSubmit }) => {
 
   return (
     <div key={formKey}>
+      <button type="button" class="transition hover:rounded-md hover:bg-orange-300" className="text-white border-blue-500 rounded-md focus:outline-none" onClick={handleFormReload}><img src={"/images/svg/update.svg"} width={20} height={20} ></img></button>
       {Object.keys(jsonDescription).map((key) => (
         <div key={key}>
           <label className='text-black'>
             {key}:
             <input
-              className='text-black bg-slate-300 px-3 py-2 w-full text-lg rounded-md focus:outline-none'
+              className='hover:border-2 hover:border-orange-200 mb-5 text-black bg-orange-50  px-3 py-2 w-full text-lg rounded-md focus:outline-none'
               type="text"
               name={key}
               value={formData[key] || ''}
@@ -90,8 +92,7 @@ const Formulario = ({ jsonFile, onSubmit }) => {
         </div>
         
       ))}
-       <button type="button" className="bg-blue-500 text-white border-blue-500 px-3 py-2 rounded-md focus:outline-none" onClick={handleFormReload}>Recargar Formulario</button>
-      <button type="submit" className="bg-red-900 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none" onClick={guardardatosjson}>Listo</button>
+      <button type="submit" className="hover:text-orange-300 hover:border-2 hover:border-orange-300 hover:bg-red-900 bg-orange-300 text-red-900 mt-5 py-2 px-3 py-2 rounded-md focus:outline-none" onClick={guardardatosjson}>Listo</button>
     </div>
   );
 };
