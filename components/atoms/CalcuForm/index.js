@@ -1,6 +1,6 @@
 import { useDarkMode } from "@/context/DarkModeContext";
-import { useState } from "react";
-const CalcuForm = ({addOrder, alimento, selectedFoodData, setSelectedFoodData}) => {
+import { useEffect, useState } from "react";
+const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodData, setSelectedFoodData, dataFinal, setDataFinal}) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const entriesPerPage = 10;
     const [currentPage, setCurrentPage] = useState(1);
@@ -13,12 +13,39 @@ const CalcuForm = ({addOrder, alimento, selectedFoodData, setSelectedFoodData}) 
         precio: '',
         precioVariable: '',
       });
-    const [total, setTotal] = useState("")
+    const [totalProte, setTotalProte] = useState("");
+    const [totalPrecio, setTotalPrecio] = useState("");
+    const [lotes, setLotes] = useState([]);
 
+    const agregarLote = (e) => {
+      e.preventDefault();
+      const nuevoLote = {
+        totalProte,
+        totalPrecio,
+      };
+      setDataCalculator((prevLotes) => [...prevLotes, nuevoLote]);
+      setDataFinal((prevData) => [...prevData, nuevoLote]);
+    };
+    
+
+    const calculateTotalProte = () => {
+      let value;
+      value = formData.proteina * formData.cantidad;
+      setTotalProte(value);
+    }
+    const calculateTotalPrecio = () => {
+      let value;
+      value = formData.precio * formData.cantidad;
+      setTotalPrecio(value)
+    }
+    useEffect(() =>{
+      calculateTotalPrecio();
+      calculateTotalProte();
+    })
+  
     return(
         <form className={`${isDarkMode ? "edit-modal-d" : "edit-modal" } bg-white p-4 rounded shadow-md mt-10`}>
         <h2 className="text-lg">Generar calculo: <span className="text-[#D4AF37]">{alimento}</span></h2>
-        {console.log(selectedFoodData)}
         <div>    
           {selectedFoodData && (
 
@@ -85,10 +112,14 @@ const CalcuForm = ({addOrder, alimento, selectedFoodData, setSelectedFoodData}) 
               required
             />
           </div>
+        </div> 
+        <div className="flex pt-5 justify-center text-lg bold">
+          <h2>Total de proteina: {isNaN(totalProte) ? 0 : totalProte}</h2>
         </div>
         <div className="flex pt-5 justify-center text-lg bold">
-          <h2>Total: {total}</h2>
+          <h2>Total de precio: {isNaN(totalPrecio) ? 0 : totalPrecio}</h2>
         </div>
+        <button  className="button" onClick={agregarLote}>Agregar al total</button>
       </form>
     )
 }
