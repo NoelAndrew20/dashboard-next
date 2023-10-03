@@ -76,47 +76,61 @@ const ChatWindow = () => {
                   <Formulario jsonFile="requisitos_2" closeModal={cerrarModal}/>
               </Modal></div> 
             <form className='max-w-xl w-full'>
-              <textarea
+                <div className='grid justify-items-center bg-orange-300 rounded-md text-lg text-black'>
+                {json.answer === 'Pensando..' ? (
+                    <img
+                      src="/images/CerdoChido.gif"
+                      width={150}
+                      height={150}
+                      alt="gif"
+                      className="mr-2"
+                    />
+                  ) : json.answer === 'Puedes Abrir el cuestionario' ? (
+                    <Image
+                      src="/images/Cerdocomiendo.gif"
+                      width={150}
+                      height={150}
+                      alt="pig"
+                      className="mr-2"
+                    />
+                  ) : json.answer.includes('Error')?(
+                    <Image
+                      src="/images/Cerdomorido.gif"
+                      width={150}
+                      height={150}
+                      alt="pig"
+                      className="mr-2"
+                    />
+                  ): json.answer === 'Esperando' ? (
+                    <Image
+                      src="/images/Cerdomimido1.gif"
+                      width={150}
+                      height={150}
+                      alt="pig"
+                      className="mr-2"
+                    />
+                  ): (
+                    <Image
+                      src="/images/CerdoChido.png"
+                      width={150}
+                      height={150}
+                      alt="pig"
+                      className="mr-2"
+                    />
+                  )}<p>Constanza: {json.answer}</p>
+                </div>
+                <textarea
                 id="message-input"
                 type="text"
                 placeholder="Escribe tu mensaje..."
-                className='text-black bg-slate-300 px-3 py-2 w-full text-lg rounded-md focus:outline-none'
+                className='text-black mt-5 bg-slate-300 px-3 py-2 w-full text-lg rounded-md focus:outline-none'
                 value={message} // Establece el valor del textarea según el estado
                 onChange={handleChange} // Captura los cambios en el textarea
               ></textarea>
-              <div>
-                
-                <button className="bg-red-900 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none" onClick={abrirModal}>Abrir Modal</button>
+              <div className='grid justify-items-left ml-60'>
+                <button className="flex bg-red-900 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none" onClick={abrirModal}><img src={"/images/svg/form.svg"} width={20} height={20} ></img>Formulario</button>
+                <button className="bg-red-900 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none" onClick={handleSubmit}>Enviar</button>
               </div>
-              <button className="bg-red-900 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none" onClick={handleSubmit}>Enviar</button>
-              
-                <div className='mr-5 flex bg-orange-300 rounded-md text-lg text-black'>
-                {json.answer === 'Pensando..' ? (
-    <img
-      src="/images/CerdoChido.gif"
-      width={100}
-      height={100}
-      alt="gif"
-      className="mr-2"
-    />
-  ) : json.answer === 'Puedes Abrir el cuestionario' ? (
-    <Image
-      src="/images/Cerdocomiendo.gif"
-      width={100}
-      height={100}
-      alt="pig"
-      className="mr-2"
-    />
-  ) : (
-    <Image
-      src="/images/CerdoChido.png"
-      width={100}
-      height={100}
-      alt="pig"
-      className="mr-2"
-    />
-  )}<p>Constanza: {json.answer}</p>
-                </div>
             </form>
           </div>
         </div>
