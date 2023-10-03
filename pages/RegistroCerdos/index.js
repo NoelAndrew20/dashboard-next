@@ -48,7 +48,7 @@ const RegistroCerdos = ({ title, description, image }) => {
                         setData={setData} 
                         closeModal={closeModal}/>
                     </Modal>
-                    <button className="button" onClick={openModal}>Agregar usuario</button>
+                    <button className="button" onClick={openModal}>Agregar Cerdo</button>
                 </div>
             </div>
         </div>
