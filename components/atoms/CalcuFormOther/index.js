@@ -35,15 +35,27 @@ const CalcuFormOther = ({ alimento }) => {
                 precioVariableV: precioVariableV,
             };
 
-
             const newData = [...data, newOrder]; //arregla el nuevo arreglo al arreglo que viene del back
             setData(newData);
+            //console.log(newData);
             setNombreAlimentoV("");
             setTipoV("");
             setProteinaV("");
             setPrecioV("");
             setPrecioVariableV("");
             setSuccessMessage('Orden guardada exitosamente');
+
+            const axios = require("axios");
+                const apiUrl = 'http://localhost:3081/addAlimento';
+                axios.post(apiUrl, newData)
+                .then(response => {
+                    console.log("Respuesta de la API:", response.data);
+                })
+                .catch(error => {
+                    console.error("Error al enviar la solicitud:", error);
+                });
+
+
             setErrorMessage("");
             console.log(data);
 
@@ -57,7 +69,7 @@ const CalcuFormOther = ({ alimento }) => {
         }
       };
       useEffect(() => {
-        console.log(data)
+       // console.log(data)
       })
     return(
     <form className={`${isDarkMode ? "edit-modal-d" : "edit-modal" } bg-white p-4 rounded shadow-md mt-10`}>

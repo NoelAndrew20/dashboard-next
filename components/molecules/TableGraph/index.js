@@ -26,40 +26,9 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [selectedFoodData, setSelectedFoodData] = useState(); // Estado para almacenar los datos del alimento seleccionado
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [ dataAux, setDataAux ] = useState([
-        {id: "65159F7913c9cfc79957544e",
-        nombreAlimento: "Maíz amarillo",
-        tipo: 0,
-        proteina: 7.5,
-        precio: 7.5,
-        precioVariable: 8.25
-        },
-        {id: "45645",
-        nombreAlimento: "Sorgo",
-        tipo: 1,
-        proteina: 52,
-        precio: 7.8,
-        precioVariable: 8.16
-        }
-    ])
-    const [dataAuxComplemento, setDataAuxComplemento] = useState([
-        {id: "65159F7913c9cfc79957544e",
-        nombreAlimento: "Pasta de soya",
-        tipo: 0,
-        proteina: 7.5,
-        precio: 7.5,
-        precioVariable: 8.25
-        }
-    ])
-    const [dataAuxComplemento2, setDataAuxComplemento2] = useState([
-        {id: "65159F7913c9cfc79957544e",
-        nombreAlimento: "Pasta de soya",
-        tipo: 0,
-        proteina: 7.5,
-        precio: 7.5,
-        precioVariable: 8.25
-        }
-    ])
+    const [ dataAux, setDataAux ] = useState([])
+    const [dataAuxComplemento, setDataAuxComplemento] = useState([])
+    const [dataAuxComplemento2, setDataAuxComplemento2] = useState([])
     const axios = require('axios');
     const openModal = () => {
         setIsModalOpen(true);
@@ -72,8 +41,8 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
         axios.get('http://localhost:3081/getAllalimentot0')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
+            setDataAux(jsonData)
             setData(jsonData);
-            console.log(jsonData)
         })
         .catch(error => {
             console.error(error);
@@ -85,7 +54,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
         .then(response => {
             const jsonData = response.data;
             setComplementoData(jsonData);
-            console.log(jsonData)
+            setDataAuxComplemento(jsonData);
         })
         .catch(error => {
             console.error(error);
@@ -97,12 +66,13 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
         .then(response => {
             const jsonData = response.data;
             setComplementoData2(jsonData);
-            console.log(jsonData);
+            setDataAuxComplemento2(jsonData);
         })
         .catch(error => {
             console.error(error);
         });
     }, []);
+
     
 
     const addOrder = async () => { //Crea el arrelo general
@@ -203,7 +173,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                             />
                         </div>
                     </div>                      
-                    <button className="button" onClick={openModal}>Agregar compra</button>
+                    <button className="button" onClick={openModal}>Agregar alimento</button>
                 </div>
             </div>
             <div className="w-1/3">

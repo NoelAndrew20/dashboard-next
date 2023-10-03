@@ -15,6 +15,7 @@ const Graphicator = ({ title, description, image }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [dataOrder, setDataOrder] = useState([])
     const [data, setData] = useState([]);
+    const [data2, setData2] = useState([]);
     const [dataGraph, setDataGraph] = useState([]);
 
     const openModal = () => {
@@ -43,6 +44,23 @@ const Graphicator = ({ title, description, image }) => {
             console.error(error);
           });
       }, []);
+
+      useEffect(() => {
+        axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+          .then(response => {
+            const jsonData = response.data; // Datos de respuesta en formato JSON
+            setData2(jsonData);
+            /*jsonData.forEach(solicitud => {
+              solicitud.lotes.forEach(lote => {
+                console.log(lote.nombreAlimento);
+              });
+            });*/
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }, []);
+
 
 
     return (
@@ -84,7 +102,7 @@ const Graphicator = ({ title, description, image }) => {
                     solo crea un const [dataSolicitud, setDataSolicitud] = useState([])
                     para manejar la data y cambias data={data} por data={dataSolicitud}
                     en <TableSolicitud/>*/}
-                    <TableSolicitud data={data} setData={setData}/>
+                    <TableSolicitud data={data2} setData={setData2}/>
                 </div>
             </div>
         </div>
