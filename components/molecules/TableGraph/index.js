@@ -29,6 +29,9 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [ dataAux, setDataAux ] = useState([])
     const [dataAuxComplemento, setDataAuxComplemento] = useState([])
     const [dataAuxComplemento2, setDataAuxComplemento2] = useState([])
+    const [dataCalculator, setDataCalculator] = useState([]);
+    const [dataFinal, setDataFinal] = useState([]);
+
     const axios = require('axios');
     const openModal = () => {
         setIsModalOpen(true);
@@ -37,6 +40,19 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+    const sumarTotalProte = () => {
+        const total = dataFinal.reduce((accumulator, item) => accumulator + item.totalProte, 0);
+        return total;
+      };
+    
+      const sumarTotalPrecio = () => {
+        const total = dataFinal.reduce((accumulator, item) => accumulator + item.totalPrecio, 0);
+        return total;
+      };
+    useEffect (() => {
+        console.log("calcu",dataFinal)
+
+    })
     useEffect(() => {
         axios.get('http://localhost:3081/getAllalimentot0')
         .then(response => {
@@ -103,7 +119,6 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
             setPrecioVariableV("");
             setSuccessMessage('Orden guardada exitosamente');
             setErrorMessage("");
-            console.log(dataOrder);
 
           } else {
             setErrorMessage('Por favor completa los cambios');
@@ -188,7 +203,6 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                                     value={item.nombreAlimento}
                                     onChange={() => {
                                         const selectedFood = dataAuxComplemento.find(food => food.nombreAlimento === item.nombreAlimento);
-                                        {console.log(selectedFood)}
                                         setSelectedFoodData(selectedFood);
                                         setShowForms(prevShowForms => ({
                                             ...prevShowForms,
@@ -237,16 +251,28 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
         {Object.entries(showForms).map(([alimento, showForm]) => {
         if (showForm) {
             return <CalcuForm
+            dataCalculator={dataCalculator}
+            setDataCalculator={setDataCalculator}
             selectedFoodData={selectedFoodData}
             key={alimento}
             addOrder={addOrder}
             alimento={alimento}
+            dataFinal={dataFinal}
+            setDataFinal={setDataFinal}
             />;
         }
         return null;
         })}
-
-
+        <div className="flex justify-center">
+            <div className="pt-5">
+                <div>
+                    Total de proteina por todos los lotes: <span className="font-bold">{sumarTotalProte()}</span>
+                </div>
+                <div>
+                    Total de precio por todos los lotes: <span className="font-bold">{sumarTotalPrecio()}</span>
+                </div>
+            </div>
+        </div>
         </>
     )
 }
