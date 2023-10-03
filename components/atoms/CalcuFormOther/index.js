@@ -1,6 +1,6 @@
 import { useDarkMode } from "@/context/DarkModeContext";
-import { useState } from "react";
-const CalcuFormOther = ({addOrder, alimento}) => {
+import { useEffect, useState } from "react";
+const CalcuFormOther = ({ alimento }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [showEditModal, setShowEditModal] = useState(false);
     const entriesPerPage = 10;
@@ -19,6 +19,46 @@ const CalcuFormOther = ({addOrder, alimento}) => {
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [proteinaObjV, setProteinaObjV] = useState("");
+    const [data, setData] = useState("");
+    const addOrder = async () => { //Crea el arrelo general
+        try {
+          if (
+            nombreAlimentoV !== "" && tipoV !== "" && proteinaV != ""
+            && precioV  !== "" && precioVariableV  !== ""
+            //verifica que lo required no este vacio
+          ) {
+            const newOrder = { //crea el nuevo arreglo
+                nombreAlimentoV: nombreAlimentoV,
+                tipoV: tipoV,
+                proteinaV: proteinaV,
+                precioV: precioV,
+                precioVariableV: precioVariableV,
+            };
+
+
+            const newData = [...data, newOrder]; //arregla el nuevo arreglo al arreglo que viene del back
+            setData(newData);
+            setNombreAlimentoV("");
+            setTipoV("");
+            setProteinaV("");
+            setPrecioV("");
+            setPrecioVariableV("");
+            setSuccessMessage('Orden guardada exitosamente');
+            setErrorMessage("");
+            console.log(data);
+
+          } else {
+            setErrorMessage('Por favor completa los cambios');
+            setSuccessMessage("");
+          }
+        } catch (error) {
+          setErrorMessage('Hubo un error al guardar el usuario');
+          setSuccessMessage("");
+        }
+      };
+      useEffect(() => {
+        console.log(data)
+      })
     return(
     <form className={`${isDarkMode ? "edit-modal-d" : "edit-modal" } bg-white p-4 rounded shadow-md mt-10`}>
         <h2 className="text-lg">Generar calculo: <span className="text-[#D4AF37]">{alimento}</span></h2>
