@@ -16,7 +16,7 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
       });
     const [totalProte, setTotalProte] = useState("");
     const [totalPrecio, setTotalPrecio] = useState("");
-
+    const [totalPrecioVariable, setTotalPrecioVariable] = useState("");
 
     const [lotes, setLotes] = useState([]);
 
@@ -25,6 +25,7 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
       const nuevoLote = {
         totalProte,
         totalPrecio,
+        totalPrecioVariable
       };
       setDataCalculator((prevLotes) => [...prevLotes, nuevoLote]);
       setDataFinal((prevData) => [...prevData, nuevoLote]);
@@ -38,19 +39,18 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
     }
     const calculateTotalPrecio = () => {
       let value;
-      let x;
-      let y;
-
-      x = formData.precio * formData.cantidad;
-      y = formData.precioVariable * formData.cantidad;
-
-      setTotalX(x);
-      setTotalY(y);
-      setTotalPrecio(x)
+      value = formData.precio * formData.cantidad;
+      setTotalPrecio(value)
+    }
+    const calculatePrecioVariable = () => {
+      let value;
+      value = formData.precioVariable * formData.cantidad;
+      setTotalPrecioVariable(value)
     }
     useEffect(() =>{
       calculateTotalPrecio();
       calculateTotalProte();
+      calculatePrecioVariable();
     })
   
     return(
