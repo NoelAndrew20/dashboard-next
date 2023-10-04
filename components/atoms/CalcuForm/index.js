@@ -43,10 +43,10 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
 
       x = formData.precio * formData.cantidad;
       y = formData.precioVariable * formData.cantidad;
-      value = x - y;
+
       setTotalX(x);
       setTotalY(y);
-      setTotalPrecio(value)
+      setTotalPrecio(x)
     }
     useEffect(() =>{
       calculateTotalPrecio();
