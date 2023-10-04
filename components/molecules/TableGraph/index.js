@@ -274,7 +274,6 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                     Total de proteina por todos los lotes: <span className="font-bold">{sumarTotalProte()}</span>
                 </div>
                 <div>
-                    Total de precio por todos los lotes: <span className="font-bold">{sumarTotalPrecio()}</span>
                     <p>El precio va de: <span className="font-bold">{totalX}</span> a <span className="font-bold">{totalY}</span></p>
                 </div>
             </div>
