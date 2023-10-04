@@ -31,6 +31,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [dataAuxComplemento2, setDataAuxComplemento2] = useState([])
     const [dataCalculator, setDataCalculator] = useState([]);
     const [dataFinal, setDataFinal] = useState([]);
+
     const [totalX, setTotalX] = useState(0);
     const [totalY, setTotalY] = useState(0);
     const axios = require('axios');
@@ -48,6 +49,10 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     
       const sumarTotalPrecio = () => {
         const total = dataFinal.reduce((accumulator, item) => accumulator + item.totalPrecio, 0);
+        return total;
+      };
+      const sumarTotalPrecioVariable = () => {
+        const total = dataFinal.reduce((accumulator, item) => accumulator + item.totalPrecioVariable, 0);
         return total;
       };
     useEffect (() => {
@@ -274,7 +279,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                     Total de proteina por todos los lotes: <span className="font-bold">{sumarTotalProte()}</span>
                 </div>
                 <div>
-                    <p>El precio va de: <span className="font-bold">{totalX}</span> a <span className="font-bold">{totalY}</span></p>
+                    <p>El precio va de: <span className="font-bold">{sumarTotalPrecio()}</span> a <span className="font-bold">{sumarTotalPrecioVariable()}</span></p>
                 </div>
             </div>
         </div>
