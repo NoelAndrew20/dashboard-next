@@ -31,7 +31,8 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [dataAuxComplemento2, setDataAuxComplemento2] = useState([])
     const [dataCalculator, setDataCalculator] = useState([]);
     const [dataFinal, setDataFinal] = useState([]);
-
+    const [totalX, setTotalX] = useState(0);
+    const [totalY, setTotalY] = useState(0);
     const axios = require('axios');
     const openModal = () => {
         setIsModalOpen(true);
@@ -259,6 +260,10 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
             alimento={alimento}
             dataFinal={dataFinal}
             setDataFinal={setDataFinal}
+            totalX={totalX}
+            setTotalX={setTotalX}
+            totalY = {totalY} 
+            setTotalY = {setTotalY}
             />;
         }
         return null;
@@ -270,6 +275,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                 </div>
                 <div>
                     Total de precio por todos los lotes: <span className="font-bold">{sumarTotalPrecio()}</span>
+                    <p>El precio va de: <span className="font-bold">{totalX}</span> a <span className="font-bold">{totalY}</span></p>
                 </div>
             </div>
         </div>

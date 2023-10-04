@@ -1,6 +1,7 @@
 import { useDarkMode } from "@/context/DarkModeContext";
 import { useEffect, useState } from "react";
-const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodData, setSelectedFoodData, dataFinal, setDataFinal}) => {
+const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodData, setSelectedFoodData, dataFinal, setDataFinal, totalX, setTotalX, totalY, setTotalY
+  }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const entriesPerPage = 10;
     const [currentPage, setCurrentPage] = useState(1);
@@ -15,6 +16,8 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
       });
     const [totalProte, setTotalProte] = useState("");
     const [totalPrecio, setTotalPrecio] = useState("");
+
+
     const [lotes, setLotes] = useState([]);
 
     const agregarLote = (e) => {
@@ -30,12 +33,19 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
 
     const calculateTotalProte = () => {
       let value;
-      value = formData.proteina * formData.cantidad;
+      value = formData.proteina * formData.cantidad / 1000;
       setTotalProte(value);
     }
     const calculateTotalPrecio = () => {
       let value;
-      value = formData.precio * formData.cantidad;
+      let x;
+      let y;
+
+      x = formData.precio * formData.cantidad;
+      y = formData.precioVariable * formData.cantidad;
+      value = x - y;
+      setTotalX(x);
+      setTotalY(y);
       setTotalPrecio(value)
     }
     useEffect(() =>{
