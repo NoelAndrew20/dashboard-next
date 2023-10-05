@@ -77,7 +77,7 @@ const ChatWindow = () => {
               </Modal></div> 
             <form className='max-w-xl w-full'>
                 <div className='grid justify-items-center bg-orange-300 rounded-md text-lg text-black'>
-                {json.answer === 'Pensando..' ? (
+                {/* {json.answer === 'Pensando..' ? (
                     <img
                       src="/images/CerdoChido.gif"
                       width={150}
@@ -109,7 +109,7 @@ const ChatWindow = () => {
                       alt="pig"
                       className="mr-2"
                     />
-                  ): (
+                  ): ( */}
                     <Image
                       src="/images/CerdoChido.png"
                       width={150}
@@ -117,7 +117,8 @@ const ChatWindow = () => {
                       alt="pig"
                       className="mr-2"
                     />
-                  )}<p>Constanza: {json.answer}</p>
+                  {/* )} */}
+                  {/* <p>Constanza: {json.answer}</p> */}
                 </div>
                 <textarea
                 id="message-input"
