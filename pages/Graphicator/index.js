@@ -17,6 +17,76 @@ const Graphicator = ({ title, description, image }) => {
     const [data, setData] = useState([]);
     const [data2, setData2] = useState([]);
     const [dataGraph, setDataGraph] = useState([]);
+    const [dataProveedor, seDataProveedor] = useState([
+      {
+          nombreProveedor: "Nombre del Proveedor",
+          Contacto: {
+            nombrePersona: "Nombre de la Persona de Contacto",
+            correo: "correo@ejemplo.com",
+            numeroTelefono: "+1234567890"
+          },
+          direccion: {
+            calle: "Calle Principal",
+            numero: "123",
+            colonia: "Colonia Ejemplo",
+            municipio: "Municipio Ejemplo",
+            estado: "Estado Ejemplo",
+            codigoPostal: "12345"
+          },
+          productos: [
+            {
+              nombre: "PIC Camborough",
+              precio: 50000.00
+            },
+            {
+              nombre: "PIC 337",
+              precio: 60000.00
+            },
+            {
+              nombre: "PIC 800",
+              precio: 40000.00
+            },
+            {
+              nombre: "PIC 410",
+              precio: 40000.00
+            }
+          ]
+        },
+        {
+          nombreProveedor: "Nombre del Proveedor 2",
+          Contacto: {
+            nombrePersona: "Nombre de la Persona de Contacto",
+            correo: "correo@ejemplo.com",
+            numeroTelefono: "+1234567890"
+          },
+          direccion: {
+            calle: "Calle Principal",
+            numero: "123",
+            colonia: "Colonia Ejemplo",
+            municipio: "Municipio Ejemplo",
+            estado: "Estado Ejemplo",
+            codigoPostal: "12345"
+          },
+          productos: [
+            {
+              nombre: "PIC Camborough",
+              precio: 50000.00
+            },
+            {
+              nombre: "PIC 337",
+              precio: 60000.00
+            },
+            {
+              nombre: "PIC 800",
+              precio: 40000.00
+            },
+            {
+              nombre: "PIC 410",
+              precio: 40000.00
+            }
+          ]
+        }
+      ]);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -88,6 +158,7 @@ const Graphicator = ({ title, description, image }) => {
                             <div className={`${isDarkMode ? "modal-content-d" : "modal-content " } bg-white p-4 rounded shadow-md absolute top-[50vh] left-1/2 transform -translate-x-1/2 overflow-y-auto z-50`}>
                                 <SolicitudForm 
                                     data={data} 
+                                    dataProveedor={dataProveedor}
                                     setData={setData} 
                                     closeModal={closeModal}
                                 />

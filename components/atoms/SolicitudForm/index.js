@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 
-const SolicitudForm = ({ data, setData, closeModal }) => {
+const SolicitudForm = ({ data, dataProveedor, setData, closeModal }) => {
     const [isChecked, setIsChecked] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
     const [isChecked3, setIsChecked3] = useState(false);
@@ -23,7 +23,17 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
     const [nivelEntrega, setNivelEntrega] = useState("");
     const [fechaEntrega, setFechaEntrega] = useState("");
     const [nombreZona, setNombreZona] = useState("");
+    const [proveedorSeleccionado, setProveedorSeleccionado] = useState(null);
+    const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
+    const handleProveedorChange = (event) => {
+      const selectedProveedor = dataProveedor.find(proveedor => proveedor.nombreProveedor === event.target.value);
+      setProveedorSeleccionado(selectedProveedor);
+    };
+    const handleProductoChange = (event) => {
+        const selectedProducto = proveedorSeleccionado.productos.find(producto => producto.nombre === event.target.value);
+        setProductoSeleccionado(selectedProducto);
+    };
     const agregarLote = () => { //crea los lotes que aparecen
         if (nombreAlimento && cantidad && unidad ) {
           const nuevoLote = {
@@ -106,17 +116,115 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
         <form className="form-container pt-10">
             <div className="modal-cel">
                 <div className="modal-item w-1/3">
-                        <label>Nombre del alimento</label>
+                    <label>Nombre del proveedor</label>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="proveedor" name="proveedor" onChange={handleProveedorChange} >
+                        <option value="">Selecciona un proveedor</option>
+                        {dataProveedor.map((proveedor, index) => (
+                            <option key={index} value={proveedor.nombreProveedor}>
+                                {proveedor.nombreProveedor}
+                            </option>
+                        ))}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            {proveedorSeleccionado && (
+            <div>
+            <h2>Detalles del proveedor seleccionado</h2>
+                <div className="modal-cel">
+                    <div className="modal-item w-1/3">
+                        <label>Nombre del Contacto:</label> 
                         <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                            <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="nombreAlimento" name="nombreAlimento" value={nombreAlimento} 
-                            onChange={(e) => setNombreAlimento(e.target.value)} 
-                            >
-                                <option value=""></option>
-                                <option value="maiz amarillo">Maíz Amarillo</option>
-                                <option value="sorgo">Sorgo</option>
-                                <option value="trigo">Trigo</option>
-                                <option value="otro">Otro</option>
-                            </select> 
+                            <input type="text" value={proveedorSeleccionado.Contacto.nombrePersona} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div> 
+                    <div className="modal-item w-1/3">
+                        <label>Correo del contacto:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.Contacto.correo} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                    <div className="modal-item w-1/3">
+                        <label>No. de teléfono del contacto:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.Contacto.numeroTelefono} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                </div>
+                <h2>Detalles del proveedor seleccionado</h2>
+                <div className="modal-cel">
+                    <div className="modal-item w-1/3">
+                        <label>Calle:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.direccion.calle} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                    <div className="modal-item w-1/3">
+                        <label>Número:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.direccion.numero} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                    <div className="modal-item w-1/3">
+                        <label>Colonia:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.direccion.colonia} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div className="modal-cel">
+                    <div className="modal-item w-1/3">
+                        <label>Calle:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.direccion.calle} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                    <div className="modal-item w-1/3">
+                        <label>Número:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.direccion.numero} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                    <div className="modal-item w-1/3">
+                        <label>Colonia:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.direccion.colonia} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div className="modal-cel">
+                    <div className="modal-item w-1/3">
+                        <label>Municipio:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.direccion.municipio} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                    <div className="modal-item w-1/3">
+                        <label>Estado:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.direccion.estado} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                    <div className="modal-item w-1/3">
+                        <label>Código Postal:</label>
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <input type="text" value={proveedorSeleccionado.direccion.codigoPostal} className={isDarkMode ? "modal-input-d" : "modal-input"} disabled/>
+                        </div>
+                    </div>
+                </div>
+                <label htmlFor="productos">Selecciona un producto:</label>
+                <div className="modal-cel">
+                    <div className="modal-item w-1/3">
+                        <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                            <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="productos" name="productos" onChange={(e)=>{handleProductoChange, setNombreAlimento(e.target.value)}} >
+                                <option value="">Selecciona un producto</option>
+                                {proveedorSeleccionado.productos.map((producto, index) => (
+                                <option key={index} value={producto.nombre}>
+                                    {producto.nombre}
+                                </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
                     <div className="modal-item w-1/3">
@@ -139,62 +247,46 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                        <button className="pronostico-btn" onClick={agregarLote}>Agregar lote</button>
-                        <button className="pronostico-btn" onClick={eliminarUltimoLote}>Eliminar último lote</button>
+                    <button className="pronostico-btn" onClick={agregarLote}>Agregar lote</button>
+                    <button className="pronostico-btn" onClick={eliminarUltimoLote}>Eliminar último lote</button>
                 </div>
-                <div className="flex justify-center pt-2">
-                        {lotes.length === 0 ? (
-                            ""
-                            ) : (
-                            <div>
-                                <table >
-                                    <thead>
-                                        <tr>
-                                        <th className='mr-2'>Nombre</th>
-                                        <th className='mr-2'>Cantidad</th>
-                                        <th>Unidad</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {lotes.map((lote, index) => (
-                                        <tr key={index} className="table-row">
-                                            <td>{lote.nombreAlimento}</td>
-                                            <td>{lote.cantidad}</td>
-                                            <td>{lote.unidad}</td>
-                                        </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        )}
+            </div>
+            )}
+            <div className="flex justify-center pt-2">
+                {lotes.length === 0 ? (
+                    ""
+                    ) : (
+                    <div>
+                        <table >
+                            <thead>
+                                <tr>
+                                <th className='mr-2'>Nombre</th>
+                                <th className='mr-2'>Cantidad</th>
+                                <th>Unidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {lotes.map((lote, index) => (
+                                <tr key={index} className="table-row">
+                                    <td>{lote.nombreAlimento}</td>
+                                    <td>{lote.cantidad}</td>
+                                    <td>{lote.unidad}</td>
+                                </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                    <div className="modal-cel pt-3">
-                        <div className="modal-item w-1/3">
-                            <div>
-                                <label htmlFor="fechaSolicitud" className="modal-label">Fecha de la solicitud:</label>
-                            </div>
-                            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                                <input type="date" id="fechaSolicitud" name="fechaSolicitud" className={isDarkMode ? "modal-input-d" : "modal-input"} value={fechaSolicitud} onChange={(event) => setFechaSolicitud(event.target.value)} required/>
-                            </div>
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <div>
-                                <label htmlFor="organizacion" className="modal-label">Organización:</label>
-                            </div>
-                            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                                <input type="text" id="organizacion" name="organizacion" className={isDarkMode ? "modal-input-d" : "modal-input"} value={organizacion} onChange={(event) => setOrganizacion(event.target.value)} required/>
-                            </div>
-                        </div>
-                        <div className="modal-item w-1/3">
-                            <div>
-                                <label htmlFor="ubicacion" className="modal-label">Ubicación:</label>
-                            </div>
-                            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                                <input type="text" id="ubicacion" name="ubicacion" className={isDarkMode ? "modal-input-d" : "modal-input"} value={ubicacion} onChange={(event) => setUbicacion(event.target.value)} required/>
-                            </div>
-                        </div>
+                )}
+            </div>
+            <div className="modal-cel pt-3">
+                <div className="modal-item w-1/3">
+                    <div>
+                        <label htmlFor="fechaSolicitud" className="modal-label">Fecha de la solicitud:</label>
                     </div>
-            <div className="modal-cel">
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="date" id="fechaSolicitud" name="fechaSolicitud" className={isDarkMode ? "modal-input-d" : "modal-input"} value={fechaSolicitud} onChange={(event) => setFechaSolicitud(event.target.value)} required/>
+                    </div>
+                </div>
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="nivelEntrega" className="modal-label">Nivel de entrega:</label>
@@ -210,35 +302,11 @@ const SolicitudForm = ({ data, setData, closeModal }) => {
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
-                        <label htmlFor="fechaEntrega" className="modal-label">Fecha aproximada de entrega:</label>
+                        <label htmlFor="nombreSolicitante" className="modal-label">Nombre del solicitante:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="date" id="fechaEntrega" name="fechaEntrega" className={isDarkMode ? "modal-input-d" : "modal-input"} value={fechaEntrega} onChange={(event) => setFechaEntrega(event.target.value)} required/>
+                        <input type="text" id="nombreSolicitante" name="nombreSolicitante" className={isDarkMode ? "modal-input-d" : "modal-input"} value={nombreSolicitante} onChange={(event) => setNombreSolicitante(event.target.value)} required/>
                     </div>
-                </div>
-                <div className="modal-item w-1/3">
-                    <div>
-                        <label htmlFor="nombreZona" className="modal-label">Nombre de zona:</label>
-                    </div>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="nombreZona" name="nombreZona" value={nombreZona} 
-                        onChange={(e) => setNombreZona(e.target.value)} 
-                        >
-                            <option value=""></option>
-                            <option value="gestacion">Gestación</option>
-                            <option value="sorgo">Maternidad</option>
-                            <option value="adaptacion cuarentena">Adaptación / Cuarentena</option>
-                            <option value="CDI">Engorda / Destete</option>
-                        </select>     
-                    </div>
-                </div>
-            </div>
-            <div className="modal-cel">
-                <div>
-                    <label htmlFor="nombreSolicitante" className="modal-label">Nombre del solicitante:</label>
-                </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                    <input type="text" id="nombreSolicitante" name="nombreSolicitante" className={isDarkMode ? "modal-input-d" : "modal-input"} value={nombreSolicitante} onChange={(event) => setNombreSolicitante(event.target.value)} required/>
                 </div>
             </div>
             <div className="flex justify-center">
