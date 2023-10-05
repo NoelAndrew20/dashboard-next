@@ -6,6 +6,7 @@ import srs from '@/public/images/icon/srs.png'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
+import Cookies from 'js-cookie';
 
 const Navigation = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -17,6 +18,12 @@ const Navigation = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    // const usuariojson = Cookies.get('userData');
+    // const userData = usuariojson ? JSON.parse(usuariojson) : null;
+    // const currentUser = userData;
+    // console.log(userData);
+
+    // console.log('Grupo usuario:',currentUser.user.grupo);
     return (
         <>
             <header className="navbar flex items-center justify-between bg-gray-700 text-white text-sm py-4 px-4">
@@ -65,21 +72,27 @@ const Navigation = () => {
                 </div>
                 <div className="side flex flex-col space-y-2 overflow-hidden" >
                     <div id="inner" className='flex flex-col space-y-2'>
+                    {/* {userData.user.grupo === 'Grupo A' && ( */}
                     <Link href="/" className={`hover:font-semibold ${currentPage === '/' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
                         </div>
                     </Link>
+                     {/* )}  */}
+                     {/* {userData.user.grupo === 'Grupo B' &&  ( */}
                     <Link href="../../RegistroUsuarios" className={`hover:font-semibold ${currentPage === '/RegistroUsuarios' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/user.svg"} width={20} height={20} alt="user" className="mr-2" /> Usuarios
                         </div>
                     </Link>
+                    {/* )} */}
+                    {/* {userData.user.grupo === 'Grupo B' &&( */}
                     <Link href="../../RegistroTransporte" className={`hover:font-semibold ${currentPage === '/RegistroTransporte' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/truck.svg"} width={20} height={20} alt="transporte" className="mr-2" />Transportes
                         </div>
                     </Link>
+                    {/* )}  */}
                     <Link href="../../Medicamento" className={`hover:font-semibold ${currentPage === '/Medicamento' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento

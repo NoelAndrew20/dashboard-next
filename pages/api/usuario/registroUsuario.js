@@ -1,14 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Import the cors module
-
 const app = express();
 app.use(cors());
-
 app.use(express.json());
-
-//const mongoUrl = "mongodb://192.168.100.8:27017/proyectoSRS";
-const mongoUrl = "mongodb://192.168.100.10:27017/C3_LaPurisima";
+const config = require('../../../config.json');
+const mongoUrl = config.mongodesarrollo;
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
@@ -18,22 +15,49 @@ mongoose.connect(mongoUrl, {
 })
 .catch((e) => console.log(e));
 
-require("../schema/schemaUsuario.js");
-const Usuario = mongoose.model("Usuario");
+const db = mongoose.connection.useDb("C3_LaPurisima");
+db.on('error', console.error.bind(console, 'Error al conectar a la base de datos:'));
+db.once('open', () => {
+  console.log('Conexión exitosa a la base de datos.');
+});
 
-/*app.get("/getAllUsuario", async (req, res) => {
-  try {
-    const allUsuario = await Usuario.find({});
-    res.send({ status: "ok", data: allUsuario });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ status: "error", message: "Internal server error" });
+const UsuarioSchema = new mongoose.Schema(
+  {
+    usuario: String,
+    nombre: String,
+    apellido: String,
+    puesto: String,
+    grupo: String,
+    password: String,
+    email: String, 
+    fechaNacimiento: String, 
+    genero: String, 
+    horario: String, 
+    fechaContratacion: String, 
+    departamento: String,
+    status: String,
+    contacto: String, 
+    salario: String,
+    calle: String,
+    ciudad: String, 
+    estado: String,
+    cp: String, 
+    id: String, 
+    nombreGrupo: String,
+},
+  {
+    //collection: 'usuarios', // Nombre de la colección en la base de datos
+    collection: 'usuario',
+    versionKey: false,
   }
-});*/
+);
+
+const Usuario = db.model('usuario', UsuarioSchema);
+
 
 app.get("/getAllUsuario", async (req, res) => {
   try {
-    const activeUsuarios = await Usuario.find({ status: "Activo" })
+    const activeUsuarios = await Usuario.find({ email: "usuario8@correo.com" })
     .sort({ fechaContratacion: -1 }) 
     .limit(30);
     res.send({ status: "ok", data: activeUsuarios });
@@ -109,7 +133,7 @@ app.put('/editUsuario/:fechaContratacion', async (req, res) => {
 
 const PORT = 3020;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log('Server is running on port ',{PORT});
 });
 
 
