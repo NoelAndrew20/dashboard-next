@@ -86,10 +86,9 @@ const TableAlimentos = ({ data, setData }) => {
             <table className={isDarkMode ? "table-container-d" : "table-container"}>
                 <thead>
                     <tr>
-                        <th>Fecha de entrega</th>
+                        <th>Fecha de solicitud</th>
                         <th>Nivel</th>
                         <th>Nombre del solicitante</th>
-                        <th>Zona</th>
                         <th>Alimentos</th>
                         {router.pathname === "/RegistroAlimentos"
                         ?
@@ -106,10 +105,9 @@ const TableAlimentos = ({ data, setData }) => {
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-[#F1CD96]')
                         }`}
                     >       
-                        <td>{item.fechaEntrega}</td>
+                        <td>{item.fechaSolicitud}</td>
                         <td>{item.nivelEntrega}</td>
                         <td>{item.nombreSolicitante}</td>
-                        <td>{item.nombreZona}</td>
                         <td>
                             <ul>
                                 {item.lotes?.map((lote, subIndex) => (

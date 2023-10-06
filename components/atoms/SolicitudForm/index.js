@@ -62,17 +62,12 @@ const SolicitudForm = ({ data, dataProveedor, setData, closeModal }) => {
     const addOrder = async () => { //Crea el arrelo general
         try {
           if (
-            nivelEntrega !== "" && fechaEntrega !== "" && nombreZona != ""
-            && ubicacion  !== "" && organizacion  !== "" && fechaSolicitud !== ""
+            nivelEntrega !== "" && nombreSolicitante  !== "" && fechaSolicitud !== ""
             //verifica que lo required no este vacio
           ) {
             const newPerson = { //crea el nuevo arreglo
                 nivelEntrega: nivelEntrega,
-                fechaEntrega: fechaEntrega,
-                nombreZona: nombreZona,
                 nombreSolicitante: nombreSolicitante,
-                ubicacion: ubicacion,
-                organizacion: organizacion,
                 fechaSolicitud: fechaSolicitud
             };
 
@@ -81,12 +76,8 @@ const SolicitudForm = ({ data, dataProveedor, setData, closeModal }) => {
             newPerson.lotes = lotes //anida el arreglo creado en la tabla
             setData(newData);
             setNivelEntrega("");
-            setFechaEntrega("");
-            setNombreZona("");
             setNombreSolicitante("");
             setFechaSolicitud("");
-            setOrganizacion("");
-            setUbicacion("");
             setSuccessMessage('Orden guardada exitosamente');
             setErrorMessage("");
           } else {
