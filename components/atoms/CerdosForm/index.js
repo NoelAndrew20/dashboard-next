@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 
-const CerdosForm = ({ data, setData, closeModal }) => {
+const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [inputProveedor, setInputProveedor] = useState("");
     const [inputSede, setInputSede] = useState("");
@@ -13,7 +13,13 @@ const CerdosForm = ({ data, setData, closeModal }) => {
     const [lotes, setLotes] = useState([]);
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [selectedProveedor, setSelectedProveedor] = useState(null);
 
+    const handleProveedorChange = (event) => {
+        const selectedNombreProveedor = event.target.value;
+        const selectedProveedorData = dataProveedor.find((proveedor) => proveedor.nombreProveedor === selectedNombreProveedor);
+        setSelectedProveedor(selectedProveedorData);
+      };
     const agregarLote = () => { //crea los lotes que aparecen
         if (cerdos && cantidad) {
           const nuevoLote = {
@@ -86,38 +92,115 @@ const CerdosForm = ({ data, setData, closeModal }) => {
                         <label htmlFor="username" className="modal-label">Proveedor:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <select id="proveedor" name="proveedor" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputProveedor} onChange={(event) => setInputProveedor(event.target.value)} required>
-                            <option value=""></option>
-                            <option value="p1">P1</option>
-                            <option value="p2">P2</option>
-                            <option value="p3">P3</option>
-                            <option value="p4">P4</option>
+                        <select id="proveedor" name="proveedor" className={isDarkMode ? "modal-input-d" : "modal-input"}  onChange={handleProveedorChange}>
+                            <option value="">Selecciona un proveedor</option>
+                            {dataProveedor?.map((proveedor) => (
+                            <option key={proveedor.nombreProveedor} value={proveedor.nombreProveedor}>
+                                {proveedor.nombreProveedor}
+                            </option>
+                            ))}
                         </select>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
-                    <div>
-                        <label htmlFor="password" className="modal-label">Sede:</label>
-                    </div>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <select id="sede" name="sede" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputSede} onChange={(event) => setInputSede(event.target.value)} required>
-                            <option value=""></option>
-                            <option value="sede 1">Sede 1</option>
-                            <option value="sede 2">Sede 2</option>
-                            <option value="sede 3">Sede 3</option>
-                            <option value="sede 4">Sede 4</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="modal-item w-1/3">
-                    <div >
-                        <label htmlFor="nombreSolicitante" className="modal-label">Nombre del solicitante:</label>
-                    </div>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="nombreSolicitante" name="nombreSolicitante" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputSolicitante} onChange={(event) => setInputSolicitante(event.target.value)} />
-                    </div>
                 </div>
             </div>
+            {selectedProveedor && (
+                        <>
+                        <div className="modal-cel"> 
+                            <div className="modal-item w-1/3">
+                                <div >
+                                    <label htmlFor="nombreContacto" className="modal-label">Nombre del contacto:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="nombreContacto" name="nombreContacto" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.Contacto.nombrePersona} disabled/>
+                                </div>
+                            </div>
+                            <div className="modal-item w-1/3">
+                                <div >
+                                    <label htmlFor="correoContacto" className="modal-label">Correo del contacto:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="correoContacto" name="correoContacto" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.Contacto.correo} disabled/>
+                                </div>
+                            </div>
+                            <div className="modal-item w-1/3">
+                                <div >
+                                    <label htmlFor="telContacto" className="modal-label">Tel. del contacto:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="telContacto" name="telContacto" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.Contacto.numeroTelefono} disabled/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-cel">
+                            <div className="modal-item w-1/3">
+                                <div>
+                                    <label htmlFor="calle" className="modal-label">Calle:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="calle" name="calle" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.direccion.calle} disabled/>
+                                </div>
+                            </div>
+                            <div className="modal-item w-1/3">
+                                <div>
+                                    <label htmlFor="calle" className="modal-label">Número:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="numero" name="numero" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.direccion.numero} disabled/>
+                                </div>
+                            </div>
+                            <div className="modal-item w-1/3">
+                                <div>
+                                    <label htmlFor="colonia" className="modal-label">Colonia:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="colonia" name="colonia" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.direccion.colonia} disabled/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-cel">
+                            <div className="modal-item w-1/3">
+                                <div>
+                                    <label htmlFor="municipio" className="modal-label">Municipio:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="municipio" name="municipio" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.direccion.municipio} disabled/>
+                                </div>
+                            </div>
+                            <div className="modal-item w-1/3">
+                                <div>
+                                    <label htmlFor="estado" className="modal-label">Estado:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="estado" name="estado" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.direccion.estado} disabled/>
+                                </div>
+                            </div>
+                            <div className="modal-item w-1/3">
+                                <div>
+                                    <label htmlFor="codigoPostal" className="modal-label">Codigo postal:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="codigoPostal" name="codigoPostal" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.direccion.codigoPostal} disabled/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-cel">
+                            <div className="modal-item w-1/3">
+                                <div>
+                                    <label htmlFor="sede" className="modal-label">Sede:</label>
+                                </div>
+                                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                                    <input type="text" id="sede" name="sede" className={isDarkMode ? "modal-input-d" : "modal-input"} value={selectedProveedor.sede} disabled/>
+                                </div>
+                            </div>
+                            <div className="modal-item w-1/3"></div>
+                            <div className="modal-item w-1/3"></div>
+                        </div>
+              
+                    </>
+
+                )}
             <div className="modal-cel">
                 <div className="modal-item w-1/3">
                     <div>
