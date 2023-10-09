@@ -11,7 +11,46 @@ const axios = require('axios');
 const RegistroCerdos = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const [dataProveedor, seDataProveedor] = useState([
+        {
+            nombreProveedor: "hola",
+              Contacto: {
+                nombrePersona: "nombre",
+                correo: "nombre@mail.com",
+                numeroTelefono: 22445522
+              },
+              direccion: {
+                calle: "holaa",
+                numero: "7",
+                colonia: "4",
+                municipio: "5",
+                estado: "5",
+                codigoPostal: "5"
+              },
+              sede: "hola",
+              nombreSolicitante: "hola",
+              granja: "hola",
+            } ,
+            {
+                nombreProveedor: "hola2",
+                  Contacto: {
+                    nombrePersona: "nombre",
+                    correo: "nombre@mail.com",
+                    numeroTelefono: 22445522
+                  },
+                  direccion: {
+                    calle: "holaa",
+                    numero: "7",
+                    colonia: "4",
+                    municipio: "5",
+                    estado: "5",
+                    codigoPostal: "5"
+                  },
+                  sede: "hola",
+                  nombreSolicitante: "hola",
+                  granja: "hola",
+                } 
+    ])
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -45,6 +84,7 @@ const RegistroCerdos = ({ title, description, image }) => {
                     <Modal isOpen={isModalOpen} onClose={closeModal}>
                         <CerdosForm 
                         data={data} 
+                        dataProveedor={dataProveedor}
                         setData={setData} 
                         closeModal={closeModal}/>
                     </Modal>

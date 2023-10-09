@@ -55,10 +55,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
         const total = dataFinal.reduce((accumulator, item) => accumulator + item.totalPrecioVariable, 0);
         return total;
       };
-    useEffect (() => {
-        console.log("calcu",dataFinal)
 
-    })
     useEffect(() => {
         axios.get('http://localhost:3081/getAllalimentot0')
         .then(response => {

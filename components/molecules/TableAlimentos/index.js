@@ -28,11 +28,6 @@ const TableAlimentos = ({ data, setData }) => {
       setCurrentPage(1); 
     }, [searchTerm]);
 
-    useEffect(() => {
-        console.log(data)
-      });
-
-
       const handleSendRequest = () => {
         const updatedAlimento = {
             fecha: data[0].fecha,
@@ -48,7 +43,6 @@ const TableAlimentos = ({ data, setData }) => {
           updatedAlimento.cantidad = data[0].lotes[0].cantidad;
           updatedAlimento.unidad = data[0].lotes[0].unidad;
         }
-        console.log(updatedAlimento.fecha);
         
         //const apiUrl = 'http://192.168.100.10:3010/editTransporte/' + updatedUsuario.fechaContratacion;  
         const apiUrl = 'http://localhost:3080/editAlimento/';
