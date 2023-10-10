@@ -702,7 +702,7 @@ input:focus {
 }
 .row-user-d {
   justify-content: space-around;
-  width: 50%;
+  width: fit-content;
   border-radius: 15px;
   display: flex;
   background: linear-gradient(200deg , #151515, #292928);

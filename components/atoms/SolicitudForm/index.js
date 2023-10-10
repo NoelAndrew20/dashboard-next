@@ -227,17 +227,17 @@ const SolicitudForm = ({ data, dataProveedor, setData, closeModal }) => {
                         <table >
                             <thead>
                                 <tr>
-                                <th className='mr-2'>Nombre</th>
-                                <th className='mr-2'>Cantidad</th>
-                                <th>Unidad</th>
+                                    <th className='p-3'>Nombre</th>
+                                    <th className='p-3'>Cantidad</th>
+                                    <th>Unidad</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {lotes.map((lote, index) => (
                                 <tr key={index} className="table-row">
-                                    <td>{lote.nombreAlimento}</td>
-                                    <td>{lote.cantidad}</td>
-                                    <td>{lote.unidad}</td>
+                                    <td className='p-3'>{lote.nombreAlimento}</td>
+                                    <td className='p-3 text-center'>{lote.cantidad}</td>
+                                    <td className='p-3'>{lote.unidad}</td>
                                 </tr>
                                 ))}
                             </tbody>

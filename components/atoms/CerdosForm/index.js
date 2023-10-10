@@ -255,15 +255,15 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
                         <table >
                             <thead>
                                 <tr>
-                                <th className='mr-2'>Tipo de cerdo</th>
-                                <th className='mr-2'>Cantidad</th>
+                                    <th className='p-3'>Tipo de cerdo</th>
+                                    <th className='p-3'>Cantidad</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {lotes.map((lote, index) => (
                                 <tr key={index} className="table-row">
-                                    <td>{lote.cerdos}</td>
-                                    <td>{lote.cantidad}</td>
+                                    <td className='p-3'>{lote.cerdos}</td>
+                                    <td className='p-3 text-center'>{lote.cantidad}</td>
                                 </tr>
                                 ))}
                             </tbody>
