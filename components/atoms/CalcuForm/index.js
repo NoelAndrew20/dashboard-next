@@ -10,9 +10,9 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
     const [formData, setFormData] = useState(selectedFoodData || {
         nombreAlimento: '',
         cantidad: '',
-        proteina: '',
-        precio: '',
-        precioVariable: '',
+        //proteina: '',
+        //precio: '',
+        //precioVariable: '',
       });
     const [totalProte, setTotalProte] = useState("");
     const [totalPrecio, setTotalPrecio] = useState("");
@@ -32,7 +32,7 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
     };
     
 
-    const calculateTotalProte = () => {
+    {/*const calculateTotalProte = () => {
       let value;
       value = formData.proteina * formData.cantidad / 1000;
       setTotalProte(value);
@@ -51,7 +51,7 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
       calculateTotalPrecio();
       calculateTotalProte();
       calculatePrecioVariable();
-    })
+    }, [])*/}
   
     return(
         <form className={`${isDarkMode ? "edit-modal-d" : "edit-modal" } bg-white p-4 rounded shadow-md mt-10`}>
@@ -62,7 +62,7 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
             <div className="flex">
                                     
 
-              <div className="modal-item w-1/3">
+              <div className="modal-item w-1/2">
                 <p>Nombre de alimento:</p>
                 <input
                   className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
@@ -73,7 +73,7 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
                   required
                 />
               </div>
-              <div className="modal-item w-1/3">
+              <div className="modal-item w-1/2">
                 <p>Cantidad:</p>
                 <input
                     className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
@@ -84,7 +84,7 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
                     required
                 />
               </div>
-              <div className="modal-item w-1/3">
+              {/*<div className="modal-item w-1/3">
                 <p>% de Proteina:</p>
                 <input
                   className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
@@ -94,12 +94,11 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
                   onChange={(e) => setFormData({ ...formData, proteina: e.target.value })}
                   required
                 />
-              </div>
+                </div>*/}
             </div>
           )}
-          {/* Otros campos */}
         </div>
-        <div className="flex">
+        {/*<div className="flex">
           <div className="modal-item w-1/3">
             <p>Precio:</p>
             <input
@@ -130,6 +129,11 @@ const CalcuForm = ({setDataCalculator, dataCalculator, alimento, selectedFoodDat
           <h2>Total de precio: {isNaN(totalPrecio) ? 0 : totalPrecio}</h2>
         </div>
         <button  className="button" onClick={agregarLote}>Agregar al total</button>
+        */}
+        {formData.nombreAlimento !== "" && formData.cantidad !== ""
+          ?<button  className="button mt-2" >Agregar a la tabla</button>
+          : ""
+        }
       </form>
     )
 }

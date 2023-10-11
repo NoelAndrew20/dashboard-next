@@ -130,7 +130,12 @@ const Navigation = () => {
                     </Link>
                     <Link href="../../Graphicator" className={`hover:font-semibold ${currentPage === '/Graphicator' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/graph.svg"} width={20} height={20} alt="graph" className="mr-2" />Graficador
+                            <Image src={"/images/svg/graph.svg"} width={25} height={25} alt="graph" className="mr-2" />Menú de alimentos
+                        </div>
+                    </Link>
+                    <Link href="../../PreRegistro" className={`hover:font-semibold ${currentPage === '/PreRegistro' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/pre.svg"} width={20} height={20} alt="graph" className="mr-2" />Pre registro
                         </div>
                     </Link>
                     </div>
