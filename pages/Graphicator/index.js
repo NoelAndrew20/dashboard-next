@@ -142,7 +142,7 @@ const Graphicator = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Graficador"/>
+                <NavDashboard section="Menú"/>
             </div>
             <div className="wrapper">
                 <div className="mt-10">
@@ -157,10 +157,10 @@ const Graphicator = ({ title, description, image }) => {
                             <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
                             <div className={`${isDarkMode ? "modal-content-d" : "modal-content " } bg-white p-4 rounded shadow-md absolute top-[50vh] left-1/2 transform -translate-x-1/2 overflow-y-auto z-50`}>
                                 <SolicitudForm 
-                                    data={data} 
-                                    dataProveedor={dataProveedor}
-                                    setData={setData} 
-                                    closeModal={closeModal}
+                                  data={data} 
+                                  dataProveedor={dataProveedor}
+                                  setData={setData} 
+                                  closeModal={closeModal}
                                 />
                             </div>
                         </div>                      
@@ -184,7 +184,7 @@ export default Graphicator;
 export const getServerSideProps = async () => {
     const title = "Constanza";
     const description =
-      "Graficador";
+      "Menú";
     const image = "images/icon/logo-400.png";
     return {
       props: {
