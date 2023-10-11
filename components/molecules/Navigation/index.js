@@ -138,6 +138,11 @@ const Navigation = () => {
                             <Image src={"/images/svg/pre.svg"} width={20} height={20} alt="graph" className="mr-2" />Pre registro
                         </div>
                     </Link>
+                    <Link href="../../RegistroProveedores" className={`hover:font-semibold ${currentPage === '/RegistroProveedores' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/provider.svg"} width={20} height={20} alt="graph" className="mr-2" />Registro de proveedores
+                        </div>
+                    </Link>
                     </div>
                     <div className="flex justify-center pt-2 pb-20">
                         <Image src={srs} width={100} height={100} alt="srs-logo" />
