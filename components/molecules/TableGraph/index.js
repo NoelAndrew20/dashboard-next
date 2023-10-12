@@ -17,24 +17,60 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [precioVariableV, setPrecioVariableV] = useState("");
     const [complemento1V, setComplemento1V] = useState("");
     const [complemento2V, setComplemento2V] = useState("");
-    const [total, setTotal] = useState("")
     const [proteinaObjV, setProteinaObjV] = useState("");
     const [showForms, setShowForms] = useState({});
     const [otroAlimento, setOtroAlimento] = useState("");
-    const [complementoData, setComplementoData] = useState([]);
+    const [selectedCheckboxIndex, setSelectedCheckboxIndex] = useState(false);
+
+    const [complementoData, setComplementoData] = useState([
+        {
+          _id: "651c2f33be9c9264651f04f9",
+          fecha: "2023-09-29T19:56:57.031Z",
+          nombreAlimento: "Maíz amarirello",
+          tipo: 0,
+          proteina: 7.5,
+          precio: 7.5,
+          precioVariable: 8.25
+        },
+        {
+          _id: "651c2f33be9c9264651f04fa",
+          fecha: "2023-09-29T19:56:57.031Z",
+          nombreAlimento: "Sorego",
+          tipo: 0,
+          proteina: 8,
+          precio: 6,
+          precioVariable: 6.6
+        },
+        {
+          _id: "651c2f33be9c9264651f04fb",
+          fecha: "2023-09-29T19:56:57.031Z",
+          nombreAlimento: "Trieffgo",
+          tipo: 0,
+          proteina: 9,
+          precio: 19.5,
+          precioVariable: 21.45
+        },
+        {
+          _id: "651d7d5478524b5ca0cd6892",
+          fecha: "2023-10-04T14:57:24.628Z",
+          nombreAlimento: "Maízd",
+          tipo: 0,
+          proteina: 8.5,
+          precio: 10,
+          precioVariable: 11
+        }
+      ]);
     const [complementoData2, setComplementoData2] = useState([]);
     const [selectedFoodData, setSelectedFoodData] = useState(); // Estado para almacenar los datos del alimento seleccionado
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isCheckboxSelected, setIsCheckboxSelected] = useState(false);
-
+    const [formDataList, setFormDataList] = useState([]);
+    const [dataList, setDataList] = useState([]);
     const [ dataAux, setDataAux ] = useState([])
     const [dataAuxComplemento, setDataAuxComplemento] = useState([])
     const [dataAuxComplemento2, setDataAuxComplemento2] = useState([])
-    const [dataCalculator, setDataCalculator] = useState([]);
-    const [dataFinal, setDataFinal] = useState([]);
+    const [isCheckboxSelected, setIsCheckboxSelected] = useState(false);
     const [selectAllCheckboxes, setSelectAllCheckboxes] = useState(false);
-    const [totalX, setTotalX] = useState(0);
-    const [totalY, setTotalY] = useState(0);
+
     const axios = require('axios');
     const openModal = () => {
         setIsModalOpen(true);
@@ -43,23 +79,31 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
-    const sumarTotalProte = () => {
-        const total = dataFinal.reduce((accumulator, item) => accumulator + item.totalProte, 0);
-        return total;
+    const addFormData = (formData) => {
+        setFormDataList([...formDataList, formData]);
     };
-    
-    const sumarTotalPrecio = () => {
-        const total = dataFinal.reduce((accumulator, item) => accumulator + item.totalPrecio, 0);
-        return total;
-    };
-    const sumarTotalPrecioVariable = () => {
-        const total = dataFinal.reduce((accumulator, item) => accumulator + item.totalPrecioVariable, 0);
-        return total;
-    };
-    const handleCheckboxChange = (event, itemName) => {
+    const generateJSON = (e) => {
+        e.preventDefault();
+        
+        // Agrupar los objetos por nombreAlimento y tomar el último de cada grupo
+        const jsonData = Object.values(
+          formDataList.reduce((acc, formData) => {
+            acc[formData.nombreAlimento] = formData;
+            return acc;
+          }, {})
+        );
+        setShowForms({});
+        setDataList(jsonData);
+        console.log(dataList);
+        setSelectedFoodData(null);
+      };
+
+  
+      const handleCheckboxChange = (event, item) => {
+        setSelectedCheckboxIndex(true)
         const updatedShowForms = { ...showForms };
         data.forEach((item) => {
-          if (item.nombreAlimento === itemName) {
+          if (item.nombreAlimento !== item.nombreAlimento) {
             updatedShowForms[item.nombreAlimento] = event.target.checked;
           } else {
             updatedShowForms[item.nombreAlimento] = false;
@@ -67,20 +111,16 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
         });
       
         setShowForms(updatedShowForms);
-      
+        const selectedFood = data.find(food => food.nombreAlimento === item.nombreAlimento);
+        setSelectedFoodData(selectedFood);
+        setShowForms(prevShowForms => ({
+        ...prevShowForms,
+        [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
+        }));
         const oneSelected = Object.values(updatedShowForms).some((isSelected) => isSelected);
         setIsCheckboxSelected(oneSelected);
       };
-    const handleDeselectAllCheckboxes = () => {
-        const updatedShowForms = { ...showForms };
-      
-        // Deseleccionar todos los checkboxes
-        Object.keys(updatedShowForms).forEach((key) => {
-          updatedShowForms[key] = false;
-        });
-      
-        setShowForms(updatedShowForms);
-    };
+
     useEffect(() => {
         axios.get('http://localhost:3081/getAllalimentot0')
         .then(response => {
@@ -157,7 +197,17 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
           setSuccessMessage("");
         }
       };
-
+      const handleDeselectAllCheckboxes = () => {
+        
+        const updatedShowForms = { ...showForms };
+      
+        // Deseleccionar todos los checkboxes
+        Object.keys(updatedShowForms).forEach((key) => {
+          updatedShowForms[key] = false;
+        });
+      
+        setShowForms(updatedShowForms);
+    };
     return (
         <>
         <div className="search-container mb-5">
@@ -184,19 +234,21 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                 <ul>
                     <h2>Nombre de Alimento</h2>
                     {data.map((item, index) => (
-                        <li key={item.nombreAlimento}>
-                        <label>
-                            <input
-                            type="checkbox"
-                            name="alimento"
-                            value={item.nombreAlimento}
-                            onChange={(event) => handleCheckboxChange(event, item.nombreAlimento)}
-                            checked={showForms[item.nombreAlimento]}
+                    <li key={item.nombreAlimento}>
+                    <label>
+                        <input
+                        type="checkbox"
+                        name="alimento"
+                        value={item.nombreAlimento}
+                        onChange={(event) => {
+                            handleCheckboxChange(event, item)
+                        }}
+                        checked={showForms[item.nombreAlimento]}
                         />
-                            &nbsp;{item.nombreAlimento}
-                        </label>
-                        </li>
-                    ))}
+                        &nbsp;{item.nombreAlimento}
+                    </label>
+                    </li>
+                ))}
                 </ul>           
             </div>
             <div className="w-1/3">
@@ -210,7 +262,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                                     name="complemento"
                                     value={item.nombreAlimento}
                                     onChange={() => {
-                                        const selectedFood = dataAuxComplemento.find(food => food.nombreAlimento === item.nombreAlimento);
+                                        const selectedFood = complementoData.find(food => food.nombreAlimento === item.nombreAlimento);
                                         setSelectedFoodData(selectedFood);
                                         setShowForms(prevShowForms => ({
                                             ...prevShowForms,
@@ -236,7 +288,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                                     name="complemento2"
                                     value={item.nombreAlimento}
                                     onChange={() => {
-                                        const selectedFood = dataAuxComplemento2.find(food => food.nombreAlimento === item.nombreAlimento);
+                                        const selectedFood = complementoData2.find(food => food.nombreAlimento === item.nombreAlimento);
                                         setSelectedFoodData(selectedFood);
                                         setShowForms(prevShowForms => ({
                                             ...prevShowForms,
@@ -250,13 +302,13 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                         </li>
                     ))}
                 </ul>
-                {isCheckboxSelected
-                    ?<button className="button mt-8 flex float-right"onClick={handleDeselectAllCheckboxes}>Agregar receta</button>
-                    :""
-                }
+                {selectedCheckboxIndex === true ?
+                    <button className="button mt-8 flex float-right"onClick={handleDeselectAllCheckboxes}>Agregar receta</button>
+                 : ""}
+            
             </div>
         </div>
-        <div className="mt-3">
+        <div>
             <div className={`modal ${isModalOpen ? 'block' : 'hidden'}`}>
                 <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
                 <div className={`${isDarkMode ? "modal-content-d" : "modal-content " } bg-white p-4 rounded shadow-md absolute top-[60vh] left-1/2 transform -translate-x-1/2 overflow-y-auto z-50`}>
@@ -267,38 +319,33 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                     />
                 </div>
             </div>                      
-            <button className="button" onClick={openModal}>Agregar alimento</button>
+            <button className="button mt-2" onClick={openModal}>Agregar alimento</button>
         </div>
-        {Object.entries(showForms).map(([alimento, showForm]) => {
-        if (showForm) {
-            return <CalcuForm
-            dataCalculator={dataCalculator}
-            setDataCalculator={setDataCalculator}
-            selectedFoodData={selectedFoodData}
-            key={alimento}
-            addOrder={addOrder}
-            alimento={alimento}
-            dataFinal={dataFinal}
-            setDataFinal={setDataFinal}
-            totalX={totalX}
-            setTotalX={setTotalX}
-            totalY = {totalY} 
-            setTotalY = {setTotalY}
-            />;
+        {otroAlimento !== "" ? 
+            <CalcuFormOther addOrder={addOrder} alimento={otroAlimento} />
+         : ""
         }
-        return null;
-        })}
-        {/*
-        <div className="flex justify-center">
-            <div className="pt-5">
-                <div>
-                    Total de proteina por todos los lotes: <span className="font-bold">{sumarTotalProte()}</span>
-                </div>
-                <div>
-                    <p>El precio va de: <span className="font-bold">{sumarTotalPrecio()}</span> a <span className="font-bold">{sumarTotalPrecioVariable()}</span></p>
-                </div>
-            </div>
-        </div>*/}
+        {selectedFoodData 
+        ? (
+            <form 
+                className={`${isDarkMode ? "edit-modal-d" : "edit-modal" } bg-white p-4 rounded shadow-md mt-10`}
+                onSubmit={generateJSON}
+            >
+                {Object.entries(showForms).map(([alimento, showForm]) => {
+                    if (showForm) {
+                        return (
+                        <CalcuForm
+                        addFormData={addFormData}
+                        selectedFoodData={selectedFoodData}
+                        alimento={alimento}
+                        />
+                        );
+                    }
+                    return "";
+                })}
+                <button className="button mt-2" type="submit">Generar JSON</button>
+            </form>)
+        : ""}
         </>
     )
 }

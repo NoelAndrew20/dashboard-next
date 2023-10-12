@@ -16,7 +16,44 @@ const Graphicator = ({ title, description, image }) => {
     const [dataOrder, setDataOrder] = useState([])
     const [data, setData] = useState([]);
     const [data2, setData2] = useState([]);
-    const [dataGraph, setDataGraph] = useState([]);
+    const [dataGraph, setDataGraph] = useState([
+      {
+        _id: "651c2f33be9c9264651f04f9",
+        fecha: "2023-09-29T19:56:57.031Z",
+        nombreAlimento: "Maíz amarillo",
+        tipo: 0,
+        proteina: 7.5,
+        precio: 7.5,
+        precioVariable: 8.25
+      },
+      {
+        _id: "651c2f33be9c9264651f04fa",
+        fecha: "2023-09-29T19:56:57.031Z",
+        nombreAlimento: "Sorgo",
+        tipo: 0,
+        proteina: 8,
+        precio: 6,
+        precioVariable: 6.6
+      },
+      {
+        _id: "651c2f33be9c9264651f04fb",
+        fecha: "2023-09-29T19:56:57.031Z",
+        nombreAlimento: "Trigo",
+        tipo: 0,
+        proteina: 9,
+        precio: 19.5,
+        precioVariable: 21.45
+      },
+      {
+        _id: "651d7d5478524b5ca0cd6892",
+        fecha: "2023-10-04T14:57:24.628Z",
+        nombreAlimento: "Maíz blanco",
+        tipo: 0,
+        proteina: 8.5,
+        precio: 10,
+        precioVariable: 11
+      }
+    ]);
     const [dataProveedor, seDataProveedor] = useState([
       {
           nombreProveedor: "Nombre del Proveedor",
@@ -151,7 +188,12 @@ const Graphicator = ({ title, description, image }) => {
                 </div>
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>
-                    <TableGraph data={dataGraph} setData={setDataGraph} dataOrder={dataOrder} setDataOrder={setDataOrder}/>
+                    <TableGraph 
+                    data={dataGraph} 
+                    setData={setDataGraph} 
+                    dataOrder={dataOrder} 
+                    setDataOrder={setDataOrder}
+                    />
                     <div className="mt-10 flex justify-end">
                         <div className={`modal ${isModalOpen ? 'block' : 'hidden'}`}>
                             <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
