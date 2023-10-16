@@ -1,13 +1,8 @@
 import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
-import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
-import Table from '@/components/molecules/Table';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import Modal from '@/components/atoms/Modal';
-import AlimentosForm from '@/components/atoms/AlimentosForm';
-import TableAlimentos from '@/components/molecules/TableAlimentos';
 import TablePre from '@/components/molecules/TablePre';
 
 const axios = require('axios');

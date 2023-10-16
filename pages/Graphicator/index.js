@@ -7,6 +7,7 @@ import TableGraph from '@/components/molecules/TableGraph';
 import TableAlimentos from '@/components/molecules/TableAlimentos';
 import TableSolicitud from '@/components/molecules/TableSolicitud';
 import SolicitudForm from '@/components/atoms/SolicitudForm';
+import TablePre from '@/components/molecules/TablePre';
 
 const axios = require('axios');
 
@@ -124,6 +125,24 @@ const Graphicator = ({ title, description, image }) => {
           ]
         }
       ]);
+      const [dataPre, setDataPre] = useState([
+        { fecha: '2023-10-10', solicitud: 'Solicitud 1', detalles: 'Detalles 1', 
+            solicitudes: [
+                {no: 1, rfid: "12345" },
+                {no: 2, rfid: "12345" },
+                {no: 3, rfid: "12345" },
+                {no: 4, rfid: "12345" },
+            ]
+        },
+        { fecha: '2023-10-11', solicitud: 'Solicitud 2', detalles: 'Detalles 2', 
+            solicitudes: [
+                {no: 1, rfid: "12345" },
+                {no: 2, rfid: "12345" },
+                {no: 3, rfid: "12345" },
+                {no: 4, rfid: "12345" },
+            ]
+        },
+    ]);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -194,6 +213,7 @@ const Graphicator = ({ title, description, image }) => {
                     dataOrder={dataOrder} 
                     setDataOrder={setDataOrder}
                     />
+                    {/*
                     <div className="mt-10 flex justify-end">
                         <div className={`modal ${isModalOpen ? 'block' : 'hidden'}`}>
                             <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
@@ -208,6 +228,7 @@ const Graphicator = ({ title, description, image }) => {
                         </div>                      
                         <button className="button" onClick={openModal}>Agregar compra</button>
                     </div>
+    */}
                 </div>
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Solicitudes existentes</h2>
@@ -215,7 +236,7 @@ const Graphicator = ({ title, description, image }) => {
                     solo crea un const [dataSolicitud, setDataSolicitud] = useState([])
                     para manejar la data y cambias data={data} por data={dataSolicitud}
                     en <TableSolicitud/>*/}
-                    <TableSolicitud data={data2} setData={setData2}/>
+                    <TablePre data={dataPre} setData={setDataPre}/>
                 </div>
             </div>
         </div>

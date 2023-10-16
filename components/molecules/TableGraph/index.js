@@ -21,6 +21,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [showForms, setShowForms] = useState({});
     const [otroAlimento, setOtroAlimento] = useState("");
     const [selectedCheckboxIndex, setSelectedCheckboxIndex] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const [complementoData, setComplementoData] = useState([
         {
@@ -58,6 +59,24 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
           proteina: 8.5,
           precio: 10,
           precioVariable: 11
+        },
+        {
+            _id: "651d7d5478524b5ca0cd6892",
+            fecha: "2023-10-04T14:57:24.628Z",
+            nombreAlimento: "Makízd",
+            tipo: 0,
+            proteina: 8.5,
+            precio: 10,
+            precioVariable: 11
+        },
+        {
+            _id: "651d7d5478524b5ca0cd6892",
+            fecha: "2023-10-04T14:57:24.628Z",
+            nombreAlimento: "jhik",
+            tipo: 0,
+            proteina: 8.5,
+            precio: 10,
+            precioVariable: 11
         }
       ]);
     const [complementoData2, setComplementoData2] = useState([]);
@@ -69,7 +88,6 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [dataAuxComplemento, setDataAuxComplemento] = useState([])
     const [dataAuxComplemento2, setDataAuxComplemento2] = useState([])
     const [isCheckboxSelected, setIsCheckboxSelected] = useState(false);
-    const [selectAllCheckboxes, setSelectAllCheckboxes] = useState(false);
 
     const axios = require('axios');
     const openModal = () => {
@@ -84,8 +102,6 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     };
     const generateJSON = (e) => {
         e.preventDefault();
-        
-        // Agrupar los objetos por nombreAlimento y tomar el último de cada grupo
         const jsonData = Object.values(
           formDataList.reduce((acc, formData) => {
             acc[formData.nombreAlimento] = formData;
@@ -94,10 +110,9 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
         );
         setShowForms({});
         setDataList(jsonData);
-        console.log(dataList);
         setSelectedFoodData(null);
+        console.log(dataList)
       };
-
   
       const handleCheckboxChange = (event, item) => {
         setSelectedCheckboxIndex(true)
@@ -229,7 +244,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                 </div>
             </div>
         </div>
-        <div className={`${isDarkMode ? "fake-table-d" : "fake-table"} flex`}>
+        <div className={`${isDarkMode ? "fake-table-d" : "fake-table"} flex justify-around`}>
             <div className="w-1/3">
                 <ul>
                     <h2>Nombre de Alimento</h2>
@@ -276,36 +291,9 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                         </li>
                     ))}
                 </ul>
-            </div>
-            <div className="w-1/3">
-                <ul>
-                    <h2>Complemento extra de Alimento </h2>
-                    {complementoData2.map((item, index) => (
-                        <li key={item._id}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="complemento2"
-                                    value={item.nombreAlimento}
-                                    onChange={() => {
-                                        const selectedFood = complementoData2.find(food => food.nombreAlimento === item.nombreAlimento);
-                                        setSelectedFoodData(selectedFood);
-                                        setShowForms(prevShowForms => ({
-                                            ...prevShowForms,
-                                            [item.nombreAlimento]: !prevShowForms[item.nombreAlimento]
-                                        }));
-                                    }}
-                                    checked={showForms[item.nombreAlimento]}
-                                />
-                                &nbsp;{item.nombreAlimento}
-                            </label>
-                        </li>
-                    ))}
-                </ul>
                 {selectedCheckboxIndex === true ?
                     <button className="button mt-8 flex float-right"onClick={handleDeselectAllCheckboxes}>Agregar receta</button>
                  : ""}
-            
             </div>
         </div>
         <div>
@@ -325,27 +313,34 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
             <CalcuFormOther addOrder={addOrder} alimento={otroAlimento} />
          : ""
         }
-        {selectedFoodData 
-        ? (
-            <form 
-                className={`${isDarkMode ? "edit-modal-d" : "edit-modal" } bg-white p-4 rounded shadow-md mt-10`}
+        {selectedFoodData ? (
+            <form
+                className={`${isDarkMode ? "edit-modal-d" : "edit-modal"} bg-white p-4 rounded shadow-md mt-10`}
                 onSubmit={generateJSON}
-            >
+            >               
                 {Object.entries(showForms).map(([alimento, showForm]) => {
-                    if (showForm) {
-                        return (
-                        <CalcuForm
+                if (showForm) {
+                    return (
+                    <CalcuForm
                         addFormData={addFormData}
                         selectedFoodData={selectedFoodData}
                         alimento={alimento}
-                        />
-                        );
-                    }
-                    return "";
+                    />
+                    );
+                }
+                return "";
                 })}
-                <button className="button mt-2" type="submit">Generar JSON</button>
-            </form>)
-        : ""}
+                {Object.values(showForms).filter(value => value).length > 5 ? (
+                <p className="pt-2 font-bold text-red-500">Por favor, solo agregue 5 elementos.</p>
+                ) : Object.values(showForms).filter(value => value).length === 5 ? (
+                <button className="button mt-2" type="submit">
+                    Agregar a la tabla
+                </button>
+                ) : Object.values(showForms).filter(value => value).length < 5 ? (
+                    <p className="pt-2 font-bold">Por favor, agregue 5 elementos.</p>
+                ) : null}
+            </form>
+            ) : ""}
         </>
     )
 }
