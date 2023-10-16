@@ -330,15 +330,9 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
                 }
                 return "";
                 })}
-                {Object.values(showForms).filter(value => value).length > 5 ? (
-                <p className="pt-2 font-bold text-red-500">Por favor, solo agregue 5 elementos.</p>
-                ) : Object.values(showForms).filter(value => value).length === 5 ? (
                 <button className="button mt-2" type="submit">
                     Agregar a la tabla
                 </button>
-                ) : Object.values(showForms).filter(value => value).length < 5 ? (
-                    <p className="pt-2 font-bold">Por favor, agregue 5 elementos.</p>
-                ) : null}
             </form>
             ) : ""}
         </>
