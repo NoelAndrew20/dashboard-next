@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-//import json from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/respuesta.json'
+import json from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/respuesta.json'
 import Image from 'next/image';
-//import jsondata from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/requisitos_2.json'
+import jsondata from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/requisitos_2.json'
 import Formulario from '@/components/molecules/Formulariodinamico'
 import Modal from '../atoms/Modal';
 
@@ -77,7 +77,7 @@ const ChatWindow = () => {
               </Modal></div> 
             <form className='max-w-xl w-full'>
                 <div className='grid justify-items-center bg-orange-300 rounded-md text-lg text-black'>
-                {/* {json.answer === 'Pensando..' ? (
+                {json.answer === 'Pensando..' ? (
                     <img
                       src="/images/CerdoChido.gif"
                       width={150}
@@ -109,7 +109,7 @@ const ChatWindow = () => {
                       alt="pig"
                       className="mr-2"
                     />
-                  ): ( */}
+                  ): (
                     <Image
                       src="/images/CerdoChido.png"
                       width={150}
@@ -117,8 +117,8 @@ const ChatWindow = () => {
                       alt="pig"
                       className="mr-2"
                     />
-                  {/* )} */}
-                  {/* <p>Constanza: {json.answer}</p> */}
+                  )} 
+                  {<p>Constanza: {json.answer}</p>}
                 </div>
                 <textarea
                 id="message-input"

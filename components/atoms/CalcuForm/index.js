@@ -53,6 +53,7 @@ const CalcuForm = ({addFormData, alimento, selectedFoodData}) => {
                     name="cantidad"
                     value={formData.cantidad}
                     onChange={(e) => setFormData({ ...formData, cantidad: e.target.value })}
+                    required
                   />
                 </div>
                 {/*
