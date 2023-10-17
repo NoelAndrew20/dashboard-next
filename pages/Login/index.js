@@ -52,7 +52,7 @@ const Login = ({ title, description, image }) => {
 
     setIsButtonDisabled(!validateForm(email, value)); 
   };
-//Codigo por si no cuentas con la base de datos
+// //Codigo por si no cuentas con la base de datos
   const validateForm = (email, password) => {
     return email.trim() !== "" && password.trim() !== "" && validateEmail(email) && password.length >= 6;
   };
@@ -75,7 +75,7 @@ const Login = ({ title, description, image }) => {
     setPassword(usuarios[dataIndex].password);
   }, [dataIndex]);
 
-//Aqui acaba el codigo si no tienes base de datos
+// //Aqui acaba el codigo si no tienes base de datos
 
 
 

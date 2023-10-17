@@ -18,10 +18,10 @@ const Navigation = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
-    // const usuariojson = Cookies.get('userData');
-    // const userData = usuariojson ? JSON.parse(usuariojson) : null;
-    // const currentUser = userData;
-    // console.log(userData);
+    const usuariojson = Cookies.get('userData');
+    const userData = usuariojson ? JSON.parse(usuariojson) : null;
+    const currentUser = userData;
+    console.log(userData);
 
     // console.log('Grupo usuario:',currentUser.user.grupo);
     return (
@@ -78,21 +78,21 @@ const Navigation = () => {
                             <Image src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
                         </div>
                     </Link>
-                     {/* )}  */}
-                     {/* {userData.user.grupo === 'Grupo B' &&  ( */}
+                      {/* )} */}
+                      {/* {userData.user.grupo === 'Grupo B' &&  ( */}
                     <Link href="../../RegistroUsuarios" className={`hover:font-semibold ${currentPage === '/RegistroUsuarios' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/user.svg"} width={20} height={20} alt="user" className="mr-2" /> Usuarios
                         </div>
                     </Link>
                     {/* )} */}
-                    {/* {userData.user.grupo === 'Grupo B' &&( */}
+                     {/* {userData.user.grupo === 'Grupo B' &&( */}
                     <Link href="../../RegistroTransporte" className={`hover:font-semibold ${currentPage === '/RegistroTransporte' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/truck.svg"} width={20} height={20} alt="transporte" className="mr-2" />Transportes
                         </div>
                     </Link>
-                    {/* )}  */}
+                    {/* )} */}
                     <Link href="../../Medicamento" className={`hover:font-semibold ${currentPage === '/Medicamento' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento
