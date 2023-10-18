@@ -3,7 +3,7 @@ import { useDarkMode } from '@/context/DarkModeContext';
 import CalcuForm from '@/components/atoms/CalcuForm';
 import CalcuFormOther from '@/components/atoms/CalcuFormOther';
 
-const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
+const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataList }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const entriesPerPage = 10;
     const [currentPage, setCurrentPage] = useState(1);
@@ -19,7 +19,6 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [complemento2V, setComplemento2V] = useState("");
     const [proteinaObjV, setProteinaObjV] = useState("");
     const [showForms, setShowForms] = useState({});
-    const [otroAlimento, setOtroAlimento] = useState("");
     const [selectedCheckboxIndex, setSelectedCheckboxIndex] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -83,12 +82,11 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const [selectedFoodData, setSelectedFoodData] = useState(); // Estado para almacenar los datos del alimento seleccionado
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formDataList, setFormDataList] = useState([]);
-    const [dataList, setDataList] = useState([]);
     const [ dataAux, setDataAux ] = useState([])
     const [dataAuxComplemento, setDataAuxComplemento] = useState([])
     const [dataAuxComplemento2, setDataAuxComplemento2] = useState([])
     const [isCheckboxSelected, setIsCheckboxSelected] = useState(false);
-
+    const [dataFinal, setDataFinal] = useState()
     const axios = require('axios');
     const openModal = () => {
         setIsModalOpen(true);
@@ -100,6 +98,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
     const addFormData = (formData) => {
         setFormDataList([...formDataList, formData]);
     };
+
     const generateJSON = (e) => {
         e.preventDefault();
         const jsonData = Object.values(
@@ -108,10 +107,18 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
             return acc;
           }, {})
         );
+      
+        const combinedData = {
+          solicitudes: jsonData.map((item) => ({
+            nombreAlimento: item.nombreAlimento,
+            cantidad: item.cantidad,
+          })),
+        };
+      
         setShowForms({});
-        setDataList(jsonData);
+        setDataList([...dataList, combinedData]);
         setSelectedFoodData(null);
-        console.log(dataList)
+        console.log(combinedData);
       };
   
       const handleCheckboxChange = (event, item) => {
@@ -309,10 +316,6 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder }) => {
             </div>                      
             <button className="button mt-2" onClick={openModal}>Agregar alimento</button>
         </div>
-        {otroAlimento !== "" ? 
-            <CalcuFormOther addOrder={addOrder} alimento={otroAlimento} />
-         : ""
-        }
         {selectedFoodData ? (
             <form
                 className={`${isDarkMode ? "edit-modal-d" : "edit-modal"} bg-white p-4 rounded shadow-md mt-10`}

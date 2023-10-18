@@ -42,7 +42,7 @@ const CalcuForm = ({addFormData, alimento, selectedFoodData}) => {
                     name="NombreAlimento"
                     value={formData.nombreAlimento}
                     onChange={(e) => setFormData({ ...formData, nombreAlimento: e.target.value })}
-                    required
+                    disabled
                   />
                 </div>
                 <div className="modal-item w-1/2">
