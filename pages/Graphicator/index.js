@@ -8,6 +8,7 @@ import TableAlimentos from '@/components/molecules/TableAlimentos';
 import TableSolicitud from '@/components/molecules/TableSolicitud';
 import SolicitudForm from '@/components/atoms/SolicitudForm';
 import TablePre from '@/components/molecules/TablePre';
+import MenuTable from '@/components/atoms/MenuTable';
 
 const axios = require('axios');
 
@@ -17,6 +18,7 @@ const Graphicator = ({ title, description, image }) => {
     const [dataOrder, setDataOrder] = useState([])
     const [data, setData] = useState([]);
     const [data2, setData2] = useState([]);
+    const [dataList, setDataList] = useState([]);
     const [dataGraph, setDataGraph] = useState([
       {
         _id: "651c2f33be9c9264651f04f9",
@@ -125,24 +127,6 @@ const Graphicator = ({ title, description, image }) => {
           ]
         }
       ]);
-      const [dataPre, setDataPre] = useState([
-        { fecha: '2023-10-10', solicitud: 'Solicitud 1', detalles: 'Detalles 1', 
-            solicitudes: [
-                {no: 1, rfid: "12345" },
-                {no: 2, rfid: "12345" },
-                {no: 3, rfid: "12345" },
-                {no: 4, rfid: "12345" },
-            ]
-        },
-        { fecha: '2023-10-11', solicitud: 'Solicitud 2', detalles: 'Detalles 2', 
-            solicitudes: [
-                {no: 1, rfid: "12345" },
-                {no: 2, rfid: "12345" },
-                {no: 3, rfid: "12345" },
-                {no: 4, rfid: "12345" },
-            ]
-        },
-    ]);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -152,7 +136,9 @@ const Graphicator = ({ title, description, image }) => {
         setIsModalOpen(false);
     };
 
-
+    useEffect(()=>{
+      console.log(dataList)
+    })
     useEffect(() => {
         axios.get('http://localhost:3080/getAllSolicitudCompraAlimento')
           .then(response => {
@@ -208,6 +194,8 @@ const Graphicator = ({ title, description, image }) => {
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>
                     <TableGraph 
+                    dataList={dataList} //arreglo con el menú que se crea
+                    setDataList={setDataList}
                     data={dataGraph} 
                     setData={setDataGraph} 
                     dataOrder={dataOrder} 
@@ -236,7 +224,7 @@ const Graphicator = ({ title, description, image }) => {
                     solo crea un const [dataSolicitud, setDataSolicitud] = useState([])
                     para manejar la data y cambias data={data} por data={dataSolicitud}
                     en <TableSolicitud/>*/}
-                    <TablePre data={dataPre} setData={setDataPre}/>
+                    <MenuTable data={dataList} setData={setDataList}/>
                 </div>
             </div>
         </div>
