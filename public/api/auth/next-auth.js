@@ -1,6 +1,3 @@
-import {NextAuth} from 'next-auth'
-import Providers from 'next-auth/providers'
-import { connectToDatabase } from '../../pages/utils/mongodb'
 
 export default NextAuth({
   providers: [
