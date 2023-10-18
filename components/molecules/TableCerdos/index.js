@@ -71,9 +71,9 @@ const TableCerdos = ({ data, setData }) => {
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-[#F1CD96]')
                         }`}
                     >       
-                        <td>{item.proveedor}</td>
+                        <td>{item.proveedores.nombreProveedor}</td>
                         <td>{item.granja}</td>
-                        <td>{item.sede}</td>
+                        <td>{item.proveedores.sede}</td>
                         <td>{item.gastos}</td>
                     </tr>
                     ))}
