@@ -21,7 +21,6 @@ const Login = ({ title, description, image }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
 
-
   const validateEmail = (value) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(value);
@@ -53,27 +52,27 @@ const Login = ({ title, description, image }) => {
     setIsButtonDisabled(!validateForm(email, value)); 
   };
 // //Codigo por si no cuentas con la base de datos
-  const validateForm = (email, password) => {
-    return email.trim() !== "" && password.trim() !== "" && validateEmail(email) && password.length >= 6;
-  };
+  // const validateForm = (email, password) => {
+  //   return email.trim() !== "" && password.trim() !== "" && validateEmail(email) && password.length >= 6;
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const user = usuarios.find((userData) => userData.email === email);
-    if (!user) {
-      setError("No hay ninguna cuenta con este correo.");
-    } else if (user.password !== password) {
-      setError("Contraseña incorrecta.");
-    } else {
-      router.push("../")
-    }
-}
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     const user = usuarios.find((userData) => userData.email === email);
+//     if (!user) {
+//       setError("No hay ninguna cuenta con este correo.");
+//     } else if (user.password !== password) {
+//       setError("Contraseña incorrecta.");
+//     } else {
+//       router.push("../")
+//     }
+// }
 
-  //esta funcion está para rellenar los datos de prueba
-  useEffect(() => {
-    setEmail(usuarios[dataIndex].email);
-    setPassword(usuarios[dataIndex].password);
-  }, [dataIndex]);
+//   //esta funcion está para rellenar los datos de prueba
+//   useEffect(() => {
+//     setEmail(usuarios[dataIndex].email);
+//     setPassword(usuarios[dataIndex].password);
+//   }, [dataIndex]);
 
 // //Aqui acaba el codigo si no tienes base de datos
 
@@ -82,41 +81,41 @@ const Login = ({ title, description, image }) => {
 //-------||||||||Comentar si no se tiene base de datos a partir de aqui :D 
 //-------vvvvvvvv
 
-// const validateForm = (email, password) => {
-//   return (
-//     email.trim() !== '' &&
-//     password.trim() !== '' &&
-//     validateEmail(email) &&
-//     password.length >= 6
-//   );
-// };
+const validateForm = (email, password) => {
+  return (
+    email.trim() !== '' &&
+    password.trim() !== '' &&
+    validateEmail(email) &&
+    password.length >= 6
+  );
+};
 
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-//   try {
-//     const response = await fetch('http://localhost:3002/api/pronostico/js/autentificacion/login', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ email, password }),
-//     });
-//     console.log(email);
-//     console.log(password);
-//     if (response.status === 200) {
-//       const userData = await response.json(); 
-//       console.log(userData);
-//       setCurrentUser(userData);
-//       Cookies.set('userData',JSON.stringify(userData), {expires: 7});
-//       router.push('../');
-//     } else {
-//       const data = await response.json();
-//       setError(data.error || 'Error de autenticación');
-//     }
-//   } catch (error) {
-//     setError('Error de conexión');
-//   }
-// };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await fetch('http://localhost:3002/api/pronostico/js/autentificacion/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    console.log(email);
+    console.log(password);
+    if (response.status === 200) {
+      const userData = await response.json(); 
+      console.log(userData);
+      setCurrentUser(userData);
+      Cookies.set('userData',JSON.stringify(userData), {expires: 7});
+      router.push('../');
+    } else {
+      const data = await response.json();
+      setError(data.error || 'Error de autenticación');
+    }
+  } catch (error) {
+    setError('Error de conexión');
+  }
+};
 
 //comentar hasta aqui -----------------
 
