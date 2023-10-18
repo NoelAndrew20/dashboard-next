@@ -34,8 +34,8 @@ const RegistroCerdos = ({ title, description, image }) => {
             {
                 nombreProveedor: "hola2",
                   Contacto: {
-                    nombrePersona: "nombre",
-                    correo: "nombre@mail.com",
+                    nombrePersona: "nombre2",
+                    correo: "nombre2@mail.com",
                     numeroTelefono: 22445522
                   },
                   direccion: {
