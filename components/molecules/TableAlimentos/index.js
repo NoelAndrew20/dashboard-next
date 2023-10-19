@@ -99,7 +99,7 @@ const TableAlimentos = ({ data, setData }) => {
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-[#F1CD96]')
                         }`}
                     >       
-                        <td>{item.fechaSolicitud}</td>
+                        <td>{item.fecha}</td>
                         <td>{item.nivelEntrega}</td>
                         <td>{item.nombreSolicitante}</td>
                         <td>

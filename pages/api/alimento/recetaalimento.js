@@ -22,12 +22,11 @@ db.once('open', () => {
 });
 
 
-const SolicitudCompraAlimentoSchema = new mongoose.Schema(
+const Receta = new mongoose.Schema(
   {
     fecha: Date,
-    numeroSolicitud: Number,
-    nombreSolicitante: String,
-    solicitud: [
+    solicitud: String,
+    lotes: [
       {
         nombreAlimento: String,
         cantidad: Number,
@@ -41,7 +40,7 @@ const SolicitudCompraAlimentoSchema = new mongoose.Schema(
   );
                 
 
-  const SolicitudCompraAlimento = db.model('SolicitudCompraAlimento', SolicitudCompraAlimentoSchema);
+  const SolicitudCompraAlimento = db.model('SolicitudCompraAlimento', Receta);
   app.get("/getAllSolicitudCompraAlimento", async (req, res) => {
     try {
         // Consulta todas las solicitudes de compra de alimentos en la base de datos
@@ -60,44 +59,36 @@ const SolicitudCompraAlimentoSchema = new mongoose.Schema(
     }
 });
 
-app.post("/addSolicitudCompraAlimento", async (req, res) => {
-  try {
-    const newAlimento = req.body;
-    const ultimaSolicitud = await SolicitudCompraAlimento
-      .findOne({})
-      .sort({ numeroSolicitud: -1 }) // Ordena en orden descendente
-      .select('numeroSolicitud');
 
-    let nuevoNumeroSolicitud = 1; // Si no hay solicitudes anteriores, inicia en 1.
-
-    if (ultimaSolicitud) {
-    nuevoNumeroSolicitud = ultimaSolicitud.numeroSolicitud + 1;
-  }
-
-    const solicitudCompra = {
-      fecha: Date.now(),
-      numeroSolicitud: nuevoNumeroSolicitud,
-      nombreSolicitante: req.body.nombreSolicitante,
-      solicitud: req.body.solicitudes  // Usa "solicitudes" en lugar de "solicitud"
-    };
-
-    // Crea una instancia del modelo SolicitudCompraAlimento con los datos ajustados
-    const nuevaSolicitudCompra = new SolicitudCompraAlimento(solicitudCompra);
-
-    // Guarda la nueva solicitud en la base de datos
-    await nuevaSolicitudCompra.save();
-
-    // Envía una respuesta al cliente
-    res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
-  } catch (error) {
-    console.error('Error al guardar la solicitud:', error);
-    res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
-  }
-});
-
+  app.post("/addSolicitudCompraAlimento", async (req, res) => {
+    try {
+      const newAlimento = req.body;
+      console.log(newAlimento);
+        // Crea una instancia del modelo Entrega con los datos recibidos del cliente
+        const nuevaSolicitudCompra = new SolicitudCompraAlimento({
+          fecha: Date.now(),
+          lotes: req.body.lotes,
+          fechaSolicitud: req.body.fechaSolicitud,
+          organizacion: req.body.organizacion,
+          ubicacion: req.body.ubicacion,
+          nivelEntrega: req.body.nivelEntrega,
+          fechaEntrega: req.body.fechaEntrega,
+          nombreZona: req.body.nombreZona,
+          nombreSolicitante: req.body.nombreSolicitante
+        });
   
-const PORT = 3082;
+        // Guarda la nueva entrega en la base de datos
+        await nuevaSolicitudCompra.save();
+  
+        // Envía una respuesta al cliente
+        res.status(201).json({ mensaje: 'Entrega guardada correctamente' });
+    } catch (error) {
+        console.error('Error al guardar la entrega:', error);
+        res.status(500).json({ mensaje: 'Error al guardar la entrega' });
+    }
+  });
+  
+const PORT = 3083;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-

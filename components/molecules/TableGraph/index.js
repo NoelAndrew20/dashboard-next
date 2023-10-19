@@ -88,6 +88,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
     const [isCheckboxSelected, setIsCheckboxSelected] = useState(false);
     const [dataFinal, setDataFinal] = useState()
     const axios = require('axios');
+
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -118,6 +119,16 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
         setShowForms({});
         setDataList([...dataList, combinedData]);
         setSelectedFoodData(null);
+        
+        const apiUrl = 'http://localhost:3082/addSolicitudCompraAlimento';
+            axios.post(apiUrl, combinedData)
+            .then(response => {
+                console.log("Respuesta de la API:", response.data);
+            })
+            .catch(error => {
+                console.error("Error al enviar la solicitud:", error);
+            });
+
         console.log(combinedData);
       };
   
@@ -230,6 +241,8 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
       
         setShowForms(updatedShowForms);
     };
+
+
     return (
         <>
         <div className="search-container mb-5">
@@ -298,9 +311,9 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
                         </li>
                     ))}
                 </ul>
-                {selectedCheckboxIndex === true ?
-                    <button className="button mt-8 flex float-right"onClick={handleDeselectAllCheckboxes}>Agregar receta</button>
-                 : ""}
+                {/*{selectedCheckboxIndex === true ?
+                    {/*<button className="button mt-8 flex float-right"onClick={handleDeselectAllCheckboxes}>Agregar receta</button>
+                 : ""}*/}
             </div>
         </div>
         <div>
@@ -333,9 +346,10 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
                 }
                 return "";
                 })}
-                <button className="button mt-2" type="submit">
-                    Agregar a la tabla
-                </button>
+            
+            <button className="button mt-2" type="submit">
+                    Agregar receta
+            </button>
             </form>
             ) : ""}
         </>

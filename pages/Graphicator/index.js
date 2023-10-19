@@ -139,6 +139,8 @@ const Graphicator = ({ title, description, image }) => {
     useEffect(()=>{
       console.log(dataList)
     })
+
+    
     useEffect(() => {
         axios.get('http://localhost:3080/getAllSolicitudCompraAlimento')
           .then(response => {
@@ -161,19 +163,19 @@ const Graphicator = ({ title, description, image }) => {
         axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
           .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
-            setData2(jsonData);
-            /*jsonData.forEach(solicitud => {
+            setDataList(jsonData); 
+            
+            // Recorre los objetos en la respuesta y sus lotes para imprimir los nombres de alimentos
+            jsonData.forEach(solicitud => {
               solicitud.lotes.forEach(lote => {
                 console.log(lote.nombreAlimento);
               });
-            });*/
+            });
           })
           .catch(error => {
             console.error(error);
           });
       }, []);
-
-
 
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
