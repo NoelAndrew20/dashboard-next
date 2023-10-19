@@ -23,8 +23,6 @@ const MenuTable = ({ data, setData }) => {
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
     const [searchTerm, setSearchTerm] = useState('');
-
-
  
 
     return (
@@ -54,7 +52,7 @@ const MenuTable = ({ data, setData }) => {
                                 }`}
                             >
                               <td>{item.fecha}</td>
-                              <td>{item.solicitud}</td>
+                              <td>{item.numeroSolicitud}</td>
                               {console.log("la data",data)}
 
                               <td className=" p-1 flex justify-center">
@@ -83,7 +81,7 @@ const MenuTable = ({ data, setData }) => {
                                    </div>
                                 </th>
                                </tr>
-                               {data[index].solicitudes.map((solicitud, index) => (
+                               {item.solicitud.map((solicitud, index) => (
                                     <tr key={index}>
                                     <td>{solicitud.nombreAlimento}</td>
                                     <td>{solicitud.cantidad}</td>

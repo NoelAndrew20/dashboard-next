@@ -11,20 +11,20 @@ const PreRegistro = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([
-        { fecha: '2023-10-10', solicitud: 'Solicitud 1', detalles: 'Detalles 1', 
+        { fecha: '', solicitud: '', detalles: '', 
             solicitudes: [
-                {no: 1, rfid: "12345" },
-                {no: 2, rfid: "12345" },
-                {no: 3, rfid: "12345" },
-                {no: 4, rfid: "12345" },
+                {no: 1, rfid: "" },
+                {no: 2, rfid: "" },
+                {no: 3, rfid: "" },
+                {no: 4, rfid: "" },
             ]
         },
-        { fecha: '2023-10-11', solicitud: 'Solicitud 2', detalles: 'Detalles 2', 
+        { fecha: '', solicitud: 'Citlalic', detalles: '', 
             solicitudes: [
-                {no: 1, rfid: "12345" },
-                {no: 2, rfid: "12345" },
-                {no: 3, rfid: "12345" },
-                {no: 4, rfid: "12345" },
+                {no: 1, rfid: "" },
+                {no: 2, rfid: "" },
+                {no: 3, rfid: "" },
+                {no: 4, rfid: "" },
             ]
         },
     ]);
