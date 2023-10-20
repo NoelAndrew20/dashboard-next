@@ -71,27 +71,27 @@ const Navigation = () => {
                 </div>
                 <div className="side flex flex-col space-y-2 overflow-hidden" >
                     <div id="inner" className='flex flex-col space-y-2'>
-                    {userData.user.grupo === 'Grupo A' && (
+                    {/*{userData.user.grupo === 'Grupo A' && (*/}
                     <Link href="/" className={`hover:font-semibold ${currentPage === '/' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
                         </div>
                     </Link>
-                      )} 
-                      {userData.user.grupo === 'Grupo B' &&  (
+                      {/*})} */}
+                      {/*{userData.user.grupo === 'Grupo B' &&  (*/}
                     <Link href="../../RegistroUsuarios" className={`hover:font-semibold ${currentPage === '/RegistroUsuarios' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/user.svg"} width={20} height={20} alt="user" className="mr-2" /> Usuarios
                         </div>
                     </Link>
-                    )}
-                        {userData.user.grupo === 'Grupo B' &&(
+                    {/*})}*/}
+                        {/*{userData.user.grupo === 'Grupo B' &&(*/}
                     <Link href="../../RegistroTransporte" className={`hover:font-semibold ${currentPage === '/RegistroTransporte' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/truck.svg"} width={20} height={20} alt="transporte" className="mr-2" />Transportes
                         </div>
                     </Link>
-                        )}
+                        {/*)}*/}
                     <Link href="../../Medicamento" className={`hover:font-semibold ${currentPage === '/Medicamento' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento
@@ -140,6 +140,21 @@ const Navigation = () => {
                     <Link href="../../RegistroProveedores" className={`hover:font-semibold ${currentPage === '/RegistroProveedores' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/provider.svg"} width={20} height={20} alt="graph" className="mr-2" />Registro de proveedores
+                        </div>
+                    </Link>
+                    <Link href="../../Licitacion" className={`hover:font-semibold ${currentPage === '/Licitacion' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/licitacion.svg"} width={20} height={20} alt="graph" className="mr-2" />Licitación
+                        </div>
+                    </Link>
+                    <Link href="../../Compras" className={`hover:font-semibold ${currentPage === '/Compras' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/shopping.svg"} width={20} height={20} alt="graph" className="mr-2" />Compras
+                        </div>
+                    </Link>
+                    <Link href="../../SeleccionProveedor" className={`hover:font-semibold ${currentPage === '/SeleccionProveedor' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/selection.svg"} width={20} height={20} alt="graph" className="mr-2" />Seleccion de proveedor
                         </div>
                     </Link>
                     </div>
