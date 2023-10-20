@@ -11,6 +11,19 @@ const Modelo3D = () => {
     const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
     const canvasWidth = 300; // Ancho en píxeles
     const canvasHeight = 200; // Alto en píxeles
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 7);
+    const rosaClaro = new THREE.Color(0xFFB6C1);
+    const rosaMedio = new THREE.Color(0xFF69B4);
+    const rosaOscuro = new THREE.Color(0xFF1493); 
+    const materialDegradado = new THREE.MeshStandardMaterial({
+      color: rosaClaro,
+      emissive: rosaOscuro,
+      metalness: 0.5,
+      roughness: 0.7,
+    });
+
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
 
     renderer.setSize(canvasWidth,canvasHeight);
     renderer.setClearColor(0x000000, 0); // Establece el color a negro y la opacidad a 0
@@ -18,14 +31,22 @@ const Modelo3D = () => {
 
     // Carga tu modelo 3D
     let mixer;
-    loader.load('./3d/CerdoRig.glb', (gltf) => {
+    loader.load('./3d/pig_money_box.glb', (gltf) => {
       const model = gltf.scene;
+      model.scale.set(2,2,2);
+      const material = new THREE.MeshBasicMaterial({ color: 0xff0000 }); // Ejemplo de material rojo
+      model.traverse((node) => {
+        if (node.isMesh) {
+          node.material = materialDegradado;
+        }
+      });
+      
       scene.add(model);
       mixer = new THREE.AnimationMixer(model);
       const clips = gltf.animations;
       const clip = THREE.AnimationClip.findByName(clips, 'ArmatureAction.002');
       const action = mixer.clipAction(clip);
-      action.play();
+
 
 
       // Configura la posición de la cámara
@@ -36,7 +57,7 @@ const Modelo3D = () => {
       const clock = new THREE.Clock();
       const animate = () => {
         requestAnimationFrame(animate);
-        model.rotation.y += 0.002;
+        model.rotation.y += 0.02;
 
         // Realiza las transformaciones y animaciones necesarias aquí
         mixer.update(clock.getDelta());

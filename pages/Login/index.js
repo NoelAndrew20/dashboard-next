@@ -7,7 +7,9 @@ import { useRouter } from 'next/router'
 import srs from '@/public/images/icon/srs.png'
 import pig from '@/public/images/imagenes/cerdo1.png'
 import Cookies from 'js-cookie';
-
+import load from '../../components/molecules/Carga/index.js'
+import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
+import { duration } from 'moment-timezone';
 
 const Login = ({ title, description, image }) => {
   const [email, setEmail] = useState("");
@@ -19,7 +21,6 @@ const Login = ({ title, description, image }) => {
   const [dataIndex, setDataIndex] = useState(0);
   const [error, setError] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-
 
   const validateEmail = (value) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,27 +53,27 @@ const Login = ({ title, description, image }) => {
     setIsButtonDisabled(!validateForm(email, value)); 
   };
 // //Codigo por si no cuentas con la base de datos
-  // const validateForm = (email, password) => {
-  //   return email.trim() !== "" && password.trim() !== "" && validateEmail(email) && password.length >= 6;
-  // };
+  const validateForm = (email, password) => {
+    return email.trim() !== "" && password.trim() !== "" && validateEmail(email) && password.length >= 6;
+  };
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     const user = usuarios.find((userData) => userData.email === email);
-//     if (!user) {
-//       setError("No hay ninguna cuenta con este correo.");
-//     } else if (user.password !== password) {
-//       setError("Contraseña incorrecta.");
-//     } else {
-//       router.push("../")
-//     }
-// }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const user = usuarios.find((userData) => userData.email === email);
+    if (!user) {
+      setError("No hay ninguna cuenta con este correo.");
+    } else if (user.password !== password) {
+      setError("Contraseña incorrecta.");
+    } else {
+      router.push("../")
+    }
+}
 
-//   //esta funcion está para rellenar los datos de prueba
-//   useEffect(() => {
-//     setEmail(usuarios[dataIndex].email);
-//     setPassword(usuarios[dataIndex].password);
-//   }, [dataIndex]);
+  //esta funcion está para rellenar los datos de prueba
+  useEffect(() => {
+    setEmail(usuarios[dataIndex].email);
+    setPassword(usuarios[dataIndex].password);
+  }, [dataIndex]);
 
 // //Aqui acaba el codigo si no tienes base de datos
 
@@ -81,41 +82,41 @@ const Login = ({ title, description, image }) => {
 //-------||||||||Comentar si no se tiene base de datos a partir de aqui :D 
 //-------vvvvvvvv
 
-const validateForm = (email, password) => {
-  return (
-    email.trim() !== '' &&
-    password.trim() !== '' &&
-    validateEmail(email) &&
-    password.length >= 6
-  );
-};
+// const validateForm = (email, password) => {
+//   return (
+//     email.trim() !== '' &&
+//     password.trim() !== '' &&
+//     validateEmail(email) &&
+//     password.length >= 6
+//   );
+// };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await fetch('http://localhost:3002/api/pronostico/js/autentificacion/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    console.log(email);
-    console.log(password);
-    if (response.status === 200) {
-      const userData = await response.json(); 
-      console.log(userData);
-      setCurrentUser(userData);
-      Cookies.set('userData',JSON.stringify(userData), {expires: 7});
-      router.push('../');
-    } else {
-      const data = await response.json();
-      setError(data.error || 'Error de autenticación');
-    }
-  } catch (error) {
-    setError('Error de conexión');
-  }
-};
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   try {
+//     const response = await fetch('http://localhost:3002/api/pronostico/js/autentificacion/login', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ email, password }),
+//     });
+//     console.log(email);
+//     console.log(password);
+//     if (response.status === 200) {
+//       const userData = await response.json(); 
+//       console.log(userData);
+//       setCurrentUser(userData);
+//       Cookies.set('userData',JSON.stringify(userData), {expires: 7});
+//       router.push('../');
+//     } else {
+//       const data = await response.json();
+//       setError(data.error || 'Error de autenticación');
+//     }
+//   } catch (error) {
+//     setError('Error de conexión');
+//   }
+// };
 
 //comentar hasta aqui -----------------
 
@@ -127,31 +128,104 @@ const handleSubmit = async (e) => {
         description={description}
         image={image}
       />
-      <div className="p-5">
-        <Image src={srs} width={100} height={100} alt="srs-logo" />
-      </div>
-      <div className="flex justify-between">
-        <div>
-          <Image src={pig} width={600} height={500} alt="srs-logo" />
+      <AnimatePresence>
+                <motion.div 
+                initial="initialState"
+                animate="animateState"
+                exit="exitState"
+                variants={{
+                  initialState: {
+                    opacity: 0,
+                  },
+                  animateState: {
+                    opacity: 1,
+                  },
+                  exitState: {
+
+                  },
+                }}
+                transition={{duration: 2,delay: 1.5}}
+                className='srs-image'>
+              <div >
+                <Image src={srs} width={200} height={200} alt="srs-logo" />
+              </div>
+              </motion.div>
+              </AnimatePresence>
+      <div className="">
+        <div className=''>
+          
         </div>
-        <div className="flex flex-col p-10">
+        <div className=" flex flex-col pr-5">
           <div className="flex justify-center">
             <div className="pt-10">
-              <div className="flex justify-center">
-                <div className="mr-5">
-                  <Image src="/images/icon/logo_color.png" width={30} height={30} alt="logo" />
-                </div>
-                <div>
-                  <h1 className="text-2xl font-semibold mb-4 text-[#3E120A]">Hola!</h1>
-                </div>
-              </div>
+              <AnimatePresence>
+                <motion.div 
+                initial="initialState"
+                animate="animateState"
+                exit="exitState"
+                variants={{
+                  initialState: {
+                    y: 100,
+                    scale: 4,
+                  },
+                  animateState: {
+                    scale: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.8,
+                      delay: 1,
+                      ease: "easeInOut",
+                    },
+                   
+                  },
+                  exitState: {
+                    
+                  },
+                }}
+                transition={{duration: 15}}
+                className='base-page-size'>
+                    <div className="flex flex-col">
+                      <div className="flex justify-center mr-5">
+                      <video autoPlay loop muted width={200} className="background-video" playbackrate={3.0}>
+                        <source src="./images/Constanzalogo2.mp4" type="video/mp4" />
+                      </video>
+                      </div>
+                      <div className='flex justify-center'>
+                        <h1 className="text-2xl font-semibold mb-4 text-[#3E120A]">Bienvenido!</h1>
+                      </div>
+                    </div>
+                </motion.div>
+              </AnimatePresence>
+              
               {error && (
                   <div className="text-red-500 font-bold mt-2">
                       {error}
                   </div>
               )}
-              <span className="text-xs italic">solo borren la m en .com y vuelvan a ponerla para loguearse</span>
+              
+             
               <form onSubmit={handleSubmit}>
+              <AnimatePresence>
+              <motion.div 
+                initial="initialState"
+                animate="animateState"
+                exit="exitState"
+                variants={{
+                  initialState: {
+                    opacity: 0,
+                    y: 100,
+                  },
+                  animateState: {
+                    opacity: 1,
+                    y: 0,
+                  },
+                  exitState: {
+
+                  },
+                }}
+                transition={{duration: 1,delay: 1.5}}
+                className='page'>
+                <span className="text-xs italic">------------------------------------------------------------------</span>
                 <div className="mb-4">
                   <label htmlFor="email" className="block text-sm text-xl font-bold text-gray-700 text-[#3E120A]">
                     Email:
@@ -178,7 +252,6 @@ const handleSubmit = async (e) => {
                   />
                   {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
                 </div>
-                
                 <div className="flex justify-center">
                   <button
                       type="submit"
@@ -188,6 +261,9 @@ const handleSubmit = async (e) => {
                       Iniciar sesión
                   </button>
                 </div>
+                </motion.div>
+                </AnimatePresence>
+                
               </form>
               <div className="mt-5 text-xs flex justify-center text-blue-500">
               </div>
