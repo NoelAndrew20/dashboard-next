@@ -867,6 +867,7 @@ input:focus {
   line-height: 40px;
 
 }
+
 .pad-index {
   padding: 0px 90px;
 }
@@ -879,10 +880,38 @@ input:focus {
 .position {
   display: flex;
 }
+.typing-container h1 {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: typing 1s forwards;
+}
 
+/* Animación de escritura */
+@keyframes typing {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 @media (max-width: 850px) {
+  #grafica{
+    width: 100px;
+    height: 100px;
+  }
   .position {
     display: contents;
+  }
+  #div3d{
+    flex-direction: column;
+  }
+  #divperiodo{
+    flex-direction: column;
+    align-items: center;
   }
   .wrapper {
     width: 100%;
