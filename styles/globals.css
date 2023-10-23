@@ -698,7 +698,7 @@ input:focus {
   flex-direction: column;
   border-radius: 15px;
   display: flex;
-  background-color: #F8E7CD;
+  background: var(--primary-light, #F7F9FB);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 6vh;
   margin-right: 20px;
@@ -717,7 +717,7 @@ input:focus {
   width: 50%;
   border-radius: 15px;
   display: flex;
-  background: linear-gradient(200deg , #E9AE60, #F7E3C5);
+  background: var(--primary-light, #F7F9FB);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 6vh;
 }
@@ -856,7 +856,7 @@ input:focus {
   padding: 2px;
 }
 .bienvenida {
-  background-color: #e99709;
+  background-color: #2c2c2c;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -902,6 +902,10 @@ input:focus {
   }
 }
 @media (max-width: 850px) {
+  #container-graph-table{
+    display: flex;
+    flex-direction: column;
+  }
   #grafica{
     width: 100px;
     height: 100px;

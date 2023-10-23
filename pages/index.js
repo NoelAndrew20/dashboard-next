@@ -88,41 +88,55 @@ export default function Home({ title, description, image }) {
                 <Image src={'/images/systemusers_104569.png'} width={100} height={30}/>
               </div>
               <div>
-              <h1 className="text-4xl font-bold">{welcomeMessages[welcomeIndex]} {userinfo.user.nombre}</h1>
+              <h1 className="text-4xl font-bold">{welcomeMessages[welcomeIndex]} {/*userinfo.user.nombre*/}</h1>
               </div>
         </div>
         <main
           className={`flex min-h-screen flex-col items-center pad-index`}
         >
           <Chat/>
+          
           <div className="position pt-2">
+   
             <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
               <div>
                 <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
-                  <div id='div3d' className='flex'>
+                  <div id='div3d' className='flex flex-row'>
                   <div>
                   <Modelo3D />
                   </div>
-                  <div className='flex flex-col mt-20'>
-                    <h1 className="text-xl">Ganancias Totales del Periodo</h1>
-                    <h2 className="text-2xl m-2 font-bold">${jsonData.ganancias.ganancia}</h2>
-                    <p className="text-xl" >Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
+                  <div className='flex flex-col'>
+                    <h1 className="ml-10 text-lg font-bold p-2">Ganancias Totales del Periodo</h1>
+                    <div className='flex flex-col mt-20'>
+                    <h2 className="text-3xl m-2 p-2 font-bold">${jsonData.ganancias.ganancia}</h2>
+                    <p className="text-lg p-2 " >Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
                   </div>
+                  </div>
+                  
                   </div>
                 </div>
               </div>
             </div>
+
+            
+            
+
             <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
-              <div>
+            <div>
                 <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
-                <div id='divperiodo' className='flex'>
-                    <div>
-                    <Image src={"/images/svg/date.svg"} width={200} height={200} alt="user" className="mr-2" />
+                  <div id='div3d' className='flex flex-row'>
+                  <div>
+                  <Modelo3D />
                   </div>
-                      <div className='flex mt-20'>
-                        <p className="text-xl font-bold" >Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
-                      </div>
-                </div>
+                  <div className='flex flex-col'>
+                    <h1 className="ml-10 text-lg font-bold p-2">Ganancias Totales del Periodo</h1>
+                    <div className='flex flex-col mt-20'>
+                    <h2 className="text-3xl m-2 p-2 font-bold">${jsonData.ganancias.ganancia}</h2>
+                    <p className="text-lg p-2 " >Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
+                  </div>
+                  </div>
+                  
+                  </div>
                 </div>
               </div>
             </div>
@@ -139,9 +153,9 @@ export default function Home({ title, description, image }) {
                   <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
                 </div>
               </div>
-              <div className='flex'>
-              <div id="grafica" style={{ width: '800px', height: '600px'  }}><BarChart/></div>
-              <div style={{ width: '400px', height: '600px' }} className=" m-5">
+              <div id='container-graph-table' className='flex'>
+              <div id="grafica" style={{ width: '800px', height: '600px'}}><BarChart/></div>
+              <div style={{ width: '400px', height: '600px',maxWidth: '850px', width: '30%', height: '30%' }} className="bg-black m-5">
                 <TableIndex isDarkMode={ isDarkMode }/>
               </div>
               </div>
@@ -168,11 +182,11 @@ export default function Home({ title, description, image }) {
                 <div>
                   </div>
               </div>
-              <div className='flex'>
-              <div id="grafica" style={{ width: '800px', height: '600px'  }}><PieChart/></div>
-              <div style={{ width: '400px', height: '600px' }} className=" m-5">
+              <div id='container-graph-table' className='flex'>
+              <div id="grafica" style={{ width: '800px', height: '600px', maxWidth: '850px', width: '100%'  }}><PieChart/></div>
+              <div style={{ width: '400px', height: '600px', maxWidth: '850px', width: '100%', height: '30%'}} className=" m-5">
                 <TableIndex1 isDarkMode={ isDarkMode }/>
-                <div style={{ width: '120%', height: '80%'  }}><BarChart1/></div>
+                <div style={{ width: '120%', height: '80%',maxWidth: '850px', width: '100%', height: '30%'  }}><BarChart1/></div>
               </div>
               </div>
             </div>
