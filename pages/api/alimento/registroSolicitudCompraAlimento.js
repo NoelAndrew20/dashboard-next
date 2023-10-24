@@ -31,6 +31,7 @@ const SolicitudCompraAlimentoSchema = new mongoose.Schema(
       {
         nombreAlimento: String,
         cantidad: Number,
+        estatus: Number,
       }
     ]
   },
@@ -77,8 +78,10 @@ app.post("/addSolicitudCompraAlimento", async (req, res) => {
     const solicitudCompra = {
       fecha: Date.now(),
       numeroSolicitud: nuevoNumeroSolicitud,
-      nombreSolicitante: req.body.nombreSolicitante,
-      solicitud: req.body.solicitudes  // Usa "solicitudes" en lugar de "solicitud"
+      //nombreSolicitante: req.body.nombreSolicitante,
+      nombreSolicitante: "Jesus",
+      //solicitud: req.body.solicitudes
+      solicitud: req.body.solicitudes.map(item => ({ ...item, estatus: 0 }))
     };
 
     // Crea una instancia del modelo SolicitudCompraAlimento con los datos ajustados
@@ -95,6 +98,84 @@ app.post("/addSolicitudCompraAlimento", async (req, res) => {
   }
 });
 
+app.put('/editLicitacion/:nombreAlimento/:cantidad', async (req, res) => {
+  try {
+    const nombreAlimento = req.params.nombreAlimento;
+    const cantidad = req.params.cantidad;
+    const updateData = { estatus: 1 };
+
+    // Verificar si el estatus actual no es igual a 1 antes de la actualización
+    const existingLicitacion = await SolicitudCompraAlimento.findOne(
+      {
+        "solicitud.nombreAlimento": nombreAlimento,
+        "solicitud.cantidad": cantidad
+      }
+    );
+
+    if (!existingLicitacion) {
+      return res.status(404).json({ message: 'Licitación no encontrada' });
+    }
+
+    if (existingLicitacion.solicitud.estatus !== 1) {
+      // Realizar la actualización solo si el estatus actual no es 1
+      const updatedLicitacion = await SolicitudCompraAlimento.findOneAndUpdate(
+        {
+          "solicitud.nombreAlimento": nombreAlimento,
+          "solicitud.cantidad": cantidad
+        },
+        { $set: { "solicitud.$.estatus": updateData.estatus } },
+        { new: true }
+      );
+
+
+
+      /*const apiUrl = 'http://localhost:3083/addSolicitudLicitacion';
+      axios.post(apiUrl, updatedLicitacion.solicitud)
+        .then(response => {
+          console.log("Respuesta de la API:", response.data);
+        })
+        .catch(error => {
+          console.error("Error al enviar la solicitud:", error);
+        });*/
+
+
+
+      res.status(200).json({ message: 'Estado actualizado con éxito', data: updatedLicitacion });
+    } else {
+      // El estatus actual es 1, no se realiza la actualización
+      res.status(400).json({ message: 'No se puede actualizar una solicitud con estatus 1' });
+    }
+  } catch (error) {
+    console.error('Error al actualizar el estado:', error);
+    res.status(500).json({ message: 'Error al actualizar el estado' });
+  }
+});
+
+
+/*app.put('/editLicitacion/:nombreAlimento/:cantidad', async (req, res) => {
+  try {
+    const nombreAlimento = req.params.nombreAlimento;
+    const cantidad = req.params.cantidad;
+    const updateData = { estatus: 1 };
+    const updatedLicitacion = await SolicitudCompraAlimento.findOneAndUpdate(
+      {
+        "solicitud.nombreAlimento": nombreAlimento,
+        "solicitud.cantidad": cantidad
+      },
+      { $set: { "solicitud.$.estatus": updateData.estatus } },
+      { new: true }
+    );
+
+    if (!updatedLicitacion) {
+      return res.status(404).json({ message: 'Licitación no encontrada' });
+    }
+
+    res.status(200).json({ message: 'Estado actualizado con éxito', data: updatedLicitacion });
+  } catch (error) {
+    console.error('Error al actualizar el estado:', error);
+    res.status(500).json({ message: 'Error al actualizar el estado' });
+  }
+});*/
   
 const PORT = 3082;
 app.listen(PORT, () => {

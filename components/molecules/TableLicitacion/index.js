@@ -12,7 +12,7 @@ const TableLicitacion = ({ data, setData }) => {
     const [expandedRow, setExpandedRow] = useState(null);
     const [showEditModal, setShowEditModal] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
-    const [editedValues, setEditedValues] = useState({ nombredealimento: '', cantidad: '' });
+    const [editedValues, setEditedValues] = useState({ nombreAlimento: '', cantidad: '' });
     const [dataArray, setDataArray] = useState();
     const [indexGuide, setIndexGuide] = useState()
     const [editedData, setEditedData] = useState([]);
@@ -20,6 +20,49 @@ const TableLicitacion = ({ data, setData }) => {
     const handleExpand = (index) => {
         setExpandedRow(index === expandedRow ? null : index);
     };
+
+
+    // sub indice solicitudIndex, indice indexGuide
+    
+    
+    /*console.log(data); 
+    
+
+    data.forEach((item, index) => {
+        console.log(`Elemento ${index}:`);
+        console.log(`Fecha: ${item.fecha}`);
+        console.log(`Nombre Solicitante: ${item.nombreSolicitante}`);
+        console.log(`Número de Solicitud: ${item.numeroSolicitud}`);
+      
+        // Si hay una propiedad 'solicitud' que es una matriz, la recorremos también
+        if (Array.isArray(item.solicitud)) {
+          item.solicitud.forEach((solicitud, solicitudIndex) => {
+            console.log(`Solicitud ${solicitudIndex}:`);
+            console.log(`Nombre del Alimento: ${solicitud.nombreAlimento}`);
+            console.log(`Cantidad: ${solicitud.cantidad}`);
+            console.log(`Estatus: ${solicitud.estatus}`);
+            console.log(`ID: ${solicitud._id}`);
+          });
+        }
+      });*/
+
+      /*data.forEach((item, index) => {
+        console.log(`Elemento ${index}:`);
+        console.log(`Fecha: ${item.fecha}`);
+        console.log(`Nombre Solicitante: ${item.nombreSolicitante}`);
+        console.log(`Número de Solicitud: ${item.numeroSolicitud}`);
+
+      if (Array.isArray(item.solicitud)) {
+        item.solicitud.forEach((solicitud, solicitudIndex) => {
+          console.log(`Solicitud ${solicitudIndex}:`);
+          console.log(`Nombre del Alimento: ${solicitud.nombreAlimento}`);
+          console.log(`Cantidad: ${solicitud.cantidad}`);
+          console.log(`Estatus: ${solicitud.estatus}`);
+          console.log(`ID: ${solicitud._id}`);
+        });
+      }
+    });*/
+      
 
     const entriesPerPage = 10;
     const totalPages = data ? Math.ceil(data.length / entriesPerPage) : 0;
@@ -44,7 +87,7 @@ const TableLicitacion = ({ data, setData }) => {
     };
 
     const handleSave = () => {
-        const nombredealimento = document.querySelector('input[name="nombreAlimento"]').value;
+        const nombreAlimento = document.querySelector('input[name="nombreAlimento"]').value;
         const cantidad = document.querySelector('input[name="cantidad"]').value;
         const fecha = document.querySelector('input[name="fecha"]').value;
         const metodo = document.querySelector('select[name="metodo"]').value;
@@ -52,10 +95,16 @@ const TableLicitacion = ({ data, setData }) => {
         const periodo = document.querySelector('input[name="periodo"]').value;
         const pago = document.querySelector('select[name="pago"]').value;
         const precio = document.querySelector('input[name="precio"]').value;
-
         const newData = [...data];
+        const elementToModify = newData[indexGuide];
+        const fechaSolicitud = elementToModify.fecha;
+        const nombreSolicitante = elementToModify.nombreSolicitante;
+        const numeroSolicitud = elementToModify.numeroSolicitud;
         newData[indexGuide].solicitud[editingSolicitudIndex] = {
-            nombredealimento,
+            fechaSolicitud,
+            nombreSolicitante,
+            numeroSolicitud,
+            nombreAlimento,
             cantidad,
             fecha,
             metodo,
@@ -65,9 +114,46 @@ const TableLicitacion = ({ data, setData }) => {
             precio
         };
         setDataArray(newData);
-        alert('Se ha guardado exitosamente.');
-        setShowEditModal(false);
-    };
+
+        console.log(newData[indexGuide].solicitud[editingSolicitudIndex]);
+        
+        const apiUrl = 'http://localhost:3083/addSolicitudLicitacion';
+        axios.post(apiUrl, newData[indexGuide].solicitud[editingSolicitudIndex])
+        .then(response => {
+            console.log("Respuesta de la API:", response.data);
+        })
+        .catch(error => {
+            console.error("Error al enviar la solicitud:", error);
+        });
+
+
+        /*const apiUrl = `http://localhost:3082/editLicitacion/${newData[indexGuide].solicitud[editingSolicitudIndex].nombreAlimento}/${newData[indexGuide].solicitud[editingSolicitudIndex].cantidad}`;
+        axios.put(apiUrl)
+        .then(response => {
+            console.log("Respuesta de la API:", response.data);
+        })
+        .catch(error => {
+            console.error("Error al enviar la solicitud:", error);
+        });*/
+
+
+        //console.log(newData);
+
+                alert('Se ha guardado exitosamente.');
+                setShowEditModal(false);
+            };
+
+            /*useEffect(() => {
+                axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+                .then(response => {
+                    const jsonData = response.data; // Datos de respuesta en formato JSON
+                    //setData(jsonData.data);
+                    console.log(jsonData);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            }, [])*/
 
     return (
         <>
@@ -95,7 +181,7 @@ const TableLicitacion = ({ data, setData }) => {
                                     }`}
                                 >
                                     <td>{item.fecha}</td>
-                                    <td>{item.solicitud.nombredealimento}</td>
+                                    <td>{item.numeroSolicitud}</td>
                                     <td className="p-1 flex justify-center">
                                         <button
                                             className="flex align-center"
@@ -121,7 +207,7 @@ const TableLicitacion = ({ data, setData }) => {
                                         </tr>
                                         {item.solicitud.map((solicitud, solicitudIndex) => (
                                             <tr key={solicitudIndex}>
-                                                <td>{solicitud.nombredealimento}</td>
+                                                <td>{solicitud.nombreAlimento}</td>
                                                 <td>{solicitud.cantidad}</td>
                                                 <td>
                                                     <p>Postularme</p>
@@ -151,7 +237,7 @@ const TableLicitacion = ({ data, setData }) => {
                                         type="text"
                                         id="text"
                                         name="nombreAlimento"
-                                        value={editedValues.nombredealimento || ''}
+                                        value={editedValues.nombreAlimento || ''}
                                         disabled
                                     />
                                 </div>
