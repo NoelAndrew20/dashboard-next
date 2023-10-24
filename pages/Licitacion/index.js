@@ -8,7 +8,7 @@ import { useDarkMode } from '@/context/DarkModeContext';
 import TableLicitacion from '@/components/molecules/TableLicitacion';
 const axios = require('axios');
 
-const Medicamento = ({ title, description, image }) => {
+const Licitacion = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [data, setData] = useState([
         {
@@ -28,6 +28,25 @@ const Medicamento = ({ title, description, image }) => {
             caracteristicastecnicas: "Alto contenido de carotenoides, zeaxantina y luteína. Rica fuente de vitamina A, importante para la salud visual."
           }
     ]);
+
+    useEffect(() => {
+      axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+        .then(response => {
+          const jsonData = response.data; // Datos de respuesta en formato JSON
+          setData(jsonData);
+          
+          // Recorre los objetos en la respuesta y sus lotes para imprimir los nombres de alimentos
+          jsonData.forEach(solicitud => {
+            solicitud.lotes.forEach(lote => {
+              console.log(lote.nombreAlimento);
+            });
+          });
+        }
+        )
+        .catch(error => {
+          console.error(error);
+        });
+    }, []);
 
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
@@ -50,7 +69,7 @@ const Medicamento = ({ title, description, image }) => {
         </div>
     )
 }
-export default Medicamento;
+export default Licitacion;
 
 export const getServerSideProps = async () => {
     const title = "Constanza";

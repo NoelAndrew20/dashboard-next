@@ -6,7 +6,7 @@ const TableSeleccion = ({ data, setData }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const router = useRouter();
     const entriesPerPage = 10;
-    const totalPages = Math.ceil(data.length / entriesPerPage);
+    const totalPages = Math.ceil(data?.length / entriesPerPage);
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -20,8 +20,8 @@ const TableSeleccion = ({ data, setData }) => {
     
     const [searchTerm, setSearchTerm] = useState('');
 
-    const displayData = searchTerm ? data.filter(item => item.solicitud && item.solicitud.toLowerCase().includes(searchTerm)) : data;
-    const displayDataFinal = displayData.slice(startIndex, endIndex);
+    const displayData = searchTerm ? data.filter(item => item.numeroSolicitud && item.numeroSolicitud.toLowerCase().includes(searchTerm)) : data;
+    const displayDataFinal = displayData?.slice(startIndex, endIndex);
 
     useEffect(() => {
       setCurrentPage(1); 
@@ -60,17 +60,24 @@ const TableSeleccion = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {displayDataFinal.map((item, index) => (
+                    {console.log("datafajaja",displayDataFinal)}
+                    {displayDataFinal?.map((item, index) => (
                     <tr
                         key={index}
                         className={`table-row ${
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-[#F7F9FB]' : 'bg-[#a5b4fc]')
                         }`}
-                    >       
-                        <td>{item.solicitud}</td>
-                        <td>{item.nombreAlimento}</td>
-                        <td>{item.precio}</td>
-                        <td>{item.metodoDeEntrega}</td>
+                    >       {console.log("el item",item)}
+                          <td>{item.numeroSolicitud}</td>
+                            <td>
+                            {item.solicitud && item.solicitud[0] ? item.solicitud[0].nombreAlimento : ''}
+                            </td>
+                            <td>
+                            {item.solicitud && item.solicitud[0] ? item.solicitud[0].precio : ''}
+                            </td>
+                            <td>
+                            {item.solicitud && item.solicitud[0] ? item.solicitud[0].metodo : ''}
+                            </td>
                     </tr>
                     ))}
                 </tbody>

@@ -15,7 +15,8 @@ const SeleccionProveedor = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([
-        {solicitud: 'lorem', nombreAlimento: 'lorem', precio: 'lorem', metodoDeEntrega: 'lorem'},
+        {
+            numeroSolicitud: 'lorem', nombreAlimento: 'lorem', precio: 'lorem', metodoDeEntrega: 'lorem'},
   ])
 
     const openModal = () => {
@@ -27,15 +28,20 @@ const SeleccionProveedor = ({ title, description, image }) => {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:3020/getAllUsuario')
+        axios.get('http://localhost:3083/getAllSolicitudLicitacion')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
-            setData(jsonData.data);
+            setData(jsonData);
+            //console.log(jsonData);
         })
         .catch(error => {
             console.error(error);
-        });
-    }, [])
+        });
+    },[])
+    useEffect(()=> {
+        console.log(data)
+    })
+    
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
             <StaticMeta
