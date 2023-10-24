@@ -51,7 +51,7 @@ select:focus {
   outline: none;
 }
 th {
-  color: #D4AF37;
+  color: #818cf8;
 }
 input:focus {
   outline-color: none; 
@@ -259,7 +259,7 @@ input:focus {
   padding-bottom: 50px;
 }
 .dashboard-nav {
-  background-color: #eca10c;
+  background-color: #a78bfa;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -495,7 +495,7 @@ input:focus {
 /* chat constanza*/
 
 .inner-search {
-  background-color: #842E1C;
+  background-color: #ccc;
   border-radius: 8px;
   width: max-content;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -512,7 +512,6 @@ input:focus {
   display: flex;
 }
 .inner-search input {
-  background-color: #F8E7CD;
   height: 100%;
 }
 .inner-search-d input {
@@ -535,7 +534,7 @@ input:focus {
 }
 .table {
   padding: 20px;
-  background-color: #fff;
+  background-color: #F7F9FB;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
   width: 100%;
 }
@@ -557,7 +556,7 @@ input:focus {
 .table-container {
   width: 100%;
   text-align: center;
-  background-color: #fff;
+  background-color: #F7F9FB;
 }
 .table-index {
   padding: 20px;
@@ -615,8 +614,8 @@ input:focus {
   min-height: 100vh; /* Altura mínima del viewport */
 }
 .button {
-  background-color: #E9AE60;
-  color: #842E1C;
+  background-color: rgb(59 130 246);;
+  color: white;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -949,7 +948,6 @@ input:focus {
     width: 100%;
     display: flow-root;
     border-radius: 15px;
-    background-color: #F8E7CD;    
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 6vh;
     margin-right: 0;

@@ -33,7 +33,7 @@ const Navigation = () => {
                     <div className="cursor-pointer flex items-center">
                         <Link href="/" className="flex items-center">
                             <div className="mr-5 flex">
-                                <img src="images/icon/logo_color.png" alt="Logo"/>
+                                <img src="images/icon/logo_blanco.png" alt="Logo"/>
                             </div>
                             <div className="flex justify-center items-center">
                                 <label className="font-semibold">Constanza</label>
