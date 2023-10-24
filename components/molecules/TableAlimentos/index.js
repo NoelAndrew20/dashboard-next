@@ -96,7 +96,7 @@ const TableAlimentos = ({ data, setData }) => {
                     <tr
                         key={index}
                         className={`table-row ${
-                        isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-white' : 'bg-[#F1CD96]')
+                        isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-[#F7F9FB]' : 'bg-[#a5b4fc]')
                         }`}
                     >       
                         <td>{item.fecha}</td>

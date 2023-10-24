@@ -91,7 +91,7 @@ const TableLicitacion = ({ data, setData }) => {
                                                 : 'bg-gray-500'
                                             : index % 2 === 0
                                             ? 'bg-white'
-                                            : 'bg-[#F1CD96]'
+                                            : 'bg-[#a5b4fc]'
                                     }`}
                                 >
                                     <td>{item.fecha}</td>
