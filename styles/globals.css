@@ -546,11 +546,11 @@ input:focus {
   display: flex;
 }
 .fake-table h2 {
-  color: #D4AF37;
+  color: #818cf8;
   font-weight: bold;
 }
 .fake-table-d h2 {
-  color: #D4AF37;
+  color: #818cf8;
   font-weight: bold;
 }
 .table-container {
@@ -725,6 +725,8 @@ input:focus {
   background: linear-gradient(200deg , #151515, #292928);
   padding: 6vh;
   border: 1px solid #D4AF37;
+  height: 100%;
+  width: 50vh;
 }
 .row-user {
   display: flex;
@@ -737,6 +739,8 @@ input:focus {
   border-radius: var(--16, 16px);
   background: var(--primary-blue, #E3F5FF);
   box-shadow: 3px 5px 15px 0px rgba(0, 102, 255, 0.425);
+  height: 100%;
+  width: 50vh;
 }
 .row-container-d {
   justify-content: space-around;
@@ -791,7 +795,7 @@ input:focus {
   font-weight: 700;
   font-size: 36px;
   line-height: 40px;
-  color: #D4AF37;
+  color: #818cf8;
 }
 .pronostico h2 {
   font-family: 'Montserrat', sans-serif;

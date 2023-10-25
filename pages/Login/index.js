@@ -129,32 +129,30 @@ const Login = ({ title, description, image }) => {
         image={image}
       />
       <AnimatePresence>
-                <motion.div 
-                initial="initialState"
-                animate="animateState"
-                exit="exitState"
-                variants={{
-                  initialState: {
-                    opacity: 0,
-                  },
-                  animateState: {
-                    opacity: 1,
-                  },
-                  exitState: {
+        <motion.div 
+        initial="initialState"
+        animate="animateState"
+        exit="exitState"
+        variants={{
+          initialState: {
+            opacity: 0,
+          },
+          animateState: {
+            opacity: 1,
+          },
+          exitState: {
 
-                  },
-                }}
-                transition={{duration: 2,delay: 1.5}}
-                className='srs-image'>
-              <div >
-                <Image src={srs} width={200} height={200} alt="srs-logo" />
-              </div>
-              </motion.div>
-              </AnimatePresence>
-      <div className="">
-        <div className=''>
-          
-        </div>
+          },
+        }}
+        transition={{duration: 2,delay: 1.5}}
+        className='srs-image'
+        >
+          <div >
+            <Image src={srs} width={100} height={100} alt="srs-logo" />
+          </div>
+        </motion.div>
+      </AnimatePresence>
+      <div>
         <div className=" flex flex-col pr-5">
           <div className="flex justify-center">
             <div className="pt-10">
@@ -183,17 +181,18 @@ const Login = ({ title, description, image }) => {
                   },
                 }}
                 transition={{duration: 15}}
-                className='base-page-size'>
-                    <div className="flex flex-col">
-                      <div className="flex justify-center mr-5">
+                className='base-page-size'
+                >
+                  <div className="flex flex-col">
+                    <div className="flex justify-center border-b border-solid border-black pb-5">
                       <video autoPlay loop muted width={200} className="background-video" playbackrate={3.0}>
-                        <source src="./images/Constanzalogo2.mp4" type="video/mp4" />
-                      </video>
-                      </div>
-                      <div className='flex justify-center'>
-                        <h1 className="text-2xl font-semibold mb-4 text-[#3E120A]">Bienvenido!</h1>
-                      </div>
+                      <source src="./images/Constanzalogo2.mp4" type="video/mp4" />
+                    </video>
                     </div>
+                    <div className='flex justify-center pt-2'>
+                      <h1 className="text-2xl font-semibold mb-4 text-[#3E120A]">Bienvenido!</h1>
+                    </div>
+                  </div>
                 </motion.div>
               </AnimatePresence>
               
@@ -225,7 +224,6 @@ const Login = ({ title, description, image }) => {
                 }}
                 transition={{duration: 1,delay: 1.5}}
                 className='page'>
-                <span className="text-xs italic">------------------------------------------------------------------</span>
                 <div className="mb-4">
                   <label htmlFor="email" className="block text-sm text-xl font-bold text-gray-700 text-[#3E120A]">
                     Email:
