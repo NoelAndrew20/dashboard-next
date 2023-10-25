@@ -19,7 +19,7 @@ const TableAlimentos = ({ data, setData }) => {
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
     const [searchTerm, setSearchTerm] = useState('');
-    const displayData = searchTerm ? data.filter(item => item.fechaEntrega && item.fechaEntrega.toLowerCase().includes(searchTerm)) : data;
+    const displayData = searchTerm ? data.filter(item => item.fecha && item.fecha.toLowerCase().includes(searchTerm)) : data;
     //const displayDataFinal = displayData.slice(startIndex, endIndex);
     const displayDataFinal = displayData ? displayData.slice(startIndex, endIndex) : [];
 

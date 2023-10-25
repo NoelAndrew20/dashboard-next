@@ -40,7 +40,7 @@ const TableCerdos = ({ data, setData }) => {
                     <input
                         type="text"
                         className={isDarkMode ? "bg-black" : "bg-white"}
-                        placeholder="Buscar por Nombre"
+                        placeholder="Buscar por granja"
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value.toLocaleLowerCase())}
                     />

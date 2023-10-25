@@ -17,14 +17,14 @@ import Cookies from 'js-cookie';
 import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
 
 const welcomeMessages = [
-  '¡Bienvenid@!',
-  '¡Hola!',
-  '¡Buen dia!',
+  "¡Bienvenid@!",
+  "¡Hola!",
+  "¡Buen dia!",
 ];
 const responsiveStyles = {
-  maxWidth: '850px',
-  width: '100%', // Opcional: puedes usar 'auto' si quieres mantener la proporción original
-  height: 'auto',
+  maxWidth: "850px",
+  width: "100%", // Opcional: puedes usar "auto" si quieres mantener la proporción original
+  height: "auto",
 };
 
 
@@ -32,7 +32,7 @@ export default function Home({ title, description, image }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [name, setName] = useState("");
 
-  const usuariocookie = Cookies.get('userData');
+  const usuariocookie = Cookies.get("userData");
   const userinfo = usuariocookie ? JSON.parse(usuariocookie) : null;
   
   const [welcomeIndex, setWelcomeIndex] = useState(0);
@@ -49,7 +49,7 @@ export default function Home({ title, description, image }) {
 
   useEffect(() => {
     //console.log(localStorage)
-    const userDataString = localStorage.getItem('userData');
+    const userDataString = localStorage.getItem("userData");
     
     if (userDataString) {
       const userData = JSON.parse(userDataString);
@@ -75,7 +75,7 @@ export default function Home({ title, description, image }) {
           },
         }}
         transition={{duration: 1}}
-        className='main-page'>
+        className="main-page">
                 
       <div className={isDarkMode ? "darkMode" : "lightMode"}>
         <StaticMeta
@@ -87,9 +87,9 @@ export default function Home({ title, description, image }) {
          toggleDarkMode={toggleDarkMode}
          isDarkMode={isDarkMode}
         />
-        <div className="bienvenida flex">
-          <div className=''>
-            <Image src={'/images/systemusers_104569.png'} width={100} height={30}/>
+        <div className="bienvenida flex justify-center">
+          <div className="">
+            <Image src={"/images/systemusers_104569.png"} width={100} height={30}/>
           </div>
           <div>
             {userinfo &&
@@ -101,9 +101,7 @@ export default function Home({ title, description, image }) {
           className={`wrapper`}
         >
           <Chat/>
-            
-          
-          <div className=" pt-2">
+          <div className="position justify-around pt-2 pb-10">
             <motion.div
             initial="initialState"
             animate="animateState"
@@ -122,17 +120,17 @@ export default function Home({ title, description, image }) {
               },
             }}
             transition={{duration: 2}}
-            className='main-page'
+            className="main-page"
             >
               <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
                   <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
-                    <div className='flex justify-around'>
-                      <div id='div3d' className='flex'>
-                        <div className='flex flex-col'>
-                          <h1 className="text-xg mt-5 ml-2">Ganancias Totales del Periodo</h1>
-                          <h2 className="text-3xl mt-20 font-bold">${jsonData.ganancias.ganancia}</h2>
+                    <div className="flex justify-around">
+                      <div id="div3d">
+                        <div className="flex flex-col text-center">
+                          <h1 className="text-xl">Ganancias Totales del Periodo</h1>
+                          <h2 className="text-lg mt-5 font-bold">${jsonData.ganancias.ganancia}</h2>
                         </div>
-                        <div className='mb-5'>
+                        <div className="mb-5">
                           <Modelo3D />
                         </div>
                       </div>
@@ -158,18 +156,18 @@ export default function Home({ title, description, image }) {
               },
             }}
             transition={{duration: 3}}
-            className='main-page'
+            className="main-page"
             >
             <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
               <div>
                 <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
-                <div id='divperiodo' className='flex'>
-                    <div>
-                    <Image src={"/images/svg/date.svg"} width={200} height={200} alt="user" className="mr-2" />
-                  </div>
-                      <div className='flex mt-20'>
-                        <p className="text-xl font-bold" >Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
-                      </div>
+                <div id="divperiodo">
+                    <div className="flex justify-center">
+                      <Image src={"/images/svg/date.svg"} width={150} height={150} alt="user" className="mr-2" />
+                    </div>
+                    <div className="flex mt-10">
+                      <p className="text-xl text-center font-bold" >Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
+                    </div>
                 </div>
                 </div>
               </div>
@@ -196,20 +194,20 @@ export default function Home({ title, description, image }) {
             },
           }}
           transition={{duration: 3}}
-          className='main-page'
+          className="main-page"
           >
             <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
               <div>
                 <div>
-                  <h1 style={{ fontSize: '20px'}}>Costo total de Alimento</h1>
-                  <h2 style={{ fontSize: '60px'}}>${jsonData.ganancias.kg.vientre+jsonData.ganancias.kg.lechon+jsonData.ganancias.kg.sementalCIA+jsonData.ganancias.kg.sementalG}</h2>
+                  <h1 style={{ fontSize: "20px"}}>Costo total de Alimento</h1>
+                  <h2 style={{ fontSize: "60px"}}>${jsonData.ganancias.kg.vientre+jsonData.ganancias.kg.lechon+jsonData.ganancias.kg.sementalCIA+jsonData.ganancias.kg.sementalG}</h2>
                 </div>
                 <div>
                   <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
                 </div>
               </div>
               <div>
-              <div className="responsive-container" id='grafica'><BarChart/></div>
+              <div className="responsive-container" id="grafica"><BarChart/></div>
               <div className="m-5">
                 <TableIndex isDarkMode={ isDarkMode }/>
               </div>
@@ -226,23 +224,25 @@ export default function Home({ title, description, image }) {
               <PieChart/>
             </div>
           </div>
-          <div style={{ width: 'auto' }} className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 pb-50 h-80 w-full flex justify-center`}>
+          <div style={{ width: "auto" }} className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 pb-50 h-80 w-full flex justify-center`}>
               <BarChart/>
           </div>  
           
-          <div className="">
+          <div>
             <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
               <div>
                 <div>
-                <h1>Costo total de Vacunas</h1>
-                <h2>${Math.round(jsonData.vacunas.costo_total_V.Vientre*100)/100}</h2>
-                <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
+                  <h1>Costo total de Vacunas</h1>
+                  <h2>${Math.round(jsonData.vacunas.costo_total_V.Vientre*100)/100}</h2>
+                  <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
                 </div>
-                <div>
-                  </div>
+              <div>
+          </div>
               </div>
               <div>
-              <div id="grafica" className="flex justify-center"><PieChart/></div>
+              <div id="grafica" className="h-[40vh] flex justify-center">
+                <PieChart/>
+              </div>
               <div  className=" m-5">
                 <TableIndex1 isDarkMode={ isDarkMode }/>
                 <div><BarChart1/></div>

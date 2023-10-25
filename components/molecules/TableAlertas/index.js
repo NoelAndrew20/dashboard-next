@@ -32,7 +32,6 @@ const TableAlertas = ({ data, setData }) => {
                         }`}
                         >                       
                         <td className="hover:text-blue-700">
-                            <Link href="../RegistroAlimentos">
                             {item.message.split('[ALERTA]').map((part, partIndex) => (
                                 partIndex === 1 ? (
                                 <span key={partIndex}><label className="alert-message">ALERTA</label> {part}</span>
@@ -40,7 +39,6 @@ const TableAlertas = ({ data, setData }) => {
                                 <span key={partIndex}>{part}</span>
                                 )
                             ))}
-                            </Link>
                         </td>
                         <td>{item.fecha}</td>
                     </tr>
