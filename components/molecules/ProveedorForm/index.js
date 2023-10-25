@@ -41,7 +41,8 @@ const ProveedorForm = () => {
         //e.target.reset();
     //};
 
-    const apiUrl = 'http://localhost:3070/addProveedor/';
+    //const apiUrl = 'http://localhost:3070/addProveedor/';
+    const apiUrl = 'http://192.168.100.10:3070/addProveedor/';
         axios.post(apiUrl, newFormData)
         .then(response => {
             console.log("Respuesta de la API:", response.data);

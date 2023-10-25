@@ -44,8 +44,8 @@ const TableAlimentos = ({ data, setData }) => {
           updatedAlimento.unidad = data[0].lotes[0].unidad;
         }
         
-        //const apiUrl = 'http://192.168.100.10:3010/editTransporte/' + updatedUsuario.fechaContratacion;  
-        const apiUrl = 'http://localhost:3080/editAlimento/';
+        const apiUrl = 'http://192.168.100.10:3080/editAlimento';
+        //const apiUrl = 'http://localhost:3080/editAlimento/';
         axios.put(apiUrl, updatedAlimento)
         .then(response => {
             console.log("Respuesta de la API:", response.data);
