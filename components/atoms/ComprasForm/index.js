@@ -71,7 +71,8 @@ const ComprasForm = () => {
         setFormData([...formData, newFormData]);
 
         const axios = require("axios");
-            const apiUrl = 'http://localhost:3090/addCompra';
+            //const apiUrl = 'http://localhost:3090/addCompra';
+            const apiUrl = 'http://192.168.100.10:3090/addCompra';
             axios.post(apiUrl, newFormData)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);

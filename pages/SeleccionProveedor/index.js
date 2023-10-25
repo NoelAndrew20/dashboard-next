@@ -28,7 +28,8 @@ const SeleccionProveedor = ({ title, description, image }) => {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:3083/getAllSolicitudLicitacion')
+        //axios.get('http://localhost:3083/getAllSolicitudLicitacion')
+        axios.get('http://192.168.100.10:3083/getAllSolicitudLicitacion')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setData(jsonData);
