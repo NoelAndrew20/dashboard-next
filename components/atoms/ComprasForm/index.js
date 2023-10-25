@@ -69,6 +69,18 @@ const ComprasForm = () => {
         };
 
         setFormData([...formData, newFormData]);
+
+        const axios = require("axios");
+            const apiUrl = 'http://localhost:3090/addCompra';
+            axios.post(apiUrl, newFormData)
+            .then(response => {
+                console.log("Respuesta de la API:", response.data);
+            })
+            .catch(error => {
+                console.error("Error al enviar la solicitud:", error);
+            });
+
+        console.log(newFormData);
         
         const marginBottom = 20; 
         const pageHeight = 297 - marginBottom; // Alto de la página (tamaño A4 estándar)
