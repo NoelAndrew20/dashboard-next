@@ -1,5 +1,6 @@
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useEffect, useState } from 'react';
+const axios = require('axios');
 const ProveedorForm = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [selectedFile, setSelectedFile] = useState(null);
@@ -16,7 +17,7 @@ const ProveedorForm = () => {
         const newFormData = {
             denominacion: e.target.denominacion.value,
             rfc: e.target.rfc.value,
-            regimen: e.target.regimen.value,
+            regimenCapital: e.target.regimenCapital.value,
             cp: e.target.cp.value,
             vialidad: e.target.vialidad.value,
             exterior: e.target.exterior.value,
@@ -34,9 +35,20 @@ const ProveedorForm = () => {
             telefono: e.target.telefono.value,
             file: selectedFile,
         };
+        
+        //console.log(newFormData);
+        //setFormData([...formData, newFormData]);
+        //e.target.reset();
+    //};
 
-        setFormData([...formData, newFormData]);
-        e.target.reset();
+    const apiUrl = 'http://localhost:3070/addProveedor/';
+        axios.post(apiUrl, newFormData)
+        .then(response => {
+            console.log("Respuesta de la API:", response.data);
+        })
+        .catch(error => {
+            console.error("Error al enviar la solicitud:", error);
+        });
     };
 
     return (
@@ -58,7 +70,7 @@ const ProveedorForm = () => {
                 <div className="modal-item w-1/3">
                     <label>Régimen Capital:</label>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" name="regimen" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
+                        <input type="text" name="regimenCapital" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
                     </div>
                 </div>
             </div>
@@ -179,7 +191,7 @@ const ProveedorForm = () => {
                 <div className="modal-item w-1/2">
                     <label>Subir archivo:</label>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="file" onChange={handleFileChange} className={isDarkMode ? "modal-input-d" : "modal-input"} />
+                        <input type="file" name="file" onChange={handleFileChange} className={isDarkMode ? "modal-input-d" : "modal-input"} />
                     </div>
                 </div>
                 <div className="modal-item w-1/2"></div>
