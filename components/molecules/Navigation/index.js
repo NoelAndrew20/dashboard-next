@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Cookies from 'js-cookie';
+import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -155,6 +156,11 @@ const Navigation = () => {
                     <Link href="../../SeleccionProveedor" className={`hover:font-semibold ${currentPage === '/SeleccionProveedor' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <Image src={"/images/svg/selection.svg"} width={20} height={20} alt="graph" className="mr-2" />Seleccion de proveedor
+                        </div>
+                    </Link>
+                    <Link href="../../Simulador" className={`hover:font-semibold ${currentPage === '/Simulador' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/farm.svg"} width={20} height={20} alt="graph" className="mr-2" />Simulador
                         </div>
                     </Link>
                     </div>

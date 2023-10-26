@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import json from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/respuesta.json'
+import json from '../../public/api/pronostico/python/Constanza_v15/respuesta.json'
 import Image from 'next/image';
-// import jsondata from '../../public/api/pronostico/python/Constanza_v123/Constanza_v1_3/requisitos_2.json'
+import jsondata from '../../public/api/pronostico/python/Constanza_v15/requisitos_2.json'
 import Formulario from '@/components/molecules/Formulariodinamico'
 import Modal from '../atoms/Modal';
+
 
 const ChatWindow = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState(''); // Nuevo estado para el mensaje
   const [respuestaDelServidor, setRespuestaDelServidor] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
@@ -34,7 +35,7 @@ const ChatWindow = () => {
     e.preventDefault();
     console.log('Pregunta Next:',message);
     try {
-      const response = await axios.post('http://localhost:5000/api/pronostico/python/Constanza_estable/apichat', {
+      const response = await axios.post('http://localhost:5000/api/pronostico/python/Constanza_v15/apichat_cons_v15', {
         question: message, // Envía el contenido del textarea como 'question'
       });
       console.log(message);
@@ -119,6 +120,12 @@ const ChatWindow = () => {
                     />
                   )} 
                   {<p>Constanza: {json.answer}</p>}
+                </div>
+                <div>
+                {/* Muestra la respuesta del servidor aquí */}
+                <div className="respuesta-servidor">
+                  <p>Respuesta del Servidor: {respuestaDelServidor}</p>
+                </div>
                 </div>
                 <textarea
                 id="message-input"
