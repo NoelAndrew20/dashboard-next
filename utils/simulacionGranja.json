@@ -1,0 +1,1254 @@
+[
+    {
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "S/Alimento",
+            "InversionAlimento": 0,
+            "KgConsumidos": 0,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "02-10-2023"
+    },
+    {
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 114.33737128486263,
+            "KgConsumidos": 5.716868564243131,
+            "InversionMedicamento": 1100,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Med3": {
+                    "Cant": 1,
+                    "Inversion": 400
+                }
+            }
+        },
+        "Fecha": "03-10-2023"
+    },
+    {
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 84.88751869104541,
+            "KgConsumidos": 4.24437593455227,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "04-10-2023"
+    },
+    {
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 111.90326447677222,
+            "KgConsumidos": 5.595163223838611,
+            "InversionMedicamento": 50,
+            "Medicamentos": {
+                "Vac6": {
+                    "Cant": 1,
+                    "Inversion": 50
+                }
+            }
+        },
+        "Fecha": "05-10-2023"
+    },
+    {
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 94.55728688717329,
+            "KgConsumidos": 4.7278643443586645,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "06-10-2023"
+    },
+    {
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 94.67607474812993,
+            "KgConsumidos": 4.733803737406497,
+            "InversionMedicamento": 2214,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Vac6": {
+                    "Cant": 1,
+                    "Inversion": 50
+                },
+                "Vac3": {
+                    "Cant": 1,
+                    "Inversion": 64
+                }
+            }
+        },
+        "Fecha": "07-10-2023"
+    },
+    {
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 98.82346097630669,
+            "KgConsumidos": 4.941173048815335,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "08-10-2023"
+    },
+    {
+        "Zen1": {
+            "Total": 2,
+            "Alimento": "S/Alimento",
+            "InversionAlimento": 0,
+            "KgConsumidos": 0,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 90.1176836359821,
+            "KgConsumidos": 4.5058841817991055,
+            "InversionMedicamento": 1052,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Med2": {
+                    "Cant": 1,
+                    "Inversion": 352
+                }
+            }
+        },
+        "Fecha": "09-10-2023"
+    },
+    {
+        "Zen1": {
+            "Total": 2,
+            "Alimento": "Alimento2",
+            "InversionAlimento": 123.12460191409313,
+            "KgConsumidos": 6.156230095704657,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 85.0595910249656,
+            "KgConsumidos": 4.25297955124828,
+            "InversionMedicamento": 764,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Vac3": {
+                    "Cant": 1,
+                    "Inversion": 64
+                }
+            }
+        },
+        "Fecha": "10-10-2023"
+    },
+    {
+        "Zen1": {
+            "Total": 2,
+            "Alimento": "Alimento2",
+            "InversionAlimento": 125.6577380825955,
+            "KgConsumidos": 6.282886904129775,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 98.85765594149208,
+            "KgConsumidos": 4.9428827970746045,
+            "InversionMedicamento": 1100,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Med3": {
+                    "Cant": 1,
+                    "Inversion": 400
+                }
+            }
+        },
+        "Fecha": "11-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento2",
+            "InversionAlimento": 120.87643163098059,
+            "KgConsumidos": 6.04382158154903,
+            "InversionMedicamento": 764,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Vac3": {
+                    "Cant": 1,
+                    "Inversion": 64
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 89.57542787919925,
+            "KgConsumidos": 4.478771393959962,
+            "InversionMedicamento": 352,
+            "Medicamentos": {
+                "Med2": {
+                    "Cant": 1,
+                    "Inversion": 352
+                }
+            }
+        },
+        "Fecha": "12-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 105.36593363083588,
+            "KgConsumidos": 5.268296681541794,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 101.28754682280336,
+            "KgConsumidos": 5.064377341140168,
+            "InversionMedicamento": 80,
+            "Medicamentos": {
+                "Vac1": {
+                    "Cant": 1,
+                    "Inversion": 80
+                }
+            }
+        },
+        "Fecha": "13-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 114.3797360445885,
+            "KgConsumidos": 5.718986802229425,
+            "InversionMedicamento": 352,
+            "Medicamentos": {
+                "Med2": {
+                    "Cant": 1,
+                    "Inversion": 352
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 93.95787518236472,
+            "KgConsumidos": 4.6978937591182355,
+            "InversionMedicamento": 400,
+            "Medicamentos": {
+                "Med3": {
+                    "Cant": 1,
+                    "Inversion": 400
+                }
+            }
+        },
+        "Fecha": "14-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 85.09476219382863,
+            "KgConsumidos": 4.254738109691432,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 109.82852417253393,
+            "KgConsumidos": 5.491426208626697,
+            "InversionMedicamento": 422,
+            "Medicamentos": {
+                "Med2": {
+                    "Cant": 1,
+                    "Inversion": 352
+                },
+                "Vac2": {
+                    "Cant": 1,
+                    "Inversion": 70
+                }
+            }
+        },
+        "Fecha": "15-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 61.23368358124161,
+            "KgConsumidos": 3.0616841790620803,
+            "InversionMedicamento": 400,
+            "Medicamentos": {
+                "Med3": {
+                    "Cant": 1,
+                    "Inversion": 400
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 89.29221225939611,
+            "KgConsumidos": 4.464610612969805,
+            "InversionMedicamento": 80,
+            "Medicamentos": {
+                "Vac1": {
+                    "Cant": 1,
+                    "Inversion": 80
+                }
+            }
+        },
+        "Fecha": "16-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 83.8693401996785,
+            "KgConsumidos": 4.193467009983925,
+            "InversionMedicamento": 764,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Vac3": {
+                    "Cant": 1,
+                    "Inversion": 64
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 166.21315037956924,
+            "KgConsumidos": 8.310657518978463,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "17-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 100.40823597207952,
+            "KgConsumidos": 5.020411798603976,
+            "InversionMedicamento": 80,
+            "Medicamentos": {
+                "Vac1": {
+                    "Cant": 1,
+                    "Inversion": 80
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 207.95693764448168,
+            "KgConsumidos": 10.397846882224083,
+            "InversionMedicamento": 422,
+            "Medicamentos": {
+                "Med2": {
+                    "Cant": 1,
+                    "Inversion": 352
+                },
+                "Vac2": {
+                    "Cant": 1,
+                    "Inversion": 70
+                }
+            }
+        },
+        "Fecha": "18-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 116.20644416556588,
+            "KgConsumidos": 5.8103222082782935,
+            "InversionMedicamento": 352,
+            "Medicamentos": {
+                "Med2": {
+                    "Cant": 1,
+                    "Inversion": 352
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 210.55063128325514,
+            "KgConsumidos": 10.527531564162757,
+            "InversionMedicamento": 1100,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Med3": {
+                    "Cant": 1,
+                    "Inversion": 400
+                }
+            }
+        },
+        "Fecha": "19-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 111.9824387265998,
+            "KgConsumidos": 5.59912193632999,
+            "InversionMedicamento": 422,
+            "Medicamentos": {
+                "Med2": {
+                    "Cant": 1,
+                    "Inversion": 352
+                },
+                "Vac2": {
+                    "Cant": 1,
+                    "Inversion": 70
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 181.46550036092276,
+            "KgConsumidos": 9.073275018046136,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "20-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 88.78995275926567,
+            "KgConsumidos": 4.439497637963284,
+            "InversionMedicamento": 400,
+            "Medicamentos": {
+                "Med3": {
+                    "Cant": 1,
+                    "Inversion": 400
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 200.65031714846498,
+            "KgConsumidos": 10.032515857423249,
+            "InversionMedicamento": 50,
+            "Medicamentos": {
+                "Vac6": {
+                    "Cant": 1,
+                    "Inversion": 50
+                }
+            }
+        },
+        "Fecha": "21-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 108.12918468130795,
+            "KgConsumidos": 5.406459234065397,
+            "InversionMedicamento": 2960,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 2,
+                    "Inversion": 1400
+                },
+                "Vac1": {
+                    "Cant": 1,
+                    "Inversion": 80
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 197.86402474271858,
+            "KgConsumidos": 9.89320123713593,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "22-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 94.02392639793794,
+            "KgConsumidos": 4.701196319896898,
+            "InversionMedicamento": 80,
+            "Medicamentos": {
+                "Vac1": {
+                    "Cant": 1,
+                    "Inversion": 80
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 189.2300028937946,
+            "KgConsumidos": 9.46150014468973,
+            "InversionMedicamento": 1450,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 2,
+                    "Inversion": 1400
+                },
+                "Vac6": {
+                    "Cant": 1,
+                    "Inversion": 50
+                }
+            }
+        },
+        "Zen1": {
+            "Total": 2,
+            "Alimento": "S/Alimento",
+            "InversionAlimento": 0,
+            "KgConsumidos": 0,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "23-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 97.54446294522495,
+            "KgConsumidos": 4.8772231472612475,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 209.88665448532245,
+            "KgConsumidos": 10.494332724266123,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Zen1": {
+            "Total": 2,
+            "Alimento": "Alimento2",
+            "InversionAlimento": 130.14876345838348,
+            "KgConsumidos": 6.507438172919175,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "24-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 95.13511611905412,
+            "KgConsumidos": 4.7567558059527055,
+            "InversionMedicamento": 422,
+            "Medicamentos": {
+                "Med2": {
+                    "Cant": 1,
+                    "Inversion": 352
+                },
+                "Vac2": {
+                    "Cant": 1,
+                    "Inversion": 70
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 216.079784459099,
+            "KgConsumidos": 10.80398922295495,
+            "InversionMedicamento": 700,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                }
+            }
+        },
+        "Zen1": {
+            "Total": 2,
+            "Alimento": "Alimento2",
+            "InversionAlimento": 114.52779354207303,
+            "KgConsumidos": 5.7263896771036515,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "25-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 260.6031469617457,
+            "KgConsumidos": 13.030157348087286,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 203.3137932534068,
+            "KgConsumidos": 10.16568966267034,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "26-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 202.16574076550953,
+            "KgConsumidos": 10.108287038275476,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 207.1507397641147,
+            "KgConsumidos": 10.357536988205734,
+            "InversionMedicamento": 700,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                }
+            }
+        },
+        "Fecha": "27-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 150.87842411248477,
+            "KgConsumidos": 7.543921205624239,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 186.2592046497363,
+            "KgConsumidos": 9.312960232486812,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "28-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 181.46731678930666,
+            "KgConsumidos": 9.073365839465334,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 200.35840981009736,
+            "KgConsumidos": 10.017920490504867,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "29-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 218.59359364814108,
+            "KgConsumidos": 10.929679682407055,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 215.8958402481352,
+            "KgConsumidos": 10.79479201240676,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "30-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 196.44364349662624,
+            "KgConsumidos": 9.822182174831312,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 306.8121240953859,
+            "KgConsumidos": 15.340606204769294,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "31-10-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 228.4008269755165,
+            "KgConsumidos": 11.420041348775825,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 291.531930307048,
+            "KgConsumidos": 14.576596515352398,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "01-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 184.98492447583595,
+            "KgConsumidos": 9.249246223791797,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 283.1998961651895,
+            "KgConsumidos": 14.159994808259475,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "02-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 209.1948804320516,
+            "KgConsumidos": 10.45974402160258,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 284.567315992319,
+            "KgConsumidos": 14.228365799615949,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "03-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 219.48083033769979,
+            "KgConsumidos": 10.974041516884988,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 298.08445453585523,
+            "KgConsumidos": 14.904222726792762,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "04-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 197.84233163910872,
+            "KgConsumidos": 9.892116581955436,
+            "InversionMedicamento": 2960,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 2,
+                    "Inversion": 1400
+                },
+                "Vac1": {
+                    "Cant": 1,
+                    "Inversion": 80
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 313.5803296778968,
+            "KgConsumidos": 15.679016483894841,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "05-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 186.99832847684962,
+            "KgConsumidos": 9.349916423842483,
+            "InversionMedicamento": 1100,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Med3": {
+                    "Cant": 1,
+                    "Inversion": 400
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 290.2811716272499,
+            "KgConsumidos": 14.514058581362493,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Zen1": {
+            "Total": 2,
+            "Alimento": "S/Alimento",
+            "InversionAlimento": 0,
+            "KgConsumidos": 0,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "06-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 221.58069037194645,
+            "KgConsumidos": 11.079034518597322,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 294.1982657827466,
+            "KgConsumidos": 14.709913289137326,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Zen1": {
+            "Total": 2,
+            "Alimento": "Alimento2",
+            "InversionAlimento": 125.96222869729877,
+            "KgConsumidos": 6.298111434864938,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "07-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 4,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 161.79721818171294,
+            "KgConsumidos": 8.089860909085647,
+            "InversionMedicamento": 50,
+            "Medicamentos": {
+                "Vac6": {
+                    "Cant": 1,
+                    "Inversion": 50
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 294.391689812245,
+            "KgConsumidos": 14.719584490612249,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Zen1": {
+            "Total": 2,
+            "Alimento": "Alimento2",
+            "InversionAlimento": 130.42425413795414,
+            "KgConsumidos": 6.521212706897707,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "08-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 6,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 311.17144681355546,
+            "KgConsumidos": 15.55857234067777,
+            "InversionMedicamento": 1100,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Med3": {
+                    "Cant": 1,
+                    "Inversion": 400
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 290.16729473101014,
+            "KgConsumidos": 14.508364736550508,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "09-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 6,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 240.5248770164811,
+            "KgConsumidos": 12.026243850824056,
+            "InversionMedicamento": 2214,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 2,
+                    "Inversion": 1400
+                },
+                "Vac3": {
+                    "Cant": 1,
+                    "Inversion": 64
+                },
+                "Vac6": {
+                    "Cant": 1,
+                    "Inversion": 50
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 319.975501289343,
+            "KgConsumidos": 15.99877506446715,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "10-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 6,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 315.2570303043042,
+            "KgConsumidos": 15.762851515215209,
+            "InversionMedicamento": 50,
+            "Medicamentos": {
+                "Vac6": {
+                    "Cant": 1,
+                    "Inversion": 50
+                }
+            }
+        },
+        "Gestacion1": {
+            "Total": 2,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 113.37411404244898,
+            "KgConsumidos": 5.668705702122449,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 198.05710325648022,
+            "KgConsumidos": 9.902855162824011,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "11-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 6,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 354.02685016318435,
+            "KgConsumidos": 17.701342508159215,
+            "InversionMedicamento": 1052,
+            "Medicamentos": {
+                "Med2": {
+                    "Cant": 1,
+                    "Inversion": 352
+                },
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                }
+            }
+        },
+        "Gestacion1": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 106.31874325368533,
+            "KgConsumidos": 5.315937162684266,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 4,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 198.20232416713486,
+            "KgConsumidos": 9.910116208356744,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "12-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 6,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 291.42955979693556,
+            "KgConsumidos": 14.571477989846777,
+            "InversionMedicamento": 1450,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 2,
+                    "Inversion": 1400
+                },
+                "Vac6": {
+                    "Cant": 1,
+                    "Inversion": 50
+                }
+            }
+        },
+        "Gestacion1": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 103.80165456482165,
+            "KgConsumidos": 5.190082728241082,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 209.5652600515858,
+            "KgConsumidos": 10.47826300257929,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "13-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 6,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 294.71429250445465,
+            "KgConsumidos": 14.735714625222734,
+            "InversionMedicamento": 1100,
+            "Medicamentos": {
+                "Med3": {
+                    "Cant": 1,
+                    "Inversion": 400
+                },
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                }
+            }
+        },
+        "Gestacion1": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 103.74030133942695,
+            "KgConsumidos": 5.187015066971347,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 303.55069193805554,
+            "KgConsumidos": 15.177534596902774,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "14-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 6,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 298.4782072586697,
+            "KgConsumidos": 14.923910362933489,
+            "InversionMedicamento": 700,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                }
+            }
+        },
+        "Gestacion1": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 105.34434802883186,
+            "KgConsumidos": 5.2672174014415925,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 296.8440957205423,
+            "KgConsumidos": 14.842204786027116,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "15-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 6,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 311.9781163630194,
+            "KgConsumidos": 15.598905818150968,
+            "InversionMedicamento": 80,
+            "Medicamentos": {
+                "Vac1": {
+                    "Cant": 1,
+                    "Inversion": 80
+                }
+            }
+        },
+        "Gestacion1": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 114.38936620104018,
+            "KgConsumidos": 5.719468310052008,
+            "InversionMedicamento": 764,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Vac3": {
+                    "Cant": 1,
+                    "Inversion": 64
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 285.4940238956053,
+            "KgConsumidos": 14.274701194780267,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "16-11-2023"
+    },
+    {
+        "Gestacion2": {
+            "Total": 6,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 259.67037014618654,
+            "KgConsumidos": 12.983518507309329,
+            "InversionMedicamento": 700,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                }
+            }
+        },
+        "Gestacion1": {
+            "Total": 2,
+            "Alimento": "Alimento1",
+            "InversionAlimento": 103.71081969038168,
+            "KgConsumidos": 5.1855409845190845,
+            "InversionMedicamento": 764,
+            "Medicamentos": {
+                "Med1": {
+                    "Cant": 1,
+                    "Inversion": 700
+                },
+                "Vac3": {
+                    "Cant": 1,
+                    "Inversion": 64
+                }
+            }
+        },
+        "Cuarentena": {
+            "Total": 6,
+            "Alimento": "Alimento3",
+            "InversionAlimento": 278.3779913023185,
+            "KgConsumidos": 13.918899565115925,
+            "InversionMedicamento": 0,
+            "Medicamentos": {}
+        },
+        "Fecha": "17-11-2023"
+    }
+
+]

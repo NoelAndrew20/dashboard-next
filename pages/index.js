@@ -15,18 +15,16 @@ import TableIndexZona from '@/components/atoms/TableIndexZona'
 import { useDarkMode } from '@/context/DarkModeContext'
 import Cookies from 'js-cookie';
 import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
+import BarGranja from '@/components/atoms/BarGranja'
+import BarGestación1 from '@/components/atoms/BarGestacion1'
+import BarGestación2 from '@/components/atoms/BarGestación2'
+import BarZen from '@/components/atoms/BarZen'
 
 const welcomeMessages = [
   "¡Bienvenid@!",
   "¡Hola!",
   "¡Buen dia!",
 ];
-const responsiveStyles = {
-  maxWidth: "850px",
-  width: "100%", // Opcional: puedes usar "auto" si quieres mantener la proporción original
-  height: "auto",
-};
-
 
 export default function Home({ title, description, image }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -224,11 +222,43 @@ export default function Home({ title, description, image }) {
               <PieChart/>
             </div>
           </div>
+
           <div style={{ width: "auto" }} className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 pb-50 h-80 w-full flex justify-center`}>
               <BarChart/>
-          </div>  
+          </div> 
+          <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-full flex justify-center text-center`}>
+            <h1>Predicción - Total de cerdos en Cuarentena</h1>
+            <div className='w-full flex justify-center'>
+              <div className='h-[50%] w-[50%]'>
+                <BarGranja/>  {/*primera grafica de pedro aqui te dejo como hacer el fetch*/}
+              </div>
+            </div>
+          </div> 
+          <div className={`${isDarkMode ? "row-container-d mt-20 mb-20" : "row-container mt-20 mb-20"} w-full flex justify-center text-center`}>
+            <h1>Predicción - Total de cerdos en Gestación 1</h1>
+            <div className='w-full flex justify-center'>
+              <div className='h-[50%] w-[50%]'>
+                <BarGestación1/>  {/*primera grafica de pedro*/}
+              </div>
+            </div>
+          </div> 
+          <div className={`${isDarkMode ? "row-container-d mt-20 mb-20" : "row-container mt-20 mb-20"} w-full flex justify-center text-center`}>
+            <h1>Predicción - Total de cerdos en Gestación 2</h1>
+            <div className='w-full flex justify-center'>
+              <div className='h-[50%] w-[50%]'>
+                <BarGestación2/>  {/*segunda grafica de pedro*/}
+              </div>
+            </div>
+          </div> 
+          <div className={`${isDarkMode ? "row-container-d mt-20 mb-20" : "row-container mt-20 mb-20"} w-full flex justify-center text-center`}>
+            <h1>Predicción - Total de cerdos en Zen</h1>
+            <div className='w-full flex justify-center'>
+              <div className='h-[50%] w-[50%]'>
+                <BarZen/>  {/*tercera grafica de pedro*/}
+              </div>
+            </div>
+          </div> 
           
-          <div>
             <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
               <div>
                 <div>
@@ -238,18 +268,17 @@ export default function Home({ title, description, image }) {
                 </div>
               <div>
           </div>
-              </div>
-              <div>
-              <div id="grafica" className="h-[40vh] flex justify-center">
-                <PieChart/>
-              </div>
-              <div  className=" m-5">
-                <TableIndex1 isDarkMode={ isDarkMode }/>
-                <div><BarChart1/></div>
-              </div>
-              </div>
-            </div>
+        <div>
+          <div id="grafica" className="h-[40vh] flex justify-center">
+            <PieChart/>
           </div>
+          <div  className=" m-5">
+            <TableIndex1 isDarkMode={ isDarkMode }/>
+            <div><BarChart1/></div>
+          </div>
+        </div>
+        </div>
+      </div>
 
 
           <div className=" mb-20">
