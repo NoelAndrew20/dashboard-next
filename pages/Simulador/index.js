@@ -75,6 +75,20 @@ const Simulador = ({ title, description, image }) => {
         setLotes(nuevosLotes);
       }
     };
+    const obtenerRFIDDesdeAPI = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/pronostico/mongodb/data'); // Reemplaza la URL con la de tu API de Flask
+        const rfidValues = response.data;
+        return rfidValues;
+      } catch (error) {
+        console.error('Error al obtener los valores de RFID:', error);
+        return [];
+      }
+    };
+    const [rfidValues, setRFIDValues] = useState([]);
+    useEffect(() => {
+      obtenerRFIDDesdeAPI().then((data) => setRFIDValues(data));
+    }, [])
     const guardardatosjson = () => {
         const jsondata = loteback;
         console.log(jsondata);
@@ -188,7 +202,14 @@ const Simulador = ({ title, description, image }) => {
                         <div>
                                 <label>RFID</label>
                             <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
-                                    <input type="text" value={RFIDF1} name="RFIDF1" onChange={(e) => setRFIDF1(e.target.value)} />
+                                    <select value={RFIDF1} name="RFIDF1" onChange={(e) => setRFIDF1(e.target.value)}>
+                                      <option value="">Seleccionar RFID</option>
+                                      {rfidValues.map((rfid, index) => (
+                                        <option key={index} value={rfid}>
+                                          {rfid}
+                                        </option>
+                                      ))}
+                                  </select>
                                 </div>
                                 </div>
                                 <label>Tipo</label>

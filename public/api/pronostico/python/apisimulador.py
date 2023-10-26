@@ -2,9 +2,12 @@ from flask import Flask, request, jsonify
 import json
 from flask_cors import CORS 
 import subprocess
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/tu_basededatos'
+mongo = PyMongo(app)
 
 @app.route('/api/pronostico/python/run-calculadora', methods=['POST'])
 def run_calculadora():

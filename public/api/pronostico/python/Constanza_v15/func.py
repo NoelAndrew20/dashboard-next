@@ -30,6 +30,7 @@ import numpy as np
 #
 import json
 import time
+from unidecode import unidecode
 
 #cargar archivos de config
 with open("config.yaml", "r") as f:
@@ -422,9 +423,10 @@ def Sistema_Experto():
                 response = requests.post(url, json=question)
                 if response.status_code == 200:
                     res = response.json()
+                    cleaned_answer = unidecode(res["answer"].replace("\n", ""))
                     print ("respuesta", res)
-                    return res["answer"]
-            break
+                    print ("respuesta limpia", cleaned_answer)
+                    return cleaned_answer
         else:
             print('...')
         time.sleep(5)
