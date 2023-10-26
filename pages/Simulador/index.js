@@ -2,8 +2,10 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import Navigation from '@/components/molecules/Navigation';
 import ReactModal from 'react-modal';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
+
+
 
 const Simulador = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -14,35 +16,57 @@ const Simulador = ({ title, description, image }) => {
     const [loteback, setLoteback] = useState([]);
     const [RFIDF1, setRFIDF1] = useState("");
     const [TipoF1, setTipoF1] = useState("");
-    const [GranjaF1, setGranjaF1] = useState("");
+    const [DiasF1, setDiasF1] = useState("");
     const [UbicacionF1, setUbicacionF1] = useState("");
     const [message, setMessage] = useState('');
     const [showModificarModal, setShowModificarModal] = useState(false);
     const [showEjecutarModal, setShowEjecutarModal] = useState(false);
-    const tiposDeCerdos = ["F1", "Engorda", "Semental"];
-
+    const tiposDeCerdos = ["F1ANR", "", ""];
+    const diasEnArea = parseInt(DiasF1,10);
+    
     const agregarLote = () => {
-      if (RFIDF1 && TipoF1 && GranjaF1 && UbicacionF1) {
+      if (RFIDF1 !=="" && TipoF1 !=="" && DiasF1 !=="" && UbicacionF1 !=="") {
         const nuevoLote = {
-            RFIDF1,
-            TipoF1,
-            GranjaF1,
-            UbicacionF1
+            FechaRegistro: new Date().toLocaleString(),
+            Estado: "Vivo", // Valor por defecto
+            Granja: "LaPurisima", // Valor por defecto
+            AlimentoDia1: {}, // Valor por defecto (objeto vacío)
+            PadecimientosDia1: {}, // Valor por defecto (objeto vacío)
+            MedicamentoDia1: {},
+            RFID: RFIDF1,
+            Ruta: "F1ANR.yaml",
+            Tipo: TipoF1,
+            DiasEnArea: diasEnArea,
+            Ubicacion: UbicacionF1
         };
-        const nuevoLoteback = [
-            RFIDF1,
-            TipoF1,
-            GranjaF1,
-            UbicacionF1
-        ];
+        console.log("lote",nuevoLote);
+        const nuevoLoteback =
+          {
+          "FechaRegistro": nuevoLote.FechaRegistro,
+          "RFID": RFIDF1,
+          "Ruta": nuevoLote.Ruta,
+          "Tipo": TipoF1,
+          "Estado": nuevoLote.Estado,
+          "Granja": nuevoLote.Granja,
+          "Ubicacion": UbicacionF1,
+          "DiasEnArea": diasEnArea,
+          "AlimentoDia1": nuevoLote.AlimentoDia1,
+          "PadecimientosDia1": nuevoLote.PadecimientosDia1,
+          "MedicamentoDia1": nuevoLote.MedicamentoDia1
+          }
+        ;
+        console.log(nuevoLoteback);
         setLotes([...lotes, nuevoLote]);
-        setLoteback([...loteback, nuevoLoteback]);
+        setLoteback([...loteback, nuevoLote]);
         setRFIDF1("");
         setTipoF1("");
-        setGranjaF1("");
+        setDiasF1("");
         setUbicacionF1("");
       }
     };
+    useEffect(()=>{
+      console.log(loteback)
+    })
   
     const eliminarUltimoLote = () => {
       if (lotes.length > 0) {
@@ -52,23 +76,20 @@ const Simulador = ({ title, description, image }) => {
       }
     };
     const guardardatosjson = () => {
-        const jsondata = {
-            loteback
-        }
+        const jsondata = loteback;
         console.log(jsondata);
 
-        // //console.log(fechainicial,fechafinal,descendenciavientre);
-        // fetch('http://localhost:5000/api/pronostico/python/config.json', {
-        // method: 'POST', 
-        // headers: {
-        //     'Content-Type': 'application/json',
-        // },
-        // body: JSON.stringify(jsondata),
-        // })
-        // .then(response => response.json())
-        // .then(data => console.log(data))
-        // .catch(error => console.error('Error al obtener los datos:', error));
-   
+        fetch('http://localhost:5000/api/pronostico/python/sim.json', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsondata),
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error al obtener los datos:', error));
+     
         };
     
         const runcalculadora = async () => {
@@ -167,7 +188,7 @@ const Simulador = ({ title, description, image }) => {
                         <div>
                                 <label>RFID</label>
                             <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
-                                    <input type="text" onChange={(e) => setRFIDF1(e.target.value)} />
+                                    <input type="text" value={RFIDF1} name="RFIDF1" onChange={(e) => setRFIDF1(e.target.value)} />
                                 </div>
                                 </div>
                                 <label>Tipo</label>
@@ -181,13 +202,13 @@ const Simulador = ({ title, description, image }) => {
                                     ))}
                                     </select>
                                 </div>
-                                <label>Granja</label>
+                                <label>Dias</label>
                             <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
-                                    <input type="text" onChange={(e) => setGranjaF1(e.target.value)} disabled />
+                                    <input type="number" value={DiasF1} onChange={(e) => setDiasF1(e.target.value)} />
                                 </div>
                                 <label>Ubicacion</label>
                             <div className={isDarkMode ? "pronostico-input-d" : "pronostico-input"}>
-                                    <input type="text" value={"LaPurisima"} onChange={(e) => setUbicacionF1(e.target.value)} />
+                                    <input type="text" value={UbicacionF1} onChange={(e) => setUbicacionF1(e.target.value)} />
                                 </div>
                             <div>
                                 <button className="pronostico-btn" onClick={agregarLote}>Agregar Cerdo</button>
@@ -204,7 +225,7 @@ const Simulador = ({ title, description, image }) => {
                                     <tr>
                                     <th>RFID</th>
                                     <th>Tipo</th>
-                                    <th>Granja</th>
+                                    <th>Dias</th>
                                     <th>Ubicacion</th>
                                     </tr>
                                 </thead>
@@ -213,7 +234,7 @@ const Simulador = ({ title, description, image }) => {
                                     <tr key={index} className="table-row">
                                         <td>{lote.RFIDF1}</td>
                                         <td>{lote.TipoF1}</td>
-                                        <td>{lote.GranjaF1}</td>
+                                        <td>{lote.DiasF1}</td>
                                         <td>{lote.UbicacionF1}</td>
                                     </tr>
                                     ))}
