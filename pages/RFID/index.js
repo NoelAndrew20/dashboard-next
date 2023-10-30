@@ -69,7 +69,7 @@ const RFID = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="RFID" id="aduana"/>
+                <NavDashboard section="Cerdos"/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Elementos existentes</h2>
