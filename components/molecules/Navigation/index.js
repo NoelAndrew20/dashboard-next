@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import burguer from '@/public/images/svg/hamburguer.svg'
 import x from '@/public/images/svg/x-w.svg'
-import srs from '@/public/images/icon/srs.png'
+import srs from '@/public/Logos/ACELogo.png'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
