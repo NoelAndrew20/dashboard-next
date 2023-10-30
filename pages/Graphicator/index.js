@@ -191,10 +191,10 @@ const Graphicator = ({ title, description, image }) => {
                 <NavDashboard section="Menú"/>
             </div>
             <div className="wrapper">
-                <div className="mt-10">
+                {/*<div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Solicitudes existentes</h2>
                     <TableAlimentos data={data} setData={setData}/>
-                </div>
+                </div>*/}
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>
                     <TableGraph 
