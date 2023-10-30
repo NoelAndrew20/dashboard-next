@@ -27,6 +27,7 @@ const SolicitudCompraAlimentoSchema = new mongoose.Schema(
     fecha: Date,
     numeroSolicitud: Number,
     nombreSolicitante: String,
+    estadoSolicitud: Number,
     solicitud: [
       {
         nombreAlimento: String,
@@ -43,14 +44,19 @@ const SolicitudCompraAlimentoSchema = new mongoose.Schema(
                 
 
   const SolicitudCompraAlimento = db.model('SolicitudCompraAlimento', SolicitudCompraAlimentoSchema);
+
   app.get("/getAllSolicitudCompraAlimento", async (req, res) => {
     try {
-        // Consulta todas las solicitudes de compra de alimentos en la base de datos
-        const solicitudesCompra = await SolicitudCompraAlimento.find();
+        // Calcula la fecha actual menos una semana
+        const unaSemanaAtras = new Date();
+        unaSemanaAtras.setDate(unaSemanaAtras.getDate() - 7);
+
+        // Consulta las solicitudes de compra de alimentos con fechas más recientes que una semana atrás
+        const solicitudesCompra = await SolicitudCompraAlimento.find({ fecha: { $gte: unaSemanaAtras } });
 
         // Verifica si se encontraron solicitudes de compra
         if (solicitudesCompra.length === 0) {
-            return res.status(404).json({ mensaje: 'No se encontraron solicitudes de compra de alimentos' });
+            return res.status(404).json({ mensaje: 'No se encontraron solicitudes de compra de alimentos en la última semana' });
         }
 
         // Envía las solicitudes de compra al cliente como respuesta
@@ -81,6 +87,8 @@ app.post("/addSolicitudCompraAlimento", async (req, res) => {
       //nombreSolicitante: req.body.nombreSolicitante,
       nombreSolicitante: "Jesus",
       //solicitud: req.body.solicitudes
+
+      estadoSolicitud: 0,
       solicitud: req.body.solicitudes.map(item => ({ ...item, estatus: 0 }))
     };
 
