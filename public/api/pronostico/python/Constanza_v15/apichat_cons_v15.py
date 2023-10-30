@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 contador_activo = False
-
+contador_thread = None 
 
 @app.route('/api/pronostico/python/Constanza_v15/apichat_cons_v15', methods=['POST'])
 def api_chat():
@@ -55,12 +55,12 @@ def api_chat():
                     
                     global contador_activo
                     contador_activo = True
-                    tiempo_espera = 15
+                    tiempo_espera = 4
                     inicio = time.time()
                     while contador_activo == True:
                             tiempo_transcurrido = time.time() - inicio
                             if tiempo_transcurrido >= tiempo_espera:
-                                print("Pasaron 15 segundos")
+                                print("Pasaron 4 segundos")
                                 cargar = {}
                                 cargar.update({"answer": "Esperando"})
                                 with open("respuesta.json", "w") as archivo_json:

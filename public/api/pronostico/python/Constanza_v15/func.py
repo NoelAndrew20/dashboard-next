@@ -180,10 +180,10 @@ def respuesta_audio(question:str, respuesta_larga: dict):
     
     context_preprocces = respuesta_larga
     context = str(context_preprocces)
-
+    context = context.replace('\n', ' ')
     answer = qa_model( model= model, question = question, context = context)
     # Text2Speech generation
-    tts = gTTS(answer['answer'] , lang='en')
+    tts = gTTS(context , lang='es')
     #   Save converted audio as mp3 format
     return(tts.save('respuesta.mp3'), answer['answer'])
 
@@ -390,8 +390,9 @@ def Sistema_Experto():
         json.dump(signal_data, signal_file)
     sysExpActivate = True
     print('Welcome to operations manual!')
+    respuestas = []
     cargar={}
-    cargar.update({"answer": "Welcome to operations manual!"})
+    cargar.update({"answer": "Bienvenido al Manual de Operaciones!"})
     with open("respuesta.json", "w") as archivo_json:
             json.dump(cargar, archivo_json)
     # Abrir el archivo fuera del bucle
@@ -400,7 +401,7 @@ def Sistema_Experto():
 
     while sysExpActivate:
         print("What would you like to know about the operations manual?")
-        cargar.update({"answer": "What would you like to know about the operations manual?"})
+        cargar.update({"answer": "Que deseas saber del manual de operaciones?"})
         with open("respuesta.json", "w") as archivo_json:
             json.dump(cargar, archivo_json)
         senal = leer_senal()
@@ -423,8 +424,9 @@ def Sistema_Experto():
                 if response.status_code == 200:
                     res = response.json()
                     print ("respuesta", res)
-                    return res["answer"]
-            break
+                    print (res["answer"])
+                    respuestas.append(res["answer"])
+                    return respuestas
         else:
             print('...')
         time.sleep(5)
