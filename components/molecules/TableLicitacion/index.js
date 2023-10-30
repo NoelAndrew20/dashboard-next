@@ -20,48 +20,6 @@ const TableLicitacion = ({ data, setData }) => {
     const handleExpand = (index) => {
         setExpandedRow(index === expandedRow ? null : index);
     };
-
-
-    // sub indice solicitudIndex, indice indexGuide
-    
-    
-    /*console.log(data); 
-    
-
-    data.forEach((item, index) => {
-        console.log(`Elemento ${index}:`);
-        console.log(`Fecha: ${item.fecha}`);
-        console.log(`Nombre Solicitante: ${item.nombreSolicitante}`);
-        console.log(`Número de Solicitud: ${item.numeroSolicitud}`);
-      
-        // Si hay una propiedad 'solicitud' que es una matriz, la recorremos también
-        if (Array.isArray(item.solicitud)) {
-          item.solicitud.forEach((solicitud, solicitudIndex) => {
-            console.log(`Solicitud ${solicitudIndex}:`);
-            console.log(`Nombre del Alimento: ${solicitud.nombreAlimento}`);
-            console.log(`Cantidad: ${solicitud.cantidad}`);
-            console.log(`Estatus: ${solicitud.estatus}`);
-            console.log(`ID: ${solicitud._id}`);
-          });
-        }
-      });*/
-
-      /*data.forEach((item, index) => {
-        console.log(`Elemento ${index}:`);
-        console.log(`Fecha: ${item.fecha}`);
-        console.log(`Nombre Solicitante: ${item.nombreSolicitante}`);
-        console.log(`Número de Solicitud: ${item.numeroSolicitud}`);
-
-      if (Array.isArray(item.solicitud)) {
-        item.solicitud.forEach((solicitud, solicitudIndex) => {
-          console.log(`Solicitud ${solicitudIndex}:`);
-          console.log(`Nombre del Alimento: ${solicitud.nombreAlimento}`);
-          console.log(`Cantidad: ${solicitud.cantidad}`);
-          console.log(`Estatus: ${solicitud.estatus}`);
-          console.log(`ID: ${solicitud._id}`);
-        });
-      }
-    });*/
       
 
     const entriesPerPage = 10;
