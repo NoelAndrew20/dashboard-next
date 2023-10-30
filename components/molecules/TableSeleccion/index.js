@@ -54,6 +54,7 @@ const TableSeleccion = ({ data, setData }) => {
                 <thead>
                     <tr>
                         <th>Solicitud</th>
+                        <th>Nombre del solicitante</th>
                         <th>Nombre alimento</th>
                         <th>Precio</th>
                         <th>Metodo de entrega</th>
@@ -70,6 +71,9 @@ const TableSeleccion = ({ data, setData }) => {
                     >       {console.log("el item",item)}
                           <td>{item.numeroSolicitud}</td>
                             <td>
+                            {item.solicitud && item.solicitud[0] ? item.solicitud[0].nombreSolicitante : ''}
+                            </td>
+                            <td>
                             {item.solicitud && item.solicitud[0] ? item.solicitud[0].nombreAlimento : ''}
                             </td>
                             <td>
@@ -78,6 +82,7 @@ const TableSeleccion = ({ data, setData }) => {
                             <td>
                             {item.solicitud && item.solicitud[0] ? item.solicitud[0].metodo : ''}
                             </td>
+
                     </tr>
                     ))}
                 </tbody>
