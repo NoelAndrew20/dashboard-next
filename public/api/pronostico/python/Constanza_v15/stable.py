@@ -66,7 +66,7 @@ while True:
         print('Answer:', text)
         response = {}
         response.update({"answer": text})
-        with open("respuesta.json", "w") as archivo_json:
+        with open("respuestacons.json", "w") as archivo_json:
             json.dump(response,archivo_json)
         break
     else:
