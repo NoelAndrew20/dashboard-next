@@ -4,7 +4,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import Link from 'next/link';
 import usuarios from '../../utils/usuarios.json';
 import { useRouter } from 'next/router'
-import srs from '@/public/images/icon/srs.png'
+import srs from '@/public/Logos/ACELogo.png'
 import pig from '@/public/images/imagenes/cerdo1.png'
 import Cookies from 'js-cookie';
 import load from '../../components/molecules/Carga/index.js'
@@ -148,14 +148,14 @@ const Login = ({ title, description, image }) => {
         className='srs-image'
         >
           <div >
-            <Image src={srs} width={100} height={100} alt="srs-logo" />
+            <Image src={srs} width={200} height={200} alt="srs-logo" className="p-5"/>
           </div>
         </motion.div>
       </AnimatePresence>
       <div>
         <div className=" flex flex-col pr-5">
           <div className="flex justify-center">
-            <div className="pt-10">
+            <div>
               <AnimatePresence>
                 <motion.div 
                 initial="initialState"
