@@ -49,22 +49,26 @@ const SolicitudLicitacionSchema = new mongoose.Schema(
                 
 
   const SolicitudLicitacion = db.model('SolicitudLicitacion', SolicitudLicitacionSchema);
-  app.get("/getAllSolicitudLicitacion", async (req, res) => {
-    try {
-        // Consulta todas las solicitudes de compra de alimentos en la base de datos
-        const solicitudesCompra = await SolicitudLicitacion.find();
 
-        // Verifica si se encontraron solicitudes de compra
-        if (solicitudesCompra.length === 0) {
-            return res.status(404).json({ mensaje: 'No se encontraron solicitudes de compra de alimentos' });
-        }
+app.get("/getAllSolicitudLicitacion", async (req, res) => {
+  try {
+      // Consulta todas las solicitudes de compra de alimentos en la base de datos
+      const solicitudesCompra = await SolicitudLicitacion.find();
 
-        // Envía las solicitudes de compra al cliente como respuesta
-        res.status(200).json(solicitudesCompra);
-    } catch (error) {
-        console.error('Error al obtener las solicitudes de compra de alimentos:', error);
-        res.status(500).json({ mensaje: 'Error al obtener las solicitudes de compra de alimentos' });
-    }
+      // Verifica si se encontraron solicitudes de compra
+      if (solicitudesCompra.length === 0) {
+          return res.status(404).json({ mensaje: 'No se encontraron solicitudes de compra de alimentos' });
+      }
+
+      // Ordena las solicitudes de compra por precio de menor a mayor
+      solicitudesCompra.sort((a, b) => a.solicitud[0].precio - b.solicitud[0].precio);
+
+      // Envía las solicitudes de compra ordenadas al cliente como respuesta
+      res.status(200).json(solicitudesCompra);
+  } catch (error) {
+      console.error('Error al obtener las solicitudes de compra de alimentos:', error);
+      res.status(500).json({ mensaje: 'Error al obtener las solicitudes de compra de alimentos' });
+  }
 });
 
     app.post("/addSolicitudLicitacion", async (req, res) => {
