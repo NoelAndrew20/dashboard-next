@@ -231,8 +231,8 @@ const TableLicitacion = ({ data, setData }) => {
                                             Selecciona...
                                         </option>
                                         <option value="CIF">CIF</option>
-                                        <option value="JAB">JAB</option>
-                                        <option value="FOB">FON</option>
+                                        <option value="LAB">LAB</option>
+                                        <option value="FOB">FOB</option>
                                     </select>
                                 </div>
                                 <div className="modal-item w-1/3">
@@ -265,9 +265,8 @@ const TableLicitacion = ({ data, setData }) => {
                                         <option value="" selected>
                                             Selecciona...
                                         </option>
-                                        <option value="CIF">Contrato</option>
-                                        <option value="JAB">Crédito</option>
-                                        <option value="FOB">Diferido</option>
+                                        <option value="Credito">Crédito</option>
+                                        <option value="Diferido">Diferido</option>
                                     </select>
                                 </div>
                                 <div className="modal-item w-1/3">
