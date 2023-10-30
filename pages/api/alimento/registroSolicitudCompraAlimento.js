@@ -85,7 +85,7 @@ app.post("/addSolicitudCompraAlimento", async (req, res) => {
       fecha: Date.now(),
       numeroSolicitud: nuevoNumeroSolicitud,
       //nombreSolicitante: req.body.nombreSolicitante,
-      nombreSolicitante: "Jesus",
+      nombreSolicitante: "Proveedor Base",
       //solicitud: req.body.solicitudes
 
       estadoSolicitud: 0,
