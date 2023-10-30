@@ -110,7 +110,7 @@ const Navigation = () => {
                     </Link>
                     <Link href="../../RFID" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />RFID
+                            <Image src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />Cerdos
                         </div>
                     </Link>
                     <Link href="../../RegistroAlimentos" className={`hover:font-semibold ${currentPage === '/RegistroAlimentos' ? 'font-semibold' : ''} pt-5`}>
@@ -120,7 +120,7 @@ const Navigation = () => {
                     </Link>
                     <Link href="../../RegistroCerdos" className={`hover:font-semibold ${currentPage === '/RegistroCerdos' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />Cerdos
+                            <Image src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />Registro Cerdos
                         </div>
                     </Link>
                     <Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RegistroInseminacion' ? 'font-semibold' : ''} pt-5`}>

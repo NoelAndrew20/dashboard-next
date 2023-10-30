@@ -10,24 +10,7 @@ const axios = require('axios');
 
 const Licitacion = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
-    const [data, setData] = useState([
-        {
-            solicitud: [
-              {nombredealimento: "Maiz amarillo",
-              cantidad: 10
-            },
-            {nombredealimento: "kdkjs",
-              cantidad: 53
-            },
-        ],
-            fecha: "2023-10-18",
-            precio: 15.99,
-            metododeentrega: "CIF",
-            lugar: "Ciudad Ejemplo",
-            periododesuministro: "2023-10-26",
-            caracteristicastecnicas: "Alto contenido de carotenoides, zeaxantina y luteína. Rica fuente de vitamina A, importante para la salud visual."
-          }
-    ]);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
       //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
