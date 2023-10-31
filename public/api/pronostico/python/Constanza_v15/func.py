@@ -421,6 +421,10 @@ def Sistema_Experto():
                 return "Sistema Experto Fuera de línea"
             else:
                 print(option)
+                cargar = {}
+                cargar.update({"answer": "Pensando.."})
+                with open("respuesta.json", "w") as archivo_json:
+                    json.dump(cargar, archivo_json)
                 url = os.environ.get('URL_SERVER')
                 question = {"Question": option}
                 response = requests.post(url, json=question)

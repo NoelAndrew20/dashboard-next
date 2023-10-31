@@ -5,6 +5,9 @@ import json
 import logging
 import threading
 import time
+from gtts import gTTS
+from gtts.tokenizer import pre_processors
+import gtts.tokenizer.symbols
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -123,8 +126,8 @@ def get_json():
         except Exception as e:
             logging.error(f'Error en la solicitud POST: {str(e)}')
             return jsonify({'error': str(e)}), 500
-@app.route('/api/pronostico/python/Constanza_v15/requisitos_2.json', methods=['POST'])
-def get_json():
+@app.route('/api/pronostico/python/Constanza_v15/respuesta.mp3', methods=['POST'])
+def get_mp3():
     if request.method == 'OPTIONS':
         headers = {
             'Access-Control-Allow-Origin': '*',
@@ -134,9 +137,10 @@ def get_json():
         return ('', 204, headers)
     if request.method == 'POST':
         try:
-            
-
-            return jsonify({'message': 'JSON modified successfully'}), 200
+            text = "Hola y bienvenido a Constanza IA"
+            tts = gTTS(text=text , lang='es')
+            tts.save('respuesta.mp3')
+            return jsonify({'message': 'MP3 modified successfully'}), 200
         except Exception as e:
             logging.error(f'Error en la solicitud POST: {str(e)}')
             return jsonify({'error': str(e)}), 500

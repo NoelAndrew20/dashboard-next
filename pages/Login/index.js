@@ -62,17 +62,8 @@ const Login = ({ title, description, image }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      const response = axios.post('URL_DE_LA_API', {
-        // Aquí puedes proporcionar los datos que deseas enviar en la solicitud POST
-        key1: 'value1',
-        key2: 'value2',
-      });
+      const response = axios.post('http://localhost:5000/api/pronostico/python/Constanza_v15/respuesta.mp3');
 
-      // La respuesta de la API estará en response.data
-      setData(response.data);
-    } catch (err) {
-      setError(err);
-    }
     const user = usuarios.find((userData) => userData.email === email);
     if (!user) {
       setError("No hay ninguna cuenta con este correo.");
@@ -81,6 +72,9 @@ const Login = ({ title, description, image }) => {
     } else {
       router.push("../")
     }
+  } catch (err) {
+    setError(err);
+  }
 }
 
   //esta funcion está para rellenar los datos de prueba
