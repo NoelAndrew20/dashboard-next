@@ -1,0 +1,78 @@
+{
+    "DesarrrolloB": {
+        "Total": 15,
+        "Alimento": "Hibrido",
+        "InversionAlimento": 185.05457311548173,
+        "KgConsumidos": 12.336971541032113,
+        "InversionMedicamento": 422,
+        "Medicamentos": {
+            "Med2": {
+                "Cant": 1,
+                "Inversion": 352
+            },
+            "Vac2": {
+                "Cant": 1,
+                "Inversion": 70
+            }
+        }
+    },
+    "Gestacion1": {
+        "Total": 20,
+        "Alimento": "Alimento1",
+        "InversionAlimento": 930.387644515516,
+        "KgConsumidos": 46.51938222577579,
+        "InversionMedicamento": 0,
+        "Medicamentos": {}
+    },
+    "Cuarentena": {
+        "Total": 12,
+        "Alimento": "Alimento3",
+        "InversionAlimento": 592.8314091485398,
+        "KgConsumidos": 29.641570457426987,
+        "InversionMedicamento": 764,
+        "Medicamentos": {
+            "Med1": {
+                "Cant": 1,
+                "Inversion": 700
+            },
+            "Vac3": {
+                "Cant": 1,
+                "Inversion": 64
+            }
+        }
+    },
+    "Transporte": {
+        "Total": 2,
+        "Alimento": "SinAlimento",
+        "InversionAlimento": 0,
+        "KgConsumidos": 0,
+        "InversionMedicamento": 400,
+        "Medicamentos": {
+            "Med3": {
+                "Cant": 1,
+                "Inversion": 400
+            }
+        }
+    },
+    "CerdoEngordaA": {
+        "Total": 15,
+        "Alimento": "Solido1",
+        "InversionAlimento": 401.07449141108356,
+        "KgConsumidos": 26.73829942740557,
+        "InversionMedicamento": 822,
+        "Medicamentos": {
+            "Med2": {
+                "Cant": 1,
+                "Inversion": 352
+            },
+            "Vac2": {
+                "Cant": 1,
+                "Inversion": 70
+            },
+            "Med3": {
+                "Cant": 1,
+                "Inversion": 400
+            }
+        }
+    }
+}
