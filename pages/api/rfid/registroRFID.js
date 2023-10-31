@@ -1,27 +1,44 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Import the cors module
-
 const app = express();
 app.use(cors());
-
 app.use(express.json());
-
-//const mongoUrl = "mongodb://192.168.100.8:27017/proyectoSRS";
-const mongoUrl = "mongodb://192.168.100.10:27017/C3_LaPurisima";
+const config = require('../../../config.json');
+const mongoUrl = config.mongodesarrollo;
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
 })
 .then(() => {
-  console.log("Connected to database");
+  console.log("Connected to the database");
 })
 .catch((e) => console.log(e));
 
-require("../schema/schemaRFID.js");
-require("../schema/schemaTotal.js");
-const RFID = mongoose.model("RFID");
-const Total = mongoose.model("Total");
+const db = mongoose.connection.useDb("C3_LaPurisima");
+db.on('error', console.error.bind(console, 'Error al conectar a la base de datos:'));
+db.once('open', () => {
+  console.log('Conexión exitosa a la base de datos.');
+});
+
+
+const RFIDSchema = new mongoose.Schema(
+  {  
+    fechaPreBautizo: Date,
+    lote: String,
+    rfid: String,
+    fechaNaveSalida: String,
+    zona: String,
+    nave: String,
+  },
+  {
+    collection: 'Cerdos',
+    versionKey: false,
+  }
+);
+
+const RFID = db.model('RFID', RFIDSchema);
+
 
 app.get("/getAllRFID", async (req, res) => {
   try {

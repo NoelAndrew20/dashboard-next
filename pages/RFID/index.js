@@ -22,6 +22,7 @@ const RFID = ({ title, description, image }) => {
         .then(response => {
             const jsonData = response.data;
             setData(jsonData.data);
+    
         })
         .catch(error => {
             console.error(error);
@@ -31,6 +32,7 @@ const RFID = ({ title, description, image }) => {
 
     useEffect(() => {
         axios.get('http://192.168.100.20:3060/countUniqueRFID')
+        //axios.get('http://localhost:3060/countUniqueRFID')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setTotal(jsonData);
