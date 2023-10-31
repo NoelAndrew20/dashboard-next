@@ -185,9 +185,7 @@ const Login = ({ title, description, image }) => {
                 >
                   <div className="flex flex-col">
                     <div className="flex justify-center border-b border-solid border-black pb-5">
-                      <video autoPlay loop muted width={200} className="background-video" playbackrate={3.0}>
-                      <source src="./images/Constanzalogo2.mp4" type="video/mp4" />
-                    </video>
+                      <img src="/images/Constanzalogo2.gif" style={{width:"200px"}}/>
                     </div>
                     <div className='flex justify-center pt-2'>
                       <h1 className="text-2xl font-semibold mb-4 text-[#3E120A]">Bienvenido!</h1>
