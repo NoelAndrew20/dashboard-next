@@ -1,3 +1,4 @@
+
 from haystack.document_stores import InMemoryDocumentStore, ElasticsearchDocumentStore
 from haystack.nodes import EmbeddingRetriever
 from haystack.pipelines import FAQPipeline

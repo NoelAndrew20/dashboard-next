@@ -123,7 +123,24 @@ def get_json():
         except Exception as e:
             logging.error(f'Error en la solicitud POST: {str(e)}')
             return jsonify({'error': str(e)}), 500
+@app.route('/api/pronostico/python/Constanza_v15/requisitos_2.json', methods=['POST'])
+def get_json():
+    if request.method == 'OPTIONS':
+        headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Authorization, X-Requested-With',
+        }
+        return ('', 204, headers)
+    if request.method == 'POST':
+        try:
+            
 
+            return jsonify({'message': 'JSON modified successfully'}), 200
+        except Exception as e:
+            logging.error(f'Error en la solicitud POST: {str(e)}')
+            return jsonify({'error': str(e)}), 500
+        
 if __name__ == '__main__':
     # json_modificado = False  # Inicializa json_modificado a False
     # actualizar_json_thread = threading.Thread(target=actualizar_json_esperando)
