@@ -40,10 +40,6 @@ const TableRFID = ({ data, setData }) => {
             <table className={isDarkMode ? "table-container-d" : "table-container"}>
                 <thead>
                     <tr>
-                    <th>Fecha de registro</th>
-                        <th>Zona</th>
-                        <th>Puerta</th>
-                        <th>Nave</th>
                         <th>Granja</th>
                         <th>RFID</th> 
                     </tr>
@@ -56,10 +52,7 @@ const TableRFID = ({ data, setData }) => {
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-[#F7F9FB]' : 'bg-[#a5b4fc]')
                         }`}
                     > 
-                        <td>{item.fecha}</td>
-                        <td>{item.zona}</td>
-                        <td>{item.puerta}</td>
-                        <td>{item.nave}</td>
+            
                         <td>{item.granja}</td>
                         <td>{item.rfid}</td>
                         
