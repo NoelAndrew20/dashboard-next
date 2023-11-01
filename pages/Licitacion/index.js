@@ -44,7 +44,7 @@ const Licitacion = ({ title, description, image }) => {
                 <NavDashboard section="Licitación"/>
             </div>
             <div className="wrapper">
-                <h2 className="text-xl mt-5 mb-5">Materias primas existentes</h2>
+                <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>
                 {/*<Search data={data} setData={setData} word={"item"}/>*/}
                 <div className="mt-10">
                     <TableLicitacion data={data} setData={setData}/>

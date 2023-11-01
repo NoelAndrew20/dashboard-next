@@ -21,8 +21,8 @@ const TableTransporte = ({ data, setData }) => {
     const endIndex = startIndex + entriesPerPage;
     const [searchTerm, setSearchTerm] = useState('');
 
-    const displayData = searchTerm ? data.filter(item => item.fecha && item.fecha.toLowerCase().includes(searchTerm)) : data;
-    const displayDataFinal = displayData.slice(startIndex, endIndex);
+    const displayData = searchTerm ? data?.filter(item => item.fecha && item.fecha.toLowerCase().includes(searchTerm)) : data;
+    const displayDataFinal = displayData?.slice(startIndex, endIndex);
 
     const handleEdit = (index) => {
         setEditingIndex(index);
@@ -139,7 +139,7 @@ const TableTransporte = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {displayDataFinal.map((item, index) => (
+                {displayDataFinal?.map((item, index) => (
                     <tr
                         key={index}
                         className={`table-row ${

@@ -13,8 +13,8 @@ const TableRFID = ({ data, setData }) => {
     const endIndex = startIndex + entriesPerPage;
     const [searchTerm, setSearchTerm] = useState('');
 
-    const displayData = searchTerm ? data.filter(item => item.rfid && item.rfid.toLowerCase().includes(searchTerm)) : data;
-    const displayDataFinal = displayData.slice(startIndex, endIndex);
+    const displayData = searchTerm ? data?.filter(item => item.rfid && item.rfid.toLowerCase().includes(searchTerm)) : data;
+    const displayDataFinal = displayData?.slice(startIndex, endIndex);
     return (
         <>
         <div className="search-container mb-5">
@@ -45,7 +45,7 @@ const TableRFID = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {displayDataFinal.map((item, index) => (
+                {displayDataFinal?.map((item, index) => (
                     <tr
                         key={index}
                         className={`table-row ${
