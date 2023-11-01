@@ -118,7 +118,7 @@ export default function Home({ title, description, image }) {
               },
             }}
             transition={{duration: 2}}
-            className="main-page"
+            className="main-page w-1/2"
             >
               <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
                   <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
@@ -154,16 +154,16 @@ export default function Home({ title, description, image }) {
               },
             }}
             transition={{duration: 3}}
-            className="main-page"
+            className="main-page w-1/2"
             >
             <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
-              <div>
+              <div className="contents">
                 <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
                 <div id="divperiodo">
                     <div className="flex justify-center">
                       <Image src={"/images/svg/date.svg"} width={150} height={150} alt="user" className="mr-2" />
                     </div>
-                    <div className="flex mt-10">
+                    <div className="flex mt-10 flex justify-center">
                       <p className="text-xl text-center font-bold" >Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
                     </div>
                 </div>

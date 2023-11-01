@@ -318,7 +318,7 @@ input:focus {
 /*Chat constanza*/
 .chat-window {
   position: fixed;
-  top: 95%;
+  top: 93%;
   bottom: 0px;
   right: 5px;
   width: 440px;
@@ -719,14 +719,12 @@ input:focus {
 }
 .row-user-d {
   justify-content: space-around;
-  width: fit-content;
   border-radius: 15px;
   display: flex;
   background: linear-gradient(200deg , #151515, #292928);
   padding: 6vh;
   border: 1px solid #D4AF37;
   height: 100%;
-  width: 50vh;
 }
 .row-user {
   display: flex;
@@ -737,10 +735,9 @@ input:focus {
   gap: var(--8, 8px);
   flex: 1 0 0;
   border-radius: var(--16, 16px);
-  background: var(--primary-blue, #E3F5FF);
+  background: var(--primary-blue, #F7F9FB);
   box-shadow: 3px 5px 15px 0px rgba(0, 102, 255, 0.425);
   height: 100%;
-  width: 50vh;
 }
 .row-container-d {
   justify-content: space-around;
