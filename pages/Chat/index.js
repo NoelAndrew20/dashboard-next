@@ -10,10 +10,7 @@ import Modal from '../../components/atoms/Modal';
 import respuesta from '../../public/api/pronostico/python/Constanza_v15/respuestacons.json'
 import { useDarkMode } from '@/context/DarkModeContext'
 import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
-<<<<<<< HEAD
-=======
 import StaticMeta from '@/components/atoms/StaticMeta';
->>>>>>> 509fcd2401893519b85fc61170ec8023b98c1c4e
 
   
   
@@ -228,11 +225,7 @@ export default ChatWindow;
 export const getServerSideProps = async () => {
   const title = "Constanza";
   const description =
-<<<<<<< HEAD
-    "Dashboard de Constanza";
-=======
     "Chat de Constanza";
->>>>>>> 509fcd2401893519b85fc61170ec8023b98c1c4e
   const image = "images/icon/logo-400.png";
   return {
     props: {
