@@ -11,21 +11,20 @@ const axios = require('axios');
 const RFID = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const[total, setTotal] = useState([])
-    const [diferenciaDias, setDiferenciaDias] = useState ();
+    const [diferenciaDias, setDiferenciaDias] = useState ([]);
     const [data, setData] = useState([
-       // { fecha: { $date: "2023-08-22T16:03:12.135Z" }, unixTime: 1692741792, sensor: "120398", puerta: "1", nave: "Desarrollo", granja: "granajPrueba", zona: "Maternidad", rfid: "71D1433F", },
-        //{ fecha: { $date: "2023-08-22T16:03:12.135Z" }, unixTime: 1692741792, sensor: "120398", puerta: "1", nave: "Desarrollo", granja: "granajPrueba", zona: "Maternidad", rfid: "71D1433F", },
-        //{ fecha: { $date: "2023-08-22T16:03:12.135Z" }, unixTime: 1692741792, sensor: "120398", puerta: "1", nave: "Desarrollo", granja: "granajPrueba", zona: "Maternidad", rfid: "71D1433F", },
+
     ])
 
     useEffect(() => {
+
         //axios.get('http://192.168.100.10:3060/getAllRFID')
         axios.get('http://localhost:3060/getAllRFID')
         .then(response => {
             const jsonData = response.data;
             setData(jsonData.data);
             const fechaActual = new Date();
-            
+            const diferencias = []; // Crear un array para almacenar las diferencias de días
             jsonData.data.forEach(item => {
                 const fechaS = item.fechaNaveEntrada;
                 const fecha = new Date(fechaS);
@@ -40,15 +39,14 @@ const RFID = ({ title, description, image }) => {
                 const fechaF = new Date(fechaFormateada);
                 const diferenciaMilisegundos = fechaActual - fechaF;
                 const diferenciaDia = diferenciaMilisegundos / (1000 * 60 * 60 * 24);
-                setDiferenciaDias(diferenciaDia)
-                //console.log(`La diferencia en días entre las fechas es: ${diferenciaDias}`);
+                diferencias.push(diferenciaDia);
             });
+            setDiferenciaDias(diferencias);
         })
         .catch(error => {
             console.error(error);
         });
     }, []);
-    
 
     useEffect(() => {
         //axios.get('http://192.168.100.10:3060/countUniqueRFID')
