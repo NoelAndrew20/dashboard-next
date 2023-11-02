@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 
-const TableRFID = ({ data, setData }) => {
+const TableRFID = ({ data, setData, diferenciaDias}) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
@@ -42,6 +42,10 @@ const TableRFID = ({ data, setData }) => {
                     <tr>
                         <th>Granja</th>
                         <th>RFID</th> 
+                        <th>Estatus</th> 
+                        <th>Zona</th> 
+                        <th>Nave</th> 
+                        <th>Tiempo en nave</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +59,10 @@ const TableRFID = ({ data, setData }) => {
             
                         <td>{item.granja}</td>
                         <td>{item.rfid}</td>
+                        <td>{item.status}</td>
+                        <td>{item.zona}</td>
+                        <td>{item.nave}</td>
+                        <td>{diferenciaDias}</td>
                         
                     </tr>
                 ))}

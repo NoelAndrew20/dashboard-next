@@ -142,8 +142,8 @@ const Graphicator = ({ title, description, image }) => {
 
     
     useEffect(() => {
-        //axios.get('http://localhost:3080/getAllSolicitudCompraAlimento')
-        axios.get('http://192.168.100.10:3080/getAllSolicitudCompraAlimento')
+        axios.get('http://localhost:3080/getAllSolicitudCompraAlimento')
+        //axios.get('http://192.168.100.10:3080/getAllSolicitudCompraAlimento')
           .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setData(jsonData);
@@ -161,8 +161,8 @@ const Graphicator = ({ title, description, image }) => {
       }, []);
 
       useEffect(() => {
-        //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-        axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
+        axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+        //axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
           .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setDataList(jsonData); 
@@ -191,10 +191,10 @@ const Graphicator = ({ title, description, image }) => {
                 <NavDashboard section="Menú"/>
             </div>
             <div className="wrapper">
-                {/*<div className="mt-10">
+                {<div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Solicitudes existentes</h2>
                     <TableAlimentos data={data} setData={setData}/>
-                </div>*/}
+                </div>}
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>
                     <TableGraph 
