@@ -14,8 +14,8 @@ const TableMaterias = ({ data, setData }) => {
 
     const [searchTerm, setSearchTerm] = useState('');
 
-    const displayData = searchTerm ? data.filter(item => item.Item_Name && item.Item_Name.toLowerCase().includes(searchTerm)) : data;
-    const displayDataFinal = displayData.slice(startIndex, endIndex);
+    const displayData = searchTerm ? data?.filter(item => item.Item_Name && item.Item_Name.toLowerCase().includes(searchTerm)) : data;
+    const displayDataFinal = displayData?.slice(startIndex, endIndex);
 
     useEffect(() => {
       setCurrentPage(1); 
@@ -53,7 +53,7 @@ const TableMaterias = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {displayDataFinal.map((item, index) => (
+                {displayDataFinal?.map((item, index) => (
                     <tr
                         key={index}
                         className={`table-row ${

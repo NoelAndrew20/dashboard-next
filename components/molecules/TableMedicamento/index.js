@@ -14,8 +14,8 @@ const TableMedicamento = ({ data }) => {
 
   const [searchTerm, setSearchTerm] = useState('');
 
-  const displayData = searchTerm ? data.filter(item => item.PO_Name && item.PO_Name.toLowerCase().includes(searchTerm)) : data;
-  const displayDataFinal = displayData.slice(startIndex, endIndex);
+  const displayData = searchTerm ? data?.filter(item => item.PO_Name && item.PO_Name.toLowerCase().includes(searchTerm)) : data;
+  const displayDataFinal = displayData?.slice(startIndex, endIndex);
 
   useEffect(() => {
     setCurrentPage(1); 
