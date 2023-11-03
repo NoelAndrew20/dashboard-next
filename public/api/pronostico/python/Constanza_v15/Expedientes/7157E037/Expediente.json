@@ -1,0 +1,4155 @@
+{
+    "7157E037": {
+        "Dia 1": {
+            "FechaRegistro": "03-05-2024 15:52:00",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 1,
+            "Alimento": {},
+            "Padecimientos": {},
+            "Medicamento": {}
+        },
+        "Dia 2": {
+            "FechaRegistro": "04-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 2,
+            "Alimento": {
+                "Kg": 0.8623986557826061,
+                "NombreAlimento": "Papilla",
+                "Inversion": 17.247973115652123
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 3": {
+            "FechaRegistro": "05-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 3,
+            "Alimento": {
+                "Kg": 0.339248975809216,
+                "NombreAlimento": "Papilla",
+                "Inversion": 6.78497951618432
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 4": {
+            "FechaRegistro": "06-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 4,
+            "Alimento": {
+                "Kg": 0.8120898518076246,
+                "NombreAlimento": "Papilla",
+                "Inversion": 16.24179703615249
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 5": {
+            "FechaRegistro": "07-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 5,
+            "Alimento": {
+                "Kg": 0.8538169389814582,
+                "NombreAlimento": "Papilla",
+                "Inversion": 17.076338779629165
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 6": {
+            "FechaRegistro": "08-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 6,
+            "Alimento": {
+                "Kg": 0.7653470808061164,
+                "NombreAlimento": "Papilla",
+                "Inversion": 15.306941616122327
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 7": {
+            "FechaRegistro": "09-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 7,
+            "Alimento": {
+                "Kg": 0.6759213229992758,
+                "NombreAlimento": "Papilla",
+                "Inversion": 13.518426459985516
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 8": {
+            "FechaRegistro": "10-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 8,
+            "Alimento": {
+                "Kg": 0.5112582087417457,
+                "NombreAlimento": "Papilla",
+                "Inversion": 10.225164174834912
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 9": {
+            "FechaRegistro": "11-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 9,
+            "Alimento": {
+                "Kg": 0.26085995764467595,
+                "NombreAlimento": "Papilla",
+                "Inversion": 5.217199152893519
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 10": {
+            "FechaRegistro": "12-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 10,
+            "Alimento": {
+                "Kg": 0.7453814549785104,
+                "NombreAlimento": "Papilla",
+                "Inversion": 14.907629099570208
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 11": {
+            "FechaRegistro": "13-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 11,
+            "Alimento": {
+                "Kg": 0.6869947686569837,
+                "NombreAlimento": "Papilla",
+                "Inversion": 13.739895373139674
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 1,
+                    "DiasRestantes": 4
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med1": {
+                        "Cant": 1,
+                        "Inversion": 700
+                    },
+                    "Vac3": {
+                        "Cant": 1,
+                        "Inversion": 64
+                    }
+                },
+                "Inversion": 764,
+                "Adicionales": {}
+            }
+        },
+        "Dia 12": {
+            "FechaRegistro": "14-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 12,
+            "Alimento": {
+                "Kg": 0.16582893422576708,
+                "NombreAlimento": "Papilla",
+                "Inversion": 3.3165786845153415
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 13": {
+            "FechaRegistro": "15-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 13,
+            "Alimento": {
+                "Kg": 0.1739580321515275,
+                "NombreAlimento": "Papilla",
+                "Inversion": 3.47916064303055
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 2,
+                    "DiasRestantes": 3
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    }
+                },
+                "Inversion": 352,
+                "Adicionales": {}
+            }
+        },
+        "Dia 14": {
+            "FechaRegistro": "16-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 14,
+            "Alimento": {
+                "Kg": 0.7719053429633757,
+                "NombreAlimento": "Papilla",
+                "Inversion": 15.438106859267513
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 1,
+                    "DiasRestantes": 4
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med1": {
+                        "Cant": 1,
+                        "Inversion": 700
+                    },
+                    "Vac3": {
+                        "Cant": 1,
+                        "Inversion": 64
+                    }
+                },
+                "Inversion": 764,
+                "Adicionales": {}
+            }
+        },
+        "Dia 15": {
+            "FechaRegistro": "17-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 15,
+            "Alimento": {
+                "Kg": 0.1811184368568095,
+                "NombreAlimento": "Papilla",
+                "Inversion": 3.62236873713619
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 3,
+                    "DiasRestantes": 2
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med3": {
+                        "Cant": 1,
+                        "Inversion": 400
+                    }
+                },
+                "Inversion": 400,
+                "Adicionales": {}
+            }
+        },
+        "Dia 16": {
+            "FechaRegistro": "18-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 16,
+            "Alimento": {
+                "Kg": 0.6122240260388427,
+                "NombreAlimento": "Papilla",
+                "Inversion": 12.244480520776854
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 2,
+                    "DiasRestantes": 3
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    }
+                },
+                "Inversion": 352,
+                "Adicionales": {}
+            }
+        },
+        "Dia 17": {
+            "FechaRegistro": "19-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 17,
+            "Alimento": {
+                "Kg": 0.5985286885212827,
+                "NombreAlimento": "Papilla",
+                "Inversion": 11.970573770425654
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 4,
+                    "DiasRestantes": 1
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Vac1": {
+                        "Cant": 1,
+                        "Inversion": 80
+                    }
+                },
+                "Inversion": 80,
+                "Adicionales": {}
+            }
+        },
+        "Dia 18": {
+            "FechaRegistro": "20-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 18,
+            "Alimento": {
+                "Kg": 0.5930823030525891,
+                "NombreAlimento": "Papilla",
+                "Inversion": 11.861646061051783
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 3,
+                    "DiasRestantes": 2
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med3": {
+                        "Cant": 1,
+                        "Inversion": 400
+                    }
+                },
+                "Inversion": 400,
+                "Adicionales": {}
+            }
+        },
+        "Dia 19": {
+            "FechaRegistro": "21-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 19,
+            "Alimento": {
+                "Kg": 0.36331296624052134,
+                "NombreAlimento": "Papilla",
+                "Inversion": 7.266259324810427
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 5,
+                    "DiasRestantes": 0
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    },
+                    "Vac2": {
+                        "Cant": 1,
+                        "Inversion": 70
+                    }
+                },
+                "Inversion": 422,
+                "Adicionales": {}
+            }
+        },
+        "Dia 20": {
+            "FechaRegistro": "22-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 20,
+            "Alimento": {
+                "Kg": 0.8570924474534707,
+                "NombreAlimento": "Papilla",
+                "Inversion": 17.141848949069413
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 4,
+                    "DiasRestantes": 1
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Vac1": {
+                        "Cant": 1,
+                        "Inversion": 80
+                    }
+                },
+                "Inversion": 80,
+                "Adicionales": {}
+            }
+        },
+        "Dia 21": {
+            "FechaRegistro": "23-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 21,
+            "Alimento": {
+                "Kg": 0.562911665258428,
+                "NombreAlimento": "Papilla",
+                "Inversion": 11.25823330516856
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 22": {
+            "FechaRegistro": "24-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 22,
+            "Alimento": {
+                "Kg": 0.4641367065111039,
+                "NombreAlimento": "Papilla",
+                "Inversion": 9.282734130222078
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 5,
+                    "DiasRestantes": 0
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    },
+                    "Vac2": {
+                        "Cant": 1,
+                        "Inversion": 70
+                    }
+                },
+                "Inversion": 422,
+                "Adicionales": {}
+            }
+        },
+        "Dia 23": {
+            "FechaRegistro": "25-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 23,
+            "Alimento": {
+                "Kg": 0.3147593888164515,
+                "NombreAlimento": "Papilla",
+                "Inversion": 6.29518777632903
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 24": {
+            "FechaRegistro": "26-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 24,
+            "Alimento": {
+                "Kg": 0.8471891348891084,
+                "NombreAlimento": "Papilla",
+                "Inversion": 16.94378269778217
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 25": {
+            "FechaRegistro": "27-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 25,
+            "Alimento": {
+                "Kg": 0.6977405725975215,
+                "NombreAlimento": "Papilla",
+                "Inversion": 13.95481145195043
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 26": {
+            "FechaRegistro": "28-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 26,
+            "Alimento": {
+                "Kg": 0.3301688350268634,
+                "NombreAlimento": "Papilla",
+                "Inversion": 6.603376700537268
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 27": {
+            "FechaRegistro": "29-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "Lechon",
+            "DiasEnArea": 27,
+            "Alimento": {
+                "Kg": 0.7207379525128652,
+                "NombreAlimento": "Papilla",
+                "Inversion": 14.414759050257304
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 28": {
+            "FechaRegistro": "30-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 1,
+            "Alimento": {
+                "Kg": 0.729217873003107,
+                "NombreAlimento": "Papilla",
+                "Inversion": 14.58435746006214
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 29": {
+            "FechaRegistro": "31-05-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 2,
+            "Alimento": {
+                "Kg": 0.36218310322398656,
+                "NombreAlimento": "Papilla",
+                "Inversion": 7.243662064479731
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 30": {
+            "FechaRegistro": "01-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 3,
+            "Alimento": {
+                "Kg": 0.40102285855630404,
+                "NombreAlimento": "Papilla",
+                "Inversion": 8.02045717112608
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 31": {
+            "FechaRegistro": "02-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 4,
+            "Alimento": {
+                "Kg": 0.8548307285376966,
+                "NombreAlimento": "Papilla",
+                "Inversion": 17.096614570753932
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 32": {
+            "FechaRegistro": "03-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 5,
+            "Alimento": {
+                "Kg": 0.39409587615330843,
+                "NombreAlimento": "Papilla",
+                "Inversion": 7.881917523066169
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 33": {
+            "FechaRegistro": "04-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 6,
+            "Alimento": {
+                "Kg": 0.3818570589265794,
+                "NombreAlimento": "Papilla",
+                "Inversion": 7.6371411785315875
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 34": {
+            "FechaRegistro": "05-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 7,
+            "Alimento": {
+                "Kg": 0.3477717342646749,
+                "NombreAlimento": "Papilla",
+                "Inversion": 6.955434685293498
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 35": {
+            "FechaRegistro": "06-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 8,
+            "Alimento": {
+                "Kg": 0.8993890501883719,
+                "NombreAlimento": "Papilla",
+                "Inversion": 17.987781003767438
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 36": {
+            "FechaRegistro": "07-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 9,
+            "Alimento": {
+                "Kg": 0.7484921750210725,
+                "NombreAlimento": "Papilla",
+                "Inversion": 14.96984350042145
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 37": {
+            "FechaRegistro": "08-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloA",
+            "DiasEnArea": 10,
+            "Alimento": {
+                "Kg": 0.8438415626400095,
+                "NombreAlimento": "Papilla",
+                "Inversion": 16.87683125280019
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 38": {
+            "FechaRegistro": "09-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 1,
+            "Alimento": {
+                "Kg": 0.5231544698884387,
+                "NombreAlimento": "Papilla",
+                "Inversion": 10.463089397768774
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 39": {
+            "FechaRegistro": "10-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 2,
+            "Alimento": {
+                "Kg": 0.7302923170283654,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 10.954384755425481
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 40": {
+            "FechaRegistro": "11-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 3,
+            "Alimento": {
+                "Kg": 0.9356681963574215,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 14.035022945361323
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 41": {
+            "FechaRegistro": "12-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 4,
+            "Alimento": {
+                "Kg": 1.0688873485626875,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 16.033310228440314
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 42": {
+            "FechaRegistro": "13-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 5,
+            "Alimento": {
+                "Kg": 0.8415852230363892,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 12.623778345545837
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 43": {
+            "FechaRegistro": "14-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 6,
+            "Alimento": {
+                "Kg": 0.6361052243633428,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 9.541578365450142
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 44": {
+            "FechaRegistro": "15-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 7,
+            "Alimento": {
+                "Kg": 0.7059436933425387,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 10.58915540013808
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 45": {
+            "FechaRegistro": "16-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 8,
+            "Alimento": {
+                "Kg": 0.8383989373438452,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 12.575984060157678
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 46": {
+            "FechaRegistro": "17-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 9,
+            "Alimento": {
+                "Kg": 1.005814920594357,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 15.087223808915354
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 47": {
+            "FechaRegistro": "18-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 10,
+            "Alimento": {
+                "Kg": 0.7305442327971173,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 10.95816349195676
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 48": {
+            "FechaRegistro": "19-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 11,
+            "Alimento": {
+                "Kg": 0.9802051566542147,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 14.70307734981322
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 49": {
+            "FechaRegistro": "20-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 12,
+            "Alimento": {
+                "Kg": 0.7029943018983081,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 10.544914528474623
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 50": {
+            "FechaRegistro": "21-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 13,
+            "Alimento": {
+                "Kg": 0.936442814482012,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 14.04664221723018
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 51": {
+            "FechaRegistro": "22-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 14,
+            "Alimento": {
+                "Kg": 0.9729031495181246,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 14.59354724277187
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 52": {
+            "FechaRegistro": "23-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 15,
+            "Alimento": {
+                "Kg": 0.8690580587190677,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 13.035870880786016
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 53": {
+            "FechaRegistro": "24-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 16,
+            "Alimento": {
+                "Kg": 0.7722217543933312,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 11.583326315899967
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 54": {
+            "FechaRegistro": "25-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 17,
+            "Alimento": {
+                "Kg": 0.9339144244857714,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 14.008716367286572
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 55": {
+            "FechaRegistro": "26-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 18,
+            "Alimento": {
+                "Kg": 0.8644276246184419,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 12.96641436927663
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 56": {
+            "FechaRegistro": "27-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 19,
+            "Alimento": {
+                "Kg": 0.8154697416218633,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 12.23204612432795
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 57": {
+            "FechaRegistro": "28-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "DesarrrolloB",
+            "DiasEnArea": 20,
+            "Alimento": {
+                "Kg": 0.9578740270069648,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 14.368110405104472
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 58": {
+            "FechaRegistro": "29-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 1,
+            "Alimento": {
+                "Kg": 0.7372941563348344,
+                "NombreAlimento": "Hibrido",
+                "Inversion": 11.059412345022515
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 59": {
+            "FechaRegistro": "30-06-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 2,
+            "Alimento": {
+                "Kg": 1.9607841727546647,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.41176259131997
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 60": {
+            "FechaRegistro": "01-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 3,
+            "Alimento": {
+                "Kg": 1.9540225364840589,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.310338047260885
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 61": {
+            "FechaRegistro": "02-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 4,
+            "Alimento": {
+                "Kg": 1.8557571986628771,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.836357979943156
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 62": {
+            "FechaRegistro": "03-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 5,
+            "Alimento": {
+                "Kg": 1.7835012199386882,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.75251829908032
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 63": {
+            "FechaRegistro": "04-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 6,
+            "Alimento": {
+                "Kg": 1.7298016182919929,
+                "NombreAlimento": "Solido1",
+                "Inversion": 25.947024274379892
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 64": {
+            "FechaRegistro": "05-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 7,
+            "Alimento": {
+                "Kg": 1.7683557165814103,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.525335748721155
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 65": {
+            "FechaRegistro": "06-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 8,
+            "Alimento": {
+                "Kg": 1.9987604738330957,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.981407107496437
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 66": {
+            "FechaRegistro": "07-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 9,
+            "Alimento": {
+                "Kg": 1.73832355902385,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.07485338535775
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 67": {
+            "FechaRegistro": "08-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 10,
+            "Alimento": {
+                "Kg": 1.8486262371108348,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.729393556662522
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 68": {
+            "FechaRegistro": "09-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 11,
+            "Alimento": {
+                "Kg": 1.8257188198759067,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.3857822981386
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 69": {
+            "FechaRegistro": "10-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 12,
+            "Alimento": {
+                "Kg": 1.8328211434117854,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.49231715117678
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 70": {
+            "FechaRegistro": "11-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 13,
+            "Alimento": {
+                "Kg": 1.9665713160184277,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.498569740276416
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 71": {
+            "FechaRegistro": "12-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 14,
+            "Alimento": {
+                "Kg": 1.966097202055693,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.491458030835396
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 72": {
+            "FechaRegistro": "13-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 15,
+            "Alimento": {
+                "Kg": 1.8591919278197016,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.887878917295524
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 73": {
+            "FechaRegistro": "14-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 16,
+            "Alimento": {
+                "Kg": 1.653543467451893,
+                "NombreAlimento": "Solido1",
+                "Inversion": 24.803152011778394
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 74": {
+            "FechaRegistro": "15-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 17,
+            "Alimento": {
+                "Kg": 1.7818881639513888,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.72832245927083
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 75": {
+            "FechaRegistro": "16-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 18,
+            "Alimento": {
+                "Kg": 1.7444450746524425,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.166676119786636
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 76": {
+            "FechaRegistro": "17-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 19,
+            "Alimento": {
+                "Kg": 1.8192617012297692,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.288925518446536
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 77": {
+            "FechaRegistro": "18-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 20,
+            "Alimento": {
+                "Kg": 1.616171356757126,
+                "NombreAlimento": "Solido1",
+                "Inversion": 24.242570351356893
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 78": {
+            "FechaRegistro": "19-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 21,
+            "Alimento": {
+                "Kg": 1.8882227856694525,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.323341785041787
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 79": {
+            "FechaRegistro": "20-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 22,
+            "Alimento": {
+                "Kg": 1.75778906004262,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.366835900639302
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 80": {
+            "FechaRegistro": "21-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 23,
+            "Alimento": {
+                "Kg": 1.7501867340297237,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.252801010445854
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 81": {
+            "FechaRegistro": "22-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 24,
+            "Alimento": {
+                "Kg": 1.7352012496416052,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.028018744624077
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 82": {
+            "FechaRegistro": "23-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 25,
+            "Alimento": {
+                "Kg": 1.8913936876528301,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.370905314792452
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 83": {
+            "FechaRegistro": "24-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 26,
+            "Alimento": {
+                "Kg": 1.6359007921613886,
+                "NombreAlimento": "Solido1",
+                "Inversion": 24.538511882420828
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 84": {
+            "FechaRegistro": "25-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 27,
+            "Alimento": {
+                "Kg": 1.9581549671805347,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.372324507708022
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 85": {
+            "FechaRegistro": "26-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 28,
+            "Alimento": {
+                "Kg": 1.7715172463755144,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.572758695632718
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 86": {
+            "FechaRegistro": "27-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 29,
+            "Alimento": {
+                "Kg": 1.7381565318835832,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.07234797825375
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 87": {
+            "FechaRegistro": "28-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 30,
+            "Alimento": {
+                "Kg": 1.6383943365943456,
+                "NombreAlimento": "Solido1",
+                "Inversion": 24.575915048915185
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 88": {
+            "FechaRegistro": "29-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 31,
+            "Alimento": {
+                "Kg": 1.7095420590658406,
+                "NombreAlimento": "Solido1",
+                "Inversion": 25.64313088598761
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 89": {
+            "FechaRegistro": "30-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 32,
+            "Alimento": {
+                "Kg": 1.9691300250811565,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.536950376217348
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 90": {
+            "FechaRegistro": "31-07-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 33,
+            "Alimento": {
+                "Kg": 1.799001964304595,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.985029464568925
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 91": {
+            "FechaRegistro": "01-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaA",
+            "DiasEnArea": 34,
+            "Alimento": {
+                "Kg": 1.710855298846639,
+                "NombreAlimento": "Solido1",
+                "Inversion": 25.662829482699586
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 92": {
+            "FechaRegistro": "02-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 1,
+            "Alimento": {
+                "Kg": 1.8754883710287802,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.132325565431703
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 93": {
+            "FechaRegistro": "03-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 2,
+            "Alimento": {
+                "Kg": 1.8560696178230958,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.841044267346437
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 94": {
+            "FechaRegistro": "04-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 3,
+            "Alimento": {
+                "Kg": 1.7548924978734293,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.32338746810144
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 95": {
+            "FechaRegistro": "05-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 4,
+            "Alimento": {
+                "Kg": 1.7773310298569662,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.659965447854493
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 96": {
+            "FechaRegistro": "06-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 5,
+            "Alimento": {
+                "Kg": 1.885899700748221,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.288495511223314
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 97": {
+            "FechaRegistro": "07-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 6,
+            "Alimento": {
+                "Kg": 1.832195215211848,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.48292822817772
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 98": {
+            "FechaRegistro": "08-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 7,
+            "Alimento": {
+                "Kg": 1.9178543290993946,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.767814936490918
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 99": {
+            "FechaRegistro": "09-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 8,
+            "Alimento": {
+                "Kg": 1.9976866204739132,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.965299307108697
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 100": {
+            "FechaRegistro": "10-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 9,
+            "Alimento": {
+                "Kg": 1.966985031567709,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.504775473515636
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 101": {
+            "FechaRegistro": "11-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 10,
+            "Alimento": {
+                "Kg": 1.6580746145550391,
+                "NombreAlimento": "Solido1",
+                "Inversion": 24.871119218325585
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 102": {
+            "FechaRegistro": "12-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 11,
+            "Alimento": {
+                "Kg": 1.803488366243886,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.05232549365829
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 103": {
+            "FechaRegistro": "13-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 12,
+            "Alimento": {
+                "Kg": 1.981180390677335,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.717705860160027
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 104": {
+            "FechaRegistro": "14-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 13,
+            "Alimento": {
+                "Kg": 1.9158664302656239,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.73799645398436
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 105": {
+            "FechaRegistro": "15-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 14,
+            "Alimento": {
+                "Kg": 1.9162261836362129,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.743392754543194
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 1,
+                    "DiasRestantes": 4
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med1": {
+                        "Cant": 1,
+                        "Inversion": 700
+                    },
+                    "Vac3": {
+                        "Cant": 1,
+                        "Inversion": 64
+                    }
+                },
+                "Inversion": 764,
+                "Adicionales": {}
+            }
+        },
+        "Dia 106": {
+            "FechaRegistro": "16-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 15,
+            "Alimento": {
+                "Kg": 1.6575536982576817,
+                "NombreAlimento": "Solido1",
+                "Inversion": 24.863305473865225
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 107": {
+            "FechaRegistro": "17-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 16,
+            "Alimento": {
+                "Kg": 1.6890442036265962,
+                "NombreAlimento": "Solido1",
+                "Inversion": 25.335663054398943
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 2,
+                    "DiasRestantes": 3
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    }
+                },
+                "Inversion": 352,
+                "Adicionales": {}
+            }
+        },
+        "Dia 108": {
+            "FechaRegistro": "18-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 17,
+            "Alimento": {
+                "Kg": 1.6620514958920265,
+                "NombreAlimento": "Solido1",
+                "Inversion": 24.930772438380398
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 109": {
+            "FechaRegistro": "19-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 18,
+            "Alimento": {
+                "Kg": 1.9201950554577372,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.80292583186606
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 3,
+                    "DiasRestantes": 2
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med3": {
+                        "Cant": 1,
+                        "Inversion": 400
+                    }
+                },
+                "Inversion": 400,
+                "Adicionales": {}
+            }
+        },
+        "Dia 110": {
+            "FechaRegistro": "20-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 19,
+            "Alimento": {
+                "Kg": 1.7624613224325933,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.4369198364889
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 111": {
+            "FechaRegistro": "21-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 20,
+            "Alimento": {
+                "Kg": 1.9514139174502974,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.271208761754462
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 4,
+                    "DiasRestantes": 1
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Vac1": {
+                        "Cant": 1,
+                        "Inversion": 80
+                    }
+                },
+                "Inversion": 80,
+                "Adicionales": {}
+            }
+        },
+        "Dia 112": {
+            "FechaRegistro": "22-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 21,
+            "Alimento": {
+                "Kg": 1.973826622314214,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.60739933471321
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 113": {
+            "FechaRegistro": "23-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 22,
+            "Alimento": {
+                "Kg": 1.8328866453138555,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.49329967970783
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 5,
+                    "DiasRestantes": 0
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    },
+                    "Vac2": {
+                        "Cant": 1,
+                        "Inversion": 70
+                    }
+                },
+                "Inversion": 422,
+                "Adicionales": {}
+            }
+        },
+        "Dia 114": {
+            "FechaRegistro": "24-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 23,
+            "Alimento": {
+                "Kg": 1.7947237217105574,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.92085582565836
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 115": {
+            "FechaRegistro": "25-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 24,
+            "Alimento": {
+                "Kg": 1.9456362107019154,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.18454316052873
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 116": {
+            "FechaRegistro": "26-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 25,
+            "Alimento": {
+                "Kg": 1.9394040637553829,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.091060956330743
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 117": {
+            "FechaRegistro": "27-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 26,
+            "Alimento": {
+                "Kg": 1.6937360309778213,
+                "NombreAlimento": "Solido1",
+                "Inversion": 25.40604046466732
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 118": {
+            "FechaRegistro": "28-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 27,
+            "Alimento": {
+                "Kg": 1.741004766416645,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.115071496249676
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 119": {
+            "FechaRegistro": "29-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 28,
+            "Alimento": {
+                "Kg": 1.8982427614647388,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.47364142197108
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 120": {
+            "FechaRegistro": "30-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 29,
+            "Alimento": {
+                "Kg": 1.8577189441106448,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.865784161659672
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 121": {
+            "FechaRegistro": "31-08-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 30,
+            "Alimento": {
+                "Kg": 1.7515613097554872,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.273419646332307
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 122": {
+            "FechaRegistro": "01-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 31,
+            "Alimento": {
+                "Kg": 1.8871609344843265,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.307414017264897
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 123": {
+            "FechaRegistro": "02-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 32,
+            "Alimento": {
+                "Kg": 1.906089211432897,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.591338171493454
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 124": {
+            "FechaRegistro": "03-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 33,
+            "Alimento": {
+                "Kg": 1.7672488905141506,
+                "NombreAlimento": "Solido1",
+                "Inversion": 26.50873335771226
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 1,
+                    "DiasRestantes": 4
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med1": {
+                        "Cant": 1,
+                        "Inversion": 700
+                    },
+                    "Vac3": {
+                        "Cant": 1,
+                        "Inversion": 64
+                    }
+                },
+                "Inversion": 764,
+                "Adicionales": {}
+            }
+        },
+        "Dia 125": {
+            "FechaRegistro": "04-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 34,
+            "Alimento": {
+                "Kg": 1.9124066049169108,
+                "NombreAlimento": "Solido1",
+                "Inversion": 28.686099073753663
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 126": {
+            "FechaRegistro": "05-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 35,
+            "Alimento": {
+                "Kg": 1.8353065586446697,
+                "NombreAlimento": "Solido1",
+                "Inversion": 27.529598379670045
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 2,
+                    "DiasRestantes": 3
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    }
+                },
+                "Inversion": 352,
+                "Adicionales": {}
+            }
+        },
+        "Dia 127": {
+            "FechaRegistro": "06-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaB",
+            "DiasEnArea": 36,
+            "Alimento": {
+                "Kg": 1.6255919329179276,
+                "NombreAlimento": "Solido1",
+                "Inversion": 24.383878993768914
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 128": {
+            "FechaRegistro": "07-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 1,
+            "Alimento": {
+                "Kg": 1.9921197053041908,
+                "NombreAlimento": "Solido1",
+                "Inversion": 29.881795579562862
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 3,
+                    "DiasRestantes": 2
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med3": {
+                        "Cant": 1,
+                        "Inversion": 400
+                    }
+                },
+                "Inversion": 400,
+                "Adicionales": {}
+            }
+        },
+        "Dia 129": {
+            "FechaRegistro": "08-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 2,
+            "Alimento": {
+                "Kg": 1.9890194027009913,
+                "NombreAlimento": "Solido2",
+                "Inversion": 25.857252235112888
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 130": {
+            "FechaRegistro": "09-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 3,
+            "Alimento": {
+                "Kg": 1.7350210551586176,
+                "NombreAlimento": "Solido2",
+                "Inversion": 22.55527371706203
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 4,
+                    "DiasRestantes": 1
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Vac1": {
+                        "Cant": 1,
+                        "Inversion": 80
+                    }
+                },
+                "Inversion": 80,
+                "Adicionales": {}
+            }
+        },
+        "Dia 131": {
+            "FechaRegistro": "10-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 4,
+            "Alimento": {
+                "Kg": 1.6800517008699452,
+                "NombreAlimento": "Solido2",
+                "Inversion": 21.84067211130929
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 132": {
+            "FechaRegistro": "11-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 5,
+            "Alimento": {
+                "Kg": 1.8838363313726323,
+                "NombreAlimento": "Solido2",
+                "Inversion": 24.48987230784422
+            },
+            "Padecimientos": {
+                "PRRS": {
+                    "NombrePadecimiento": "Virus del s\u00edndrome Respiratorio y Reproductivo Porcino",
+                    "DiasTratamiento": 5,
+                    "DiasRestantes": 0
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    },
+                    "Vac2": {
+                        "Cant": 1,
+                        "Inversion": 70
+                    }
+                },
+                "Inversion": 422,
+                "Adicionales": {}
+            }
+        },
+        "Dia 133": {
+            "FechaRegistro": "12-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 6,
+            "Alimento": {
+                "Kg": 1.7290557694300157,
+                "NombreAlimento": "Solido2",
+                "Inversion": 22.477725002590205
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 134": {
+            "FechaRegistro": "13-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 7,
+            "Alimento": {
+                "Kg": 1.851507291186141,
+                "NombreAlimento": "Solido2",
+                "Inversion": 24.069594785419834
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 135": {
+            "FechaRegistro": "14-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 8,
+            "Alimento": {
+                "Kg": 1.6879344048727731,
+                "NombreAlimento": "Solido2",
+                "Inversion": 21.943147263346052
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 136": {
+            "FechaRegistro": "15-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 9,
+            "Alimento": {
+                "Kg": 1.7030916983034905,
+                "NombreAlimento": "Solido2",
+                "Inversion": 22.140192077945375
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 137": {
+            "FechaRegistro": "16-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 10,
+            "Alimento": {
+                "Kg": 1.9738635515981997,
+                "NombreAlimento": "Solido2",
+                "Inversion": 25.660226170776596
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 138": {
+            "FechaRegistro": "17-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 11,
+            "Alimento": {
+                "Kg": 1.8860341254682544,
+                "NombreAlimento": "Solido2",
+                "Inversion": 24.518443631087308
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 139": {
+            "FechaRegistro": "18-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 12,
+            "Alimento": {
+                "Kg": 1.9345713467941819,
+                "NombreAlimento": "Solido2",
+                "Inversion": 25.149427508324365
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 140": {
+            "FechaRegistro": "19-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 13,
+            "Alimento": {
+                "Kg": 1.629267427052395,
+                "NombreAlimento": "Solido2",
+                "Inversion": 21.180476551681135
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 141": {
+            "FechaRegistro": "20-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 14,
+            "Alimento": {
+                "Kg": 1.612598751394935,
+                "NombreAlimento": "Solido2",
+                "Inversion": 20.963783768134153
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 142": {
+            "FechaRegistro": "21-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 15,
+            "Alimento": {
+                "Kg": 1.914178243471639,
+                "NombreAlimento": "Solido2",
+                "Inversion": 24.884317165131307
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 143": {
+            "FechaRegistro": "22-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 16,
+            "Alimento": {
+                "Kg": 1.9482453893947662,
+                "NombreAlimento": "Solido2",
+                "Inversion": 25.32719006213196
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 144": {
+            "FechaRegistro": "23-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 17,
+            "Alimento": {
+                "Kg": 1.868142132080595,
+                "NombreAlimento": "Solido2",
+                "Inversion": 24.285847717047737
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 145": {
+            "FechaRegistro": "24-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 18,
+            "Alimento": {
+                "Kg": 1.7312062515998239,
+                "NombreAlimento": "Solido2",
+                "Inversion": 22.50568127079771
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 146": {
+            "FechaRegistro": "25-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 19,
+            "Alimento": {
+                "Kg": 1.97179774938801,
+                "NombreAlimento": "Solido2",
+                "Inversion": 25.63337074204413
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 147": {
+            "FechaRegistro": "26-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 20,
+            "Alimento": {
+                "Kg": 1.6691928036647654,
+                "NombreAlimento": "Solido2",
+                "Inversion": 21.69950644764195
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 1,
+                    "DiasRestantes": 4
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med1": {
+                        "Cant": 1,
+                        "Inversion": 700
+                    },
+                    "Vac3": {
+                        "Cant": 1,
+                        "Inversion": 64
+                    }
+                },
+                "Inversion": 764,
+                "Adicionales": {}
+            }
+        },
+        "Dia 148": {
+            "FechaRegistro": "27-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 21,
+            "Alimento": {
+                "Kg": 1.9062620500865606,
+                "NombreAlimento": "Solido2",
+                "Inversion": 24.781406651125288
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 149": {
+            "FechaRegistro": "28-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 22,
+            "Alimento": {
+                "Kg": 1.7909768966643658,
+                "NombreAlimento": "Solido2",
+                "Inversion": 23.282699656636755
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 2,
+                    "DiasRestantes": 3
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    }
+                },
+                "Inversion": 352,
+                "Adicionales": {}
+            }
+        },
+        "Dia 150": {
+            "FechaRegistro": "29-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 23,
+            "Alimento": {
+                "Kg": 1.9261087133921333,
+                "NombreAlimento": "Solido2",
+                "Inversion": 25.039413274097733
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 151": {
+            "FechaRegistro": "30-09-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 24,
+            "Alimento": {
+                "Kg": 1.6673030050543356,
+                "NombreAlimento": "Solido2",
+                "Inversion": 21.67493906570636
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 3,
+                    "DiasRestantes": 2
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med3": {
+                        "Cant": 1,
+                        "Inversion": 400
+                    }
+                },
+                "Inversion": 400,
+                "Adicionales": {}
+            }
+        },
+        "Dia 152": {
+            "FechaRegistro": "01-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 25,
+            "Alimento": {
+                "Kg": 1.6471640631459363,
+                "NombreAlimento": "Solido2",
+                "Inversion": 21.41313282089717
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 153": {
+            "FechaRegistro": "02-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 26,
+            "Alimento": {
+                "Kg": 1.7487749136205935,
+                "NombreAlimento": "Solido2",
+                "Inversion": 22.734073877067715
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 4,
+                    "DiasRestantes": 1
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Vac1": {
+                        "Cant": 1,
+                        "Inversion": 80
+                    }
+                },
+                "Inversion": 80,
+                "Adicionales": {}
+            }
+        },
+        "Dia 154": {
+            "FechaRegistro": "03-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 27,
+            "Alimento": {
+                "Kg": 1.6055790631947866,
+                "NombreAlimento": "Solido2",
+                "Inversion": 20.872527821532227
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 155": {
+            "FechaRegistro": "04-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 28,
+            "Alimento": {
+                "Kg": 1.749121207489048,
+                "NombreAlimento": "Solido2",
+                "Inversion": 22.738575697357625
+            },
+            "Padecimientos": {
+                "Aujesky": {
+                    "NombrePadecimiento": "Enfermedad de Aujesky",
+                    "DiasTratamiento": 5,
+                    "DiasRestantes": 0
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med2": {
+                        "Cant": 1,
+                        "Inversion": 352
+                    },
+                    "Vac2": {
+                        "Cant": 1,
+                        "Inversion": 70
+                    }
+                },
+                "Inversion": 422,
+                "Adicionales": {}
+            }
+        },
+        "Dia 156": {
+            "FechaRegistro": "05-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 29,
+            "Alimento": {
+                "Kg": 1.9852807415308187,
+                "NombreAlimento": "Solido2",
+                "Inversion": 25.808649639900644
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 157": {
+            "FechaRegistro": "06-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 30,
+            "Alimento": {
+                "Kg": 1.930389248627585,
+                "NombreAlimento": "Solido2",
+                "Inversion": 25.095060232158605
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 158": {
+            "FechaRegistro": "07-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 31,
+            "Alimento": {
+                "Kg": 1.6700076700126094,
+                "NombreAlimento": "Solido2",
+                "Inversion": 21.710099710163924
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 159": {
+            "FechaRegistro": "08-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 32,
+            "Alimento": {
+                "Kg": 1.6023857282982292,
+                "NombreAlimento": "Solido2",
+                "Inversion": 20.83101446787698
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 160": {
+            "FechaRegistro": "09-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 33,
+            "Alimento": {
+                "Kg": 1.8587850735682236,
+                "NombreAlimento": "Solido2",
+                "Inversion": 24.16420595638691
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 161": {
+            "FechaRegistro": "10-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 34,
+            "Alimento": {
+                "Kg": 1.7713053534022316,
+                "NombreAlimento": "Solido2",
+                "Inversion": 23.026969594229012
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 162": {
+            "FechaRegistro": "11-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 35,
+            "Alimento": {
+                "Kg": 1.834430242766845,
+                "NombreAlimento": "Solido2",
+                "Inversion": 23.847593155968987
+            },
+            "Padecimientos": {
+                "ParvovirusPorcina": {
+                    "NombrePadecimiento": "Parvovirus Porcina",
+                    "DiasTratamiento": 1,
+                    "DiasRestantes": 4
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med1": {
+                        "Cant": 1,
+                        "Inversion": 700
+                    },
+                    "Med3": {
+                        "Cant": 1,
+                        "Inversion": 400
+                    }
+                },
+                "Inversion": 1100,
+                "Adicionales": {}
+            }
+        },
+        "Dia 163": {
+            "FechaRegistro": "12-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaC",
+            "DiasEnArea": 36,
+            "Alimento": {
+                "Kg": 1.8267753439821077,
+                "NombreAlimento": "Solido2",
+                "Inversion": 23.7480794717674
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 164": {
+            "FechaRegistro": "13-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 1,
+            "Alimento": {
+                "Kg": 1.9122522303837428,
+                "NombreAlimento": "Solido2",
+                "Inversion": 24.859278994988657
+            },
+            "Padecimientos": {
+                "ParvovirusPorcina": {
+                    "NombrePadecimiento": "Parvovirus Porcina",
+                    "DiasTratamiento": 2,
+                    "DiasRestantes": 3
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Vac6": {
+                        "Cant": 1,
+                        "Inversion": 50
+                    }
+                },
+                "Inversion": 50,
+                "Adicionales": {}
+            }
+        },
+        "Dia 165": {
+            "FechaRegistro": "14-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 2,
+            "Alimento": {
+                "Kg": 1.667197202382438,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.67197202382438
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 166": {
+            "FechaRegistro": "15-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 3,
+            "Alimento": {
+                "Kg": 1.9506904017604931,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.50690401760493
+            },
+            "Padecimientos": {
+                "ParvovirusPorcina": {
+                    "NombrePadecimiento": "Parvovirus Porcina",
+                    "DiasTratamiento": 3,
+                    "DiasRestantes": 2
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med1": {
+                        "Cant": 2,
+                        "Inversion": 1400
+                    },
+                    "Vac6": {
+                        "Cant": 1,
+                        "Inversion": 50
+                    }
+                },
+                "Inversion": 1450,
+                "Adicionales": {}
+            }
+        },
+        "Dia 167": {
+            "FechaRegistro": "16-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 4,
+            "Alimento": {
+                "Kg": 1.9386960128884814,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.386960128884812
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 168": {
+            "FechaRegistro": "17-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 5,
+            "Alimento": {
+                "Kg": 1.9067429591996277,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.067429591996277
+            },
+            "Padecimientos": {
+                "ParvovirusPorcina": {
+                    "NombrePadecimiento": "Parvovirus Porcina",
+                    "DiasTratamiento": 4,
+                    "DiasRestantes": 1
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med1": {
+                        "Cant": 1,
+                        "Inversion": 700
+                    }
+                },
+                "Inversion": 700,
+                "Adicionales": {}
+            }
+        },
+        "Dia 169": {
+            "FechaRegistro": "18-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 6,
+            "Alimento": {
+                "Kg": 1.8335304160374322,
+                "NombreAlimento": "Solido3",
+                "Inversion": 18.33530416037432
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 170": {
+            "FechaRegistro": "19-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 7,
+            "Alimento": {
+                "Kg": 1.7428647172525147,
+                "NombreAlimento": "Solido3",
+                "Inversion": 17.428647172525146
+            },
+            "Padecimientos": {
+                "ParvovirusPorcina": {
+                    "NombrePadecimiento": "Parvovirus Porcina",
+                    "DiasTratamiento": 5,
+                    "DiasRestantes": 0
+                }
+            },
+            "Medicamento": {
+                "Medicamentos": {
+                    "Med1": {
+                        "Cant": 1,
+                        "Inversion": 700
+                    }
+                },
+                "Inversion": 700,
+                "Adicionales": {}
+            }
+        },
+        "Dia 171": {
+            "FechaRegistro": "20-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 8,
+            "Alimento": {
+                "Kg": 1.730336081741191,
+                "NombreAlimento": "Solido3",
+                "Inversion": 17.30336081741191
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 172": {
+            "FechaRegistro": "21-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 9,
+            "Alimento": {
+                "Kg": 1.86778258140375,
+                "NombreAlimento": "Solido3",
+                "Inversion": 18.6778258140375
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 173": {
+            "FechaRegistro": "22-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 10,
+            "Alimento": {
+                "Kg": 1.6184243320593201,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.1842433205932
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 174": {
+            "FechaRegistro": "23-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 11,
+            "Alimento": {
+                "Kg": 1.9906359044545574,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.906359044545574
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 175": {
+            "FechaRegistro": "24-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 12,
+            "Alimento": {
+                "Kg": 1.6297301571181915,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.297301571181915
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 176": {
+            "FechaRegistro": "25-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 13,
+            "Alimento": {
+                "Kg": 1.6224646270747853,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.224646270747854
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 177": {
+            "FechaRegistro": "26-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 14,
+            "Alimento": {
+                "Kg": 1.6451363313017868,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.45136331301787
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 178": {
+            "FechaRegistro": "27-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 15,
+            "Alimento": {
+                "Kg": 1.7189742040252138,
+                "NombreAlimento": "Solido3",
+                "Inversion": 17.18974204025214
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 179": {
+            "FechaRegistro": "28-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 16,
+            "Alimento": {
+                "Kg": 1.9060342034930933,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.060342034930933
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 180": {
+            "FechaRegistro": "29-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 17,
+            "Alimento": {
+                "Kg": 1.673481714840686,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.73481714840686
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 181": {
+            "FechaRegistro": "30-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 18,
+            "Alimento": {
+                "Kg": 1.8702665241639949,
+                "NombreAlimento": "Solido3",
+                "Inversion": 18.70266524163995
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 182": {
+            "FechaRegistro": "31-10-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 19,
+            "Alimento": {
+                "Kg": 1.6700771794341016,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.700771794341016
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 183": {
+            "FechaRegistro": "01-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 20,
+            "Alimento": {
+                "Kg": 1.9713796970599253,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.713796970599255
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 184": {
+            "FechaRegistro": "02-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 21,
+            "Alimento": {
+                "Kg": 1.9675903831379045,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.675903831379046
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 185": {
+            "FechaRegistro": "03-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 22,
+            "Alimento": {
+                "Kg": 1.6409367238862747,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.409367238862746
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 186": {
+            "FechaRegistro": "04-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 23,
+            "Alimento": {
+                "Kg": 1.8474213379511424,
+                "NombreAlimento": "Solido3",
+                "Inversion": 18.474213379511426
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 187": {
+            "FechaRegistro": "05-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 24,
+            "Alimento": {
+                "Kg": 1.902998157882182,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.02998157882182
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 188": {
+            "FechaRegistro": "06-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 25,
+            "Alimento": {
+                "Kg": 1.6801383675633619,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.80138367563362
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 189": {
+            "FechaRegistro": "07-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 26,
+            "Alimento": {
+                "Kg": 1.6580165819133181,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.58016581913318
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 190": {
+            "FechaRegistro": "08-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 27,
+            "Alimento": {
+                "Kg": 1.9203371053534442,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.20337105353444
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 191": {
+            "FechaRegistro": "09-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 28,
+            "Alimento": {
+                "Kg": 1.9247873017633355,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.247873017633353
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 192": {
+            "FechaRegistro": "10-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 29,
+            "Alimento": {
+                "Kg": 1.6581708214717967,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.581708214717967
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 193": {
+            "FechaRegistro": "11-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 30,
+            "Alimento": {
+                "Kg": 1.8490770163986054,
+                "NombreAlimento": "Solido3",
+                "Inversion": 18.490770163986056
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 194": {
+            "FechaRegistro": "12-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 31,
+            "Alimento": {
+                "Kg": 1.931935548225,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.31935548225
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 195": {
+            "FechaRegistro": "13-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 32,
+            "Alimento": {
+                "Kg": 1.8006388637603683,
+                "NombreAlimento": "Solido3",
+                "Inversion": 18.006388637603685
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 196": {
+            "FechaRegistro": "14-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 33,
+            "Alimento": {
+                "Kg": 1.9296341736019345,
+                "NombreAlimento": "Solido3",
+                "Inversion": 19.296341736019343
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 197": {
+            "FechaRegistro": "15-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 34,
+            "Alimento": {
+                "Kg": 1.6492380414081993,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.492380414081993
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 198": {
+            "FechaRegistro": "16-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 35,
+            "Alimento": {
+                "Kg": 1.8570145099798434,
+                "NombreAlimento": "Solido3",
+                "Inversion": 18.570145099798435
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        },
+        "Dia 199": {
+            "FechaRegistro": "17-11-2024",
+            "Tipo": "ENGORDA",
+            "Estado": "Vivo",
+            "Granja": "LaPurisima",
+            "Ubicacion": "CerdoEngordaD",
+            "DiasEnArea": 36,
+            "Alimento": {
+                "Kg": 1.6236516320338454,
+                "NombreAlimento": "Solido3",
+                "Inversion": 16.236516320338453
+            },
+            "Padecimientos": {},
+            "Medicamento": {
+                "Medicamentos": {},
+                "Inversion": 0,
+                "Adicionales": {}
+            }
+        }
+    }
+}

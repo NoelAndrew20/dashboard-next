@@ -1,0 +1,52 @@
+ListaAlimentos : ["Alimento1", "Alimento2", "Alimento3", "Papilla", "Hibrido", "Solido1", "Solido2", "Solido3", "SinAlimento"]
+
+#Descripcion sobre los alimentos
+##Alimento de gestacion
+Alimento1: {
+  "Nombre": "Alimento1",
+  "PorcentajeProteina": 15,
+  "Precio": 20
+}
+##Alimento de maternidad
+Alimento2: {
+  "Nombre": "Alimento2",
+  "PorcentajeProteina": 15,
+  "Precio": 20
+}
+Alimento3: {
+  "Nombre": "Alimento3",
+  "PorcentajeProteina": 12,
+  "Precio": 20
+}
+##############################
+Papilla: {
+  Nombre: "PapillaEntredanora",
+  "PorcentajeProteina": 12,
+  "Precio": 20
+}
+Hibrido: {
+  Nombre: "Hibrido",
+  "PorcentajeProteina": 12,
+  "Precio": 15
+}
+Solido1: {
+  Nombre: "Solido1",
+  "PorcentajeProteina": 12,
+  "Precio": 15
+}
+Solido2: {
+  Nombre: "Solido2",
+  "PorcentajeProteina": 12,
+  "Precio": 13
+}
+Solido3: {
+  Nombre: "Solido3",
+  "PorcentajeProteina": 12,
+  "Precio": 10
+}
+
+SinAlimento: {
+  "Nombre": "SinAlimento",
+  "PorcentajeProteina": 0,
+  "Precio": 0
+}

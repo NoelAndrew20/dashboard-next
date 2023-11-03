@@ -908,7 +908,7 @@ def CrearSimulacion():
     try:
         # Activamos el entorno
         env_name = 'SimulacionGranja'
-        activate_env_cmd = f'source activate {env_name} && '
+        activate_env_cmd = f'conda activate {env_name} && '
 
         script_name = 'CreacionCerdosF1.py'
         run_script_cmd = f'python {script_name}'
@@ -946,5 +946,133 @@ def CrearSimulacion():
         result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         print("Almacenamiento Front finalizado")
         
+        if result.returncode != 0:
+            print(f"Error al ejecutar {script_name}:")
+            print(result.stderr)
+        else:
+            print(f"Ejecución de {script_name} completa")
+    except Exception as e:
+        print(f"Error al ejecutar {script_name}: {str(e)}")
+        
     except Exception as e:
         print(e)
+    return "Simulacion Finalizada"
+
+##########################################################################
+##########################################################################.
+def TiempoRetornoF1():
+    question = "¿Si hoy compro una F1, en cuanto tiempo regresara la inversion?" 
+
+    answer = "Las ganancias se empiezan a recibir a los 310 dias despues de la F1 ingresa a la granja"
+    return answer
+
+
+def GananciaF1():
+    question = "¿Cuanto dinero puedo ganar solo con una F1?"
+    
+    answer = f"Descontando los gastos que conlleva comprar, alimentar, cuidar a una F1 las ganancias son de 248497 pesos en condiciones ideales, si contemplamos un 3% de mortandad la ganancia seria de 237031 pesos"
+    return answer
+
+def GastosF1():
+    question = "¿Cuales son los gastos de tener una F1?"
+    answer = "El costo de compra es 15000 pesos, el costo de transporte es 500 pesos, el costo de su alimentacion es de 73115 pesos, el costo de las vacunas es de 4400 pesos, el costo del agua es 1088, resultando un total de 133703 pesos"
+    return answer
+
+def Duracion1cicloF1():
+    question = "¿Cuantos dias dura un ciclo de una F1?"
+    answer = "Un ciclo reproductivo de una F1 consta de 114 dias de preña mas 28 dias que esta amamantando a sus lechones dando como resultado 142 dias"
+    return answer
+
+def PorcentajeMuerteF1():
+    question = "¿Cual es el porcentaje de muerte en los cerdos?"
+    answer = f"Actualmente el porcentaje de mortandad es de 18% aunque se pretende reducir este porcentaje a un 3% por medio de mejores practicas y cuidado animal"
+    return answer
+
+def vidaUtilF1():
+    question  = "¿Cual es el tiempo de vida util de una f1?"
+    answer ="A partir del dia de compra la esperanza de vida de una F1 es de 1059 dias o 2.9 años"
+    return answer
+def AlimentoF1Gestacion():
+    question = "¿Cuanto alimento consume una F1 en gestacion?"
+    answer = "Una F1 en el area de gestacion consumen en promedio 2.5 a 3 kilogramos de alimento al dia" 
+    return answer
+
+def AlimentoF1Maternidad():
+    question = "¿Cuanto alimento consume una f1 en maternidad?"
+    answer = "Una F1 en el area de maternidad consume en promedio 10 kilogramos de alimento al dia"
+    return answer
+def InformacionPorZona(fechainferior:str, fechasuperior:str, Zona:str):
+    with MongoClient(config['connection_url']) as client:
+                db = client['C3_LaPurisima']
+                simulacion = config['Simulaciongranja']
+                collection = db[simulacion]
+                # Obtener el primer registro de la colección
+                registro = collection.find_one()
+
+                # Obtener los nombres de las columnas (campos) en el registro
+                nombres_columnas = registro.keys()
+                nombres_columnas = list(nombres_columnas)
+                nombres_columnas.remove('_id')
+
+    def convertir_a_fecha(fecha_str):
+        return datetime.datetime.strptime(fecha_str, '%d-%m-%Y')
+
+    # Ordena la lista de fechas utilizando la función de conversión
+    fechas_ordenadas = sorted(nombres_columnas, key=convertir_a_fecha)
+
+    indiceinferior = fechas_ordenadas.index(fechainferior)
+    indicesuperior = fechas_ordenadas.index(fechasuperior)
+    Intervalo = fechas_ordenadas[indiceinferior: indicesuperior+1]
+
+    cerdospordia = []
+    ids_cerdos = {}
+    for Fecha in Intervalo:
+                with MongoClient(config['connection_url']) as client:
+                        db = client['C3_LaPurisima']
+                        simulacion = config['tablaDetallada']
+                        collection = db[simulacion]
+                        # query = {Fecha: {"$exists": True}}
+                        
+                        query = {Fecha: {"$exists": True},f"{Fecha}.Ubicacion":Zona}
+                        cursor = collection.find(query)
+                        totalpordia = collection.count_documents(query)
+                        inversionMedicamentos = 0
+                        cerdospordia.append(totalpordia)
+
+                        try:
+                            for doc in cursor:
+                                inversionMedicamentos += doc[Fecha]['Medicamento']['Inversion']
+                                        
+                        except Exception as e:
+                            print("******************")
+                            print(e)
+                            print("******************")
+
+        
+
+
+
+    resultadosConsultaSinFiltrar  = RealizarConsulta(fechainferior=fechainferior, fechasuperior=fechasuperior)
+    with open('SimulacionEjemplo.json', 'w') as archivo:
+        json.dump(resultadosConsultaSinFiltrar, archivo, indent=4)
+
+    ZonasDisponibles = list(resultadosConsultaSinFiltrar.keys())
+    ZonasDisponibles.append('General')
+    with open('ParametrosDisponibles.json', 'w') as archivo:
+        json.dump(ZonasDisponibles, archivo)
+
+
+        
+    if Zona != 'General':
+
+        zonaEspecifica = resultadosConsultaSinFiltrar[Zona]
+        Estado = str(f"""En el periodo de tiempo que comprende del {fechainferior} al {fechasuperior} en la zona de {Zona} 
+        pasaron un total de {zonaEspecifica['Total']} cerdos, con un minimo de {min(cerdospordia)}  y un maximo de {max(cerdospordia)}, los cuales han consumido {zonaEspecifica['KgConsumidos']:.2f} kilogramos ({zonaEspecifica['KgConsumidos']/1000:.2f} 
+        toneladas) de alimento {zonaEspecifica['Alimento']},lo que equivale a una inversion de {zonaEspecifica['InversionAlimento']:.2f} pesos, mientras que el gasto en medicamentos asciende a {inversionMedicamentos:,} pesos.""")
+        print(Estado)
+    elif Zona == 'General':
+        print('Todas las zonas no esta disponible')
+    else:
+        print("La zona no existe actualmente")
+    
+    return Estado

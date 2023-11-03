@@ -1,0 +1,80 @@
+Nombres: ['ParvovirusPorcina', 'PRRS', "Aujesky"]
+
+
+ParvovirusPorcina : {
+  'Nombre': 'Parvovirus Porcina',
+  "TiposCerdosSuceptibles": ["F1ANR", F"],
+  'ProbAdquisicion': 0.01,
+  'ProbRecuperacion': 0.45,
+  'Tratamiento': {
+    'Duracion(dias)': 5,
+    'ListaMedicamentos': ['Med1', "Vac6", "Med3"],
+    "Aplicacion" : {
+      'Dia 1': ["Med1", "Med3"],
+      'Dia 2': ["Vac6"],
+      'Dia 3': ["Med1","Vac6","Med1"],
+      'Dia 4': ["Med1"],
+      'Dia 5': ["Med1"]
+    }
+  }, 
+  "Observaciones": {
+    si elccrjgierj dhfier dar mas medic por 3 dias
+  }
+}
+#
+PRRS: {
+  'Nombre': 'Virus del síndrome Respiratorio y Reproductivo Porcino',
+  'ProbAdquisicion': 0.02,
+  'ProbRecuperacion': 0.95,
+  'Tratamiento': {
+    'Duracion(dias)': 5,
+    'ListaMedicamentos': ['Med2'],
+    "Aplicacion" : {
+      'Dia 1': ["Med1", "Vac3"],
+      'Dia 2': ["Med2"],
+      'Dia 3': ["Med3"],
+      'Dia 4': ["Vac1"],
+      'Dia 5': ["Med2", "Vac2"]
+    }
+  }, 
+  "Observaciones": {
+    si elccrjgierj dhfier dar mas medic por 3 dias
+  }
+}
+#
+
+Aujesky: {
+  'Nombre': 'Enfermedad de Aujesky',
+  'ProbAdquisicion': 0.01,
+  'ProbRecuperacion': 0.95,
+  'Tratamiento': {
+    'Duracion(dias)': 5,
+    'ListaMedicamentos': ['Med2'],
+    "Aplicacion" : {
+      'Dia 1': ["Med1", "Vac3"],
+      'Dia 2': ["Med2"],
+      'Dia 3': ["Med3"],
+      'Dia 4': ["Vac1"],
+      'Dia 5': ["Med2", "Vac2"]
+    }
+  }, 
+  "Observaciones": {
+    si elccrjgierj dhfier dar mas medic por 3 dias
+  }
+}
+
+#esto solo me ayuda a iterar
+Ninguna : {
+  'Nombre': 'Ninguna',
+  'ProbAdquisicion': 0.08,
+  'ProbRecuperacion': 0.80,
+  'Tratamiento': {
+    'Duracion(dias)': 1,
+    'ListaMedicamentos': ,
+    "Aplicacion" : {
+    }
+  }, 
+  "Observaciones": {
+    si elccrjgierj dhfier dar mas medic por 3 dias
+  }
+}
