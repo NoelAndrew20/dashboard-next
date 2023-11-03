@@ -129,24 +129,5 @@ const TableAlimentos = ({ data, setData }) => {
         </>
     )
 }
-export default TableAlimentos;tion">
-            <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="button"
-            >
-                Anterior
-            </button>
-            <span>{currentPage} de {totalPages}</span>
-            <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="button"
-            >
-                Siguiente
-            </button>
-        </div>
-        </>
-    )
-}
+
 export default TableAlimentos;
