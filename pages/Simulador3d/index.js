@@ -59,4 +59,8 @@ const IndexPage = () => {
   )
 }
 
+<<<<<<< HEAD
 export default IndexPage
+=======
+export default IndexPage
+>>>>>>> 4f43e64 (Merge pull request #147 from NoelAndrew20/hotfix/search-patch)
