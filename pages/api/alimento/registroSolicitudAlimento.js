@@ -21,41 +21,118 @@ db.once('open', () => {
   console.log('Conexión exitosa a la base de datos.');
 });
 
-
 const SolicitudAlimentoSchema = new mongoose.Schema(
   {
-    fecha: Date,
-    nivelEntrega: String,
-    fechaEntrega: Date,
-    nombreZona: String,
-    nombreSolicitante: String,
-    estatus: Number,
-    lotes: [
-      {
-        nombreAlimento: String,
-        cantidad: Number,
-        unidad: String,
-      }
-    ]
+    fechaInicial: String,
+    fechaFinal: String,
+    CerdoEngordaB: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    Lechon: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    CerdoEngordaC: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    DesarrolloA: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    DesarrolloB: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    CerdoEngordaD: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    Gestacion6: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    Maternidad4: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    Zen5: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    Gestacion4: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    Gestacion5: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    Maternidad5: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    Zen4: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
+    CerdoEngordaA: {
+      nombreAlimento: String,
+      cantidad: Number,
+    },
   },
   {
-    collection: 'solicitudAlimento',
+    collection: 'pronosticoConsumoAlimentos',
     versionKey: false,
   }
 );
 
 const SolicitudAlimento = db.model('SolicitudAlimento', SolicitudAlimentoSchema);
 
+/*app.get("/getAllSolicitudAlimento", async (req, res) => {
+  try {
+    const solicitudes = await SolicitudAlimento.find({});
+    //res.json(solicitudes);
+    res.send({ status: "ok", data: solicitudes });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "error", message: "Internal server error" });
+  }
+});*/
 app.get("/getAllSolicitudAlimento", async (req, res) => {
   try {
-    const solicitudes = await SolicitudAlimento.find({ estatus: 0 });
-    res.json(solicitudes);
+    const solicitudes = await SolicitudAlimento.find({ });
+    const totalCantidadesPorAlimento = {};
+
+    // Itera a través de las solicitudes y acumula las cantidades por nombreAlimento
+    solicitudes.forEach((solicitud) => {
+      solicitud = solicitud.toObject(); // Convierte el documento de Mongoose a un objeto
+      for (const key in solicitud) {
+        if (solicitud[key].nombreAlimento && solicitud[key].cantidadRequerida) {
+          const nombreAlimento = solicitud[key].nombreAlimento;
+          const cantidadRequerida = solicitud[key].cantidadRequerida;
+          if (totalCantidadesPorAlimento[nombreAlimento]) {
+            totalCantidadesPorAlimento[nombreAlimento] += cantidadRequerida;
+          } else {
+            totalCantidadesPorAlimento[nombreAlimento] = cantidadRequerida;
+          }
+        }
+      }
+    });
+
+    // Agrega las sumas al objeto de respuesta
+    const response = {
+      solicitudes: solicitudes,
+      totalCantidadesPorAlimento: totalCantidadesPorAlimento,
+    };
+
+    res.json(response);
   } catch (error) {
     console.error('Error al obtener las solicitudes de alimentos:', error);
     res.status(500).json({ mensaje: 'Error al obtener las solicitudes de alimentos' });
   }
 });
-
 
 app.get("/getAllSolicitudCompraAlimento", async (req, res) => {
   try {

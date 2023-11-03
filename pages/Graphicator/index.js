@@ -137,23 +137,14 @@ const Graphicator = ({ title, description, image }) => {
     };
 
     useEffect(()=>{
-      console.log(dataList)
+      //console.log(dataList)
     })
 
-    
-    useEffect(() => {
-        axios.get('http://localhost:3080/getAllSolicitudCompraAlimento')
-        //axios.get('http://192.168.100.10:3080/getAllSolicitudCompraAlimento')
+      useEffect(() => {
+        axios.get('http://localhost:3080/getAllSolicitudAlimento')
           .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
-            setData(jsonData);
-            
-            // Recorre los objetos en la respuesta y sus lotes para imprimir los nombres de alimentos
-            jsonData.forEach(solicitud => {
-              solicitud.lotes.forEach(lote => {
-                console.log(lote.nombreAlimento);
-              });
-            });
+            setData([jsonData]);
           })
           .catch(error => {
             console.error(error);
@@ -166,13 +157,6 @@ const Graphicator = ({ title, description, image }) => {
           .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setDataList(jsonData); 
-            
-            // Recorre los objetos en la respuesta y sus lotes para imprimir los nombres de alimentos
-            jsonData.forEach(solicitud => {
-              solicitud.lotes.forEach(lote => {
-                console.log(lote.nombreAlimento);
-              });
-            });
           })
           .catch(error => {
             console.error(error);
