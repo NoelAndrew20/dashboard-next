@@ -1,0 +1,1668 @@
+{
+    "71DBB9F9": {
+        "GastoAlimento": 61295.1025427179,
+        "TotalKgAlimento": 3064.755127135898,
+        "TiposAlimentos": {
+            "SinAlimento": 0.0,
+            "Alimento3": 155.4403190983363,
+            "Alimento1": 1995.4679653123862,
+            "Alimento2": 913.846842725174
+        },
+        "AlimentoEtapas": {
+            "Transporte": 0.0,
+            "Cuarentena": 155.4403190983363,
+            "Gestacion1": 291.37890292134375,
+            "Maternidad1": 249.56534113680294,
+            "Zen1": 14.205243995042434,
+            "Gestacion2": 297.22821959547383,
+            "Maternidad2": 79.80246733630064,
+            "Zen2": 35.08701316659497,
+            "Gestacion3": 287.0704803985198,
+            "Maternidad3": 78.85634491900167,
+            "Zen3": 35.655144964698934,
+            "Gestacion4": 286.84893021018394,
+            "Maternidad4": 80.05635746334542,
+            "Zen4": 34.950594596712925,
+            "Gestacion5": 285.1394059551451,
+            "Maternidad5": 80.45605532394161,
+            "Zen5": 35.12243777557796,
+            "Gestacion6": 268.56478692185345,
+            "Maternidad6": 79.54859531761302,
+            "Zen6": 34.5299126004911,
+            "Gestacion7": 279.23723930986665,
+            "Maternidad7": 76.01133412905084
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 104,
+                "Inversion": 72800
+            },
+            "Vac3": {
+                "Cant": 39,
+                "Inversion": 2496
+            },
+            "Med2": {
+                "Cant": 77,
+                "Inversion": 27104
+            },
+            "Vac1": {
+                "Cant": 59,
+                "Inversion": 4720
+            },
+            "Med3": {
+                "Cant": 75,
+                "Inversion": 30000
+            },
+            "Vac2": {
+                "Cant": 59,
+                "Inversion": 4130
+            },
+            "Med123": {
+                "Cant": 1,
+                "Inversion": 500
+            },
+            "Vac6": {
+                "Cant": 12,
+                "Inversion": 600
+            }
+        },
+        "MedicamentoEtapas": {
+            "Transporte": 764,
+            "Cuarentena": 10558,
+            "Gestacion1": 12440,
+            "Maternidad1": 1250,
+            "Zen1": 1950,
+            "Gestacion2": 20476,
+            "Maternidad2": 6300,
+            "Zen2": 4054,
+            "Gestacion3": 17286,
+            "Maternidad3": 3268,
+            "Zen3": 1950,
+            "Gestacion4": 4368,
+            "Maternidad4": 2014,
+            "Zen4": 4320,
+            "Gestacion5": 8804,
+            "Maternidad5": 3770,
+            "Zen5": 1950,
+            "Gestacion6": 17168,
+            "Maternidad6": 3268,
+            "Zen6": 2782,
+            "Gestacion7": 10844,
+            "Maternidad7": 2766
+        }
+    },
+    "71DF8BF5": {
+        "GastoAlimento": 60582.24967547504,
+        "TotalKgAlimento": 3029.112483773747,
+        "TiposAlimentos": {
+            "SinAlimento": 0.0,
+            "Alimento3": 152.5827410530197,
+            "Alimento1": 1953.370735160132,
+            "Alimento2": 923.1590075605989
+        },
+        "AlimentoEtapas": {
+            "Transporte": 0.0,
+            "Cuarentena": 152.5827410530197,
+            "Gestacion1": 278.402354436861,
+            "Maternidad1": 254.07811879971783,
+            "Zen1": 14.368502561356799,
+            "Gestacion2": 277.21105973309596,
+            "Maternidad2": 79.93561257688958,
+            "Zen2": 35.250452718820014,
+            "Gestacion3": 279.9382364614498,
+            "Maternidad3": 80.1657673068329,
+            "Zen3": 34.990658612174144,
+            "Gestacion4": 282.4063376043625,
+            "Maternidad4": 80.60094537226597,
+            "Zen4": 34.94786626207148,
+            "Gestacion5": 280.3373375815957,
+            "Maternidad5": 81.06723300951815,
+            "Zen5": 35.41578590996877,
+            "Gestacion6": 286.42431577117924,
+            "Maternidad6": 79.9646371591115,
+            "Zen6": 34.882304282812925,
+            "Gestacion7": 268.651093571586,
+            "Maternidad7": 77.49112298905882
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 114,
+                "Inversion": 79800
+            },
+            "Vac1": {
+                "Cant": 50,
+                "Inversion": 4000
+            },
+            "Med3": {
+                "Cant": 69,
+                "Inversion": 27600
+            },
+            "Vac2": {
+                "Cant": 50,
+                "Inversion": 3500
+            },
+            "Med123": {
+                "Cant": 1,
+                "Inversion": 500
+            },
+            "Vac3": {
+                "Cant": 29,
+                "Inversion": 1856
+            },
+            "Med2": {
+                "Cant": 58,
+                "Inversion": 20416
+            },
+            "Vac6": {
+                "Cant": 20,
+                "Inversion": 1000
+            }
+        },
+        "MedicamentoEtapas": {
+            "Cuarentena": 7286,
+            "Gestacion1": 14386,
+            "Maternidad1": 6846,
+            "Zen1": 2372,
+            "Gestacion2": 12368,
+            "Maternidad2": 1250,
+            "Zen2": 1950,
+            "Gestacion3": 16818,
+            "Maternidad3": 2926,
+            "Zen3": 3066,
+            "Gestacion4": 9306,
+            "Maternidad4": 3268,
+            "Zen4": 1950,
+            "Gestacion5": 12368,
+            "Maternidad5": 5286,
+            "Zen5": 1950,
+            "Gestacion6": 18422,
+            "Maternidad6": 1250,
+            "Zen6": 1950,
+            "Gestacion7": 11150,
+            "Maternidad7": 2504
+        }
+    },
+    "717F136C": {
+        "GastoAlimento": 4060.111828946406,
+        "TotalKgAlimento": 293.5954518080538,
+        "TiposAlimentos": {
+            "Papilla": 21.259246873203484,
+            "Hibrido": 17.463328860372968,
+            "Solido1": 126.22298472186104,
+            "Solido2": 64.37775807422003,
+            "Solido3": 64.27213327839638
+        },
+        "AlimentoEtapas": {
+            "Lechon": 13.844881542247064,
+            "DesarrrolloA": 7.414365330956421,
+            "DesarrrolloB": 17.463328860372968,
+            "CerdoEngordaA": 59.832647961950855,
+            "CerdoEngordaB": 66.39033675991016,
+            "CerdoEngordaC": 64.37775807422003,
+            "CerdoEngordaD": 64.27213327839638
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 27,
+                "Inversion": 18900
+            },
+            "Vac3": {
+                "Cant": 7,
+                "Inversion": 448
+            },
+            "Med2": {
+                "Cant": 14,
+                "Inversion": 4928
+            },
+            "Med3": {
+                "Cant": 11,
+                "Inversion": 4400
+            },
+            "Vac1": {
+                "Cant": 7,
+                "Inversion": 560
+            },
+            "Vac2": {
+                "Cant": 7,
+                "Inversion": 490
+            },
+            "Vac6": {
+                "Cant": 8,
+                "Inversion": 400
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 2018,
+            "DesarrrolloB": 4000,
+            "CerdoEngordaA": 9186,
+            "CerdoEngordaB": 4868,
+            "CerdoEngordaC": 7336,
+            "CerdoEngordaD": 2718
+        }
+    },
+    "71B9A4E0": {
+        "GastoAlimento": 3988.5465700828895,
+        "TotalKgAlimento": 288.67236571146753,
+        "TiposAlimentos": {
+            "Papilla": 19.05666308743605,
+            "Hibrido": 17.101209954251527,
+            "Solido1": 126.51547531873949,
+            "Solido2": 64.39095190963286,
+            "Solido3": 61.60806544140775
+        },
+        "AlimentoEtapas": {
+            "Lechon": 14.269371860079167,
+            "DesarrrolloA": 4.787291227356885,
+            "DesarrrolloB": 17.101209954251527,
+            "CerdoEngordaA": 61.733820551249366,
+            "CerdoEngordaB": 64.78165476749015,
+            "CerdoEngordaC": 64.39095190963286,
+            "CerdoEngordaD": 61.60806544140775
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 12,
+                "Inversion": 8400
+            },
+            "Vac3": {
+                "Cant": 7,
+                "Inversion": 448
+            },
+            "Med2": {
+                "Cant": 14,
+                "Inversion": 4928
+            },
+            "Med3": {
+                "Cant": 8,
+                "Inversion": 3200
+            },
+            "Vac1": {
+                "Cant": 7,
+                "Inversion": 560
+            },
+            "Vac2": {
+                "Cant": 7,
+                "Inversion": 490
+            },
+            "Vac6": {
+                "Cant": 2,
+                "Inversion": 100
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 3134,
+            "DesarrrolloA": 902,
+            "DesarrrolloB": 1596,
+            "CerdoEngordaA": 1938,
+            "CerdoEngordaB": 2520,
+            "CerdoEngordaC": 5116,
+            "CerdoEngordaD": 2920
+        }
+    },
+    "71744E43": {
+        "GastoAlimento": 4010.6294189828077,
+        "TotalKgAlimento": 290.2856368776475,
+        "TiposAlimentos": {
+            "Papilla": 20.59783864150976,
+            "Hibrido": 16.068546988153372,
+            "Solido1": 125.94486350050849,
+            "Solido2": 63.90920378264078,
+            "Solido3": 63.76518396483528
+        },
+        "AlimentoEtapas": {
+            "Lechon": 15.306957951369212,
+            "DesarrrolloA": 5.290880690140546,
+            "DesarrrolloB": 16.068546988153372,
+            "CerdoEngordaA": 61.48552598519387,
+            "CerdoEngordaB": 64.45933751531464,
+            "CerdoEngordaC": 63.90920378264078,
+            "CerdoEngordaD": 63.76518396483528
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 9,
+                "Inversion": 6300
+            },
+            "Vac3": {
+                "Cant": 9,
+                "Inversion": 576
+            },
+            "Med2": {
+                "Cant": 18,
+                "Inversion": 6336
+            },
+            "Med3": {
+                "Cant": 9,
+                "Inversion": 3600
+            },
+            "Vac1": {
+                "Cant": 9,
+                "Inversion": 720
+            },
+            "Vac2": {
+                "Cant": 9,
+                "Inversion": 630
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 3534,
+            "DesarrrolloA": 502,
+            "CerdoEngordaA": 3534,
+            "CerdoEngordaB": 4538,
+            "CerdoEngordaC": 4036,
+            "CerdoEngordaD": 2018
+        }
+    },
+    "71351F5C": {
+        "GastoAlimento": 3973.08007748155,
+        "TotalKgAlimento": 287.981267161343,
+        "TiposAlimentos": {
+            "Papilla": 18.634650961172888,
+            "Hibrido": 17.592446049456772,
+            "Solido1": 125.42846173719347,
+            "Solido2": 63.93878577437883,
+            "Solido3": 62.386922639141275
+        },
+        "AlimentoEtapas": {
+            "Lechon": 12.254830670434508,
+            "DesarrrolloA": 6.379820290738379,
+            "DesarrrolloB": 17.592446049456772,
+            "CerdoEngordaA": 60.429522529181405,
+            "CerdoEngordaB": 64.99893920801205,
+            "CerdoEngordaC": 63.93878577437883,
+            "CerdoEngordaD": 62.386922639141275
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 4,
+                "Inversion": 2800
+            },
+            "Vac3": {
+                "Cant": 4,
+                "Inversion": 256
+            },
+            "Med2": {
+                "Cant": 8,
+                "Inversion": 2816
+            },
+            "Med3": {
+                "Cant": 4,
+                "Inversion": 1600
+            },
+            "Vac1": {
+                "Cant": 4,
+                "Inversion": 320
+            },
+            "Vac2": {
+                "Cant": 4,
+                "Inversion": 280
+            }
+        },
+        "MedicamentoEtapas": {
+            "DesarrrolloB": 2018,
+            "CerdoEngordaB": 4036,
+            "CerdoEngordaD": 2018
+        }
+    },
+    "710999C6": {
+        "GastoAlimento": 4011.744197960558,
+        "TotalKgAlimento": 290.0498837680293,
+        "TiposAlimentos": {
+            "Papilla": 20.287876439624274,
+            "Hibrido": 15.488202491496457,
+            "Solido1": 127.22517914782729,
+            "Solido2": 64.93322922913516,
+            "Solido3": 62.11539645994602
+        },
+        "AlimentoEtapas": {
+            "Lechon": 14.561817713722796,
+            "DesarrrolloA": 5.726058725901479,
+            "DesarrrolloB": 15.488202491496457,
+            "CerdoEngordaA": 62.10224146076784,
+            "CerdoEngordaB": 65.12293768705945,
+            "CerdoEngordaC": 64.93322922913516,
+            "CerdoEngordaD": 62.11539645994602
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 13,
+                "Inversion": 9100
+            },
+            "Vac3": {
+                "Cant": 8,
+                "Inversion": 512
+            },
+            "Med2": {
+                "Cant": 14,
+                "Inversion": 4928
+            },
+            "Med3": {
+                "Cant": 8,
+                "Inversion": 3200
+            },
+            "Vac1": {
+                "Cant": 7,
+                "Inversion": 560
+            },
+            "Vac2": {
+                "Cant": 7,
+                "Inversion": 490
+            },
+            "Vac6": {
+                "Cant": 2,
+                "Inversion": 100
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 1516,
+            "DesarrrolloA": 1266,
+            "DesarrrolloB": 2770,
+            "CerdoEngordaA": 2520,
+            "CerdoEngordaB": 4036,
+            "CerdoEngordaC": 4000,
+            "CerdoEngordaD": 2782
+        }
+    },
+    "717C7DE7": {
+        "GastoAlimento": 4014.5151290688186,
+        "TotalKgAlimento": 290.5122801564243,
+        "TiposAlimentos": {
+            "Papilla": 20.22271109068721,
+            "Hibrido": 14.933913786292177,
+            "Solido1": 127.46098415048198,
+            "Solido2": 65.06357563794455,
+            "Solido3": 62.83109549101826
+        },
+        "AlimentoEtapas": {
+            "Lechon": 13.319675625192792,
+            "DesarrrolloA": 6.903035465494418,
+            "DesarrrolloB": 14.933913786292177,
+            "CerdoEngordaA": 62.21302313730522,
+            "CerdoEngordaB": 65.24796101317673,
+            "CerdoEngordaC": 65.06357563794455,
+            "CerdoEngordaD": 62.83109549101826
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 20,
+                "Inversion": 14000
+            },
+            "Vac3": {
+                "Cant": 5,
+                "Inversion": 320
+            },
+            "Med2": {
+                "Cant": 10,
+                "Inversion": 3520
+            },
+            "Med3": {
+                "Cant": 8,
+                "Inversion": 3200
+            },
+            "Vac1": {
+                "Cant": 5,
+                "Inversion": 400
+            },
+            "Vac2": {
+                "Cant": 5,
+                "Inversion": 350
+            },
+            "Vac6": {
+                "Cant": 6,
+                "Inversion": 300
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 4036,
+            "DesarrrolloA": 4000,
+            "CerdoEngordaA": 1596,
+            "CerdoEngordaB": 3956,
+            "CerdoEngordaC": 4502,
+            "CerdoEngordaD": 4000
+        }
+    },
+    "71F4A541": {
+        "GastoAlimento": 3926.0445869974787,
+        "TotalKgAlimento": 285.27133276228744,
+        "TiposAlimentos": {
+            "Papilla": 17.376638577086705,
+            "Hibrido": 15.94995719464503,
+            "Solido1": 125.59833148957128,
+            "Solido2": 63.94114339421924,
+            "Solido3": 62.40526210676495
+        },
+        "AlimentoEtapas": {
+            "Lechon": 12.016650248386549,
+            "DesarrrolloA": 5.359988328700158,
+            "DesarrrolloB": 15.94995719464503,
+            "CerdoEngordaA": 60.87991090368214,
+            "CerdoEngordaB": 64.71842058588918,
+            "CerdoEngordaC": 63.94114339421924,
+            "CerdoEngordaD": 62.40526210676495
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 11,
+                "Inversion": 7700
+            },
+            "Vac3": {
+                "Cant": 11,
+                "Inversion": 704
+            },
+            "Med2": {
+                "Cant": 22,
+                "Inversion": 7744
+            },
+            "Med3": {
+                "Cant": 11,
+                "Inversion": 4400
+            },
+            "Vac1": {
+                "Cant": 11,
+                "Inversion": 880
+            },
+            "Vac2": {
+                "Cant": 11,
+                "Inversion": 770
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 1116,
+            "DesarrrolloA": 2920,
+            "CerdoEngordaA": 4036,
+            "CerdoEngordaB": 5552,
+            "CerdoEngordaC": 5654,
+            "CerdoEngordaD": 2920
+        }
+    },
+    "71FEC8D4": {
+        "GastoAlimento": 4061.45236811803,
+        "TotalKgAlimento": 293.2011056313884,
+        "TiposAlimentos": {
+            "Papilla": 21.24375810228828,
+            "Hibrido": 18.19579259212806,
+            "Solido1": 127.30538758565453,
+            "Solido2": 63.165943297450205,
+            "Solido3": 63.290224053867234
+        },
+        "AlimentoEtapas": {
+            "Lechon": 15.14102561845786,
+            "DesarrrolloA": 6.102732483830415,
+            "DesarrrolloB": 18.19579259212806,
+            "CerdoEngordaA": 61.579872688512374,
+            "CerdoEngordaB": 65.72551489714215,
+            "CerdoEngordaC": 63.165943297450205,
+            "CerdoEngordaD": 63.290224053867234
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 1,
+                "Inversion": 700
+            },
+            "Vac3": {
+                "Cant": 1,
+                "Inversion": 64
+            },
+            "Med2": {
+                "Cant": 2,
+                "Inversion": 704
+            },
+            "Med3": {
+                "Cant": 1,
+                "Inversion": 400
+            },
+            "Vac1": {
+                "Cant": 1,
+                "Inversion": 80
+            },
+            "Vac2": {
+                "Cant": 1,
+                "Inversion": 70
+            }
+        },
+        "MedicamentoEtapas": {
+            "DesarrrolloA": 764,
+            "DesarrrolloB": 1254
+        }
+    },
+    "716C8FA7": {
+        "GastoAlimento": 3980.4499610862235,
+        "TotalKgAlimento": 287.94015949155846,
+        "TiposAlimentos": {
+            "Papilla": 19.832031431919866,
+            "Hibrido": 16.92330915814663,
+            "Solido1": 125.38200771359897,
+            "Solido2": 63.73382249757039,
+            "Solido3": 62.06898869032255
+        },
+        "AlimentoEtapas": {
+            "Lechon": 13.607543595870505,
+            "DesarrrolloA": 6.224487836049363,
+            "DesarrrolloB": 16.92330915814663,
+            "CerdoEngordaA": 60.57200320762541,
+            "CerdoEngordaB": 64.81000450597355,
+            "CerdoEngordaC": 63.73382249757039,
+            "CerdoEngordaD": 62.06898869032255
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 11,
+                "Inversion": 7700
+            },
+            "Vac3": {
+                "Cant": 3,
+                "Inversion": 192
+            },
+            "Med2": {
+                "Cant": 6,
+                "Inversion": 2112
+            },
+            "Med3": {
+                "Cant": 5,
+                "Inversion": 2000
+            },
+            "Vac1": {
+                "Cant": 3,
+                "Inversion": 240
+            },
+            "Vac2": {
+                "Cant": 3,
+                "Inversion": 210
+            },
+            "Vac6": {
+                "Cant": 4,
+                "Inversion": 200
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 1596,
+            "DesarrrolloA": 422,
+            "DesarrrolloB": 2018,
+            "CerdoEngordaB": 2018,
+            "CerdoEngordaC": 4000,
+            "CerdoEngordaD": 2600
+        }
+    },
+    "71534B4A": {
+        "GastoAlimento": 4024.16966680184,
+        "TotalKgAlimento": 292.1569499982231,
+        "TiposAlimentos": {
+            "Papilla": 18.154801039504047,
+            "Hibrido": 16.34848300868628,
+            "Solido1": 127.56358041128318,
+            "Solido2": 67.16394644157504,
+            "Solido3": 62.926139097174364
+        },
+        "AlimentoEtapas": {
+            "Lechon": 12.344499054641593,
+            "DesarrrolloA": 5.81030198486245,
+            "DesarrrolloB": 16.34848300868628,
+            "CerdoEngordaA": 62.33986831588036,
+            "CerdoEngordaB": 65.22371209540286,
+            "CerdoEngordaC": 67.16394644157504,
+            "CerdoEngordaD": 62.926139097174364
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 14,
+                "Inversion": 9800
+            },
+            "Med3": {
+                "Cant": 10,
+                "Inversion": 4000
+            },
+            "Vac6": {
+                "Cant": 2,
+                "Inversion": 100
+            },
+            "Vac3": {
+                "Cant": 9,
+                "Inversion": 576
+            },
+            "Med2": {
+                "Cant": 18,
+                "Inversion": 6336
+            },
+            "Vac1": {
+                "Cant": 9,
+                "Inversion": 720
+            },
+            "Vac2": {
+                "Cant": 9,
+                "Inversion": 630
+            }
+        },
+        "MedicamentoEtapas": {
+            "DesarrrolloA": 4000,
+            "CerdoEngordaA": 2018,
+            "CerdoEngordaB": 6818,
+            "CerdoEngordaC": 5290,
+            "CerdoEngordaD": 4036
+        }
+    },
+    "713A559C": {
+        "GastoAlimento": 3993.8217377130422,
+        "TotalKgAlimento": 289.6465546421135,
+        "TiposAlimentos": {
+            "Papilla": 19.105853685202863,
+            "Hibrido": 16.352195052262303,
+            "Solido1": 126.1326051326405,
+            "Solido2": 64.62455117178808,
+            "Solido3": 63.43134960021984
+        },
+        "AlimentoEtapas": {
+            "Lechon": 14.019881770219072,
+            "DesarrrolloA": 5.085971914983791,
+            "DesarrrolloB": 16.352195052262303,
+            "CerdoEngordaA": 61.869313075222415,
+            "CerdoEngordaB": 64.26329205741813,
+            "CerdoEngordaC": 64.62455117178808,
+            "CerdoEngordaD": 63.43134960021984
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 2,
+                "Inversion": 1400
+            },
+            "Vac3": {
+                "Cant": 2,
+                "Inversion": 128
+            },
+            "Med2": {
+                "Cant": 4,
+                "Inversion": 1408
+            },
+            "Med3": {
+                "Cant": 2,
+                "Inversion": 800
+            },
+            "Vac1": {
+                "Cant": 2,
+                "Inversion": 160
+            },
+            "Vac2": {
+                "Cant": 2,
+                "Inversion": 140
+            }
+        },
+        "MedicamentoEtapas": {
+            "DesarrrolloB": 2018,
+            "CerdoEngordaC": 2018
+        }
+    },
+    "71767446": {
+        "GastoAlimento": 4019.0933380630386,
+        "TotalKgAlimento": 290.32689505443074,
+        "TiposAlimentos": {
+            "Papilla": 21.27745502323447,
+            "Hibrido": 15.071285187710378,
+            "Solido1": 127.04070234029412,
+            "Solido2": 64.16329988212186,
+            "Solido3": 62.77415262106983
+        },
+        "AlimentoEtapas": {
+            "Lechon": 14.750604887412354,
+            "DesarrrolloA": 6.526850135822122,
+            "DesarrrolloB": 15.071285187710378,
+            "CerdoEngordaA": 61.34131016834591,
+            "CerdoEngordaB": 65.6993921719482,
+            "CerdoEngordaC": 64.16329988212186,
+            "CerdoEngordaD": 62.77415262106983
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 15,
+                "Inversion": 10500
+            },
+            "Med3": {
+                "Cant": 7,
+                "Inversion": 2800
+            },
+            "Vac6": {
+                "Cant": 4,
+                "Inversion": 200
+            },
+            "Vac3": {
+                "Cant": 5,
+                "Inversion": 320
+            },
+            "Med2": {
+                "Cant": 10,
+                "Inversion": 3520
+            },
+            "Vac1": {
+                "Cant": 5,
+                "Inversion": 400
+            },
+            "Vac2": {
+                "Cant": 5,
+                "Inversion": 350
+            }
+        },
+        "MedicamentoEtapas": {
+            "DesarrrolloA": 1150,
+            "DesarrrolloB": 8868,
+            "CerdoEngordaB": 2018,
+            "CerdoEngordaC": 1516,
+            "CerdoEngordaD": 4538
+        }
+    },
+    "7157E037": {
+        "GastoAlimento": 4068.2937908757144,
+        "TotalKgAlimento": 293.7111758792818,
+        "TiposAlimentos": {
+            "Papilla": 21.253869139728288,
+            "Hibrido": 17.036045303158996,
+            "Solido1": 127.7937126513502,
+            "Solido2": 64.83151697102232,
+            "Solido3": 62.796031814022136
+        },
+        "AlimentoEtapas": {
+            "Lechon": 15.497230522327845,
+            "DesarrrolloA": 5.7566386174004425,
+            "DesarrrolloB": 17.036045303158996,
+            "CerdoEngordaA": 61.53257801546422,
+            "CerdoEngordaB": 66.26113463588594,
+            "CerdoEngordaC": 64.83151697102232,
+            "CerdoEngordaD": 62.796031814022136
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 10,
+                "Inversion": 7000
+            },
+            "Vac3": {
+                "Cant": 5,
+                "Inversion": 320
+            },
+            "Med2": {
+                "Cant": 10,
+                "Inversion": 3520
+            },
+            "Med3": {
+                "Cant": 6,
+                "Inversion": 2400
+            },
+            "Vac1": {
+                "Cant": 5,
+                "Inversion": 400
+            },
+            "Vac2": {
+                "Cant": 5,
+                "Inversion": 350
+            },
+            "Vac6": {
+                "Cant": 2,
+                "Inversion": 100
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 4036,
+            "CerdoEngordaB": 3534,
+            "CerdoEngordaC": 3670,
+            "CerdoEngordaD": 2850
+        }
+    },
+    "71217013": {
+        "GastoAlimento": 4087.131964015169,
+        "TotalKgAlimento": 295.46295129874187,
+        "TiposAlimentos": {
+            "Papilla": 20.46908747794999,
+            "Hibrido": 16.911335648549002,
+            "Solido1": 129.70782544039517,
+            "Solido2": 64.90525693451026,
+            "Solido3": 63.46944579733733
+        },
+        "AlimentoEtapas": {
+            "Lechon": 15.315302810827104,
+            "DesarrrolloA": 5.153784667122881,
+            "DesarrrolloB": 16.911335648549002,
+            "CerdoEngordaA": 64.68491855650136,
+            "CerdoEngordaB": 65.02290688389384,
+            "CerdoEngordaC": 64.90525693451026,
+            "CerdoEngordaD": 63.46944579733733
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 17,
+                "Inversion": 11900
+            },
+            "Vac3": {
+                "Cant": 7,
+                "Inversion": 448
+            },
+            "Med2": {
+                "Cant": 14,
+                "Inversion": 4928
+            },
+            "Med3": {
+                "Cant": 9,
+                "Inversion": 3600
+            },
+            "Vac1": {
+                "Cant": 7,
+                "Inversion": 560
+            },
+            "Vac2": {
+                "Cant": 7,
+                "Inversion": 490
+            },
+            "Vac6": {
+                "Cant": 4,
+                "Inversion": 200
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 4036,
+            "DesarrrolloB": 4000,
+            "CerdoEngordaA": 6018,
+            "CerdoEngordaC": 4036,
+            "CerdoEngordaD": 4036
+        }
+    },
+    "71F5CBD1": {
+        "GastoAlimento": 4094.7727925614035,
+        "TotalKgAlimento": 295.272937124556,
+        "TiposAlimentos": {
+            "Papilla": 21.147797161991143,
+            "Hibrido": 16.347961717487387,
+            "Solido1": 130.41342842908728,
+            "Solido2": 65.58616632102034,
+            "Solido3": 61.7775834949698
+        },
+        "AlimentoEtapas": {
+            "Lechon": 15.285183258302288,
+            "DesarrrolloA": 5.862613903688846,
+            "DesarrrolloB": 16.347961717487387,
+            "CerdoEngordaA": 65.86363499314947,
+            "CerdoEngordaB": 64.54979343593787,
+            "CerdoEngordaC": 65.58616632102034,
+            "CerdoEngordaD": 61.7775834949698
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 11,
+                "Inversion": 7700
+            },
+            "Vac3": {
+                "Cant": 6,
+                "Inversion": 384
+            },
+            "Med2": {
+                "Cant": 11,
+                "Inversion": 3872
+            },
+            "Med3": {
+                "Cant": 6,
+                "Inversion": 2400
+            },
+            "Vac1": {
+                "Cant": 5,
+                "Inversion": 400
+            },
+            "Vac2": {
+                "Cant": 5,
+                "Inversion": 350
+            },
+            "Vac6": {
+                "Cant": 2,
+                "Inversion": 100
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 3134,
+            "DesarrrolloA": 2418,
+            "DesarrrolloB": 2520,
+            "CerdoEngordaA": 1516,
+            "CerdoEngordaB": 502,
+            "CerdoEngordaC": 4000,
+            "CerdoEngordaD": 1116
+        }
+    },
+    "7140BBFD": {
+        "GastoAlimento": 4022.721230873427,
+        "TotalKgAlimento": 291.1295346761913,
+        "TiposAlimentos": {
+            "Papilla": 18.848587443915434,
+            "Hibrido": 15.272409750376003,
+            "Solido1": 130.32695846812757,
+            "Solido2": 64.98105619328032,
+            "Solido3": 61.70052282049199
+        },
+        "AlimentoEtapas": {
+            "Lechon": 12.768837506045736,
+            "DesarrrolloA": 6.079749937869696,
+            "DesarrrolloB": 15.272409750376003,
+            "CerdoEngordaA": 65.27769897521425,
+            "CerdoEngordaB": 65.04925949291335,
+            "CerdoEngordaC": 64.98105619328032,
+            "CerdoEngordaD": 61.70052282049199
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 6,
+                "Inversion": 4200
+            },
+            "Vac3": {
+                "Cant": 6,
+                "Inversion": 384
+            },
+            "Med2": {
+                "Cant": 12,
+                "Inversion": 4224
+            },
+            "Med3": {
+                "Cant": 6,
+                "Inversion": 2400
+            },
+            "Vac1": {
+                "Cant": 6,
+                "Inversion": 480
+            },
+            "Vac2": {
+                "Cant": 6,
+                "Inversion": 420
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 2018,
+            "CerdoEngordaA": 2018,
+            "CerdoEngordaC": 2782,
+            "CerdoEngordaD": 5290
+        }
+    },
+    "710692D7": {
+        "GastoAlimento": 4102.163347338044,
+        "TotalKgAlimento": 296.387971695322,
+        "TiposAlimentos": {
+            "Papilla": 21.17776177399216,
+            "Hibrido": 15.145959127399317,
+            "Solido1": 130.3804903269943,
+            "Solido2": 66.29125512431085,
+            "Solido3": 63.39250534262557
+        },
+        "AlimentoEtapas": {
+            "Lechon": 13.975688886103438,
+            "DesarrrolloA": 7.202072887888721,
+            "DesarrrolloB": 15.145959127399317,
+            "CerdoEngordaA": 64.71543997557596,
+            "CerdoEngordaB": 65.66505035141833,
+            "CerdoEngordaC": 66.29125512431085,
+            "CerdoEngordaD": 63.39250534262557
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 13,
+                "Inversion": 9100
+            },
+            "Vac3": {
+                "Cant": 8,
+                "Inversion": 512
+            },
+            "Med2": {
+                "Cant": 16,
+                "Inversion": 5632
+            },
+            "Med3": {
+                "Cant": 9,
+                "Inversion": 3600
+            },
+            "Vac1": {
+                "Cant": 8,
+                "Inversion": 640
+            },
+            "Vac2": {
+                "Cant": 8,
+                "Inversion": 560
+            },
+            "Vac6": {
+                "Cant": 2,
+                "Inversion": 100
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 4036,
+            "DesarrrolloB": 4298,
+            "CerdoEngordaA": 1756,
+            "CerdoEngordaB": 6018,
+            "CerdoEngordaC": 2018,
+            "CerdoEngordaD": 2018
+        }
+    },
+    "714A17B6": {
+        "GastoAlimento": 4084.0548423189903,
+        "TotalKgAlimento": 294.8289565163806,
+        "TiposAlimentos": {
+            "Papilla": 21.669454578359936,
+            "Hibrido": 15.40483073278395,
+            "Solido1": 129.24296516876367,
+            "Solido2": 65.2772506212827,
+            "Solido3": 63.23445541519015
+        },
+        "AlimentoEtapas": {
+            "Lechon": 14.28573104746848,
+            "DesarrrolloA": 7.3837235308914515,
+            "DesarrrolloB": 15.40483073278395,
+            "CerdoEngordaA": 64.23463661506024,
+            "CerdoEngordaB": 65.00832855370344,
+            "CerdoEngordaC": 65.2772506212827,
+            "CerdoEngordaD": 63.23445541519015
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 16,
+                "Inversion": 11200
+            },
+            "Vac3": {
+                "Cant": 6,
+                "Inversion": 384
+            },
+            "Med2": {
+                "Cant": 12,
+                "Inversion": 4224
+            },
+            "Med3": {
+                "Cant": 8,
+                "Inversion": 3200
+            },
+            "Vac1": {
+                "Cant": 6,
+                "Inversion": 480
+            },
+            "Vac2": {
+                "Cant": 6,
+                "Inversion": 420
+            },
+            "Vac6": {
+                "Cant": 4,
+                "Inversion": 200
+            }
+        },
+        "MedicamentoEtapas": {
+            "DesarrrolloA": 1516,
+            "DesarrrolloB": 502,
+            "CerdoEngordaA": 6834,
+            "CerdoEngordaB": 8816,
+            "CerdoEngordaC": 422,
+            "CerdoEngordaD": 2018
+        }
+    },
+    "718FF62C": {
+        "GastoAlimento": 4050.9650677665977,
+        "TotalKgAlimento": 293.1521035479467,
+        "TiposAlimentos": {
+            "Papilla": 20.37284868347743,
+            "Hibrido": 14.85414209549828,
+            "Solido1": 129.09904775548375,
+            "Solido2": 65.31653206581615,
+            "Solido3": 63.50953294767087
+        },
+        "AlimentoEtapas": {
+            "Lechon": 14.234920084185767,
+            "DesarrrolloA": 6.1379285992916595,
+            "DesarrrolloB": 14.85414209549828,
+            "CerdoEngordaA": 64.88203837859483,
+            "CerdoEngordaB": 64.21700937688894,
+            "CerdoEngordaC": 65.31653206581615,
+            "CerdoEngordaD": 63.50953294767087
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 27,
+                "Inversion": 18900
+            },
+            "Vac3": {
+                "Cant": 8,
+                "Inversion": 512
+            },
+            "Med2": {
+                "Cant": 16,
+                "Inversion": 5632
+            },
+            "Med3": {
+                "Cant": 12,
+                "Inversion": 4800
+            },
+            "Vac1": {
+                "Cant": 8,
+                "Inversion": 640
+            },
+            "Vac2": {
+                "Cant": 8,
+                "Inversion": 560
+            },
+            "Vac6": {
+                "Cant": 8,
+                "Inversion": 400
+            }
+        },
+        "MedicamentoEtapas": {
+            "DesarrrolloB": 4036,
+            "CerdoEngordaA": 5152,
+            "CerdoEngordaB": 6088,
+            "CerdoEngordaC": 6850,
+            "CerdoEngordaD": 9318
+        }
+    },
+    "71101EDA": {
+        "GastoAlimento": 4032.4448587043503,
+        "TotalKgAlimento": 292.48167582588803,
+        "TiposAlimentos": {
+            "Papilla": 17.76392128394191,
+            "Hibrido": 16.605067200495835,
+            "Solido1": 130.28848105253093,
+            "Solido2": 65.17371544697231,
+            "Solido3": 62.650490841947
+        },
+        "AlimentoEtapas": {
+            "Lechon": 11.877540722341491,
+            "DesarrrolloA": 5.886380561600421,
+            "DesarrrolloB": 16.605067200495835,
+            "CerdoEngordaA": 65.06281395533448,
+            "CerdoEngordaB": 65.22566709719648,
+            "CerdoEngordaC": 65.17371544697231,
+            "CerdoEngordaD": 62.650490841947
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 16,
+                "Inversion": 11200
+            },
+            "Med3": {
+                "Cant": 8,
+                "Inversion": 3200
+            },
+            "Vac6": {
+                "Cant": 4,
+                "Inversion": 200
+            },
+            "Vac3": {
+                "Cant": 6,
+                "Inversion": 384
+            },
+            "Med2": {
+                "Cant": 12,
+                "Inversion": 4224
+            },
+            "Vac1": {
+                "Cant": 6,
+                "Inversion": 480
+            },
+            "Vac2": {
+                "Cant": 6,
+                "Inversion": 420
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 5516,
+            "DesarrrolloA": 502,
+            "DesarrrolloB": 1116,
+            "CerdoEngordaA": 1666,
+            "CerdoEngordaB": 5290,
+            "CerdoEngordaC": 4000,
+            "CerdoEngordaD": 2018
+        }
+    },
+    "71900A90": {
+        "GastoAlimento": 300.42558227814396,
+        "TotalKgAlimento": 15.021279113907198,
+        "TiposAlimentos": {
+            "Papilla": 15.021279113907198
+        },
+        "AlimentoEtapas": {
+            "Lechon": 15.021279113907198
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "719FD9A2": {
+        "GastoAlimento": 153.79587953213687,
+        "TotalKgAlimento": 7.689793976606845,
+        "TiposAlimentos": {
+            "Papilla": 7.689793976606845
+        },
+        "AlimentoEtapas": {
+            "Lechon": 7.689793976606845
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "7180E5A9": {
+        "GastoAlimento": 159.67889531481475,
+        "TotalKgAlimento": 7.983944765740739,
+        "TiposAlimentos": {
+            "Papilla": 7.983944765740739
+        },
+        "AlimentoEtapas": {
+            "Lechon": 7.983944765740739
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 5,
+                "Inversion": 3500
+            },
+            "Med3": {
+                "Cant": 1,
+                "Inversion": 400
+            },
+            "Vac6": {
+                "Cant": 2,
+                "Inversion": 100
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 4000
+        }
+    },
+    "71435C58": {
+        "GastoAlimento": 185.3484273541009,
+        "TotalKgAlimento": 9.267421367705044,
+        "TiposAlimentos": {
+            "Papilla": 9.267421367705044
+        },
+        "AlimentoEtapas": {
+            "Lechon": 9.267421367705044
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 7,
+                "Inversion": 4900
+            },
+            "Med3": {
+                "Cant": 2,
+                "Inversion": 800
+            },
+            "Vac6": {
+                "Cant": 4,
+                "Inversion": 200
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 5900
+        }
+    },
+    "7126AB11": {
+        "GastoAlimento": 151.02655778248635,
+        "TotalKgAlimento": 7.551327889124315,
+        "TiposAlimentos": {
+            "Papilla": 7.551327889124315
+        },
+        "AlimentoEtapas": {
+            "Lechon": 7.551327889124315
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "718B194C": {
+        "GastoAlimento": 103.5706622984833,
+        "TotalKgAlimento": 5.178533114924165,
+        "TiposAlimentos": {
+            "Papilla": 5.178533114924165
+        },
+        "AlimentoEtapas": {
+            "Lechon": 5.178533114924165
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 4,
+                "Inversion": 2800
+            },
+            "Med3": {
+                "Cant": 1,
+                "Inversion": 400
+            },
+            "Vac6": {
+                "Cant": 2,
+                "Inversion": 100
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 3300
+        }
+    },
+    "713993CC": {
+        "GastoAlimento": 134.50860420801894,
+        "TotalKgAlimento": 6.725430210400948,
+        "TiposAlimentos": {
+            "Papilla": 6.725430210400948
+        },
+        "AlimentoEtapas": {
+            "Lechon": 6.725430210400948
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "7140EC93": {
+        "GastoAlimento": 91.71529640566943,
+        "TotalKgAlimento": 4.5857648202834715,
+        "TiposAlimentos": {
+            "Papilla": 4.5857648202834715
+        },
+        "AlimentoEtapas": {
+            "Lechon": 4.5857648202834715
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 1,
+                "Inversion": 700
+            },
+            "Vac3": {
+                "Cant": 1,
+                "Inversion": 64
+            },
+            "Med2": {
+                "Cant": 1,
+                "Inversion": 352
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 1116
+        }
+    },
+    "71A3CA72": {
+        "GastoAlimento": 90.79858428001802,
+        "TotalKgAlimento": 4.539929214000901,
+        "TiposAlimentos": {
+            "Papilla": 4.539929214000901
+        },
+        "AlimentoEtapas": {
+            "Lechon": 4.539929214000901
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "71E9857A": {
+        "GastoAlimento": 71.52936528371805,
+        "TotalKgAlimento": 3.5764682641859027,
+        "TiposAlimentos": {
+            "Papilla": 3.5764682641859027
+        },
+        "AlimentoEtapas": {
+            "Lechon": 3.5764682641859027
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 1,
+                "Inversion": 700
+            },
+            "Vac3": {
+                "Cant": 1,
+                "Inversion": 64
+            },
+            "Med2": {
+                "Cant": 1,
+                "Inversion": 352
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 1116
+        }
+    },
+    "71403B69": {
+        "GastoAlimento": 55.402367693952314,
+        "TotalKgAlimento": 2.770118384697615,
+        "TiposAlimentos": {
+            "Papilla": 2.770118384697615
+        },
+        "AlimentoEtapas": {
+            "Lechon": 2.770118384697615
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "71EF6877": {
+        "GastoAlimento": 30.93269070475501,
+        "TotalKgAlimento": 1.5466345352377509,
+        "TiposAlimentos": {
+            "Papilla": 1.5466345352377509
+        },
+        "AlimentoEtapas": {
+            "Lechon": 1.5466345352377509
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "713DB046": {
+        "GastoAlimento": 51.28570928561073,
+        "TotalKgAlimento": 2.5642854642805366,
+        "TiposAlimentos": {
+            "Papilla": 2.5642854642805366
+        },
+        "AlimentoEtapas": {
+            "Lechon": 2.5642854642805366
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 1,
+                "Inversion": 700
+            },
+            "Med3": {
+                "Cant": 1,
+                "Inversion": 400
+            },
+            "Vac6": {
+                "Cant": 1,
+                "Inversion": 50
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 1150
+        }
+    },
+    "712ED7A4": {
+        "GastoAlimento": 25.03308679848664,
+        "TotalKgAlimento": 1.251654339924332,
+        "TiposAlimentos": {
+            "Papilla": 1.251654339924332
+        },
+        "AlimentoEtapas": {
+            "Lechon": 1.251654339924332
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "716A8818": {
+        "GastoAlimento": 58.91934974515436,
+        "TotalKgAlimento": 2.945967487257718,
+        "TiposAlimentos": {
+            "Papilla": 2.945967487257718
+        },
+        "AlimentoEtapas": {
+            "Lechon": 2.945967487257718
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "7196F455": {
+        "GastoAlimento": 17.34159008317126,
+        "TotalKgAlimento": 0.8670795041585629,
+        "TiposAlimentos": {
+            "Papilla": 0.8670795041585629
+        },
+        "AlimentoEtapas": {
+            "Lechon": 0.8670795041585629
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {
+            "Med1": {
+                "Cant": 1,
+                "Inversion": 700
+            },
+            "Vac3": {
+                "Cant": 1,
+                "Inversion": 64
+            }
+        },
+        "MedicamentoEtapas": {
+            "Lechon": 764
+        }
+    },
+    "711B774E": {
+        "GastoAlimento": 19.143062536532227,
+        "TotalKgAlimento": 0.9571531268266114,
+        "TiposAlimentos": {
+            "Papilla": 0.9571531268266114
+        },
+        "AlimentoEtapas": {
+            "Lechon": 0.9571531268266114
+        },
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "71E3CB02": {
+        "GastoAlimento": 0,
+        "TotalKgAlimento": 0,
+        "TiposAlimentos": {},
+        "AlimentoEtapas": {},
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    },
+    "7146B274": {
+        "GastoAlimento": 0,
+        "TotalKgAlimento": 0,
+        "TiposAlimentos": {},
+        "AlimentoEtapas": {},
+        "GastoMedicamentos": 0,
+        "TiposMedicamentos": {},
+        "MedicamentoEtapas": {}
+    }
+}

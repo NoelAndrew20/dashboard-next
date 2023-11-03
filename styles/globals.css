@@ -906,7 +906,20 @@ input:focus {
   transform: translateY(10px);
   animation: typing 1s forwards;
 }
+.user-message {
+  background-color: #F7F9FB;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
 
+.system-message {
+  background-color: #A5B4FC;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
 /* Animación de escritura */
 @keyframes typing {
   from {

@@ -1,0 +1,83 @@
+NombreGranja: "LaPurisima"
+#Lista de etapas
+Etapas: ["Lechon",'DesarrrolloA', 'DesarrrolloB','CerdoEngordaA', 'CerdoEngordaB', 'CerdoEngordaC', 'CerdoEngordaD']
+
+Lechon : {
+  'Nombre': 'Lechon',
+  'Duracion': 28,
+  "TipoAlimento": "Papilla",
+  'ConsumoDiarioKg': 0.5, 
+  'VariacionKg': 0.4,
+  'PorcentajeMortandad': 18,
+  'Medicamentos': {}
+}
+
+DesarrrolloA : {
+  'Nombre': 'DesarrrolloA',
+  'Duracion': 10,
+  "TipoAlimento": "Papilla",
+  'ConsumoDiarioKg': 0.6, 
+  'VariacionKg': 0.3,
+  'PorcentajeMortandad': 18,
+  'Medicamentos': {}
+}
+
+DesarrrolloB : {
+  'Nombre': 'DesarrrolloB',
+  'Duracion': 20,
+  "TipoAlimento": "Hibrido",
+  'ConsumoDiarioKg': 0.8, 
+  'VariacionKg': 0.3,
+  'PorcentajeMortandad': 18,
+  'Medicamentos': {}
+}
+
+DesarrrolloB : {
+  'Nombre': 'DesarrrolloB',
+  'Duracion': 20,
+  "TipoAlimento": "Hibrido",
+  'ConsumoDiarioKg': 0.8, 
+  'VariacionKg': 0.3,
+  'PorcentajeMortandad': 18,
+  'Medicamentos': {}
+}
+
+CerdoEngordaA : {
+  'Nombre': 'CerdoEngordaA',
+  'Duracion': 34,
+  "TipoAlimento": "Solido1",
+  'ConsumoDiarioKg': 1.8, 
+  'VariacionKg': 0.2,
+  'PorcentajeMortandad': 18,
+  'Medicamentos': {}
+}
+
+CerdoEngordaB : {
+  'Nombre': 'CerdoEngordaB',
+  'Duracion': 34,
+  "TipoAlimento": "Solido1",
+  'ConsumoDiarioKg': 1.8, 
+  'VariacionKg': 0.2,
+  'PorcentajeMortandad': 18,
+  'Medicamentos': {}
+}
+
+CerdoEngordaC : {
+  'Nombre': 'CerdoEngordaC',
+  'Duracion': 34,
+  "TipoAlimento": "Solido2",
+  'ConsumoDiarioKg': 1.8, 
+  'VariacionKg': 0.2,
+  'PorcentajeMortandad': 18,
+  'Medicamentos': {}
+}
+
+CerdoEngordaD : {
+  'Nombre': 'CerdoEngordaD',
+  'Duracion': 35,
+  "TipoAlimento": "Solido3",
+  'ConsumoDiarioKg': 1.8, 
+  'VariacionKg': 0.2,
+  'PorcentajeMortandad': 18,
+  'Medicamentos': {}
+}

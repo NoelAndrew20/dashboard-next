@@ -168,6 +168,11 @@ const Navigation = () => {
                             <Image src={"/images/svg/cube.svg"} width={20} height={20} alt="graph" className="mr-2" />3D Visualizador
                         </div>
                     </Link>
+                    <Link href="../../Chat" className={`hover:font-semibold ${currentPage === '/Chat' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/brain.svg"} width={20} height={20} alt="graph" className="mr-2" />Chat
+                        </div>
+                    </Link>
                     </div>
                     <div className="flex justify-center pt-2 pb-20">
                         <Image src={srs} width={100} height={100} alt="srs-logo" />
