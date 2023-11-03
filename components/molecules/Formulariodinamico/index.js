@@ -92,7 +92,7 @@ const Formulario = ({ jsonFile, onSubmit }) => {
         </div>
         
       ))}
-      <button type="submit" className="hover:text-orange-300 hover:border-2 hover:border-orange-300 hover:bg-red-900 bg-orange-300 text-red-900 mt-5 py-2 px-3 py-2 rounded-md focus:outline-none" onClick={guardardatosjson}>Listo</button>
+      <button type="submit" className="button" onClick={guardardatosjson}>Listo</button>
     </div>
   );
 };

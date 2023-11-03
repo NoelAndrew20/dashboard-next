@@ -1,0 +1,70 @@
+NombreGranja: "LaPurisima"
+#Lista de etapas
+Etapas: ["Transporte",'Cuarentena', 'Gestacion','Maternidad', 'Zen']
+
+Transporte : {
+  'Nombre': 'Transporte',
+  'Duracion': 7,
+  "TipoAlimento": "SinAlimento",
+  'ConsumoDiarioKg': 0,
+  'VariacionKg': 0,
+  'PorcentajeMortandad': 18,
+  'Medicamentos': {}
+}
+#Etapas detalladas
+Cuarentena : {
+  'Nombre': 'Cuarentena',
+  'Duracion': 60,
+  "TipoAlimento": "Alimento3",
+  'ConsumoDiarioKg': 2.5,
+  'VariacionKg': 0.5,
+  'PorcentajeMortandad': 18,
+  #Vacunas o medicamentos "especiales" 
+  "Medicamentos": {
+    "Dia 1": {"Med1": 2, "Vac1": 1}, 
+    "Dia 5": {"Vac2": 1, "Med3": 1},
+    "Dia 10": {"Med3": 1}
+  }
+}
+
+Gestacion : {
+  'Nombre': 'Gestacion',
+  'Duracion': 112,
+   "TipoAlimento": "Alimento1",
+  'ConsumoDiarioKg': 2.5,
+  'VariacionKg': 1,
+  'PorcentajeMortandad': 18, #del total que llegan
+    "Medicamentos": {
+    "Dia 10": {"Med1": 2, "Vac1": 1}, 
+    "Dia 55": {"Vac2": 1, "Med3": 1},
+    "Dia 112": {"Med3": 1}
+  }
+}
+
+Maternidad : {
+  'Nombre': 'Maternidad',
+  'Duracion': 21,
+   "TipoAlimento": "Alimento2",
+  'ConsumoDiarioKg': 3.5,
+  'VariacionKg': 0.3,
+  'PorcentajeMortandad': 18, #del total que llegan
+  "Medicamentos": {
+    "Dia 1": {"Med1": 1, "Vac1": 1}, 
+    "Dia 5": {"Vac2": 1},
+    "Dia 20": {"Med3": 1}
+  }
+}
+
+Zen : {
+  'Nombre': 'Zen',
+  'Duracion': 5,
+   "TipoAlimento": "Alimento2",
+  'ConsumoDiarioKg': 5,
+  'VariacionKg': 0.3,
+  '%Mortandad': 18, #del total que llegan
+  "Medicamentos": {
+    "Dia 1": {"Med1": 2, "Vac1": 1}, 
+    "Dia 5": {"Vac2": 1, "Med3": 1}
+  }
+}
+

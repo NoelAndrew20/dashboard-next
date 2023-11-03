@@ -1,60 +1,62 @@
-import Navigation from '@/components/molecules/Navigation'
-// import jsonData from '../public/api/pronostico/python/output.json'
-import * as THREE from 'three';
-import { useState, useEffect } from 'react'
-import { useDarkMode } from '@/context/DarkModeContext'
-import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
-import ThreeModel from '../../components/molecules/Simulador3D';
+// pages/index.js
+import React, { useState } from 'react'
+import InteractiveModel from '../../components/molecules/Simulador3D'
+import Navigation from '@/components/molecules/Navigation';
 
-export default function Home({ title, description, image }) {
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
-  
-  
+const IndexPage = () => {
+  // Estado para almacenar los datos del archivo JSON
+  const [jsonData, setJsonData] = useState(null)
 
-    return (
-      <AnimatePresence>
-        <motion.div 
-        initial="initialState"
-        animate="animateState"
-        exit="exitState"
-        variants={{
-          initialState: {
-            opacity: 0,
-          },
-          animateState: {
-            opacity: 1,
-          },
-          exitState: {
-            
-          },
-        }}
-        transition={{duration: 1}}
-        className="main-page">
-                
-      <div className={isDarkMode ? "darkMode" : "lightMode"}>
-        <Navigation
-         toggleDarkMode={toggleDarkMode}
-         isDarkMode={isDarkMode}
-        />
-        
-      </div>
-      </motion.div>
-    </AnimatePresence>
-
-    )
+  // Función para cargar y mostrar datos desde el JSON
+  const showDataForModel = (modelId) => {
+    fetch(`/data.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        const modelData = data[modelId]
+        setJsonData(modelData)
+      })
   }
+  
 
+  return (
+    <div style={{
+      backgroundColor: '#000000'
+      }} >
+      <Navigation/>
+      <div style={{
+      backgroundColor: '#000000'
+      }} >
+          <InteractiveModel/>
+      </div>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column'
+      }} >
+        <div id="informacionFigura" style={{
+        position: 'fixed',
+        right: 0,
+        height: '49%',
+        width: '25%', 
+        backgroundColor: '#333', 
+        color: '#fff', 
+        padding: '20px', 
+        overflow: 'auto' 
+      }} ></div>
+      <div id="graficapermanente" style={{
+        top: '55%',
+        position: 'fixed',
+        right: 0,
+        height: '42%',
+        width: '25%', 
+        backgroundColor: '#333', 
+        color: '#fff', 
+        padding: '20px', 
+        overflow: 'auto' 
+      }} >
+      </div>
+      </div>
+    </div>
+  )
+}
 
-export const getServerSideProps = async () => {
-  const title = "Constanza";
-  const description =
-    "Dashboard de Constanza";
-  const image = "images/icon/logo-400.png";
-  return {
-    props: {
-      title,
-      description,
-      image,
-    },
-  };
-};
+export default IndexPage
