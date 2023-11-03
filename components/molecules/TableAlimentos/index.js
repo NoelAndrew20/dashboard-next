@@ -80,10 +80,11 @@ const TableAlimentos = ({ data, setData }) => {
             <table className={isDarkMode ? "table-container-d" : "table-container"}>
                 <thead>
                     <tr>
-                        <th>Fecha de solicitud</th>
-                        <th>Nivel</th>
-                        <th>Nombre del solicitante</th>
-                        <th>Alimentos</th>
+                        <th>Fecha Inicial</th>
+                        <th>Fecha Final</th>
+                        <th>Zona</th>
+                        <th>Nombre del alimento</th>
+                        <th>Cantidad</th>
                         {router.pathname === "/RegistroAlimentos"
                         ?
                         <th>Enviar</th>
@@ -99,10 +100,12 @@ const TableAlimentos = ({ data, setData }) => {
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-[#F7F9FB]' : 'bg-[#a5b4fc]')
                         }`}
                     >       
-                        <td>{item.fecha}</td>
-                        <td>{item.nivelEntrega}</td>
-                        <td>{item.nombreSolicitante}</td>
-                        <td>
+                        <td>{item.fechaInicial}</td>
+                        <td>{item.fechaFinal}</td>
+                        <td>{item.nombreAlimento}</td>
+                        <td>{item.cantidad}</td>
+                        
+                        {/*<td>
                             <ul>
                                 {item.lotes?.map((lote, subIndex) => (
                                 <li key={subIndex}>
@@ -110,7 +113,7 @@ const TableAlimentos = ({ data, setData }) => {
                                 </li>
                                 ))}
                             </ul>
-                        </td>
+                        </td>*/}
                         {router.pathname === "/RegistroAlimentos"
                         ? <td>
                             <button className="edit-btn" onClick={handleSendRequest}>
