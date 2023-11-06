@@ -145,86 +145,89 @@ const ChatWindow = ({ title, description, image }) => {
                     </div>
                   ))}
               </div>
-              <div className="flex justify-center bg-[#a78bfa] w-200 h-200 p-3">
-                <div>
-                  <Image
-                    src={"/images/icon/logo_blanco.png"}
-                    alt="Constanza Logo"
-                    className="mr-20"
-                    width={30}
-                    height={30} />
-                </div>
-                {<p className="font-bold self-center">Constanza:&nbsp;{respuesta.answer}&nbsp;</p>}
-                {respuesta.answer && (
-                  <button onClick={playAudio}>
-                    <img src="./images/svg/play.svg" alt="Play" width={20} />
-                  </button>
-                )}
-                <audio autoplay ref={audioRef}>
-                  <source src="./api/pronostico/python/Constanza_v15/respuesta.mp3" type="audio/mpeg" />
-                  Tu navegador no soporta la reproducción de audio.
-                </audio>
-              </div>
+              
               <form className="wrapper full-viewport">
                 <div className="flex justify-center h-60 m-20 flex-row rounded-md text-lg text-black">
-                  <div className="bg-[#A5B4FC] w-1/2 rounded-md	">
-                    <div className="text-const w-100">
-                      {<p className="font-bold text-center">{json.answer}</p>}
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      {json.answer === "Pensando.." ? (
-                        <img
-                          src="/images/CerdoChido.gif"
-                          width={150}
-                          height={150}
-                          alt="gif"
-                          className="mr-2" />
-                      ) : json.answer === "Puedes Abrir el cuestionario" ? (
-                        <Image
-                          src="/images/Cerdocomiendo.gif"
-                          width={150}
-                          height={150}
-                          alt="pig"
-                          className="mr-2" />
-                      ) : json.answer.includes("Error") ? (
-                        <Image
-                          src="/images/Cerdomorido.gif"
-                          width={150}
-                          height={150}
-                          alt="pig"
-                          className="mr-2" />
-                      ) : json.answer === "Esperando" ? (
-                        <Image
-                          src="/images/Cerdomimido1.gif"
-                          width={150}
-                          height={150}
-                          alt="pig"
-                          className="mr-2" />
-                      ) : (
-                        <Image
-                          src="/images/CerdoChido.png"
-                          width={150}
-                          height={150}
-                          alt="pig"
-                          className="mr-2" />
-                      )}
-                    </div>
+                  <div className='bg-blue-400 w-full h-full'>
                   </div>
                 </div>
-                <div className="mt-5">
-                  <textarea
-                    id="message-input"
-                    type="text"
-                    placeholder="Escribe tu mensaje..."
-                    className="text-black m-5 bg-[#F7F9FB] px-3 py-2 w-full h-100 text-lg rounded-md focus:outline-none"
-                    value={message} // Establece el valor del textarea según el estado
-                    onChange={handleChange} // Captura los cambios en el textarea
-                  />
-                  <div className="flex justify-around">
-                    <button className="bg-gray-700 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-1/3 text-center" onClick={abrirModal}>Formulario</button>
-                    <button className="bg-blue-500 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-1/3" onClick={handleSubmit}>Enviar</button>
+                <div className="flex justify-center bg-[#a78bfa] w-200 h-200 p-3 rounded-md">
+                  <div>
+                    <Image
+                      src={"/images/icon/logo_blanco.png"}
+                      alt="Constanza Logo"
+                      className="mr-20"
+                      width={30}
+                      height={30} />
                   </div>
-                </div>
+                  {<p className="font-bold self-center">Constanza:&nbsp;{respuesta.answer}&nbsp;</p>}
+                  {respuesta.answer && (
+                    <button onClick={playAudio}>
+                      <img src="./images/svg/play.svg" alt="Play" width={20} />
+                    </button>
+                  )}
+                  <audio autoplay ref={audioRef}>
+                    <source src="./api/pronostico/python/Constanza_v15/respuesta.mp3" type="audio/mpeg" />
+                    Tu navegador no soporta la reproducción de audio.
+                  </audio>
+              </div>
+                <div className="flex mt-5">
+                  <div className="bg-[#A5B4FC] w-40 rounded-md	">
+                      <div className="text-const w-100">
+                        {<p className="font-bold text-center">{json.answer}</p>}
+                      </div>
+                            <div style={{ display: "flex", justifyContent: "center" }}>
+                              {json.answer === "Pensando.." ? (
+                                <img
+                                  src="/images/CerdoChido.gif"
+                                  width={150}
+                                  height={150}
+                                  alt="gif"
+                                  className="mr-2" />
+                              ) : json.answer === "Puedes Abrir el cuestionario" ? (
+                                <Image
+                                  src="/images/Cerdocomiendo.gif"
+                                  width={150}
+                                  height={150}
+                                  alt="pig"
+                                  className="mr-2" />
+                              ) : json.answer.includes("Error") ? (
+                                <Image
+                                  src="/images/Cerdomorido.gif"
+                                  width={150}
+                                  height={150}
+                                  alt="pig"
+                                  className="mr-2" />
+                              ) : json.answer === "Esperando" ? (
+                                <Image
+                                  src="/images/Cerdomimido1.gif"
+                                  width={150}
+                                  height={150}
+                                  alt="pig"
+                                  className="mr-2" />
+                              ) : (
+                                <Image
+                                  src="/images/CerdoChido.png"
+                                  width={150}
+                                  height={150}
+                                  alt="pig"
+                                  className="mr-2" />
+                              )}
+                            </div>
+                          </div>
+                    <textarea
+                      id="message-input"
+                      type="text"
+                      placeholder="Escribe tu mensaje..."
+                      className="text-black m-5 bg-[#F7F9FB] px-3 py-2 w-full h-100 text-lg rounded-md focus:outline-none"
+                      value={message} // Establece el valor del textarea según el estado
+                      onChange={handleChange} // Captura los cambios en el textarea
+                    />
+                    <div className="flex flex-col justify-around">
+                      <button className="bg-gray-700 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center" onClick={abrirModal}>Formulario</button>
+                      <button className="bg-blue-500 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100" onClick={handleSubmit}>Enviar</button>
+                    </div>
+                  </div>
               </form>
             </div>
           </div>
