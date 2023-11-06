@@ -208,11 +208,11 @@ const Navigation = () => {
                         </div>
                         {isGestationOpen && (
                             <div className="pl-5 grid">
-                                <Link href="../../gestacion1" className="hover:font-semibold">Gestación 1</Link>
-                                <Link href="../../gestacion2" className="hover:font-semibold">Gestación 2</Link>
-                                <Link href="../../gestacion3" className="hover:font-semibold">Gestación 3</Link>
-                                <Link href="../../gestacion4" className="hover:font-semibold">Gestación 4</Link>
-                                <Link href="../../gestacion5" className="hover:font-semibold">Gestación 5</Link>
+                                <Link href="../../Gestacion1" className="hover:font-semibold">Gestación 1</Link>
+                                <Link href="../../Gestacion2" className="hover:font-semibold">Gestación 2</Link>
+                                <Link href="../../Gestacion3" className="hover:font-semibold">Gestación 3</Link>
+                                <Link href="../../Gestacion4" className="hover:font-semibold">Gestación 4</Link>
+                                <Link href="../../Gestacion5" className="hover:font-semibold">Gestación 5</Link>
                             </div>
                         )}
                     </div>
@@ -239,11 +239,11 @@ const Navigation = () => {
                         </div>
                         {isZenOpen && (
                             <div className="pl-5 grid">
-                                <div><Link href="../../zen1" className="hover:font-semibold">Zen 1</Link></div>
-                                <div><Link href="../../zen2" className="hover:font-semibold">Zen 2</Link></div>
-                                <div><Link href="../../zen3" className="hover:font-semibold">Zen 3</Link></div>
-                                <div><Link href="../../zen4" className="hover:font-semibold">Zen 5</Link></div>
-                                <div><Link href="../../zen5" className="hover:font-semibold">Zen 6</Link></div>
+                                <div><Link href="../../Zen1" className="hover:font-semibold">Zen 1</Link></div>
+                                <div><Link href="../../Zen2" className="hover:font-semibold">Zen 2</Link></div>
+                                <div><Link href="../../Zen3" className="hover:font-semibold">Zen 3</Link></div>
+                                <div><Link href="../../Zen4" className="hover:font-semibold">Zen 5</Link></div>
+                                <div><Link href="../../Zen5" className="hover:font-semibold">Zen 6</Link></div>
 
                             </div>
                         )}
