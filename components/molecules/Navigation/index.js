@@ -14,6 +14,31 @@ const Navigation = () => {
     const router = useRouter();
     const currentPage = router.pathname;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isGestationOpen, setIsGestationOpen] = useState(false);
+    const [isMaternidadOpen, setIsMaternidadOpen] = useState(false);
+    const [isZenOpen, setIsZenOpen] = useState(false);
+
+
+    const toggleGestation = () => {
+        setIsGestationOpen(!isGestationOpen);
+        if (isMaternidadOpen) {
+            setIsMaternidadOpen(false);
+        }
+    };
+
+    const toggleMaternidad = () => {
+        setIsMaternidadOpen(!isMaternidadOpen);
+        if (isGestationOpen) {
+            setIsGestationOpen(false);
+        }
+    };
+
+    const toggleZen = () => {
+        setIsZenOpen(!isZenOpen);
+        if (isZenOpen) {
+            setIsZenOpen(false);
+        }
+    };
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -176,6 +201,53 @@ const Navigation = () => {
                             <Image src={"/images/svg/brain.svg"} width={20} height={20} alt="graph" className="mr-2" />Chat
                         </div>
                     </Link>
+                    <div className="pt-5">
+                        <div className="flex justify-between cursor-pointer" onClick={toggleGestation}>
+                            Gestaciones
+                            <Image src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isGestationOpen ? 'rotate-90' : ''}`} />
+                        </div>
+                        {isGestationOpen && (
+                            <div className="pl-5 grid">
+                                <Link href="../../gestacion1" className="hover:font-semibold">Gestación 1</Link>
+                                <Link href="../../gestacion2" className="hover:font-semibold">Gestación 2</Link>
+                                <Link href="../../gestacion3" className="hover:font-semibold">Gestación 3</Link>
+                                <Link href="../../gestacion4" className="hover:font-semibold">Gestación 4</Link>
+                                <Link href="../../gestacion5" className="hover:font-semibold">Gestación 5</Link>
+                            </div>
+                        )}
+                    </div>
+                    <div className="pt-5">
+                        <div className="flex justify-between cursor-pointer" onClick={toggleMaternidad}>
+                            Maternidades
+                            <Image src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isMaternidadOpen ? 'rotate-90' : ''}`} />
+                        </div>
+                        {isMaternidadOpen && (
+                            <div className="pl-5 grid">
+                                <div><Link href="../../Maternidad1" className="hover:font-semibold">Maternidad 1</Link></div>
+                                <div><Link href="../../Maternidad2" className="hover:font-semibold">Maternidad 2</Link></div>
+                                <div><Link href="../../Maternidad3" className="hover:font-semibold">Maternidad 3</Link></div>
+                                <div><Link href="../../Maternidad4" className="hover:font-semibold">Maternidad 5</Link></div>
+                                <div><Link href="../../Maternidad5" className="hover:font-semibold">Maternidad 6</Link></div>
+
+                            </div>
+                        )}
+                    </div>
+                    <div className="pt-5">
+                        <div className="flex justify-between cursor-pointer" onClick={toggleZen}>
+                            Zen
+                            <Image src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isZenOpen ? 'rotate-90' : ''}`} />
+                        </div>
+                        {isZenOpen && (
+                            <div className="pl-5 grid">
+                                <div><Link href="../../zen1" className="hover:font-semibold">Zen 1</Link></div>
+                                <div><Link href="../../zen2" className="hover:font-semibold">Zen 2</Link></div>
+                                <div><Link href="../../zen3" className="hover:font-semibold">Zen 3</Link></div>
+                                <div><Link href="../../zen4" className="hover:font-semibold">Zen 5</Link></div>
+                                <div><Link href="../../zen5" className="hover:font-semibold">Zen 6</Link></div>
+
+                            </div>
+                        )}
+                    </div>
                     </div>
                     <div className="flex justify-center pt-2 pb-20">
                         <Image src={srs} width={100} height={100} alt="srs-logo" />
