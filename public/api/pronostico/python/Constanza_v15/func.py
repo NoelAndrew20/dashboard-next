@@ -426,7 +426,7 @@ def Sistema_Experto():
                 cargar.update({"answer": "Pensando.."})
                 with open("respuesta.json", "w") as archivo_json:
                     json.dump(cargar, archivo_json)
-                url = os.environ.get('URL_SERVER')
+                url = os.environ.get('URL_SISTEMAEXPERTO')
                 question = {"Question": option}
                 response = requests.post(url, json=question)
                 if response.status_code == 200:
@@ -865,7 +865,6 @@ def InformacionPorZona(fechainferior:str, fechasuperior:str, Zona:str):
         print("La zona no existe actualmente")
     
     return Estado
-
 def InformacionF1_7ciclos():
      text = f"El consumo de alimentos de un F1 es de 7649 kg durante sus 7 ciclos, lo que equivale a una inversion  de 53515 pesos, mientras que el total de vacunas en condiciones ideales sera de 44 vacunas preventivas. "
      return text
@@ -905,58 +904,65 @@ def automatic_json(json_file = 'output2.json'):
                     consumo_por_dia[dia] = {}
 
 def CrearSimulacion():
-    try:
-        # Activamos el entorno
-        env_name = 'SimulacionGranja'
-        activate_env_cmd = f'conda activate {env_name} && '
+    url = os.environ.get('URL_SIMULADOR')
+    response = requests.get(url)
+    if response.status_code == 200:
+        print(response.status_code)
+    return "Simulacion finalizada"
 
-        script_name = 'CreacionCerdosF1.py'
-        run_script_cmd = f'python {script_name}'
-        combined_cmd = activate_env_cmd + run_script_cmd
-        result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        print("Creacion de Cerdos F1 completa")
 
-        script_name = 'Simulacion.py'
-        run_script_cmd = f'python {script_name}'
-        combined_cmd = activate_env_cmd + run_script_cmd
-        result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        print("Simulacion finalizada")
-        
-        script_name = 'Almacenamiento.py'
-        run_script_cmd = f'python {script_name}'
-        combined_cmd = activate_env_cmd + run_script_cmd
-        result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        print("Almacenamiento finalizado")
+    # try:
+    #     # Activamos el entorno
+    #     env_name = 'SimulacionGranja'
+    #     activate_env_cmd = f'conda activate {env_name} && '
 
-        script_name = 'arbolGenealogico.py'
-        run_script_cmd = f'python {script_name}'
-        combined_cmd = activate_env_cmd + run_script_cmd
-        result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        print("arbol Genealogico finalizado")
+    #     script_name = 'CreacionCerdosF1.py'
+    #     run_script_cmd = f'python {script_name}'
+    #     combined_cmd = activate_env_cmd + run_script_cmd
+    #     result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    #     print("Creacion de Cerdos F1 completa")
+
+    #     script_name = 'Simulacion.py'
+    #     run_script_cmd = f'python {script_name}'
+    #     combined_cmd = activate_env_cmd + run_script_cmd
+    #     result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    #     print("Simulacion finalizada")
         
-        script_name = 'AlmacenamientoGeneral.py'
-        run_script_cmd = f'python {script_name}'
-        combined_cmd = activate_env_cmd + run_script_cmd
-        result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        print("Almacenamiento General finalizado")
+    #     script_name = 'Almacenamiento.py'
+    #     run_script_cmd = f'python {script_name}'
+    #     combined_cmd = activate_env_cmd + run_script_cmd
+    #     result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    #     print("Almacenamiento finalizado")
+
+    #     script_name = 'arbolGenealogico.py'
+    #     run_script_cmd = f'python {script_name}'
+    #     combined_cmd = activate_env_cmd + run_script_cmd
+    #     result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    #     print("arbol Genealogico finalizado")
         
-        script_name = 'AlmacenamientoFront.py'
-        run_script_cmd = f'python {script_name}'
-        combined_cmd = activate_env_cmd + run_script_cmd
-        result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        print("Almacenamiento Front finalizado")
+    #     script_name = 'AlmacenamientoGeneral.py'
+    #     run_script_cmd = f'python {script_name}'
+    #     combined_cmd = activate_env_cmd + run_script_cmd
+    #     result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    #     print("Almacenamiento General finalizado")
         
-        if result.returncode != 0:
-            print(f"Error al ejecutar {script_name}:")
-            print(result.stderr)
-        else:
-            print(f"Ejecución de {script_name} completa")
-    except Exception as e:
-        print(f"Error al ejecutar {script_name}: {str(e)}")
+    #     script_name = 'AlmacenamientoFront.py'
+    #     run_script_cmd = f'python {script_name}'
+    #     combined_cmd = activate_env_cmd + run_script_cmd
+    #     result = subprocess.run(combined_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    #     print("Almacenamiento Front finalizado")
         
-    except Exception as e:
-        print(e)
-    return "Simulacion Finalizada"
+    #     if result.returncode != 0:
+    #         print(f"Error al ejecutar {script_name}:")
+    #         print(result.stderr)
+    #     else:
+    #         print(f"Ejecución de {script_name} completa")
+    # except Exception as e:
+    #     print(f"Error al ejecutar {script_name}: {str(e)}")
+        
+    # except Exception as e:
+    #     print(e)
+    # return "Simulacion Finalizada"
 
 ##########################################################################
 ##########################################################################.

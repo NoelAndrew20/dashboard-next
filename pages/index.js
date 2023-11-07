@@ -98,7 +98,7 @@ export default function Home({ title, description, image }) {
         <main
           className={`wrapper`}
         >
-          <Chat/>
+          
           <div className="position justify-around pt-2 pb-10">
             <motion.div
             initial="initialState"

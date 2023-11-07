@@ -72,7 +72,7 @@ def api_chat():
                                 break
                             print(f"Tiempo Transcurrido: {int(tiempo_transcurrido)}segundos")
                             time.sleep(1)
-                    return jsonify({"resultado": script_output})
+                    return jsonify({"resultado": script_output}),script_output
                 else:
                     return jsonify({"error": "Texto no proporcionado en la solicitud"}), 400
             except Exception as e:

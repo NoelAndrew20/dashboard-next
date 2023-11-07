@@ -26,7 +26,9 @@ const IndexPage = () => {
       <div style={{
       backgroundColor: '#000000'
       }} >
-          <InteractiveModel/>
+          <div>
+            <InteractiveModel/>
+          </div>
       </div>
       <div style={{
         display: 'flex',
@@ -59,8 +61,4 @@ const IndexPage = () => {
   )
 }
 
-<<<<<<< HEAD
 export default IndexPage
-=======
-export default IndexPage
->>>>>>> 4f43e64 (Merge pull request #147 from NoelAndrew20/hotfix/search-patch)

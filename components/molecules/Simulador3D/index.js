@@ -1,22 +1,13 @@
-import React, { useEffect,useState} from 'react';
+import React, { useEffect } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { LineBasicMaterial } from 'three';
 import yaml from 'js-yaml';
-import { Timeline, TimelineHeaders, SidebarHeader, DateHeader } from 'react-calendar-timeline';
-import 'react-calendar-timeline/lib/Timeline.css'; // Importa los estilos CSS
-
+import { LineBasicMaterial } from 'three';
 
 const ThreeModel = () => {
-const [selectedDate, setSelectedDate] = useState(null); 
-const timelineData = [
-  {
-    id: 1,
-    start: new Date(2023, 0, 1),
-    end: new Date(2023, 0, 5),
-    title: 'Evento 1',
-  },];
+ 
+
 const scene = new THREE.Scene();
 const loader = new GLTFLoader();
 const rotationSpeed = 0.002;
@@ -28,7 +19,7 @@ if (typeof window !== 'undefined') {
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.set(30,10,20);
   const target = new THREE.Vector3(20,0,0);
-  
+
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
@@ -44,7 +35,7 @@ if (typeof window !== 'undefined') {
   const modelURL2 = './3d/MaternidadyGestacionnobase.glb';
   
   let model,model1,model2;
-  loader.load(modelURL, (gltf) => {
+loader.load(modelURL, (gltf) => {
   model = gltf.scene;
   model.name = 'granja';
   
@@ -87,7 +78,7 @@ loader.load(modelURL2, (gltf) => {
   const material2 = new THREE.MeshBasicMaterial({ color: 0xFFF300 }); // Material básico de color verde
   const edges = new THREE.EdgesGeometry(geometry);
   const lineMaterial = new THREE.LineBasicMaterial({ color: 0xFFFFFF }); // Cambia el color a tu elección
-  
+
 
   const cube = new THREE.LineSegments(edges, lineMaterial);
   cube.name = 'Cuarentena';
@@ -105,19 +96,19 @@ loader.load(modelURL2, (gltf) => {
   plane.rotation.x = Math.PI / -2;
   plane.rotation.z = Math.PI / 2;
   plane.position.set(23,0.95,-10);
-  cube.scale.set(4, 10, 6);
+  cube.scale.set(4, 6, 6);
   cube.position.set(-40, 0.8, 40)
-  cube1.scale.set(6, 10, 10);
+  cube1.scale.set(6, 6, 10);
   cube1.position.set(-20,0.8,-3);
-  cube3.scale.set(35, 10, 15);
+  cube3.scale.set(35, 6, 15);
   cube3.position.set(40,0.8,-15);
   cube3.rotation.y =  Math.PI/-12;
-  cube4.scale.set(55, 10, 15);
+  cube4.scale.set(55, 6, 15);
   cube4.rotation.y = Math.PI/-14;
   cube4.position.set(45,0.8,5);
-  scene.add(cube,cube1,cube3,cube4,plane);
+  scene.add(cube,cube1,plane,cube3,cube4);
 
-  // // Detectar eventos de movimiento del cursor
+  // Detectar eventos de movimiento del cursor
   window.addEventListener('mousemove', (event) => {
     // Obtener la posición del cursor en coordenadas normalizadas (-1 a 1)
     const mouse = new THREE.Vector2(
@@ -127,7 +118,8 @@ loader.load(modelURL2, (gltf) => {
     const raycaster = new THREE.Raycaster();
   raycaster.setFromCamera(mouse, camera);
 
-
+  // Declarar originmaterial fuera del bloque if/else
+  const originmaterial = new Map();
 
   // Realizar intersecciones con los objetos 3D en la escena
   const intersects = raycaster.intersectObjects([cube, cube1, cube3, cube4], true);
@@ -145,14 +137,6 @@ loader.load(modelURL2, (gltf) => {
       
   } else {
       ocultarInformacionAlUsuario();
-    //   model1.traverse((child) => {
-    //     if (child.isMesh) {
-    //         // Acceder al material original desde originmaterial
-    //         const originalMaterial = originmaterial.get(child);
-    //         const highlightMaterial = new THREE.MeshBasicMaterial({ color: originalMaterial });
-    //         child.material = highlightMaterial;
-    //     }
-    // });
   }
   
     
@@ -257,24 +241,7 @@ function ocultarInformacionAlUsuario() {
 
   return (
     <div>
-        <div id="lineaDeTiempo" style={{ position: 'fixed', right: 0, height: '42%', width: '25%', backgroundColor: '#333', color: '#fff', padding: '20px', overflow: 'auto' }}>
-          <Timeline
-            groups={[{ id: 'Fechas importantes', title: 'Fechas importantes' }]}
-            items={timelineData}
-            defaultTimeStart={new Date(2023, 0, 1)}
-            defaultTimeEnd={new Date(2023, 0, 10)}
-            onTimeChange={(time) => setSelectedDate(time)}
-          >
-            <TimelineHeaders className="sticky">
-              <SidebarHeader>
-                {({ getRootProps }) => {
-                  return <div {...getRootProps()}>Fechas</div>;
-                }}
-              </SidebarHeader>
-              <DateHeader />
-            </TimelineHeaders>
-          </Timeline>
-        </div>
+        
     </div>
   );
 };
