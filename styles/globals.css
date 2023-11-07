@@ -920,6 +920,17 @@ input:focus {
   margin: 10px;
   border-radius: 5px;
 }
+.user-message{
+  display: flex;
+  background-color: rgba(63,215,126,255);
+  border-radius: 20px;
+}
+.system-message{
+  display: flex;
+  justify-content: end;
+  border-radius: 20px;
+  background-color: rgba(77,77,77,255);
+}
 /* Animación de escritura */
 @keyframes typing {
   from {

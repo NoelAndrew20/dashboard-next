@@ -25,7 +25,11 @@ const ChatWindow = ({ title, description, image }) => {
     const [prevAnswer, setPrevAnswer] = useState("");
     const audioRef = useRef(null);
     const [audioSource, setAudioSource] = useState(audioSrc);
+    
 
+    const clearChat = () => {
+      setChatMessages([]);
+    }
 
     const toggleChat = () => {
       setIsOpen(!isOpen);
@@ -39,6 +43,7 @@ const ChatWindow = ({ title, description, image }) => {
       e.preventDefault();
       setIsModalOpen(true);
       console.log("abrir modal");
+      console.log("respuestaant",prevAnswer);
     };
 
     const cerrarModal = () => {
@@ -58,14 +63,31 @@ const ChatWindow = ({ title, description, image }) => {
       }
     };
     
+    const addMessageToChat = (message, isUser) => {
+      
+      setChatMessages((prevMessages) => [
+        ...prevMessages,
+        { text: message, isUser },
+      ]);
+      console.log(`Nuevo mensaje: ${message}`);
+    };
+    
 
     useEffect(() => {
+
       if (respuesta.answer !== prevAnswer) {
         setPrevAnswer(respuesta.answer);
     
         if (respuesta.answer === "Esperando") {
+          
           setAudioSource("./api/pronostico/python/Constanza_v15/respuesta.mp3");
           sound.play();
+        }
+        if (message) {
+          addMessageToChat(message, true);
+        }
+        if (respuesta.answer) {
+          addMessageToChat(respuesta.answer, false);
         }
       }
     }, [respuesta.answer, prevAnswer]);
@@ -88,22 +110,27 @@ const ChatWindow = ({ title, description, image }) => {
           console.log("Respuesta de Constanza JSON:", data);
           console.log("Mensaje de Constanza:", data.answer);
           console.log("Respuesta",respuestaDelServidor);
-          console.log(json.answer)
+          console.log(respuesta.answer);
+          setRespuestaDelServidor(data.answer);
+  
+          // Agrega la respuesta actual al arreglo de mensajes
+          if (json.answer === "Esperando") {
+            console.log("respuestaant",prevAnswer);
+            addMessageToChat(message, true);
+            addMessageToChat(respuesta.answer, false);
+          }
           if (data.answer === "Pensando") {
             setIsSpinning(true);
           } else {
             setIsSpinning(false);
           }
-          setChatMessages([...chatMessages, message]);
-          // Agregar la respuesta del servidor al arreglo de mensajes
-          setChatMessages([...chatMessages, data.answer]);
-          // Puedes mostrar la respuesta en la interfaz de usuario si lo deseas
-          setRespuestaDelServidor(data.answer);
         } else {
           console.error("Error al comunicarse con Constanza");
         }
-        setChatMessages([...chatMessages, { text: message, isUser: true }]);
-        setChatMessages([...chatMessages, { text: data.answer, isUser: false }]);
+        console.log(respuesta.answer)
+        console.log(`Mensaje del usuario: ${message}`);
+        console.log(`Respuesta del servidor: ${data.answer}`);
+
       } catch (error) {
         console.error("Error en la solicitud:", error);
       }
@@ -130,26 +157,31 @@ const ChatWindow = ({ title, description, image }) => {
                 </Modal>
               </div>
               <div className="w-100 h-200 bg-black p-3">
-                <Image
-                  src={"/images/icon/logo_blanco.png"}
-                  alt="Constanza Logo"
-                  className="mr-20"
-                  width={30}
-                  height={30} />
+                
+              </div>
+              
+              <form className="wrapper full-viewport">
+                <div className="flex justify-center h-60 m-20 flex-row rounded-md text-lg text-black">
+                <div id="chat" className=' w-full h-full overflow-y-auto rounded-lg'>
                   {chatMessages.map((message, index) => (
                   <div
                       key={index}
                       className={message.isUser ? "user-message" : "system-message"}
                     >
                       {message.text}
+                      {!message.isUser && ( // Solo renderiza la imagen para los mensajes del sistema
+                            <Image
+                              src={"/images/icon/logo_blanco.png"}
+                              alt="Constanza Logo"
+                              className="mr-20"
+                              width={30}
+                              height={30}
+                            />
+                          )}
+                      
                     </div>
                   ))}
-              </div>
-              
-              <form className="wrapper full-viewport">
-                <div className="flex justify-center h-60 m-20 flex-row rounded-md text-lg text-black">
-                  <div className='bg-blue-400 w-full h-full'>
-                  </div>
+                </div>
                 </div>
                 <div className="flex justify-center bg-[#a78bfa] w-200 h-200 p-3 rounded-md">
                   <div>
@@ -160,7 +192,7 @@ const ChatWindow = ({ title, description, image }) => {
                       width={30}
                       height={30} />
                   </div>
-                  {<p className="font-bold self-center">Constanza:&nbsp;{respuesta.answer}&nbsp;</p>}
+                  {<p className="font-bold self-center">Constanza:{respuesta.answer}</p>}
                   {respuesta.answer && (
                     <button onClick={playAudio}>
                       <img src="./images/svg/play.svg" alt="Play" width={20} />
@@ -224,6 +256,9 @@ const ChatWindow = ({ title, description, image }) => {
                       onChange={handleChange} // Captura los cambios en el textarea
                     />
                     <div className="flex flex-col justify-around">
+                    <button onClick={clearChat}>
+                      <img src="./images/svg/trash.svg" alt="Play" width={20} />
+                    </button>
                       <button className="bg-gray-700 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center" onClick={abrirModal}>Formulario</button>
                       <button className="bg-blue-500 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100" onClick={handleSubmit}>Enviar</button>
                     </div>

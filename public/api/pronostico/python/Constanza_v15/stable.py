@@ -66,7 +66,7 @@ while True:
         audio_resp, text  = respuesta_audio(question,respuesta_larga)
         print('Answer:', text)
         response = {}
-        response.update({"answer": text})
+        response.update({"answer": respuesta_larga})
         with open("respuestacons.json", "w") as archivo_json:
             json.dump(response,archivo_json)
         break

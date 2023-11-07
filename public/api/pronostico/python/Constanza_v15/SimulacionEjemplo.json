@@ -1,212 +1,106 @@
 {
-    "DesarrrolloA": {
-        "Total": 60,
-        "Alimento": "Papilla",
-        "InversionAlimento": 745.5150972237835,
-        "KgConsumidos": 37.27575486118919,
-        "InversionMedicamento": 4474,
-        "Medicamentos": {
-            "Med2": {
-                "Cant": 1,
-                "Inversion": 352
-            },
-            "Vac2": {
-                "Cant": 1,
-                "Inversion": 70
-            },
-            "Vac1": {
-                "Cant": 1,
-                "Inversion": 80
-            },
-            "Med3": {
-                "Cant": 1,
-                "Inversion": 400
-            },
-            "Med1": {
-                "Cant": 1,
-                "Inversion": 700
-            },
-            "Vac3": {
-                "Cant": 1,
-                "Inversion": 64
-            }
-        }
-    },
-    "Lechon": {
-        "Total": 83,
-        "Alimento": "Papilla",
-        "InversionAlimento": 533.4245255536773,
-        "KgConsumidos": 26.67122627768386,
-        "InversionMedicamento": 4520,
-        "Medicamentos": {
-            "Vac6": {
-                "Cant": 1,
-                "Inversion": 50
-            },
-            "Med1": {
-                "Cant": 1,
-                "Inversion": 700
-            },
-            "Vac3": {
-                "Cant": 1,
-                "Inversion": 64
-            },
-            "Med3": {
-                "Cant": 1,
-                "Inversion": 400
-            },
-            "Vac1": {
-                "Cant": 1,
-                "Inversion": 80
-            },
-            "Med2": {
-                "Cant": 1,
-                "Inversion": 352
-            },
-            "Vac2": {
-                "Cant": 1,
-                "Inversion": 70
-            }
-        }
-    },
-    "DesarrrolloB": {
-        "Total": 57,
-        "Alimento": "Hibrido",
-        "InversionAlimento": 663.7230585132781,
-        "KgConsumidos": 44.2482039008852,
-        "InversionMedicamento": 3640,
-        "Medicamentos": {
-            "Med2": {
-                "Cant": 1,
-                "Inversion": 352
-            },
-            "Vac2": {
-                "Cant": 1,
-                "Inversion": 70
-            },
-            "Vac1": {
-                "Cant": 1,
-                "Inversion": 80
-            },
-            "Med1": {
-                "Cant": 2,
-                "Inversion": 1400
-            },
-            "Vac6": {
-                "Cant": 1,
-                "Inversion": 50
-            }
-        }
-    },
     "CerdoEngordaA": {
-        "Total": 57,
+        "Total": 16,
         "Alimento": "Solido1",
-        "InversionAlimento": 1529.5519492883443,
-        "KgConsumidos": 101.97012995255629,
-        "InversionMedicamento": 6332,
+        "InversionAlimento": 432.0094373395401,
+        "KgConsumidos": 28.800629155969343,
+        "InversionMedicamento": 700,
         "Medicamentos": {
             "Med1": {
                 "Cant": 1,
                 "Inversion": 700
-            },
-            "Vac6": {
-                "Cant": 1,
-                "Inversion": 50
-            },
-            "Med2": {
-                "Cant": 1,
-                "Inversion": 352
-            },
-            "Vac2": {
-                "Cant": 1,
-                "Inversion": 70
-            },
-            "Vac1": {
-                "Cant": 1,
-                "Inversion": 80
-            }
-        }
-    },
-    "Gestacion3": {
-        "Total": 8,
-        "Alimento": "Alimento1",
-        "InversionAlimento": 442.15690698852336,
-        "KgConsumidos": 22.107845349426167,
-        "InversionMedicamento": 582,
-        "Medicamentos": {
-            "Vac1": {
-                "Cant": 1,
-                "Inversion": 80
-            },
-            "Med2": {
-                "Cant": 1,
-                "Inversion": 352
-            },
-            "Vac2": {
-                "Cant": 1,
-                "Inversion": 70
             }
         }
     },
     "Gestacion2": {
-        "Total": 2,
+        "Total": 1,
         "Alimento": "Alimento1",
-        "InversionAlimento": 105.61444955716468,
-        "KgConsumidos": 5.280722477858234,
-        "InversionMedicamento": 0,
-        "Medicamentos": {}
-    },
-    "Gestacion1": {
-        "Total": 2,
-        "Alimento": "Alimento1",
-        "InversionAlimento": 71.6177970301276,
-        "KgConsumidos": 3.5808898515063805,
-        "InversionMedicamento": 0,
-        "Medicamentos": {}
-    },
-    "Maternidad2": {
-        "Total": 2,
-        "Alimento": "Alimento2",
-        "InversionAlimento": 144.26306669462474,
-        "KgConsumidos": 7.213153334731237,
-        "InversionMedicamento": 0,
-        "Medicamentos": {}
-    },
-    "Maternidad1": {
-        "Total": 4,
-        "Alimento": "Alimento2",
-        "InversionAlimento": 759.8716977620419,
-        "KgConsumidos": 37.99358488810209,
-        "InversionMedicamento": 3774,
-        "Medicamentos": {
-            "Med1": {
-                "Cant": 1,
-                "Inversion": 700
-            },
-            "Vac6": {
-                "Cant": 1,
-                "Inversion": 50
-            },
-            "Vac1": {
-                "Cant": 1,
-                "Inversion": 80
-            },
-            "Vac3": {
-                "Cant": 1,
-                "Inversion": 64
-            }
-        }
-    },
-    "Zen1": {
-        "Total": 2,
-        "Alimento": "Alimento2",
-        "InversionAlimento": 121.66422713110009,
-        "KgConsumidos": 6.083211356555005,
+        "InversionAlimento": 33.37318322388536,
+        "KgConsumidos": 1.668659161194268,
         "InversionMedicamento": 400,
         "Medicamentos": {
             "Med3": {
                 "Cant": 1,
                 "Inversion": 400
+            }
+        }
+    },
+    "CerdoEngordaB": {
+        "Total": 16,
+        "Alimento": "Solido1",
+        "InversionAlimento": 440.792131278284,
+        "KgConsumidos": 29.386142085218935,
+        "InversionMedicamento": 2564,
+        "Medicamentos": {
+            "Med1": {
+                "Cant": 1,
+                "Inversion": 700
+            },
+            "Med3": {
+                "Cant": 1,
+                "Inversion": 400
+            },
+            "Vac3": {
+                "Cant": 1,
+                "Inversion": 64
+            }
+        }
+    },
+    "CerdoEngordaC": {
+        "Total": 16,
+        "Alimento": "Solido2",
+        "InversionAlimento": 367.96826128440233,
+        "KgConsumidos": 28.305250868030946,
+        "InversionMedicamento": 1816,
+        "Medicamentos": {
+            "Med1": {
+                "Cant": 1,
+                "Inversion": 700
+            },
+            "Vac3": {
+                "Cant": 1,
+                "Inversion": 64
+            },
+            "Med2": {
+                "Cant": 1,
+                "Inversion": 352
+            }
+        }
+    },
+    "Maternidad2": {
+        "Total": 1,
+        "Alimento": "Alimento2",
+        "InversionAlimento": 75.2369874134614,
+        "KgConsumidos": 3.7618493706730702,
+        "InversionMedicamento": 0,
+        "Medicamentos": {}
+    },
+    "Lechon": {
+        "Total": 13,
+        "Alimento": "Papilla",
+        "InversionAlimento": 144.78384351135088,
+        "KgConsumidos": 7.239192175567544,
+        "InversionMedicamento": 0,
+        "Medicamentos": {}
+    },
+    "CerdoEngordaD": {
+        "Total": 16,
+        "Alimento": "Solido2",
+        "InversionAlimento": 375.99802804805137,
+        "KgConsumidos": 28.922925234465485,
+        "InversionMedicamento": 854,
+        "Medicamentos": {
+            "Med2": {
+                "Cant": 1,
+                "Inversion": 352
+            },
+            "Vac2": {
+                "Cant": 1,
+                "Inversion": 70
+            },
+            "Vac1": {
+                "Cant": 1,
+                "Inversion": 80
             }
         }
     }
