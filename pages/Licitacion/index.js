@@ -13,8 +13,8 @@ const Licitacion = ({ title, description, image }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-      axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-      //axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
+      //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+      axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
         .then(response => {
           const jsonData = response.data; // Datos de respuesta en formato JSON
           setData(jsonData);
