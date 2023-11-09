@@ -58,7 +58,7 @@ const TableAlimentos = ({ data, setData }) => {
                         <th>Fecha Final</th>
                         <th>Zona</th>
                         <th>Nombre del alimento</th>
-                        <th>Cantidad</th>
+                        <th>Cantidad en KG</th>
                         {router.pathname === "/RegistroAlimentos"
                         ?
                         <th>Enviar</th>
@@ -129,5 +129,4 @@ const TableAlimentos = ({ data, setData }) => {
         </>
     )
 }
-
 export default TableAlimentos;

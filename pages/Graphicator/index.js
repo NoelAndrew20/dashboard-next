@@ -136,26 +136,27 @@ const Graphicator = ({ title, description, image }) => {
         setIsModalOpen(false);
     };
 
-    useEffect(()=>{
-      //console.log(dataList)
-    })
+ 
 
       useEffect(() => {
-        //axios.get('http://localhost:3080/getAllSolicitudAlimento')
-        axios.get('http://192.168.100.10:3080/getAllSolicitudAlimento')
+        axios.get('http://localhost:3080/getAllSolicitudAlimento')
+        //axios.get('http://192.168.100.10:3080/getAllSolicitudAlimento')
           .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setData([jsonData]);
-            console.log([jsonData]);
+            console.log("kAJWEAWJE", [jsonData]);
           })
           .catch(error => {
             console.error(error);
           });
       }, []);
+      useEffect(()=>{
+        //console.log(data)
+      })
 
       useEffect(() => {
-        //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-        axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
+        axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+        //axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
           .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setDataList(jsonData); 
@@ -164,6 +165,9 @@ const Graphicator = ({ title, description, image }) => {
             console.error(error);
           });
       }, []);
+      useEffect(()=>{
+      console.log("jskjsjksjskskskksjjks",dataList)
+      })
 
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
@@ -177,10 +181,10 @@ const Graphicator = ({ title, description, image }) => {
                 <NavDashboard section="Menú"/>
             </div>
             <div className="wrapper">
-                {<div className="mt-10">
+                <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Pronóstico de compra de alimentos</h2>
                     <TableAlimentos data={data} setData={setData}/>
-                </div>}
+    </div>
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Crea tu menú</h2>
                     <TableGraph 
