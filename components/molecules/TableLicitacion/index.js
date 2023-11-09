@@ -75,8 +75,8 @@ const TableLicitacion = ({ data, setData }) => {
 
         console.log(newData[indexGuide].solicitud[editingSolicitudIndex]);
         
-        //const apiUrl = 'http://localhost:3083/addSolicitudLicitacion';
-        const apiUrl = 'http://192.168.100.10:3083/addSolicitudLicitacion';
+        const apiUrl = 'http://localhost:3083/addSolicitudLicitacion';
+        //const apiUrl = 'http://192.168.100.10:3083/addSolicitudLicitacion';
         axios.post(apiUrl, newData[indexGuide].solicitud[editingSolicitudIndex])
         .then(response => {
             console.log("Respuesta de la API:", response.data);

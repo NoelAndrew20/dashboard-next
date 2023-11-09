@@ -18,8 +18,8 @@ const RFID = ({ title, description, image }) => {
 
     useEffect(() => {
 
-        axios.get('http://192.168.100.10:3060/getAllRFID')
-        //axios.get('http://localhost:3060/getAllRFID')
+        //axios.get('http://192.168.100.10:3060/getAllRFID')
+        axios.get('http://localhost:3060/getAllRFID')
         .then(response => {
             const jsonData = response.data;
             setData(jsonData.data);
@@ -49,8 +49,8 @@ const RFID = ({ title, description, image }) => {
     }, []);
 
     useEffect(() => {
-        axios.get('http://192.168.100.10:3060/countUniqueRFID')
-        //axios.get('http://localhost:3060/countUniqueRFID')
+        //axios.get('http://192.168.100.10:3060/countUniqueRFID')
+        axios.get('http://localhost:3060/countUniqueRFID')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setTotal(jsonData);
