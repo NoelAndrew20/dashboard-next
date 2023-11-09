@@ -128,8 +128,8 @@ export default function Home({ title, description, image }) {
                           <h1 className="text-xl">Ganancias Totales del Periodo</h1>
                           <h2 className="text-lg mt-5 font-bold">${jsonData.ganancias.ganancia}</h2>
                         </div>
-                        <div className="mb-5">
-                          <Modelo3D />
+                        <div style={{width:"150px", height:"150px"}}>
+                          <Modelo3D className="w-1/2 h-1/2"/>
                         </div>
                       </div>
                     </div>
@@ -161,7 +161,7 @@ export default function Home({ title, description, image }) {
                 <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
                 <div id="divperiodo">
                     <div className="flex justify-center">
-                      <Image src={"/images/svg/date.svg"} width={150} height={150} alt="user" className="mr-2" />
+                      <Image src={"/images/svg/date.svg"} width={50} height={50} alt="user" className="mr-2" />
                     </div>
                     <div className="flex mt-10 flex justify-center">
                       <p className="text-xl text-center font-bold" >Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>

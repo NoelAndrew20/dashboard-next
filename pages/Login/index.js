@@ -231,26 +231,26 @@ const Login = ({ title, description, image }) => {
                 transition={{duration: 1,delay: 1.5}}
                 className='page'>
                 <div className="mb-4">
-                  <label htmlFor="email" className="block text-sm text-xl font-bold text-gray-700 text-[#3E120A]">
+                  <label htmlFor="email" className="block text-sm text-xl font-bold text-gray-700">
                     Email:
                   </label>
                   <input
                     type="email"
                     id="email"
-                    className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-[#F8E7CD]"
+                    className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
                     value={email}
                     onChange={handleEmailChange}
                   />
                   {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="password" className="block text-sm text-xl font-bold text-gray-700 text-[#3E120A]">
+                  <label htmlFor="password" className="block text-sm text-xl font-bold text-gray-700">
                     Contraseña:
                   </label>
                   <input
                     type="password"
                     id="password"
-                    className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-[#F8E7CD]"
+                    className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
                     value={password}
                     onChange={handlePasswordChange}
                   />
@@ -259,7 +259,7 @@ const Login = ({ title, description, image }) => {
                 <div className="flex justify-center">
                   <button
                       type="submit"
-                      className={`px-4 py-2 button text-white rounded-md hover:bg-[#3E120A] ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
+                      className={`px-4 py-2 button text-white rounded-md hover:bg-blue-600 ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
                       disabled={isButtonDisabled}
                   >
                       Iniciar sesión
