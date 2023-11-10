@@ -148,7 +148,6 @@ loader.load(modelURL2, (gltf) => {
   
     // Obtén el 'name' de la figura apuntada (debes adaptar esto según tu estructura de datos)
     const nombreFiguraApuntada = figuraApuntada.name;
-    console.log(nombreFiguraApuntada);
   
     // Realiza una solicitud HTTP para cargar el archivo YAML
     return fetch(urlYAML)
@@ -159,7 +158,6 @@ loader.load(modelURL2, (gltf) => {
   
         // Busca la información correspondiente en el YAML usando el nombre de la figura
         const informacionFigura = data[nombreFiguraApuntada];
-        console.log(informacionFigura);
   
         if (informacionFigura) {
           // Retorna la información encontrada

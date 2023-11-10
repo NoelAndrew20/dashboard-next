@@ -61,28 +61,28 @@ const TableSeleccion = ({ data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {console.log("datafajaja",displayDataFinal)}
                     {displayDataFinal?.map((item, index) => (
                     <tr
                         key={index}
                         className={`table-row ${
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-[#F7F9FB]' : 'bg-[#a5b4fc]')
                         }`}
-                    >       {console.log("el item",item)}
-                          <td>{item.numeroSolicitud}</td>
-                            <td>
+                    >  
+                        <td>
+                            {item.numeroSolicitud}
+                        </td>
+                        <td>
                             {item.nombreSolicitante}
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             {item.solicitud && item.solicitud[0] ? item.solicitud[0].nombreAlimento : ''}
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             {item.solicitud && item.solicitud[0] ? item.solicitud[0].precio : ''}
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             {item.solicitud && item.solicitud[0] ? item.solicitud[0].metodo : ''}
-                            </td>
-
+                        </td>
                     </tr>
                     ))}
                 </tbody>

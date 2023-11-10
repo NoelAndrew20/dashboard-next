@@ -35,7 +35,6 @@ const TableLicitacion = ({ data, setData }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleEdit = (solicitudIndex) => {
-        console.log(solicitudIndex)
         setEditingIndex(solicitudIndex);
         const editingSolicitudIndex = solicitudIndex;
         const editedSolicitud = data[indexGuide].solicitud[solicitudIndex];

@@ -2,7 +2,7 @@ import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Modal from '@/components/atoms/Modal';
 import CerdosForm from '@/components/atoms/CerdosForm';
 import TableCerdos from '@/components/molecules/TableCerdos';
@@ -59,10 +59,6 @@ const RegistroCerdos = ({ title, description, image }) => {
         setIsModalOpen(false);
     };
     const [data, setData] = useState([]);
-
-    useEffect(() => {
-        console.log(data)
-    }, [])
 
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>

@@ -15,9 +15,6 @@ const TableIndexZonaVacuna = ({}) => {
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
     const currentEntries = data.slice(startIndex, endIndex);
-    useEffect(() => {
-        console.log(data)
-    })
     return (
         <>
         <div className="table-index">

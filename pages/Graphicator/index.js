@@ -5,9 +5,6 @@ import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
 import TableGraph from '@/components/molecules/TableGraph';
 import TableAlimentos from '@/components/molecules/TableAlimentos';
-import TableSolicitud from '@/components/molecules/TableSolicitud';
-import SolicitudForm from '@/components/atoms/SolicitudForm';
-import TablePre from '@/components/molecules/TablePre';
 import MenuTable from '@/components/atoms/MenuTable';
 
 const axios = require('axios');
@@ -144,15 +141,11 @@ const Graphicator = ({ title, description, image }) => {
           .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setData([jsonData]);
-            console.log("kAJWEAWJE", [jsonData]);
           })
           .catch(error => {
             console.error(error);
           });
       }, []);
-      useEffect(()=>{
-        //console.log(data)
-      })
 
       useEffect(() => {
         axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
@@ -165,9 +158,6 @@ const Graphicator = ({ title, description, image }) => {
             console.error(error);
           });
       }, []);
-      useEffect(()=>{
-      console.log("jskjsjksjskskskksjjks",dataList)
-      })
 
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
