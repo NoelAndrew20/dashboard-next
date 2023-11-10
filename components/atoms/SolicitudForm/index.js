@@ -60,7 +60,6 @@ const SolicitudForm = ({ data, dataProveedor, setData, closeModal }) => {
             const newData = [...data, newPerson]; //arregla el nuevo arreglo al arreglo que viene del back
             newPerson.lotes = lotes //anida el arreglo creado en la tabla
             setData(newData);
-            console.log(newPerson);
             setNivelEntrega("");
             setNombreSolicitante("");
             setFechaSolicitud("");

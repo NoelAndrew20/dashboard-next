@@ -13,7 +13,6 @@ const Formulario = ({ jsonFile, onSubmit }) => {
     const jsondata = {
       ...formData,
     };
-    console.log(jsondata);
     setFormGeneratedData(jsondata);
 
     fetch(

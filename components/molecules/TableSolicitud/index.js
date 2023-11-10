@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Link from 'next/link';
@@ -52,7 +51,6 @@ const TableSolicitud = ({ data, setData }) => {
         };
     
         const axios = require("axios");
-        console.log(updatedUsuario.usuario, updatedUsuario);
 
         const apiUrl = 'http://192.168.100.10:3020/editUsuario/' + updatedUsuario.fechaContratacion;
         axios.put(apiUrl, updatedUsuario)

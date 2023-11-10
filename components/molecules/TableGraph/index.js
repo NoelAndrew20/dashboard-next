@@ -130,7 +130,6 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
                 console.error("Error al enviar la solicitud:", error);
             });
 
-        console.log(combinedData);
       };
   
       const handleCheckboxChange = (event, item) => {
