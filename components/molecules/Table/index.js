@@ -128,7 +128,7 @@ const Table = ({ data, setData }) => {
         const axios = require("axios");
         console.log(updatedUsuario.usuario, updatedUsuario);
 
-        const apiUrl = 'http://192.168.100.20:3020/editUsuario/' + updatedUsuario.fechaContratacion;
+        const apiUrl = 'http://192.168.100.10:3020/editUsuario/' + updatedUsuario.fechaContratacion;
         axios.put(apiUrl, updatedUsuario)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);
@@ -349,7 +349,7 @@ const Table = ({ data, setData }) => {
                             <p>Género:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="genero" value={editedValues.genero || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Puesto:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="puesto" value={editedValues.puesto || ''} onChange={handleEditInputChange} />
+                            <p>Responsabilidad:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="responsabilidad" value={editedValues.responsabilidad || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
                             <p>Salario diario:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="salario" value={editedValues.salario || ''} onChange={handleEditInputChange}/>
@@ -385,6 +385,16 @@ const Table = ({ data, setData }) => {
                         <div className="modal-item w-1/3">
                             <p>Calle:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="calle" value={editedValues.calle || ''} onChange={handleEditInputChange} />
                         </div>
+
+                        <div className="modal-item w-1/3">
+                            <p>Numero Interior:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="numeroI" value={editedValues.numeroI || ''} onChange={handleEditInputChange} />
+                        </div>
+
+                        <div className="modal-item w-1/3">
+                            <p>Numero Exterior:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="numeroE" value={editedValues.numeroE || ''} onChange={handleEditInputChange} />
+                        </div>
+
+
                         <div className="modal-item w-1/3">
                             <p>Ciudad:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="ciudad" value={editedValues.ciudad || ''} onChange={handleEditInputChange} />
                         </div>
@@ -397,10 +407,13 @@ const Table = ({ data, setData }) => {
                             <p>Código postal:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="cp" value={editedValues.cp || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>ID del grupo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="id" value={editedValues.id || ''} onChange={handleEditInputChange} />
+                            <p>Tarea:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="id" value={editedValues.tarea || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Nombre del grupo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="nombreGrupo" value={editedValues.nombreGrupo || ''} onChange={handleEditInputChange}/>
+                            <p>Equipo de protección personal:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="epp" value={editedValues.epp || ''} onChange={handleEditInputChange}/>
+                        </div>
+                        <div className="modal-item w-1/3">
+                            <p>Área:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="area" value={editedValues.area || ''} onChange={handleEditInputChange}/>
                         </div>
                     </div>
                 </div>
