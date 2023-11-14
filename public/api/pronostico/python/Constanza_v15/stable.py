@@ -39,6 +39,17 @@ funcion_respuesta = obtener_respuesta(inferencia)
 obtener_parametros(eval(funcion_respuesta))
 print('diccionario generado')
 print("listo?")
+
+parametros = {}
+with open('requisitos_2.json', 'r') as j:
+    json_res = json.load(j)
+    if json_res == {}:
+        # Entrar al bloque if solo si el contenido es un diccionario vacío
+        with open('senal.json', 'r') as senal_file:
+            data = json.load(senal_file)
+            data['senal'] = True
+            with open('senal.json', 'w') as senal_file:
+                json.dump(data, senal_file)
 cargar = {}
 cargar.update({"answer": "Puedes Abrir el cuestionario"})
 with open("respuesta.json", "w") as archivo_json:

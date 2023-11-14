@@ -921,7 +921,7 @@ input:focus {
 }
 .user-message{
   display: flex;
-  background-color: rgba(63,215,126,255);
+  background-color: rgba(20, 33, 61, 1);
   border-radius: 20px;
   justify-content: space-around;
 }
@@ -929,8 +929,9 @@ input:focus {
   justify-content: space-around;
   padding: 20px;
   display: flex;
+  justify-content: flex-end;
   border-radius: 20px;
-  background-color: rgba(77,77,77,255);
+  background-color: rgba(193, 173, 98, 1);
 }
 /* Animación de escritura */
 @keyframes typing {
