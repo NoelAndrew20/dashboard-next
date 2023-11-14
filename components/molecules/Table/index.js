@@ -103,7 +103,8 @@ const Table = ({ data, setData }) => {
         const updatedUsuario = {
             usuario: editedValues.usuario,
             nombre: editedValues.nombre,
-            apellido: editedValues.apellido,
+            apellidop: editedValues.apellidop,
+            apellidom:  editedValues.apellidom,
             puesto: editedValues.puesto,
             grupo: editedValues.grupo,
             password: editedValues.password,
@@ -256,11 +257,10 @@ const Table = ({ data, setData }) => {
             <table className={isDarkMode ? "table-container-d" : "table-container"}>
                 <thead>
                     <tr>
-                        <th>Usuario</th>
                         <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Puesto</th>
-                        <th>Grupo</th>
+                        <th>Email</th>
+                        <th>Departamento</th>
+                        <th>Responsabilidad</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -273,11 +273,10 @@ const Table = ({ data, setData }) => {
                         isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-[#F7F9FB]' : 'bg-[#a5b4fc]')
                         }`}
                     >       
-                        <td>{item.usuario}</td>
                         <td>{item.nombre}</td>
-                        <td>{item.apellido}</td>
-                        <td>{item.puesto}</td>
-                        <td>{item.grupo}</td>
+                        <td>{item.email}</td>
+                        <td>{item.departamento}</td>
+                        <td>{item.responsabilidad}</td>
                         <td>
                             <button onClick={() => handleEdit(index)} className="edit-btn">
                                 <img src="images/svg/edit.svg" width={15} height={15}/>
@@ -322,7 +321,16 @@ const Table = ({ data, setData }) => {
                             <p>Nombre:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="nombre" value={editedValues.nombre || ''} onChange={handleEditInputChange} />
                         </div>
                         <div className="modal-item w-1/3">
-                            <p>Apellido:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="apellido" value={editedValues.apellido || ''} onChange={handleEditInputChange} />
+                            <p>Apellido paterno:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="apellido" value={editedValues.apellidop || ''} onChange={handleEditInputChange} />
+                        </div>
+                    </div>
+                    <div className="flex">
+                        <div className="modal-item w-1/3">
+                            <p>Apellido materno:</p> <input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  name="apellidom" value={editedValues.apellidom || ''} onChange={handleEditInputChange} />
+                        </div>
+                        <div className="modal-item w-1/3">
+                        </div>
+                        <div className="modal-item w-1/3">
                         </div>
                     </div>
                     <div className="flex">
@@ -360,7 +368,7 @@ const Table = ({ data, setData }) => {
                     </div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
-                            <p>Status:</p>
+                            <p>Estatus:</p>
                             <select className={isDarkMode ? "edit-input-container-d" : "edit-input-container"} name="statu" value={editedValues.statu || ''} onChange={handleEditInputChange} >
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>
