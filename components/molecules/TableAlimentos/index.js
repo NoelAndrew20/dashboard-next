@@ -54,10 +54,10 @@ const TableAlimentos = ({ data, setData }) => {
             <table className={isDarkMode ? "table-container-d" : "table-container"}>
                 <thead>
                     <tr>
-                        <th>Fecha Inicial</th>
-                        <th>Fecha Final</th>
+                        <th>Yisus y filip</th>
+                        <th>se besan</th>
                         <th>Zona</th>
-                        <th>Nombre del alimento</th>
+                        <th>hola del alimento</th>
                         <th>Cantidad en KG</th>
                         {router.pathname === "/RegistroAlimentos"
                         ?
