@@ -84,18 +84,18 @@ const UserForm = ({ data, setData, closeModal }) => {
                 epp: inputEPP, 
             };
 
-            /*const axios = require("axios");
+            const axios = require("axios");
             //axios.get('http://localhost:3010/getAllTransporte')
             //const apiUrl = "../api/transporte/registroTransporte";
-            //const apiUrl = 'http://192.168.100.10:3020/addUsuario';
-            const apiUrl = 'http://localhost:3020/addUsuario';
+            const apiUrl = 'http://192.168.100.10:3020/addUsuario';
+            //const apiUrl = 'http://localhost:3020/addUsuario';
             axios.post(apiUrl, newPerson)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);
             })
             .catch(error => {
                 console.error("Error al enviar la solicitud:", error);
-            });*/
+            });
 
             const newData = [...data, newPerson];
             setData(newData);

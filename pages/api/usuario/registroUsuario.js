@@ -30,7 +30,7 @@ const UsuarioSchema = new mongoose.Schema(
     nombre: String,
     apellidop: String,
     apellidom: String,
-    puesto: String,
+    responsabilidad: String,
     area: String,
     password: String,
     email: String, 
@@ -42,7 +42,6 @@ const UsuarioSchema = new mongoose.Schema(
     status: String,
     contacto: String, 
     salario: String,
-    responsabilidad: String, 
     calle: String,
     numeroI: String,
     numeroE: String,
@@ -64,7 +63,7 @@ const Usuario = db.model('usuario', UsuarioSchema);
 
 app.get("/getAllUsuario", async (req, res) => {
   try {
-    const activeUsuarios = await Usuario.find({ email: "usuario8@correo.com" })
+    const activeUsuarios = await Usuario.find({  })
     .sort({ fechaContratacion: -1 }) 
     .limit(30);
     res.send({ status: "ok", data: activeUsuarios });
@@ -85,7 +84,7 @@ app.post("/addUsuario", async (req, res) => {
       nombre: data.nombre,
       apellidop: data.apellidop,
       apellidom: data.apellidom,
-      puesto: data.puesto,
+      responsabilidad: data.responsabilidad,
       area: data.area,
       password: hashedPassword,
       email: data.email,
@@ -98,11 +97,13 @@ app.post("/addUsuario", async (req, res) => {
       contacto: data.contacto,
       salario: data.salario,
       calle: data.calle,
+      numeroI: data.numeroI,
+      numeroE: data.numeroE,
       ciudad: data.ciudad,
       estado: data.estado,
       cp: data.cp,
-      id: data.id,
-      nombreGrupo: data.nombreGrupo,
+      tarea: data.tarea,
+      epp: data.epp,
     });
 
     await nuevoUsuario.save();
