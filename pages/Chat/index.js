@@ -25,7 +25,75 @@ const ChatWindow = ({ title, description, image }) => {
     const [prevAnswer, setPrevAnswer] = useState("");
     const audioRef = useRef(null);
     const [audioSource, setAudioSource] = useState(audioSrc);
+    const [recognition, setRecognition] = useState(null);
+    const [isListening, setIsListening] = useState(false);
+  
+    const elNavegadorEsCompatible = () => {
+      return (
+        navigator.userAgent.indexOf('Chrome') > -1 ||
+        navigator.userAgent.indexOf('Edge') > -1 ||
+        navigator.userAgent.indexOf('Safari') > -1
+      );
+    };
+
+    const toggleRecognition = () => {
+      if (recognition) {
+        if (isListening) {
+          console.log("Deteniendo reconocimiento de voz.");
+          recognition.stop();
+        } else {
+          console.log("Iniciando reconocimiento de voz...");
+          recognition.start();
+        }
+        setIsListening(!isListening);
+      }
+    };
+  
+    useEffect(() => {
+      if (elNavegadorEsCompatible()) {
+        const recognitionInstance =
+          new (
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition ||
+            window.mozSpeechRecognition ||
+            window.msSpeechRecognition
+          )();
+  
+        recognitionInstance.continuous = false;
+        recognitionInstance.lang = 'es-ES,en-US';
+        recognitionInstance.interimResults = false;
+        recognitionInstance.maxAlternatives = 1;
+  
+        recognitionInstance.onresult = (event) => {
+          const spokenText = event.results[0][0].transcript.toLowerCase();
+          console.log('Texto detectado:', spokenText);
+          setMessage(spokenText);
+          addMessageToChat(spokenText, true);
+          if (spokenText.includes("abrir formulario")) {
+            console.log("Abrir formulario"|| spokenText.includes("open form"));
+            abrirModalVoz();
+          }
+          if (spokenText.includes("consultar manual de operaciones")|| spokenText.includes("consult operations manual")) {
+            console.log("Sistema Experto");
+          }
+          handleSubmitVoz(spokenText);  // Pasa el mensaje actualizado como argumento
+
+        };
+        
+        recognitionInstance.onnomatch = (event) => {
+          console.log("No he reconocido ese texto.");
+        };
+  
+        recognitionInstance.onerror = (event) => {
+          console.log('Error en el reconocimiento:', event.error);
+        };
+        
+        setRecognition(recognitionInstance);
+        
+      }
+    }, []);
     
+
 
     const clearChat = () => {
       setChatMessages([]);
@@ -37,6 +105,12 @@ const ChatWindow = ({ title, description, image }) => {
 
     const handleChange = (e) => {
       setMessage(e.target.value); // Actualiza el estado del mensaje mientras se escribe
+    };
+
+    const abrirModalVoz = () => {
+      setIsModalOpen(true);
+      console.log("abrir modal");
+      console.log("respuestaant",prevAnswer);
     };
 
     const abrirModal = (e) => {
@@ -71,7 +145,8 @@ const ChatWindow = ({ title, description, image }) => {
       ]);
       console.log(`Nuevo mensaje: ${message}`);
     };
-    
+
+  
 
     useEffect(() => {
 
@@ -96,6 +171,45 @@ const ChatWindow = ({ title, description, image }) => {
     useEffect(() => {
         console.log("chatMessages:", chatMessages); // Agregar este console.log
       }, [chatMessages]);
+
+
+      const handleSubmitVoz = async (spokenText) => {
+        console.log("Pregunta Next:",message);
+        try {
+          const response = await axios.post("http://localhost:5000/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
+            question: spokenText, // Envía el contenido del textarea como "question"
+          });
+          console.log(message);
+          if (response.status === 200) {
+            const data = response.data;
+            console.log("Respuesta de Constanza JSON:", data);
+            console.log("Mensaje de Constanza:", data.answer);
+            console.log("Respuesta",respuestaDelServidor);
+            console.log(respuesta.answer);
+            setRespuestaDelServidor(data.answer);
+    
+            // Agrega la respuesta actual al arreglo de mensajes
+            if (json.answer === "Esperando") {
+              console.log("respuestaant",prevAnswer);
+              addMessageToChat(message, true);
+              addMessageToChat(respuesta.answer, false);
+            }
+            if (data.answer === "Pensando") {
+              setIsSpinning(true);
+            } else {
+              setIsSpinning(false);
+            }
+          } else {
+            console.error("Error al comunicarse con Constanza");
+          }
+          console.log(respuesta.answer)
+          console.log(`Mensaje del usuario: ${message}`);
+          console.log(`Respuesta del servidor: ${data.answer}`);
+  
+        } catch (error) {
+          console.error("Error en la solicitud:", error);
+        }
+      };
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -136,8 +250,6 @@ const ChatWindow = ({ title, description, image }) => {
       }
     };
 
-
-
     return (
       <>
       <StaticMeta
@@ -145,23 +257,22 @@ const ChatWindow = ({ title, description, image }) => {
         description={description}
         image={image} 
       />
-        <AnimatePresence>
           <Navigation
             toggleDarkMode={toggleDarkMode}
             isDarkMode={isDarkMode} />
           <div className='w-full h-full bg-black'>
-            <div className="bg-[#2C2C2C]">
+            <div className="bg-white">
               <div>
                 <Modal isOpen={isModalOpen} onClose={cerrarModal}>
                   <Formulario jsonFile="requisitos_2" closeModal={cerrarModal} />
                 </Modal>
               </div>
-              <div className="w-100 h-200 bg-black p-3">
+              <div className="w-100 h-200 bg-white p-3">
                 
               </div>
               
-              <form className="wrapper full-viewport">
-                <div className="flex justify-center h-80 p-5 m-15 flex-row rounded-md text-lg text-black">
+              <form className="wrapper full-viewport bg-white">
+                <div className="flex justify-center h-80 m-20 flex-col rounded-md text-lg text-black">
                 <div id="chat" className=' w-full h-full overflow-y-auto rounded-lg'>
                   {chatMessages.map((message, index) => (
                   <div
@@ -184,103 +295,102 @@ const ChatWindow = ({ title, description, image }) => {
                     </div>
                   ))}
                 </div>
+                
                 </div>
-                <div className="flex justify-around bg-[#a78bfa] w-200 h-200 p-3 rounded-md">
-                  <div>
-                    <Image
-                      src={"/images/icon/logo_blanco.png"}
-                      alt="Constanza Logo"
-                      className="mt-10"
-                      width={30}
-                      height={30} />
-                  </div>
-                  <div className="w-3/4">
-                    {<p className="font-bold self-center">Constanza:<span className="font-normal">{respuesta.answer}</span></p>}
-                  </div>
-                  <div>
-                    {respuesta.answer && (
-                      <button onClick={playAudio} className="mt-10">
-                        <img src="./images/svg/play.svg" alt="Play" width={20} />
+                <div className="flex mt-40">
+                  <div className="flex flex-col w-full justify-start">
+                            <div className="flex justify-center w-200 h-200 p-3 rounded-md">
+                                <div>
+                                  <Image
+                                    src={"/images/icon/logo_blanco.png"}
+                                    alt="Constanza Logo"
+                                    className="mr-20"
+                                    width={30}
+                                    height={30} />
+                                </div>
+                                {<p className="font-bold self-center">Constanza:{respuesta.answer}</p>}
+                                {respuesta.answer && (
+                                  <button onClick={playAudio}>
+                                    <img src="./images/svg/playblack.svg" alt="Play" width={20} />
+                                  </button>
+                                )}
+                                <audio autoPlay ref={audioRef}>
+                                  <source src="./api/pronostico/python/Constanza_v15/respuesta.mp3" type="audio/mpeg" />
+                                  Tu navegador no soporta la reproducción de audio.
+                                </audio>
+                            </div>
+                            <div style={{ display: "flex", justifyContent: "start", marginLeft: "1%" }}>
+                              {json.answer === "Pensando.." ? (
+                                <img
+                                  src="/images/icon/Constanzatransf.gif"
+                                  width={60}
+                                  height={60}
+                                  alt="gif"
+                                  className="mr-2" />
+                              ) : json.answer === "Puedes Abrir el cuestionario" ? (
+                                <Image
+                                  src="/images/icon/Constanzatransf.gif"
+                                  width={60}
+                                  height={60}
+                                  alt="pig"
+                                  className="mr-2" />
+                              ) : json.answer.includes("Error") ? (
+                                <Image
+                                  src="/images/icon/logo_color.png"
+                                  width={60}
+                                  height={60}
+                                  alt="pig"
+                                  className="mr-2" />
+                              ) : json.answer === "Esperando" ? (
+                                <Image
+                                  src="/images/icon/logo_color.png"
+                                  width={60}
+                                  height={60}
+                                  alt="pig"
+                                  className="mr-2" />
+                              ) : (
+                                <Image
+                                  src="/images/icon/logo_color.png"
+                                  width={60}
+                                  height={60}
+                                  alt="pig"
+                                  className="mr-2" />
+                              )}
+                              <div className="flex justify-start text-const w-full mt-16">
+                                {<p className="font-bold text-center">{json.answer}</p>}
+                              </div>
+                            </div>
+                              <div  className="relative">
+                              <textarea
+                                id="message-input"
+                                type="text"
+                                placeholder="Escribe tu mensaje..."
+                                className="text-black bg-slate-50 px-3 py-2 w-full h-full text-lg rounded-[20px] shadow border border-gray-800"
+                                value={message} // Establece el valor del textarea según el estado
+                                onChange={(e) => setMessage(e.target.value)}
+                              />
+                              <button className="absolute right-1 bottom-4 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-30" onClick={handleSubmit}>
+                                <img src='./images/svg/send.svg' width={40}></img>
+                              </button>
+                            </div>
+                          </div>  
+                    <div className="flex flex-col justify-around">
+                      <button onClick={clearChat}>
+                        <img src="./images/svg/trash.svg" alt="Play" width={20} />
                       </button>
-                    )}
-                  </div>
-                  <audio autoplay ref={audioRef}>
-                    <source src="./api/pronostico/python/Constanza_v15/respuesta.mp3" type="audio/mpeg" />
-                    Tu navegador no soporta la reproducción de audio.
-                  </audio>
-              </div>
-                <div className="flex mt-5">
-                  <div className="bg-[#A5B4FC] w-40 rounded-md	">
-                      <div className="text-const w-100">
-                        {<p className="font-bold text-center">{json.answer}</p>}
-                      </div>
-                      <div className="flex justify-center p-3">
-                        {json.answer === "Pensando.." ? (
-                          <img
-                            src="/images/CerdoChido.gif"
-                            width={150}
-                            height={150}
-                            alt="gif"
-                            className="mr-2" />
-                        ) : json.answer === "Puedes Abrir el cuestionario" ? (
-                          <Image
-                            src="/images/Cerdocomiendo.gif"
-                            width={150}
-                            height={150}
-                            alt="pig"
-                            className="mr-2" />
-                        ) : json.answer.includes("Error") ? (
-                          <Image
-                            src="/images/Cerdomorido.gif"
-                            width={150}
-                            height={150}
-                            alt="pig"
-                            className="mr-2" />
-                        ) : json.answer === "Esperando" ? (
-                          <Image
-                            src="/images/Cerdomimido1.gif"
-                            width={150}
-                            height={150}
-                            alt="pig"
-                            className="mr-2" />
-                        ) : (
-                          <Image
-                            src="/images/CerdoChido.png"
-                            width={150}
-                            height={150}
-                            alt="pig"
-                            className="mr-2" />
-                        )}
-                      </div>
-                    </div>
-                    <textarea
-                      id="message-input"
-                      type="text"
-                      placeholder="Escribe tu mensaje..."
-                      className="text-black m-5 bg-[#F7F9FB] px-3 py-2 w-full h-100 text-lg rounded-md focus:outline-none"
-                      value={message} // Establece el valor del textarea según el estado
-                      onChange={handleChange} // Captura los cambios en el textarea
-                    />
-                    <div>
-                      <div className="flex">
-                        <div className="mr-2">
-                          <button className="bg-gray-700 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center" onClick={abrirModal}>Formulario</button>
-                        </div>
-                        <div>
-                          <button className="bg-blue-500 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100" onClick={handleSubmit}>Enviar</button>
-                        </div>
-                      </div>
-                      <div className="mt-5 flex justify-center">
-                        <button onClick={clearChat}>
-                          <img src="./images/svg/trash.svg" alt="Play" width={20} />
-                        </button>
+                      <div className='flex p-5 mt-10'>
+                          <button className="bg-slate-400 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center" onClick={toggleRecognition} type="button">
+                            {isListening ? <img src="./images/svg/record.svg" alt="Play" width={40} /> : <img src="./images/svg/micro.svg" alt="Play" width={50} height={50}/>}
+                          </button>
+                          <button className="bg-slate-400 ml-5 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center" onClick={abrirModal}>
+                          <img src="./images/svg/form.svg" alt="Play" width={40} height={40}/>
+                          </button>
                       </div>
                     </div>
                   </div>
               </form>
             </div>
           </div>
-        </AnimatePresence>
       </>
 
       )
