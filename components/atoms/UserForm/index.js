@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 
 const UserForm = ({ data, setData, closeModal }) => {
@@ -8,6 +8,7 @@ const UserForm = ({ data, setData, closeModal }) => {
     const [inputEmail, setInputEmail] = useState("");
     const [inputName, setInputName] = useState("");
     const [inputLastName, setInputLastName] = useState("");
+    const [inputLastNamedos, setInputLastNamedos] = useState("");
     const [inputBirth, setInputBirth] = useState("");
     const [inputGenre, setInputGenre] = useState("");
     const [inputSchedule, setInputSchedule] = useState("");
@@ -16,14 +17,16 @@ const UserForm = ({ data, setData, closeModal }) => {
     const [inputStatus, setInputStatus] = useState("");
     const [inputContact, setInputContact] = useState("");
     const [inputSalary, setInputSalary] = useState("");
-    const [inputPosition, setInputPosition] = useState("");
-    const [inputGroup, setInputGroup] = useState("");
+    const [inputResponsabilidad, setInputResponsabilidad] = useState("");
+    const [inputArea, setInputArea] = useState("");
     const [inputStreet, setInputStreet] = useState("");
+    const [inputNumeroI, setInputNumeroI] = useState("");
+    const [inputNumeroE, setInputNumeroE] = useState("");
     const [inputCity, setInputCity] = useState("");
     const [inputState, setInputState] = useState("");
     const [inputCp, setInputCp] = useState("");
-    const [inputIDGroup, setInputIDGroup] = useState("");
-    const [inputGroupName, setInputGroupName] = useState("");
+    const [inputTarea, setInputTarea] = useState("");
+    const [inputEPP, setInputEPP] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const addPerson = async () => {
@@ -33,7 +36,9 @@ const UserForm = ({ data, setData, closeModal }) => {
              inputPsw !== "",
              inputEmail !== "", 
              inputName !== "", 
-             inputLastName !== "", 
+             inputLastName !== "",
+             inputLastNamedos !== "",  
+             inputResponsabilidad !== "", 
              inputBirth !== "", 
              inputGenre !== "", 
              inputSchedule !== "", 
@@ -42,21 +47,23 @@ const UserForm = ({ data, setData, closeModal }) => {
              inputStatus !== "",
              inputContact !== "", 
              inputSalary !== "",
-             inputPosition !== "", 
-             inputGroup !== "", 
+             inputArea !== "", 
              inputStreet !== "",
+             inputNumeroI !== "",
+             inputNumeroE !== "",
              inputCity !== "", 
              inputState !== "",
              inputCp !== "", 
-             inputIDGroup !== "", 
-             inputGroupName !== ""
+             inputTarea !== "", 
+             inputEPP !== ""
           ) {
             const newPerson = {
                 usuario: inputUser,
                 nombre: inputName,
-                apellido: inputLastName,
-                puesto: inputPosition,
-                grupo: inputGroup,
+                apellidop: inputLastName,
+                apellidom: inputLastNamedos,
+                responsabilidad: inputResponsabilidad,
+                area: inputArea,
                 password: inputPsw,
                 email: inputEmail, 
                 fechaNacimiento: inputBirth, 
@@ -67,31 +74,28 @@ const UserForm = ({ data, setData, closeModal }) => {
                 status: inputStatus,
                 contacto: inputContact, 
                 salario: inputSalary,
-                puesto: inputPosition, 
-                grupo: inputGroup, 
                 calle: inputStreet,
+                numeroI: inputNumeroI,
+                numeroE: inputNumeroE,
                 ciudad: inputCity, 
                 estado: inputState,
                 cp: inputCp, 
-                id: inputIDGroup, 
-                nombreGrupo: inputGroupName, 
+                tarea: inputTarea, 
+                epp: inputEPP, 
             };
 
-
-            const axios = require("axios");
+            /*const axios = require("axios");
             //axios.get('http://localhost:3010/getAllTransporte')
             //const apiUrl = "../api/transporte/registroTransporte";
-            const apiUrl = 'http://192.168.100.10:3020/addUsuario';
-            //const apiUrl = 'http://localhost:3020/addUsuario';
+            //const apiUrl = 'http://192.168.100.10:3020/addUsuario';
+            const apiUrl = 'http://localhost:3020/addUsuario';
             axios.post(apiUrl, newPerson)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);
             })
             .catch(error => {
                 console.error("Error al enviar la solicitud:", error);
-            });
-
-
+            });*/
 
             const newData = [...data, newPerson];
             setData(newData);
@@ -100,6 +104,7 @@ const UserForm = ({ data, setData, closeModal }) => {
             setInputEmail("");
             setInputName("");
             setInputLastName("");
+            setInputLastNamedos("");
             setInputBirth("");
             setInputGenre("");
             setInputSchedule("");
@@ -108,14 +113,16 @@ const UserForm = ({ data, setData, closeModal }) => {
             setInputStatus("");
             setInputContact("");
             setInputSalary("");
-            setInputPosition("");
-            setInputGroup("");
+            setInputResponsabilidad("");
+            setInputArea("");
             setInputStreet("");
+            setInputNumeroI("");
+            setInputNumeroE("");
             setInputCity("");
             setInputState("");
             setInputCp("");
-            setInputIDGroup("");
-            setInputGroupName("");
+            setInputTarea("");
+            setInputEPP("");
             setSuccessMessage('Usuario guardado exitosamente');
             setErrorMessage("");
           } else {
@@ -127,6 +134,9 @@ const UserForm = ({ data, setData, closeModal }) => {
           setSuccessMessage("");
         }
       };
+      useEffect(()=>{
+        console.log(data)
+      })
     return(
         <>
         <div className="flex justify-between modal-header">
@@ -152,19 +162,19 @@ const UserForm = ({ data, setData, closeModal }) => {
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
-                    <div>
-                        <label htmlFor="password" className="modal-label">Password:</label>
-                    </div>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="password" id="password" name="password" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputPsw} onChange={(event) => setInputPsw(event.target.value)} required/>
-                    </div>
-                </div>
-                <div className="modal-item w-1/3">
                     <div >
                         <label htmlFor="email" className="modal-label">Email:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                         <input type="email" id="email" name="email" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputEmail} onChange={(event) => setInputEmail(event.target.value)} required/>
+                    </div>
+                </div>
+                <div className="modal-item w-1/3">
+                    <div>
+                        <label htmlFor="password" className="modal-label">Password:</label>
+                    </div>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="password" id="password" name="password" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputPsw} onChange={(event) => setInputPsw(event.target.value)} required/>
                     </div>
                 </div>
             </div>
@@ -179,12 +189,23 @@ const UserForm = ({ data, setData, closeModal }) => {
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
-                        <label htmlFor="apellido" className="modal-label">Apellido:</label>
+                        <label htmlFor="apellidop" className="modal-label">Apellido Paterno:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="apellido" name="apellido" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputLastName} onChange={(event) => setInputLastName(event.target.value)} required/>
+                        <input type="text" id="apellidop" name="apellidop" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputLastName} onChange={(event) => setInputLastName(event.target.value)} required/>
                     </div>
                 </div>
+                <div className="modal-item w-1/3">
+                    <div>
+                        <label htmlFor="apellidom" className="modal-label">Apellido Materno:</label>
+                    </div>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="apellidom" name="apellidom" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputLastNamedos} onChange={(event) => setInputLastNamedos(event.target.value)} required/>
+                    </div>
+                </div>
+            
+            </div>
+            <div className="modal-cel">
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="fechaNacimiento" className="modal-label">Fecha de Nacimiento:</label>
@@ -193,6 +214,8 @@ const UserForm = ({ data, setData, closeModal }) => {
                         <input type="date" id="fechaNacimiento" name="fechaNacimiento" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputBirth} onChange={(event) => setInputBirth(event.target.value)} required/>
                     </div>
                 </div>
+                <div className="modal-item w-1/3"></div>
+                <div className="modal-item w-1/3"></div>
             </div>
             <div className="modal-cel">
                 <div className="modal-item w-1/3">
@@ -201,6 +224,7 @@ const UserForm = ({ data, setData, closeModal }) => {
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                         <select id="genero" name="genero" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputGenre} onChange={(event) => setInputGenre(event.target.value)} required>
+                            <option value="">Selecciona...</option>
                             <option value="masculino">Masculino</option>
                             <option value="femenino">Femenino</option>
                         </select>
@@ -208,10 +232,10 @@ const UserForm = ({ data, setData, closeModal }) => {
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
-                        <label htmlFor="puesto" className="modal-label">Puesto:</label>
+                        <label htmlFor="responsabilidad" className="modal-label">Responsabilidad:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="puesto" name="puesto" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputPosition} onChange={(event) => setInputPosition(event.target.value)} required/>
+                        <input type="text" id="responsabilidad" name="responsabilidad" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputResponsabilidad} onChange={(event) => setInputResponsabilidad(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
@@ -237,7 +261,7 @@ const UserForm = ({ data, setData, closeModal }) => {
                         <label htmlFor="fecha-contratacion" className="modal-label">Fecha de contratación:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="fecha-contratacion" name="fecha-contratacion" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputHireDate} onChange={(event) => setInputHireDate(event.target.value)} required/>
+                        <input type="date" id="fecha-contratacion" name="fecha-contratacion" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputHireDate} onChange={(event) => setInputHireDate(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
@@ -252,11 +276,12 @@ const UserForm = ({ data, setData, closeModal }) => {
             <div className="modal-cel">
                 <div className="modal-item w-1/3">
                     <div>
-                        <label htmlFor="statu" className="modal-label">Status:</label>
+                        <label htmlFor="statu" className="modal-label">Estatus:</label>
                     </div>
                         
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                         <select  className={isDarkMode ? "modal-input-d" : "modal-input"} id="statu" name="statu" value={inputStatus} onChange={(event) => setInputStatus(event.target.value)} required>
+                            <option value="">Selecciona...</option>
                             <option value="activo">Activo</option>
                             <option value="inactivo">Inactivo</option>
                         </select>
@@ -273,20 +298,29 @@ const UserForm = ({ data, setData, closeModal }) => {
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
-                        <label htmlFor="grupo" className="modal-label">Grupo:</label>
-                    </div>
-                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="grupo" name="grupo" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputGroup} onChange={(event) => setInputGroup(event.target.value)} required/>
-                    </div>
-                </div>
-            </div>
-            <div className="modal-cel">
-                <div className="modal-item w-1/3">
-                    <div>
                         <label htmlFor="calle" className="modal-label">Calle:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                         <input type="text" id="calle" name="calle" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputStreet} onChange={(event) => setInputStreet(event.target.value)} required/>
+                    </div>
+                </div>
+            </div>
+            <div className="modal-cel">
+                
+                <div className="modal-item w-1/3">
+                    <div>
+                        <label htmlFor="numeroI" className="modal-label">Numero Interior:</label>
+                    </div>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="numeroI" name="numeroI" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputNumeroI} onChange={(event) => setInputNumeroI(event.target.value)} required/>
+                    </div>
+                </div>
+                <div className="modal-item w-1/3">
+                    <div>
+                        <label htmlFor="numeroE" className="modal-label">Numero Exterior:</label>
+                    </div>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="numeroE" name="numeroE" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputNumeroE} onChange={(event) => setInputNumeroE(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
@@ -297,6 +331,8 @@ const UserForm = ({ data, setData, closeModal }) => {
                         <input type="text" id="ciudad" name="ciudad" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputCity} onChange={(event) => setInputCity(event.target.value)} required/>
                     </div>
                 </div>
+            </div>
+            <div className="modal-cel">
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="estado" className="modal-label">Estado:</label>
@@ -305,8 +341,6 @@ const UserForm = ({ data, setData, closeModal }) => {
                         <input type="text" id="estado" name="estado" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputState} onChange={(event) => setInputState(event.target.value)} required/>
                     </div>
                 </div>
-            </div>
-            <div className="modal-cel">
                 <div className="modal-item w-1/3">
                     <div>
                         <label htmlFor="cp" className="modal-label">Código postal:</label>
@@ -317,19 +351,31 @@ const UserForm = ({ data, setData, closeModal }) => {
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
-                        <label htmlFor="IDG" className="modal-label">ID del grupo:</label>
+                        <label htmlFor="tarea" className="modal-label">Tarea:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="IDG" name="IDG" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputIDGroup} onChange={(event) => setInputIDGroup(event.target.value)} required/>
+                        <input type="text" id="tarea" name="tarea" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputTarea} onChange={(event) => setInputTarea(event.target.value)} required/>
+                    </div>
+                </div>
+            </div>
+            <div className="modal-cel">
+                <div className="modal-item w-1/3">
+                    <div>
+                        <label htmlFor="epp" className="modal-label">Equipo de proteción personal:</label>
+                    </div>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="text" id="EPP" name="EPP" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputEPP} onChange={(event) => setInputEPP(event.target.value)} required/>
                     </div>
                 </div>
                 <div className="modal-item w-1/3">
                     <div>
-                        <label htmlFor="nombreGrupo" className="modal-label">Nombre del Grupo:</label>
+                        <label htmlFor="area" className="modal-label">Área:</label>
                     </div>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" id="nombreGrupo" name="nombreGrupo" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputGroupName} onChange={(event) => setInputGroupName(event.target.value)} required/>
+                        <input type="text" id="area" name="area" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputArea} onChange={(event) => setInputArea(event.target.value)} required/>
                     </div>
+                </div>
+                <div className="modal-item w-1/3">
                 </div>
             </div>
             <div className="flex justify-center">

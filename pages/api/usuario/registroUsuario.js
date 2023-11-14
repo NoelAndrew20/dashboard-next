@@ -6,6 +6,7 @@ app.use(cors());
 app.use(express.json());
 const config = require('../../../config.json');
 const mongoUrl = config.mongodesarrollo;
+const bcrypt = require('bcrypt');
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
@@ -15,7 +16,9 @@ mongoose.connect(mongoUrl, {
 })
 .catch((e) => console.log(e));
 
-const db = mongoose.connection.useDb("C3_LaPurisima");
+//const db = mongoose.connection.useDb("C3_LaPurisima");
+const db = mongoose.connection.useDb("prototipoGranja");
+
 db.on('error', console.error.bind(console, 'Error al conectar a la base de datos:'));
 db.once('open', () => {
   console.log('Conexión exitosa a la base de datos.');
@@ -25,9 +28,10 @@ const UsuarioSchema = new mongoose.Schema(
   {
     usuario: String,
     nombre: String,
-    apellido: String,
+    apellidop: String,
+    apellidom: String,
     puesto: String,
-    grupo: String,
+    area: String,
     password: String,
     email: String, 
     fechaNacimiento: String, 
@@ -38,12 +42,15 @@ const UsuarioSchema = new mongoose.Schema(
     status: String,
     contacto: String, 
     salario: String,
+    responsabilidad: String, 
     calle: String,
+    numeroI: String,
+    numeroE: String,
     ciudad: String, 
     estado: String,
     cp: String, 
-    id: String, 
-    nombreGrupo: String,
+    tarea: String, 
+    epp: String,
 },
   {
     //collection: 'usuarios', // Nombre de la colección en la base de datos
@@ -71,24 +78,25 @@ app.post("/addUsuario", async (req, res) => {
   try {
     const data = req.body;
     console.log(data);
+    
+    const hashedPassword = await bcrypt.hash(data.password, 12);
     const nuevoUsuario = new Usuario({
       usuario: data.usuario,
       nombre: data.nombre,
-      apellido: data.apellido,
+      apellidop: data.apellidop,
+      apellidom: data.apellidom,
       puesto: data.puesto,
-      grupo: data.grupo,
-      password: data.password,
+      area: data.area,
+      password: hashedPassword,
       email: data.email,
       fechaNacimiento: data.fechaNacimiento,
       genero: data.genero,
       horario: data.horario,
       fechaContratacion: data.fechaContratacion,
       departamento: data.departamento,
-      status: data.estado,
+      status: data.status,
       contacto: data.contacto,
       salario: data.salario,
-      puesto: data.puesto,
-      grupo: data.grupo,
       calle: data.calle,
       ciudad: data.ciudad,
       estado: data.estado,
@@ -127,6 +135,37 @@ app.put('/editUsuario/:fechaContratacion', async (req, res) => {
   } catch (error) {
     console.error('Error al actualizar los datos:', error);
     res.status(500).json({ message: 'Error al actualizar los datos' });
+  }
+});
+
+
+app.post("/login", async (req, res) => {
+  try {
+    const { usuario, password } = req.body;
+
+    // Busca el usuario en la base de datos por su nombre de usuario
+    const user = await Usuario.findOne({ usuario });
+
+    if (!user) {
+      // El usuario no se encontró en la base de datos
+      return res.status(401).json({ message: 'Credenciales incorrectas' });
+    }
+
+    // Compara la contraseña ingresada con la contraseña cifrada de la base de datos
+    const passwordsMatch = await bcrypt.compare(password, user.password);
+
+    if (passwordsMatch) {
+      // La contraseña es correcta, el inicio de sesión es exitoso
+      // Puedes generar un token de autenticación aquí si es necesario
+
+      res.status(200).json({ message: 'Inicio de sesión exitoso' });
+    } else {
+      // La contraseña es incorrecta
+      res.status(401).json({ message: 'Credenciales incorrectas' });
+    }
+  } catch (error) {
+    console.error('Error al iniciar sesión:', error);
+    res.status(500).json({ message: 'Error al iniciar sesión' });
   }
 });
 
