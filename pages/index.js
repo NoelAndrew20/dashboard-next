@@ -19,6 +19,8 @@ import BarGranja from '@/components/atoms/BarGranja'
 import BarGestación1 from '@/components/atoms/BarGestacion1'
 import BarGestación2 from '@/components/atoms/BarGestación2'
 import BarZen from '@/components/atoms/BarZen'
+import cerdoIndex from '../public/images/imagenes/cerdoIndex.png';
+import Footer from '@/components/atoms/Footer'
 
 const welcomeMessages = [
   "¡Bienvenid@!",
@@ -58,236 +60,156 @@ export default function Home({ title, description, image }) {
     return (
       <AnimatePresence>
         <motion.div 
-        initial="initialState"
-        animate="animateState"
-        exit="exitState"
-        variants={{
-          initialState: {
-            opacity: 0,
-          },
-          animateState: {
-            opacity: 1,
-          },
-          exitState: {
-            
-          },
-        }}
-        transition={{duration: 1}}
-        className="main-page">
-                
-      <div className={isDarkMode ? "darkMode" : "lightMode"}>
-        <StaticMeta
-          title={title}
-          description={description}
-          image={image}
-        />      
-        <Navigation
-         toggleDarkMode={toggleDarkMode}
-         isDarkMode={isDarkMode}
-        />
-        <div className="bienvenida flex justify-center">
-          <div className="">
-            <Image src={"/images/systemusers_104569.png"} width={100} height={30}/>
-          </div>
-          <div>
-            {userinfo &&
-            <h1 className="text-4xl font-bold text-black">{welcomeMessages[welcomeIndex]} {userinfo.user.nombre}</h1>
-            }
-            </div>
-        </div>
-        <main
-          className={`wrapper`}
-        >
-          
-          <div className="position justify-around pt-2 pb-10">
-            <motion.div
-            initial="initialState"
-            animate="animateState"
-            exit="exitState"
-            variants={{
-              initialState: {
-                opacity: 0,
-                x: -100,
-              },
-              animateState: {
-                opacity: 1,
-                x: 0,
-              },
-              exitState: {
-                
-              },
-            }}
-            transition={{duration: 2}}
-            className="main-page w-1/2"
-            >
-              <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
-                  <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
-                    <div className="flex justify-around">
-                      <div id="div3d">
-                        <div className="flex flex-col text-center">
-                          <h1 className="text-xl">Ganancias Totales del Periodo</h1>
-                          <h2 className="text-lg mt-5 font-bold">${jsonData.ganancias.ganancia}</h2>
-                        </div>
-                        <div style={{width:"150px", height:"150px"}}>
-                          <Modelo3D className="w-1/2 h-1/2"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </motion.div>
-            <motion.div
-            initial="initialState"
-            animate="animateState"
-            exit="exitState"
-            variants={{
-              initialState: {
-                opacity: 0,
-                x: 100,
-              },
-              animateState: {
-                opacity: 1,
-                x: 0,
-              },
-              exitState: {
-                
-              },
-            }}
-            transition={{duration: 3}}
-            className="main-page w-1/2"
-            >
-            <div className={isDarkMode ? "row-user-d mt-10 mr-5" : "row-user mt-10 mr-5"}>
-              <div className="contents">
-                <div className={isDarkMode ? "row-container-user-d mt-2 w-[100%]" : "row-container-user mt-2 w-[100%]"}>
-                <div id="divperiodo">
-                    <div className="flex justify-center">
-                      <Image src={"/images/svg/date.svg"} width={50} height={50} alt="user" className="mr-2" />
-                    </div>
-                    <div className="flex mt-10 flex justify-center">
-                      <p className="text-xl text-center font-bold" >Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
-                    </div>
-                </div>
-                </div>
-              </div>
-            </div>
-            </motion.div>
-          </div>
-          
-          <div className="">
-          <motion.div
           initial="initialState"
           animate="animateState"
           exit="exitState"
           variants={{
             initialState: {
               opacity: 0,
-              y: 100,
             },
             animateState: {
               opacity: 1,
-              y: 0,
             },
             exitState: {
               
             },
           }}
-          transition={{duration: 3}}
+          transition={{duration: 1}}
           className="main-page"
-          >
-            <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
-              <div>
-                <div>
-                  <h1 style={{ fontSize: "20px"}}>Costo total de Alimento</h1>
-                  <h2 style={{ fontSize: "60px"}}>${jsonData.ganancias.kg.vientre+jsonData.ganancias.kg.lechon+jsonData.ganancias.kg.sementalCIA+jsonData.ganancias.kg.sementalG}</h2>
+        >        
+          <div className={isDarkMode ? "darkMode" : "lightMode"}>
+            <StaticMeta
+              title={title}
+              description={description}
+              image={image}
+            />      
+              <Navigation
+              toggleDarkMode={toggleDarkMode}
+              isDarkMode={isDarkMode}
+              />
+              <div className="relative index-cover">
+                <img src="/images/imagenes/constanza.gif" alt="Cerdo" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 background-cover"></div>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-2xl font-bold">
+                  <Image src={"/images/icon/Constanza_logo_blanco.png"} alt="Logo" width={150} height={150} className="pb-2"/>
+                  Bienvenido
                 </div>
-                <div>
-                  <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
+              </div>
+              <main>
+                <div className="position wrapper">
+                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex justify-center text-center`}>
+                    <h1>Predicción - Total de cerdos en Cuarentena</h1>
+                    <div className='w-full flex justify-center'>
+                      <div className>
+                        <BarGranja/>  {/*primera grafica de pedro aqui te dejo como hacer el fetch*/}
+                      </div>
+                    </div>
+                  </div> 
+                  <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-1/3 flex justify-center text-center`}>
+                    <h1>Predicción - Total de cerdos en Gestación 1</h1>
+                    <div className='w-full flex justify-center'>
+                      <div >
+                        <BarGestación1/>  {/*primera grafica de pedro*/}
+                      </div>
+                    </div>
+                  </div> 
+                  <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-1/3 flex justify-center text-center`}>
+                    <h1>Predicción - Total de cerdos en Gestación 2</h1>
+                    <div className='w-full flex justify-center'>
+                      <div >
+                        <BarGestación2/>  {/*segunda grafica de pedro*/}
+                      </div>
+                    </div>
+                  </div> 
                 </div>
-              </div>
-              <div>
-              <div className="responsive-container" id="grafica"><BarChart/></div>
-              <div className="m-5">
-                <TableIndex isDarkMode={ isDarkMode }/>
-              </div>
-              </div>
-            </div>
-            </motion.div>
-          </div>
-        
-          <div className="position">
-            <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 h-150 w-full flex justify-center`}>
-              <TableIndexZona isDarkMode={ isDarkMode }/>
-            </div>
-            <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 h-150 w-full flex justify-center`}>
-              <PieChart/>
-            </div>
-          </div>
-
-          <div style={{ width: "auto" }} className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 pb-50 h-80 w-full flex justify-center`}>
-              <BarChart/>
-          </div> 
-          <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-full flex justify-center text-center`}>
-            <h1>Predicción - Total de cerdos en Cuarentena</h1>
-            <div className='w-full flex justify-center'>
-              <div className='h-[50%] w-[50%]'>
-                <BarGranja/>  {/*primera grafica de pedro aqui te dejo como hacer el fetch*/}
-              </div>
-            </div>
-          </div> 
-          <div className={`${isDarkMode ? "row-container-d mt-20 mb-20" : "row-container mt-20 mb-20"} w-full flex justify-center text-center`}>
-            <h1>Predicción - Total de cerdos en Gestación 1</h1>
-            <div className='w-full flex justify-center'>
-              <div className='h-[50%] w-[50%]'>
-                <BarGestación1/>  {/*primera grafica de pedro*/}
-              </div>
-            </div>
-          </div> 
-          <div className={`${isDarkMode ? "row-container-d mt-20 mb-20" : "row-container mt-20 mb-20"} w-full flex justify-center text-center`}>
-            <h1>Predicción - Total de cerdos en Gestación 2</h1>
-            <div className='w-full flex justify-center'>
-              <div className='h-[50%] w-[50%]'>
-                <BarGestación2/>  {/*segunda grafica de pedro*/}
-              </div>
-            </div>
-          </div> 
-          <div className={`${isDarkMode ? "row-container-d mt-20 mb-20" : "row-container mt-20 mb-20"} w-full flex justify-center text-center`}>
-            <h1>Predicción - Total de cerdos en Zen</h1>
-            <div className='w-full flex justify-center'>
-              <div className='h-[50%] w-[50%]'>
-                <BarZen/>  {/*tercera grafica de pedro*/}
-              </div>
-            </div>
-          </div> 
-          
-            <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
-              <div>
-                <div>
-                  <h1>Costo total de Vacunas</h1>
-                  <h2>${Math.round(jsonData.vacunas.costo_total_V.Vientre*100)/100}</h2>
-                  <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
+                <div className="cover-text position mt-5">
+                  <div>
+                    <p>Resultados de la simulación de costos por alimento</p>
+                  </div>
+                  <div>
+                    <TableIndexZona isDarkMode={ isDarkMode }/>
+                  </div>
                 </div>
-              <div>
-          </div>
-        <div>
-          <div id="grafica" className="h-[40vh] flex justify-center">
-            <PieChart/>
-          </div>
-          <div  className=" m-5">
-            <TableIndex1 isDarkMode={ isDarkMode }/>
-            <div><BarChart1/></div>
-          </div>
-        </div>
-        </div>
-      </div>
-
-
-          <div className=" mb-20">
-            
-          </div>
-        </main>
-      </div>
-      </motion.div>
-    </AnimatePresence>
+                <div className="position wrapper">
+                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex justify-center text-center`}>
+                    <h1>Predicción - Total de cerdos en Cuarentena</h1>
+                    <div className='w-full flex justify-center'>
+                      <div className>
+                        <PieChart/>
+                      </div>
+                    </div>
+                  </div> 
+                  <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-1/3 flex justify-center text-center`}>
+                    <h1>Predicción - Total de cerdos en Gestación 1</h1>
+                    <div className='w-full flex justify-center'>
+                      <div >
+                        <BarChart/>
+                      </div>
+                    </div>
+                  </div> 
+                  <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-1/3 flex justify-center text-center`}>
+                    <h1>Predicción - Total de cerdos en Zen</h1>
+                    <div className='w-full flex justify-center'>
+                      <div >
+                        <BarZen/>
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+                <div className="cover-text position mt-5">
+                  <div>
+                    <p>Tabla muestra de la simulacion de los cerdos por Zona</p>
+                  </div>
+                  <div>
+                    <TableIndex1 isDarkMode={ isDarkMode }/>
+                  </div>
+                </div>
+                  {/*
+                <div className="position">
+                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 h-150 w-full flex justify-center`}>
+                    <TableIndexZona isDarkMode={ isDarkMode }/>
+                  </div>
+                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 h-150 w-full flex justify-center`}>
+                    <PieChart/>
+                  </div>
+                </div>
+                <div style={{ width: "auto" }} className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 pb-50 h-80 w-full flex justify-center`}>
+                    <BarChart/>
+                </div> 
+                
+                <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-full flex justify-center text-center`}>
+                  <h1>Predicción - Total de cerdos en Zen</h1>
+                  <div className='w-full flex justify-center'>
+                    <div >
+                      <BarZen/>  {/*tercera grafica de pedro
+                    </div>
+                  </div>
+                </div> 
+                <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
+                  <div>
+                    <div>
+                      <h1>Costo total de Vacunas</h1>
+                      <h2>${Math.round(jsonData.vacunas.costo_total_V.Vientre*100)/100}</h2>
+                      <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
+                    </div>
+                    <div>
+                      <div id="grafica" className="h-[40vh] flex justify-center">
+                        <PieChart/>
+                      </div>
+                      <div  className=" m-5">
+                        <TableIndex1 isDarkMode={ isDarkMode }/>
+                        <div>
+                          <BarChart1/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>*/}
+              </main>
+              <Footer />
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
     )
   }
