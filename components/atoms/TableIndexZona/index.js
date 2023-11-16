@@ -28,7 +28,7 @@ const TableIndexZona = ({ isDarkMode }) => {
             <table className={isDarkMode ? 'table-container-index-d' : 'table-container-index'}>
                 <thead>
                     <tr>
-                        <th>.</th>
+                        <th></th>
                         <th>Tipo Alimento</th>
                         <th>KG Alimento</th>
                         <th>Precio por KG</th>
@@ -38,9 +38,7 @@ const TableIndexZona = ({ isDarkMode }) => {
                 <tbody>
                 {!isDarkMode 
                 ? currentEntries.map((item, index) => (
-                    <tr key={index} className={`table-cel ${index % 2 === 0 ? " bg-[#a5b4fc]" : "bg-white"} ${
-                        index % 2 === 0 ? "border-blue-500" : "border-gray-300"
-                      }`}>
+                    <tr key={index} className="table-cel">
                         <td></td>
                         <td>{item.v1}</td>
                         <td>{item.v2}</td>
