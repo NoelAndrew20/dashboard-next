@@ -153,7 +153,7 @@ const Login = ({ title, description, image }) => {
           </div>
         </motion.div>
       </AnimatePresence>
-      <div>
+      <div className="full-viewport">
         <div className=" flex flex-col pr-5">
           <div className="flex justify-center">
             <div>

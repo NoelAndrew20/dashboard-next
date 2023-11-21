@@ -225,7 +225,6 @@ export default function Home({ title, description, image }) {
                   </div> 
                 </div>
               </main>
-              <Footer />
             </div>
           </motion.div>
         </AnimatePresence>
