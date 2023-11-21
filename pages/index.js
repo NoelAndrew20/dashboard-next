@@ -97,114 +97,133 @@ export default function Home({ title, description, image }) {
               </div>
               <main>
                 <div className="position wrapper">
-                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex justify-center text-center`}>
-                    <h1>Predicción - Total de cerdos en Cuarentena</h1>
+                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                    <p>Ventas</p>
+                    <h1 className="text-center">$380,520.00</h1>
                     <div className='w-full flex justify-center'>
-                      <div className>
-                        <BarGranja/>  {/*primera grafica de pedro aqui te dejo como hacer el fetch*/}
+                      <div className="border-t-2 border-gray-500 text-gray-500">
+                        11 Noviembre - 16 Noviembre 2023
                       </div>
                     </div>
                   </div> 
-                  <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-1/3 flex justify-center text-center`}>
-                    <h1>Predicción - Total de cerdos en Gestación 1</h1>
+                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                    <p>Gastos</p>
+                    <h1 className="text-center">$254,610.00</h1>
                     <div className='w-full flex justify-center'>
-                      <div >
-                        <BarGestación1/>  {/*primera grafica de pedro*/}
+                      <div className="border-t-2 border-gray-500 text-gray-500">
+                        11 Noviembre - 16 Noviembre 2023
                       </div>
                     </div>
                   </div> 
-                  <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-1/3 flex justify-center text-center`}>
-                    <h1>Predicción - Total de cerdos en Gestación 2</h1>
+                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                    <p>Ganancia Neta</p>
+                    <h1 className="text-center">$154,610.00</h1>
                     <div className='w-full flex justify-center'>
-                      <div >
-                        <BarGestación2/>  {/*segunda grafica de pedro*/}
-                      </div>
-                    </div>
-                  </div> 
-                </div>
-                <div className="cover-text position mt-5">
-                  <div>
-                    <p>Resultados de la simulación de costos por alimento</p>
-                  </div>
-                  <div>
-                    <TableIndexZona isDarkMode={ isDarkMode }/>
-                  </div>
-                </div>
-                <div className="position wrapper">
-                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex justify-center text-center`}>
-                    <h1>Predicción - Total de cerdos en Cuarentena</h1>
-                    <div className='w-full flex justify-center'>
-                      <div className>
-                        <PieChart/>
-                      </div>
-                    </div>
-                  </div> 
-                  <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-1/3 flex justify-center text-center`}>
-                    <h1>Predicción - Total de cerdos en Gestación 1</h1>
-                    <div className='w-full flex justify-center'>
-                      <div >
-                        <BarChart/>
-                      </div>
-                    </div>
-                  </div> 
-                  <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-1/3 flex justify-center text-center`}>
-                    <h1>Predicción - Total de cerdos en Zen</h1>
-                    <div className='w-full flex justify-center'>
-                      <div >
-                        <BarZen/>
+                      <div className="border-t-2 border-gray-500 text-gray-500">
+                        11 Noviembre - 16 Noviembre 2023
                       </div>
                     </div>
                   </div> 
                 </div>
-                <div className="cover-text position mt-5">
-                  <div>
-                    <p>Tabla muestra de la simulacion de los cerdos por Zona</p>
-                  </div>
-                  <div>
-                    <TableIndex1 isDarkMode={ isDarkMode }/>
-                  </div>
-                </div>
-                  {/*
-                <div className="position">
-                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 h-150 w-full flex justify-center`}>
-                    <TableIndexZona isDarkMode={ isDarkMode }/>
-                  </div>
-                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 h-150 w-full flex justify-center`}>
-                    <PieChart/>
-                  </div>
-                </div>
-                <div style={{ width: "auto" }} className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-10 pb-50 h-80 w-full flex justify-center`}>
-                    <BarChart/>
-                </div> 
-                
-                <div className={`${isDarkMode ? "row-container-d mt-20 " : "row-container mt-20 "} w-full flex justify-center text-center`}>
-                  <h1>Predicción - Total de cerdos en Zen</h1>
-                  <div className='w-full flex justify-center'>
-                    <div >
-                      <BarZen/>  {/*tercera grafica de pedro
-                    </div>
-                  </div>
-                </div> 
-                <div className={isDarkMode ? "row-container-d mt-10" : "row-container mt-10"}>
-                  <div>
-                    <div>
-                      <h1>Costo total de Vacunas</h1>
-                      <h2>${Math.round(jsonData.vacunas.costo_total_V.Vientre*100)/100}</h2>
-                      <p>Periodo de {jsonData1.config.fecha_inicial} a {jsonData1.config.fecha_final}</p>
-                    </div>
-                    <div>
-                      <div id="grafica" className="h-[40vh] flex justify-center">
-                        <PieChart/>
+                <div className={`${isDarkMode ? "bg-[#151515]" : "bg-[#F7F9FB]"} wrapper`}>
+                  <div className="position">
+                    <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                      <div className="flex">
+                        <Image src={"/images/icon/alimentos-index.png"} width={30} height={30}/>
+                        <span className=" ml-2 font-bold flex items-center">Alimentos</span>
                       </div>
-                      <div  className=" m-5">
-                        <TableIndex1 isDarkMode={ isDarkMode }/>
-                        <div>
-                          <BarChart1/>
+                      <h1 className="text-right text-2xl">$380,520.00</h1>
+                      <div className='w-full flex'>
+                        <div className="text-[#42FF00] justify-left">
+                          +0.25
+                        </div>
+                      </div>
+                    </div> 
+                    <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                      <div className="flex">
+                        <Image src={"/images/icon/medicamentos-index.png"} width={30} height={30}/>
+                        <span className=" ml-2 font-bold flex items-center">Medicamentos</span>
+                      </div>                      
+                      <h1 className="text-right text-2xl">$254,610.00</h1>
+                      <div className='w-full flex'>
+                        <div className="text-[#F46D22]">
+                          -0.25%
+                        </div>
+                      </div>
+                    </div> 
+                    <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                      <div className="flex">
+                        <Image src={"/images/icon/sueldos-index.png"} width={30} height={30}/>
+                        <span className=" ml-2 font-bold flex items-center">Sueldos y salarios</span>
+                      </div>                        
+                      <h1 className="text-right text-2xl">$154,610.00</h1>
+                      <div className='w-full flex'>
+                        <div className="text-[#42FF00] justify-left">
+                          +0.25
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>*/}
+                  <div className="position">
+                    <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                      <div className="flex">
+                        <Image src={"/images/icon/insumos-index.png"} width={30} height={30}/>
+                        <span className=" ml-2 font-bold flex items-center">Insumos</span>
+                      </div> 
+                      <h1 className="text-right text-2xl">$380,520.00</h1>
+                      <div className='w-full flex'>
+                        <div className="text-[#42FF00] justify-left">
+                          +0.25
+                        </div>
+                      </div>
+                    </div> 
+                    <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                      <div className="flex">
+                        <Image src={"/images/icon/mantenimiento-index.png"} width={30} height={30}/>
+                        <span className=" ml-2 font-bold flex items-center">Mantenimiento</span>
+                      </div> 
+                      <h1 className="text-right text-2xl">$254,610.00</h1>
+                      <div className='w-full flex'>
+                        <div className="text-[#F46D22]">
+                          -0.25%
+                        </div>
+                      </div>
+                    </div> 
+                    <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                      <div className="flex">
+                        <Image src={"/images/icon/servicios-index.png"} width={30} height={30}/>
+                        <span className=" ml-2 font-bold flex items-center">Servicios</span>
+                      </div> 
+                      <h1 className="text-right text-2xl">$154,610.00</h1>
+                      <div className='w-full flex'>
+                        <div className="text-[#42FF00] justify-left">
+                          +0.25
+                        </div>
+                      </div>
+                    </div>
+                  </div>  
+                </div>
+                <div className="cover-text position mt-5 p-5">
+                  <div className={`${isDarkMode ? "row-container-d" : "row-container"} w-1/3 flex justify-center text-center`}>
+                    <h1>Predicción - Total de cerdos en Cuarentena</h1>
+                    <div className='w-full flex justify-center'>
+                      <div className>
+                        <PieChart/>
+                      </div>
+                    </div>
+                  </div> 
+                  <div className="text-white">
+                    <TableIndex1 isDarkMode={ isDarkMode }/>
+                  </div>
+                </div>
+                <div className="flex justify-center">
+                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-5 mb-5 w-1/2 flex justify-center text-center`}>
+                    <h1>Personal</h1>
+                      <div className="p-2">
+                        <TableIndex isDarkMode={ isDarkMode }/>
+                      </div>
+                  </div> 
+                </div>
               </main>
               <Footer />
             </div>

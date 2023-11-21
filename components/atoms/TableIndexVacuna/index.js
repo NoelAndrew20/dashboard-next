@@ -3,10 +3,12 @@ import jsonData1 from '../../../public/api/pronostico/python/config.json'
 import { useEffect, useState } from 'react';
 const TableIndexVacuna = ({ isDarkMode }) => {
     const [data, setData] = useState([
-        { v1: "V1", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V1, v4: "", },
-        { v1: "V2", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V2, v4: "", },
-        { v1: "V3", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V3, v4: "", },
-        { v1: "V4", v2: "", v3: jsonData1.info_tipos.vientre.ApVac.$.V4, v4: "", },
+        { zona: "Cuarentena", cantidad: 200, v3: jsonData1.info_tipos.vientre.ApVac.$.zona, v4: "", },
+        { zona: "Engorda", cantidad: 40, v3: jsonData1.info_tipos.vientre.ApVac.$.cantidad, v4: "", },
+        { zona: "Adaptacion", cantidad: 50, v3: jsonData1.info_tipos.vientre.ApVac.$.V3, v4: "", },
+        { zona: "Zona Zen", cantidad: 100, v3: jsonData1.info_tipos.vientre.ApVac.$.V4, v4: "", },
+        { zona: "CDI", cantidad: 30, v3: jsonData1.info_tipos.vientre.ApVac.$.V4, v4: "", },
+
       ])
     const entriesPerPage = 10;
     const totalPages = Math.ceil(data.length / entriesPerPage);
@@ -24,19 +26,15 @@ const TableIndexVacuna = ({ isDarkMode }) => {
             <table className={isDarkMode ? 'table-container-index-d' : 'table-container-index'}>
                 <thead>
                     <tr>
-                        <th>Tipo vacuna/medicamento</th>
-                        <th>Número aplicaciones</th>
-                        <th>Precio por aplicación</th>
-                        <th>Costo</th>
+                        <th>Zonas</th>
+                        <th>Cantidad</th>
                     </tr>
                 </thead>
                 <tbody>
                 {currentEntries.map((item, index) => (
                     <tr key={index} className="table-cel">
-                        <td>{item.v1}</td>
-                        <td>{item.v2}</td>
-                        <td>{item.v3}</td>
-                        <td>{item.v4}</td>
+                        <td>{item.zona}</td>
+                        <td>{item.cantidad}</td>
                     </tr>
                 ))}
                 </tbody>
