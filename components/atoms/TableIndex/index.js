@@ -1,66 +1,48 @@
 import jsonData from '../../../public/api/pronostico/python/output.json'
-import React, { useEffect, useState } from 'react';
+import jsonData1 from '../../../public/api/pronostico/python/config.json'
+import { useEffect, useState } from 'react';
+const TableIndexVacuna = ({ isDarkMode }) => {
+    const [data, setData] = useState([
+        { zona: "Cuarentena", cantidad: 200, v3: jsonData1.info_tipos.vientre.ApVac.$.zona, v4: "", },
+        { zona: "Engorda", cantidad: 40, v3: jsonData1.info_tipos.vientre.ApVac.$.cantidad, v4: "", },
+        { zona: "Adaptacion", cantidad: 50, v3: jsonData1.info_tipos.vientre.ApVac.$.V3, v4: "", },
+        { zona: "Zona Zen", cantidad: 100, v3: jsonData1.info_tipos.vientre.ApVac.$.V4, v4: "", },
+        { zona: "CDI", cantidad: 30, v3: jsonData1.info_tipos.vientre.ApVac.$.V4, v4: "", },
 
-const TableIndex = ({ isDarkMode }) => {
-  const [data, setData] = useState([
-    { v1: "Vientre", v2: Math.round(jsonData.alimento.costo_total_A.Vientre*100)/100 },
-    { v1: "Lechon", v2: Math.round(jsonData.alimento.costo_total_A.Lechon*100)/100 },
-    { v1: "CDI", v2: "" },
-    { v1: "Celador", v2: "" },
-  ]);
+      ])
+    const entriesPerPage = 10;
+    const totalPages = Math.ceil(data.length / entriesPerPage);
+    const [currentPage, setCurrentPage] = useState(1);
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+    const startIndex = (currentPage - 1) * entriesPerPage;
+    const endIndex = startIndex + entriesPerPage;
+    const currentEntries = data.slice(startIndex, endIndex);
 
-  const entriesPerPage = 10;
-  const totalPages = Math.ceil(data.length / entriesPerPage);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const startIndex = (currentPage - 1) * entriesPerPage;
-  const endIndex = startIndex + entriesPerPage;
-  const currentEntries = data.slice(startIndex, endIndex);
-
-
-  return (
-    <div className={isDarkMode ? 'table-index-d' : 'table-index'}>
-      <table className={isDarkMode ? 'table-container-index-d' : 'table-container-index'}>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody>
-      {!isDarkMode 
-      ?
-          currentEntries.map((item, index) => (
-            <tr
-              key={index}
-              className={`table-cel ${index % 2 === 0 ? " bg-[#a5b4fc]" : "bg-warmGray-300"} ${
-                index % 2 === 0 ? "border-blue-500" : "border-gray-300"
-              }`}
-            >
-              <td className="px-4" >{item.v1}</td>
-              <td className="px-4" >{item.v2}</td>
-            </tr>
-          ))
-          :
-          
-            currentEntries.map((item, index) => (
-              <tr
-                key={index}
-                
-                className="table-cel">
-                <td className="px-4" >{item.v1}</td>
-                <td className="px-4" >{item.v2}</td>
-              </tr>
-            ))
-            } 
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-export default TableIndex;
+    return (
+        <>
+         <div className={isDarkMode ? 'table-index-d' : 'table-index'} style={{width: "auto"}}>
+            <table className={isDarkMode ? 'table-container-index-d' : 'table-container-index'}>
+                <thead>
+                    <tr>
+                        <th>Zonas</th>
+                        <th>Cantidad de Personal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {currentEntries.map((item, index) => (
+                    <tr key={index} className="table-cel">
+                        <td>{item.zona}</td>
+                        <td>{item.cantidad}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            
+        </div>
+        
+        </>
+    )
+}
+export default TableIndexVacuna;

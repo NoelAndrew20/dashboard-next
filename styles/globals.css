@@ -83,9 +83,7 @@ input:focus {
   height: 300px;
 }
 .cover-text {
-  height: 300px;
   background-color: rgba(13, 61, 100);
-  color: #ffffff;
   align-content: center;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -575,16 +573,16 @@ input:focus {
 }
 .table-index {
   padding: 20px;
-  background-color: #F7F9FB;
+  background-color: #201F1C;
   width: 70vh;
-  border: .5px solid;
-  color: #000;
+  color: #BBBBBB;
+  border-radius: 10px;
 }
 .table-d {
   padding: 20px;
   background-color: #151515;
   border: 1px solid #D4AF37;
-  width: 70vh;
+  width: 100%;
 }
 .fake-table-d {
   padding: 20px;
@@ -603,11 +601,15 @@ input:focus {
   background-color: #2C2C2C;
   width: 70vh;
   border: .5px solid;
+  border-radius: 10px;
 }
 .table-container-index {
   width: 100%;
   text-align: center;
-  background-color: #F7F9FB;
+  background-color: #201F1C;
+}
+.table-container-index th{
+  color: #B1B1B1;
 }
 .table-container-index-d {
   width: 100%;
@@ -730,6 +732,17 @@ input:focus {
   background: var(--primary-light, #F7F9FB);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
   padding: 6vh;
+  margin-right: 20px;
+}
+.row-container-a {
+  justify-content: space-around;
+  flex-direction: column;
+  display: flex;
+  border-radius: var(--16, 16px);
+  background: rgba(13, 61, 100);
+  color: #ffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  padding: 2vh;
   margin-right: 20px;
 }
 .row-user-d {
@@ -995,6 +1008,15 @@ input:focus {
     padding: 6vh;
     margin-right: 0;
   }
+  .row-container-a {
+    justify-content: space-around;
+    width: 100%;
+    display: flow-root;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 2vh;
+    margin-right: 0;
+  }
   .row-container-d {
     justify-content: space-around;
     width: 100%;
@@ -1071,7 +1093,7 @@ input:focus {
     padding: 0;
     display: grid;
     justify-content: center; 
-    border: .5px solid;
+    border-radius: 10px;
     width: 100%;
   }
   .table-index-d {
@@ -1086,7 +1108,6 @@ input:focus {
     width: 100%;
   }
   .table-container-index {
-    background-color: #fff;
     max-width: 100%; 
     width: 100%; 
     min-width: 100%; 
