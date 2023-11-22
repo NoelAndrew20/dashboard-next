@@ -1,20 +1,96 @@
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useEffect, useState } from 'react';
 const axios = require('axios');
+
 const ProveedorForm = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [selectedFile, setSelectedFile] = useState(null);
-    const [formData, setFormData] = useState([]);
+    const [formData, setFormData] = useState({
+        actividadesEconomicas: [
+          { orden: '', actividad: '', porcentaje: '', fechaInicio: '', fechaFin: '' },
+        ],
+        regimenes: [
+          { descripcion: '', fechaInicio: '', fechaFin: '' },
+        ],
+      });
+
+    const handleTipoProveedorChange = (event) => {
+        setFormData({
+            ...formData,
+            tipoProveedor: event.target.value,
+        });
+    };
 
     const handleFileChange = (event) => {
-        const file = event.target.files[0]; 
+        const file = event.target.files[0];
         setSelectedFile(file);
     };
-   
+
+    const handleActividadChange = (index, field, value) => {
+        const newActividades = [...formData.actividadesEconomicas];
+        newActividades[index][field] = value;
+        setFormData({
+          ...formData,
+          actividadesEconomicas: newActividades,
+        });
+      };
+
+    const handleRegimenChange = (index, field, value) => {
+        const newRegimenes = [...formData.regimenes];
+        newRegimenes[index][field] = value;
+        setFormData({
+          ...formData,
+          regimenes: newRegimenes,
+        });
+      };
+
+    const addActividad = () => {
+        setFormData({
+            ...formData,
+            actividadesEconomicas: [...formData.actividadesEconomicas, {}],
+        });
+    };
+
+    const removeActividad = (index) => {
+        const newActividades = [...formData.actividadesEconomicas];
+        newActividades.splice(index, 1);
+        setFormData({
+            ...formData,
+            actividadesEconomicas: newActividades,
+        });
+    };
+
+    const addRegimen = () => {
+        setFormData({
+            ...formData,
+            regimenes: [...formData.regimenes, {}],
+        });
+    };
+
+    const removeRegimen = (index) => {
+        const newRegimenes = [...formData.regimenes];
+        newRegimenes.splice(index, 1);
+        setFormData({
+            ...formData,
+            regimenes: newRegimenes,
+        });
+    };
+
+
     const handleSubmit = (e) => {
+        //const constanciaFile = e.target.constancia.files[0];
         e.preventDefault();
+        const constanciaFile = document.getElementById('constancia').files[0];
+        const caratulaFile = document.getElementById('caratula').files[0];
+        const opinionFile = document.getElementById('opinion').files[0];
+
+        const formData2 = new FormData();
+        formData2.append('constanciaFile', constanciaFile);
+        formData2.append('caratulaFile', caratulaFile);
+        formData2.append('opinionFile', opinionFile);
 
         const newFormData = {
+            tipoProveedor: formData.tipoProveedor,
             denominacion: e.target.denominacion.value,
             rfc: e.target.rfc.value,
             regimenCapital: e.target.regimenCapital.value,
@@ -26,36 +102,62 @@ const ProveedorForm = () => {
             localidad: e.target.localidad.value,
             municipio: e.target.municipio.value,
             entidad: e.target.entidad.value,
-            calle1: e.target.calle1.value,
-            calle2: e.target.calle2.value,
-            actividad: e.target.actividad.value,
-            regimen: e.target.regimen.value,
+            //calle1: e.target.calle1.value,
+            //calle2: e.target.calle2.value,
+            actividadesEconomicas: formData.actividadesEconomicas,
+            regimenes: formData.regimenes,
             correo: e.target.correo.value,
             nombre: e.target.nombre.value,
             telefono: e.target.telefono.value,
-            file: selectedFile,
         };
-        
-        //console.log(newFormData);
-        //setFormData([...formData, newFormData]);
-        //e.target.reset();
-    //};
+
+        console.log(newFormData);
 
     const apiUrl = 'http://localhost:3070/addProveedor/';
+    const apiUrl2 = 'http://localhost:3070/addDocumentoProveedor/';
     //const apiUrl = 'http://192.168.100.10:3070/addProveedor/';
-        axios.post(apiUrl, newFormData)
-        .then(response => {
-            console.log("Respuesta de la API:", response.data);
-        })
-        .catch(error => {
-            console.error("Error al enviar la solicitud:", error);
-        });
-    };
+    axios.post(apiUrl, newFormData)
+    .then(response => {
+        console.log("Respuesta de la primera API:", response.data);
+        // Realiza la segunda solicitud después de que la primera haya terminado
+        return axios.post(apiUrl2, formData2);
+    })
+    .then(response2 => {
+        console.log("Respuesta de la segunda API:", response2.data);
+    })
+    .catch(error => {
+        console.error("Error al enviar la solicitud:", error);
+    });
+
+    }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <h2 className="font-bold">Tipo de proveedor</h2>
+            <div className="modal-cel mt-2">
+                <div className="modal-item w-1/3">
+                    <label>Tipo de Proveedor:</label>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <select
+                        name="tipoProveedor"
+                        value={formData.tipoProveedor}
+                        onChange={handleTipoProveedorChange}
+                        className={isDarkMode ? "modal-input-d" : "modal-input"}
+                        >
+                            <option value="">Selecciona un tipo</option>
+                            <option value="alimento">Alimento</option>
+                            <option value="vacunas">Vacunas</option>
+                            <option value="medicamento">Medicamento</option>
+                            <option value="materiasPrimas">Materias Primas</option>
+                            <option value="otro1">Otro 1</option>
+                            <option value="otro2">Otro 2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <h2 className="font-bold">Datos de identificación del contribuyente</h2>
             <div className="modal-cel mt-2">
+
                 <div className="modal-item w-1/3">
                     <label>Denominación / Razon social:</label>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
@@ -129,7 +231,7 @@ const ProveedorForm = () => {
                         <input type="text" name="entidad" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
                     </div>
                 </div>
-                <div className="modal-item w-1/3">
+                {/*<div className="modal-item w-1/3">
                     <label>Entre calle:</label>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                         <input type="text" name="calle1" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
@@ -138,34 +240,118 @@ const ProveedorForm = () => {
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                         <input type="text" name="calle2" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
                     </div>
-                </div>
+                    </div>*/}
             </div>
             <h2 className="font-bold">Actividades económicas</h2>
             <div className="modal-cel mt-2">
-                <div className="modal-item w-1/3">
-                    <label>Actividad económica:</label>
+                {formData.actividadesEconomicas.map((actividad, index) => (
+                <div key={index} className="modal-item w-1/3">
+                    <label>Orden:</label>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" name="actividad" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
+                        <input
+                            type="text"
+                            value={actividad.orden || ''}
+                            onChange={(e) => handleActividadChange(index, 'orden', e.target.value)}
+                            className={isDarkMode ? "modal-input-d" : "modal-input"}
+                            />
                     </div>
+                    <label>Actividad Económica:</label>
+                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                    <input
+                    type="text"
+                    value={actividad.actividad || ''}
+                    onChange={(e) => handleActividadChange(index, 'actividad', e.target.value)}
+                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    />
                 </div>
-                <div className="modal-item w-1/3"></div>
-                <div className="modal-item w-1/3"></div>
+                <label>Porcentaje:</label>
+                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                    <input
+                    type="text"
+                    value={actividad.porcentaje || ''}
+                    onChange={(e) => handleActividadChange(index, 'porcentaje', e.target.value)}
+                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    />
+                </div>
+                <label>Fecha Inicio:</label>
+                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                    <input
+                        type="text"
+                        value={actividad.fechaInicio || ''}
+                        onChange={(e) => handleActividadChange(index, 'fechaInicio', e.target.value)}
+                        className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    />
+                </div>
+                <label>Fecha Fin:</label>
+                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                    <input
+                        type="text"
+                        value={actividad.fechaFin || ''}
+                        onChange={(e) => handleActividadChange(index, 'fechaFin', e.target.value)}
+                        className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    />
+                </div>
+                
+                <button type="button" onClick={() => removeActividad(index)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2">
+                            Eliminar Actividad
+                        </button>
             </div>
+            ))}
+            <div className="modal-item w-1/3">
+                <button type="button" onClick={addActividad} className="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Agregar Actividad
+                </button>
+            </div>
+                
+        </div>
+
             <h2 className="font-bold">Regímenes</h2>
             <div className="modal-cel mt-2">
-                <div className="modal-item w-1/3">
-                    <label>Régimen:</label>
+                {formData.regimenes.map((regimen, index) => (
+                <div key={index} className="modal-item w-1/3">
+                    <label>Descripción:</label>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="text" name="regimen" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
+                        <input
+                            type="text"
+                            value={regimen.descripcion || ''}
+                            onChange={(e) => handleRegimenChange(index, 'descripcion', e.target.value)}
+                            className={isDarkMode ? "modal-input-d" : "modal-input"}
+                        />
                     </div>
+                    <label>Fecha Inicio:</label>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input
+                            type="text"
+                            value={regimen.fechaInicio || ''}
+                            onChange={(e) => handleRegimenChange(index, 'fechaInicio', e.target.value)}
+                            className={isDarkMode ? "modal-input-d" : "modal-input"}
+                        />
+                    </div>
+                    <label>Fecha Fin:</label>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input
+                            type="text"
+                            value={regimen.fechaFin || ''}
+                            onChange={(e) => handleRegimenChange(index, 'fechaFin', e.target.value)}
+                            className={isDarkMode ? "modal-input-d" : "modal-input"}
+                        />
+                    </div>
+                    <button type="button" onClick={() => removeRegimen(index)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2">
+                            Eliminar Regimen
+                    </button>
                 </div>
+                ))}
+
+                
                 <div className="modal-item w-1/3">
-                    
+                    <button type="button" onClick={addRegimen} className="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        Agregar Régimen
+                    </button>
                 </div>
-                <div className="modal-item w-1/3">
-        
+
+                <div className="modal-item w-1/3"></div>
                 </div>
-            </div>
+
             <h2 className="font-bold">Datos de contacto</h2>
             <div className="modal-cel mt-2">
                 <div className="modal-item w-1/3">
@@ -192,7 +378,29 @@ const ProveedorForm = () => {
                 <div className="modal-item w-1/2">
                     <label>Subir archivo:</label>
                     <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-                        <input type="file" name="file" onChange={handleFileChange} className={isDarkMode ? "modal-input-d" : "modal-input"} />
+                        <input type="file" id="constancia" name="constancia" onChange={handleFileChange} className={isDarkMode ? "modal-input-d" : "modal-input"} />
+                    </div>
+                </div>
+                <div className="modal-item w-1/2"></div>
+            </div>
+
+                <h2 className="font-bold">Carátula de estado de cuenta</h2>
+            <div className="modal-cel mt-2">
+                <div className="modal-item w-1/2">
+                    <label>Subir archivo:</label>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="file" id="caratula" name="caratula" onChange={handleFileChange} className={isDarkMode ? "modal-input-d" : "modal-input"} />
+                    </div>
+                </div>
+                <div className="modal-item w-1/2"></div>
+            </div>
+
+                <h2 className="font-bold">Opinión de cumplimiento del SAT</h2>
+            <div className="modal-cel mt-2">
+                <div className="modal-item w-1/2">
+                    <label>Subir archivo:</label>
+                    <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                        <input type="file" id="opinion" name="opinion" onChange={handleFileChange} className={isDarkMode ? "modal-input-d" : "modal-input"} />
                     </div>
                 </div>
                 <div className="modal-item w-1/2"></div>
@@ -202,6 +410,7 @@ const ProveedorForm = () => {
                         Guardar
                     </button>
                 </div>
+
         </form>
     )
 }
