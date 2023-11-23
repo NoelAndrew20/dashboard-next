@@ -20,67 +20,69 @@ with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
 # ---- Creacion del pipeline de Pregunta Respuesta ---- #
-document_store = InMemoryDocumentStore()
+def principal(question):
 
-retriever = EmbeddingRetriever(document_store=document_store,embedding_model=config['ModelEmbeddingRetriever'], 
-                               use_gpu=True,scale_score=True, progress_bar=False)
-pipe = FAQPipeline(retriever=retriever)
-preguntas = obtener_preguntas(retriever)
-document_store.write_documents(preguntas)
-# --- Implementacion --- #
-more_question = True
+    document_store = InMemoryDocumentStore()
+
+    retriever = EmbeddingRetriever(document_store=document_store,embedding_model=config['ModelEmbeddingRetriever'], 
+                                use_gpu=True,scale_score=True, progress_bar=False)
+    pipe = FAQPipeline(retriever=retriever)
+    preguntas = obtener_preguntas(retriever)
+    document_store.write_documents(preguntas)
+    # --- Implementacion --- #
+    more_question = True
 
 
-print('Question:')
-question = sys.argv[1] #solicitar pregunta
-print(question)
-inferencia = obtener_inferencia(question, pipe)
-funcion_respuesta = obtener_respuesta(inferencia)
-obtener_parametros(eval(funcion_respuesta))
-print('diccionario generado')
-print("listo?")
+    print('Question:')
+    # question = sys.argv[1] #solicitar pregunta
+    print(question)
+    inferencia = obtener_inferencia(question, pipe)
+    funcion_respuesta = obtener_respuesta(inferencia)
+    obtener_parametros(eval(funcion_respuesta))
+    print('diccionario generado')
+    print("listo?")
 
-parametros = {}
-with open('requisitos_2.json', 'r') as j:
-    json_res = json.load(j)
-    if json_res == {}:
-        # Entrar al bloque if solo si el contenido es un diccionario vacío
+    parametros = {}
+    with open('requisitos_2.json', 'r') as j:
+        json_res = json.load(j)
+        if json_res == {}:
+            # Entrar al bloque if solo si el contenido es un diccionario vacío
+            with open('senal.json', 'r') as senal_file:
+                data = json.load(senal_file)
+                data['senal'] = True
+                with open('senal.json', 'w') as senal_file:
+                    json.dump(data, senal_file)
+    cargar = {}
+    cargar.update({"answer": "Puedes Abrir el cuestionario"})
+    with open("respuesta.json", "w") as archivo_json:
+        json.dump(cargar, archivo_json)
+
+    def leer_senal():
         with open('senal.json', 'r') as senal_file:
             data = json.load(senal_file)
-            data['senal'] = True
-            with open('senal.json', 'w') as senal_file:
-                json.dump(data, senal_file)
-cargar = {}
-cargar.update({"answer": "Puedes Abrir el cuestionario"})
-with open("respuesta.json", "w") as archivo_json:
-    json.dump(cargar, archivo_json)
+            return data['senal']
+    while True:
+        senal = leer_senal()
+        #resp= input()
+        if senal:
+            print('ejecutando')
+            cargar = {}
+            cargar.update({"answer": "Pensando.."})
+            with open("respuesta.json", "w") as archivo_json:
+                json.dump(cargar, archivo_json)
+            with open('requisitos_2.json', 'r') as j:
+                json_res = json.load(j)
+                print(json_res)
 
-def leer_senal():
-    with open('senal.json', 'r') as senal_file:
-        data = json.load(senal_file)
-        return data['senal']
-while True:
-    senal = leer_senal()
-    #resp= input()
-    if senal:
-        print('ejecutando')
-        cargar = {}
-        cargar.update({"answer": "Pensando.."})
-        with open("respuesta.json", "w") as archivo_json:
-            json.dump(cargar, archivo_json)
-        with open('requisitos_2.json', 'r') as j:
-            json_res = json.load(j)
-            print(json_res)
-
-        respuesta_larga = ejecutar_funcion(eval(funcion_respuesta), json_res )
-        print(respuesta_larga)
-        audio_resp, text  = respuesta_audio(question,respuesta_larga)
-        print('Answer:', text)
-        response = {}
-        response.update({"answer": respuesta_larga})
-        with open("respuestacons.json", "w") as archivo_json:
-            json.dump(response,archivo_json)
-        break
-    else:
-        print('...')
-    time.sleep(5)
+            respuesta_larga = ejecutar_funcion(eval(funcion_respuesta), json_res )
+            print(respuesta_larga)
+            audio_resp, text  = respuesta_audio(question,respuesta_larga)
+            print('Answer:', text)
+            response = {}
+            response.update({"answer": respuesta_larga})
+            with open("respuestacons.json", "w") as archivo_json:
+                json.dump(response,archivo_json)
+            break
+        else:
+            print('...')
+        time.sleep(5)

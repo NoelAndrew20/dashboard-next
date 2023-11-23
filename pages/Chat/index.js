@@ -27,7 +27,53 @@ const ChatWindow = ({ title, description, image }) => {
     const [audioSource, setAudioSource] = useState(audioSrc);
     const [recognition, setRecognition] = useState(null);
     const [isListening, setIsListening] = useState(false);
-  
+    const [isWelcomeAudioPlayed, setIsWelcomeAudioPlayed] = useState(false);
+    const [isUsernameSet, setIsUsernameSet] = useState(false);
+    const userMessages = chatMessages.filter(message => message.isUser);
+    const serverMessages = chatMessages.filter(message => !message.isUser);
+
+    useEffect(() => {
+      const playWelcomeAudio = async () => {
+        try {
+
+          const username = "Alfonso";
+          await axios.post('http://localhost:5000/api/pronostico/python/Constanza_v15/usuario', { username });
+          setIsUsernameSet(true);
+
+          const welcomeSound = new Howl({
+            src: ['./api/pronostico/python/Constanza_v15/Bienvenida.mp3'],
+            onend: () => {
+              setIsWelcomeAudioPlayed(true);
+              // Lógica adicional después de que se reproduzca el audio de bienvenida, si es necesario
+            },
+          });
+    
+          // Intenta iniciar manualmente el contexto de audio
+          const unlockAudioContext = () => {
+            welcomeSound.once('unlock', () => {
+              // Reproduce el sonido después de que el contexto de audio se haya desbloqueado
+              welcomeSound.play();
+            });
+          };
+    
+          // Verifica si el contexto de audio está bloqueado y, si es así, intenta desbloquearlo
+          if (Howler.ctx.state === 'suspended') {
+            unlockAudioContext();
+          } else {
+            // Reproduce el sonido directamente si el contexto de audio ya está desbloqueado
+            welcomeSound.play();
+          }
+        } catch (error) {
+          console.error('Error al reproducir el audio de bienvenida:', error);
+        }
+      };
+    
+      // Llama a la función al montar el componente
+      if (!isUsernameSet) {
+    playWelcomeAudio();
+  }
+    }, []);
+    
     const elNavegadorEsCompatible = () => {
       return (
         navigator.userAgent.indexOf('Chrome') > -1 ||
@@ -120,6 +166,12 @@ const ChatWindow = ({ title, description, image }) => {
       console.log("respuestaant",prevAnswer);
     };
 
+    const handleFormSubmit = (formData) => {
+     console.log("Pregunta del modal",formData);
+     const question = formData.Question;
+     addMessageToChat(question, true);
+    };
+
     const cerrarModal = () => {
       setIsModalOpen(false);
     }
@@ -129,8 +181,9 @@ const ChatWindow = ({ title, description, image }) => {
     });
 
     const playAudio = (e) => {
-      e.preventDefault();
-    
+      if (e) {
+        e.preventDefault();
+      }    
       if (audioRef.current) {
         audioRef.current.src = audioSource;
         audioRef.current.play();
@@ -138,25 +191,35 @@ const ChatWindow = ({ title, description, image }) => {
     };
     
     const addMessageToChat = (message, isUser) => {
-      
+      // Filtra los mensajes no deseados
+      if (message === "Hello ChatPig" || message === "Bienvenido" || message === null) {
+        return;
+      }
+    
+      // Verifica si el mensaje ya existe en el estado del chat
+      if (chatMessages.some((msg) => msg.text === message)) {
+        return;
+      }
+
+      // Agrega el nuevo mensaje al estado del chat
       setChatMessages((prevMessages) => [
         ...prevMessages,
         { text: message, isUser },
       ]);
       console.log(`Nuevo mensaje: ${message}`);
     };
-
-  
+    
 
     useEffect(() => {
 
-      if (respuesta.answer !== prevAnswer) {
+      if (respuesta.answer !== prevAnswer && isWelcomeAudioPlayed) {
         setPrevAnswer(respuesta.answer);
     
-        if (respuesta.answer === "Esperando") {
+        if (json.answer === "Esperando") {
           
-          setAudioSource("./api/pronostico/python/Constanza_v15/respuesta.mp3");
-          sound.play();
+          const timestamp = new Date().getTime(); // Obtener un sello de tiempo actual
+          setAudioSource(`./api/pronostico/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+          playAudio();
         }
         if (message) {
           addMessageToChat(message, true);
@@ -165,7 +228,7 @@ const ChatWindow = ({ title, description, image }) => {
           addMessageToChat(respuesta.answer, false);
         }
       }
-    }, [respuesta.answer, prevAnswer]);
+    }, [respuesta.answer, prevAnswer, isWelcomeAudioPlayed]);
     
 
     useEffect(() => {
@@ -224,8 +287,9 @@ const ChatWindow = ({ title, description, image }) => {
           console.log("Respuesta de Constanza JSON:", data);
           console.log("Mensaje de Constanza:", data.answer);
           console.log("Respuesta",respuestaDelServidor);
-          console.log(respuesta.answer);
+          console.log("onjeto",respuesta.answer);
           setRespuestaDelServidor(data.answer);
+          console.log("respuestachida",data.answer);
   
           // Agrega la respuesta actual al arreglo de mensajes
           if (json.answer === "Esperando") {
@@ -241,7 +305,7 @@ const ChatWindow = ({ title, description, image }) => {
         } else {
           console.error("Error al comunicarse con Constanza");
         }
-        console.log(respuesta.answer)
+        console.log("dew",respuesta.answer)
         console.log(`Mensaje del usuario: ${message}`);
         console.log(`Respuesta del servidor: ${data.answer}`);
 
@@ -249,6 +313,16 @@ const ChatWindow = ({ title, description, image }) => {
         console.error("Error en la solicitud:", error);
       }
     };
+
+    const combinedMessages = [];
+    for (let i = 0; i < Math.max(userMessages.length, serverMessages.length); i++) {
+      if (userMessages[i]) {
+        combinedMessages.push(userMessages[i]);
+      }
+      if (serverMessages[i]) {
+        combinedMessages.push(serverMessages[i]);
+      }
+    }
 
     return (
       <>
@@ -264,18 +338,28 @@ const ChatWindow = ({ title, description, image }) => {
             <div className="bg-white">
               <div>
                 <Modal isOpen={isModalOpen} onClose={cerrarModal}>
-                  <Formulario jsonFile="requisitos_2" closeModal={cerrarModal} />
+                  <Formulario jsonFile="requisitos_2" closeModal={cerrarModal} onFormSubmit={handleFormSubmit} />
                 </Modal>
               </div>
               <div className="w-100 h-200 bg-white p-3">
                 
               </div>
-              
-              <form className="wrapper full-viewport bg-white">
-                <div className="flex justify-center h-80 m-20 flex-col rounded-md text-lg text-black">
-                <div id="chat" className=' w-full h-full overflow-y-auto rounded-lg'>
-                  {chatMessages.map((message, index) => (
-                  <div
+             
+              <form className="wrapper full-viewport bg-white" >
+              <div
+                className="absolute inset-0 bg-center"
+                style={{
+                  backgroundImage: 'url("./images/ConstanzaWallpaper.png")',
+                  opacity: 0.3,
+                  transform: 'scale(0.5)',
+                  zIndex: 0,
+                }}
+              />
+              <div className="relative z-10 h-80">
+                <div className="flex justify-center h-full m-20 flex-col rounded-md text-lg text-black">
+                <div className='h-full overflow-y-auto rounded-lg'>
+                {combinedMessages.map((message, index) => (
+                    <div
                       key={index}
                       className={message.isUser ? "user-message flex" : "system-message flex"}
                     >
@@ -295,11 +379,10 @@ const ChatWindow = ({ title, description, image }) => {
                     </div>
                   ))}
                 </div>
-                
                 </div>
-                <div className="flex mt-40">
+                <div className="flex mt-40 p">
                   <div className="flex flex-col w-full justify-start">
-                            <div className="flex justify-center w-200 h-200 p-3 rounded-md">
+                            <div className="flex justify-center w-200 h-100 p-3 rounded-md">
                                 <div>
                                   <Image
                                     src={"/images/icon/logo_blanco.png"}
@@ -308,51 +391,54 @@ const ChatWindow = ({ title, description, image }) => {
                                     width={30}
                                     height={30} />
                                 </div>
-                                {<p className="font-bold self-center">Constanza:{respuesta.answer}</p>}
+                                {<p className="font-bold self-center"></p>}
                                 {respuesta.answer && (
-                                  <button onClick={playAudio}>
-                                    <img src="./images/svg/playblack.svg" alt="Play" width={20} />
-                                  </button>
+                                  <div>
+                                    <button onClick={playAudio}>
+                                      <img src="./images/svg/playblack.svg" alt="Play" width={20} />
+                                    </button>
+
+                                    <audio ref={audioRef}>
+                                      <source src={`./api/pronostico/python/Constanza_v15/respuesta.mp3?${new Date().getTime()}`} type="audio/mpeg" />
+                                      Tu navegador no soporta la reproducción de audio.
+                                    </audio>
+                                  </div>
                                 )}
-                                <audio autoPlay ref={audioRef}>
-                                  <source src="./api/pronostico/python/Constanza_v15/respuesta.mp3" type="audio/mpeg" />
-                                  Tu navegador no soporta la reproducción de audio.
-                                </audio>
                             </div>
                             <div style={{ display: "flex", justifyContent: "start", marginLeft: "1%" }}>
                               {json.answer === "Pensando.." ? (
                                 <img
-                                  src="/images/icon/Constanzatransf.gif"
-                                  width={60}
-                                  height={60}
+                                  src="/images/Constanzapensando.gif"
+                                  width={80}
+                                  height={80}
                                   alt="gif"
                                   className="mr-2" />
                               ) : json.answer === "Puedes Abrir el cuestionario" ? (
                                 <Image
-                                  src="/images/icon/Constanzatransf.gif"
-                                  width={60}
-                                  height={60}
+                                  src="/images/Constanzaespera.gif"
+                                  width={80}
+                                  height={80}
                                   alt="pig"
                                   className="mr-2" />
                               ) : json.answer.includes("Error") ? (
                                 <Image
-                                  src="/images/icon/logo_color.png"
-                                  width={60}
-                                  height={60}
+                                  src="/images/ConstanzaLogo_00000.png"
+                                  width={80}
+                                  height={80}
                                   alt="pig"
                                   className="mr-2" />
                               ) : json.answer === "Esperando" ? (
                                 <Image
-                                  src="/images/icon/logo_color.png"
-                                  width={60}
-                                  height={60}
+                                  src="/images/ConstanzaLogo_00000.png"
+                                  width={80}
+                                  height={80}
                                   alt="pig"
                                   className="mr-2" />
                               ) : (
                                 <Image
-                                  src="/images/icon/logo_color.png"
-                                  width={60}
-                                  height={60}
+                                  src="/images/ConstanzaLogo_00000.png"
+                                  width={80}
+                                  height={80}
                                   alt="pig"
                                   className="mr-2" />
                               )}
@@ -388,6 +474,7 @@ const ChatWindow = ({ title, description, image }) => {
                       </div>
                     </div>
                   </div>
+                </div>
               </form>
             </div>
           </div>

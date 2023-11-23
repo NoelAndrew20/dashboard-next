@@ -658,9 +658,9 @@ input:focus {
 }
 .modal-content {
   background-color: #fff;
-  width: 70%;
+  width: 30%;
   border-radius: 15px;
-  max-height: 80%;
+  max-height: 70%;
 }
 .modal-content-d {
   background-color: #2C2C2C;
@@ -950,6 +950,7 @@ input:focus {
   background-color: #F7F9FB;
   padding: 10px;
   margin: 10px;
+  margin-right: 70%;
   border-radius: 5px;
 }
 
@@ -958,13 +959,16 @@ input:focus {
   color: white;
   padding: 10px;
   margin: 10px;
+  margin-left: 60%;
   border-radius: 5px;
 }
 .user-message{
   display: flex;
   background-color: rgba(20, 33, 61, 1);
+  color: #FFFFFF;
   border-radius: 20px;
   justify-content: space-around;
+  font-size: 20px;
 }
 .system-message{
   justify-content: space-around;
@@ -973,6 +977,7 @@ input:focus {
   justify-content: flex-end;
   border-radius: 20px;
   background-color: rgba(193, 173, 98, 1);
+  font-size: 20px;
 }
 /* Animación de escritura */
 @keyframes typing {
