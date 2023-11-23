@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-const Formulario = ({ jsonFile, onSubmit }) => {
+const Formulario = ({ jsonFile, onSubmit, onFormSubmit }) => {
   const [formData, setFormData] = useState({});
   const [jsonDescription, setJsonDescription] = useState(null);
 
@@ -26,7 +26,10 @@ const Formulario = ({ jsonFile, onSubmit }) => {
       }
     )
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+      console.log("respuestaservidor",data)
+      onFormSubmit(formData);
+    })
       .catch((error) => console.error('Error al obtener los datos:', error));
   };
 
@@ -68,31 +71,45 @@ const Formulario = ({ jsonFile, onSubmit }) => {
     setFormData(jsonDescription); // Restablecer los valores desde el JSON
   };
 
+  const getTypeFromJSON = (fieldName) => {
+    // Obtener el tipo de dato del JSON (cadena, número, etc.)
+    const typeInfo = jsonDescription[fieldName];
+    const isDateField = fieldName.toLowerCase().includes('mes');
+
+    if (isDateField) {
+      return "date"; // Si el nombre del campo contiene "mes", renderizar un input de fecha
+    } else if (typeInfo && typeInfo.includes("str")) {
+      return "text"; // Si es una cadena, renderizar un input de texto
+    } else {
+      return "text"; // Por defecto, renderizar un input de texto
+    }
+  };
+
   if (!jsonDescription) {
     return <div>Cargando descripción del formulario...</div>;
   }
 
   return (
-    <div key={formKey}>
+    <div key={formKey} >
       <button type="button" class="transition hover:rounded-md hover:bg-orange-300" className="text-white border-blue-500 rounded-md focus:outline-none" onClick={handleFormReload}><img src={"/images/svg/update.svg"} width={20} height={20} ></img></button>
       {Object.keys(jsonDescription).map((key) => (
         <div key={key}>
-          <label className='text-black'>
+          <label className='text-black text-2xl flex flex-col items-center mt-3'>
             {key}:
             <input
-              className='hover:border-2 hover:border-orange-200 mb-5 text-black bg-orange-50  px-3 py-2 w-full text-lg rounded-md focus:outline-none'
-              type="text"
+              className='hover:border-2 hover:border-black mb-5 text-black bg-white border-2 border-neutral-200 px-3 py-2 w-2/4 text-lg rounded-md focus:outline-none'
+              type={getTypeFromJSON(key)} // Utilizar la función para determinar el tipo de entrada
               name={key}
               value={formData[key] || ''}
               onChange={handleChange}
             />
           </label>
-          
         </div>
-        
       ))}
-      <button type="submit" className="button" onClick={guardardatosjson}>Listo</button>
-    </div>
+        <div className='flex justify-end'>
+          <button type="submit" onClick={guardardatosjson}><img src='./images/svg/send.svg' width={40}></img></button>
+        </div>
+      </div>
   );
 };
 
