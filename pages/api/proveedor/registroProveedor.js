@@ -6,7 +6,7 @@ const config = require('../../../config.json');
 
 const app = express();
 const mongoUrl = config.mongodesarrollo;
-
+const bcrypt = require('bcrypt');
 // Configuración de CORS y middleware JSON
 app.use(cors());
 app.use(express.json());
@@ -21,7 +21,7 @@ mongoose.connect(mongoUrl, {
   })
   .catch((e) => console.log(e));
 
-const db = mongoose.connection.useDb("C3_LaPurisima");
+const db = mongoose.connection.useDb("prototipoGranja");
 
 // Manejo de eventos de la conexión a la base de datos
 db.on('error', console.error.bind(console, 'Error connecting to the database:'));
@@ -89,6 +89,22 @@ const ProveedorSchema = new mongoose.Schema(
   }
 );
 
+const UsuarioSchema = new mongoose.Schema(
+  {
+    usuario: String,
+    nombre: String,
+    password: String,
+    email: String, 
+    proveedor: Number,
+  },
+  {
+    //collection: 'usuarios', // Nombre de la colección en la base de datos
+    collection: 'usuario',
+    versionKey: false,
+  }
+);
+
+const Usuario = db.model('usuario', UsuarioSchema);
 const Proveedor = db.model('Proveedor', ProveedorSchema);
 
 
@@ -99,13 +115,21 @@ const Proveedor = db.model('Proveedor', ProveedorSchema);
 
 app.post("/addProveedor", async (req, res) => {
   const newProveedor = req.body;
-  console.log(newProveedor);
+  
 
   let primeraLetra = '';
-
   try {
-    const lastId = await Proveedor.findOne().sort({ id: -1 }).limit(1);
-    const nextId = lastId ? lastId.id + 1 : 1;
+    const lastId = await Proveedor
+    .findOne({})
+    .sort({ id: -1 })
+    .select('id');
+
+    let nuevoLastid = 1;
+    //const nextId = lastId ? lastId.id + 1 : 1;
+    if (lastId) {
+      nuevoLastid = lastId.id + 1;
+      console.log(nuevoLastid);
+    }
 
     const tipoProveedor = newProveedor.tipoProveedor;
 
@@ -120,8 +144,8 @@ app.post("/addProveedor", async (req, res) => {
 
     const nuevoProveedor = new Proveedor({
       fecha: fechaActual,
-      id: nextId,
-      idProveedor: `${primeraLetra}${dia}${mes}${anio}${nextId}`,
+      id: nuevoLastid,
+      idProveedor: `${primeraLetra}${dia}${mes}${anio}${nuevoLastid}`, 
       tipoProveedor: newProveedor.tipoProveedor,
       denominacion: newProveedor.denominacion,
       rfc: newProveedor.rfc,
@@ -143,6 +167,18 @@ app.post("/addProveedor", async (req, res) => {
 
     await nuevoProveedor.save();
 
+    const hashedPassword = await bcrypt.hash(nuevoProveedor.rfc, 12);
+
+    const nuevoUsuario = new Usuario({
+      usuario: nuevoProveedor.idProveedor,
+      nombre: nuevoProveedor.nombre,
+      password: hashedPassword,
+      email: nuevoProveedor.correo,
+      proveedor: 1,
+    });
+
+    await nuevoUsuario.save();
+
     res.status(200).json({ message: 'Datos guardados con éxito' });
   } catch (error) {
     console.error('Error al guardar los datos:', error);
@@ -153,7 +189,6 @@ app.post("/addProveedor", async (req, res) => {
 
 app.post('/addDocumentoProveedor', uploadFiles(), (req, res) => {
   // Manejo del archivo subido
-  console.log(req.file);
   res.send('ok');
 });
 

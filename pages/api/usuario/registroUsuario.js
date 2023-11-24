@@ -52,6 +52,7 @@ const UsuarioSchema = new mongoose.Schema(
     cp: String, 
     tarea: String, 
     epp: String,
+    proveedor: Number, 
 },
   {
     //collection: 'usuarios', // Nombre de la colección en la base de datos
@@ -105,6 +106,7 @@ app.post("/addUsuario", async (req, res) => {
       cp: data.cp,
       tarea: data.tarea,
       epp: data.epp,
+      proveedor: 0,
     });
 
     await nuevoUsuario.save();
