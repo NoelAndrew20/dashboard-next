@@ -1,6 +1,6 @@
 // pages/index.js
 import React, { useState } from 'react'
-import InteractiveModel from '../../components/molecules/Simulador3D'
+import InteractiveModel from '../../components/molecules/Simulador3D/index.js'
 import Navigation from '@/components/molecules/Navigation';
 
 const IndexPage = () => {
@@ -19,44 +19,25 @@ const IndexPage = () => {
   
 
   return (
-    <div style={{
-      backgroundColor: '#000000'
-      }} >
+    <div>
       <Navigation/>
-      <div style={{
-      backgroundColor: '#000000'
-      }} >
-          <div>
-            <InteractiveModel/>
+      <main>
+      <div>
+        <div className='bg-white'>
+            <div className='h-1/2'>
+              <InteractiveModel/>
+            </div>
           </div>
       </div>
       <div style={{
         display: 'flex',
         flexDirection: 'column'
       }} >
-        <div id="informacionFigura" style={{
-        position: 'fixed',
-        right: 0,
-        height: '49%',
-        width: '25%', 
-        backgroundColor: '#333', 
-        color: '#fff', 
-        padding: '20px', 
-        overflow: 'auto' 
-      }} ></div>
-      <div id="graficapermanente" style={{
-        top: '55%',
-        position: 'fixed',
-        right: 0,
-        height: '42%',
-        width: '25%', 
-        backgroundColor: '#333', 
-        color: '#fff', 
-        padding: '20px', 
-        overflow: 'auto' 
-      }} >
+        
+      <div id="informacionFigura" className="fixed top-1/2 right-0 h-1/2 w-1/4 bg-gray-800 text-white p-5 overflow-auto">
       </div>
       </div>
+      </main>
     </div>
   )
 }
