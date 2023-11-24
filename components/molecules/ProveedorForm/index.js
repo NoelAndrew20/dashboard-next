@@ -1,5 +1,6 @@
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useEffect, useState } from 'react';
+
 const axios = require('axios');
 
 const ProveedorForm = () => {
@@ -146,12 +147,12 @@ const ProveedorForm = () => {
                         className={isDarkMode ? "modal-input-d" : "modal-input"}
                         >
                             <option value="">Selecciona un tipo</option>
-                            <option value="alimento">Alimento</option>
-                            <option value="vacunas">Vacunas</option>
-                            <option value="medicamento">Medicamento</option>
-                            <option value="materiasPrimas">Materias Primas</option>
-                            <option value="otro1">Otro 1</option>
-                            <option value="otro2">Otro 2</option>
+                            <option value="Alimento">Alimento</option>
+                            <option value="Vacunas">Vacunas</option>
+                            <option value="Medicamento">Medicamento</option>
+                            <option value="MateriasPrimas">Materias Primas</option>
+                            <option value="Otro1">Otro 1</option>
+                            <option value="Otro2">Otro 2</option>
                         </select>
                     </div>
                 </div>
