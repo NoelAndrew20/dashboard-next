@@ -2,11 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
+const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 const config = require('../../../config.json');
 
 const app = express();
 const mongoUrl = config.mongodesarrollo;
-const bcrypt = require('bcrypt');
+
 // Configuración de CORS y middleware JSON
 app.use(cors());
 app.use(express.json());
@@ -33,8 +35,10 @@ function uploadFiles(){
 const storage = multer.diskStorage({
     destination: './files',
     filename: function (_req, file, cb) {
-      var extension = file.originalname.slice(file.originalname.lastIndexOf('.'));
-      cb(null, Date.now() + extension);
+      const originalname = file.originalname.replace(/\s/g, ''); // Elimina espacios del nombre original
+      //const extension = originalname.slice(originalname.lastIndexOf('.'));
+      const filename = `${originalname}`;
+      cb(null, filename);
     }
   })
   
@@ -47,6 +51,35 @@ const storage = multer.diskStorage({
     { name: 'opinionFile', maxCount: 1 }
 ]);
 }
+
+async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
+  const remitente = 'proyectoConstanza01@gmail.com';
+  const password = 'ndqnuiihqxwscxna';
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: remitente,
+      pass: password,
+    },
+  });
+
+  const mensaje = {
+    from: remitente,
+    to: destinatario,
+    subject: asunto,
+    text: cuerpoMensaje,
+  };
+
+  try {
+    const info = await transporter.sendMail(mensaje);
+    console.log('Correo enviado: ', info.response);
+  } catch (error) {
+    console.error('Error al enviar el correo: ', error);
+    throw new Error('Error al enviar el correo');
+  }
+}
+
 
 const ProveedorSchema = new mongoose.Schema(
   {
@@ -79,9 +112,17 @@ const ProveedorSchema = new mongoose.Schema(
       fechaInicio: String,
       fechaFin: String
     }],
+    productos: [{
+      ID: String,
+      SKU: String, 
+      nombre: String,
+      unidad: String,
+      precio: Number
+    }],
     correo: String,
     nombre: String,
     telefono: Number,
+    estatuscorreo: Number,
   },
   {
     collection: 'proveedor',
@@ -160,9 +201,11 @@ app.post("/addProveedor", async (req, res) => {
       entidad: newProveedor.entidad,
       actividadesEconomicas: newProveedor.actividadesEconomicas || [],
       regimenes: newProveedor.regimenes || [],
+      productos: newProveedor.productos || [],
       correo: newProveedor.correo,
       nombre: newProveedor.nombre,
       telefono: newProveedor.telefono,
+      estatuscorreo: 0,
     });
 
     await nuevoProveedor.save();
@@ -178,6 +221,13 @@ app.post("/addProveedor", async (req, res) => {
     });
 
     await nuevoUsuario.save();
+
+    const destinatarioCorreo = nuevoProveedor.correo;
+    const asuntoCorreo = 'Proveedor Registrado en Constanza';
+    const mensajeCorreo = 'Se ha registrado en nuestro sistema como proveedor confiable, su correo es el proporcionado en el sistema y su contraseña es su RFC.';
+    await enviarCorreo(destinatarioCorreo, asuntoCorreo, mensajeCorreo);
+    nuevoProveedor.estatuscorreo = 1;
+    await nuevoProveedor.save();
 
     res.status(200).json({ message: 'Datos guardados con éxito' });
   } catch (error) {
