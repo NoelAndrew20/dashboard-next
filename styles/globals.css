@@ -979,6 +979,20 @@ input:focus {
   background-color: rgba(193, 173, 98, 1);
   font-size: 20px;
 }
+.send-btn {
+  top: 10%;
+  width: 5%;
+}
+.send-img {
+  width: 80%;
+  height: 80%;
+}
+.text-chat {
+  width: 80%;
+}
+.btns-chat {
+  width: 15%;
+}
 /* Animación de escritura */
 @keyframes typing {
   from {
@@ -1179,5 +1193,15 @@ input:focus {
     width: 100%;
     height: 80%;
     right: 0;
+  }
+  .send-btn {
+    top: 5%;
+    width: 10%;
+  }
+  .text-chat {
+    width: 70%;
+  }
+  .btns-chat {
+    width: 30%;
   }
 }

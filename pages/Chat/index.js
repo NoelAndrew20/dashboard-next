@@ -331,21 +331,19 @@ const ChatWindow = ({ title, description, image }) => {
         description={description}
         image={image} 
       />
-          <Navigation
-            toggleDarkMode={toggleDarkMode}
-            isDarkMode={isDarkMode} />
-          <div className='w-full h-full bg-black'>
-            <div className="bg-white">
-              <div>
-                <Modal isOpen={isModalOpen} onClose={cerrarModal}>
-                  <Formulario jsonFile="requisitos_2" closeModal={cerrarModal} onFormSubmit={handleFormSubmit} />
-                </Modal>
-              </div>
-              <div className="w-100 h-200 bg-white p-3">
-                
-              </div>
-             
-              <form className="wrapper full-viewport bg-white" >
+      <Navigation
+        toggleDarkMode={toggleDarkMode}
+        isDarkMode={isDarkMode} 
+      />
+      <div className='w-full h-full bg-black'>
+        <div className="bg-white">
+          <div>
+            <Modal isOpen={isModalOpen} onClose={cerrarModal}>
+              <Formulario jsonFile="requisitos_2" closeModal={cerrarModal} onFormSubmit={handleFormSubmit} />
+            </Modal>
+          </div>
+          <div className="w-100 h-200 bg-white p-3"></div>
+            <form className="wrapper full-viewport bg-white" >
               <div
                 className="absolute inset-0 bg-center"
                 style={{
@@ -355,125 +353,132 @@ const ChatWindow = ({ title, description, image }) => {
                   zIndex: 0,
                 }}
               />
-              <div className="relative z-10 h-80">
-                <div className="flex justify-center h-full m-20 flex-col rounded-md text-lg text-black">
-                <div className='h-full overflow-y-auto rounded-lg'>
-                {combinedMessages.map((message, index) => (
-                    <div
-                      key={index}
-                      className={message.isUser ? "user-message flex" : "system-message flex"}
-                    >
-                      <div className="w-3/4">
-                        {message.text}
-                      </div>
-                      <div>
-                        {!message.isUser && ( // Solo renderiza la imagen para los mensajes del sistema
+                <div className="relative z-10 h-80">
+                  <div className="flex justify-center h-full m-20 flex-col rounded-md text-lg text-black">
+                    <div className='h-full overflow-y-auto rounded-lg'>
+                      {combinedMessages.map((message, index) => (
+                        <div
+                          key={index}
+                          className={message.isUser ? "user-message flex" : "system-message flex"}
+                        >
+                          <div className="w-3/4">
+                            {message.text}
+                          </div>
+                          <div>
+                            {!message.isUser && ( // Solo renderiza la imagen para los mensajes del sistema
+                              <Image
+                                src={"/images/icon/logo_blanco.png"}
+                                alt="Constanza Logo"
+                                width={50}
+                                height={50}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex mt-40 p">
+                    <div className="flex flex-col w-full justify-start">
+                      <div className="flex justify-center w-200 h-100 p-3 rounded-md">
+                        <div>
                           <Image
                             src={"/images/icon/logo_blanco.png"}
                             alt="Constanza Logo"
-                            width={50}
-                            height={50}
-                          />
+                            className="mr-20"
+                            width={30}
+                            height={30} />
+                        </div>
+                        {<p className="font-bold self-center"></p>}
+                        {respuesta.answer && (
+                          <div className="flex ml-2">
+                            <button onClick={playAudio}>
+                              <img src="./images/svg/playblack.svg" alt="Play" width={20} />
+                            </button>
+                            <audio ref={audioRef}>
+                              <source src={`./api/pronostico/python/Constanza_v15/respuesta.mp3?${new Date().getTime()}`} type="audio/mpeg" />
+                              Tu navegador no soporta la reproducción de audio.
+                            </audio>
+                          </div>
                         )}
                       </div>
+                      <div className="flex justify-start ml-2">
+                        <div className="flex justify-start">
+                          {json.answer === "Pensando.." ? (
+                            <img
+                              src="/images/Constanzapensando.gif"
+                              width={80}
+                              height={80}
+                              alt="gif"
+                              className="mr-2" 
+                            />
+                            ) : json.answer === "Puedes Abrir el cuestionario" ? (
+                              <Image
+                                src="/images/Constanzaespera.gif"
+                                width={80}
+                                height={80}
+                                alt="pig"
+                                className="mr-2" />
+                            ) : json.answer.includes("Error") ? (
+                              <Image
+                                src="/images/ConstanzaLogo_00000.png"
+                                width={80}
+                                height={80}
+                                alt="pig"
+                                className="mr-2" />
+                            ) : json.answer === "Esperando" ? (
+                              <Image
+                                src="/images/ConstanzaLogo_00000.png"
+                                width={80}
+                                height={80}
+                                alt="pig"
+                                className="mr-2" />
+                            ) : (
+                              <Image
+                                src="/images/ConstanzaLogo_00000.png"
+                                width={80}
+                                height={80}
+                                alt="pig"
+                                className="mr-2" />
+                            )}
+                        </div>
+                        <div className="flex justify-start text-const w-3/4 items-center">
+                          {<p className="font-bold text-center">{json.answer}</p>}
+                        </div>
+                      </div>
+                    
                     </div>
-                  ))}
-                </div>
-                </div>
-                <div className="flex mt-40 p">
-                  <div className="flex flex-col w-full justify-start">
-                            <div className="flex justify-center w-200 h-100 p-3 rounded-md">
-                                <div>
-                                  <Image
-                                    src={"/images/icon/logo_blanco.png"}
-                                    alt="Constanza Logo"
-                                    className="mr-20"
-                                    width={30}
-                                    height={30} />
-                                </div>
-                                {<p className="font-bold self-center"></p>}
-                                {respuesta.answer && (
-                                  <div>
-                                    <button onClick={playAudio}>
-                                      <img src="./images/svg/playblack.svg" alt="Play" width={20} />
-                                    </button>
-
-                                    <audio ref={audioRef}>
-                                      <source src={`./api/pronostico/python/Constanza_v15/respuesta.mp3?${new Date().getTime()}`} type="audio/mpeg" />
-                                      Tu navegador no soporta la reproducción de audio.
-                                    </audio>
-                                  </div>
-                                )}
-                            </div>
-                            <div style={{ display: "flex", justifyContent: "start", marginLeft: "1%" }}>
-                              {json.answer === "Pensando.." ? (
-                                <img
-                                  src="/images/Constanzapensando.gif"
-                                  width={80}
-                                  height={80}
-                                  alt="gif"
-                                  className="mr-2" />
-                              ) : json.answer === "Puedes Abrir el cuestionario" ? (
-                                <Image
-                                  src="/images/Constanzaespera.gif"
-                                  width={80}
-                                  height={80}
-                                  alt="pig"
-                                  className="mr-2" />
-                              ) : json.answer.includes("Error") ? (
-                                <Image
-                                  src="/images/ConstanzaLogo_00000.png"
-                                  width={80}
-                                  height={80}
-                                  alt="pig"
-                                  className="mr-2" />
-                              ) : json.answer === "Esperando" ? (
-                                <Image
-                                  src="/images/ConstanzaLogo_00000.png"
-                                  width={80}
-                                  height={80}
-                                  alt="pig"
-                                  className="mr-2" />
-                              ) : (
-                                <Image
-                                  src="/images/ConstanzaLogo_00000.png"
-                                  width={80}
-                                  height={80}
-                                  alt="pig"
-                                  className="mr-2" />
-                              )}
-                              <div className="flex justify-start text-const w-full mt-16">
-                                {<p className="font-bold text-center">{json.answer}</p>}
-                              </div>
-                            </div>
-                              <div  className="relative">
-                              <textarea
-                                id="message-input"
-                                type="text"
-                                placeholder="Escribe tu mensaje..."
-                                className="text-black bg-slate-50 px-3 py-2 w-full h-full text-lg rounded-[20px] shadow border border-gray-800"
-                                value={message} // Establece el valor del textarea según el estado
-                                onChange={(e) => setMessage(e.target.value)}
-                              />
-                              <button className="absolute right-1 bottom-4 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-30" onClick={handleSubmit}>
-                                <img src='./images/svg/send.svg' width={40}></img>
-                              </button>
-                            </div>
-                          </div>  
-                    <div className="flex flex-col justify-around">
-                      <button onClick={clearChat}>
-                        <img src="./images/svg/trash.svg" alt="Play" width={20} />
-                      </button>
-                      <div className='flex p-5 mt-10'>
-                          <button className="bg-slate-400 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center" onClick={toggleRecognition} type="button">
-                            {isListening ? <img src="./images/svg/record.svg" alt="Play" width={40} /> : <img src="./images/svg/micro.svg" alt="Play" width={50} height={50}/>}
-                          </button>
-                          <button className="bg-slate-400 ml-5 mt-5 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center" onClick={abrirModal}>
-                          <img src="./images/svg/form.svg" alt="Play" width={40} height={40}/>
-                          </button>
+                    
+                  </div>
+                  <div  className="flex pb-5 mt-3">
+                    <div className="relative flex text-chat mr-2">
+                      <textarea
+                        id="message-input"
+                        type="text"
+                        placeholder="Escribe tu mensaje..."
+                        className="flex-grow text-black bg-slate-50 px-3 py-2 w-full h-full text-lg rounded-lg border border-gray-300 shadow-md"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                      />
+                      <div className="absolute right-0 top-10 mt-2 mr-3 text-white border-orange-300 rounded-md focus:outline-none send-btn">
+                        <button onClick={handleSubmit}>
+                          <img src='./images/svg/send.svg' alt="Send" className="send-img"/>
+                        </button>
                       </div>
                     </div>
-                  </div>
+                    <div className="flex justify-evenly items-center btns-chat">
+                      <div>
+                        <button className="bg-slate-400 text-white border-orange-300 mr-1 px-3 py-2 rounded-md focus:outline-none w-100 text-center shadow-md" onClick={toggleRecognition} type="button">
+                          {isListening ? <img src="./images/svg/record.svg" alt="Play" width={30}  height={30}/> : <img src="./images/svg/micro.svg" alt="Play" width={30} height={30}/>}
+                        </button>
+                      </div>
+                      <div>
+                        <button className="bg-slate-400 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center shadow-md" onClick={abrirModal}>
+                          <img src="./images/svg/form.svg" alt="Play" width={30}/>
+                        </button>
+                      </div>
+                    </div>
+                  </div> 
                 </div>
               </form>
             </div>
