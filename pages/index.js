@@ -15,13 +15,16 @@ import TableIndexZona from '@/components/atoms/TableIndexZona'
 import { useDarkMode } from '@/context/DarkModeContext'
 import Cookies from 'js-cookie';
 import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
+import io from 'socket.io-client';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import BarGranja from '@/components/atoms/BarGranja'
 import BarGestación1 from '@/components/atoms/BarGestacion1'
 import BarGestación2 from '@/components/atoms/BarGestación2'
 import BarZen from '@/components/atoms/BarZen'
 import cerdoIndex from '../public/images/imagenes/cerdoIndex.png';
 import Footer from '@/components/atoms/Footer'
-
+import notification from '@/components/molecules/AlertaNotificacion'
 const welcomeMessages = [
   "¡Bienvenid@!",
   "¡Hola!",
@@ -31,11 +34,37 @@ const welcomeMessages = [
 export default function Home({ title, description, image }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [name, setName] = useState("");
-
+  const [socket, setSocket] = useState(null);
   const usuariocookie = Cookies.get("userData");
   const userinfo = usuariocookie ? JSON.parse(usuariocookie) : null;
   
   const [welcomeIndex, setWelcomeIndex] = useState(0);
+
+
+  useEffect(() => {
+    // Conectar al servidor Socket.IO
+    const socketConnection = io('http://localhost:3001');
+
+    // Guardar el socket en el estado
+    setSocket(socketConnection);
+
+    // Limpiar la conexión al desmontar el componente
+    return () => {
+      socketConnection.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    // Verificar si el socket está disponible
+    if (socket) {
+      // Escuchar el evento 'nuevaAlerta' del servidor
+      socket.on('nuevaAlerta', (data) => {
+        // Mostrar notificación usando react-toastify
+        toast.success(data.mensaje);
+      });
+    }
+  }, [socket]);
+
 
   useEffect(() => {
     // Usar un temporizador para cambiar el mensaje cada 3 segundos
@@ -87,6 +116,7 @@ export default function Home({ title, description, image }) {
               toggleDarkMode={toggleDarkMode}
               isDarkMode={isDarkMode}
               />
+              <ToastContainer />
               <div className="relative index-cover">
                 <img src="/images/imagenes/constanza.gif" alt="Cerdo" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 background-cover"></div>
