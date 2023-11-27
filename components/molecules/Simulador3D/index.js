@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -7,22 +7,28 @@ import { LineBasicMaterial } from 'three';
 
 const ThreeModel = () => {
  
-
+const canvasRef = useRef();
 const scene = new THREE.Scene();
 const loader = new GLTFLoader();
 const rotationSpeed = 0.002;
 const radius = 70; 
-let angle = 0; 
+let angle = 0;
+const materialWhite = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
+const materialHovered = new THREE.MeshBasicMaterial({ color: 0xFF0000 }); 
+
+useEffect(() => {
+  // Accede al contexto del canvas
+  const canvas = canvasRef.current;
+  const renderer = new THREE.WebGLRenderer({ canvas });
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
 
 if (typeof window !== 'undefined') {
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.set(30,10,20);
   const target = new THREE.Vector3(20,0,0);
-
-  const renderer = new THREE.WebGLRenderer();
+  const renderer = new THREE.WebGLRenderer({ canvas });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
   
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true; 
@@ -77,7 +83,7 @@ loader.load(modelURL2, (gltf) => {
   const material1 = new THREE.MeshBasicMaterial({ color: 0x87FF00 }); // Material básico de color verde
   const material2 = new THREE.MeshBasicMaterial({ color: 0xFFF300 }); // Material básico de color verde
   const edges = new THREE.EdgesGeometry(geometry);
-  const lineMaterial = new THREE.LineBasicMaterial({ color: 0xFFFFFF }); // Cambia el color a tu elección
+  const lineMaterial = new THREE.LineBasicMaterial({ color: 0xFFFFFF, linewidth: 5}); // Cambia el color a tu elección
 
 
   const cube = new THREE.LineSegments(edges, lineMaterial);
@@ -131,11 +137,18 @@ loader.load(modelURL2, (gltf) => {
       // El cursor apunta a un objeto 3D
       // Puedes mostrar información del JSON aquí basada en el objeto apuntado
       const objetoApuntado = intersects[0].object;
+      objetoApuntado.material = materialHovered;
       const informacionDelYAML = obtenerInformacionDelYAML(objetoApuntado);
       // Mostrar la información al usuario o realizar otras acciones según tus necesidades
       mostrarInformacionAlUsuario(informacionDelYAML);
+
       
   } else {
+    cube.material = materialWhite;
+    cube1.material = materialWhite;
+    cube3.material = materialWhite;
+    cube4.material = materialWhite;
+
       ocultarInformacionAlUsuario();
   }
   
@@ -176,38 +189,39 @@ loader.load(modelURL2, (gltf) => {
   function mostrarInformacionAlUsuario(informacionPromesa) {
     const divInformacion = document.getElementById("informacionFigura");
   
-    // Verifica si la información es de figura0, Transporte, Cuarentena, etc.
-    informacionPromesa.then((informacion) => {
-      // Construye el contenido que deseas mostrar en el div
-      const contenidoHTML = `
-        <p>Nombre: ${informacion.Nombre}</p>
-        <p>Duración: ${informacion.Duracion} días</p>
-        <p>Tipo de Alimento: ${informacion.TipoAlimento}</p>
-        <p>Consumo Diario: ${informacion.ConsumoDiarioKg} kg</p>
-        <p>Variación de Consumo: ${informacion.VariacionKg} kg</p>
-        <p>Porcentaje de Mortandad: ${informacion.PorcentajeMortandad}%</p>
-        <h3>Medicamentos:</h3>
-        <ul>
-          ${Object.entries(informacion.Medicamentos).map(([dia, medicamentos]) => `
-            <li>
-              Día ${dia}:
-              <ul>
-                ${Object.entries(medicamentos).map(([medicamento, cantidad]) => `
-                  <li>${medicamento}: ${cantidad}</li>
-                `).join('')}
-              </ul>
-            </li>
-          `).join('')}
-        </ul>
-      `;
+    // Verifica si el elemento existe antes de intentar modificarlo
+    if (divInformacion) {
+      informacionPromesa.then((informacion) => {
+        // Construye el contenido que deseas mostrar en el div
+        const contenidoHTML = `
+          <p>Nombre: ${informacion.Nombre}</p>
+          <p>Duración: ${informacion.Duracion} días</p>
+          <p>Tipo de Alimento: ${informacion.TipoAlimento}</p>
+          <p>Consumo Diario: ${informacion.ConsumoDiarioKg} kg</p>
+          <p>Variación de Consumo: ${informacion.VariacionKg} kg</p>
+          <p>Porcentaje de Mortandad: ${informacion.PorcentajeMortandad}%</p>
+          <h3>Medicamentos:</h3>
+          <ul>
+            ${Object.entries(informacion.Medicamentos).map(([dia, medicamentos]) => `
+              <li>
+                Día ${dia}:
+                <ul>
+                  ${Object.entries(medicamentos).map(([medicamento, cantidad]) => `
+                    <li>${medicamento}: ${cantidad}</li>
+                  `).join('')}
+                </ul>
+              </li>
+            `).join('')}
+          </ul>
+        `;
   
-      // Asigna el contenido al div
-      divInformacion.innerHTML = contenidoHTML;
-      
-    }).catch((error) => {
-      // Si la promesa se rechaza, muestra un mensaje de error
-      divInformacion.innerHTML = 'Error al cargar la información: ' + error;
-    });
+        // Asigna el contenido al div
+        divInformacion.innerHTML = contenidoHTML;
+  
+      });
+    } else {
+      console.error('El elemento con ID "informacionFigura" no fue encontrado.');
+    }
   }
   
 
@@ -236,12 +250,8 @@ function ocultarInformacionAlUsuario() {
   // Llamar a la función de animación
   animate();
 }
-
-  return (
-    <div>
-        
-    </div>
-  );
+}, []);
+  return <canvas ref={canvasRef}></canvas>;
 };
 
 export default ThreeModel;
