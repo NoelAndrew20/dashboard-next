@@ -325,7 +325,7 @@ const ChatWindow = ({ title, description, image }) => {
     }
 
     return (
-      <>
+      <div className={isDarkMode ? "bg-[#151515]" : "lightMode"}>
       <StaticMeta
         title={title}
         description={description}
@@ -335,22 +335,21 @@ const ChatWindow = ({ title, description, image }) => {
         toggleDarkMode={toggleDarkMode}
         isDarkMode={isDarkMode} 
       />
-      <div className='w-full h-full bg-black'>
-        <div className="bg-white">
+        <div className={isDarkMode ? "darkMode" : "lightMode"}>
           <div>
             <Modal isOpen={isModalOpen} onClose={cerrarModal}>
               <Formulario jsonFile="requisitos_2" closeModal={cerrarModal} onFormSubmit={handleFormSubmit} />
             </Modal>
           </div>
-          <div className="w-100 h-200 bg-white p-3"></div>
-            <form className="wrapper full-viewport bg-white" >
+            <form className={`wrapper full-viewport ${isDarkMode ? "bg-[#151515]" : "bg-white"} `} >
               <div
                 className="absolute inset-0 bg-center"
                 style={{
                   backgroundImage: 'url("./images/ConstanzaWallpaper.png")',
-                  opacity: 0.3,
+                  opacity: 0.1,
                   transform: 'scale(0.5)',
                   zIndex: 0,
+                  backgroundSize: "cover",
                 }}
               />
                 <div className="relative z-10 h-80">
@@ -456,7 +455,7 @@ const ChatWindow = ({ title, description, image }) => {
                         id="message-input"
                         type="text"
                         placeholder="Escribe tu mensaje..."
-                        className="flex-grow text-black bg-slate-50 px-3 py-2 w-full h-full text-lg rounded-lg border border-gray-300 shadow-md"
+                        className={`${isDarkMode ? "bg-[#151515] border border-[#D4AF37]" : "modal-input border border-gray-300"} flex-grow px-3 py-2 w-full h-full text-lg rounded-lg shadow-md`}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                       />
@@ -482,8 +481,7 @@ const ChatWindow = ({ title, description, image }) => {
                 </div>
               </form>
             </div>
-          </div>
-      </>
+      </div>
 
       )
   }
