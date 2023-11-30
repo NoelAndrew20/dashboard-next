@@ -345,11 +345,11 @@ const ChatWindow = ({ title, description, image }) => {
               <div
                 className="absolute inset-0 bg-center"
                 style={{
-                  backgroundImage: 'url("./images/ConstanzaWallpaper.png")',
-                  opacity: 0.1,
+                  backgroundImage: 'url("./images/icon/Constanza_logo_blanco.png")',
                   transform: 'scale(0.5)',
                   zIndex: 0,
-                  backgroundSize: "cover",
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
                 }}
               />
                 <div className="relative z-10 h-80">
