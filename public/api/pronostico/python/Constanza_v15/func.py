@@ -1082,3 +1082,55 @@ def InformacionPorZona(fechainferior:str, fechasuperior:str, Zona:str):
         print("La zona no existe actualmente")
     
     return Estado
+def TiempoRetornoF1():
+    question = "¿Si hoy compro una F1, en cuanto tiempo regresara la inversion?" 
+
+    answer = "Las ganancias se empiezan a recibir a los 310 dias despues de la F1 ingresa a la granja"
+    return answer
+
+
+def GananciaF1():
+    question = "¿Cuanto dinero puedo ganar solo con una F1?"
+    
+    answer = f"Descontando los gastos que conlleva comprar, alimentar, cuidar a una F1 las ganancias son de 248497 pesos en condiciones ideales, si contemplamos un 3% de mortandad la ganancia seria de 237031 pesos"
+    return answer
+
+def GastosF1():
+    question = "¿Cuales son los gastos de tener una F1?"
+    answer = "El costo de compra es 15000 pesos, el costo de transporte es 500 pesos, el costo de su alimentacion es de 73115 pesos, el costo de las vacunas es de 4400 pesos, el costo del agua es 1088, resultando un total de 133703 pesos"
+    return answer
+
+def Duracion1cicloF1():
+    question = "¿Cuantos dias dura un ciclo de una F1?"
+    answer = "Un ciclo reproductivo de una F1 consta de 114 dias de preña mas 28 dias que esta amamantando a sus lechones dando como resultado 142 dias"
+    return answer
+
+def PorcentajeMuerteF1():
+    question = "¿Cual es el porcentaje de muerte en los cerdos?"
+    answer = f"Actualmente el porcentaje de mortandad es de 18% aunque se pretende reducir este porcentaje a un 3% por medio de mejores practicas y cuidado animal"
+    return answer
+
+def vidaUtilF1():
+    question  = "¿Cual es el tiempo de vida util de una f1?"
+    answer ="A partir del dia de compra la esperanza de vida de una F1 es de 1059 dias o 2.9 años"
+    return answer
+def AlimentoF1Gestacion():
+    question = "¿Cuanto alimento consume una F1 en gestacion?"
+    answer = "Una F1 en el area de gestacion consumen en promedio 2.5 a 3 kilogramos de alimento al dia" 
+    return answer
+
+def AlimentoF1Maternidad():
+    question = "¿Cuanto alimento consume una f1 en maternidad?"
+    answer = "Una F1 en el area de maternidad consume en promedio 10 kilogramos de alimento al dia"
+    return answer
+def InformacionF1_7ciclos():
+     text = f"El consumo de alimentos de un F1 es de 7649 kg durante sus 7 ciclos, lo que equivale a una inversion  de 53515 pesos, mientras que el total de vacunas en condiciones ideales sera de 44 vacunas preventivas. "
+     return text
+
+def InformacionF1_1ciclo():
+     text =  "El consumo por 1 ciclo de un f1 es de 810 kg, lo que equivale a 7645 pesos."
+     return text
+
+def InformacionSemental():
+     text =  "El semental tiene una vida util de 1461 dias o 4 anos consumen en alimento un total de 5276 Kilogramos con un costo de 53134 pesos y le seran suministradas 59 vacunas en condiciones iniciales"
+     return text

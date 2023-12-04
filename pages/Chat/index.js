@@ -36,7 +36,7 @@ const ChatWindow = ({ title, description, image }) => {
       const playWelcomeAudio = async () => {
         try {
 
-          const username = "Alfonso";
+          const username = "Jose Miguel";
           await axios.post('http://localhost:5000/api/pronostico/python/Constanza_v15/usuario', { username });
           setIsUsernameSet(true);
 

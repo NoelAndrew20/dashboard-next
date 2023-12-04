@@ -15,28 +15,67 @@ import TableIndexZona from '@/components/atoms/TableIndexZona'
 import { useDarkMode } from '@/context/DarkModeContext'
 import Cookies from 'js-cookie';
 import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import io from 'socket.io-client'
 import BarGranja from '@/components/atoms/BarGranja'
 import BarGestación1 from '@/components/atoms/BarGestacion1'
 import BarGestación2 from '@/components/atoms/BarGestación2'
 import BarZen from '@/components/atoms/BarZen'
 import cerdoIndex from '../public/images/imagenes/cerdoIndex.png';
 import Footer from '@/components/atoms/Footer'
-
+import Notification from '@/components/molecules/AlertaNotificacion'
 const welcomeMessages = [
   "¡Bienvenid@!",
   "¡Hola!",
   "¡Buen dia!",
 ];
 
+
+
 export default function Home({ title, description, image }) {
+
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [name, setName] = useState("");
-
   const usuariocookie = Cookies.get("userData");
   const userinfo = usuariocookie ? JSON.parse(usuariocookie) : null;
-  
   const [welcomeIndex, setWelcomeIndex] = useState(0);
+  const [notificationData, setNotificationData] = useState(null);
 
+  const handleNotification = (data) => {
+    console.log('Notificación recibida:', data);
+    const message = data && data.message ? data.message : 'Mensaje vacío';
+    const toastType = message.includes('30') ? 'warn' : message.includes('40') ? 'error' : 'info';
+
+    // Muestra la notificación utilizando react-toastify
+    toast[toastType](message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
+    // Hace visible el componente Notification
+    setNotificationData(data);
+  };
+
+  useEffect(() => {
+    const socket = io('http://localhost:5000', { transports: ['websocket'] });
+
+    socket.on('notificationReceived', (data) => {
+      console.log('Evento de notificación recibido en Next.js:', data);
+      handleNotification(data);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+  
   useEffect(() => {
     // Usar un temporizador para cambiar el mensaje cada 3 segundos
     const intervalId = setInterval(() => {
@@ -87,6 +126,10 @@ export default function Home({ title, description, image }) {
               toggleDarkMode={toggleDarkMode}
               isDarkMode={isDarkMode}
               />
+              <div>
+                  <Notification data={notificationData} />
+                  <ToastContainer/>
+                </div>
               <div className="relative index-cover">
                 <img src="/images/imagenes/constanza.gif" alt="Cerdo" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 background-cover"></div>
