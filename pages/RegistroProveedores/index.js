@@ -16,7 +16,7 @@ const RegistroProveedores = ({ title, description, image }) => {
         />     
         <div>
             <Navigation/>
-            <NavDashboard section="Proveedores"/>
+            <NavDashboard section="Registro de proveedores"/>
         </div>
         <div className="wrapper">
           <div className="mt-3">
