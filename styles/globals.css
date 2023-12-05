@@ -1173,9 +1173,8 @@ input:focus {
     padding: 0;
   }
   .modal-input-container {
-    background-color: #151515;
     width: 70%;
-    border: 1px solid #D4AF37;
+    border: 1px solid rgba(0, 0, 0, 0.25) ;
     overflow: hidden;
   }
   .modal-input-d {
