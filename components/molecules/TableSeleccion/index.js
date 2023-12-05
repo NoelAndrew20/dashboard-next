@@ -72,7 +72,7 @@ const TableSeleccion = ({ data, setData }) => {
                             {item.numeroSolicitud}
                         </td>
                         <td>
-                            {item.nombreSolicitante}
+                            {item.username}
                         </td>
                         <td>
                             {item.solicitud && item.solicitud[0] ? item.solicitud[0].nombreAlimento : ''}
