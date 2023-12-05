@@ -27,6 +27,8 @@ const SolicitudLicitacionSchema = new mongoose.Schema(
     fechaSolicitud: Date,
     nombreSolicitante: String,
     numeroSolicitud: Number,
+    username: String,
+    tipoProveedor: String,
     solicitud: [
       {
         cantidad: Number,
@@ -71,29 +73,46 @@ app.get("/getAllSolicitudLicitacion", async (req, res) => {
   }
 });
 
-    app.post("/addSolicitudLicitacion", async (req, res) => {
-      try {
-          const newAlimento = req.body;
-          console.log(newAlimento);
-  
-          // Crea una instancia del modelo SolicitudLicitacion con los datos recibidos del cliente
-          const nuevaSolicitud = new SolicitudLicitacion({
-            fechaSolicitud: newAlimento.fechaSolicitud,
-            numeroSolicitud: newAlimento.numeroSolicitud,
-            nombreSolicitante: newAlimento.nombreSolicitante,
-            solicitud: newAlimento,
-          });
-  
-          // Guarda la nueva solicitud en la base de datos
-          await nuevaSolicitud.save();
-  
-          // Envía una respuesta al cliente
-          res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
-      } catch (error) {
-          console.error('Error al guardar la solicitud:', error);
-          res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
+app.post("/addSolicitudLicitacion", async (req, res) => {
+  try {
+      const newAlimento = req.body;
+      console.log(newAlimento);
+
+      let tipoProveedor;
+
+      // Verifica el primer carácter de newAlimento.primerCaracter y asigna el tipoProveedor correspondiente
+      if (newAlimento.primerCaracter === 'A') {
+          tipoProveedor = "Alimento";
+      } else if (newAlimento.primerCaracter === 'M') {
+          tipoProveedor = "Medicamento";
+      } else if (newAlimento.primerCaracter === 'V') {
+          tipoProveedor = "Vacunas";
+      } else {
+          // Puedes manejar otros casos si es necesario
+          tipoProveedor = "Tipo Desconocido";
       }
-  });
+
+      // Crea una instancia del modelo SolicitudLicitacion con los datos recibidos del cliente
+      const nuevaSolicitud = new SolicitudLicitacion({
+          fechaSolicitud: newAlimento.fechaSolicitud,
+          numeroSolicitud: newAlimento.numeroSolicitud,
+          nombreSolicitante: newAlimento.nombreSolicitante,
+          username: newAlimento.usuario,
+          tipoProveedor: tipoProveedor, // Asigna el tipoProveedor calculado aquí
+          solicitud: newAlimento,
+      });
+
+      // Guarda la nueva solicitud en la base de datos
+      await nuevaSolicitud.save();
+
+      // Envía una respuesta al cliente
+      res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
+  } catch (error) {
+      console.error('Error al guardar la solicitud:', error);
+      res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
+  }
+});
+
   
     
     

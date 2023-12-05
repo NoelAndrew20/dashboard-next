@@ -36,11 +36,11 @@ const alimentoSchema = new mongoose.Schema(
   }
 );
 
-const SolicitudAlimento = db.model('alimento', alimentoSchema);
+const Alimento = db.model('alimento', alimentoSchema);
 
 app.get("/getAllalimentot0", async (req, res) => {
   try {
-    const solicitudes = await SolicitudAlimento.find({ tipo: 0});
+    const solicitudes = await Alimento.find({ tipo: 0});
     res.json(solicitudes);
   } catch (error) {
     console.error('Error al obtener las solicitudes de alimentos:', error);
@@ -50,7 +50,7 @@ app.get("/getAllalimentot0", async (req, res) => {
 
 app.get("/getAllalimentot1", async (req, res) => {
   try {
-    const solicitudes = await SolicitudAlimento.find({ tipo: 1});
+    const solicitudes = await Alimento.find({ tipo: 1});
     res.json(solicitudes);
   } catch (error) {
     console.error('Error al obtener las solicitudes de alimentos:', error);
@@ -60,7 +60,7 @@ app.get("/getAllalimentot1", async (req, res) => {
 
 app.get("/getAllalimentot2", async (req, res) => {
   try {
-    const solicitudes = await SolicitudAlimento.find({ tipo: 2});
+    const solicitudes = await Alimento.find({ tipo: 2});
     res.json(solicitudes);
   } catch (error) {
     console.error('Error al obtener las solicitudes de alimentos:', error);
@@ -82,7 +82,7 @@ app.post("/addAlimento", async (req, res) => {
     if (newAlimento.tipoV === "complemento extra") {
       tipo = 2;
     }
-    const nuevoAlimento = new SolicitudAlimento({
+    const nuevoAlimento = new Alimento({
       fecha: Date.now(),
       nombreAlimento: newAlimento.nombreAlimentoV,
       tipo: tipo,

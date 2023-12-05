@@ -157,6 +157,7 @@ app.post("/login", async (req, res) => {
           nombre: user.nombre,
           apellidop: user.apellidop,
           apellidom: user.apellidom,
+          proveedor: user.proveedor,
         },
         'mi_secreto_super_secreto', // Cambia esto a tu secreto real
         { expiresIn: '1h' } // Tiempo de expiración del token

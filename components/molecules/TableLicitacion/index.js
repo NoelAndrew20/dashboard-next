@@ -20,6 +20,12 @@ const TableLicitacion = ({ data, setData }) => {
     const handleExpand = (index) => {
         setExpandedRow(index === expandedRow ? null : index);
     };
+
+    useEffect(() => {
+        //console.log(data)
+        //console.log(data[0].username);
+    })
+
       
 
     const entriesPerPage = 10;
@@ -57,6 +63,9 @@ const TableLicitacion = ({ data, setData }) => {
         const fechaSolicitud = elementToModify.fecha;
         const nombreSolicitante = elementToModify.nombreSolicitante;
         const numeroSolicitud = elementToModify.numeroSolicitud;
+        const estatus = 0;
+        const usuario = data[0].username;
+        const primerCaracter = usuario[0];
         newData[indexGuide].solicitud[editingSolicitudIndex] = {
             fechaSolicitud,
             nombreSolicitante,
@@ -68,7 +77,10 @@ const TableLicitacion = ({ data, setData }) => {
             lugar,
             periodo,
             pago,
-            precio
+            precio,
+            estatus,
+            usuario,
+            primerCaracter
         };
         setDataArray(newData);
 
