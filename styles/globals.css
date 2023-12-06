@@ -993,6 +993,9 @@ input:focus {
 .btns-chat {
   width: 15%;
 }
+.h-chart {
+  padding: 80px;
+}
 /* Animación de escritura */
 @keyframes typing {
   from {
@@ -1202,5 +1205,8 @@ input:focus {
   }
   .btns-chat {
     width: 30%;
+  }
+  .h-chart {
+    padding: 0;
   }
 }
