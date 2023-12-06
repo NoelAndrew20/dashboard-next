@@ -21,12 +21,6 @@ const TableLicitacion = ({ data, setData }) => {
         setExpandedRow(index === expandedRow ? null : index);
     };
 
-    useEffect(() => {
-        //console.log(data)
-        //console.log(data[0].username);
-    })
-
-      
 
     const entriesPerPage = 10;
     const totalPages = data ? Math.ceil(data.length / entriesPerPage) : 0;
@@ -96,34 +90,10 @@ const TableLicitacion = ({ data, setData }) => {
             console.error("Error al enviar la solicitud:", error);
         });
 
-
-        /*const apiUrl = `http://localhost:3082/editLicitacion/${newData[indexGuide].solicitud[editingSolicitudIndex].nombreAlimento}/${newData[indexGuide].solicitud[editingSolicitudIndex].cantidad}`;
-        axios.put(apiUrl)
-        .then(response => {
-            console.log("Respuesta de la API:", response.data);
-        })
-        .catch(error => {
-            console.error("Error al enviar la solicitud:", error);
-        });*/
-
-
-        //console.log(newData);
-
                 alert('Se ha guardado exitosamente.');
                 setShowEditModal(false);
             };
 
-            /*useEffect(() => {
-                axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-                .then(response => {
-                    const jsonData = response.data; // Datos de respuesta en formato JSON
-                    //setData(jsonData.data);
-                    console.log(jsonData);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-            }, [])*/
 
     return (
         <>
