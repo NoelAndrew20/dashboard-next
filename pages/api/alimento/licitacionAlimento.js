@@ -52,35 +52,44 @@ const SolicitudLicitacionSchema = new mongoose.Schema(
 
   const SolicitudLicitacion = db.model('SolicitudLicitacion', SolicitudLicitacionSchema);
 
-app.get("/getAllSolicitudLicitacion", async (req, res) => {
-  try {
-      // Consulta todas las solicitudes de compra de alimentos en la base de datos
+  app.get("/getAllSolicitudLicitacion", async (req, res) => {
+    try {
       const solicitudesCompra = await SolicitudLicitacion.find();
-
-      // Verifica si se encontraron solicitudes de compra
       if (solicitudesCompra.length === 0) {
-          return res.status(404).json({ mensaje: 'No se encontraron solicitudes de compra de alimentos' });
+        return res.status(404).json({ mensaje: 'No se encontraron solicitudes de compra de alimentos' });
       }
-
-      // Ordena las solicitudes de compra por precio de menor a mayor
-      solicitudesCompra.sort((a, b) => a.solicitud[0].precio - b.solicitud[0].precio);
-
-      // Envía las solicitudes de compra ordenadas al cliente como respuesta
-      res.status(200).json(solicitudesCompra);
-  } catch (error) {
+  
+      const uniqueAlimentos = Array.from(new Set(solicitudesCompra.map(item => item.solicitud[0].nombreAlimento)));
+  
+      const filteredSolicitudes = uniqueAlimentos.map(alimento => {
+        const matchingSolicitudes = solicitudesCompra.filter(item => item.solicitud[0].nombreAlimento === alimento);
+        const lowestPriceSolicitud = matchingSolicitudes.reduce((min, current) => (current.solicitud[0].precio < min.solicitud[0].precio ? current : min), matchingSolicitudes[0]);
+        return lowestPriceSolicitud;
+      });
+  
+      res.status(200).json(filteredSolicitudes);
+    } catch (error) {
       console.error('Error al obtener las solicitudes de compra de alimentos:', error);
       res.status(500).json({ mensaje: 'Error al obtener las solicitudes de compra de alimentos' });
-  }
-});
-
-app.post("/addSolicitudLicitacion", async (req, res) => {
-  try {
+    }
+  });
+  
+  app.post("/addSolicitudLicitacion", async (req, res) => {
+    try {
       const newAlimento = req.body;
       console.log(newAlimento);
-
+      const solicitudesCompra = await SolicitudLicitacion.find({
+        'solicitud.0.estatus': 1,
+        'username': newAlimento.usuario,
+        'numeroSolicitud': newAlimento.numeroSolicitud,
+        'solicitud.0.nombreAlimento': newAlimento.nombreAlimento,
+    })
+    if (solicitudesCompra.length > 0) {
+      console.log(solicitudesCompra.length);
+      return res.status(400).json({ mensaje: 'Licitación ya creada' });
+    }
+      
       let tipoProveedor;
-
-      // Verifica el primer carácter de newAlimento.primerCaracter y asigna el tipoProveedor correspondiente
       if (newAlimento.primerCaracter === 'A') {
           tipoProveedor = "Alimento";
       } else if (newAlimento.primerCaracter === 'M') {
@@ -88,51 +97,29 @@ app.post("/addSolicitudLicitacion", async (req, res) => {
       } else if (newAlimento.primerCaracter === 'V') {
           tipoProveedor = "Vacunas";
       } else {
-          // Puedes manejar otros casos si es necesario
           tipoProveedor = "Tipo Desconocido";
       }
-
-      // Crea una instancia del modelo SolicitudLicitacion con los datos recibidos del cliente
       const nuevaSolicitud = new SolicitudLicitacion({
           fechaSolicitud: newAlimento.fechaSolicitud,
           numeroSolicitud: newAlimento.numeroSolicitud,
           nombreSolicitante: newAlimento.nombreSolicitante,
           username: newAlimento.usuario,
-          tipoProveedor: tipoProveedor, // Asigna el tipoProveedor calculado aquí
+          tipoProveedor: tipoProveedor, 
           solicitud: newAlimento,
       });
 
       // Guarda la nueva solicitud en la base de datos
       await nuevaSolicitud.save();
-
+      nuevaSolicitud.solicitud[0].estatus = 1;
+      // Guarda la solicitud actualizada en la base de datos
+      await nuevaSolicitud.save();
       // Envía una respuesta al cliente
       res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
-  } catch (error) {
+    } catch (error) {
       console.error('Error al guardar la solicitud:', error);
       res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
   }
 });
-
-  
-    
-    
-
-/*app.put('/editLicitacion', async (req, res) => {
-  const datosRecibidos = req.body;
-  console.log(datosRecibidos);
-
-  // Recorre los objetos en datosRecibidos
-  for (let i = 0; i < datosRecibidos.length; i++) {
-    if (datosRecibidos[i].nombre === 'Jesus') {
-      // Realiza la edición en el objeto que cumple con la condición
-      datosRecibidos[i].campoQueQuieresEditar = 'Nuevo valor';
-      // Puedes realizar otras ediciones aquí
-    }
-  }
-
-  // Envía una respuesta al cliente
-  res.send('Licitación actualizada con éxito');
-});*/
   
 const PORT = 3083;
 app.listen(PORT, () => {

@@ -4,16 +4,21 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
 import TableSeleccion from '@/components/molecules/TableSeleccion';
-
+import jwt from 'jsonwebtoken';
+import { useRouter } from 'next/router';
 const axios = require('axios');
 
 const SeleccionProveedor = ({ title, description, image }) => {
+    const router = useRouter();
+
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([
         {
             numeroSolicitud: 'lorem', nombreAlimento: 'lorem', precio: 'lorem', metodoDeEntrega: 'lorem'},
-  ])
+        ])
+        const [username, setUsername] = useState("");
+    const [tokenVerified, setTokenVerified] = useState(false);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -24,17 +29,54 @@ const SeleccionProveedor = ({ title, description, image }) => {
     };
 
     useEffect(() => {
-        //axios.get('http://localhost:3083/getAllSolicitudLicitacion')
-        axios.get('http://192.168.100.10:3083/getAllSolicitudLicitacion')
-        .then(response => {
-            const jsonData = response.data; // Datos de respuesta en formato JSON
-            setData(jsonData);
-            //console.log(jsonData);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    },[])
+        const checkToken = async () => {
+          try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+              router.push('/Login');
+              return;
+            }
+      
+            const decodedToken = jwt.decode(token);
+            const usuario = decodedToken.usuario;
+            const nombre = decodedToken.nombre;
+            const proveedor = decodedToken.proveedor;
+            console.log("Usuario:", usuario);
+            console.log("Nombre:", nombre);
+            console.log("Proveedor:", proveedor);
+            setUsername(usuario);
+      
+            setTokenVerified(true);
+          } catch (error) {
+            console.error('Error al verificar el token:', error);
+            setTokenVerified(true);
+          }
+        };
+        checkToken();
+      }, [router]);
+      
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://192.168.100.10:3083/getAllSolicitudLicitacion');
+            const jsonData = response.data;
+            const newData = jsonData.map(item => ({ ...item, username }));
+            setData(newData);
+          } catch (error) {
+            console.error('Error al obtener datos:', error);
+          }
+        };
+      
+        if (tokenVerified) {
+          fetchData();
+        }
+      }, [tokenVerified, setUsername]);  
+      
+    
+    if (!tokenVerified) {
+      // Puedes mostrar un indicador de carga aquí si lo deseas
+      return null;
+    }
     
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
