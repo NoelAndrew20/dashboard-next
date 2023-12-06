@@ -19,7 +19,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import io from 'socket.io-client'
 import BarGranja from '@/components/atoms/BarGranja'
-import BarGestación1 from '@/components/atoms/BarGestacion1'
+import HistorialChart from '@/components/atoms/HistorialChart'
 import BarGestación2 from '@/components/atoms/BarGestación2'
 import BarZen from '@/components/atoms/BarZen'
 import cerdoIndex from '../public/images/imagenes/cerdoIndex.png';
@@ -266,6 +266,10 @@ export default function Home({ title, description, image }) {
                         <TableIndex isDarkMode={ isDarkMode }/>
                       </div>
                   </div> 
+                </div>
+                <div className="h-chart">
+                  <h1 className="text-lg font-bold">Predicción - Total de alimentos</h1>
+                    <HistorialChart/>
                 </div>
               </main>
             </div>
