@@ -211,6 +211,7 @@ input:focus {
 .selector-btn:hover {
   background-color: #f9fafb;
 }
+
 .menu {
   position: absolute;
   right: 0;
@@ -279,6 +280,14 @@ input:focus {
   color: #ffffff;
   padding: 20px;
 }
+.profile-nav {
+  background-color: #a78bfa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  padding: 20px;
+}
 #transporte {
   background-color: #C1BD06;
 }
@@ -295,6 +304,13 @@ input:focus {
   background-color: #E47F13;
 }
 .dashboard-nav h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+}
+.profile-nav h1 {
   font-family: 'Montserrat', sans-serif;
   font-style: bold;
   font-weight: 700;
@@ -684,10 +700,18 @@ input:focus {
   border: 1px solid rgba(0, 0, 0, 0.25) ;
   overflow: hidden;
 }
-
+.profile-input-container {
+  border: 1px solid rgba(0, 0, 0, 0.25) ;
+  overflow: hidden;
+}
 .modal-input-container-d {
   background-color: #151515;
   width: 70%;
+  border: 1px solid #D4AF37;
+  overflow: hidden;
+}
+.profile-input-container-d {
+  background-color: #151515;
   border: 1px solid #D4AF37;
   overflow: hidden;
 }
@@ -996,6 +1020,11 @@ input:focus {
 .h-chart {
   padding: 80px;
 }
+.expanded-menu {
+  border-bottom: .5px solid #d7d1d1;
+  padding: 15px;
+  cursor: pointer;
+}
 /* Animación de escritura */
 @keyframes typing {
   from {
@@ -1180,6 +1209,10 @@ input:focus {
     border: 1px solid rgba(0, 0, 0, 0.25) ;
     overflow: hidden;
   }
+  .profile-input-container {
+    border: 1px solid rgba(0, 0, 0, 0.25) ;
+    overflow: hidden;
+  }
   .modal-input-d {
     background-color: #151515;
     border: none;
@@ -1188,6 +1221,11 @@ input:focus {
   .modal-input-container-d {
     background-color: #151515;
     width: 70%;
+    border: 1px solid #D4AF37;
+    overflow: hidden;
+  }
+  .profile-input-container-d {
+    background-color: #151515;
     border: 1px solid #D4AF37;
     overflow: hidden;
   }
