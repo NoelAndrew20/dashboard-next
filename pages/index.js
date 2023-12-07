@@ -41,11 +41,12 @@ export default function Home({ title, description, image }) {
   const userinfo = usuariocookie ? JSON.parse(usuariocookie) : null;
   const [welcomeIndex, setWelcomeIndex] = useState(0);
   const [notificationData, setNotificationData] = useState(null);
+  const [audio] = useState(new Audio('./audio/imperial_alert.mp3')); // Reemplaza con la ruta correcta de tu archivo de sonido
 
   const handleNotification = (data) => {
     console.log('Notificación recibida:', data);
     const message = data && data.message ? data.message : 'Mensaje vacío';
-    const toastType = message.includes('30') ? 'warn' : message.includes('40') ? 'error' : 'info';
+    const toastType = message.includes('area') ? 'warn' : message.includes('40') ? 'error' : 'info';
 
     // Muestra la notificación utilizando react-toastify
     toast[toastType](message, {
@@ -59,12 +60,13 @@ export default function Home({ title, description, image }) {
       theme: "colored",
     });
 
+    audio.play();
     // Hace visible el componente Notification
     setNotificationData(data);
   };
 
   useEffect(() => {
-    const socket = io('http://localhost:5000', { transports: ['websocket'] });
+    const socket = io('http://localhost:5008', { transports: ['websocket'] });
 
     socket.on('notificationReceived', (data) => {
       console.log('Evento de notificación recibido en Next.js:', data);
@@ -74,7 +76,7 @@ export default function Home({ title, description, image }) {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [audio]);
   
   useEffect(() => {
     // Usar un temporizador para cambiar el mensaje cada 3 segundos

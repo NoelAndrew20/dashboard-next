@@ -36,15 +36,15 @@ def api_chat():
             try:
                 data = request.get_json()
                 question = data.get('question')
-                signal_data = {"senal": False}
+                signal_data = {}
+                # signal_data = {"senal": False}
                 print('Pregunta recibida en la API:', question)
                 cargar = {}
                 cargar.update({"answer": "Pensando.."})
                 with open("respuesta.json", "w") as archivo_json:
                     json.dump(cargar, archivo_json)
-
-                # with open('senal.json', 'w') as signal_file:
-                #     json.dump(signal_data, signal_file)
+                # with open("senal.json", "w") as archivo_json:
+                #     json.dump(signal_data, archivo_json)
                 if question:
                     #environment_name = 'C_stable_v1_2'
                     #activate_env_cmd = f'activate {environment_name} &&'
@@ -56,45 +56,92 @@ def api_chat():
                     # script_output = result.stdout
                     # resultado = principal(question)
                     print (question)
-                    question_json={"Order":question}
-                    print("questionjson=  ",question_json)
-                    jsonaa = requests.post(os.environ.get("URl_constanza_verification"),json=question_json)
-                    print('Resultado', jsonaa.json())
-                    json_response = jsonaa.json()
-                    if json_response:
-                        with open("requisitos_2.json", "w") as archivo_json:
-                            json.dump(json_response.get('requirements', {}), archivo_json)
-                        cargar = {}
-                        cargar.update({"answer": "Puedes Abrir el cuestionario"})
-                        with open("respuesta.json", "w") as archivo_json:
-                            json.dump(cargar, archivo_json)
+                    question_json={"Text":question}
+                    print("questionjson=",question_json)
+                    if question.lower() == "no":
+                        signal_data = {"senal": False}
+                        with open("senal.json", "w") as archivo_json:
+                            json.dump(signal_data, archivo_json)
+                            json_response={"answer":"Entendido"}
                     else:
-                        print("La respuesta JSON está vacía")
-                    with open("requisitos_2.json", 'r') as json_file:
-                        current_data = json.load(json_file)
-                    if current_data == "Chatpig":
-                        # Modificar el archivo con la estructura JSON predefinida
-                        predefined_structure = {"Question": ""}
-                        with open("requisitos_2.json", 'w') as json_file:
-                            json.dump(predefined_structure, json_file, indent=4)
-                    global contador_activo
-                    contador_activo = True
-                    tiempo_espera = 4
-                    inicio = time.time()
-                    while contador_activo == True:
-                            tiempo_transcurrido = time.time() - inicio
-                            if tiempo_transcurrido >= tiempo_espera:
-                                print("Pasaron 4 segundos")
-                                cargar = {}
-                                cargar.update({"answer": "Esperando"})
-                                with open("respuesta.json", "w") as archivo_json:
-                                    json.dump(cargar, archivo_json)
-                                contador_activo = False
-                                break
-                            print(f"Tiempo Transcurrido: {int(tiempo_transcurrido)}segundos")
-                            time.sleep(1)
-                    
-                    return jsonify({"resultado": predefined_structure}),predefined_structure
+                        with open("senal.json", "r") as archivo_json:
+                            signal_data = json.load(archivo_json)
+                        if signal_data.get("senal"):
+                            print (question)
+                            question_json={'answer': '', 'function': 'Chatpig', 'parameters': {"text_question":question}}
+                            print("questionjson=  ",question_json)
+                            jsonaa = requests.post(os.environ.get("URL_RESPONDS"),json=question_json)
+                            print('Resultado', jsonaa.json())
+                            json_response = jsonaa.json()
+                            json_respuesta=json_response.get("answer",{})
+                            json_response={'answer':json_respuesta.get("answer",{})}
+                            print("json filtrado",json_response)
+                            jsonrespuesta=json_response
+                        else:
+                            print("La señal no es True")
+                            jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
+                            print('Resultado 1 impresion', jsonaa.json())
+                            json_response = jsonaa.json()
+                            if 'Chatpig' in json_response.get("function", "") or signal_data.get("senal") is True:
+                                    print("Manual de operaciones")
+                                    cargar = {}
+                                    cargar.update({"answer": "Claro consultando " + json_response.get("function")})
+                                    with open("respuesta.json", "w") as archivo_json:
+                                        json.dump(cargar, archivo_json)
+                                    signal_data = {"senal": True}
+                                    with open("senal.json", "w") as archivo_json:
+                                        json.dump(signal_data, archivo_json)
+                                    with open("senal.json", "r") as archivo_json:
+                                            signal_data = json.load(archivo_json)
+                            if signal_data.get("senal") is False:
+                                    # jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
+                                    print('Resultado 2 impresion', jsonaa.json())
+                                    json_response = jsonaa.json()
+                                    print(f'Valor de "function": {json_response.get("function")}')
+                                    signal_data = {"senal": False}
+                                    with open("senal.json", "w") as archivo_json:
+                                        json.dump(signal_data, archivo_json)
+                                    global contador_activo                          
+                                # if json_response:
+                                #     with open("requisitos_2.json", "w") as archivo_json:
+                                #         json.dump(json_response.get('requirements', {}), archivo_json)
+                                #     cargar = {}
+                                #     cargar.update({"answer": "Puedes Abrir el cuestionario"})
+                                #     with open("respuesta.json", "w") as archivo_json:
+                                #         json.dump(cargar, archivo_json)
+                                # else:
+                                #     print("La respuesta JSON está vacía")
+                                # with open("requisitos_2.json", 'r') as json_file:
+                                #     current_data = json.load(json_file)
+                                # if current_data == "Chatpig":
+                                #     # Modificar el archivo con la estructura JSON predefinida
+                                #     predefined_structure = {"Text": ""}
+                                #     with open("requisitos_2.json", 'w') as json_file:
+                                #         json.dump(predefined_structure, json_file, indent=4)
+                                    contador_activo = True
+                                    tiempo_espera = 4
+                                    inicio = time.time()
+                                    while contador_activo == True:
+                                            tiempo_transcurrido = time.time() - inicio
+                                            if tiempo_transcurrido >= tiempo_espera:
+                                                print("Pasaron 4 segundos")
+                                                cargar = {}
+                                                cargar.update({"answer": "Esperando"})
+                                                with open("respuesta.json", "w") as archivo_json:
+                                                    json.dump(cargar, archivo_json)
+                                                contador_activo = False
+                                                break
+                                            print(f"Tiempo Transcurrido: {int(tiempo_transcurrido)}segundos")
+                                            time.sleep(1)
+                                            with open("senal.json", "w") as archivo_json:
+                                                json.dump(signal_data, archivo_json)
+                    cargar = {}
+                    cargar.update({"answer": "Esperando"})
+                    with open("respuesta.json", "w") as archivo_json:
+                        json.dump(cargar, archivo_json)
+                    jsonrespuesta=json_response.get('answer')
+                    TextToSpeech(jsonrespuesta,'es')
+                    return jsonify({"resultado": jsonrespuesta})
                 else:
                     return jsonify({"error": "Texto no proporcionado en la solicitud"}), 400
             except Exception as e:
@@ -245,4 +292,4 @@ if __name__ == '__main__':
     # actualizar_json_thread = threading.Thread(target=actualizar_json_esperando)
     # actualizar_json_thread.daemon = True
     # actualizar_json_thread.start()
-    app.run(debug=True)
+    app.run(debug=True,port=5003)

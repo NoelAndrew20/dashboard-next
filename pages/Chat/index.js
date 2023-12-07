@@ -5,7 +5,8 @@ import { Howl } from 'howler';
 import json from '../../public/api/pronostico/python/Constanza_v15/respuesta.json'
 import Image from 'next/image';
 import jsondata from '../../public/api/pronostico/python/Constanza_v15/requisitos_2.json'
-import Formulario from '@/components/molecules/Formulariodinamico'
+// import arch from '@/components/molecules/FormArchivo'
+import Formulario from '@/components/molecules/Formulariodinamico';
 import Modal from '../../components/atoms/Modal';
 import respuesta from '../../public/api/pronostico/python/Constanza_v15/respuestacons.json'
 import { useDarkMode } from '@/context/DarkModeContext'
@@ -36,8 +37,8 @@ const ChatWindow = ({ title, description, image }) => {
       const playWelcomeAudio = async () => {
         try {
 
-          const username = "Jose Miguel";
-          await axios.post('http://localhost:5000/api/pronostico/python/Constanza_v15/usuario', { username });
+          const username = "Alfonso";
+          await axios.post('http://localhost:5003/api/pronostico/python/Constanza_v15/usuario', { username });
           setIsUsernameSet(true);
 
           const welcomeSound = new Howl({
@@ -239,14 +240,14 @@ const ChatWindow = ({ title, description, image }) => {
       const handleSubmitVoz = async (spokenText) => {
         console.log("Pregunta Next:",message);
         try {
-          const response = await axios.post("http://localhost:5000/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
+          const response = await axios.post("http://localhost:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
             question: spokenText, // Envía el contenido del textarea como "question"
           });
           console.log(message);
           if (response.status === 200) {
             const data = response.data;
             console.log("Respuesta de Constanza JSON:", data);
-            console.log("Mensaje de Constanza:", data.answer);
+            console.log("Mensaje de Constanza:", data.resultado);
             console.log("Respuesta",respuestaDelServidor);
             console.log(respuesta.answer);
             setRespuestaDelServidor(data.answer);
@@ -255,7 +256,7 @@ const ChatWindow = ({ title, description, image }) => {
             if (json.answer === "Esperando") {
               console.log("respuestaant",prevAnswer);
               addMessageToChat(message, true);
-              addMessageToChat(respuesta.answer, false);
+              addMessageToChat(data.resultado, false);
             }
             if (data.answer === "Pensando") {
               setIsSpinning(true);
@@ -278,14 +279,14 @@ const ChatWindow = ({ title, description, image }) => {
       e.preventDefault();
       console.log("Pregunta Next:",message);
       try {
-        const response = await axios.post("http://localhost:5000/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
+        const response = await axios.post("http://localhost:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
           question: message, // Envía el contenido del textarea como "question"
         });
         console.log(message);
         if (response.status === 200) {
           const data = response.data;
           console.log("Respuesta de Constanza JSON:", data);
-          console.log("Mensaje de Constanza:", data.answer);
+          console.log("Mensaje de Constanza:", data.resultado);
           console.log("Respuesta",respuestaDelServidor);
           console.log("onjeto",respuesta.answer);
           setRespuestaDelServidor(data.answer);
@@ -295,7 +296,7 @@ const ChatWindow = ({ title, description, image }) => {
           if (json.answer === "Esperando") {
             console.log("respuestaant",prevAnswer);
             addMessageToChat(message, true);
-            addMessageToChat(respuesta.answer, false);
+            addMessageToChat(data.resultado, false);
           }
           if (data.answer === "Pensando") {
             setIsSpinning(true);
