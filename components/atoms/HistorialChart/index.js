@@ -1,14 +1,32 @@
-import React, { useEffect } from 'react';
-import { Bar } from 'react-chartjs-2'; // Cambia "Bar" a "Bar"
-
-// Importa tu archivo "simulacionGranja"
-import data from './../../../utils/Historial.json';
+import React, { useState, useEffect } from 'react';
+import { Bar } from 'react-chartjs-2';
+import axios from 'axios';
 
 const HistorialChart = () => {
+  const [data, setData] = useState([]); // Nuevo estado para almacenar los datos
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://192.168.100.10:3142/getAllSolicitudHistorial');
+        const jsonData = response.data;
+        console.log(jsonData);
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const primeros15Datos = data.slice(0, 15);
 
   const fechas = primeros15Datos.map((item) => item.fecha);
-  const cantidadesKg = primeros15Datos.map((item) => item.etapas[0].cantidadKg);
+  const cantidadesKg = primeros15Datos.map((item) => item.etapas[0]?.cantidadKg || 0); // Agregar manejo para evitar errores si etapas[0] es undefined
+
+  console.log('Fechas:', fechas);
+  console.log('CantidadesKG:', cantidadesKg);
 
   const chartData = {
     labels: fechas,
