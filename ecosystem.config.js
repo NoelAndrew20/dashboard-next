@@ -45,6 +45,11 @@ module.exports = {
       script: 'simulacion.js',
       cwd: 'pages/api/simulacion', // Ruta al directorio de la segunda API
     },
+    {
+      name: 'historial:3142',
+      script: 'hisorial.js',
+      cwd: 'pages/api/historial', // Ruta al directorio de la segunda API
+    },
     	
     // ... puedes agregar más aplicaciones aquí
   ],
