@@ -12,7 +12,7 @@ def disconnect():
 
 if __name__ == '__main__':
     try:
-        sio.connect('http://localhost:5000', namespaces=['/'])
+        sio.connect('http://localhost:5008', namespaces=['/'])
 
         while True:
             message = input("Escribe un mensaje para enviar: ")
