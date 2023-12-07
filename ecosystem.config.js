@@ -50,6 +50,11 @@ module.exports = {
       script: 'hisorial.js',
       cwd: 'pages/api/historial', // Ruta al directorio de la segunda API
     },
+    {
+      name: 'gastos:3143',
+      script: 'gastos.js',
+      cwd: 'pages/api/gastosQuincena', // Ruta al directorio de la segunda API
+    },
     	
     // ... puedes agregar más aplicaciones aquí
   ],

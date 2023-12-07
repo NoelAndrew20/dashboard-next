@@ -25,6 +25,7 @@ import BarZen from '@/components/atoms/BarZen'
 import cerdoIndex from '../public/images/imagenes/cerdoIndex.png';
 import Footer from '@/components/atoms/Footer'
 import Notification from '@/components/molecules/AlertaNotificacion'
+const axios = require('axios');
 const welcomeMessages = [
   "¡Bienvenid@!",
   "¡Hola!",
@@ -97,6 +98,18 @@ export default function Home({ title, description, image }) {
       setName(userData.name);
     }
   }, []);
+
+  useEffect(() => {
+    axios.get('http://192.168.100.10:3143/getAllGastosUltimaQuincena')
+    .then(response => {
+        const jsonData = response.data; // Datos de respuesta en formato JSON
+        console.log(jsonData)
+        setData(jsonData);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}, [])
 
     return (
       <AnimatePresence>
