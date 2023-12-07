@@ -3,11 +3,12 @@ import Image from 'next/image';
 import burguer from '@/public/images/svg/hamburguer.svg'
 import x from '@/public/images/svg/x-w.svg'
 import srs from '@/public/Logos/ACELogo.png'
+import logo from '@/public/images/icon/logo_blanco.png'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Cookies from 'js-cookie';
-import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
+import foto from '@/public/images/imagenes/user.png';
 
 const Navigation = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -17,6 +18,13 @@ const Navigation = () => {
     const [isGestationOpen, setIsGestationOpen] = useState(false);
     const [isMaternidadOpen, setIsMaternidadOpen] = useState(false);
     const [isZenOpen, setIsZenOpen] = useState(false);
+    const [ data, setData ] = useState([
+        {
+          picture: foto, 
+          nombre: "Usuario", 
+        }
+    ]);
+
 
 
     const toggleGestation = () => {
@@ -59,7 +67,7 @@ const Navigation = () => {
                     <div className="cursor-pointer flex items-center">
                         <Link href="/" className="flex items-center">
                             <div className="mr-5 flex">
-                                <img src="images/icon/logo_blanco.png" alt="Logo"/>
+                                <Image src={logo} width={40} height={40}  alt="Logo"/>
                             </div>
                             <div className="flex justify-center items-center">
                                 <label className="font-semibold">Constanza</label>
@@ -249,9 +257,23 @@ const Navigation = () => {
                         )}
                     </div>
                     </div>
-                    <div className="flex justify-center pt-2 pb-20">
-                        <Image src={srs} width={100} height={100} alt="srs-logo" />
-                    </div>
+                    {data.map((item, index) => (
+                        <div key={index} className="flex justify-center pt-2 pb-20 flex-col text-center">
+                            <Link href="../../PerfilUsuario">
+                                <div className="flex justify-center">
+                                    <Image 
+                                        src={ item.picture } 
+                                        width={50} 
+                                        height={50} 
+                                        alt="profile-pic" 
+                                        className="rounded-full w-10 h-10 object-cover border-solid border-2 border-indigo-400 cursor-pointer"
+                                    />
+                                </div>
+                                <p>Ver perfil</p>
+                            </Link>
+                        </div>
+                        
+                    ))}
                 </div>
             </div>
         </>
