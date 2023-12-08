@@ -38,7 +38,7 @@ const ChatWindow = ({ title, description, image }) => {
         try {
 
           const username = "Alfonso";
-          await axios.post('http://localhost:5003/api/pronostico/python/Constanza_v15/usuario', { username });
+          await axios.post('http://192.168.100.10:5003/api/pronostico/python/Constanza_v15/usuario', { username });
           setIsUsernameSet(true);
 
           const welcomeSound = new Howl({
@@ -240,7 +240,7 @@ const ChatWindow = ({ title, description, image }) => {
       const handleSubmitVoz = async (spokenText) => {
         console.log("Pregunta Next:",message);
         try {
-          const response = await axios.post("http://localhost:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
+          const response = await axios.post("http://192.168.100.10:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
             question: spokenText, // Envía el contenido del textarea como "question"
           });
           console.log(message);
@@ -279,7 +279,7 @@ const ChatWindow = ({ title, description, image }) => {
       e.preventDefault();
       console.log("Pregunta Next:",message);
       try {
-        const response = await axios.post("http://localhost:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
+        const response = await axios.post("http://192.168.100.10:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
           question: message, // Envía el contenido del textarea como "question"
         });
         console.log(message);

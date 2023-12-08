@@ -68,7 +68,7 @@ export default function Home({ title, description, image }) {
   };
 
   useEffect(() => {
-    const socket = io('http://localhost:5008', { transports: ['websocket'] });
+    const socket = io('http://192.168.100.10:5010', { transports: ['websocket'] });
 
     socket.on('notificationReceived', (data) => {
       console.log('Evento de notificación recibido en Next.js:', data);

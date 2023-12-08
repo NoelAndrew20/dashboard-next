@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 //const mongoUrl = "mongodb://192.168.100.8:27017/maindb";
-const mongoUrl = "mongodb://192.168.100.10:27017/C3_LaPurisima";
+const mongoUrl = "mongodb://192.168.100.10:27017/basePruebaJesus";
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
@@ -35,7 +35,8 @@ app.get("/getAllAlerta", async (req, res) => {
   }
 });
 
-const PORT = 3050;
+const PORT = 3051;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+

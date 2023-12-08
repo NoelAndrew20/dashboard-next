@@ -43,7 +43,7 @@ const RFIDSchema = new mongoose.Schema(
     usuario: String,
   },
   {
-    collection: 'Cerdos',
+    collection: 'cerdos',
     versionKey: false,
   }
 );
