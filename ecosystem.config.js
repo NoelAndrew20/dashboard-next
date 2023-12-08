@@ -55,6 +55,12 @@ module.exports = {
       script: 'gastos.js',
       cwd: 'pages/api/gastosQuincena', // Ruta al directorio de la segunda API
     },
+    {
+      name: 'notificaciones:5010',
+      script: 'notificationapi.js',
+      cwd: 'public/api/pronostico/js', // Ruta al directorio de la segunda API
+    },
+    
     	
     // ... puedes agregar más aplicaciones aquí
   ],

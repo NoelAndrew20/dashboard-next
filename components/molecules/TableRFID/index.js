@@ -45,7 +45,7 @@ const TableRFID = ({ data, setData, diferenciaDias}) => {
                         <th>Estatus</th> 
                         <th>Zona</th> 
                         <th>Nave</th> 
-                        <th>Tiempo en nave</th> 
+                        {/*<th>Tiempo en nave</th>*/} 
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +62,7 @@ const TableRFID = ({ data, setData, diferenciaDias}) => {
                         <td>{item.status}</td>
                         <td>{item.zona}</td>
                         <td>{item.nave}</td>
-                        <td>{diferenciaDias[index]}</td> {/* Asignar la diferencia de días con el índice correspondiente */}
+                        {/*<td>{diferenciaDias[index]}</td>*/} {/* Asignar la diferencia de días con el índice correspondiente */}
                         
                     </tr>
                 ))}
