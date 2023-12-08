@@ -20,13 +20,10 @@ const HistorialChart = () => {
     fetchData();
   }, []);
 
-  const primeros15Datos = data.slice(0, 15);
+  const primeros15Datos = data.slice(-15);
 
   const fechas = primeros15Datos.map((item) => item.fecha);
   const cantidadesKg = primeros15Datos.map((item) => item.etapas[0]?.cantidadKg || 0); // Agregar manejo para evitar errores si etapas[0] es undefined
-
-  console.log('Fechas:', fechas);
-  console.log('CantidadesKG:', cantidadesKg);
 
   const chartData = {
     labels: fechas,

@@ -25,6 +25,7 @@ import BarZen from '@/components/atoms/BarZen'
 import cerdoIndex from '../public/images/imagenes/cerdoIndex.png';
 import Footer from '@/components/atoms/Footer'
 import Notification from '@/components/molecules/AlertaNotificacion'
+import { data } from 'autoprefixer'
 const axios = require('axios');
 const welcomeMessages = [
   "¡Bienvenid@!",
@@ -43,7 +44,7 @@ export default function Home({ title, description, image }) {
   const [welcomeIndex, setWelcomeIndex] = useState(0);
   const [notificationData, setNotificationData] = useState(null);
   const [audio] = useState(new Audio('./audio/imperial_alert.mp3')); // Reemplaza con la ruta correcta de tu archivo de sonido
-
+  const [data, setData] = useState([])
   const handleNotification = (data) => {
     console.log('Notificación recibida:', data);
     const message = data && data.message ? data.message : 'Mensaje vacío';
@@ -154,43 +155,46 @@ export default function Home({ title, description, image }) {
                 </div>
               </div>
               <main>
-                <div className="position wrapper">
-                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex`}>
-                    <p>Ventas</p>
-                    <h1 className="text-center">$380,520.00</h1>
-                    <div className='w-full flex justify-center'>
-                      <div className="border-t-2 border-gray-500 text-gray-500">
-                        11 Noviembre - 16 Noviembre 2023
-                      </div>
+                  {data.map((item, index) => (
+                    <>
+                    <div className="position wrapper">
+                      <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                        <p>Ventas</p>
+                        <h1 className="text-center">$380,520.00</h1>
+                        <div className='w-full flex justify-center'>
+                          <div className="border-t-2 border-gray-500 text-gray-500">
+                            11 Noviembre - 16 Noviembre 2023
+                          </div>
+                        </div>
+                      </div> 
+                      <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                        <p>Gastos</p>
+                        <h1 className="text-center">$254,610.00</h1>
+                        <div className='w-full flex justify-center'>
+                          <div className="border-t-2 border-gray-500 text-gray-500">
+                            11 Noviembre - 16 Noviembre 2023
+                          </div>
+                        </div>
+                      </div> 
+                      <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                        <p>Ganancia Neta</p>
+                        <h1 className="text-center">$154,610.00</h1>
+                        <div className='w-full flex justify-center'>
+                          <div className="border-t-2 border-gray-500 text-gray-500">
+                            11 Noviembre - 16 Noviembre 2023
+                          </div>
+                        </div>
+                      </div> 
                     </div>
-                  </div> 
-                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex`}>
-                    <p>Gastos</p>
-                    <h1 className="text-center">$254,610.00</h1>
-                    <div className='w-full flex justify-center'>
-                      <div className="border-t-2 border-gray-500 text-gray-500">
-                        11 Noviembre - 16 Noviembre 2023
-                      </div>
-                    </div>
-                  </div> 
-                  <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-20 pb-50 w-1/3 flex`}>
-                    <p>Ganancia Neta</p>
-                    <h1 className="text-center">$154,610.00</h1>
-                    <div className='w-full flex justify-center'>
-                      <div className="border-t-2 border-gray-500 text-gray-500">
-                        11 Noviembre - 16 Noviembre 2023
-                      </div>
-                    </div>
-                  </div> 
-                </div>
-                <div className={`${isDarkMode ? "bg-[#151515]" : "bg-[#F7F9FB]"} wrapper`}>
+                    <div className={`${isDarkMode ? "bg-[#151515]" : "bg-[#F7F9FB]"} wrapper`}>
                   <div className="position">
                     <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
+                     
                       <div className="flex">
                         <Image src={"/images/icon/alimentos-index.png"} width={30} height={30}/>
                         <span className=" ml-2 font-bold flex items-center">Alimentos</span>
                       </div>
-                      <h1 className="text-right text-2xl">$380,520.00</h1>
+                      <h1 className="text-right text-2xl">{item.Alimentos}</h1>
                       <div className='w-full flex'>
                         <div className="text-[#42FF00] justify-left">
                           +0.25
@@ -202,7 +206,7 @@ export default function Home({ title, description, image }) {
                         <Image src={"/images/icon/medicamentos-index.png"} width={30} height={30}/>
                         <span className=" ml-2 font-bold flex items-center">Medicamentos</span>
                       </div>                      
-                      <h1 className="text-right text-2xl">$254,610.00</h1>
+                      <h1 className="text-right text-2xl">${ item.Medicamentos }</h1>
                       <div className='w-full flex'>
                         <div className="text-[#F46D22]">
                           -0.25%
@@ -214,7 +218,7 @@ export default function Home({ title, description, image }) {
                         <Image src={"/images/icon/sueldos-index.png"} width={30} height={30}/>
                         <span className=" ml-2 font-bold flex items-center">Sueldos y salarios</span>
                       </div>                        
-                      <h1 className="text-right text-2xl">$154,610.00</h1>
+                      <h1 className="text-right text-2xl">${ item.Sueldos }</h1>
                       <div className='w-full flex'>
                         <div className="text-[#42FF00] justify-left">
                           +0.25
@@ -228,7 +232,7 @@ export default function Home({ title, description, image }) {
                         <Image src={"/images/icon/insumos-index.png"} width={30} height={30}/>
                         <span className=" ml-2 font-bold flex items-center">Insumos</span>
                       </div> 
-                      <h1 className="text-right text-2xl">$380,520.00</h1>
+                      <h1 className="text-right text-2xl">${ item.Insumos }</h1>
                       <div className='w-full flex'>
                         <div className="text-[#42FF00] justify-left">
                           +0.25
@@ -240,7 +244,7 @@ export default function Home({ title, description, image }) {
                         <Image src={"/images/icon/mantenimiento-index.png"} width={30} height={30}/>
                         <span className=" ml-2 font-bold flex items-center">Mantenimiento</span>
                       </div> 
-                      <h1 className="text-right text-2xl">$254,610.00</h1>
+                      <h1 className="text-right text-2xl">${ item.Mantenimiento }</h1>
                       <div className='w-full flex'>
                         <div className="text-[#F46D22]">
                           -0.25%
@@ -252,7 +256,7 @@ export default function Home({ title, description, image }) {
                         <Image src={"/images/icon/servicios-index.png"} width={30} height={30}/>
                         <span className=" ml-2 font-bold flex items-center">Servicios</span>
                       </div> 
-                      <h1 className="text-right text-2xl">$154,610.00</h1>
+                      <h1 className="text-right text-2xl">${ item.Servicios }</h1>
                       <div className='w-full flex'>
                         <div className="text-[#42FF00] justify-left">
                           +0.25
@@ -261,6 +265,12 @@ export default function Home({ title, description, image }) {
                     </div>
                   </div>  
                 </div>
+     
+                </>
+                ))}
+                  
+        
+                  
                 <div className="cover-text position mt-5 p-5">
                   <div className={`${isDarkMode ? "row-container-d" : "row-container"} w-1/3 flex justify-center text-center`}>
                     <h1>Predicción - Total de cerdos en Cuarentena</h1>
