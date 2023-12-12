@@ -3,41 +3,40 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import NavDashboard from '@/components/molecules/NavDashboard';
 import Navigation from '@/components/molecules/Navigation';
 import { useDarkMode } from '@/context/DarkModeContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import foto from '@/public/images/imagenes/user.png';
 import ProfileMenu from '@/components/molecules/ProfileMenu';
+import jwt from 'jsonwebtoken';
+const axios = require('axios');
 const PerfilUsuario = ({ title, description, image }) => {
-    const { isDarkMode, toggleDarkMode } = useDarkMode();
-    const [ data, setData ] = useState([
-      {
-        picture: foto, 
-        nombre: "Usuario", 
-        responsabilidad: [{nombre: "Checar vacunas"},{nombre: "limpieza de anaquel"} , {nombre: "Cerrar puertas"}],
-        apellidop: "Apellido paterno",
-        apellidom: "Apelllido materno",
-        granja: "1",
-        area: "1",
-        password: "$2b$12$lHRldawIB8TIpAVAApS3ae2g.GSJUgCgkunm3hwEdQGTjIDFgwa8.",
-        email: "1",
-        fechaNacimiento: "0001-01-01",
-        genero: "masculino",
-        horario: "1",
-        fechaContratacion: "0001-01-01",
-        departamento: "1",
-        stat: "activo",
-        contacto: "1",
-        salario: "1",
-        calle: "1",
-        numeroI: "1",
-        numeroE: "1",
-        ciudad: "1",
-        estado: "1",
-        cp: "1",
-        tarea: "1",
-        epp: "1",
-        proveedor: 0
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const [ data, setData ] = useState([]);
+  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  let email = "";
+  if (token) {
+    const decodedToken = jwt.decode(token);
+    email = decodedToken.email;
+  } 
+  else {
+    console.error("No se encontró el token en localStorage.");
+  }
+  
+  useEffect(() => {
+    axios.get('http://192.168.100.10:3020/getUsuario', {
+      params: {
+        email: email
       }
-    ]);
+    })
+    .then(response => {
+      const jsonData = response.data;
+      setData(jsonData);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }, []);
+
+
     return(
       <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
         <StaticMeta
@@ -51,7 +50,7 @@ const PerfilUsuario = ({ title, description, image }) => {
         </div>
         <div className="wrapper">
           <div className="mt-5">
-            <ProfileCard data={data}/>
+            {<ProfileCard data={data}/>}
           </div>
           <div className="mt-10">
             <ProfileMenu data={data}/>

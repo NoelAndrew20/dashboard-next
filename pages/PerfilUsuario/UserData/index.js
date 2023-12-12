@@ -1,46 +1,49 @@
 import { useDarkMode } from '@/context/DarkModeContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import foto from '@/public/images/imagenes/user.png';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import Navigation from '@/components/molecules/Navigation';
 import ProfileCard from '@/components/atoms/ProfileCard';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import jwt from 'jsonwebtoken';
+const axios = require('axios');
 
 const UserData = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const router = useRouter();
 
-    const [ data, setData ] = useState([
-        {
-          picture: foto, 
-          nombre: "Usuario", 
-          responsabilidad: [{nombre: "Checar vacunas"},{nombre: "limpieza de anaquel"} , {nombre: "Cerrar puertas"}],
-          apellidop: "Apellido paterno",
-          apellidom: "Apellido materno",
-          granja: "1",
-          area: "1",
-          password: "$2b$12$lHRldawIB8TIpAVAApS3ae2g.GSJUgCgkunm3hwEdQGTjIDFgwa8.",
-          email: "1",
-          fechaNacimiento: "0001-01-01",
-          genero: "masculino",
-          horario: "1",
-          fechaContratacion: "0001-01-01",
-          departamento: "1",
-          stat: "activo",
-          contacto: "1",
-          salario: "1",
-          calle: "1",
-          numeroI: "1",
-          numeroE: "1",
-          ciudad: "1",
-          estado: "1",
-          cp: "1",
-          tarea: "1",
-          epp: "1",
-          proveedor: 0
-        }
-    ]);
+    const [ data, setData ] = useState([]);
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  let email = "";
+  if (token) {
+    const decodedToken = jwt.decode(token);
+    email = decodedToken.email;
+  } 
+  else {
+    console.error("No se encontró el token en localStorage.");
+  }
+  
+  useEffect(() => {
+    axios.get('http://192.168.100.10:3020/getUsuario', {
+      params: {
+        email: email
+      }
+    })
+    .then(response => {
+      const jsonData = response.data; // Datos de respuesta en formato JSON
+      console.log(jsonData);
+  
+      // Asegúrate de que data sea un arreglo
+      setData(jsonData);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }, []);
+
+
+
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
             <StaticMeta
@@ -64,31 +67,25 @@ const UserData = ({ title, description, image }) => {
                     <label>Nombre:</label>
                     <div className="pb-4">
                         <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="nombre" name="nombre" value={data[0].nombre} disabled/>
+                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="nombre" name="nombre" value={data[0]?.nombre} disabled/>
                         </div>
                     </div>
                     <label>Apellido paterno:</label>
                     <div className="pb-4">
                         <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidop" name="apellidop" value={data[0].apellidop} disabled/>
+                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidop" name="apellidop" value={data[0]?.apellidop} disabled/>
                         </div>
                     </div>
                     <label>Apellido materno:</label>
                     <div className="pb-4">
                         <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidom" name="apellidom" value={data[0].apellidom} disabled/>
+                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidom" name="apellidom" value={data[0]?.apellidom} disabled/>
                         </div>
                     </div>
                     <label>Correo:</label>
                     <div className="pb-4">
                         <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="correo" name="correo" value={data[0].email} disabled/>
-                        </div>
-                    </div>
-                    <label>Contraseña:</label>
-                    <div className="pb-4">
-                        <div className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                            <input type="password" className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="contraseña" name="contraseña" value={data[0].password} disabled/>
+                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="correo" name="correo" value={data[0]?.email} disabled/>
                         </div>
                     </div>
                 </div>

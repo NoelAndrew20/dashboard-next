@@ -27,12 +27,17 @@ db.once('open', () => {
 
 const UsuarioSchema = new mongoose.Schema(
   {
+    picture: String,
     usuario: String,
     nombre: String,
     apellidop: String,
     apellidom: String,
     granja: String,
-    responsabilidad: String,
+    responsabilidad: [
+      {
+          nombre: String
+      }
+  ],
     area: String,
     password: String,
     email: String, 
@@ -64,6 +69,8 @@ const UsuarioSchema = new mongoose.Schema(
 const Usuario = db.model('usuario', UsuarioSchema);
 
 
+
+
 app.get("/getAllUsuario", async (req, res) => {
   try {
     const activeUsuarios = await Usuario.find({  })
@@ -76,11 +83,29 @@ app.get("/getAllUsuario", async (req, res) => {
   }
 });
 
+app.get("/getUsuario", async (req, res) => {
+  try {
+    const { email } = req.query;
+    const usuario = await Usuario.findOne({ email });
+    if (!usuario) {
+      return res.status(404).send([{ status: "not found", message: "Usuario no encontrado" }]);
+    }
+
+    // Devuelve un arreglo con el objeto usuario
+    res.send([usuario]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send([{ status: "error", message: "Internal server error" }]);
+  }
+});
+
+
 app.post("/addUsuario", async (req, res) => {
   try {
     const data = req.body;
     const hashedPassword = await bcrypt.hash(data.password, 12);
     const nuevoUsuario = new Usuario({
+      picture: data.picture || '/images/imagenes/user.png',
       usuario: data.usuario,
       nombre: data.nombre,
       apellidop: data.apellidop,
