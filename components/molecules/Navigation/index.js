@@ -209,6 +209,11 @@ const Navigation = () => {
                             <Image src={"/images/svg/brain.svg"} width={20} height={20} alt="graph" className="mr-2" />Chat
                         </div>
                     </Link>
+                    <Link href="../../Proveedor" className={`hover:font-semibold ${currentPage === '/Proveedor' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <Image src={"/images/svg/box.svg"} width={20} height={20} alt="graph" className="mr-2" />Perfil proveedor
+                        </div>
+                    </Link>
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleGestation}>
                             Gestaciones

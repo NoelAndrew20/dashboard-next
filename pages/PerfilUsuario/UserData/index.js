@@ -15,32 +15,32 @@ const UserData = ({ title, description, image }) => {
 
     const [ data, setData ] = useState([]);
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  let email = "";
-  if (token) {
-    const decodedToken = jwt.decode(token);
-    email = decodedToken.email;
-  } 
-  else {
-    console.error("No se encontró el token en localStorage.");
-  }
+    let email = "";
+    if (token) {
+        const decodedToken = jwt.decode(token);
+        email = decodedToken.email;
+    } 
+    else {
+        console.error("No se encontró el token en localStorage.");
+    }
   
-  useEffect(() => {
-    axios.get('http://192.168.100.10:3020/getUsuario', {
-      params: {
-        email: email
-      }
-    })
-    .then(response => {
-      const jsonData = response.data; // Datos de respuesta en formato JSON
-      console.log(jsonData);
-  
-      // Asegúrate de que data sea un arreglo
-      setData(jsonData);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }, []);
+    useEffect(() => {
+        axios.get('http://192.168.100.10:3020/getUsuario', {
+            params: {
+                email: email
+            }
+        })
+        .then(response => {
+        const jsonData = response.data; // Datos de respuesta en formato JSON
+        console.log(jsonData);
+    
+        // Asegúrate de que data sea un arreglo
+        setData(jsonData);
+        })
+        .catch(error => {
+        console.error(error);
+        });
+    }, []);
 
 
 
@@ -54,41 +54,60 @@ const UserData = ({ title, description, image }) => {
             <Navigation/>
             <div className="profile-nav w-full" style={{justifyContent: "center !important"}}>
                 <h1>Perfil de usuario</h1>
+                <div className="mt-5">
+                    <ProfileCard data={data}/>
+                </div>
             </div>
             <div className="wrapper">
                 <div className="back-link mt-2 text-blue-500 cursor-pointer" onClick={()=> { router.back() }}>
                     <span className="back-arrow">&#8592;</span> volver
                 </div>
-                <div className="mt-5">
-                    <ProfileCard data={data}/>
-                </div>
                 <div className="w-full flex justify-center">
-                <div className="p-4 w-1/2">
-                    <label>Nombre:</label>
-                    <div className="pb-4">
-                        <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="nombre" name="nombre" value={data[0]?.nombre} disabled/>
+                    <form className="p-4 w-1/2">
+                        <label>Nombre:</label>
+                        <div className="pb-4">
+                            <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
+                                <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="nombre" name="nombre" value={data[0]?.nombre} disabled/>
+                            </div>
                         </div>
-                    </div>
-                    <label>Apellido paterno:</label>
-                    <div className="pb-4">
-                        <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidop" name="apellidop" value={data[0]?.apellidop} disabled/>
+                        <label>Apellido paterno:</label>
+                        <div className="pb-4">
+                            <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
+                                <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidop" name="apellidop" value={data[0]?.apellidop} disabled/>
+                            </div>
                         </div>
-                    </div>
-                    <label>Apellido materno:</label>
-                    <div className="pb-4">
-                        <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidom" name="apellidom" value={data[0]?.apellidom} disabled/>
+                        <label>Apellido materno:</label>
+                        <div className="pb-4">
+                            <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
+                                <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidom" name="apellidom" value={data[0]?.apellidom} disabled/>
+                            </div>
                         </div>
-                    </div>
-                    <label>Correo:</label>
-                    <div className="pb-4">
-                        <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                            <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="correo" name="correo" value={data[0]?.email} disabled/>
+                        <label>Correo:</label>
+                        <div className="pb-4">
+                            <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
+                                <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="correo" name="correo" value={data[0]?.email} disabled/>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                        <label>Contraseña:</label>
+                        <div className="pb-4">
+                            <div className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
+                                <input type="password" className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="contraseña" name="contraseña" 
+                                value={newPswd}
+                                onChange={handlePswdChange}
+                                />
+                            </div>
+                        </div>
+                        {data[0].password === newPswd 
+                        ?
+                            ""
+                        : 
+                            <div className="flex justify-center">
+                                <button type="submit" className="button">
+                                    Guardar
+                                </button>
+                            </div>
+                        }
+                    </form>
                 </div>
             </div>
         </div>
