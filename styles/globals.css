@@ -287,6 +287,7 @@ input:focus {
   align-items: center;
   color: #ffffff;
   padding: 20px;
+  flex-direction: column;
 }
 #transporte {
   background-color: #C1BD06;
@@ -566,6 +567,7 @@ input:focus {
   background-color: #F7F9FB;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
   width: 100%;
+  border-radius: 10px;
 }
 .fake-table {
   padding: 20px;
@@ -573,6 +575,7 @@ input:focus {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
   width: 100%;
   display: flex;
+  border-radius: 10px;
 }
 .fake-table h2 {
   color: #818cf8;
@@ -599,6 +602,7 @@ input:focus {
   background-color: #151515;
   border: 1px solid #D4AF37;
   width: 100%;
+  border-radius: 10px;
 }
 .fake-table-d {
   padding: 20px;
