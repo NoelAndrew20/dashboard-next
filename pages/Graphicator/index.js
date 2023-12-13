@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import TableGraph from '@/components/molecules/TableGraph';
 import TableAlimentos from '@/components/molecules/TableAlimentos';
 import MenuTable from '@/components/atoms/MenuTable';
+import svg from '@/public/images/svg/graph.svg';
 
 const axios = require('axios');
 
@@ -168,7 +169,7 @@ const Graphicator = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Menú"/>
+                <NavDashboard section="Menú de alimentos" svg={svg}/>
             </div>
             <div className="wrapper">
                 <div className="mt-10">

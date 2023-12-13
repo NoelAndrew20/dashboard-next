@@ -5,7 +5,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import TableRFID from '@/components/molecules/TableRFID';
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
-//import { differenceInCalendarDays, parse } from 'date-fns';
+import svg from '@/public/images/svg/label.svg';
 
 const axios = require('axios');
 const RFID = ({ title, description, image }) => {
@@ -89,7 +89,7 @@ const RFID = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Cerdos"/>
+                <NavDashboard section="Dashboard: RFID" svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Elementos existentes</h2>

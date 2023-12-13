@@ -4,6 +4,8 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import ProveedorForm from '@/components/molecules/ProveedorForm';
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
+import svg from '@/public/images/svg/provider.svg';
+
 const RegistroProveedores = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
 
@@ -16,7 +18,7 @@ const RegistroProveedores = ({ title, description, image }) => {
         />     
         <div>
             <Navigation/>
-            <NavDashboard section="Registro de proveedores"/>
+            <NavDashboard section="Registro de proveedores" svg={svg}/>
         </div>
         <div className="wrapper">
           <div className="mt-3">

@@ -4,6 +4,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
 import TablePre from '@/components/molecules/TablePre';
+import svg from '@/public/images/svg/pre.svg';
 
 const axios = require('axios');
 
@@ -45,7 +46,7 @@ const PreRegistro = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Pre registro"/>
+                <NavDashboard section="Dashboard: Pre registro" svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Pre registros existentes</h2>

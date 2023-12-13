@@ -273,12 +273,14 @@ input:focus {
   padding-bottom: 50px;
 }
 .dashboard-nav {
-  background-color: #a78bfa;
+  background-image: url("/images/particles.gif");
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   color: #ffffff;
   padding: 20px;
+  height: 30vh;
 }
 .profile-nav {
   background-color: #a78bfa;

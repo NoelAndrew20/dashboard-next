@@ -5,6 +5,8 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import Table from '@/components/molecules/Table';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
+import svg from '@/public/images/svg/drop.svg';
+
 const axios = require('axios');
 
 const RegistroInseminacion = ({ title, description, image }) => {
@@ -64,7 +66,7 @@ const RegistroInseminacion = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Inseminacion"/>
+                <NavDashboard section="Dashboard: Inseminación"  svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Elementos existentes</h2>

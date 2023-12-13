@@ -5,6 +5,8 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import TableMedicamentos from '@/components/molecules/TableMedicamento';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
+import svg from '@/public/images/svg/medicine.svg';
+
 const axios = require('axios');
 
 const Medicamento = ({ title, description, image }) => {
@@ -39,7 +41,7 @@ const Medicamento = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Medicamento"/>
+                <NavDashboard section="Dashboard: Medicamento" svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Medicamentos existentes</h2>

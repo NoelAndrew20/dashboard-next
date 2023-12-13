@@ -7,6 +7,8 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import TableTransporte from '@/components/molecules/TableTransporte';
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
+import svg from '@/public/images/svg/truck.svg';
+
 const axios = require('axios');
 
 const RegistroTransporte = ({ title, description, image }) => {
@@ -52,7 +54,7 @@ const RegistroTransporte = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Transporte"/>
+                <NavDashboard section="Dashboard: Transporte" svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Transportes existentes</h2>
