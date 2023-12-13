@@ -7,6 +7,7 @@ import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
+import svg from '@/public/images/svg/user.svg';
 
 const axios = require('axios');
 
@@ -45,7 +46,7 @@ const RegistroUsuarios = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Usuarios"/>
+                <NavDashboard section="Dashboard: Usuarios" svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Usuarios existentes</h2>

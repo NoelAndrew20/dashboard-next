@@ -6,6 +6,8 @@ import { useState } from 'react';
 import Modal from '@/components/atoms/Modal';
 import CerdosForm from '@/components/atoms/CerdosForm';
 import TableCerdos from '@/components/molecules/TableCerdos';
+import svg from '@/public/images/svg/pig.svg';
+
 const axios = require('axios');
 
 const RegistroCerdos = ({ title, description, image }) => {
@@ -69,7 +71,7 @@ const RegistroCerdos = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Cerdos"/>
+                <NavDashboard section="Dashboard: Cerdos" svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Cerdos existentes</h2>

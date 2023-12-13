@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import Modal from '@/components/atoms/Modal';
 import AlimentosForm from '@/components/atoms/AlimentosForm';
 import TableAlimentos from '@/components/molecules/TableAlimentos';
+import svg from '@/public/images/svg/food.svg';
 
 const axios = require('axios');
 
@@ -45,7 +46,7 @@ const RegistroAlimentos = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Alimento"/>
+                <NavDashboard section="Dashboard: Alimento" svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Alimentos existentes</h2>

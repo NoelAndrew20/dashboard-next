@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react';
 import TableSeleccion from '@/components/molecules/TableSeleccion';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
+import svg from '@/public/images/svg/selection.svg';
+
 const axios = require('axios');
 
 const SeleccionProveedor = ({ title, description, image }) => {
@@ -88,7 +90,7 @@ const SeleccionProveedor = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Selección de proveedor"/>
+                <NavDashboard section="Dashboard: Selección de proveedor" svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Proveedores existentes</h2>

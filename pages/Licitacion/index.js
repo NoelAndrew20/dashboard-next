@@ -8,6 +8,8 @@ import { useDarkMode } from '@/context/DarkModeContext';
 import TableLicitacion from '@/components/molecules/TableLicitacion';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
+import svg from '@/public/images/svg/licitacion.svg';
+
 const axios = require('axios');
 
 const Licitacion = ({ title, description, image }) => {
@@ -79,7 +81,7 @@ if (!tokenVerified) {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Licitación"/>
+                <NavDashboard section="Dashboard: Licitación" svg={svg}/>
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>

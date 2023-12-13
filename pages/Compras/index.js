@@ -5,6 +5,8 @@ import ProveedorForm from '@/components/molecules/ProveedorForm';
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 import ComprasForm from '@/components/atoms/ComprasForm';
+import svg from '@/public/images/svg/shopping.svg';
+
 const Compras = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
 
@@ -17,7 +19,7 @@ const Compras = ({ title, description, image }) => {
         />     
         <div>
             <Navigation/>
-            <NavDashboard section="Compras"/>
+            <NavDashboard section="Formulario de compras" svg={svg}/>
         </div>
         <div className="wrapper">
           <div className="mt-3">
