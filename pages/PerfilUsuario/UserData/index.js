@@ -14,6 +14,8 @@ const UserData = ({ title, description, image }) => {
     const router = useRouter();
 
     const [ data, setData ] = useState([]);
+    const [newPswd, setNewPswd] = useState(data.password);
+
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
     let email = "";
     if (token) {
@@ -42,7 +44,9 @@ const UserData = ({ title, description, image }) => {
         });
     }, []);
 
-
+    const handleNewPswd = (e) => {
+        setNewPswd(e.target.value);
+    };
 
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
@@ -93,19 +97,19 @@ const UserData = ({ title, description, image }) => {
                             <div className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
                                 <input type="password" className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="contraseña" name="contraseña" 
                                 value={newPswd}
-                                onChange={handlePswdChange}
+                                onChange={handleNewPswd}
                                 />
                             </div>
                         </div>
-                        {data[0].password === newPswd 
+                        {data.password === newPswd 
                         ?
                             ""
                         : 
-                            <div className="flex justify-center">
-                                <button type="submit" className="button">
-                                    Guardar
-                                </button>
-                            </div>
+                        <div className="flex justify-center">
+                            <button type="submit" className="button">
+                                Guardar
+                            </button>
+                        </div>
                         }
                     </form>
                 </div>
