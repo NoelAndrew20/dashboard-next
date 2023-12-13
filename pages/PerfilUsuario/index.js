@@ -50,7 +50,7 @@ const PerfilUsuario = ({ title, description, image }) => {
         </div>
         <div className="wrapper">
           <div className="mt-5">
-            {<ProfileCard data={data}/>}
+            <ProfileCard data={data}/>
           </div>
           <div className="mt-10">
             <ProfileMenu data={data}/>
