@@ -154,6 +154,25 @@ const Proveedor = db.model('Proveedor', ProveedorSchema);
 });*/
 
 
+app.get("/getProducto", async (req, res) => {
+  try {
+    const { email } = req.query;
+    const proveedor = await Proveedor.findOne({ correo: email });
+    if (!proveedor) {
+      return res.status(404).send([{ status: "not found", message: "Proveedor no encontrado" }]);
+    }
+
+    const productos = proveedor.productos;
+
+    // Devuelve un arreglo con el objeto usuario
+    res.send(productos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send([{ status: "error", message: "Internal server error" }]);
+  }
+});
+
+
 app.post("/addProveedor", async (req, res) => {
   const newProveedor = req.body;
   
@@ -218,6 +237,8 @@ app.post("/addProveedor", async (req, res) => {
       password: hashedPassword,
       email: nuevoProveedor.correo,
       proveedor: 1,
+      picture: '/images/imagenes/user.png',
+      rango: 'fff',
     });
 
     await nuevoUsuario.save();
