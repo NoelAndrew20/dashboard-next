@@ -70,11 +70,7 @@ const TablePre = ({ data, setData }) => {
                 <tbody>
                     {displayDataFinal.map((item, index) => (
                         <React.Fragment key={index}>
-                            <tr
-                                className={`table-row ${
-                                isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-[#F7F9FB]' : 'bg-[#a5b4fc]')
-                                }`}
-                            >
+                            <tr className="table-row">
                               <td>{item.fecha}</td>
                               <td>{item.solicitud}</td>
                               <td className=" p-1 flex justify-center">

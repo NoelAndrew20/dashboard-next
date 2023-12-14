@@ -72,18 +72,7 @@ const TableAlimentos = ({ data, setData }) => {
       // Filtramos las columnas que no deseas mostrar
       if (zona !== 'fechaInicial' && zona !== 'fechaFinal' && zona !== '_id') {
         return (
-          <tr
-            key={zonaIndex}
-            className={`table-row ${
-              isDarkMode
-                ? zonaIndex % 2 === 0
-                  ? 'bg-black'
-                  : 'bg-gray-500'
-                : zonaIndex % 2 === 0
-                ? 'bg-[#F7F9FB]'
-                : 'bg-[#a5b4fc]'
-            }`}
-          >
+          <tr className="table-row">
             <td>{item.fechaInicial}</td> {/* Muestra la fechaInicial */}
             <td>{item.fechaFinal}</td> {/* Muestra la fechaFinal */}
             <td>{zona}</td>
