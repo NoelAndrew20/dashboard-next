@@ -50,9 +50,7 @@ select {
 select:focus {
   outline: none;
 }
-th {
-  color: #818cf8;
-}
+
 input:focus {
   outline-color: none; 
 }
@@ -98,7 +96,11 @@ input:focus {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
   overflow: hidden;
 }
-
+th {
+  font-size: large;
+  padding-bottom: 15px;
+  padding: 15px;
+}
 .side ::-webkit-scrollbar {
   display: none;
 }
@@ -566,10 +568,10 @@ input:focus {
 }
 .table {
   padding: 20px;
-  background-color: #F7F9FB;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
   width: 100%;
   border-radius: 10px;
+  border: 1px solid #dbd6d6;
 }
 .fake-table {
   padding: 20px;
@@ -578,6 +580,9 @@ input:focus {
   width: 100%;
   display: flex;
   border-radius: 10px;
+}
+.table-row {
+  border-bottom: 1px solid #e9e8e8;
 }
 .fake-table h2 {
   color: #818cf8;
@@ -590,7 +595,7 @@ input:focus {
 .table-container {
   width: 100%;
   text-align: center;
-  background-color: #F7F9FB;
+  background-color: #ffff;
 }
 .table-index {
   padding: 20px;
@@ -602,14 +607,15 @@ input:focus {
 .table-d {
   padding: 20px;
   background-color: #151515;
-  border: 1px solid #D4AF37;
+  border: 1px solid #818cf8;
   width: 100%;
   border-radius: 10px;
+  display: table;
 }
 .fake-table-d {
   padding: 20px;
   background-color: #151515;
-  border: 1px solid #D4AF37;
+  border: 1px solid #818cf8;
   width: 100%;
   display: flex;
 }
@@ -642,7 +648,7 @@ input:focus {
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 .lightMode {
-  background-color: #ffffff;
+  background-color: #F1F4F5;
   color: black;
 }
 
@@ -713,12 +719,12 @@ input:focus {
 .modal-input-container-d {
   background-color: #151515;
   width: 70%;
-  border: 1px solid #D4AF37;
+  border: 1px solid #818cf8;
   overflow: hidden;
 }
 .profile-input-container-d {
   background-color: #151515;
-  border: 1px solid #D4AF37;
+  border: 1px solid #818cf8;
   overflow: hidden;
 }
 
@@ -793,7 +799,7 @@ input:focus {
   display: flex;
   background: linear-gradient(200deg , #151515, #292928);
   padding: 6vh;
-  border: 1px solid #D4AF37;
+  border: 1px solid #818cf8;
   height: 100%;
 }
 .row-user {
@@ -815,7 +821,7 @@ input:focus {
   border-radius: 15px;
   display: flex;
   background-color: #1a1818;
-  border: 1px solid #D4AF37;
+  border: 1px solid #818cf8;
   padding: 6vh;
   color: white;
   margin-right: 20px;
@@ -831,7 +837,7 @@ input:focus {
 .row-container-d h1 {
   font-size: 20px;
   font-weight: 600;
-  color: #D4AF37;;
+  color: #818cf8;;
 }
 .row-container-d h2 {
   font-size: 15px;
@@ -888,7 +894,7 @@ input:focus {
   padding: 5px;
   background-color: #151515;
   border-radius: 10px;
-  border: 1px solid #D4AF37;
+  border: 1px solid #818cf8;
   outline: none;
 }
 .pronostico-input-d input {
@@ -918,7 +924,7 @@ input:focus {
 .edit-input-container-d {
   background-color: #151515;
   width: 80%;
-  border: 1px solid #D4AF37;
+  border: 1px solid #818cf8;
   overflow: hidden;
   outline: none;
   border-radius: 5px;
@@ -1118,7 +1124,7 @@ input:focus {
     display: grid;
     justify-content: center; 
     background-color: #2C2C2C;
-    border: 1px solid #D4AF37;
+    border: 1px solid #818cf8;
   }
   .fake-table {
     overflow-x: auto; 
@@ -1135,7 +1141,7 @@ input:focus {
     display: grid;
     justify-content: center; 
     background-color: #2C2C2C;
-    border: 1px solid #D4AF37;
+    border: 1px solid #818cf8;
   }
   .table-container {
     max-width: 100%; 
@@ -1227,12 +1233,12 @@ input:focus {
   .modal-input-container-d {
     background-color: #151515;
     width: 70%;
-    border: 1px solid #D4AF37;
+    border: 1px solid #818cf8;
     overflow: hidden;
   }
   .profile-input-container-d {
     background-color: #151515;
-    border: 1px solid #D4AF37;
+    border: 1px solid #818cf8;
     overflow: hidden;
   }
   .chat-window {

@@ -25,12 +25,7 @@ const TableAlertas = ({ data, setData }) => {
                 </thead>
                 <tbody>
                 {currentEntries.map((item, index) => (
-                    <tr
-                        key={index}
-                        className={`table-row ${
-                        isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-[#F7F9FB]' : 'bg-[#a5b4fc]')
-                        }`}
-                        >                       
+                    <tr className="table-row">
                         <td className="hover:text-blue-700">
                             {item.message.split('[ALERTA]').map((part, partIndex) => (
                                 partIndex === 1 ? (

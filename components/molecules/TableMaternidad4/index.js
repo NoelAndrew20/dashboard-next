@@ -54,12 +54,7 @@ const TableMaternidad4 = ({ data }) => {
           </thead>
           <tbody>
             {displayDataFinal?.slice(startIndex, endIndex).map((item, index) => (
-              <tr
-              key={index}
-              className={`table-row ${
-              isDarkMode ? (index % 2 === 0 ? 'bg-black' : 'bg-gray-500') : (index % 2 === 0 ? 'bg-[#F7F9FB]' : 'bg-[#a5b4fc]')
-              }`}
-          >  
+              <tr className="table-row">
                 <td>{item.campo1}</td>
                 <td>{item.campo2}</td>
                 <td>{item.campo3}</td>
