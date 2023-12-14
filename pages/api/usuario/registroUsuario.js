@@ -57,7 +57,8 @@ const UsuarioSchema = new mongoose.Schema(
     cp: String, 
     tarea: String, 
     epp: String,
-    proveedor: Number, 
+    proveedor: Number,
+    rango: String, 
 },
   {
     //collection: 'usuarios', // Nombre de la colección en la base de datos
@@ -132,6 +133,7 @@ app.post("/addUsuario", async (req, res) => {
       tarea: data.tarea,
       epp: data.epp,
       proveedor: 0,
+      rango: 'nuevo',
     });
 
     await nuevoUsuario.save();
@@ -183,6 +185,7 @@ app.post("/login", async (req, res) => {
           apellidop: user.apellidop,
           apellidom: user.apellidom,
           proveedor: user.proveedor,
+          email: user.email,
         },
         'mi_secreto_super_secreto', // Cambia esto a tu secreto real
         { expiresIn: '1h' } // Tiempo de expiración del token

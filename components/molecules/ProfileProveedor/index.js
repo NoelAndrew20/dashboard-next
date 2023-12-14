@@ -10,7 +10,7 @@ const PerfilProveedor = ({ data }) => {
   return (
     <div>
         <div className="expanded-menu" >
-            <div className="font-bold text-blue-600 flex justify-between" onClick={() => router.push("./PerfilUsuario/UserData")}>
+            <div className="font-bold text-blue-600 flex justify-between" onClick={() => router.push("./PerfilProveedor/UserData")}>
                 <div>
                     Datos de Usuario
                 </div>
