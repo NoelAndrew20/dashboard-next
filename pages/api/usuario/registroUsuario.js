@@ -188,7 +188,7 @@ app.post("/login", async (req, res) => {
           email: user.email,
         },
         'mi_secreto_super_secreto', // Cambia esto a tu secreto real
-        { expiresIn: '1h' } // Tiempo de expiración del token
+        { expiresIn: '15m' } // Tiempo de expiración del token
       );
 
       res.status(200).json({

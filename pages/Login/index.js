@@ -78,11 +78,11 @@ const Login = ({ title, description, image }) => {
         const proveedor = decodedToken.proveedor;
 
         if (proveedor === 0) {
-          router.push("../");  // Redirige a la página principal
+          router.push("../PerfilUsuario");  // Redirige a la página principal
         }
 
         if (proveedor === 1) {
-          router.push("../Licitacion");  // Redirige a la página licitacion
+          router.push("../Proveedor");  // Redirige a la página licitacion
         }
   
       } else {
