@@ -153,6 +153,39 @@ const Proveedor = db.model('Proveedor', ProveedorSchema);
     res.send('ok');
 });*/
 
+app.put('/editProducto/:usuario', async (req, res) => {
+  try {
+    const usuario = req.params.usuario;
+    const newProduct = req.body;
+
+    console.log(usuario);
+    console.log(newProduct);
+
+    const proveedor = await Proveedor.findOne({ idProveedor: usuario });
+
+    if (!proveedor) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    const nuevoID = proveedor.productos.length + 1;
+
+    // Agrega el nuevo producto con el ID actualizado
+    proveedor.productos.push({
+      ID: nuevoID.toString(), // Convierte a cadena si es necesario
+      SKU: newProduct.SKU,
+      nombre: newProduct.nombre,
+      unidad: newProduct.unidad,
+      precio: newProduct.precio
+    });
+
+    const updatedProveedor = await proveedor.save();
+
+    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedProveedor });
+  } catch (error) {
+    console.error('Error al actualizar los datos:', error);
+    res.status(500).json({ message: 'Error al actualizar los datos' });
+  }
+});
 
 app.get("/getProducto", async (req, res) => {
   try {
@@ -268,3 +301,4 @@ const PORT = 3070;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+

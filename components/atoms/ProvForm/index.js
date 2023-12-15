@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
+import jwt from 'jsonwebtoken';
 
 const ProvForm = ({ data, setData, closeModal }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -9,6 +10,11 @@ const ProvForm = ({ data, setData, closeModal }) => {
     const [inputPrecio, setInputPrecio] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    
+
+    const token = localStorage.getItem('token');
+        const decodedToken = jwt.decode(token);
+        const usuario = decodedToken.usuario;
     const addPerson = async () => {
         try {
           if (
@@ -26,12 +32,24 @@ const ProvForm = ({ data, setData, closeModal }) => {
             };
 
             const newData = [...data, newProduct];
+            console.log(newProduct);
             setData(newData);
             setInputSku("");
             setInputNombre("");
             setInputUnidad("");
             setInputPrecio("");
             setSuccessMessage("Producto guardado exitosamente");
+
+            const axios = require("axios");
+            const apiUrl = 'http://192.168.100.10:3070/editProducto/' + usuario;
+            axios.put(apiUrl, newProduct)
+                .then(response => {
+                    console.log("Respuesta de la API:", response.data);
+                })
+                .catch(error => {
+                    console.error("Error al enviar la solicitud:", error);
+                });
+    
             setErrorMessage("");
           } else {
             setErrorMessage('Por favor completa los cambios');

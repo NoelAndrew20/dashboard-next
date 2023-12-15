@@ -36,37 +36,14 @@ const TablePProducts = () => {
             }
         })
         .then(response => {
-        const jsonData = response.data; // Datos de respuesta en formato JSON
-        console.log(jsonData);
-    
-        // Asegúrate de que data sea un arreglo
+        const jsonData = response.data;
         setData(jsonData);
         })
         .catch(error => {
         console.error(error);
         });
     }, []);
-    /*
-    const [data, setData] = useState([ 
-       { ID: "lorem",sku: "1",descripcion: "lorem ipsum",unidad: "139001",precio: "lorem ipsum"},
-        { ID: "lorem",sku: "1",descripcion: "lorem ipsum",unidad: "139001",precio: "lorem ipsum"},
-        { ID: "lorem",sku: "1",descripcion: "lorem ipsum",unidad: "139001",precio: "lorem ipsum"},
-        { ID: "lorem",sku: "1",descripcion: "lorem ipsum",unidad: "139001",precio: "lorem ipsum"},
-        { ID: "lorem",sku: "1",descripcion: "lorem ipsum",unidad: "139001",precio: "lorem ipsum"},
-        { ID: "lorem",sku: "1",descripcion: "lorem ipsum",unidad: "139001",precio: "lorem ipsum"},
-        { ID: "lorem",sku: "1",descripcion: "lorem ipsum",unidad: "139001",precio: "lorem ipsum"},
-    ]);*/
-
-    useEffect(() => {
-      axios.get('http://192.168.100.10:3070/getAllMedicamento')
-      .then(response => {
-          const jsonData = response.data; // Datos de respuesta en formato JSON
-          setData(jsonData.data);
-      })
-      .catch(error => {
-          console.error(error);
-      });
-  }, [])
+    
 
   return (
     <>
@@ -74,7 +51,6 @@ const TablePProducts = () => {
           <table className={isDarkMode ? "table-container-d" : "table-container"}>
           <thead>
             <tr>
-              <th>ID</th>
               <th>SKU</th>
               <th>Nombre</th>
               <th>Unidad</th>
@@ -86,7 +62,6 @@ const TablePProducts = () => {
               <tr
               key={index}
               className="table-row">  
-                <td>{item.ID}</td>
                 <td>{item.SKU}</td>
                 <td>{item.nombre}</td>
                 <td>{item.unidad}</td>
