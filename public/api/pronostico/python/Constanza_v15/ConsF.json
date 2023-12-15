@@ -1,0 +1,34 @@
+{
+    "answer": {
+        "actividadEconomica": [],
+        "datosContribuyente": {
+            "calle1": "PATRICIO SAENZ",
+            "calle2": "SAN FRANCISCO",
+            "colonia": "DEL VALLE",
+            "cp": "03100",
+            "entidad": "CIUDAD DE MEXICO",
+            "localidad": "",
+            "municipio": "BENITO JUAREZ",
+            "numeroExterior": "312",
+            "numeroInterior": "",
+            "tipoVialidad": "AVENIDA (AV.)",
+            "vialidad": "AVENIDA FELIX CUEVAS"
+        },
+        "domicilioRegistrado": {
+            "denominacion": "DOMIK UNIFORMES",
+            "estatusPadron": "ACTIVO",
+            "fechaInicioOperacion": "02 DE NOVIEMBRE DE 2006",
+            "fechaUltimoCambioEstado": "27 DE NOVIEMBRE DE 2006",
+            "nombreComercial": "DOMIK UNIFORMES S.A. DE C.V.",
+            "regimenCapital": "SOCIEDAD ANONIMA DE CAPITAL VARIABLE",
+            "rfc": "DUN061102158"
+        },
+        "regimen": [
+            {
+                "descripcion": "R\u00e9gimen General de Ley Personas Morales",
+                "fechaFin": "N/A",
+                "fechaInicio": "02/11/2006"
+            }
+        ]
+    }
+}

@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import subprocess
 import json
+import os
 import logging
 import threading
 import time
@@ -94,10 +95,17 @@ def api_chat():
                                     with open("senal.json", "r") as archivo_json:
                                             signal_data = json.load(archivo_json)
                             if signal_data.get("senal") is False:
+                                    func={"function": ""}
+                                    with open("senal_cons.json", "w") as archivo_json:
+                                        json.dump(func, archivo_json)
                                     # jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
                                     print('Resultado 2 impresion', jsonaa.json())
                                     json_response = jsonaa.json()
                                     print(f'Valor de "function": {json_response.get("function")}')
+                                    if json_response.get("function") == 'AltaProveedores':
+                                        func={"function": "AltaProveedores"}
+                                    with open("senal_cons.json", "w") as archivo_json:
+                                            json.dump(func, archivo_json)
                                     signal_data = {"senal": False}
                                     with open("senal.json", "w") as archivo_json:
                                         json.dump(signal_data, archivo_json)
@@ -251,6 +259,9 @@ def get_mp3():
             text = "Hola y bienvenido a Constanza IA"
             tts = gTTS(text=text , lang='es')
             tts.save('respuesta.mp3')
+            cargar = {"answer": "Esperando"}
+            with open("respuesta.json", "w") as archivo_json:
+                json.dump(cargar, archivo_json)
             return jsonify({'message': 'MP3 modified successfully'}), 200
         except Exception as e:
             logging.error(f'Error en la solicitud POST: {str(e)}')
@@ -286,6 +297,75 @@ def get_user():
 
         except Exception as e:
             logging.error(f'Error en la solicitud POST: {str(e)}')
+            return jsonify({'error': str(e)}), 500
+        
+@app.route('/api/enviar-datos', methods=['POST'])
+def enviar_datos():
+    if request.method == 'OPTIONS':
+        headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+        }
+        return ('', 204, headers)
+
+    if request.method == 'POST':
+        try:
+            data = request.get_json()
+            datos_para_microservicio = data.get('datos')
+
+          
+            answer = datos_para_microservicio.get('answer')
+            function = datos_para_microservicio.get('function')
+            parameters = datos_para_microservicio.get('parameters', {})
+            path = parameters.get('path')
+            nombre_archivo = os.path.basename(path)
+            # Puedes realizar cualquier operación adicional con los datos recibidos
+            print(f'Answer: {answer}, Function: {function}, Path: {path}')
+            ruta_archivos = "C:\\Users\\proye\\Pictures\\dashboard-next\\pages\\api\\proveedor\\files\\" + nombre_archivo
+            # Envia los datos al microservicio
+            microservicio_data = {
+                'answer': answer,
+                'function': function,
+                'parameters': parameters,
+            }
+            print(ruta_archivos)
+            response = requests.post(os.environ.get("URL_RESPONDS"), json=microservicio_data)
+
+            if response.status_code == 200:
+                respuesta_microservicio = response.json()
+                print('Respuesta del microservicio:', respuesta_microservicio)
+                directorio_actual = os.path.dirname(__file__)
+
+                # Ruta del archivo JSON en el mismo directorio que el script
+                ruta_archivo_json = os.path.join(directorio_actual, "ConsF.json")
+
+                # Comprobar si el archivo ya existe
+                if os.path.exists(ruta_archivo_json):
+                    # Si el archivo existe, cargar el contenido actual
+                    with open(ruta_archivo_json, "r") as archivo:
+                        datos_existente = json.load(archivo)
+                else:
+                    # Si el archivo no existe, inicializar con un diccionario vacío
+                    datos_existente = {}
+
+                # Actualizar o agregar los datos nuevos
+                datos_existente.update(respuesta_microservicio)
+
+                # Guardar el diccionario en el archivo JSON
+                with open(ruta_archivo_json, "w") as archivo:
+                    json.dump(datos_existente, archivo,indent=4)
+                
+                print(f"Datos guardados en {ruta_archivo_json}")
+                print(f'Respuesta de la API Flask: {jsonify({"success": True, "message": "Datos enviados correctamente al microservicio."})}')
+                return jsonify({'success': True, 'message': 'Datos enviados correctamente al microservicio.','Api': respuesta_microservicio})
+                #return jsonify({}"Api respuesta",respuesta_microservicio)
+            else:
+                os.remove(ruta_archivos)
+                print(ruta_archivos)
+                return jsonify({'error': 'Error al comunicarse con el microservicio.'}), 500
+
+        except Exception as e:
             return jsonify({'error': str(e)}), 500
 if __name__ == '__main__':
     # json_modificado = False  # Inicializa json_modificado a False

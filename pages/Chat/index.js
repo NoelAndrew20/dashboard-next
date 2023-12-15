@@ -5,7 +5,7 @@ import { Howl } from 'howler';
 import json from '../../public/api/pronostico/python/Constanza_v15/respuesta.json'
 import Image from 'next/image';
 import jsondata from '../../public/api/pronostico/python/Constanza_v15/requisitos_2.json'
-// import arch from '@/components/molecules/FormArchivo'
+import FormularioArchivo from '@/components/molecules/FormArchivo'
 import Formulario from '@/components/molecules/Formulariodinamico';
 import Modal from '../../components/atoms/Modal';
 import respuesta from '../../public/api/pronostico/python/Constanza_v15/respuestacons.json'
@@ -32,6 +32,7 @@ const ChatWindow = ({ title, description, image }) => {
     const [isUsernameSet, setIsUsernameSet] = useState(false);
     const userMessages = chatMessages.filter(message => message.isUser);
     const serverMessages = chatMessages.filter(message => !message.isUser);
+    const [jsonContent, setJsonContent] = useState(null);
 
     useEffect(() => {
       const playWelcomeAudio = async () => {
@@ -325,6 +326,17 @@ const ChatWindow = ({ title, description, image }) => {
       }
     }
 
+    useEffect(() => {
+      // Cargar y analizar el contenido del archivo JSON
+      fetch('./api/pronostico/python/Constanza_v15/senal_cons.json')  // Reemplaza con la ruta correcta
+        .then(response => response.json())
+        .then(data => {
+          setJsonContent(data);
+          console.log('Contenido del archivo JSON:', data); // Imprimir contenido en la consola
+        })
+        .catch(error => console.error('Error al cargar el archivo JSON:', error));
+    }, []);
+
     return (
       <div className={isDarkMode ? "bg-[#151515]" : "lightMode"}>
       <StaticMeta
@@ -337,11 +349,6 @@ const ChatWindow = ({ title, description, image }) => {
         isDarkMode={isDarkMode} 
       />
         <div className={isDarkMode ? "darkMode" : "lightMode"}>
-          <div>
-            <Modal isOpen={isModalOpen} onClose={cerrarModal}>
-              <Formulario jsonFile="requisitos_2" closeModal={cerrarModal} onFormSubmit={handleFormSubmit} />
-            </Modal>
-          </div>
             <form className={`wrapper full-viewport ${isDarkMode ? "bg-[#151515]" : "bg-white"} `} >
               <div
                 className="absolute inset-0 bg-center"
@@ -363,7 +370,13 @@ const ChatWindow = ({ title, description, image }) => {
                         >
                           <div className="w-3/4">
                             {message.text}
+                            {!message.isUser && message.text.includes("Por favor seleccione su constancia de situación fiscal") && jsonContent.function === "AltaProveedores" && (
+                              <div>
+                                <FormularioArchivo onFormSubmit={handleFormSubmit}/>
+                              </div>
+                            )}
                           </div>
+                          
                           <div>
                             {!message.isUser && ( // Solo renderiza la imagen para los mensajes del sistema
                               <Image
