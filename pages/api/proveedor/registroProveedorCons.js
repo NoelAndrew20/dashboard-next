@@ -5,7 +5,8 @@ const multer = require('multer');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const config = require('../../../config.json');
-
+const mime = require('mime-types');
+const fs = require('fs');
 const app = express();
 const mongoUrl = config.mongodesarrollo;
 
@@ -45,11 +46,34 @@ const storage = multer.diskStorage({
   //const upload = multer({ storage: storage }).single('file');
   const upload = multer({ storage: storage });
 
-  return upload.fields([
-    { name: 'constanciaFile', maxCount: 1 },
-    { name: 'caratulaFile', maxCount: 1 },
-    { name: 'opinionFile', maxCount: 1 }
-]);
+  return (req, res, next) => {
+    // Llama a la función de middleware de carga de archivos
+    upload.fields([
+      { name: 'constanciaFile', maxCount: 1 }
+    ])(req, res, (err) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+
+      // Obtén la ruta del archivo desde req.files
+      const rutaConstanciaFile = req.files['constanciaFile'][0].path;
+
+      const mimeType = mime.lookup(rutaConstanciaFile);
+      if (mimeType !== 'application/pdf') {
+        // Elimina el archivo subido
+        fs.unlinkSync(rutaConstanciaFile);
+
+        return res.status(400).json({ error: 'Tipo de archivo no permitido.' });
+      }
+      // Puedes incluir las rutas del archivo en la respuesta
+      req.rutasArchivos = {
+        constancia: rutaConstanciaFile
+      };
+
+      // Llama a la siguiente función en la cadena de middleware
+      next();
+    });
+  };
 }
 
 async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
@@ -154,25 +178,6 @@ const Proveedor = db.model('Proveedor', ProveedorSchema);
 });*/
 
 
-app.get("/getProducto", async (req, res) => {
-  try {
-    const { email } = req.query;
-    const proveedor = await Proveedor.findOne({ correo: email });
-    if (!proveedor) {
-      return res.status(404).send([{ status: "not found", message: "Proveedor no encontrado" }]);
-    }
-
-    const productos = proveedor.productos;
-
-    // Devuelve un arreglo con el objeto usuario
-    res.send(productos);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send([{ status: "error", message: "Internal server error" }]);
-  }
-});
-
-
 app.post("/addProveedor", async (req, res) => {
   const newProveedor = req.body;
   
@@ -237,8 +242,6 @@ app.post("/addProveedor", async (req, res) => {
       password: hashedPassword,
       email: nuevoProveedor.correo,
       proveedor: 1,
-      picture: '/images/imagenes/user.png',
-      rango: 'fff',
     });
 
     await nuevoUsuario.save();
@@ -260,7 +263,8 @@ app.post("/addProveedor", async (req, res) => {
 
 app.post('/addDocumentoProveedor', uploadFiles(), (req, res) => {
   // Manejo del archivo subido
-  res.send('ok');
+  const rutasArchivos = req.rutasArchivos;
+  res.send(rutasArchivos);
 });
 
 
@@ -268,3 +272,4 @@ const PORT = 3070;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+

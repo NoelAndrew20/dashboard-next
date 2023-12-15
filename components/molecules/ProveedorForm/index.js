@@ -1,17 +1,34 @@
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useEffect, useState } from 'react';
-
 const axios = require('axios');
 
 const ProveedorForm = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [selectedFile, setSelectedFile] = useState(null);
-
     const [formData, setFormData] = useState({
         actividadesEconomicas: [],
         regimenes: [],
     });
-    const [fiscalData, setFiscalData] = useState({
+
+    const [fiscalData, setfiscalData] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('/api/pronostico/python/Constanza_v15/ConsF.json'); // Ruta relativa al archivo JSON en la carpeta public
+            const data = await response.json();
+    
+            setfiscalData(data.answer);
+            console.log('Índice "answer":', data.answer);
+          } catch (error) {
+            console.error('Error al cargar el archivo JSON:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+      console.log('fiscalData:', fiscalData);
+    const [fiscaldata, setfiscaldata] = useState({
         
             actividadEconomica: [
                 {
@@ -88,18 +105,17 @@ const ProveedorForm = () => {
             ]
         }
     )
-    const [cpAux, setCpAux] = useState(fiscalData.datosContribuyente.cp);
-    const [denominacionAux, setDenominacionAux] = useState(fiscalData.domicilioRegistrado.denominacion);
-    const [rfcAux, setRfcAux] = useState(fiscalData.domicilioRegistrado.rfc);
-    const [regimenAux, setRegimenAux] = useState(fiscalData.domicilioRegistrado.regimenCapital);
-    const [vialidadAux, setVialidadAux] = useState(fiscalData.datosContribuyente.vialidad);
-    const [exteriorAux, setExteriorAux] = useState(fiscalData.datosContribuyente.numeroExterior);
-    const [interiorAux, setInteriorAux] = useState(fiscalData.datosContribuyente.numeroInterior);
-    const [coloniaAux, setColiniaAux] = useState(fiscalData.datosContribuyente.colonia);
-    const [localidadAux, setLocalidadAux] = useState(fiscalData.datosContribuyente.localidad);
-    const [municipioAux, setMunicipioAux] = useState(fiscalData.datosContribuyente.municipio);
-    const [entidadAux, setEntidadAux] = useState(fiscalData.datosContribuyente.entidad);
-
+    const cpAux = fiscalData?.datosContribuyente?.cp || '';
+    const denominacionAux = fiscalData?.domicilioRegistrado?.denominacion || '';
+    const rfcAux = fiscalData?.domicilioRegistrado?.rfc || '';
+    const regimenAux = fiscalData?.domicilioRegistrado?.regimenCapital || '';
+    const vialidadAux = fiscalData?.datosContribuyente?.vialidad || '';
+    const exteriorAux = fiscalData?.datosContribuyente?.numeroExterior || '';
+    const interiorAux = fiscalData?.datosContribuyente?.numeroInterior || '';
+    const coloniaAux = fiscalData?.datosContribuyente?.colonia || '';
+    const localidadAux = fiscalData?.datosContribuyente?.localidad || '';
+    const municipioAux = fiscalData?.datosContribuyente?.municipio || '';
+    const entidadAux = fiscalData?.datosContribuyente?.entidad || '';
 
     const handleTipoProveedorChange = (event) => {
         setFormData({
@@ -403,7 +419,7 @@ const ProveedorForm = () => {
             </div>
             <h2 className="font-bold text-lg">Actividades económicas</h2>
             <div>
-                {fiscalData.actividadEconomica.map((act, index) => (
+                {fiscaldata?.actividadEconomica.map((act, index) => (
                     <div>
                         <div className="modal-cel">
                             <div key={index} className="modal-item w-1/3">
@@ -532,7 +548,7 @@ const ProveedorForm = () => {
             </div>
             <h2 className="font-bold text-lg">Regímenes</h2>
             <div>
-                {fiscalData.regimen.map((regimen, index) => (
+                {fiscaldata?.regimen.map((regimen, index) => (
                     <div className="modal-cel">
                         <div key={index} className="modal-item w-1/3">
                             <label className="font-bold text-cyan-800">Descripción:</label>

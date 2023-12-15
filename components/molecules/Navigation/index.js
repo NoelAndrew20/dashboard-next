@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Cookies from 'js-cookie';
-import foto from '@/public/images/imagenes/user.png';
+import foto from '@/public/images/imagenes/messi.jpg';
 
 const Navigation = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
