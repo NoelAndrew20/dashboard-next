@@ -322,7 +322,7 @@ def enviar_datos():
             nombre_archivo = os.path.basename(path)
             # Puedes realizar cualquier operación adicional con los datos recibidos
             print(f'Answer: {answer}, Function: {function}, Path: {path}')
-            ruta_archivos = "C:\\Users\\proye\\Pictures\\dashboard-next\\pages\\api\\proveedor\\files\\" + nombre_archivo
+            ruta_archivos = "/home/JocdDev/Documents/A/dashboard-next/pages/api/proveedor/" + nombre_archivo
             # Envia los datos al microservicio
             microservicio_data = {
                 'answer': answer,
@@ -372,4 +372,4 @@ if __name__ == '__main__':
     # actualizar_json_thread = threading.Thread(target=actualizar_json_esperando)
     # actualizar_json_thread.daemon = True
     # actualizar_json_thread.start()
-    app.run(debug=True,port=5000, host="192.168.100.10")
+    app.run(debug=True,port=5003, host="192.168.100.10")
