@@ -31,7 +31,7 @@ h1 {
 }
 
 body {
-  background-color: #fff;
+  background-color: #F1F4F5;
   font-family: 'Montserrat', sans-serif;
   width: 100%;
 }
@@ -599,9 +599,8 @@ th {
 }
 .table-index {
   padding: 20px;
-  background-color: #201F1C;
+  background-color: #F1F4F5;
   width: 70vh;
-  color: #BBBBBB;
   border-radius: 10px;
 }
 .table-d {
@@ -634,10 +633,8 @@ th {
 .table-container-index {
   width: 100%;
   text-align: center;
-  background-color: #201F1C;
 }
 .table-container-index th{
-  color: #B1B1B1;
 }
 .table-container-index-d {
   width: 100%;
@@ -682,7 +679,8 @@ th {
   background-color: #c53636;
 }
 .modal-title {
-  font-size: 36px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .modal-content {
   background-color: #fff;
@@ -732,11 +730,13 @@ th {
   border: none;
   outline: none;
   width: 100%;
+  padding: 3px;
 }
 .modal-input-d {
   background-color: #151515;
   border: none;
   outline: none;
+  padding: 3px;
 }
 .modal-cel {
   display: flex;
