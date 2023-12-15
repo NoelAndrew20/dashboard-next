@@ -168,7 +168,7 @@ const Login = ({ title, description, image }) => {
                       <img src="/images/Constanzalogo2.gif" style={{width:"200px"}}/>
                     </div>
                     <div className='flex justify-center pt-2'>
-                      <h1 className="text-2xl font-semibold mb-4 text-[#3E120A]">Bienvenido!</h1>
+                      <h1 className="text-2xl font-semibold mb-4 text-[#818cf8]">Bienvenido!</h1>
                     </div>
                   </div>
                 </motion.div>

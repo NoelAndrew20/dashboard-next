@@ -26,6 +26,7 @@ import cerdoIndex from '../public/images/imagenes/cerdoIndex.png';
 import Footer from '@/components/atoms/Footer'
 import Notification from '@/components/molecules/AlertaNotificacion'
 import { data } from 'autoprefixer'
+import ChatBtn from '@/components/atoms/ChatBtn'
 const axios = require('axios');
 const welcomeMessages = [
   "¡Bienvenid@!",
@@ -142,6 +143,7 @@ export default function Home({ title, description, image }) {
               toggleDarkMode={toggleDarkMode}
               isDarkMode={isDarkMode}
               />
+              <ChatBtn/>
               <div>
                   <Notification data={notificationData} />
                   <ToastContainer/>
@@ -280,7 +282,7 @@ export default function Home({ title, description, image }) {
                       </div>
                     </div>
                   </div> 
-                  <div className="text-white">
+                  <div>
                     <TableIndex1 isDarkMode={ isDarkMode }/>
                   </div>
                 </div>
