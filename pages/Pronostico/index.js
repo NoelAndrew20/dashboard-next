@@ -117,9 +117,6 @@ const Pronostico = ({ title, description, image }) => {
                     
             
         }
-        console.log(jsondata);
-
-        //console.log(fechainicial,fechafinal,descendenciavientre);
         fetch('http://localhost:5000/api/pronostico/python/config.json', {
         method: 'POST', 
         headers: {

@@ -53,7 +53,6 @@ const Register = ({ title, description, image }) => {
     e.preventDefault();
 
     if (!isFormValid()) {
-      console.log("Formulario inválido");
       return;
     }
 
@@ -62,8 +61,6 @@ const Register = ({ title, description, image }) => {
       email,
       password,
     };
-
-    console.log("Datos de registro:", userData);
     localStorage.setItem('userData', JSON.stringify(userData));
 
   };

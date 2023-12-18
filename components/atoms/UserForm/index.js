@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 
 const UserForm = ({ data, setData, closeModal }) => {
@@ -138,9 +138,6 @@ const UserForm = ({ data, setData, closeModal }) => {
           setSuccessMessage("");
         }
       };
-      useEffect(()=>{
-        console.log(data)
-      })
     return(
         <>
         <div className="flex justify-between modal-header">

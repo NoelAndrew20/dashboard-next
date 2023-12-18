@@ -29,7 +29,6 @@ const RegistroUsuarios = ({ title, description, image }) => {
         //axios.get('http://localhost:3020/getAllUsuario')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
-            console.log(jsonData);
             setData(jsonData.data);
         })
         .catch(error => {

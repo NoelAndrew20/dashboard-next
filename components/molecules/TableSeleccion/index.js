@@ -62,7 +62,7 @@ const TableSeleccion = ({ data, setData }) => {
                 </thead>
                 <tbody>
                     {displayDataFinal?.map((item, index) => (
-                    <tr className="table-row">
+                    <tr className="table-row" key={ index }>
                         <td>
                             {item.numeroSolicitud}
                         </td>

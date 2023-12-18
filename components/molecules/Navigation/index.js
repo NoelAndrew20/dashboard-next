@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import burguer from '@/public/images/svg/hamburguer.svg'
-import x from '@/public/images/svg/x-w.svg'
 import srs from '@/public/Logos/ACELogo.png'
 import logo from '@/public/images/icon/logo_blanco.png'
 import { useState } from 'react';
@@ -54,9 +53,7 @@ const Navigation = () => {
 
     const usuariojson = Cookies.get('userData');
     const userData = usuariojson ? JSON.parse(usuariojson) : null;
-    //console.log(userData);
-
-    // console.log('Grupo usuario:',currentUser.user.grupo);
+    
     return (
         <>
             <header className="navbar flex items-center justify-between bg-gray-700 text-white text-sm py-4 px-4">
@@ -76,7 +73,7 @@ const Navigation = () => {
                     </div>
                 </div>
                 <div className="flex">
-                    <Image src={srs} width={100} height={100} alt="srs-logo" />
+                    <Image src={srs} width={100} height="auto" alt="srs-logo"/>
                 </div>
             </header>
             <div
@@ -88,13 +85,13 @@ const Navigation = () => {
 
             <div className={`sidebar z-50 h-screen text-white w-64 p-4 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out fixed top-0 left-0`}>
                 <div onClick={toggleSidebar} className="flex justify-end items-end pt-1">
-                    <Image src={x} width={20} height={20} alt="x"/>
+                    <img src={"/images/svg/x-w.svg"} width={20} height={20} alt="x"/>
                 </div>
                 <div className="flex pt-5" onClick={toggleDarkMode}>
                     {isDarkMode ? 
-                        <Image src={"/images/svg/moon.svg"} width={30} height={30} alt="moon" />
+                        <img src={"/images/svg/moon.svg"} width={30} height={30} alt="moon" />
                         :
-                        <Image src={"/images/svg/sun.svg"} width={30} height={30} alt="sun" />
+                        <img src={"/images/svg/sun.svg"} width={30} height={30} alt="sun" />
                     }
                 </div>
                 <div className="side flex flex-col space-y-2 overflow-hidden" >
@@ -111,113 +108,113 @@ const Navigation = () => {
                     {/*{userData.user.grupo === 'Grupo A' && (*/}
                     <Link href="/" className={`hover:font-semibold ${currentPage === '/' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
+                            <img src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
                         </div>
                     </Link>
                       {/*})} */}
                       {/*{userData.user.grupo === 'Grupo B' &&  (*/}
                     <Link href="../../RegistroUsuarios" className={`hover:font-semibold ${currentPage === '/RegistroUsuarios' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/user.svg"} width={20} height={20} alt="user" className="mr-2" /> Usuarios
+                            <img src={"/images/svg/user.svg"} width={20} height={20} alt="user" className="mr-2" /> Usuarios
                         </div>
                     </Link>
                     {/*})}*/}
                         {/*{userData.user.grupo === 'Grupo B' &&(*/}
                     <Link href="../../RegistroTransporte" className={`hover:font-semibold ${currentPage === '/RegistroTransporte' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/truck.svg"} width={20} height={20} alt="transporte" className="mr-2" />Transportes
+                            <img src={"/images/svg/truck.svg"} width={20} height={20} alt="transporte" className="mr-2" />Transportes
                         </div>
                     </Link>
                         {/*)}*/}
                     <Link href="../../Medicamento" className={`hover:font-semibold ${currentPage === '/Medicamento' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento
+                            <img src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento
                         </div>
                     </Link>
                     <Link href="../../MateriasPrimas" className={`hover:font-semibold ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/hammer.svg"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
+                            <img src={"/images/svg/hammer.svg"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
                         </div>
                     </Link>
                     <Link href="../../Pronostico" className={`hover:font-semibold ${currentPage === '/Pronostico' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/calculator.svg"} width={20} height={20} alt="calculator" className="mr-2" />Pronóstico
+                            <img src={"/images/svg/calculator.svg"} width={20} height={20} alt="calculator" className="mr-2" />Pronóstico
                         </div>
                     </Link>
                     <Link href="../../RFID" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />Cerdos
+                            <img src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />Cerdos
                         </div>
                     </Link>
                     <Link href="../../RegistroAlimentos" className={`hover:font-semibold ${currentPage === '/RegistroAlimentos' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/food.svg"} width={20} height={20} alt="label" className="mr-2" />Alimentos
+                            <img src={"/images/svg/food.svg"} width={20} height={20} alt="label" className="mr-2" />Alimentos
                         </div>
                     </Link>
                     <Link href="../../RegistroCerdos" className={`hover:font-semibold ${currentPage === '/RegistroCerdos' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />Registro Cerdos
+                            <img src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />Registro Cerdos
                         </div>
                     </Link>
                     <Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RegistroInseminacion' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/drop.svg"} width={20} height={20} alt="drop" className="mr-2" />Inseminacion
+                            <img src={"/images/svg/drop.svg"} width={20} height={20} alt="drop" className="mr-2" />Inseminacion
                         </div>
                     </Link>
                     <Link href="../../Graphicator" className={`hover:font-semibold ${currentPage === '/Graphicator' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/graph.svg"} width={25} height={25} alt="graph" className="mr-2" />Menú de alimentos
+                            <img src={"/images/svg/graph.svg"} width={25} height={25} alt="graph" className="mr-2" />Menú de alimentos
                         </div>
                     </Link>
                     <Link href="../../PreRegistro" className={`hover:font-semibold ${currentPage === '/PreRegistro' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/pre.svg"} width={20} height={20} alt="graph" className="mr-2" />Pre registro
+                            <img src={"/images/svg/pre.svg"} width={20} height={20} alt="graph" className="mr-2" />Pre registro
                         </div>
                     </Link>
                     <Link href="../../RegistroProveedores" className={`hover:font-semibold ${currentPage === '/RegistroProveedores' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/provider.svg"} width={20} height={20} alt="graph" className="mr-2" />Registro de proveedores
+                            <img src={"/images/svg/provider.svg"} width={20} height={20} alt="graph" className="mr-2" />Registro de proveedores
                         </div>
                     </Link>
                     <Link href="../../Licitacion" className={`hover:font-semibold ${currentPage === '/Licitacion' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/licitacion.svg"} width={20} height={20} alt="graph" className="mr-2" />Licitación
+                            <img src={"/images/svg/licitacion.svg"} width={20} height={20} alt="graph" className="mr-2" />Licitación
                         </div>
                     </Link>
                     <Link href="../../Compras" className={`hover:font-semibold ${currentPage === '/Compras' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/shopping.svg"} width={20} height={20} alt="graph" className="mr-2" />Compras
+                            <img src={"/images/svg/shopping.svg"} width={20} height={20} alt="graph" className="mr-2" />Compras
                         </div>
                     </Link>
                     <Link href="../../SeleccionProveedor" className={`hover:font-semibold ${currentPage === '/SeleccionProveedor' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/selection.svg"} width={20} height={20} alt="graph" className="mr-2" />Seleccion de proveedor
+                            <img src={"/images/svg/selection.svg"} width={20} height={20} alt="graph" className="mr-2" />Seleccion de proveedor
                         </div>
                     </Link>
                     <Link href="../../Simulador" className={`hover:font-semibold ${currentPage === '/Simulador' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/farm.svg"} width={20} height={20} alt="graph" className="mr-2" />Simulador
+                            <img src={"/images/svg/farm.svg"} width={20} height={20} alt="graph" className="mr-2" />Simulador
                         </div>
                     </Link>
                     <Link href="../../Simulador3d" className={`hover:font-semibold ${currentPage === '/Simulador3d' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/cube.svg"} width={20} height={20} alt="graph" className="mr-2" />3D Visualizador
+                            <img src={"/images/svg/cube.svg"} width={20} height={20} alt="graph" className="mr-2" />3D Visualizador
                         </div>
                     </Link>
                     <Link href="../../Chat" className={`hover:font-semibold ${currentPage === '/Chat' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/chat.svg"} width={20} height={20} alt="graph" className="mr-2" />Chat
+                            <img src={"/images/svg/chat.svg"} width={20} height={20} alt="graph" className="mr-2" />Chat
                         </div>
                     </Link>
                     <Link href="../../Proveedor" className={`hover:font-semibold ${currentPage === '/Proveedor' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <Image src={"/images/svg/box.svg"} width={20} height={20} alt="graph" className="mr-2" />Perfil proveedor
+                            <img src={"/images/svg/box.svg"} width={20} height={20} alt="graph" className="mr-2" />Perfil proveedor
                         </div>
                     </Link>
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleGestation}>
                             Gestaciones
-                            <Image src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isGestationOpen ? 'rotate-90' : ''}`} />
+                            <img src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isGestationOpen ? 'rotate-90' : ''}`} />
                         </div>
                         {isGestationOpen && (
                             <div className="pl-5 grid">
@@ -232,7 +229,7 @@ const Navigation = () => {
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleMaternidad}>
                             Maternidades
-                            <Image src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isMaternidadOpen ? 'rotate-90' : ''}`} />
+                            <img src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isMaternidadOpen ? 'rotate-90' : ''}`} />
                         </div>
                         {isMaternidadOpen && (
                             <div className="pl-5 grid">
@@ -248,7 +245,7 @@ const Navigation = () => {
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleZen}>
                             Zen
-                            <Image src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isZenOpen ? 'rotate-90' : ''}`} />
+                            <img src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isZenOpen ? 'rotate-90' : ''}`} />
                         </div>
                         {isZenOpen && (
                             <div className="pl-5 grid">

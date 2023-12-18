@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 import jwt from 'jsonwebtoken';
 
@@ -32,7 +32,6 @@ const ProvForm = ({ data, setData, closeModal }) => {
             };
 
             const newData = [...data, newProduct];
-            console.log(newProduct);
             setData(newData);
             setInputSku("");
             setInputNombre("");

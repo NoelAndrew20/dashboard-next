@@ -90,12 +90,7 @@ const ComprasForm = () => {
         };
 
         setFormData([...formData, newFormData]);
-        setShowPdf(true);
-
-       
-        console.log([newFormData]);
-        
-       
+        setShowPdf(true);        
     };
     useEffect(() => {
         if (pdfGenerated) {
@@ -501,7 +496,7 @@ const ComprasForm = () => {
                             <label>Pago:</label>
                             <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                                 <select name="pagoFactura" className={isDarkMode ? "modal-input-d" : "modal-input"}>
-                                    <option value="" selected>Selecciona una opción...</option>
+                                    <option value="" defaultValue>Selecciona una opción...</option>
                                     <option value="credito">Credito</option>
                                     <option value="pago inmediato">Pago inmediato</option>
                                 </select>
@@ -526,7 +521,7 @@ const ComprasForm = () => {
                             <label>Forma de pago:</label>
                             <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                                 <select name="formaFactura" className={isDarkMode ? "modal-input-d" : "modal-input"}>
-                                    <option value="" selected>Selecciona una opción...</option>
+                                    <option value="" defaultValue>Selecciona una opción...</option>
                                     <option value="transferencia">Transferencia</option>
                                     <option value="efectivo">Efectivo</option>
                                 </select>

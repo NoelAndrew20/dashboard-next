@@ -59,7 +59,6 @@ const TableTransporte = ({ data, setData }) => {
         };
     
         const axios = require("axios");
-        console.log(updatedTransporte.fecha, updatedTransporte);
     
         //const apiUrl = 'http://localhost:3010/editTransporte/' + updatedTransporte.fecha;
         const apiUrl = 'http://192.168.100.10:3010/editTransporte/' + updatedUsuario.fechaContratacion;
@@ -140,7 +139,7 @@ const TableTransporte = ({ data, setData }) => {
                 </thead>
                 <tbody>
                 {displayDataFinal?.map((item, index) => (
-                    <tr className="table-row">
+                    <tr className="table-row" key={ index }>
                         <td>{item.fecha}</td>
                         <td>{item.camion}</td>
                         <td>{item.destino}</td>

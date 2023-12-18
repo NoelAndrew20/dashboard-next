@@ -49,8 +49,6 @@ const MenuTable = ({ data, setData }) => {
                             <tr className="table-row">
                               <td>{item.fecha}</td>
                               <td>{item.numeroSolicitud}</td>
-                              {console.log("la data",data)}
-
                               <td className=" p-1 flex justify-center">
                                 <button
                                   className="flex align-center"

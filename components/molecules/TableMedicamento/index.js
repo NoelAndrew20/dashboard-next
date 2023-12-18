@@ -54,7 +54,7 @@ const TableMedicamento = ({ data }) => {
           </thead>
           <tbody>
             {displayDataFinal.slice(startIndex, endIndex).map((item, index) => (
-              <tr className="table-row">
+              <tr className="table-row" key={ index }>
                 <td>{item.AñoRecibo}</td>
                 <td>{item.MesRecibo}</td>
                 <td>{item.Description}</td>

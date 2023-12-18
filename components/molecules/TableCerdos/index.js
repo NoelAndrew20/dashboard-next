@@ -65,7 +65,7 @@ const TableCerdos = ({ data, setData }) => {
                 </thead>
                 <tbody>
                     {displayDataFinal?.map((item, index) => (
-                    <tr className="table-row">       
+                    <tr className="table-row" key={ index }>       
                         <td>{item.proveedores.nombreProveedor}</td>
                         <td>{item.granja}</td>
                         <td>{item.proveedores.sede}</td>

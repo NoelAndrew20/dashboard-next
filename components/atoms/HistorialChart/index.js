@@ -10,7 +10,6 @@ const HistorialChart = () => {
       try {
         const response = await axios.get('http://192.168.100.10:3142/getAllSolicitudHistorial');
         const jsonData = response.data;
-        console.log(jsonData);
         setData(jsonData);
       } catch (error) {
         console.error('Error fetching data:', error);

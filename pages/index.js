@@ -47,7 +47,6 @@ export default function Home({ title, description, image }) {
   const [audio] = useState(new Audio('./audio/imperial_alert.mp3')); // Reemplaza con la ruta correcta de tu archivo de sonido
   const [data, setData] = useState([])
   const handleNotification = (data) => {
-    console.log('Notificación recibida:', data);
     const message = data && data.message ? data.message : 'Mensaje vacío';
     const toastType = message.includes('area') ? 'warn' : message.includes('40') ? 'error' : 'info';
 
@@ -72,7 +71,6 @@ export default function Home({ title, description, image }) {
     const socket = io('http://192.168.100.10:5010', { transports: ['websocket'] });
 
     socket.on('notificationReceived', (data) => {
-      console.log('Evento de notificación recibido en Next.js:', data);
       handleNotification(data);
     });
 
@@ -92,7 +90,6 @@ export default function Home({ title, description, image }) {
   }, []);
 
   useEffect(() => {
-    //console.log(localStorage)
     const userDataString = localStorage.getItem("userData");
     
     if (userDataString) {

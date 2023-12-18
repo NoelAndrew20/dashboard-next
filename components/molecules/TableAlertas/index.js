@@ -25,7 +25,7 @@ const TableAlertas = ({ data, setData }) => {
                 </thead>
                 <tbody>
                 {currentEntries.map((item, index) => (
-                    <tr className="table-row">
+                    <tr className="table-row" key={ index }>
                         <td className="hover:text-blue-700">
                             {item.message.split('[ALERTA]').map((part, partIndex) => (
                                 partIndex === 1 ? (

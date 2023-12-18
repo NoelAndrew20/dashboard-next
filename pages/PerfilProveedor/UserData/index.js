@@ -31,10 +31,7 @@ const UserData = ({ title, description, image }) => {
             }
         })
         .then(response => {
-        const jsonData = response.data; // Datos de respuesta en formato JSON
-        console.log(jsonData);
-    
-        // Asegúrate de que data sea un arreglo
+        const jsonData = response.data;   
         setData(jsonData);
         })
         .catch(error => {
