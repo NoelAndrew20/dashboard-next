@@ -62,7 +62,6 @@ const SeleccionProveedor = ({ title, description, image }) => {
           try {
             const response = await axios.get('http://192.168.100.10:3083/getAllSolicitudLicitacion');
             const jsonData = response.data;
-            console.log(jsonData)
             const newData = jsonData.map(item => ({ ...item, usuario }));
             setData(newData);
           } catch (error) {

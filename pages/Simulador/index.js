@@ -39,7 +39,6 @@ const Simulador = ({ title, description, image }) => {
             DiasEnArea: diasEnArea,
             Ubicacion: UbicacionF1
         };
-        console.log("lote",nuevoLote);
         const nuevoLoteback =
           {
           "FechaRegistro": nuevoLote.FechaRegistro,
@@ -55,7 +54,6 @@ const Simulador = ({ title, description, image }) => {
           "MedicamentoDia1": nuevoLote.MedicamentoDia1
           }
         ;
-        console.log(nuevoLoteback);
         setLotes([...lotes, nuevoLote]);
         setLoteback([...loteback, nuevoLote]);
         setRFIDF1("");
@@ -64,9 +62,6 @@ const Simulador = ({ title, description, image }) => {
         setUbicacionF1("");
       }
     };
-    useEffect(()=>{
-      console.log(loteback)
-    })
   
     const eliminarUltimoLote = () => {
       if (lotes.length > 0) {
@@ -77,8 +72,6 @@ const Simulador = ({ title, description, image }) => {
     };
     const guardardatosjson = () => {
         const jsondata = loteback;
-        console.log(jsondata);
-
         fetch('http://localhost:5000/api/pronostico/python/sim.json', {
         method: 'POST', 
         headers: {

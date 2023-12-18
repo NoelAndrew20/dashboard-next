@@ -1,5 +1,5 @@
 import { useDarkMode } from "@/context/DarkModeContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const CalcuFormOther = ({ alimento }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [showEditModal, setShowEditModal] = useState(false);
@@ -37,7 +37,6 @@ const CalcuFormOther = ({ alimento }) => {
 
             const newData = [...data, newOrder]; //arregla el nuevo arreglo al arreglo que viene del back
             setData(newData);
-            //console.log(newData);
             setNombreAlimentoV("");
             setTipoV("");
             setProteinaV("");
@@ -58,7 +57,6 @@ const CalcuFormOther = ({ alimento }) => {
 
 
             setErrorMessage("");
-            console.log(data);
 
           } else {
             setErrorMessage('Por favor completa los cambios');
@@ -69,9 +67,7 @@ const CalcuFormOther = ({ alimento }) => {
           setSuccessMessage("");
         }
       };
-      useEffect(() => {
-       // console.log(data)
-      })
+    
     return(
     <form className={`${isDarkMode ? "edit-modal-d" : "edit-modal" } bg-white p-4 rounded shadow-md mt-10`}>
         <h2 className="text-lg">Generar calculo: <span className="text-[#D4AF37]">{alimento}</span></h2>

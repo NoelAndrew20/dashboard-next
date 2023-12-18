@@ -77,8 +77,6 @@ const TableLicitacion = ({ data, setData }) => {
             primerCaracter
         };
         setDataArray(newData);
-
-        console.log(newData[indexGuide].solicitud[editingSolicitudIndex]);
         
         //const apiUrl = 'http://localhost:3083/addSolicitudLicitacion';
         const apiUrl = 'http://192.168.100.10:3083/addSolicitudLicitacion';
@@ -198,7 +196,7 @@ const TableLicitacion = ({ data, setData }) => {
                                         name="metodo"
                                         onChange={(e) => e.target.value}
                                     >
-                                        <option value="" selected>
+                                        <option value="" defaultValue>
                                             Selecciona...
                                         </option>
                                         <option value="CIF">CIF</option>
@@ -233,7 +231,7 @@ const TableLicitacion = ({ data, setData }) => {
                                         name="pago"
                                         onChange={(e) => e.target.value}
                                     >
-                                        <option value="" selected>
+                                        <option value="" defaultValue>
                                             Selecciona...
                                         </option>
                                         <option value="Credito">Crédito</option>

@@ -16,7 +16,6 @@ export default class Interests {
 
     this.sizes.on('switchdevice', (device) => {
       this.device = device
-      console.log(device);
     })
 
     // Debug

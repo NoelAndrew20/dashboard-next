@@ -71,8 +71,6 @@ const Table = ({ data, setData }) => {
         };
     
         const axios = require("axios");
-        console.log(updatedUsuario.usuario, updatedUsuario);
-
         const apiUrl = 'http://192.168.100.20:3020/editUsuario/' + updatedUsuario.fechaContratacion;
         axios.put(apiUrl, updatedUsuario)
             .then(response => {
@@ -126,7 +124,6 @@ const Table = ({ data, setData }) => {
         };
 
         const axios = require("axios");
-        console.log(updatedUsuario.usuario, updatedUsuario);
 
         const apiUrl = 'http://192.168.100.10:3020/editUsuario/' + updatedUsuario.fechaContratacion;
         axios.put(apiUrl, updatedUsuario)
@@ -174,7 +171,7 @@ const Table = ({ data, setData }) => {
                 </thead>
                 <tbody>
                     {displayDataFinal?.map((item, index) => (
-                    <tr className="table-row">
+                    <tr className="table-row" key={ index }>
                         <td>{item.nombre}</td>
                         <td>{item.email}</td>
                         <td>{item.departamento}</td>

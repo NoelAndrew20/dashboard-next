@@ -50,7 +50,7 @@ const TableRFID = ({ data, setData, diferenciaDias}) => {
                 </thead>
                 <tbody>
                 {displayDataFinal?.map((item, index) => (
-                    <tr className="table-row">
+                    <tr className="table-row" key={ index }>
                         <td>{item.granja}</td>
                         <td>{item.rfid}</td>
                         <td>{item.status}</td>

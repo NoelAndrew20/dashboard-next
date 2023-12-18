@@ -22,8 +22,6 @@ ChartJS.register(
 );
 
 const LineChart = ({ dataArray }) => {
-
-console.log("dataarray",dataArray)
     const data = {
         labels: dataArray.map(item => item.dia),
         datasets: [

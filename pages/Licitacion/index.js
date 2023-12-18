@@ -33,9 +33,6 @@ const Licitacion = ({ title, description, image }) => {
         const usuario = decodedToken.usuario;
         const nombre = decodedToken.nombre;
         const proveedor = decodedToken.proveedor;
-        console.log("Usuario:", usuario);
-        console.log("Nombre:", nombre);
-        console.log("Proveedor:", proveedor);
         setUsername(usuario);
   
         setTokenVerified(true);
@@ -85,8 +82,6 @@ if (!tokenVerified) {
             </div>
             <div className="wrapper">
                 <h2 className="text-xl mt-5 mb-5">Entradas existentes</h2>
-                {/*<Search data={data} setData={setData} word={"item"}/>*/}
-                {console.log("datataatata",data)}
                 <div className="mt-10">
                     <TableLicitacion data={data} setData={setData}/>
                 </div>
