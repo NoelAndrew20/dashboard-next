@@ -13,8 +13,8 @@ const ProvForm = ({ data, setData, closeModal }) => {
     
 
     const token = localStorage.getItem('token');
-        const decodedToken = jwt.decode(token);
-        const usuario = decodedToken.usuario;
+    const decodedToken = jwt.decode(token);
+    const usuario = decodedToken.usuario;
     const addPerson = async () => {
         try {
           if (
