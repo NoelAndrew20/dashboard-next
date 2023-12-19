@@ -360,8 +360,8 @@ const ChatWindow = ({ title, description, image }) => {
                   backgroundRepeat: "no-repeat",
                 }}
               />
-                <div className="relative z-10 h-80">
-                  <div className="flex justify-center h-full m-20 flex-col rounded-md text-lg text-black">
+                <div className="relative z-10 h-[55vh]">
+                  <div className="flex justify-center h-full flex-col rounded-md text-lg text-black">
                     <div className='h-full overflow-y-auto rounded-lg'>
                       {combinedMessages.map((message, index) => (
                         <div
@@ -391,8 +391,9 @@ const ChatWindow = ({ title, description, image }) => {
                       ))}
                     </div>
                   </div>
-                  <div className="flex mt-40 p">
+                  <div className="flex mt-20 p">
                     <div className="flex flex-col w-full justify-start">
+                      {/*
                       <div className="flex justify-center w-200 h-100 p-3 rounded-md">
                         <div>
                           <Image
@@ -414,7 +415,7 @@ const ChatWindow = ({ title, description, image }) => {
                             </audio>
                           </div>
                         )}
-                      </div>
+                        </div>*/}
                       <div className="flex justify-start ml-2">
                         <div className="flex justify-start">
                           {json.answer === "Pensando.." ? (
