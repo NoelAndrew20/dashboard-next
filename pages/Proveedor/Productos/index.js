@@ -10,9 +10,9 @@ import jwt from 'jsonwebtoken';
 const axios = require('axios');
 
 const Productos = ({ title, description, image }) => {
-    const { isDarkMode, toggleDarkMode } = useDarkMode();
-    const router = useRouter();
-    const [ data, setData ] = useState([]);
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const router = useRouter();
+  const [ data, setData ] = useState([]);
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = "";
   if (token) {

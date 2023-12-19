@@ -73,15 +73,6 @@ const TableTransporte = ({ data, setData }) => {
             setShowEditModal(false);
             setEditedValues({});
     };
-    
-              
-        /*const newData = [...data];
-        newData[editingIndex] = { ...editedValues };
-        setData(newData);
-        
-        setShowEditModal(false);
-        setEditedValues({});
-    };*/
 
     const handleEditInputChange = (event) => {
         const { name, value } = event.target;
@@ -182,7 +173,7 @@ const TableTransporte = ({ data, setData }) => {
         </div>
         {showEditModal && (
             <div className={`${isDarkMode ? "edit-modal-d" : "edit-modal" } bg-white p-4 rounded shadow-md absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-4/4`}>
-                <h2>Editar Datos</h2>
+                <h2 className="font-bold">Editar Datos</h2>
                 <div>
                     <div className="flex">
                         <div className="modal-item w-1/3">
