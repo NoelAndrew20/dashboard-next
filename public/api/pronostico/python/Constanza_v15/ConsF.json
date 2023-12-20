@@ -2,40 +2,47 @@
     "answer": {
         "actividadEconomica": [
             {
-                "actividad": "Restaurantes-bar con servicio de meseros",
+                "actividad": "Hoteles con otros servicios integrados",
                 "fechaFinal": "N/A",
-                "fechaInicio": "05/06/2018",
+                "fechaInicio": "26/11/2012",
                 "numeroOrden": "1",
-                "porcentaje": "100"
+                "porcentaje": "50"
+            },
+            {
+                "actividad": "Comercio al por menor de artesan\u00edas",
+                "fechaFinal": "N/A",
+                "fechaInicio": "01/01/2022",
+                "numeroOrden": "3",
+                "porcentaje": "10"
             }
         ],
         "datosContribuyente": {
-            "calle1": "6 SUR",
-            "calle2": "4 SUR",
-            "colonia": "BARRIO DE SAN PABLO TECAMAC",
-            "cp": "72750",
+            "calle1": "CALLE 14 SUR",
+            "calle2": "CALLE 16 SUR",
+            "colonia": "BARRIO ANALCO",
+            "cp": "72500",
             "entidad": "PUEBLA",
-            "localidad": "",
-            "municipio": "SAN PEDRO\nCHOLULA",
-            "numeroExterior": "412",
+            "localidad": "PUEBLA",
+            "municipio": "PUEBLA",
+            "numeroExterior": "1414",
             "numeroInterior": "",
-            "tipoVialidad": "CERRADA (CDA) O PRIVADA (PRIV)",
-            "vialidad": "13 ORIENTE"
+            "tipoVialidad": "CALLE",
+            "vialidad": "3 ORIENTE"
         },
         "domicilioRegistrado": {
-            "denominacion": "CHEVES Y CHALUPAS",
+            "denominacion": "OPERADORA Y COMERCIALIZADORA PUEBLA VIVA",
             "estatusPadron": "ACTIVO",
-            "fechaInicioOperacion": "05 DE JUNIO DE 2018",
-            "fechaUltimoCambioEstado": "05 DE JUNIO DE 2018",
-            "nombreComercial": "RESTAURANTE CERVECERIA CHOLULA",
+            "fechaInicioOperacion": "26 DE NOVIEMBRE DE 2012",
+            "fechaUltimoCambioEstado": "10 DE DICIEMBRE DE 2012",
+            "nombreComercial": "ANTIGUO PATIO DE LAS CAMPANAS",
             "regimenCapital": "SOCIEDAD ANONIMA DE CAPITAL VARIABLE",
-            "rfc": "CCA180605EJ1"
+            "rfc": "OCP1211267MA"
         },
         "regimen": [
             {
                 "descripcion": "R\u00e9gimen General de Ley Personas Morales",
                 "fechaFin": "N/A",
-                "fechaInicio": "05/06/2018"
+                "fechaInicio": "01/01/2022"
             }
         ]
     }

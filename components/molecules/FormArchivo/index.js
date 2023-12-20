@@ -17,7 +17,7 @@ const FormularioArchivo = () =>{
 
     const subirDocumentoProveedor = async (formData) => {
       try {
-        const response = await axios.post('http://192.168.100.10:5070/addDocumentoProveedor/', formData);
+        const response = await axios.post('http://192.168.100.10:5000/addDocumentoProveedor/', formData);
         return response.data;
       } catch (error) {
         console.error('Error al subir el documento del proveedor:', error);
@@ -43,20 +43,22 @@ const FormularioArchivo = () =>{
       const constanciaFile = document.getElementById('constancia').files[0];
       const formData = new FormData();
       formData.append('constanciaFile', constanciaFile);
-    
+      console.log("constanciafile",constanciaFile);
+      const archivo = constanciaFile.name;
+      console.log(archivo);
       try {
         const proveedorSat = await subirDocumentoProveedor(formData);
         const rutaArchivo = proveedorSat.constancia;
-        const match = rutaArchivo.match(/\\(.+)/);
-        const nombreArchivo = match ? match[1] : rutaArchivo;
-        console.log('Nombre del archivo:', nombreArchivo);
+        //const match = rutaArchivo.match(/\\(.+)/);
+        //const nombreArchivo = match ? match[1] : rutaArchivo;
+        //console.log('Nombre del archivo:', nombreArchivo);
         console.log('Respuesta del servidor', proveedorSat);
     
         const datosParaMicroservicio = {
           answer: '',
           function: 'AltaProveedores',
           parameters: {
-            path: "/home/JocdDev/Documents/A/dashboard-next/pages/api/proveedor/"+nombreArchivo
+            path: "/files/"+archivo
           },
         };
     
@@ -67,7 +69,7 @@ const FormularioArchivo = () =>{
         console.log('Enviado correctamente');
         console.log('Respuesta de la API:', respuestaDeLaApi);
         console.log(`Mensaje del usuario: ${datosParaMicroservicio}`);
-        if (respuestaDeLaApi === "Datos enviados correctamente al microservicio.") {
+        if (respuestaDeLaApi.message == "Datos enviados correctamente al microservicio.") {
           setShowModal(true);
           setTimeout(() => {
             router.push('/RegistroProveedores'); // Reemplaza '/otra-pagina' con la ruta a la que deseas redirigir
