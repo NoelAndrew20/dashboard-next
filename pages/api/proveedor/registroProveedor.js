@@ -290,6 +290,37 @@ app.post("/addProveedor", async (req, res) => {
   }
 });
 
+app.put('/editProductos/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    const updatedProduct = req.body;
+    const id = updatedProduct.ID;
+    console.log(id);
+
+
+    // Buscar y actualizar el producto en la base de datos
+    const resultado = await Proveedor.updateOne(
+      { correo: email, 'productos.ID': id },
+      {
+        $set: {
+          'productos.$.SKU': updatedProduct.SKU,
+          'productos.$.nombre': updatedProduct.nombre,
+          'productos.$.unidad': updatedProduct.unidad,
+          'productos.$.precio': updatedProduct.precio,
+        },
+      }
+    );
+
+    if (resultado.nModified > 0) {
+      res.json({ message: 'Producto actualizado con éxito' });
+    } else {
+      res.status(404).json({ message: 'Producto no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al actualizar el producto:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+});
 
 app.post('/addDocumentoProveedor', uploadFiles(), (req, res) => {
   // Manejo del archivo subido

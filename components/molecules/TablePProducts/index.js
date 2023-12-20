@@ -18,6 +18,7 @@ const TablePProducts = () => {
       {SKU: "3", unidad: "4",  nombre: "hola", precio:"6"}
 
     ]);
+
     const [newPswd, setNewPswd] = useState(data.password);
     const openModal = () => {
       setIsModalOpen(true);
@@ -34,12 +35,28 @@ const TablePProducts = () => {
     };
 
     const handleSaveEdit = () => {
+      const IDP= editedValues.ID;
+      const token = localStorage.getItem('token');
+      const decodedToken = jwt.decode(token);
+      const email = decodedToken.email;
       const updatedProduct = {
+        ID: IDP,
         SKU: editedValues.SKU,
         nombre: editedValues.nombre,
         unidad: editedValues.unidad,
         precio: editedValues.precio,
       };
+
+
+      const apiUrl = 'http://192.168.100.10:3070/editProductos/' + email;
+        axios.put(apiUrl, updatedProduct)
+            .then(response => {
+                console.log("Respuesta de la API:", response.data);
+            })
+            .catch(error => {
+                console.error("Error al enviar la solicitud:", error);
+            });
+
       setShowEditModal(false);
       setEditedValues({});
   };
