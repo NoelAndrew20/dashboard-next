@@ -43,16 +43,10 @@ const FormularioArchivo = () =>{
       const constanciaFile = document.getElementById('constancia').files[0];
       const formData = new FormData();
       formData.append('constanciaFile', constanciaFile);
-      console.log("constanciafile",constanciaFile);
       const archivo = constanciaFile.name;
-      console.log(archivo);
       try {
         const proveedorSat = await subirDocumentoProveedor(formData);
         const rutaArchivo = proveedorSat.constancia;
-        //const match = rutaArchivo.match(/\\(.+)/);
-        //const nombreArchivo = match ? match[1] : rutaArchivo;
-        //console.log('Nombre del archivo:', nombreArchivo);
-        console.log('Respuesta del servidor', proveedorSat);
     
         const datosParaMicroservicio = {
           answer: '',
@@ -61,14 +55,10 @@ const FormularioArchivo = () =>{
             path: "/files/"+archivo
           },
         };
-    
-        console.log('json microservicio', datosParaMicroservicio);
+
     
         const respuestaDeLaApi = await enviarDatosAlMicroservicio(datosParaMicroservicio);
 
-        console.log('Enviado correctamente');
-        console.log('Respuesta de la API:', respuestaDeLaApi);
-        console.log(`Mensaje del usuario: ${datosParaMicroservicio}`);
         if (respuestaDeLaApi.message == "Datos enviados correctamente al microservicio.") {
           setShowModal(true);
           setTimeout(() => {
