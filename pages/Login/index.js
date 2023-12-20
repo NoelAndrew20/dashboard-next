@@ -5,7 +5,6 @@ import Link from 'next/link';
 import usuarios from '../../utils/usuarios.json';
 import { useRouter } from 'next/router'
 import srs from '@/public/Logos/ACELogo.png'
-import pig from '@/public/images/imagenes/cerdo1.png'
 import Cookies from 'js-cookie';
 import load from '../../components/molecules/Carga/index.js'
 import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
