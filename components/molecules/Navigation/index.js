@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Cookies from 'js-cookie';
-import foto from '@/public/images/imagenes/messi.jpg';
+import foto from '@/public/images/imagenes/user.png';
 
 const Navigation = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -131,44 +131,34 @@ const Navigation = () => {
                             <img src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento
                         </div>
                     </Link>
-                    <Link href="../../MateriasPrimas" className={`hover:font-semibold ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
+                    {/*<Link href="../../MateriasPrimas" className={`hover:font-semibold ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/hammer.svg"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
                         </div>
-                    </Link>
-                    <Link href="../../Pronostico" className={`hover:font-semibold ${currentPage === '/Pronostico' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/calculator.svg"} width={20} height={20} alt="calculator" className="mr-2" />Pronóstico
-                        </div>
-                    </Link>
+                    </Link>*/}
                     <Link href="../../RFID" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />Cerdos
                         </div>
                     </Link>
-                    <Link href="../../RegistroAlimentos" className={`hover:font-semibold ${currentPage === '/RegistroAlimentos' ? 'font-semibold' : ''} pt-5`}>
+                    {/*<Link href="../../RegistroAlimentos" className={`hover:font-semibold ${currentPage === '/RegistroAlimentos' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/food.svg"} width={20} height={20} alt="label" className="mr-2" />Alimentos
                         </div>
-                    </Link>
+                    </Link>*/}
                     <Link href="../../RegistroCerdos" className={`hover:font-semibold ${currentPage === '/RegistroCerdos' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />Registro Cerdos
                         </div>
                     </Link>
-                    <Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RegistroInseminacion' ? 'font-semibold' : ''} pt-5`}>
+                    {/*<Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RegistroInseminacion' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/drop.svg"} width={20} height={20} alt="drop" className="mr-2" />Inseminacion
                         </div>
-                    </Link>
+                    </Link>*/}
                     <Link href="../../Graphicator" className={`hover:font-semibold ${currentPage === '/Graphicator' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/graph.svg"} width={25} height={25} alt="graph" className="mr-2" />Menú de alimentos
-                        </div>
-                    </Link>
-                    <Link href="../../PreRegistro" className={`hover:font-semibold ${currentPage === '/PreRegistro' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/pre.svg"} width={20} height={20} alt="graph" className="mr-2" />Pre registro
                         </div>
                     </Link>
                     <Link href="../../RegistroProveedores" className={`hover:font-semibold ${currentPage === '/RegistroProveedores' ? 'font-semibold' : ''} pt-5`}>
@@ -191,16 +181,6 @@ const Navigation = () => {
                             <img src={"/images/svg/selection.svg"} width={20} height={20} alt="graph" className="mr-2" />Seleccion de proveedor
                         </div>
                     </Link>
-                    <Link href="../../Simulador" className={`hover:font-semibold ${currentPage === '/Simulador' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/farm.svg"} width={20} height={20} alt="graph" className="mr-2" />Simulador
-                        </div>
-                    </Link>
-                    <Link href="../../Simulador3d" className={`hover:font-semibold ${currentPage === '/Simulador3d' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/cube.svg"} width={20} height={20} alt="graph" className="mr-2" />3D Visualizador
-                        </div>
-                    </Link>
                     <Link href="../../Chat" className={`hover:font-semibold ${currentPage === '/Chat' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/chat.svg"} width={20} height={20} alt="graph" className="mr-2" />Chat
@@ -211,6 +191,7 @@ const Navigation = () => {
                             <img src={"/images/svg/box.svg"} width={20} height={20} alt="graph" className="mr-2" />Perfil proveedor
                         </div>
                     </Link>
+                    {/*
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleGestation}>
                             Gestaciones
@@ -258,6 +239,7 @@ const Navigation = () => {
                             </div>
                         )}
                     </div>
+                        */}
                     </div>
                     {data.map((item, index) => (
                         <div key={index} className="flex justify-center pt-2 pb-20 flex-col text-center">
