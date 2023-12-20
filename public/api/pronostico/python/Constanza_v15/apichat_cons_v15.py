@@ -313,8 +313,6 @@ def enviar_datos():
         try:
             data = request.get_json()
             datos_para_microservicio = data.get('datos')
-
-          
             answer = datos_para_microservicio.get('answer')
             function = datos_para_microservicio.get('function')
             parameters = datos_para_microservicio.get('parameters', {})
@@ -322,7 +320,8 @@ def enviar_datos():
             nombre_archivo = os.path.basename(path)
             # Puedes realizar cualquier operación adicional con los datos recibidos
             print(f'Answer: {answer}, Function: {function}, Path: {path}')
-            ruta_archivos = "/home/JocdDev/Documents/A/dashboard-next/pages/api/proveedor/" + nombre_archivo
+            ruta_archivos = "/files/" + nombre_archivo
+            print("ruta_archivos",ruta_archivos)
             # Envia los datos al microservicio
             microservicio_data = {
                 'answer': answer,
@@ -331,7 +330,6 @@ def enviar_datos():
             }
             print(ruta_archivos)
             response = requests.post(os.environ.get("URL_RESPONDS"), json=microservicio_data)
-
             if response.status_code == 200:
                 respuesta_microservicio = response.json()
                 print('Respuesta del microservicio:', respuesta_microservicio)
@@ -351,8 +349,8 @@ def enviar_datos():
 
                 # Actualizar o agregar los datos nuevos
                 datos_existente.update(respuesta_microservicio)
-
-                # Guardar el diccionario en el archivo JSON
+                    
+                    # Guardar el diccionario en el archivo JSON
                 with open(ruta_archivo_json, "w") as archivo:
                     json.dump(datos_existente, archivo,indent=4)
                 
@@ -366,6 +364,7 @@ def enviar_datos():
                 return jsonify({'error': 'Error al comunicarse con el microservicio.'}), 500
 
         except Exception as e:
+            print(f'Error: {str(e)}')
             return jsonify({'error': str(e)}), 500
 if __name__ == '__main__':
     # json_modificado = False  # Inicializa json_modificado a False
