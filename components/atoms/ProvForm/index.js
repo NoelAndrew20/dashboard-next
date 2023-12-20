@@ -12,9 +12,12 @@ const ProvForm = ({ data, setData, closeModal }) => {
     const [errorMessage, setErrorMessage] = useState("");
     
 
-    const token = localStorage.getItem('token');
+    const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
+
+  if (token) {
     const decodedToken = jwt.decode(token);
     const usuario = decodedToken.usuario;
+
     const addPerson = async () => {
         try {
           if (
@@ -53,11 +56,14 @@ const ProvForm = ({ data, setData, closeModal }) => {
           } else {
             setErrorMessage('Por favor completa los cambios');
             setSuccessMessage("");
+            window.history.back();
           }
         } catch (error) {
           setErrorMessage('Hubo un error al guardar el usuario');
           setSuccessMessage("");
+          window.history.back();
         }
+    }
       };
 
     return(
