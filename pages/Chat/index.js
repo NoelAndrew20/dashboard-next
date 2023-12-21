@@ -87,10 +87,8 @@ const ChatWindow = ({ title, description, image }) => {
     const toggleRecognition = () => {
       if (recognition) {
         if (isListening) {
-          console.log("Deteniendo reconocimiento de voz.");
           recognition.stop();
         } else {
-          console.log("Iniciando reconocimiento de voz...");
           recognition.start();
         }
         setIsListening(!isListening);
@@ -114,26 +112,23 @@ const ChatWindow = ({ title, description, image }) => {
   
         recognitionInstance.onresult = (event) => {
           const spokenText = event.results[0][0].transcript.toLowerCase();
-          console.log('Texto detectado:', spokenText);
           setMessage(spokenText);
           addMessageToChat(spokenText, true);
           if (spokenText.includes("abrir formulario")) {
-            console.log("Abrir formulario"|| spokenText.includes("open form"));
             abrirModalVoz();
           }
           if (spokenText.includes("consultar manual de operaciones")|| spokenText.includes("consult operations manual")) {
-            console.log("Sistema Experto");
+
           }
           handleSubmitVoz(spokenText);  // Pasa el mensaje actualizado como argumento
 
         };
         
         recognitionInstance.onnomatch = (event) => {
-          console.log("No he reconocido ese texto.");
         };
   
         recognitionInstance.onerror = (event) => {
-          console.log('Error en el reconocimiento:', event.error);
+
         };
         
         setRecognition(recognitionInstance);
@@ -157,19 +152,17 @@ const ChatWindow = ({ title, description, image }) => {
 
     const abrirModalVoz = () => {
       setIsModalOpen(true);
-      console.log("abrir modal");
-      console.log("respuestaant",prevAnswer);
+
     };
 
     const abrirModal = (e) => {
       e.preventDefault();
       setIsModalOpen(true);
-      console.log("abrir modal");
-      console.log("respuestaant",prevAnswer);
+
     };
 
     const handleFormSubmit = (formData) => {
-     console.log("Pregunta del modal",formData);
+
      const question = formData.Question;
      addMessageToChat(question, true);
     };
@@ -208,7 +201,7 @@ const ChatWindow = ({ title, description, image }) => {
         ...prevMessages,
         { text: message, isUser },
       ]);
-      console.log(`Nuevo mensaje: ${message}`);
+
     };
     
 
@@ -234,23 +227,19 @@ const ChatWindow = ({ title, description, image }) => {
     
 
     useEffect(() => {
-        console.log("chatMessages:", chatMessages); // Agregar este console.log
+
       }, [chatMessages]);
 
 
       const handleSubmitVoz = async (spokenText) => {
-        console.log("Pregunta Next:",message);
+
         try {
           const response = await axios.post("http://192.168.100.10:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
             question: spokenText, // Envía el contenido del textarea como "question"
           });
-          console.log(message);
+
           if (response.status === 200) {
             const data = response.data;
-            console.log("Respuesta de Constanza JSON:", data);
-            console.log("Mensaje de Constanza:", data.resultado);
-            console.log("Respuesta",respuestaDelServidor);
-            console.log(respuesta.answer);
             setRespuestaDelServidor(data.answer);
     
             // Agrega la respuesta actual al arreglo de mensajes
@@ -278,24 +267,21 @@ const ChatWindow = ({ title, description, image }) => {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log("Pregunta Next:",message);
+
       try {
         const response = await axios.post("http://192.168.100.10:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
           question: message, // Envía el contenido del textarea como "question"
         });
-        console.log(message);
+
         if (response.status === 200) {
           const data = response.data;
-          console.log("Respuesta de Constanza JSON:", data);
-          console.log("Mensaje de Constanza:", data.resultado);
-          console.log("Respuesta",respuestaDelServidor);
-          console.log("onjeto",respuesta.answer);
+
           setRespuestaDelServidor(data.answer);
-          console.log("respuestachida",data.answer);
+
   
           // Agrega la respuesta actual al arreglo de mensajes
           if (json.answer === "Esperando") {
-            console.log("respuestaant",prevAnswer);
+
             addMessageToChat(message, true);
             addMessageToChat(data.resultado, false);
           }
@@ -332,7 +318,7 @@ const ChatWindow = ({ title, description, image }) => {
         .then(response => response.json())
         .then(data => {
           setJsonContent(data);
-          console.log('Contenido del archivo JSON:', data); // Imprimir contenido en la consola
+
         })
         .catch(error => console.error('Error al cargar el archivo JSON:', error));
     }, []);
