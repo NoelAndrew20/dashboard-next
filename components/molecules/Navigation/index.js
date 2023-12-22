@@ -176,6 +176,11 @@ const Navigation = () => {
                             <img src={"/images/svg/shopping.svg"} width={20} height={20} alt="graph" className="mr-2" />Compras
                         </div>
                     </Link>
+                    <Link href="../../SolicitudCerdo" className={`hover:font-semibold ${currentPage === '/SolicitudCerdo' ? 'font-semibold' : ''} pt-5`}>
+                        <div className="flex">
+                            <img src={"/images/svg/solicitud.svg"} width={20} height={20} alt="graph" className="mr-2" />Solicitud de cerdo
+                        </div>
+                    </Link>
                     <Link href="../../SeleccionProveedor" className={`hover:font-semibold ${currentPage === '/SeleccionProveedor' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/selection.svg"} width={20} height={20} alt="graph" className="mr-2" />Seleccion de proveedor

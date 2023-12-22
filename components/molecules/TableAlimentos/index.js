@@ -51,52 +51,51 @@ const TableAlimentos = ({ data, setData }) => {
         <>
      
         <div className={isDarkMode ? "table-d" : "table"}>
-            <table className={isDarkMode ? "table-container-d" : "table-container"}>
-                <thead>
-                    <tr>
-                        <th>Fecha Inicial</th>
-                        <th>Fecha Final</th>
-                        <th>Zona</th>
-                        <th>Nombre del alimento</th>
-                        <th>Cantidad en KG</th>
-                        {router.pathname === "/RegistroAlimentos"
-                        ?
-                        <th>Enviar</th>
-                        : ""
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-  {data[0]?.solicitudes.map((item, index) => (
-    Object.keys(item).map((zona, zonaIndex) => {
-      // Filtramos las columnas que no deseas mostrar
-      if (zona !== 'fechaInicial' && zona !== 'fechaFinal' && zona !== '_id') {
-        return (
-          <tr className="table-row"  key={ zonaIndex }>
-            <td>{item.fechaInicial}</td> {/* Muestra la fechaInicial */}
-            <td>{item.fechaFinal}</td> {/* Muestra la fechaFinal */}
-            <td>{zona}</td>
-            <td>{item[zona].nombreAlimento}</td>
-            <td>{item[zona].cantidadRequerida}</td>
-            {router.pathname === '/RegistroAlimentos' ? (
-              <td>
-                <button className="edit-btn" onClick={handleSendRequest}>
-                  <Link href="../RegistroAlimentos">
-                    <img src="images/svg/send.svg" width={15} height={15} />
-                  </Link>
-                </button>
-              </td>
-            ) : (
-              ''
-            )}
-          </tr>
-        );
-      }
-      return null; // Retornar null en caso de que no quieras mostrar la fila
-    })
-  ))}
-</tbody>
-            </table>
+          <table className={isDarkMode ? "table-container-d" : "table-container"}>
+            <thead>
+              <tr>
+                <th>Fecha Inicial</th>
+                <th>Fecha Final</th>
+                <th>Zona</th>
+                <th>Nombre del alimento</th>
+                <th>Cantidad en KG</th>
+                {router.pathname === "/RegistroAlimentos"
+                  ? <th>Enviar</th>
+                  : ""
+                }
+              </tr>
+            </thead>
+            <tbody>
+              {data[0]?.solicitudes.map((item, index) => (
+                Object.keys(item).map((zona, zonaIndex) => {
+                  // Filtramos las columnas que no deseas mostrar
+                  if (zona !== 'fechaInicial' && zona !== 'fechaFinal' && zona !== '_id') {
+                    return (
+                      <tr className="table-row"  key={ zonaIndex }>
+                        <td>{item.fechaInicial}</td> {/* Muestra la fechaInicial */}
+                        <td>{item.fechaFinal}</td> {/* Muestra la fechaFinal */}
+                        <td>{zona}</td>
+                        <td>{item[zona].nombreAlimento}</td>
+                        <td>{item[zona].cantidadRequerida}</td>
+                        {router.pathname === '/RegistroAlimentos' ? (
+                          <td>
+                            <button className="edit-btn" onClick={handleSendRequest}>
+                              <Link href="../RegistroAlimentos">
+                                <img src="images/svg/send.svg" width={15} height={15} />
+                              </Link>
+                            </button>
+                          </td>
+                        ) : (
+                          ''
+                        )}
+                      </tr>
+                    );
+                  }
+                  return null; // Retornar null en caso de que no quieras mostrar la fila
+                })
+              ))}
+            </tbody>
+          </table>
         </div>
         <div className="pagination">
             <button
