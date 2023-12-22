@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/mnt/c/Users/proye/Documents/Proyectos/dashboard-next/public/api/pronostico/python/demonio_config.py", line 3, in <module>
-    from pymongo import MongoClient
-ModuleNotFoundError: No module named 'pymongo'
-Traceback (most recent call last):
-  File "/mnt/c/Users/proye/Documents/Proyectos/dashboard-next/public/api/pronostico/python/demonio_config.py", line 3, in <module>
-    from pymongo import MongoClient
-ModuleNotFoundError: No module named 'pymongo'
