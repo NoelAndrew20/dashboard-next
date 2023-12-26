@@ -2,13 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import Navigation from '@/components/molecules/Navigation'
 import axios from 'axios';
 import { Howl } from 'howler';
-import json from '../../public/api/pronostico/python/Constanza_v15/respuesta.json'
+import json from '../../public/api/python/Constanza_v15/respuesta.json'
 import Image from 'next/image';
-import jsondata from '../../public/api/pronostico/python/Constanza_v15/requisitos_2.json'
+import jsondata from '../../public/api/python/Constanza_v15/requisitos_2.json'
 import FormularioArchivo from '@/components/molecules/FormArchivo'
 import Formulario from '@/components/molecules/Formulariodinamico';
 import Modal from '../../components/atoms/Modal';
-import respuesta from '../../public/api/pronostico/python/Constanza_v15/respuestacons.json'
+import respuesta from '../../public/api/python/Constanza_v15/respuestacons.json'
 import { useDarkMode } from '@/context/DarkModeContext'
 import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
 import StaticMeta from '@/components/atoms/StaticMeta';
@@ -39,11 +39,11 @@ const ChatWindow = ({ title, description, image }) => {
         try {
 
           const username = "Alfonso";
-          await axios.post('http://192.168.100.10:5003/api/pronostico/python/Constanza_v15/usuario', { username });
+          await axios.post('http://192.168.100.10:5003/api/python/Constanza_v15/usuario', { username });
           setIsUsernameSet(true);
 
           const welcomeSound = new Howl({
-            src: ['./api/pronostico/python/Constanza_v15/Bienvenida.mp3'],
+            src: ['./api/python/Constanza_v15/Bienvenida.mp3'],
             onend: () => {
               setIsWelcomeAudioPlayed(true);
               // Lógica adicional después de que se reproduzca el audio de bienvenida, si es necesario
@@ -213,7 +213,7 @@ const ChatWindow = ({ title, description, image }) => {
         if (json.answer === "Esperando") {
           
           const timestamp = new Date().getTime(); // Obtener un sello de tiempo actual
-          setAudioSource(`./api/pronostico/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+          setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
           playAudio();
         }
         if (message) {
@@ -234,7 +234,7 @@ const ChatWindow = ({ title, description, image }) => {
       const handleSubmitVoz = async (spokenText) => {
 
         try {
-          const response = await axios.post("http://192.168.100.10:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
+          const response = await axios.post("http://192.168.100.10:5003/api/python/Constanza_v15/apichat_cons_v15", {
             question: spokenText, // Envía el contenido del textarea como "question"
           });
 
@@ -269,7 +269,7 @@ const ChatWindow = ({ title, description, image }) => {
       e.preventDefault();
 
       try {
-        const response = await axios.post("http://192.168.100.10:5003/api/pronostico/python/Constanza_v15/apichat_cons_v15", {
+        const response = await axios.post("http://192.168.100.10:5003/api/python/Constanza_v15/apichat_cons_v15", {
           question: message, // Envía el contenido del textarea como "question"
         });
 
@@ -314,7 +314,7 @@ const ChatWindow = ({ title, description, image }) => {
 
     useEffect(() => {
       // Cargar y analizar el contenido del archivo JSON
-      fetch('./api/pronostico/python/Constanza_v15/senal_cons.json')  // Reemplaza con la ruta correcta
+      fetch('./api/python/Constanza_v15/senal_cons.json')  // Reemplaza con la ruta correcta
         .then(response => response.json())
         .then(data => {
           setJsonContent(data);

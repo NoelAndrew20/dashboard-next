@@ -1,5 +1,3 @@
-import jsonData from '../../../public/api/pronostico/python/output.json'
-import jsonData1 from '../../../public/api/pronostico/python/config.json'
 import { useEffect, useState } from 'react';
 const TableIndexVacuna = ({ isDarkMode }) => {
     const [data, setData] = useState([
