@@ -18,7 +18,7 @@ const Formulario = ({ jsonFile, onSubmit, onFormSubmit }) => {
     setFormGeneratedData(jsondata);
 
     fetch(
-      'http://localhost:5000/api/pronostico/python/Constanza_v15/requisitos_2.json',
+      'http://localhost:5000/api/python/Constanza_v15/requisitos_2.json',
       {
         method: 'POST',
         headers: {
@@ -53,7 +53,7 @@ const Formulario = ({ jsonFile, onSubmit, onFormSubmit }) => {
   };
 
   useEffect(() => {
-    fetch(`../../api/pronostico/python/Constanza_v15/${jsonFile}.json`)
+    fetch(`../../api/python/Constanza_v15/${jsonFile}.json`)
       .then((response) => response.json())
       .then((data) => {
         setJsonDescription(data);

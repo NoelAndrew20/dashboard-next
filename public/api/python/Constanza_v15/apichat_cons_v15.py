@@ -19,7 +19,7 @@ CORS(app, resources={r"/api/*": {"origins": "*"}})
 contador_activo = False
 contador_thread = None 
 
-@app.route('/api/pronostico/python/Constanza_v15/apichat_cons_v15', methods=['POST'])
+@app.route('/api/python/Constanza_v15/apichat_cons_v15', methods=['POST'])
 def api_chat():
     global json_modificado
     json_modificado = False  # Restablece json_modificado a False
@@ -177,7 +177,7 @@ def TextToSpeech(text:str, lang:str):
 
 
 
-@app.route('/api/pronostico/python/Constanza_v15/requisitos_2.json', methods=['POST'])
+@app.route('/api/python/Constanza_v15/requisitos_2.json', methods=['POST'])
 def get_json():
     if request.method == 'OPTIONS':
         headers = {
@@ -245,7 +245,7 @@ def get_json():
             logging.error(f'Error en la solicitud POST: {str(e)}')
             return jsonify({'error': str(e)}), 500
         
-@app.route('/api/pronostico/python/Constanza_v15/respuesta.mp3', methods=['POST'])
+@app.route('/api/python/Constanza_v15/respuesta.mp3', methods=['POST'])
 def get_mp3():
     if request.method == 'OPTIONS':
         headers = {
@@ -267,7 +267,7 @@ def get_mp3():
             logging.error(f'Error en la solicitud POST: {str(e)}')
             return jsonify({'error': str(e)}), 500
         
-@app.route('/api/pronostico/python/Constanza_v15/usuario', methods=['POST'])
+@app.route('/api/python/Constanza_v15/usuario', methods=['POST'])
 def get_user():
     if request.method == 'OPTIONS':
         headers = {
