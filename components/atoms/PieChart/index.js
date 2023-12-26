@@ -1,6 +1,8 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import jsonData from '../../../public/api/output.json'
+import jsonData1 from '../../../public/api/config.json'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
