@@ -1,5 +1,4 @@
 import React from 'react';
-import jsonData from '../../../public/api/pronostico/python/output.json'
 import {
   Chart as ChartJS,
   CategoryScale,
