@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import jsonData from '../../../public/api/output.json'
+import jsonData1 from '../../../public/api/config.json'
 const TableIndexVacuna = ({ isDarkMode }) => {
     const [data, setData] = useState([
         { zona: "Cuarentena", cantidad: 200, v3: jsonData1.info_tipos.vientre.ApVac.$.zona, v4: "", },
