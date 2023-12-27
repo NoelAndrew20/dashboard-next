@@ -101,6 +101,8 @@ const GastosSchema = new mongoose.Schema(
       "P-EC-LD": Number,
       "P-EPL-L": Number,
     },
+    Gastos: String,
+    GananciaNeta: String,
   },
   {
     collection: 'index',
