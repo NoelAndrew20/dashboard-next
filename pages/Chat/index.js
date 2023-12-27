@@ -22,7 +22,7 @@ const ChatWindow = ({ title, description, image }) => {
     const [respuestaDelServidor, setRespuestaDelServidor] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [chatMessages, setChatMessages] = useState([]); // Arreglo para almacenar los mensajes
-    const audioSrc = "./api/pronostico/python/Constanza_v15/respuesta.mp3";
+    const audioSrc = "./api/python/Constanza_v15/respuesta.mp3";
     const [prevAnswer, setPrevAnswer] = useState("");
     const audioRef = useRef(null);
     const [audioSource, setAudioSource] = useState(audioSrc);
@@ -379,7 +379,7 @@ const ChatWindow = ({ title, description, image }) => {
                   </div>
                   <div className="flex mt-20 p">
                     <div className="flex flex-col w-full justify-start">
-                      {/*
+                      {
                       <div className="flex justify-center w-200 h-100 p-3 rounded-md">
                         <div>
                           <Image
@@ -396,12 +396,12 @@ const ChatWindow = ({ title, description, image }) => {
                               <img src="./images/svg/playblack.svg" alt="Play" width={20} />
                             </button>
                             <audio ref={audioRef}>
-                              <source src={`./api/pronostico/python/Constanza_v15/respuesta.mp3?${new Date().getTime()}`} type="audio/mpeg" />
+                              <source src={`./api/python/Constanza_v15/respuesta.mp3?${new Date().getTime()}`} type="audio/mpeg" />
                               Tu navegador no soporta la reproducción de audio.
                             </audio>
                           </div>
                         )}
-                        </div>*/}
+                        </div>}
                       <div className="flex justify-start ml-2">
                         <div className="flex justify-start">
                           {json.answer === "Pensando.." ? (
