@@ -199,9 +199,9 @@ export default function Home({ title, description, image }) {
                   <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
                     <div className="flex">
                       <Image src={"/images/icon/medicamentos-index.png"} width={30} height={30}/>
-                      <span className=" ml-2 font-bold flex items-center">Medicamentos</span>
+                      <span className=" ml-2 font-bold flex items-center">Vacunas</span>
                     </div>                      
-                    <h1 className="text-right text-2xl">${ item.Medicamentos }</h1>
+                    <h1 className="text-right text-2xl">{ item.Vacunas }</h1>
                     <div className='w-full flex'>
                       <div className="text-[#F46D22]">
                         -0.25%
@@ -213,7 +213,7 @@ export default function Home({ title, description, image }) {
                       <Image src={"/images/icon/sueldos-index.png"} width={30} height={30}/>
                       <span className=" ml-2 font-bold flex items-center">Sueldos y salarios</span>
                     </div>                        
-                    <h1 className="text-right text-2xl">${ item.Sueldos }</h1>
+                    <h1 className="text-right text-2xl">{ item.SueldosySalarios }</h1>
                     <div className='w-full flex'>
                       <div className="text-[#42FF00] justify-left">
                         +0.25
@@ -278,7 +278,7 @@ export default function Home({ title, description, image }) {
                   <h1>Personal</h1>
                     <div className="p-2">
                       <TableIndex isDarkMode={ isDarkMode } data={ data }/>
-                      <p>Total: { data[0].SueldosySalarios }</p>
+                      <p>Total: { data[0]?.SueldosySalarios }</p>
                     </div>
                 </div> 
               </div>

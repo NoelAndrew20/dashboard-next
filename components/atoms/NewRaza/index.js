@@ -1,5 +1,6 @@
 import { useDarkMode } from "@/context/DarkModeContext";
 import { useEffect, useState } from "react";
+import jwt from 'jsonwebtoken';
 const NewRaza = ({ alimento }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const entriesPerPage = 10;
@@ -11,24 +12,28 @@ const NewRaza = ({ alimento }) => {
     const [proteinaV, setProteinaV] = useState("");
     const [precioV, setPrecioV] = useState("");
     const [precioVariableV, setPrecioVariableV] = useState("");
-    const [precioMinV, setPrecioMinV] = useState("");
+    const [pesoMinV, setPesoMinV] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
-
     const [data, setData] = useState("");
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt.decode(token);
+    const responsable = decodedToken.usuario;
+
     const addOrder = async () => {
         try {
           if (
             razaV !== ""
             && precioV  !== "" 
             && precioVariableV  !== ""
-            && precioMinV  !== ""
+            && pesoMinV  !== ""
           ) {
             const newOrder = {
                 razaV: razaV,
                 precioV: precioV,
                 precioVariableV: precioVariableV,
-                precioMinV: precioMinV
+                pesoMinV: pesoMinV,
+                responsable: responsable
             };
 
             const newData = [...data, newOrder];
@@ -36,12 +41,12 @@ const NewRaza = ({ alimento }) => {
             setRazaV("");
             setPrecioV("");
             setPrecioVariableV("");
-            setPrecioMinV("");
+            setPesoMinV("");
             setSuccessMessage('Orden guardada exitosamente');
 
             const axios = require("axios");
                 //const apiUrl = 'http://localhost:3081/addAlimento';
-                const apiUrl = 'http://192.168.100.10:3081/addAlimento';
+                const apiUrl = 'http://192.168.100.10:3085/addCerdo';
                 axios.post(apiUrl, newData)
                 .then(response => {
                     console.log("Respuesta de la API:", response.data);
@@ -81,7 +86,7 @@ const NewRaza = ({ alimento }) => {
             </div>
             <div className="flex">
                 <div className="modal-item w-1/3">
-                    <p>Precio mínimo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  type="number" name="precioVariable" value={precioMinV} onChange={(e) => setPrecioMinV(e.target.value)} required/>
+                    <p>Peso mínimo:</p><input className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}  type="number" name="precioVariable" value={pesoMinV} onChange={(e) => setPesoMinV(e.target.value)} required/>
                 </div>
             </div>
         </div>

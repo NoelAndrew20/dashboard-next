@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 import RazaForm from '@/components/atoms/RazaForm';
 import NewRaza from '@/components/atoms/NewRaza';
+import jwt from 'jsonwebtoken';
 
 const TableSC = ({ data, setData, dataOrder, setDataOrder, dataList, setDataList }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -32,6 +33,11 @@ const TableSC = ({ data, setData, dataOrder, setDataOrder, dataList, setDataList
     const [dataFinal, setDataFinal] = useState()
     const axios = require('axios');
 
+
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt.decode(token);
+    const responsable = decodedToken.usuario;
+
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -57,14 +63,17 @@ const TableSC = ({ data, setData, dataOrder, setDataOrder, dataList, setDataList
             raza: item.raza,
             cantidad: item.cantidad,
           })),
+          responsable: responsable, 
         };
       
         setShowForms({});
         setDataList([...dataList, combinedData]);
         setSelectedFoodData(null);
+        console.log(combinedData)
         
         //const apiUrl = 'http://localhost:3082/addSolicitudCompraAlimento';
-        const apiUrl = 'http://192.168.100.10:3082/addSolicitudCompraAlimento';
+        
+        const apiUrl = 'http://192.168.100.10:3086/addSolicitudCompraCerdo';
             axios.post(apiUrl, combinedData)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);
@@ -96,47 +105,6 @@ const TableSC = ({ data, setData, dataOrder, setDataOrder, dataList, setDataList
         const oneSelected = Object.values(updatedShowForms).some((isSelected) => isSelected);
         setIsCheckboxSelected(oneSelected);
       };
-
-    useEffect(() => {
-        //axios.get('http://localhost:3081/getAllalimentot0')
-        axios.get('http://192.168.100.10:3081/getAllalimentot0')
-        .then(response => {
-            const jsonData = response.data; // Datos de respuesta en formato JSON
-            setDataAux(jsonData)
-            setData(jsonData);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    }, [])
-
-    useEffect(() => {
-        //axios.get('http://localhost:3081/getAllalimentot1')
-        axios.get('http://192.168.100.10:3081/getAllalimentot1')
-        .then(response => {
-            const jsonData = response.data;
-            setComplementoData(jsonData);
-            setDataAuxComplemento(jsonData);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    }, []);
-
-    useEffect(() => {
-        //axios.get('http://localhost:3081/getAllalimentot2')
-        axios.get('http://192.168.100.10:3081/getAllalimentot2')
-        .then(response => {
-            const jsonData = response.data;
-            setComplementoData2(jsonData);
-            setDataAuxComplemento2(jsonData);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    }, []);
-
-    
 
     const addOrder = async () => { //Crea el arrelo general
         try {

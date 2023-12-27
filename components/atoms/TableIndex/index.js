@@ -12,23 +12,23 @@ const TableIndexVacuna = ({ isDarkMode, data}) => {
                 <tbody>
                     <tr>
                         <td>Aplicador de vacunas</td>
-                        <td>${data[0].SueldosySalariosDesglozados.aplicadorVacunas}</td>
+                        <td>${data[0]?.SueldosySalariosDesglozados.aplicadorVacunas}</td>
                     </tr>
                     <tr>
                         <td>Ayudante general</td>
-                        <td>${data[0].SueldosySalariosDesglozados.ayudanteGeneral}</td>
+                        <td>${data[0]?.SueldosySalariosDesglozados.ayudanteGeneral}</td>
                     </tr>
                     <tr>
                         <td>Lavandera</td>
-                        <td>${data[0].SueldosySalariosDesglozados.lavandera}</td>
+                        <td>${data[0]?.SueldosySalariosDesglozados.lavandera}</td>
                     </tr>
                     <tr>
                         <td>Veterinario</td>
-                        <td>${data[0].SueldosySalariosDesglozados.veterinario}</td>
+                        <td>${data[0]?.SueldosySalariosDesglozados.veterinario}</td>
                     </tr>
                     <tr>
                         <td>Vigilantes</td>
-                        <td>${data[0].SueldosySalariosDesglozados.vigilantes}</td>
+                        <td>${data[0]?.SueldosySalariosDesglozados.vigilantes}</td>
                     </tr>
                 </tbody>
             </table>
