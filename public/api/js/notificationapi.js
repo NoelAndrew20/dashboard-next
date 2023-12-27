@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 5010;
+const PORT = process.env.PORT || 5008;
 
 server.listen(PORT, () => {
   console.log(`Servidor escuchando en http://192.168.100.10:${PORT}`);
