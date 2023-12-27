@@ -18,6 +18,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 const ChatWindow = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [isOpen, setIsOpen] = useState(false);
+    const [isChatLocked, setIsChatLocked] = useState(true);
     const [message, setMessage] = useState(""); // Nuevo estado para el mensaje
     const [respuestaDelServidor, setRespuestaDelServidor] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,6 +36,14 @@ const ChatWindow = ({ title, description, image }) => {
     const [jsonContent, setJsonContent] = useState(null);
 
     useEffect(() => {
+      const unlockChatTimeout = setTimeout(() => {
+        setIsChatLocked(false);
+      }, 4000);
+      return () => clearTimeout(unlockChatTimeout);
+    }, []);
+
+
+    useEffect(() => {
       const playWelcomeAudio = async () => {
         try {
 
@@ -46,23 +55,23 @@ const ChatWindow = ({ title, description, image }) => {
             src: ['./api/python/Constanza_v15/Bienvenida.mp3'],
             onend: () => {
               setIsWelcomeAudioPlayed(true);
-              // Lógica adicional después de que se reproduzca el audio de bienvenida, si es necesario
+             
             },
           });
     
-          // Intenta iniciar manualmente el contexto de audio
+
           const unlockAudioContext = () => {
             welcomeSound.once('unlock', () => {
-              // Reproduce el sonido después de que el contexto de audio se haya desbloqueado
+              
               welcomeSound.play();
             });
           };
     
-          // Verifica si el contexto de audio está bloqueado y, si es así, intenta desbloquearlo
+          
           if (Howler.ctx.state === 'suspended') {
             unlockAudioContext();
           } else {
-            // Reproduce el sonido directamente si el contexto de audio ya está desbloqueado
+           
             welcomeSound.play();
           }
         } catch (error) {
@@ -70,7 +79,7 @@ const ChatWindow = ({ title, description, image }) => {
         }
       };
     
-      // Llama a la función al montar el componente
+
       if (!isUsernameSet) {
     playWelcomeAudio();
   }
@@ -120,7 +129,7 @@ const ChatWindow = ({ title, description, image }) => {
           if (spokenText.includes("consultar manual de operaciones")|| spokenText.includes("consult operations manual")) {
 
           }
-          handleSubmitVoz(spokenText);  // Pasa el mensaje actualizado como argumento
+          handleSubmitVoz(spokenText);  
 
         };
         
@@ -147,7 +156,10 @@ const ChatWindow = ({ title, description, image }) => {
     };
 
     const handleChange = (e) => {
-      setMessage(e.target.value); // Actualiza el estado del mensaje mientras se escribe
+      if (!isChatLocked) {
+        setMessage(e.target.value);
+        messageRef.current = e.target.value;
+      } 
     };
 
     const abrirModalVoz = () => {
@@ -186,17 +198,17 @@ const ChatWindow = ({ title, description, image }) => {
     };
     
     const addMessageToChat = (message, isUser) => {
-      // Filtra los mensajes no deseados
+      
       if (message === "Hello ChatPig" || message === "Bienvenido" || message === null) {
         return;
       }
     
-      // Verifica si el mensaje ya existe en el estado del chat
+      
       if (chatMessages.some((msg) => msg.text === message)) {
         return;
       }
 
-      // Agrega el nuevo mensaje al estado del chat
+      
       setChatMessages((prevMessages) => [
         ...prevMessages,
         { text: message, isUser },
@@ -212,7 +224,7 @@ const ChatWindow = ({ title, description, image }) => {
     
         if (json.answer === "Esperando") {
           
-          const timestamp = new Date().getTime(); // Obtener un sello de tiempo actual
+          const timestamp = new Date().getTime(); 
           setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
           playAudio();
         }
@@ -235,14 +247,14 @@ const ChatWindow = ({ title, description, image }) => {
 
         try {
           const response = await axios.post("http://192.168.100.10:5003/api/python/Constanza_v15/apichat_cons_v15", {
-            question: spokenText, // Envía el contenido del textarea como "question"
+            question: spokenText, 
           });
 
           if (response.status === 200) {
             const data = response.data;
             setRespuestaDelServidor(data.answer);
     
-            // Agrega la respuesta actual al arreglo de mensajes
+            
             if (json.answer === "Esperando") {
               console.log("respuestaant",prevAnswer);
               addMessageToChat(message, true);
@@ -270,7 +282,7 @@ const ChatWindow = ({ title, description, image }) => {
 
       try {
         const response = await axios.post("http://192.168.100.10:5003/api/python/Constanza_v15/apichat_cons_v15", {
-          question: message, // Envía el contenido del textarea como "question"
+          question: message, 
         });
 
         if (response.status === 200) {
@@ -279,7 +291,7 @@ const ChatWindow = ({ title, description, image }) => {
           setRespuestaDelServidor(data.answer);
 
   
-          // Agrega la respuesta actual al arreglo de mensajes
+          
           if (json.answer === "Esperando") {
 
             addMessageToChat(message, true);
@@ -313,8 +325,8 @@ const ChatWindow = ({ title, description, image }) => {
     }
 
     useEffect(() => {
-      // Cargar y analizar el contenido del archivo JSON
-      fetch('./api/python/Constanza_v15/senal_cons.json')  // Reemplaza con la ruta correcta
+      
+      fetch('./api/python/Constanza_v15/senal_cons.json') 
         .then(response => response.json())
         .then(data => {
           setJsonContent(data);
@@ -364,7 +376,7 @@ const ChatWindow = ({ title, description, image }) => {
                           </div>
                           
                           <div>
-                            {!message.isUser && ( // Solo renderiza la imagen para los mensajes del sistema
+                            {!message.isUser && ( 
                               <Image
                                 src={"/images/icon/logo_blanco.png"}
                                 alt="Constanza Logo"
@@ -456,6 +468,7 @@ const ChatWindow = ({ title, description, image }) => {
                         id="message-input"
                         type="text"
                         placeholder="Escribe tu mensaje..."
+                        disabled={isChatLocked}
                         className={`${isDarkMode ? "bg-[#151515] border border-[#D4AF37]" : "modal-input border border-gray-300"} flex-grow px-3 py-2 w-full h-full text-lg rounded-lg shadow-md`}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
