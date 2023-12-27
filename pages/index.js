@@ -42,7 +42,90 @@ export default function Home({ title, description, image }) {
   const [welcomeIndex, setWelcomeIndex] = useState(0);
   const [notificationData, setNotificationData] = useState(null);
   const [audio] = useState(new Audio('./audio/pig-oink.wav')); 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([
+    {
+      AlimentosDesglozados: {
+        Intermedio1: {
+          Kg: 200629,
+          Inversion: 3009435.07
+        },
+        Enrriquecedor: {
+          Kg: 103029.9,
+          Inversion: 1545448.56
+        },
+        Intermedio2: {
+          Kg: 201469.55,
+          Inversion: 3022043.29
+        },
+        Finalizador: {
+          Kg: 1621462.55,
+          Inversion: 24321938.2
+        },
+        Entreno: {
+          Kg: 1001900,
+          Inversion: 15028500.05
+        }
+      },
+      DistribucionCerdos: {
+        Gestacion4: 390,
+        Maternidad3: 130,
+        Gestacion3: 520,
+        Maternidad2: 130,
+        Gestacion2: 650,
+        Maternidad1: 130,
+        Gestacion1: 520,
+        Cuarentena: 468,
+        CIA: 1976,
+        CerdoEngordaD: 23663,
+        CerdoEngordaC: 11832,
+        CerdoEngordaB: 11815,
+        CerdoEngordaA: 11869,
+        DesarrrolloB: 11818,
+        Lechon: 11812
+      },
+      SueldosySalariosDesglozados: {
+        veterinario: 21276.97,
+        vigilantes: 57597.18,
+        ayudanteGeneral: 115194.36,
+        aplicadorVacunas: 97999.56,
+        lavandera: 47997.65
+      },
+      VacunasDesglozadas: {
+        "P-DEC-F1": 7280,
+        "P-RA-F1": 6760,
+        "P-VE-F1": 13260,
+        "P-EPL-F1": 7800,
+        "P-EA-F1": 3380,
+        "P-PP-F1": 7800,
+        "P-AF-F1": 7020,
+        "P-DEC-V": 4992,
+        "P-RA-V": 4160,
+        "P-VE-V": 11232,
+        "P-ER-V": 4160,
+        "P-EA-V": 3952,
+        "P-PP-V": 5304,
+        "P-AF-V": 5616,
+        "P-EA-LD": 153816,
+        "P-EPL-CE": 165648,
+        "P-PP-LD": 260117,
+        "P-VE-LD": 165648,
+        "P-RA-LD": 236840,
+        "P-AF-LD": 177225,
+        "P-EC-LD": 189904,
+        "P-EPL-L": 378176
+      },
+      _id: "65831ef6cc189dd95fdf19ef",
+      Ventas: "$120,068,442.06",
+      Alimentos: "$46,927,365.17",
+      FechaInicial: "14 junio 2027",
+      FechaLag: "15 mayo 2027",
+      CantidadCerdos: 87723,
+      SueldosySalarios: "$340,065.72",
+      Vacunas: "$1,820,090.00",
+      Gastos: "$49,087,520.89",
+      GananciaNeta: "$70,980,921.17"
+    }
+  ])
   const handleNotification = (data) => {
     const message = data && data.message ? data.message : 'Mensaje vacío';
     const toastType = message.includes('area') ? 'warn' : message.includes('40') ? 'error' : 'info';
@@ -159,7 +242,7 @@ export default function Home({ title, description, image }) {
                     <h1 className="text-center">{item.Ventas}</h1>
                     <div className='w-full flex justify-center'>
                       <div className="border-t-2 border-gray-500 text-gray-500">
-                        {item.FechaInicial} - {item.FechaLag}
+                        { item.FechaLag } - { item.FechaInicial } 
                       </div>
                     </div>
                   </div> 
@@ -168,7 +251,7 @@ export default function Home({ title, description, image }) {
                     <h1 className="text-center">{item.Gastos}</h1>
                     <div className='w-full flex justify-center'>
                       <div className="border-t-2 border-gray-500 text-gray-500">
-                        {item.FechaInicial} - {item.FechaLag}
+                        { item.FechaLag } - { item.FechaInicial } 
                       </div>
                     </div>
                   </div> 
@@ -177,7 +260,7 @@ export default function Home({ title, description, image }) {
                     <h1 className="text-center">{item.GananciaNeta}</h1>
                     <div className='w-full flex justify-center'>
                       <div className="border-t-2 border-gray-500 text-gray-500">
-                        {item.FechaInicial} - {item.FechaLag}
+                        { item.FechaLag } - { item.FechaInicial } 
                       </div>
                     </div>
                   </div> 
