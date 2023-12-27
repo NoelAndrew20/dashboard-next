@@ -6,13 +6,30 @@ import jsonData1 from '../../../public/api/config.json'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = () => {
+const PieChart = ({ dataArray }) => {
     const data = {
-        labels: ['A', 'GV', 'MV', 'ML', 'D', 'E'],
+        labels: ['Gestacion 4', 'Maternidad 3', 'Gestacion 3', 'Maternidad 2', 'Gestacion 2', 'Maternidad 1', 'Gestacion 1', 'Cuarentena', 'CIA', 'CerdoEngorda D', 'CerdoEngordaC', 'CerdoEngordaB', 'CerdoEngorda A', 'Desarrollo B', 'Lechon'],
         datasets: [
           {
-            label: '# of Votes',
-            data: [jsonData.alimento.kg_tipo_A.Vientre.A, jsonData.alimento.kg_tipo_A.Vientre.GV, jsonData.alimento.kg_tipo_A.Vientre.MV, jsonData.alimento.kg_tipo_A.Lechon.ML, jsonData.alimento.kg_tipo_A.Lechon.D, jsonData.alimento.kg_tipo_A.Lechon.E,],
+            label: '# de cerdos',
+            data: [
+              dataArray[0].DistribucionCerdos.Gestacion4, 
+              dataArray[0].DistribucionCerdos.Maternidad3,
+              dataArray[0].DistribucionCerdos.Gestacion3, 
+              dataArray[0].DistribucionCerdos.Maternidad2,
+              dataArray[0].DistribucionCerdos.Gestacion2, 
+              dataArray[0].DistribucionCerdos.Maternidad1,
+              dataArray[0].DistribucionCerdos.Gestacion1, 
+              dataArray[0].DistribucionCerdos.Cuarentena, 
+              dataArray[0].DistribucionCerdos.CIA, 
+              dataArray[0].DistribucionCerdos.CerdoEngordaD, 
+              dataArray[0].DistribucionCerdos.CerdoEngordaC, 
+              dataArray[0].DistribucionCerdos.CerdoEngordaB, 
+              dataArray[0].DistribucionCerdos.CerdoEngordaA, 
+              dataArray[0].DistribucionCerdos.DesarrrolloB, 
+              dataArray[0].DistribucionCerdos.Lechon, 
+
+            ],
             backgroundColor: [
               'rgba(235,148,12, 0.2)',
               'rgba(22, 104, 246, 0.2)',
