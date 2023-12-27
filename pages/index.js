@@ -41,7 +41,7 @@ export default function Home({ title, description, image }) {
   const userinfo = usuariocookie ? JSON.parse(usuariocookie) : null;
   const [welcomeIndex, setWelcomeIndex] = useState(0);
   const [notificationData, setNotificationData] = useState(null);
-  const [audio] = useState(new Audio('./audio/imperial_alert.mp3')); // Reemplaza con la ruta correcta de tu archivo de sonido
+  const [audio] = useState(new Audio('./audio/pig-oink.wav')); 
   const [data, setData] = useState([])
   const handleNotification = (data) => {
     const message = data && data.message ? data.message : 'Mensaje vacío';
