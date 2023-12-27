@@ -400,19 +400,7 @@ const ChatWindow = ({ title, description, image }) => {
                             className="mr-20"
                             width={30}
                             height={30} />
-                        </div>
-                        {<p className="font-bold self-center"></p>}
-                        {respuesta.answer && (
-                          <div className="flex ml-2">
-                            <button onClick={playAudio}>
-                              <img src="./images/svg/playblack.svg" alt="Play" width={20} />
-                            </button>
-                            <audio ref={audioRef}>
-                              <source src={`./api/python/Constanza_v15/respuesta.mp3?${new Date().getTime()}`} type="audio/mpeg" />
-                              Tu navegador no soporta la reproducción de audio.
-                            </audio>
-                          </div>
-                        )}
+                        </div>                        
                         </div>}
                       <div className="flex justify-start ml-2">
                         <div className="flex justify-start">
