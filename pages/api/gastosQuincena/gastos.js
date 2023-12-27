@@ -15,7 +15,7 @@ mongoose.connect(mongoUrl, {
 })
 .catch((e) => console.log(e));
 
-const db = mongoose.connection.useDb("prototipoGranjaCancun");
+const db = mongoose.connection.useDb("prototipoGranjaChilac");
 db.on('error', console.error.bind(console, 'Error al conectar a la base de datos:'));
 db.once('open', () => {
   console.log('Conexión exitosa a la base de datos.');
@@ -24,18 +24,91 @@ db.once('open', () => {
 
 const GastosSchema = new mongoose.Schema(
   {
-    Alimento: String,
-    Medicamentos: String,
-    Sueldos: String,
-    Insumos: String,
-    Mantenimiento: String,
-    Servicios: String,
+    Ventas: String,
+    Alimentos: String,
+    AlimentosDesglozados: {
+      Intermedio1: {
+        Kg: Number,
+        Inversion: Number,
+      },
+      Enrriquecedor: {
+        Kg: Number,
+        Inversion: Number,
+      },
+      Intermedio2: {
+        Kg: Number,
+        Inversion: Number,
+      },
+      Finalizador: {
+        Kg: Number,
+        Inversion: Number,
+      },
+      Entreno: {
+        Kg: Number,
+        Inversion: Number,
+      },
+    },
+    FechaInicial: String,
+    FechaLag: String,
+    CantidadCerdos: Number,
+    DistribucionCerdos: {
+      Gestacion4: Number,
+      Maternidad3: Number,
+      Gestacion3: Number,
+      Maternidad2: Number,
+      Gestacion2: Number,
+      Maternidad1: Number,
+      Gestacion1: Number,
+      Cuarentena: Number,
+      CIA: Number,
+      CerdoEngordaD: Number,
+      CerdoEngordaC: Number,
+      CerdoEngordaB: Number,
+      CerdoEngordaA: Number,
+      DesarrolloB: Number,
+      Lechon: Number,
+    },
+    SueldosySalarios: String,
+    SueldosySalariosDesglozados: {
+      veterinario: Number,
+      vigilantes: Number,
+      ayudanteGeneral: Number,
+      aplicadorVacunas: Number,
+      lavandera: Number,
+    },
+    Vacunas: String,
+    VacunasDesglozadas: {
+      "P-DEC-F1": Number,
+      "P-RA-F1": Number,
+      "P-VE-F1": Number,
+      "P-EPL-F1": Number,
+      "P-EA-F1": Number,
+      "P-PP-F1": Number,
+      "P-AF-F1": Number,
+      "P-DEC-V": Number,
+      "P-RA-V": Number,
+      "P-VE-V": Number,
+      "P-ER-V": Number,
+      "P-EA-V": Number,
+      "P-PP-V": Number,
+      "P-AF-V": Number,
+      "P-EA-LD": Number,
+      "P-EPL-CE": Number,
+      "P-PP-LD": Number,
+      "P-VE-LD": Number,
+      "P-RA-LD": Number,
+      "P-AF-LD": Number,
+      "P-EC-LD": Number,
+      "P-EPL-L": Number,
+    },
   },
   {
-    collection: 'gastosUltimaQuincena',
+    collection: 'index',
     versionKey: false,
   }
-  );
+);
+
+  
                 
 
   const SolicitudGastos = db.model('SolicitudGastos', GastosSchema);
