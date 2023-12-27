@@ -6,10 +6,15 @@ import { useState, useEffect } from 'react';
 import svg from '@/public/images/svg/solicitud.svg';
 import TableSC from '@/components/molecules/TableSC';
 import RazaTable from '@/components/atoms/RazaTable';
+import jwt from 'jsonwebtoken';
+import { useRouter } from 'next/router';
 
 const axios = require('axios');
 
 const SolicitudCerdo = ({ title, description, image }) => {
+  const router = useRouter();
+  const [tokenVerified, setTokenVerified] = useState(false);
+  const [usuario, setUsuario] = useState("");
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [dataOrder, setDataOrder] = useState([])
   const [data, setData] = useState([]);
@@ -90,29 +95,69 @@ const SolicitudCerdo = ({ title, description, image }) => {
     }
   ]);
 
-    useEffect(() => {
-      //axios.get('http://localhost:3080/getAllSolicitudAlimento')
-      axios.get('http://192.168.100.10:3080/getAllSolicitudAlimento')
-        .then(response => {
-          const jsonData = response.data; // Datos de respuesta en formato JSON
-          setData([jsonData]);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }, []);
+  useEffect(() => {
+    //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+    axios.get('http://192.168.100.10:3086/getAllSolicitudCompra')
+      .then(response => {
+        const jsonData = response.data; // Datos de respuesta en formato JSON
+        setDataList(jsonData); 
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
+  
     useEffect(() => {
-      //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-      axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
-        .then(response => {
-          const jsonData = response.data; // Datos de respuesta en formato JSON
-          setDataList(jsonData); 
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }, []);
+      const checkToken = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            router.push('/Login');
+            return;
+          }
+    
+          const decodedToken = jwt.decode(token);
+          const usuario = decodedToken.usuario;
+          const nombre = decodedToken.nombre;
+          const proveedor = decodedToken.proveedor;
+          //console.log("Usuario:", usuario);
+          //console.log("Nombre:", nombre);
+          //console.log("Proveedor:", proveedor);
+          setUsername(usuario);
+    
+          setTokenVerified(true);
+        } catch (error) {
+          console.error('Error al verificar el token:', error);
+          setTokenVerified(true);
+        }
+      };
+      checkToken();
+    }, [router]);
+    
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://192.168.100.10:3085/getAllsolicitudCerdo');
+          const jsonData = response.data;
+          setDataGraph(jsonData);
+        } catch (error) {
+          console.error('Error al obtener datos:', error);
+        }
+      };
+    
+      if (tokenVerified) {
+        fetchData();
+      }
+    }, [tokenVerified, setUsuario]);  
+    
+  
+  if (!tokenVerified) {
+    // Puedes mostrar un indicador de carga aquí si lo deseas
+    return null;
+  }
+
+  
 
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
