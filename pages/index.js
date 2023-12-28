@@ -344,27 +344,31 @@ export default function Home({ title, description, image }) {
                 </div>  
               </div>
               </>
-              ))}             
+              ))}
+              {data &&             
+              <>
               <div className="cover-text position mt-5 p-5">
                 <div className={`${isDarkMode ? "row-container-d" : "row-container"} w-1/3 flex justify-center text-center`}>
                   <h1>Predicción - Total de cerdos en Cuarentena</h1>
                   <div className='w-full flex justify-center'>
-                      <PieChart dataArray={ data }/>
+                    <PieChart dataArray={data} />
                   </div>
-                </div> 
+                </div>
                 <div>
-                  <TableIndex1 data={ data } isDarkMode={ isDarkMode }/>
+                  <TableIndex1 data={data} isDarkMode={isDarkMode} />
                 </div>
               </div>
               <div className="flex justify-center">
                 <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-5 mb-5 w-1/2 flex justify-center text-center`}>
                   <h1>Personal</h1>
-                    <div className="p-2">
-                      <TableIndex isDarkMode={ isDarkMode } data={ data }/>
-                      <p>Total: { data[0]?.SueldosySalarios }</p>
-                    </div>
-                </div> 
+                  <div className="p-2">
+                    <TableIndex isDarkMode={isDarkMode} data={data} />
+                    <p>Total: {data[0]?.SueldosySalarios}</p>
+                  </div>
+                </div>
               </div>
+              </>
+              }
               <div className="h-chart">
                 <h1 className="text-lg font-bold">Predicción - Total de alimentos</h1>
                   <HistorialChart/>
