@@ -2,47 +2,40 @@
     "answer": {
         "actividadEconomica": [
             {
-                "actividad": "Hoteles con otros servicios integrados",
+                "actividad": "Fabricaci\u00f3n de pinturas (excepto en aerosol) y recubrimientos",
                 "fechaFinal": "N/A",
-                "fechaInicio": "26/11/2012",
+                "fechaInicio": "11/03/1976",
                 "numeroOrden": "1",
-                "porcentaje": "50"
-            },
-            {
-                "actividad": "Comercio al por menor de artesan\u00edas",
-                "fechaFinal": "N/A",
-                "fechaInicio": "01/01/2022",
-                "numeroOrden": "3",
-                "porcentaje": "10"
+                "porcentaje": "100"
             }
         ],
         "datosContribuyente": {
-            "calle1": "CALLE 14 SUR",
-            "calle2": "CALLE 16 SUR",
-            "colonia": "BARRIO ANALCO",
-            "cp": "72500",
+            "calle1": "",
+            "calle2": "",
+            "colonia": "PARQUE INDUSTRIAL CINCO DE MAYO",
+            "cp": "72019",
             "entidad": "PUEBLA",
             "localidad": "PUEBLA",
             "municipio": "PUEBLA",
-            "numeroExterior": "1414",
+            "numeroExterior": "21 A",
             "numeroInterior": "",
-            "tipoVialidad": "CALLE",
-            "vialidad": "3 ORIENTE"
+            "tipoVialidad": "",
+            "vialidad": "CALZADA DEL CONDE"
         },
         "domicilioRegistrado": {
-            "denominacion": "OPERADORA Y COMERCIALIZADORA PUEBLA VIVA",
+            "denominacion": "DILUYENTES Y MEZCLAS",
             "estatusPadron": "ACTIVO",
-            "fechaInicioOperacion": "26 DE NOVIEMBRE DE 2012",
-            "fechaUltimoCambioEstado": "10 DE DICIEMBRE DE 2012",
-            "nombreComercial": "ANTIGUO PATIO DE LAS CAMPANAS",
+            "fechaInicioOperacion": "11 DE MARZO DE 1976",
+            "fechaUltimoCambioEstado": "11 DE MARZO DE 1976",
+            "nombreComercial": "",
             "regimenCapital": "SOCIEDAD ANONIMA DE CAPITAL VARIABLE",
-            "rfc": "OCP1211267MA"
+            "rfc": "DME8605026X2"
         },
         "regimen": [
             {
                 "descripcion": "R\u00e9gimen General de Ley Personas Morales",
                 "fechaFin": "N/A",
-                "fechaInicio": "01/01/2022"
+                "fechaInicio": "31/03/2002"
             }
         ]
     }
