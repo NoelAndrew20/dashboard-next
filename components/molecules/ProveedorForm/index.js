@@ -15,7 +15,7 @@ const ProveedorForm = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('/api/pronostico/python/Constanza_v15/ConsF.json'); // Ruta relativa al archivo JSON en la carpeta public
+            const response = await fetch('/api/python/Constanza_v15/ConsF.json'); // Ruta relativa al archivo JSON en la carpeta public
             const data = await response.json();
     
             setfiscalData(data.answer);
