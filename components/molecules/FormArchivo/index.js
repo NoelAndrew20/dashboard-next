@@ -17,7 +17,7 @@ const FormularioArchivo = () =>{
 
     const subirDocumentoProveedor = async (formData) => {
       try {
-        const response = await axios.post('http://192.168.100.10:5000/addDocumentoProveedor/', formData);
+        const response = await axios.post('http://localhost:5000/addDocumentoProveedor/', formData);
         return response.data;
       } catch (error) {
         console.error('Error al subir el documento del proveedor:', error);
@@ -27,7 +27,7 @@ const FormularioArchivo = () =>{
     
     const enviarDatosAlMicroservicio = async (datosParaMicroservicio) => {
       try {
-        const response = await axios.post('http://192.168.100.10:5003/api/enviar-datos', {
+        const response = await axios.post('http://localhost:5003/api/enviar-datos', {
           datos: datosParaMicroservicio,
         });
         return response.data;

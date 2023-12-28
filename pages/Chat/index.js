@@ -48,7 +48,7 @@ const ChatWindow = ({ title, description, image }) => {
         try {
 
           const username = "Alfonso";
-          await axios.post('http://192.168.100.10:5003/api/python/Constanza_v15/usuario', { username });
+          await axios.post('http://localhost:5003/api/python/Constanza_v15/usuario', { username });
           setIsUsernameSet(true);
 
           const welcomeSound = new Howl({

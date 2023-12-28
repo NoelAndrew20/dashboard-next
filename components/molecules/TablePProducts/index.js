@@ -48,7 +48,7 @@ const TablePProducts = () => {
       };
 
 
-      const apiUrl = 'http://192.168.100.10:3070/editProductos/' + email;
+      const apiUrl = 'http://localhost:3070/editProductos/' + email;
         axios.put(apiUrl, updatedProduct)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);
@@ -80,7 +80,7 @@ const TablePProducts = () => {
     }
   
     useEffect(() => {
-        axios.get('http://192.168.100.10:3070/getProducto', {
+        axios.get('http://localhost:3070/getProducto', {
             params: {
                 email: email
             }

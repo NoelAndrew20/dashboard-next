@@ -52,7 +52,7 @@ const Proveedor = ({ title, description, image }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.100.10:3020/getUsuario', {
+        const response = await axios.get('http://localhost:3020/getUsuario', {
           params: {
             email: email
           }

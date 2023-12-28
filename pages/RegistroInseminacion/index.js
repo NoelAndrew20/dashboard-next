@@ -47,7 +47,7 @@ const RegistroInseminacion = ({ title, description, image }) => {
     ]);
 
     useEffect(() => {
-        axios.get('http://192.168.100.20:3030/getAllMedicamento')
+        axios.get('http://localhost:3030/getAllMedicamento')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setData(jsonData.data);

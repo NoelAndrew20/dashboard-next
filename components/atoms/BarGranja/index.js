@@ -11,7 +11,7 @@ Ahorita data viene de un archivo, pero cuando hagas el set nada mas borra el imp
 
 const [data, setData] = useState([]);
 useEffect(() => {
-  axios.get('http://192.168.100.10:3141/getAllSimulacion')
+  axios.get('http://localhost:3141/getAllSimulacion')
   .then(response => {
     const data = response.data; // Datos de respuesta en formato JSON
     setData(data.data);

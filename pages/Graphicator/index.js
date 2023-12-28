@@ -135,8 +135,7 @@ const Graphicator = ({ title, description, image }) => {
     };
 
     useEffect(() => {
-      //axios.get('http://localhost:3080/getAllSolicitudAlimento')
-      axios.get('http://192.168.100.10:3080/getAllSolicitudAlimento')
+      axios.get('http://localhost:3080/getAllSolicitudAlimento')
         .then(response => {
           const jsonData = response.data; // Datos de respuesta en formato JSON
           setData([jsonData]);
@@ -147,8 +146,7 @@ const Graphicator = ({ title, description, image }) => {
     }, []);
 
     useEffect(() => {
-      //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-      axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
+      axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
         .then(response => {
           const jsonData = response.data; // Datos de respuesta en formato JSON
           setDataList(jsonData); 
@@ -184,29 +182,9 @@ const Graphicator = ({ title, description, image }) => {
                     dataOrder={dataOrder} 
                     setDataOrder={setDataOrder}
                     />
-                    {/*
-                    <div className="mt-10 flex justify-end">
-                        <div className={`modal ${isModalOpen ? 'block' : 'hidden'}`}>
-                            <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
-                            <div className={`${isDarkMode ? "modal-content-d" : "modal-content " } bg-white p-4 rounded shadow-md absolute top-[50vh] left-1/2 transform -translate-x-1/2 overflow-y-auto z-50`}>
-                                <SolicitudForm 
-                                  data={data} 
-                                  dataProveedor={dataProveedor}
-                                  setData={setData} 
-                                  closeModal={closeModal}
-                                />
-                            </div>
-                        </div>                      
-                        <button className="button" onClick={openModal}>Agregar compra</button>
-                    </div>
-    */}
                 </div>
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Solicitudes existentes</h2>
-                    {/*si llegas a usar una base de datos diferente para la tabla de solicitud
-                    solo crea un const [dataSolicitud, setDataSolicitud] = useState([])
-                    para manejar la data y cambias data={data} por data={dataSolicitud}
-                    en <TableSolicitud/>*/}
                     <MenuTable data={dataList} setData={setDataList}/>
                 </div>
             </div>

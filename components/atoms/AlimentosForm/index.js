@@ -72,8 +72,7 @@ const AlimentosForm = ({ data, setData, closeModal }) => {
 
 
             const axios = require("axios");
-            //const apiUrl = 'http://localhost:3080/addAlimento';
-            const apiUrl = 'http://192.168.100.10:3080/addAlimento';
+            const apiUrl = 'http://localhost::3080/addAlimento';
             axios.post(apiUrl, newAlimento)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);

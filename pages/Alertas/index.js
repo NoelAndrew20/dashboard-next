@@ -47,7 +47,7 @@ const Alertas = ({ title, description, image }) => {
       };
     
       useEffect(() => {
-        const socket = io('http://192.168.100.10:5010', { transports: ['websocket'] });
+        const socket = io('http://localhost:5010', { transports: ['websocket'] });
     
         socket.on('notificationReceived', (data) => {
           console.log('Evento de notificación recibido en Next.js:', data);
@@ -59,8 +59,6 @@ const Alertas = ({ title, description, image }) => {
         };
       }, [audio]);
     useEffect(() => {
-        //axios.get('http://localhost:3051/getAllAlertaSensor')
-        //axios.get('http://192.168.100.10:3051/getAllAlertaSensor')
         axios.get('http://localhost:3050/getAllAlerta')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON

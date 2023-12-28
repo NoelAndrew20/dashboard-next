@@ -26,7 +26,7 @@ const LicitacionPro = ({ title, description, image }) => {
   }
   
   useEffect(() => {
-    axios.get('http://192.168.100.10:3020/getUsuario', {
+    axios.get('http://localhost:3020/getUsuario', {
       params: {
         email: email
       }
@@ -41,7 +41,7 @@ const LicitacionPro = ({ title, description, image }) => {
   }, []);
 
   useEffect(() => {
-    axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
+    axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
     .then(response => {
         const jsonData = response.data; // Datos de respuesta en formato JSON
         setDataLic(jsonData);
@@ -51,37 +51,6 @@ const LicitacionPro = ({ title, description, image }) => {
     });
 }, [])
 
-
-    /*const [ data, setData ] = useState([
-        {
-          picture: foto, 
-          nombre: "Usuario", 
-          responsabilidad: [{nombre: "Checar vacunas"},{nombre: "limpieza de anaquel"} , {nombre: "Cerrar puertas"}],
-          apellidop: "Apellido paterno",
-          apellidom: "Apellido materno",
-          granja: "1",
-          area: "1",
-          password: "$2b$12$lHRldawIB8TIpAVAApS3ae2g.GSJUgCgkunm3hwEdQGTjIDFgwa8.",
-          email: "1",
-          fechaNacimiento: "0001-01-01",
-          genero: "masculino",
-          horario: "1",
-          fechaContratacion: "0001-01-01",
-          departamento: "1",
-          stat: "activo",
-          contacto: "1",
-          salario: "1",
-          calle: "1",
-          numeroI: "1",
-          numeroE: "1",
-          ciudad: "1",
-          estado: "1",
-          cp: "1",
-          tarea: "1",
-          epp: "1",
-          proveedor: 0
-        }
-    ]);*/
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
             <StaticMeta

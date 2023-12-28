@@ -43,7 +43,7 @@ const ProvForm = ({ data, setData, closeModal }) => {
             setSuccessMessage("Producto guardado exitosamente");
 
             const axios = require("axios");
-            const apiUrl = 'http://192.168.100.10:3070/editProducto/' + usuario;
+            const apiUrl = 'http://localhost:3070/editProducto/' + usuario;
             axios.put(apiUrl, newProduct)
                 .then(response => {
                     console.log("Respuesta de la API:", response.data);

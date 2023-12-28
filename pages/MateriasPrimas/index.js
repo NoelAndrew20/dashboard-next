@@ -64,7 +64,7 @@ const Medicamento = ({ title, description, image }) => {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://192.168.100.20:3040/getAllMateriaPrima');
+            const response = await axios.get('http://localhost:3040/getAllMateriaPrima');
             const jsonData = response.data;
             setData(jsonData.data);
           } catch (error) {

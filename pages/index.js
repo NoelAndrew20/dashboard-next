@@ -148,7 +148,7 @@ export default function Home({ title, description, image }) {
   };
 
   useEffect(() => {
-    const socket = io('http://192.168.100.10:5010', { transports: ['websocket'] });
+    const socket = io('http://localhost:5010', { transports: ['websocket'] });
 
     socket.on('notificationReceived', (data) => {
       handleNotification(data);
@@ -179,7 +179,7 @@ export default function Home({ title, description, image }) {
   }, []);
 
   useEffect(() => {
-    axios.get('http://192.168.100.10:3143/getAllGastosUltimaQuincena')
+    axios.get('http://localhost:3143/getAllGastosUltimaQuincena')
     .then(response => {
         const jsonData = response.data;
         console.log(jsonData)

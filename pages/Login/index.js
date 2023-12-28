@@ -61,7 +61,7 @@ const Login = ({ title, description, image }) => {
     return email.trim() !== "" && password.trim() !== "" && validateEmail(email) && password.length >= 6;
   };
 
-  const apiUrl = 'http://192.168.100.10:3020/login';
+  const apiUrl = 'http://localhost:3020/login';
   
   const handleSubmit = async (e) => {
     e.preventDefault();

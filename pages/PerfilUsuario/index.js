@@ -52,7 +52,7 @@ const PerfilUsuario = ({ title, description, image }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.100.10:3020/getUsuario', {
+        const response = await axios.get('http://localhost:3020/getUsuario', {
           params: {
             email: email
           }
@@ -73,33 +73,6 @@ const PerfilUsuario = ({ title, description, image }) => {
 if (!tokenVerified) {
   return null;
 }
-
-  /*const [ data, setData ] = useState([]);
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  let email = "";
-  if (token) {
-    const decodedToken = jwt.decode(token);
-    email = decodedToken.email;
-  } 
-  else {
-    console.error("No se encontró el token en localStorage.");
-  }
-  
-  useEffect(() => {
-    axios.get('http://192.168.100.10:3020/getUsuario', {
-      params: {
-        email: email
-      }
-    })
-    .then(response => {
-      const jsonData = response.data;
-      setData(jsonData);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }, []);*/
-
 
     return(
       <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
