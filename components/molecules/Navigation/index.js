@@ -64,7 +64,7 @@ const Navigation = () => {
                     <div className="cursor-pointer flex items-center">
                         <Link href="/" className="flex items-center">
                             <div className="mr-5 flex">
-                                <Image src={logo} width={40} height={40}  alt="Logo"/>
+                                <Image src={logo} width={40} height={40} alt="Logo" loading="lazy" />
                             </div>
                             <div className="flex justify-center items-center">
                                 <label className="font-semibold">Constanza</label>
@@ -73,7 +73,7 @@ const Navigation = () => {
                     </div>
                 </div>
                 <div className="flex">
-                    <Image src={srs} width={100} height="auto" alt="srs-logo"/>
+                    <Image src={srs} width={100} height="auto" alt="srs-logo" loading="lazy"/>
                 </div>
             </header>
             <div

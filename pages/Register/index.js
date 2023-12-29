@@ -73,7 +73,7 @@ const Register = ({ title, description, image }) => {
           <div className="w-1/2">
             <div className="flex justify-center">
               <div className="mr-5">
-                <Image src="/images/icon/logo_color.png" width={30} height={30} alt="logo" />
+                <Image src="/images/icon/logo_color.png" width={30} height={30} alt="logo" loading="lazy" />
               </div>
               <div>
                 <h1 className="text-2xl font-semibold mb-4">Registrate</h1>

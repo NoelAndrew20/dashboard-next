@@ -127,7 +127,7 @@ const Login = ({ title, description, image }) => {
         className='srs-image'
         >
           <div >
-            <Image src={srs} width={200} height={200} alt="srs-logo" className="p-5"/>
+            <Image src={srs} width={200} height={200} alt="srs-logo" className="p-5" loading="lazy"/>
           </div>
         </motion.div>
       </AnimatePresence>

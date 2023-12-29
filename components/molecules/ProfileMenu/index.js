@@ -21,6 +21,7 @@ const ProfileMenu = ({ data }) => {
                         width={30}
                         height={30}
                         alt="Black Arrow" className="ml-2"
+                        loading="lazy"
                     />
                 </div>
             </div>
@@ -35,6 +36,7 @@ const ProfileMenu = ({ data }) => {
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !responsabilidadesExpandido ? "" : "transition-transform transform rotate-90"} ml-2`} 
+                        loading="lazy"
                     />
                 </div>
             </div>
@@ -59,6 +61,7 @@ const ProfileMenu = ({ data }) => {
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !ubicacionTrabajoExpandido ? "" : "transition-transform transform rotate-90"} ml-2`} 
+                        loading="lazy"
                     />
                 </div>
             </div>
@@ -81,6 +84,7 @@ const ProfileMenu = ({ data }) => {
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !eppExpandido ? "" : "transition-transform transform rotate-90"} ml-2`}
+                        loading="lazy"
                     />
                 </div>
             </div>
