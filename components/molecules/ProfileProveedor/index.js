@@ -19,6 +19,7 @@ const PerfilProveedor = ({ data }) => {
                         width={30}
                         height={30}
                         alt="Black Arrow" className="ml-2"
+                        loading="lazy"
                     />
                 </div>
             </div>
@@ -33,6 +34,7 @@ const PerfilProveedor = ({ data }) => {
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !productoExpandido ? "" : "transition-transform transform rotate-90"} ml-2`} 
+                        loading="lazy"
                     />
                 </div>
             </div>
@@ -57,6 +59,7 @@ const PerfilProveedor = ({ data }) => {
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !licitacionExpandido ? "" : "transition-transform transform rotate-90"} ml-2`} 
+                        loading="lazy"
                     />
                 </div>
             </div>

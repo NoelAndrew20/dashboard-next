@@ -382,6 +382,7 @@ const ChatWindow = ({ title, description, image }) => {
                                 alt="Constanza Logo"
                                 width={50}
                                 height={50}
+                                loading="lazy"
                               />
                             )}
                           </div>
@@ -399,7 +400,8 @@ const ChatWindow = ({ title, description, image }) => {
                             alt="Constanza Logo"
                             className="mr-20"
                             width={30}
-                            height={30} />
+                            height={30} 
+                          />
                         </div>                        
                         </div>}
                       <div className="flex justify-start ml-2">
