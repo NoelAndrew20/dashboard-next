@@ -116,9 +116,9 @@ const TableLicitacion = ({ data, setData }) => {
                                             onClick={() => {handleExpand(index), setIndexGuide(index)}}
                                         >
                                             {expandedRow === index ? (
-                                                <Image src="images/svg/expanded.svg" width={25} height={25} />
+                                                <Image src="images/svg/expanded.svg" width={25} height={25} loading="lazy" />
                                             ) : (
-                                                <Image src="images/svg/expand.svg" width={25} height={25} />
+                                                <Image src="images/svg/expand.svg" width={25} height={25} loading="lazy" />
                                             )}
                                         </button>
                                     </td>
