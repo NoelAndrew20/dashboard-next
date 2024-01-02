@@ -69,7 +69,6 @@ const TableSC = ({ data, setData, dataOrder, setDataOrder, dataList, setDataList
         setShowForms({});
         setDataList([...dataList, combinedData]);
         setSelectedFoodData(null);
-        console.log(combinedData)
         
         //const apiUrl = 'http://localhost:3082/addSolicitudCompraAlimento';
         

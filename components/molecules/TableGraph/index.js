@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 import CalcuForm from '@/components/atoms/CalcuForm';
 import CalcuFormOther from '@/components/atoms/CalcuFormOther';
+import jwt from 'jsonwebtoken';
 
 const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataList }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -89,6 +90,17 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
     const [dataFinal, setDataFinal] = useState()
     const axios = require('axios');
 
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    let responsable = "";
+    if (token) {
+        const decodedToken = jwt.decode(token);
+        responsable = decodedToken.usuario;
+    } 
+    else {
+        console.error("No se encontró el token en localStorage.");
+    }
+    
+
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -114,6 +126,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
             nombreAlimento: item.nombreAlimento,
             cantidad: item.cantidad,
           })),
+          responsable: responsable, 
         };
       
         setShowForms({});

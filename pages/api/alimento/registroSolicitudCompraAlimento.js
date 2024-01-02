@@ -28,9 +28,10 @@ const SolicitudCompraAlimentoSchema = new mongoose.Schema(
     numeroSolicitud: Number,
     nombreSolicitante: String,
     estadoSolicitud: Number,
+    tipoDeLicitacion: String,
     solicitud: [
       {
-        nombreAlimento: String,
+        nombre: String,
         cantidad: Number,
         estatus: Number,
       }
@@ -70,6 +71,23 @@ const SolicitudCompraAlimentoSchema = new mongoose.Schema(
 app.post("/addSolicitudCompraAlimento", async (req, res) => {
   try {
     const newAlimento = req.body;
+    let tipoDeLicitacion;
+    const inicial = newAlimento.responsable.charAt(0).toUpperCase();
+    switch (inicial) {
+      case 'A':
+        tipoDeLicitacion = 'Alimento';
+        break;
+      case 'M':
+        tipoDeLicitacion = 'Medicamento';
+        break;
+      case 'C':
+        tipoDeLicitacion = 'Vientres';
+        break;
+      // Agrega más casos según sea necesario
+      default:
+        tipoDeLicitacion = 'Otro'; // Un valor predeterminado si no coincide con ninguna inicial conocida
+    }
+
     const ultimaSolicitud = await SolicitudCompraAlimento
       .findOne({})
       .sort({ numeroSolicitud: -1 }) // Ordena en orden descendente
@@ -84,12 +102,14 @@ app.post("/addSolicitudCompraAlimento", async (req, res) => {
     const solicitudCompra = {
       fecha: Date.now(),
       numeroSolicitud: nuevoNumeroSolicitud,
-      //nombreSolicitante: req.body.nombreSolicitante,
-      nombreSolicitante: "Proveedor Base",
-      //solicitud: req.body.solicitudes
-
+      nombreSolicitante: req.body.responsable,
       estadoSolicitud: 0,
-      solicitud: req.body.solicitudes.map(item => ({ ...item, estatus: 0 }))
+      tipoDeLicitacion: tipoDeLicitacion,
+      solicitud: req.body.solicitudes.map(item => ({ 
+        nombre: item.nombreAlimento, 
+        cantidad: item.cantidad,
+        estatus: 0,
+         }))
     };
 
     // Crea una instancia del modelo SolicitudCompraAlimento con los datos ajustados

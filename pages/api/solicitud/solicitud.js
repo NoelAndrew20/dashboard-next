@@ -31,7 +31,7 @@ const SolicitudCompraSchema = new mongoose.Schema(
     tipoDeLicitacion: String,
     solicitud: [
       {
-        raza: String,
+        nombre: String,
         cantidad: Number,
         estatus: Number,
       }
@@ -106,7 +106,7 @@ app.post("/addSolicitudCompraCerdo", async (req, res) => {
       estadoSolicitud: 0,
       tipoDeLicitacion: tipoDeLicitacion,
       solicitud: req.body.solicitudes.map(item => ({ 
-        raza: item.raza, 
+        nombre: item.raza, 
         cantidad: item.cantidad,
         estatus: 0,
          }))

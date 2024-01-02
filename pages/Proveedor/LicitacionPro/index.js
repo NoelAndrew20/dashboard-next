@@ -104,7 +104,7 @@ const LicitacionPro = ({ title, description, image }) => {
                     <TableLicitacion data={dataLic} />
                 </div>
                 <div className="mt-5">
-                    <TablePProducts/>
+                    {/*<TablePProducts/>*/}
                 </div>
             </div>
         </div>
