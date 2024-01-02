@@ -70,7 +70,7 @@ const RazaTable = ({ data, setData }) => {
                                </tr>
                                {item.solicitud.map((solicitud, index) => (
                                     <tr key={index}>
-                                    <td>{solicitud.raza}</td>
+                                    <td>{solicitud.nombre}</td>
                                     <td>{solicitud.cantidad}</td>
                                     </tr>
                                 ))}

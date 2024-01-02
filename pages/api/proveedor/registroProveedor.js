@@ -205,12 +205,10 @@ app.get("/getProducto", async (req, res) => {
   }
 });
 
-
 app.post("/addProveedor", async (req, res) => {
   const newProveedor = req.body;
-  
-
   let primeraLetra = '';
+  let segundaLetra = '';
   try {
     const lastId = await Proveedor
     .findOne({})
@@ -228,6 +226,7 @@ app.post("/addProveedor", async (req, res) => {
 
     if (tipoProveedor) {
       primeraLetra = tipoProveedor[0];
+      segundaLetra = tipoProveedor[1];
     }
 
     const fechaActual = new Date();
@@ -238,7 +237,7 @@ app.post("/addProveedor", async (req, res) => {
     const nuevoProveedor = new Proveedor({
       fecha: fechaActual,
       id: nuevoLastid,
-      idProveedor: `${primeraLetra}${dia}${mes}${anio}${nuevoLastid}`, 
+      idProveedor: `${primeraLetra}${segundaLetra}${dia}${mes}${anio}${nuevoLastid}`, 
       tipoProveedor: newProveedor.tipoProveedor,
       denominacion: newProveedor.denominacion,
       rfc: newProveedor.rfc,
