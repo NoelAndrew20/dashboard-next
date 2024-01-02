@@ -10,6 +10,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import io from 'socket.io-client'
 import Notification from '@/components/molecules/AlertaNotificacion'
+import svg from '@/public/images/svg/alerts.svg';
+
 const axios = require('axios');
 
 const Alertas = ({ title, description, image }) => {
@@ -81,7 +83,7 @@ const Alertas = ({ title, description, image }) => {
             />     
             <div>
                 <Navigation/>
-                <NavDashboard section="Alertas" id="alertas"/>
+                <NavDashboard section="Dashboard: Alertas" id="alertas" svg={ svg }/>
             </div>
             <div>
                   <Notification data={notificationData} />
