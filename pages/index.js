@@ -229,7 +229,7 @@ export default function Home({ title, description, image }) {
               <img src="/images/imagenes/constanza.gif" alt="Cerdo" className="w-full h-full object-cover" />
               <div className="absolute inset-0 background-cover"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-2xl font-bold">
-                <Image src={"/images/icon/Constanza_logo_blanco.png"} alt="Logo" width={150} height={150} className="pb-2"/>
+                <Image src={"/images/icon/Constanza_logo_blanco.png"} alt="Logo" width={150} height={150} className="pb-2" loading="lazy"/>
                 Bienvenido
               </div>
             </div>
@@ -269,7 +269,7 @@ export default function Home({ title, description, image }) {
                   <div className="position">
                     <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
                       <div className="flex">
-                        <Image src={"/images/icon/alimentos-index.png"} width={30} height={30}/>
+                        <Image src={"/images/icon/alimentos-index.png"} width={30} height={30} loading="lazy"/>
                         <span className=" ml-2 font-bold flex items-center">Alimentos</span>
                       </div>
                       <h1 className="text-right text-2xl">{item.Alimentos}</h1>
@@ -281,7 +281,7 @@ export default function Home({ title, description, image }) {
                   </div> 
                   <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
                     <div className="flex">
-                      <Image src={"/images/icon/medicamentos-index.png"} width={30} height={30}/>
+                      <Image src={"/images/icon/medicamentos-index.png"} width={30} height={30} loading="lazy"/>
                       <span className=" ml-2 font-bold flex items-center">Vacunas</span>
                     </div>                      
                     <h1 className="text-right text-2xl">{ item.Vacunas }</h1>
@@ -293,7 +293,7 @@ export default function Home({ title, description, image }) {
                   </div> 
                   <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
                     <div className="flex">
-                      <Image src={"/images/icon/sueldos-index.png"} width={30} height={30}/>
+                      <Image src={"/images/icon/sueldos-index.png"} width={30} height={30} loading="lazy"/>
                       <span className=" ml-2 font-bold flex items-center">Sueldos y salarios</span>
                     </div>                        
                     <h1 className="text-right text-2xl">{ item.SueldosySalarios }</h1>
@@ -307,7 +307,7 @@ export default function Home({ title, description, image }) {
                 <div className="position">
                   <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
                     <div className="flex">
-                      <Image src={"/images/icon/insumos-index.png"} width={30} height={30}/>
+                      <Image src={"/images/icon/insumos-index.png"} width={30} height={30} loading="lazy"/>
                       <span className=" ml-2 font-bold flex items-center">Insumos</span>
                     </div> 
                     <h1 className="text-right text-2xl">${ item.Insumos }</h1>
@@ -319,7 +319,7 @@ export default function Home({ title, description, image }) {
                   </div> 
                   <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
                     <div className="flex">
-                      <Image src={"/images/icon/mantenimiento-index.png"} width={30} height={30}/>
+                      <Image src={"/images/icon/mantenimiento-index.png"} width={30} height={30} loading="lazy"/>
                       <span className=" ml-2 font-bold flex items-center">Mantenimiento</span>
                     </div> 
                     <h1 className="text-right text-2xl">${ item.Mantenimiento }</h1>
@@ -331,7 +331,7 @@ export default function Home({ title, description, image }) {
                   </div> 
                   <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container-a mt-10"} mt-20 pb-50 w-1/3 flex`}>
                     <div className="flex">
-                      <Image src={"/images/icon/servicios-index.png"} width={30} height={30}/>
+                      <Image src={"/images/icon/servicios-index.png"} width={30} height={30} loading="lazy"/>
                       <span className=" ml-2 font-bold flex items-center">Servicios</span>
                     </div> 
                     <h1 className="text-right text-2xl">${ item.Servicios }</h1>
@@ -344,27 +344,31 @@ export default function Home({ title, description, image }) {
                 </div>  
               </div>
               </>
-              ))}             
+              ))}
+              {data &&             
+              <>
               <div className="cover-text position mt-5 p-5">
                 <div className={`${isDarkMode ? "row-container-d" : "row-container"} w-1/3 flex justify-center text-center`}>
                   <h1>Predicción - Total de cerdos en Cuarentena</h1>
                   <div className='w-full flex justify-center'>
-                      <PieChart dataArray={ data }/>
+                    <PieChart dataArray={data} />
                   </div>
-                </div> 
+                </div>
                 <div>
-                  <TableIndex1 data={ data } isDarkMode={ isDarkMode }/>
+                  <TableIndex1 data={data} isDarkMode={isDarkMode} />
                 </div>
               </div>
               <div className="flex justify-center">
                 <div className={`${isDarkMode ? "row-container-d mt-10" : "row-container mt-10"} mt-5 mb-5 w-1/2 flex justify-center text-center`}>
                   <h1>Personal</h1>
-                    <div className="p-2">
-                      <TableIndex isDarkMode={ isDarkMode } data={ data }/>
-                      <p>Total: { data[0]?.SueldosySalarios }</p>
-                    </div>
-                </div> 
+                  <div className="p-2">
+                    <TableIndex isDarkMode={isDarkMode} data={data} />
+                    <p>Total: {data[0]?.SueldosySalarios}</p>
+                  </div>
+                </div>
               </div>
+              </>
+              }
               <div className="h-chart">
                 <h1 className="text-lg font-bold">Predicción - Total de alimentos</h1>
                   <HistorialChart/>
