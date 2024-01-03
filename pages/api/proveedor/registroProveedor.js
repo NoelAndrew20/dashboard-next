@@ -5,14 +5,11 @@ const multer = require('multer');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const config = require('../../../config.json');
-
 const app = express();
 const mongoUrl = config.mongodesarrollo;
-
 // Configuración de CORS y middleware JSON
 app.use(cors());
 app.use(express.json());
-
 // Conexión a MongoDB
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
@@ -22,40 +19,33 @@ mongoose.connect(mongoUrl, {
     console.log("Connected to the database");
   })
   .catch((e) => console.log(e));
-
 const db = mongoose.connection.useDb("prototipoGranja");
-
 // Manejo de eventos de la conexión a la base de datos
 db.on('error', console.error.bind(console, 'Error connecting to the database:'));
 db.once('open', () => {
   console.log('Successful database connection.');
 });
-
+// Subir archivos
 function uploadFiles(){
-const storage = multer.diskStorage({
+  const storage = multer.diskStorage({
     destination: './files',
     filename: function (_req, file, cb) {
       const originalname = file.originalname.replace(/\s/g, ''); // Elimina espacios del nombre original
-      //const extension = originalname.slice(originalname.lastIndexOf('.'));
       const filename = `${originalname}`;
       cb(null, filename);
     }
   })
-  
-  //const upload = multer({ storage: storage }).single('file');
   const upload = multer({ storage: storage });
-
   return upload.fields([
     { name: 'constanciaFile', maxCount: 1 },
     { name: 'caratulaFile', maxCount: 1 },
     { name: 'opinionFile', maxCount: 1 }
-]);
+  ]);
 }
-
+//Enviar correo de verificación de usuario y contraseña
 async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
   const remitente = 'proyectoConstanza01@gmail.com';
   const password = 'ndqnuiihqxwscxna';
-
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -63,14 +53,12 @@ async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
       pass: password,
     },
   });
-
   const mensaje = {
     from: remitente,
     to: destinatario,
     subject: asunto,
     text: cuerpoMensaje,
   };
-
   try {
     const info = await transporter.sendMail(mensaje);
     console.log('Correo enviado: ', info.response);
@@ -79,8 +67,7 @@ async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
     throw new Error('Error al enviar el correo');
   }
 }
-
-
+//Esquemal de proveedor
 const ProveedorSchema = new mongoose.Schema(
   {
     fecha: Date,
@@ -129,7 +116,7 @@ const ProveedorSchema = new mongoose.Schema(
     versionKey: false,
   }
 );
-
+//Esquemal de usuario
 const UsuarioSchema = new mongoose.Schema(
   {
     usuario: String,
@@ -139,7 +126,6 @@ const UsuarioSchema = new mongoose.Schema(
     proveedor: Number,
   },
   {
-    //collection: 'usuarios', // Nombre de la colección en la base de datos
     collection: 'usuario',
     versionKey: false,
   }
@@ -147,46 +133,6 @@ const UsuarioSchema = new mongoose.Schema(
 
 const Usuario = db.model('usuario', UsuarioSchema);
 const Proveedor = db.model('Proveedor', ProveedorSchema);
-
-
-/*app.post('/addProveedor', uploadFiles(), (req, res) => {
-    res.send('ok');
-});*/
-
-app.put('/editProducto/:usuario', async (req, res) => {
-  try {
-    const usuario = req.params.usuario;
-    const newProduct = req.body;
-
-    console.log(usuario);
-    console.log(newProduct);
-
-    const proveedor = await Proveedor.findOne({ idProveedor: usuario });
-
-    if (!proveedor) {
-      return res.status(404).json({ message: 'Usuario no encontrado' });
-    }
-
-    const nuevoID = proveedor.productos.length + 1;
-
-    // Agrega el nuevo producto con el ID actualizado
-    proveedor.productos.push({
-      ID: nuevoID.toString(), // Convierte a cadena si es necesario
-      SKU: newProduct.SKU,
-      nombre: newProduct.nombre,
-      unidad: newProduct.unidad,
-      precio: newProduct.precio
-    });
-
-    const updatedProveedor = await proveedor.save();
-
-    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedProveedor });
-  } catch (error) {
-    console.error('Error al actualizar los datos:', error);
-    res.status(500).json({ message: 'Error al actualizar los datos' });
-  }
-});
-
 app.get("/getProducto", async (req, res) => {
   try {
     const { email } = req.query;
@@ -194,10 +140,7 @@ app.get("/getProducto", async (req, res) => {
     if (!proveedor) {
       return res.status(404).send([{ status: "not found", message: "Proveedor no encontrado" }]);
     }
-
     const productos = proveedor.productos;
-
-    // Devuelve un arreglo con el objeto usuario
     res.send(productos);
   } catch (error) {
     console.error(error);
@@ -205,35 +148,35 @@ app.get("/getProducto", async (req, res) => {
   }
 });
 
+app.post('/addDocumentoProveedor', uploadFiles(), (req, res) => {
+  // Manejo del archivo subido
+  res.send('ok');
+});
+
 app.post("/addProveedor", async (req, res) => {
   const newProveedor = req.body;
   let primeraLetra = '';
   let segundaLetra = '';
+  //Verifica el ultimo ID
   try {
     const lastId = await Proveedor
     .findOne({})
     .sort({ id: -1 })
     .select('id');
-
     let nuevoLastid = 1;
-    //const nextId = lastId ? lastId.id + 1 : 1;
     if (lastId) {
       nuevoLastid = lastId.id + 1;
-      console.log(nuevoLastid);
     }
-
     const tipoProveedor = newProveedor.tipoProveedor;
-
+    //Agrega las dos primeras letras de un tipo de Proveedor es decir vacunas=va, vientres=vi
     if (tipoProveedor) {
       primeraLetra = tipoProveedor[0];
       segundaLetra = tipoProveedor[1];
     }
-
     const fechaActual = new Date();
     const dia = fechaActual.getDate();
-    const mes = fechaActual.getMonth() + 1; // Los meses comienzan desde 0
+    const mes = fechaActual.getMonth() + 1;
     const anio = fechaActual.getFullYear();
-
     const nuevoProveedor = new Proveedor({
       fecha: fechaActual,
       id: nuevoLastid,
@@ -262,7 +205,7 @@ app.post("/addProveedor", async (req, res) => {
     await nuevoProveedor.save();
 
     const hashedPassword = await bcrypt.hash(nuevoProveedor.rfc, 12);
-
+    //Guarda usuario con id de las primeras dos letras del tipo, la fecha y id
     const nuevoUsuario = new Usuario({
       usuario: nuevoProveedor.idProveedor,
       nombre: nuevoProveedor.nombre,
@@ -270,7 +213,7 @@ app.post("/addProveedor", async (req, res) => {
       email: nuevoProveedor.correo,
       proveedor: 1,
       picture: '/images/imagenes/user.png',
-      rango: 'fff',
+      rango: 'Proveedor',
     });
 
     await nuevoUsuario.save();
@@ -280,6 +223,7 @@ app.post("/addProveedor", async (req, res) => {
     const mensajeCorreo = 'Se ha registrado en nuestro sistema como proveedor confiable, su correo es el proporcionado en el sistema y su contraseña es su RFC.';
     await enviarCorreo(destinatarioCorreo, asuntoCorreo, mensajeCorreo);
     nuevoProveedor.estatuscorreo = 1;
+
     await nuevoProveedor.save();
 
     res.status(200).json({ message: 'Datos guardados con éxito' });
@@ -289,13 +233,38 @@ app.post("/addProveedor", async (req, res) => {
   }
 });
 
+app.put('/editProducto/:usuario', async (req, res) => {
+  try {
+    const usuario = req.params.usuario;
+    const newProduct = req.body;
+    const proveedor = await Proveedor.findOne({ idProveedor: usuario });
+    if (!proveedor) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+    const nuevoID = proveedor.productos.length + 1;
+    // Agrega el nuevo producto con el ID actualizado
+    proveedor.productos.push({
+      ID: nuevoID.toString(), // Convierte a cadena si es necesario
+      SKU: newProduct.SKU,
+      nombre: newProduct.nombre,
+      unidad: newProduct.unidad,
+      precio: newProduct.precio
+    });
+
+    const updatedProveedor = await proveedor.save();
+
+    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedProveedor });
+  } catch (error) {
+    console.error('Error al actualizar los datos:', error);
+    res.status(500).json({ message: 'Error al actualizar los datos' });
+  }
+});
+
 app.put('/editProductos/:email', async (req, res) => {
   try {
     const email = req.params.email;
     const updatedProduct = req.body;
     const id = updatedProduct.ID;
-    console.log(id);
-
 
     // Buscar y actualizar el producto en la base de datos
     const resultado = await Proveedor.updateOne(
@@ -309,7 +278,6 @@ app.put('/editProductos/:email', async (req, res) => {
         },
       }
     );
-
     if (resultado.nModified > 0) {
       res.json({ message: 'Producto actualizado con éxito' });
     } else {
@@ -320,12 +288,6 @@ app.put('/editProductos/:email', async (req, res) => {
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 });
-
-app.post('/addDocumentoProveedor', uploadFiles(), (req, res) => {
-  // Manejo del archivo subido
-  res.send('ok');
-});
-
 
 const PORT = 3070;
 app.listen(PORT, () => {
