@@ -119,10 +119,22 @@ const SolicitudCerdo = ({ title, description, image }) => {
 
   useEffect(() => {
     //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-    axios.get('http://192.168.100.10:3086/getAllSolicitudCompra')
+    axios.get('http://192.168.100.10:3087/getAllSolicitudCerdo')
       .then(response => {
         const jsonData = response.data; // Datos de respuesta en formato JSON
         setDataList(jsonData); 
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+    axios.get('http://192.168.100.10:3086/getAllSolicitudCompra')
+      .then(response => {
+        const jsonData = response.data; // Datos de respuesta en formato JSON
+        setDataPig(jsonData); 
       })
       .catch(error => {
         console.error(error);
