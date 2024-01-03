@@ -18,11 +18,13 @@ app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 contador_activo = False
 contador_thread = None 
+respuestas_por_token = {}
+chat_pig_token = {}
 
 @app.route('/api/python/Constanza_v15/apichat_cons_v15', methods=['POST'])
 def api_chat():
     global json_modificado
-    json_modificado = False  # Restablece json_modificado a False
+    json_modificado = False
 
 
     if request.method == 'OPTIONS':
@@ -37,6 +39,7 @@ def api_chat():
             try:
                 data = request.get_json()
                 question = data.get('question')
+                token = data.get('token')
                 signal_data = {}
                 # signal_data = {"senal": False}
                 print('Pregunta recibida en la API:', question)
@@ -56,9 +59,14 @@ def api_chat():
                     # result = subprocess.run(run_script_cmd)
                     # script_output = result.stdout
                     # resultado = principal(question)
+                    
                     print (question)
+                    print (token)
                     question_json={"Text":question}
                     print("questionjson=",question_json)
+                    cons_state={"answer":"Pensando"}
+                    with open("respuesta.json", "w") as archivo_json:
+                        json.dump(cons_state, archivo_json)
                     if question.lower() == "no":
                         signal_data = {"senal": False}
                         with open("senal.json", "w") as archivo_json:
@@ -96,6 +104,9 @@ def api_chat():
                                             signal_data = json.load(archivo_json)
                             if signal_data.get("senal") is False:
                                     func={"function": ""}
+                                    cons_state={"answer":"Pensando"}
+                                    with open("respuesta.json", "w") as archivo_json:
+                                        json.dump(cons_state, archivo_json)
                                     with open("senal_cons.json", "w") as archivo_json:
                                         json.dump(func, archivo_json)
                                     # jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
@@ -149,6 +160,8 @@ def api_chat():
                         json.dump(cargar, archivo_json)
                     jsonrespuesta=json_response.get('answer')
                     TextToSpeech(jsonrespuesta,'es')
+                    status_code = json_response.get('status_code', 200)
+                    respuestas_por_token[token] = {'respuesta': jsonrespuesta, 'status_code': status_code}
                     return jsonify({"resultado": jsonrespuesta})
                 else:
                     return jsonify({"error": "Texto no proporcionado en la solicitud"}), 400
