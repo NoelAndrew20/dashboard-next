@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import srs from '@/public/Logos/ACELogo.png'
 import Cookies from 'js-cookie';
 import load from '../../components/molecules/Carga/index.js'
-import {motion, AnimetePresence, AnimatePresence } from "framer-motion";
+import { motion, AnimetePresence, AnimatePresence } from "framer-motion";
 import { duration } from 'moment-timezone';
 const axios = require("axios");
 import jwt from 'jsonwebtoken';
@@ -41,7 +41,7 @@ const Login = ({ title, description, image }) => {
       setEmailError("");
     }
 
-    setIsButtonDisabled(!validateForm(value, password)); 
+    setIsButtonDisabled(!validateForm(value, password));
   };
 
   const handlePasswordChange = (e) => {
@@ -54,9 +54,9 @@ const Login = ({ title, description, image }) => {
       setPasswordError("");
     }
 
-    setIsButtonDisabled(!validateForm(email, value)); 
+    setIsButtonDisabled(!validateForm(email, value));
   };
-// //Codigo por si no cuentas con la base de datos
+  // //Codigo por si no cuentas con la base de datos
   const validateForm = (email, password) => {
     return email.trim() !== "" && password.trim() !== "" && validateEmail(email) && password.length >= 6;
   };
@@ -68,7 +68,7 @@ const Login = ({ title, description, image }) => {
     try {
       const response = await axios.post(apiUrl, { email, password });
       console.log(response);
-  
+
       if (response.data.message === "Inicio de sesión exitoso") {
         localStorage.setItem('token', response.data.token);
 
@@ -83,7 +83,7 @@ const Login = ({ title, description, image }) => {
         if (proveedor === 1) {
           router.push("../Proveedor");  // Redirige a la página licitacion
         }
-  
+
       } else {
         setError(response.data.message || "Error en la autenticación");
       }
@@ -93,12 +93,12 @@ const Login = ({ title, description, image }) => {
 
       setEmail("usuario1@example.com");
       setPassword("contraseña1");
-      setIsButtonDisabled(false); 
+      setIsButtonDisabled(false);
       router.push("../");
     }
   };
 
-  
+
 
   return (
     <>
@@ -108,26 +108,26 @@ const Login = ({ title, description, image }) => {
         image={image}
       />
       <AnimatePresence>
-        <motion.div 
-        initial="initialState"
-        animate="animateState"
-        exit="exitState"
-        variants={{
-          initialState: {
-            opacity: 0,
-          },
-          animateState: {
-            opacity: 1,
-          },
-          exitState: {
+        <motion.div
+          initial="initialState"
+          animate="animateState"
+          exit="exitState"
+          variants={{
+            initialState: {
+              opacity: 0,
+            },
+            animateState: {
+              opacity: 1,
+            },
+            exitState: {
 
-          },
-        }}
-        transition={{duration: 2,delay: 1.5}}
-        className='srs-image'
+            },
+          }}
+          transition={{ duration: 2, delay: 1.5 }}
+          className='srs-image'
         >
           <div >
-            <Image src={srs} width={200} height={200} alt="srs-logo" className="p-5" loading="lazy"/>
+            <Image src={srs} width={200} height={200} alt="srs-logo" className="p-5" loading="lazy" />
           </div>
         </motion.div>
       </AnimatePresence>
@@ -136,35 +136,35 @@ const Login = ({ title, description, image }) => {
           <div className="flex justify-center">
             <div>
               <AnimatePresence>
-                <motion.div 
-                initial="initialState"
-                animate="animateState"
-                exit="exitState"
-                variants={{
-                  initialState: {
-                    y: 100,
-                    scale: 4,
-                  },
-                  animateState: {
-                    scale: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.8,
-                      delay: 1,
-                      ease: "easeInOut",
+                <motion.div
+                  initial="initialState"
+                  animate="animateState"
+                  exit="exitState"
+                  variants={{
+                    initialState: {
+                      y: 100,
+                      scale: 4,
                     },
-                   
-                  },
-                  exitState: {
-                    
-                  },
-                }}
-                transition={{duration: 15}}
-                className='base-page-size'
+                    animateState: {
+                      scale: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.8,
+                        delay: 1,
+                        ease: "easeInOut",
+                      },
+
+                    },
+                    exitState: {
+
+                    },
+                  }}
+                  transition={{ duration: 15 }}
+                  className='base-page-size'
                 >
                   <div className="flex flex-col">
                     <div className="flex justify-center border-b border-solid border-black pb-5">
-                      <img src="/images/Constanzalogo2.gif" style={{width:"200px"}}/>
+                      <img src="/images/Constanzalogo2.gif" style={{ width: "200px" }} />
                     </div>
                     <div className='flex justify-center pt-2'>
                       <h1 className="text-2xl font-semibold mb-4 text-[#818cf8]">Bienvenido!</h1>
@@ -172,73 +172,73 @@ const Login = ({ title, description, image }) => {
                   </div>
                 </motion.div>
               </AnimatePresence>
-              
-              {error && (
-                  <div className="text-red-500 font-bold mt-2">
-                      {error}
-                  </div>
-              )}
-              
-             
-              <form onSubmit={handleSubmit}>
-              <AnimatePresence>
-              <motion.div 
-                initial="initialState"
-                animate="animateState"
-                exit="exitState"
-                variants={{
-                  initialState: {
-                    opacity: 0,
-                    y: 100,
-                  },
-                  animateState: {
-                    opacity: 1,
-                    y: 0,
-                  },
-                  exitState: {
 
-                  },
-                }}
-                transition={{duration: 1,delay: 1.5}}
-                className='page'>
-                <div className="mb-4">
-                  <label htmlFor="email" className="block text-sm text-xl font-bold text-gray-700">
-                    Email:
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
-                    value={email}
-                    onChange={handleEmailChange}
-                  />
-                  {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
+              {error && (
+                <div className="text-red-500 font-bold mt-2">
+                  {error}
                 </div>
-                <div className="mb-4">
-                  <label htmlFor="password" className="block text-sm text-xl font-bold text-gray-700">
-                    Contraseña:
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
-                    value={password}
-                    onChange={handlePasswordChange}
-                  />
-                  {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
-                </div>
-                <div className="flex justify-center">
-                  <button
-                      type="submit"
-                      className={`px-4 py-2 button text-white rounded-md hover:bg-blue-600 ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
-                      disabled={isButtonDisabled}
-                  >
-                      Iniciar sesión
-                  </button>
-                </div>
-                </motion.div>
+              )}
+
+
+              <form onSubmit={handleSubmit}>
+                <AnimatePresence>
+                  <motion.div
+                    initial="initialState"
+                    animate="animateState"
+                    exit="exitState"
+                    variants={{
+                      initialState: {
+                        opacity: 0,
+                        y: 100,
+                      },
+                      animateState: {
+                        opacity: 1,
+                        y: 0,
+                      },
+                      exitState: {
+
+                      },
+                    }}
+                    transition={{ duration: 1, delay: 1.5 }}
+                    className='page'>
+                    <div className="mb-4">
+                      <label htmlFor="email" className="block text-sm text-xl font-bold text-gray-700">
+                        Email:
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
+                        value={email}
+                        onChange={handleEmailChange}
+                      />
+                      {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
+                    </div>
+                    <div className="mb-4">
+                      <label htmlFor="password" className="block text-sm text-xl font-bold text-gray-700">
+                        Contraseña:
+                      </label>
+                      <input
+                        type="password"
+                        id="password"
+                        className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
+                        value={password}
+                        onChange={handlePasswordChange}
+                      />
+                      {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
+                    </div>
+                    <div className="flex justify-center">
+                      <button
+                        type="submit"
+                        className={`px-4 py-2 button text-white rounded-md hover:bg-blue-600 ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
+                        disabled={isButtonDisabled}
+                      >
+                        Iniciar sesión
+                      </button>
+                    </div>
+                  </motion.div>
                 </AnimatePresence>
-                
+
               </form>
               <div className="mt-5 text-xs flex justify-center text-blue-500">
               </div>
@@ -253,16 +253,16 @@ const Login = ({ title, description, image }) => {
 
 export default Login;
 export const getServerSideProps = async () => {
-    const title = "Constanza - Login";
-    const description = "Login de Constanza";
-    const image = "images/icon/logo-400.png";
-    return {
-      props: {
-        title,
-        description,
-        image,
-      },
-    };
+  const title = "Constanza - Login";
+  const description = "Login de Constanza";
+  const image = "images/icon/logo-400.png";
+  return {
+    props: {
+      title,
+      description,
+      image,
+    },
+  };
 };
 /*import { useState, useEffect } from 'react';
 import Image from 'next/image';

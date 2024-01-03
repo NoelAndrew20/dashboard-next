@@ -11,7 +11,6 @@ import { useRouter } from 'next/router';
 import TablePig from '@/components/molecules/TablePig';
 
 const axios = require('axios');
-
 const SolicitudCerdo = ({ title, description, image }) => {
   const router = useRouter();
   const [tokenVerified, setTokenVerified] = useState(false);
@@ -44,76 +43,76 @@ const SolicitudCerdo = ({ title, description, image }) => {
   const [dataList, setDataList] = useState([]);
   const [dataGraph, setDataGraph] = useState([
     {
-        _id: "651c2f33be9c9264651f04fb",
-        fecha: "Nombre del Proveedor",
-        raza: "Landra",
-        precio: 3500,
-        precioVariable: 4000,
-        pesoMinimo: 100,
-        responsable: "Ivan",
-        lote: "MX0000001",
-        historialMedico: [
-          {
-            vacuna: "Vacuna 1"
-          },
-          {
-            vacuna: "Vacuna 2"
-          },
-          {
-            vacuna: "Vacuna 3",
-          },
-          {
-            vacuna: "Vacuna 4",
-          }
-        ]
-      },
-      {
-        _id: "651d7d5478524b5ca0cd6892",
-        fecha: "Nombre del Proveedor",
-        raza: "puerco",
-        precio: 3500,
-        precioVariable: 4000,
-        pesoMinimo: 100,
-        responsable: "Ivan",
-        lote: "MX0000001",
-        historialMedico: [
-          {
-            vacuna: "Vacuna 1"
-          },
-          {
-            vacuna: "Vacuna 2"
-          },
-          {
-            vacuna: "Vacuna 3",
-          },
-          {
-            vacuna: "Vacuna 4",
-          }
-        ]
-      },
-      {
-        _id: "651c2f33be9c9264651f04fa",
-        fecha: "Nombre del Proveedor",
-        raza: "cerdo",
-        precio: 3500,
-        precioVariable: 4000,
-        pesoMinimo: 100,
-        responsable: "Ivan",
-        lote: "MX0000001",
-        historialMedico: [
-          {
-            vacuna: "Vacuna 1"
-          },
-          {
-            vacuna: "Vacuna 2"
-          },
-          {
-            vacuna: "Vacuna 3",
-          },
-          {
-            vacuna: "Vacuna 4",
-          }
-        ]
+      _id: "651c2f33be9c9264651f04fb",
+      fecha: "Nombre del Proveedor",
+      raza: "Landra",
+      precio: 3500,
+      precioVariable: 4000,
+      pesoMinimo: 100,
+      responsable: "Ivan",
+      lote: "MX0000001",
+      historialMedico: [
+        {
+          vacuna: "Vacuna 1"
+        },
+        {
+          vacuna: "Vacuna 2"
+        },
+        {
+          vacuna: "Vacuna 3",
+        },
+        {
+          vacuna: "Vacuna 4",
+        }
+      ]
+    },
+    {
+      _id: "651d7d5478524b5ca0cd6892",
+      fecha: "Nombre del Proveedor",
+      raza: "puerco",
+      precio: 3500,
+      precioVariable: 4000,
+      pesoMinimo: 100,
+      responsable: "Ivan",
+      lote: "MX0000001",
+      historialMedico: [
+        {
+          vacuna: "Vacuna 1"
+        },
+        {
+          vacuna: "Vacuna 2"
+        },
+        {
+          vacuna: "Vacuna 3",
+        },
+        {
+          vacuna: "Vacuna 4",
+        }
+      ]
+    },
+    {
+      _id: "651c2f33be9c9264651f04fa",
+      fecha: "Nombre del Proveedor",
+      raza: "cerdo",
+      precio: 3500,
+      precioVariable: 4000,
+      pesoMinimo: 100,
+      responsable: "Ivan",
+      lote: "MX0000001",
+      historialMedico: [
+        {
+          vacuna: "Vacuna 1"
+        },
+        {
+          vacuna: "Vacuna 2"
+        },
+        {
+          vacuna: "Vacuna 3",
+        },
+        {
+          vacuna: "Vacuna 4",
+        }
+      ]
     }
   ]);
 
@@ -121,7 +120,7 @@ const SolicitudCerdo = ({ title, description, image }) => {
     axios.get('http://localhost:3086/getAllSolicitudCompra')
       .then(response => {
         const jsonData = response.data; // Datos de respuesta en formato JSON
-        setDataList(jsonData); 
+        setDataPig(jsonData);
       })
       .catch(error => {
         console.error(error);
@@ -133,14 +132,13 @@ const SolicitudCerdo = ({ title, description, image }) => {
     axios.get('http://192.168.100.10:3086/getAllSolicitudCompra')
       .then(response => {
         const jsonData = response.data; // Datos de respuesta en formato JSON
-        setDataPig(jsonData); 
+        setDataList(jsonData);
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
 
-  
   useEffect(() => {
     const checkToken = async () => {
       try {
@@ -170,7 +168,7 @@ const SolicitudCerdo = ({ title, description, image }) => {
     };
     checkToken();
   }, [router]);
-    
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -181,65 +179,62 @@ const SolicitudCerdo = ({ title, description, image }) => {
         console.error('Error al obtener datos:', error);
       }
     };
-  
     if (tokenVerified) {
       fetchData();
     }
-  }, [tokenVerified, setUsuario]);  
-    
-  
+  }, [tokenVerified, setUsuario]);
   if (!tokenVerified) {
     // Puedes mostrar un indicador de carga aquí si lo deseas
     return null;
   }
 
-    return (
-        <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
-            <StaticMeta
-                title={title}
-                description={description}
-                image={image}
-            />     
-            <div>
-                <Navigation/>
-                <NavDashboard section="Solicitud de Cerdo" svg={svg}/>
-            </div>
-            <div className="wrapper">
-            <div className="mt-10">
-                <h2 className="text-xl mt-5 mb-5">Registro de cerdos</h2>
-                <TablePig data={ dataPig } />
-              </div>
-              <div className="mt-10">
-                  <h2 className="text-xl mt-5 mb-5">Solicitud de Cerdo</h2>
-                  <TableSC 
-                  dataList={dataList}
-                  setDataList={setDataList}
-                  data={dataGraph} 
-                  setData={setDataGraph} 
-                  dataOrder={dataOrder} 
-                  setDataOrder={setDataOrder}
-                  />
-              </div>
-              <div className="mt-10">
-                  <h2 className="text-xl mt-5 mb-5">Solicitudes existentes</h2>
-                  <RazaTable data={dataList} setData={setDataList}/>
-              </div>
-            </div>
+  return (
+    <div className={`${isDarkMode ? "darkMode" : "lightMode"} full-viewport`}>
+      <StaticMeta
+        title={title}
+        description={description}
+        image={image}
+      />
+      <div>
+        <Navigation />
+        <NavDashboard section="Solicitud de Cerdo" svg={svg} />
+      </div>
+      <div className="wrapper">
+        <div className="mt-10">
+          <h2 className="text-xl mt-5 mb-5">Registro de cerdos</h2>
+          <TablePig data={dataPig} />
         </div>
-    )
+        <div className="mt-10">
+          <h2 className="text-xl mt-5 mb-5">Solicitud de Cerdo</h2>
+          <TableSC
+            dataList={dataList}
+            setDataList={setDataList}
+            data={dataGraph}
+            setData={setDataGraph}
+            dataOrder={dataOrder}
+            setDataOrder={setDataOrder}
+          />
+        </div>
+        <div className="mt-10">
+          <h2 className="text-xl mt-5 mb-5">Solicitudes existentes</h2>
+          <RazaTable data={dataList} setData={setDataList} />
+        </div>
+      </div>
+    </div>
+  )
 }
 export default SolicitudCerdo;
 
 export const getServerSideProps = async () => {
-    const title = "Constanza";
-    const description =
-      "Menú";
-    const image = "images/icon/logo-400.png";
-    return {
-      props: {
-        title,
-        description,
-        image,
-      },
-    };
+  const title = "Constanza";
+  const description =
+    "Menú";
+  const image = "images/icon/logo-400.png";
+  return {
+    props: {
+      title,
+      description,
+      image,
+    },
   };
+};
