@@ -8,6 +8,7 @@ import TableSC from '@/components/molecules/TableSC';
 import RazaTable from '@/components/atoms/RazaTable';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
+import TablePig from '@/components/molecules/TablePig';
 
 const axios = require('axios');
 
@@ -18,7 +19,28 @@ const SolicitudCerdo = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [dataOrder, setDataOrder] = useState([])
   const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]);
+  const [dataPig, setDataPig] = useState(
+    [
+      {
+        _id: "65946d858bcf58efd19e7b69",
+        lote: "SWILPAD001",
+        tipo: "Semental",
+        cantidad: 104,
+        fechaLicitacion: "29-01-2030",
+        fechaDia0: "20-11-2029",
+        status: "Requerido"
+      },
+      {
+        _id: "65946d858bcf58efd19e7b6a",
+        lote: "SWILPAE001",
+        tipo: "Semental",
+        cantidad: 104,
+        fechaLicitacion: "26-02-2030",
+        fechaDia0: "18-12-2029",
+        status: "Requerido"
+      }
+    ]
+  );
   const [dataList, setDataList] = useState([]);
   const [dataGraph, setDataGraph] = useState([
     {
@@ -156,7 +178,6 @@ const SolicitudCerdo = ({ title, description, image }) => {
     return null;
   }
 
-  
 
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
@@ -170,21 +191,25 @@ const SolicitudCerdo = ({ title, description, image }) => {
                 <NavDashboard section="Solicitud de Cerdo" svg={svg}/>
             </div>
             <div className="wrapper">
-                <div className="mt-10">
-                    <h2 className="text-xl mt-5 mb-5">Solicitud de Cerdo</h2>
-                    <TableSC 
-                    dataList={dataList}
-                    setDataList={setDataList}
-                    data={dataGraph} 
-                    setData={setDataGraph} 
-                    dataOrder={dataOrder} 
-                    setDataOrder={setDataOrder}
-                    />
-                </div>
-                <div className="mt-10">
-                    <h2 className="text-xl mt-5 mb-5">Solicitudes existentes</h2>
-                    <RazaTable data={dataList} setData={setDataList}/>
-                </div>
+            <div className="mt-10">
+                <h2 className="text-xl mt-5 mb-5">Registro de cerdos</h2>
+                <TablePig data={ dataPig } />
+              </div>
+              <div className="mt-10">
+                  <h2 className="text-xl mt-5 mb-5">Solicitud de Cerdo</h2>
+                  <TableSC 
+                  dataList={dataList}
+                  setDataList={setDataList}
+                  data={dataGraph} 
+                  setData={setDataGraph} 
+                  dataOrder={dataOrder} 
+                  setDataOrder={setDataOrder}
+                  />
+              </div>
+              <div className="mt-10">
+                  <h2 className="text-xl mt-5 mb-5">Solicitudes existentes</h2>
+                  <RazaTable data={dataList} setData={setDataList}/>
+              </div>
             </div>
         </div>
     )
