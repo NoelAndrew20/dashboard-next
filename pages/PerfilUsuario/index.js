@@ -14,13 +14,13 @@ const PerfilUsuario = ({ title, description, image }) => {
   const [tokenVerified, setTokenVerified] = useState(false);
   const [username, setUsername] = useState("");
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  const [ data, setData ] = useState([]);
+  const [data, setData] = useState([]);
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = "";
   if (token) {
     const decodedToken = jwt.decode(token);
     email = decodedToken.email;
-  } 
+  }
   else {
     console.error("No se encontró el token en localStorage.");
   }
@@ -32,14 +32,14 @@ const PerfilUsuario = ({ title, description, image }) => {
           router.push('/Login');
           return;
         }
-  
+
         const decodedToken = jwt.decode(token);
         const usuario = decodedToken.usuario;
         const nombre = decodedToken.nombre;
         const proveedor = decodedToken.proveedor;
         const email = decodedToken.email;
         setUsername(usuario);
-  
+
         setTokenVerified(true);
       } catch (error) {
         console.error('Error al verificar el token:', error);
@@ -48,7 +48,7 @@ const PerfilUsuario = ({ title, description, image }) => {
     };
     checkToken();
   }, [router]);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -63,16 +63,16 @@ const PerfilUsuario = ({ title, description, image }) => {
         console.error('Error al obtener datos:', error);
       }
     };
-  
+
     if (tokenVerified) {
       fetchData();
     }
-  }, [tokenVerified, setUsername]);  
-  
+  }, [tokenVerified, setUsername]);
 
-if (!tokenVerified) {
-  return null;
-}
+
+  if (!tokenVerified) {
+    return null;
+  }
 
   /*const [ data, setData ] = useState([]);
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
@@ -101,40 +101,40 @@ if (!tokenVerified) {
   }, []);*/
 
 
-    return(
-      <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
-        <StaticMeta
-          title={title}
-          description={description}
-          image={image}
-        />     
-        <Navigation/>
-        <div className="profile-nav w-full" style={{justifyContent: "center !important"}}>
-          <h1>Perfil de usuario</h1>
+  return (
+    <div className={`${isDarkMode ? "darkMode" : "lightMode"} full-viewport`}>
+      <StaticMeta
+        title={title}
+        description={description}
+        image={image}
+      />
+      <Navigation />
+      <div className="profile-nav w-full" style={{ justifyContent: "center !important" }}>
+        <h1>Perfil de usuario</h1>
+      </div>
+      <div className="wrapper">
+        <div className="mt-5">
+          <ProfileCard data={data} />
         </div>
-        <div className="wrapper">
-          <div className="mt-5">
-            <ProfileCard data={data}/>
-          </div>
-          <div className="mt-10">
-            <ProfileMenu data={data}/>
-          </div>
+        <div className="mt-10">
+          <ProfileMenu data={data} />
         </div>
       </div>
-    )
+    </div>
+  )
 }
 export default PerfilUsuario;
 
 export const getServerSideProps = async () => {
-    const title = "Constanza";
-    const description =
-      "Perfil de usuarios";
-    const image = "images/icon/logo-400.png";
-    return {
-      props: {
-        title,
-        description,
-        image,
-      },
-    };
+  const title = "Constanza";
+  const description =
+    "Perfil de usuarios";
+  const image = "images/icon/logo-400.png";
+  return {
+    props: {
+      title,
+      description,
+      image,
+    },
+  };
 };

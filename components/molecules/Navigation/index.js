@@ -7,22 +7,34 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
 import foto from '@/public/images/imagenes/user.png';
 
 const Navigation = () => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const router = useRouter();
+    const [tokenVerified, setTokenVerified] = useState(false);
     const currentPage = router.pathname;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isGestationOpen, setIsGestationOpen] = useState(false);
     const [isMaternidadOpen, setIsMaternidadOpen] = useState(false);
     const [isZenOpen, setIsZenOpen] = useState(false);
-    const [ data, setData ] = useState([
+    const [data, setData] = useState([
         {
-          picture: foto, 
-          nombre: "Usuario", 
+            picture: foto,
+            nombre: "Usuario",
         }
     ]);
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    let rango = "";
+    if (token) {
+        const decodedToken = jwt.decode(token);
+        rango = decodedToken.rango;
+        console.log("rango", rango);
+    }
+    else {
+        console.error("No se encontró el token en localStorage.");
+    }
 
 
 
@@ -53,12 +65,27 @@ const Navigation = () => {
 
     const usuariojson = Cookies.get('userData');
     const userData = usuariojson ? JSON.parse(usuariojson) : null;
-    
+
+    const tienePermiso = (rango, ruta) => {
+        switch (rango) {
+            case 'admin':
+                return true;
+            case 'Veterinario':
+                return ['/SolicitudCerdo', '/Graphicator', 'PerfilUsuario'].includes(ruta);
+            case 'Gerente_de_compras':
+                return ['/Compras', '/SeleccionProveedor', '/PerfilUsuario'].includes(ruta);
+            case 'Proveedor':
+                return ['/Proveedor'].includes(ruta);
+            default:
+                return false;
+        }
+    }
+
     return (
         <>
             <header className="navbar flex items-center justify-between bg-gray-700 text-white text-sm py-4 px-4">
                 <button onClick={toggleSidebar}>
-                    <Image src={burguer} width={20} height={20} alt="burguer"/>
+                    <Image src={burguer} width={20} height={20} alt="burguer" />
                 </button>
                 <div className="flex items-center">
                     <div className="cursor-pointer flex items-center">
@@ -73,22 +100,21 @@ const Navigation = () => {
                     </div>
                 </div>
                 <div className="flex">
-                    <Image src={srs} width={100} height="auto" alt="srs-logo" loading="lazy"/>
+                    <Image src={srs} width={100} height="auto" alt="srs-logo" loading="lazy" />
                 </div>
             </header>
             <div
-                className={`fixed inset-0 bg-black opacity-50 z-40 transition-opacity ${
-                    isSidebarOpen ? 'block' : 'hidden'
-                }`}
+                className={`fixed inset-0 bg-black opacity-50 z-40 transition-opacity ${isSidebarOpen ? 'block' : 'hidden'
+                    }`}
                 onClick={toggleSidebar}
             ></div>
 
             <div className={`sidebar z-50 h-screen text-white w-64 p-4 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out fixed top-0 left-0`}>
                 <div onClick={toggleSidebar} className="flex justify-end items-end pt-1">
-                    <img src={"/images/svg/x-w.svg"} width={20} height={20} alt="x"/>
+                    <img src={"/images/svg/x-w.svg"} width={20} height={20} alt="x" />
                 </div>
                 <div className="flex pt-5" onClick={toggleDarkMode}>
-                    {isDarkMode ? 
+                    {isDarkMode ?
                         <img src={"/images/svg/moon.svg"} width={30} height={30} alt="moon" />
                         :
                         <img src={"/images/svg/sun.svg"} width={30} height={30} alt="sun" />
@@ -96,107 +122,131 @@ const Navigation = () => {
                 </div>
                 <div className="side flex flex-col space-y-2 overflow-hidden" >
                     <div id="inner" className='flex flex-col space-y-2'>
-                    <Link href="../../Alertas" className={`pr-5 ${currentPage === '/Alertas' ? 'active' : ''}`}>
-                        <div className="flex pt-5">
-                            <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" className="mr-2" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.1336 11C18.7155 16.3755 21 18 21 18H3C3 18 6 15.8667 6 8.4C6 6.70261 6.63214 5.07475 7.75736 3.87452C8.88258 2.67428 10.4087 2 12 2C12.3373 2 12.6717 2.0303 13 2.08949" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M19 8C20.6569 8 22 6.65685 22 5C22 3.34315 20.6569 2 19 2C17.3431 2 16 3.34315 16 5C16 6.65685 17.3431 8 19 8Z" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg> Alertas
-                        </div>
-                    </Link>
-                    {/*{userData.user.grupo === 'Grupo A' && (*/}
-                    <Link href="/" className={`hover:font-semibold ${currentPage === '/' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
-                        </div>
-                    </Link>
-                      {/*})} */}
-                      {/*{userData.user.grupo === 'Grupo B' &&  (*/}
-                    <Link href="../../RegistroUsuarios" className={`hover:font-semibold ${currentPage === '/RegistroUsuarios' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/user.svg"} width={20} height={20} alt="user" className="mr-2" /> Usuarios
-                        </div>
-                    </Link>
-                    {/*})}*/}
-                        {/*{userData.user.grupo === 'Grupo B' &&(*/}
-                    <Link href="../../RegistroTransporte" className={`hover:font-semibold ${currentPage === '/RegistroTransporte' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/truck.svg"} width={20} height={20} alt="transporte" className="mr-2" />Transportes
-                        </div>
-                    </Link>
-                        {/*)}*/}
-                    <Link href="../../Medicamento" className={`hover:font-semibold ${currentPage === '/Medicamento' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento
-                        </div>
-                    </Link>
-                    {/*<Link href="../../MateriasPrimas" className={`hover:font-semibold ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
+                        {tienePermiso(rango, '/Alertas') && (
+                            <Link href="../../Alertas" className={`pr-5 ${currentPage === '/Alertas' ? 'active' : ''}`}>
+                                <div className="flex pt-5">
+                                    <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" className="mr-2" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.1336 11C18.7155 16.3755 21 18 21 18H3C3 18 6 15.8667 6 8.4C6 6.70261 6.63214 5.07475 7.75736 3.87452C8.88258 2.67428 10.4087 2 12 2C12.3373 2 12.6717 2.0303 13 2.08949" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path d="M19 8C20.6569 8 22 6.65685 22 5C22 3.34315 20.6569 2 19 2C17.3431 2 16 3.34315 16 5C16 6.65685 17.3431 8 19 8Z" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg> Alertas
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/') && (
+                            <Link href="/" className={`hover:font-semibold ${currentPage === '/' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/home.svg"} width={20} height={20} alt="user" className="mr-2" /> Home
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/RegistroUsuarios') && (
+                            <Link href="../../RegistroUsuarios" className={`hover:font-semibold ${currentPage === '/RegistroUsuarios' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/user.svg"} width={20} height={20} alt="user" className="mr-2" /> Usuarios
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/RegistroTransporte') && (
+                            <Link href="../../RegistroTransporte" className={`hover:font-semibold ${currentPage === '/RegistroTransporte' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/truck.svg"} width={20} height={20} alt="transporte" className="mr-2" />Transportes
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/Medicamento') && (
+                            <Link href="../../Medicamento" className={`hover:font-semibold ${currentPage === '/Medicamento' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/medicine.svg"} width={20} height={20} alt="medicine" className="mr-2" />Medicamento
+                                </div>
+                            </Link>
+                        )}
+                        {/*<Link href="../../MateriasPrimas" className={`hover:font-semibold ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/hammer.svg"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
                         </div>
                     </Link>*/}
-                    <Link href="../../RFID" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />Cerdos
-                        </div>
-                    </Link>
-                    {/*<Link href="../../RegistroAlimentos" className={`hover:font-semibold ${currentPage === '/RegistroAlimentos' ? 'font-semibold' : ''} pt-5`}>
+                        {tienePermiso(rango, '/RFID') && (
+                            <Link href="../../RFID" className={`hover:font-semibold ${currentPage === '/RFID' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/label.svg"} width={20} height={20} alt="label" className="mr-2" />Cerdos
+                                </div>
+                            </Link>
+                        )}
+                        {/*<Link href="../../RegistroAlimentos" className={`hover:font-semibold ${currentPage === '/RegistroAlimentos' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/food.svg"} width={20} height={20} alt="label" className="mr-2" />Alimentos
                         </div>
                     </Link>*/}
-                    <Link href="../../RegistroCerdos" className={`hover:font-semibold ${currentPage === '/RegistroCerdos' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />Registro Cerdos
-                        </div>
-                    </Link>
-                    {/*<Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RegistroInseminacion' ? 'font-semibold' : ''} pt-5`}>
+                        {tienePermiso(rango, '/RegistroCerdos') && (
+                            <Link href="../../RegistroCerdos" className={`hover:font-semibold ${currentPage === '/RegistroCerdos' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/pig.svg"} width={20} height={20} alt="pig" className="mr-2" />Registro Cerdos
+                                </div>
+                            </Link>
+                        )}
+                        {/*<Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RegistroInseminacion' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
                             <img src={"/images/svg/drop.svg"} width={20} height={20} alt="drop" className="mr-2" />Inseminacion
                         </div>
                     </Link>*/}
-                    <Link href="../../Graphicator" className={`hover:font-semibold ${currentPage === '/Graphicator' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/graph.svg"} width={25} height={25} alt="graph" className="mr-2" />Menú de alimentos
-                        </div>
-                    </Link>
-                    <Link href="../../RegistroProveedores" className={`hover:font-semibold ${currentPage === '/RegistroProveedores' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/provider.svg"} width={20} height={20} alt="graph" className="mr-2" />Registro de proveedores
-                        </div>
-                    </Link>
-                    <Link href="../../Licitacion" className={`hover:font-semibold ${currentPage === '/Licitacion' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/licitacion.svg"} width={20} height={20} alt="graph" className="mr-2" />Licitación
-                        </div>
-                    </Link>
-                    <Link href="../../Compras" className={`hover:font-semibold ${currentPage === '/Compras' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/shopping.svg"} width={20} height={20} alt="graph" className="mr-2" />Compras
-                        </div>
-                    </Link>
-                    <Link href="../../SolicitudCerdo" className={`hover:font-semibold ${currentPage === '/SolicitudCerdo' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/solicitud.svg"} width={20} height={20} alt="graph" className="mr-2" />Solicitud de cerdo
-                        </div>
-                    </Link>
-                    <Link href="../../SeleccionProveedor" className={`hover:font-semibold ${currentPage === '/SeleccionProveedor' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/selection.svg"} width={20} height={20} alt="graph" className="mr-2" />Seleccion de proveedor
-                        </div>
-                    </Link>
-                    <Link href="../../Chat" className={`hover:font-semibold ${currentPage === '/Chat' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/chat.svg"} width={20} height={20} alt="graph" className="mr-2" />Chat
-                        </div>
-                    </Link>
-                    <Link href="../../Proveedor" className={`hover:font-semibold ${currentPage === '/Proveedor' ? 'font-semibold' : ''} pt-5`}>
-                        <div className="flex">
-                            <img src={"/images/svg/box.svg"} width={20} height={20} alt="graph" className="mr-2" />Perfil proveedor
-                        </div>
-                    </Link>
-                    {/*
+                        {tienePermiso(rango, '/Graphicator') && (
+                            <Link href="../../Graphicator" className={`hover:font-semibold ${currentPage === '/Graphicator' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/graph.svg"} width={25} height={25} alt="graph" className="mr-2" />Menú de alimentos
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/RegistroProveedores') && (
+                            <Link href="../../RegistroProveedores" className={`hover:font-semibold ${currentPage === '/RegistroProveedores' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/provider.svg"} width={20} height={20} alt="graph" className="mr-2" />Registro de proveedores
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/Licitacion') && (
+                            <Link href="../../Licitacion" className={`hover:font-semibold ${currentPage === '/Licitacion' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/licitacion.svg"} width={20} height={20} alt="graph" className="mr-2" />Licitación
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/Compras') && (
+                            <Link href="../../Compras" className={`hover:font-semibold ${currentPage === '/Compras' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/shopping.svg"} width={20} height={20} alt="graph" className="mr-2" />Compras
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/SolicitudCerdo') && (
+                            <Link href="../../SolicitudCerdo" className={`hover:font-semibold ${currentPage === '/SolicitudCerdo' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/solicitud.svg"} width={20} height={20} alt="graph" className="mr-2" />Solicitud de cerdo
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/SeleccionProveedor') && (
+                            <Link href="../../SeleccionProveedor" className={`hover:font-semibold ${currentPage === '/SeleccionProveedor' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/selection.svg"} width={20} height={20} alt="graph" className="mr-2" />Seleccion de proveedor
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/Chat') && (
+                            <Link href="../../Chat" className={`hover:font-semibold ${currentPage === '/Chat' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/chat.svg"} width={20} height={20} alt="graph" className="mr-2" />Chat
+                                </div>
+                            </Link>
+                        )}
+                        {tienePermiso(rango, '/Proveedor') && (
+                            <Link href="../../Proveedor" className={`hover:font-semibold ${currentPage === '/Proveedor' ? 'font-semibold' : ''} pt-5`}>
+                                <div className="flex">
+                                    <img src={"/images/svg/box.svg"} width={20} height={20} alt="graph" className="mr-2" />Perfil proveedor
+                                </div>
+                            </Link>
+                        )}
+                        {/*
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleGestation}>
                             Gestaciones
@@ -248,20 +298,22 @@ const Navigation = () => {
                     </div>
                     {data.map((item, index) => (
                         <div key={index} className="flex justify-center pt-2 pb-20 flex-col text-center">
-                            <Link href="../../PerfilUsuario">
-                                <div className="flex justify-center">
-                                    <Image 
-                                        src={ item.picture } 
-                                        width={50} 
-                                        height={50} 
-                                        alt="profile-pic" 
-                                        className="rounded-full w-10 h-10 object-cover border-solid border-2 border-indigo-400 cursor-pointer"
-                                    />
-                                </div>
-                                <p>Ver perfil</p>
-                            </Link>
+                            {tienePermiso(rango, '/PerfilUsuario') && (
+                                <Link href="../../PerfilUsuario">
+                                    <div className="flex justify-center">
+                                        <Image
+                                            src={item.picture}
+                                            width={50}
+                                            height={50}
+                                            alt="profile-pic"
+                                            className="rounded-full w-10 h-10 object-cover border-solid border-2 border-indigo-400 cursor-pointer"
+                                        />
+                                    </div>
+                                    <p>Ver perfil</p>
+                                </Link>
+                            )}
                         </div>
-                        
+
                     ))}
                 </div>
             </div>
