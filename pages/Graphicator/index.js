@@ -171,8 +171,8 @@ const Graphicator = ({ title, description, image }) => {
             </div>
             <div className="wrapper">
                 <div className="mt-10">
-                    <h2 className="text-xl mt-5 mb-5">Pronóstico de compra de alimentos</h2>
-                    <TableAlimentos data={data} setData={setData}/>
+                    {/*<h2 className="text-xl mt-5 mb-5">Pronóstico de compra de alimentos</h2>
+                    <TableAlimentos data={data} setData={setData}/>*/}
                 </div>
                 <div className="mt-10">
                     <h2 className="text-xl mt-5 mb-5">Crea tu menú</h2>
