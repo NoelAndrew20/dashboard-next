@@ -35,7 +35,7 @@ const SolicitudLicitacionSchema = new mongoose.Schema(
         fecha: Date,
         lugar: String,
         metodo: String,
-        nombreAlimento: String,
+        nombre: String,
         pago: String,
         periodo: Date,
         precio: Number,
@@ -59,10 +59,10 @@ const SolicitudLicitacionSchema = new mongoose.Schema(
         return res.status(404).json({ mensaje: 'No se encontraron solicitudes de compra de alimentos' });
       }
   
-      const uniqueAlimentos = Array.from(new Set(solicitudesCompra.map(item => item.solicitud[0].nombreAlimento)));
+      const uniqueAlimentos = Array.from(new Set(solicitudesCompra.map(item => item.solicitud[0].nombre)));
   
       const filteredSolicitudes = uniqueAlimentos.map(alimento => {
-        const matchingSolicitudes = solicitudesCompra.filter(item => item.solicitud[0].nombreAlimento === alimento);
+        const matchingSolicitudes = solicitudesCompra.filter(item => item.solicitud[0].nombre === alimento);
         const lowestPriceSolicitud = matchingSolicitudes.reduce((min, current) => (current.solicitud[0].precio < min.solicitud[0].precio ? current : min), matchingSolicitudes[0]);
         return lowestPriceSolicitud;
       });
@@ -82,7 +82,7 @@ const SolicitudLicitacionSchema = new mongoose.Schema(
         'solicitud.0.estatus': 1,
         'username': newAlimento.usuario,
         'numeroSolicitud': newAlimento.numeroSolicitud,
-        'solicitud.0.nombreAlimento': newAlimento.nombreAlimento,
+        'solicitud.0.nombre': newAlimento.nombre,
     })
     if (solicitudesCompra.length > 0) {
       console.log(solicitudesCompra.length);
