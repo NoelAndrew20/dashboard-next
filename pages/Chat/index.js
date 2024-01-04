@@ -708,11 +708,11 @@ const ChatWindow = ({ title, description, image }) => {
                 </div>
               </div>
               <div className="flex justify-evenly items-center btns-chat">
-                <div>
+                {/*<div>
                   <button className="bg-slate-400 text-white border-orange-300 mr-1 px-3 py-2 rounded-md focus:outline-none w-100 text-center shadow-md" onClick={toggleRecognition} type="button">
                     {isListening ? <img src="./images/svg/record.svg" alt="Play" width={30} height={30} /> : <img src="./images/svg/micro.svg" alt="Play" width={30} height={30} />}
                   </button>
-                </div>
+                    </div>*/}
                 <div>
                   <button className="bg-slate-400 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center shadow-md" onClick={abrirModal}>
                     <img src="./images/svg/form.svg" alt="Play" width={30} />
