@@ -3,25 +3,22 @@ import Image from 'next/image';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import Link from 'next/link';
 import usuarios from '../../utils/usuarios.json';
-import { useRouter } from 'next/router'
-import srs from '@/public/Logos/ACELogo.png'
+import { useRouter } from 'next/router';
+import srs from '@/public/Logos/ACELogo.png';
 import Cookies from 'js-cookie';
-import load from '../../components/molecules/Carga/index.js'
-import { motion, AnimetePresence, AnimatePresence } from "framer-motion";
+import load from '../../components/molecules/Carga/index.js';
+import { motion, AnimetePresence, AnimatePresence } from 'framer-motion';
 import { duration } from 'moment-timezone';
-const axios = require("axios");
+const axios = require('axios');
 import jwt from 'jsonwebtoken';
-//import cookie from 'cookie';
-
-
 
 const Login = ({ title, description, image }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const router = useRouter()
+  const router = useRouter();
   const [dataIndex, setDataIndex] = useState(0);
   const [error, setError] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
@@ -36,9 +33,9 @@ const Login = ({ title, description, image }) => {
     setEmail(value);
 
     if (!validateEmail(value)) {
-      setEmailError("Correo electrónico no válido");
+      setEmailError('Correo electrónico no válido');
     } else {
-      setEmailError("");
+      setEmailError('');
     }
 
     setIsButtonDisabled(!validateForm(value, password));
@@ -49,16 +46,21 @@ const Login = ({ title, description, image }) => {
     setPassword(value);
 
     if (value.length < 6) {
-      setPasswordError("La contraseña debe tener al menos 6 caracteres");
+      setPasswordError('La contraseña debe tener al menos 6 caracteres');
     } else {
-      setPasswordError("");
+      setPasswordError('');
     }
 
     setIsButtonDisabled(!validateForm(email, value));
   };
   // //Codigo por si no cuentas con la base de datos
   const validateForm = (email, password) => {
-    return email.trim() !== "" && password.trim() !== "" && validateEmail(email) && password.length >= 6;
+    return (
+      email.trim() !== '' &&
+      password.trim() !== '' &&
+      validateEmail(email) &&
+      password.length >= 6
+    );
   };
 
   const apiUrl = 'http://localhost:3020/login';
@@ -67,9 +69,7 @@ const Login = ({ title, description, image }) => {
     e.preventDefault();
     try {
       const response = await axios.post(apiUrl, { email, password });
-      console.log(response);
-
-      if (response.data.message === "Inicio de sesión exitoso") {
+      if (response.data.message === 'Inicio de sesión exitoso') {
         localStorage.setItem('token', response.data.token);
 
         const token = localStorage.getItem('token');
@@ -77,36 +77,29 @@ const Login = ({ title, description, image }) => {
         const proveedor = decodedToken.proveedor;
 
         if (proveedor === 0) {
-          router.push("../PerfilUsuario");  // Redirige a la página principal
+          router.push('../PerfilUsuario'); // Redirige a la página principal
         }
 
         if (proveedor === 1) {
-          router.push("../Proveedor");  // Redirige a la página licitacion
+          router.push('../Proveedor'); // Redirige a la página licitacion
         }
-
       } else {
-        setError(response.data.message || "Error en la autenticación");
+        setError(response.data.message || 'Error en la autenticación');
       }
     } catch (error) {
-      console.error("Error al enviar la solicitud:", error);
-      setError("Error al comunicarse con el servidor");
+      console.error('Error al enviar la solicitud:', error);
+      setError('Error al comunicarse con el servidor');
 
-      setEmail("usuario1@example.com");
-      setPassword("contraseña1");
+      setEmail('usuario1@example.com');
+      setPassword('contraseña1');
       setIsButtonDisabled(false);
-      router.push("../");
+      router.push('../');
     }
   };
 
-
-
   return (
     <>
-      <StaticMeta
-        title={title}
-        description={description}
-        image={image}
-      />
+      <StaticMeta title={title} description={description} image={image} />
       <AnimatePresence>
         <motion.div
           initial="initialState"
@@ -119,15 +112,20 @@ const Login = ({ title, description, image }) => {
             animateState: {
               opacity: 1,
             },
-            exitState: {
-
-            },
+            exitState: {},
           }}
           transition={{ duration: 2, delay: 1.5 }}
-          className='srs-image'
+          className="srs-image"
         >
-          <div >
-            <Image src={srs} width={200} height={200} alt="srs-logo" className="p-5" loading="lazy" />
+          <div>
+            <Image
+              src={srs}
+              width={200}
+              height={200}
+              alt="srs-logo"
+              className="p-5"
+              loading="lazy"
+            />
           </div>
         </motion.div>
       </AnimatePresence>
@@ -151,34 +149,33 @@ const Login = ({ title, description, image }) => {
                       transition: {
                         duration: 0.8,
                         delay: 1,
-                        ease: "easeInOut",
+                        ease: 'easeInOut',
                       },
-
                     },
-                    exitState: {
-
-                    },
+                    exitState: {},
                   }}
                   transition={{ duration: 15 }}
-                  className='base-page-size'
+                  className="base-page-size"
                 >
                   <div className="flex flex-col">
                     <div className="flex justify-center border-b border-solid border-black pb-5">
-                      <img src="/images/Constanzalogo2.gif" style={{ width: "200px" }} />
+                      <img
+                        src="/images/Constanzalogo2.gif"
+                        style={{ width: '200px' }}
+                      />
                     </div>
-                    <div className='flex justify-center pt-2'>
-                      <h1 className="text-2xl font-semibold mb-4 text-[#818cf8]">Bienvenido!</h1>
+                    <div className="flex justify-center pt-2">
+                      <h1 className="text-2xl font-semibold mb-4 text-[#818cf8]">
+                        Bienvenido!
+                      </h1>
                     </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
 
               {error && (
-                <div className="text-red-500 font-bold mt-2">
-                  {error}
-                </div>
+                <div className="text-red-500 font-bold mt-2">{error}</div>
               )}
-
 
               <form onSubmit={handleSubmit}>
                 <AnimatePresence>
@@ -195,14 +192,16 @@ const Login = ({ title, description, image }) => {
                         opacity: 1,
                         y: 0,
                       },
-                      exitState: {
-
-                      },
+                      exitState: {},
                     }}
                     transition={{ duration: 1, delay: 1.5 }}
-                    className='page'>
+                    className="page"
+                  >
                     <div className="mb-4">
-                      <label htmlFor="email" className="block text-sm text-xl font-bold text-gray-700">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm text-xl font-bold text-gray-700"
+                      >
                         Email:
                       </label>
                       <input
@@ -212,10 +211,15 @@ const Login = ({ title, description, image }) => {
                         value={email}
                         onChange={handleEmailChange}
                       />
-                      {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
+                      {emailError && (
+                        <p className="text-red-500 text-sm">{emailError}</p>
+                      )}
                     </div>
                     <div className="mb-4">
-                      <label htmlFor="password" className="block text-sm text-xl font-bold text-gray-700">
+                      <label
+                        htmlFor="password"
+                        className="block text-sm text-xl font-bold text-gray-700"
+                      >
                         Contraseña:
                       </label>
                       <input
@@ -225,12 +229,18 @@ const Login = ({ title, description, image }) => {
                         value={password}
                         onChange={handlePasswordChange}
                       />
-                      {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
+                      {passwordError && (
+                        <p className="text-red-500 text-sm">{passwordError}</p>
+                      )}
                     </div>
                     <div className="flex justify-center">
                       <button
                         type="submit"
-                        className={`px-4 py-2 button text-white rounded-md hover:bg-blue-600 ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
+                        className={`px-4 py-2 button text-white rounded-md hover:bg-blue-600 ${
+                          isButtonDisabled
+                            ? 'cursor-not-allowed opacity-50'
+                            : ''
+                        }`}
                         disabled={isButtonDisabled}
                       >
                         Iniciar sesión
@@ -238,24 +248,21 @@ const Login = ({ title, description, image }) => {
                     </div>
                   </motion.div>
                 </AnimatePresence>
-
               </form>
-              <div className="mt-5 text-xs flex justify-center text-blue-500">
-              </div>
+              <div className="mt-5 text-xs flex justify-center text-blue-500"></div>
             </div>
           </div>
         </div>
       </div>
-
     </>
   );
 };
 
 export default Login;
 export const getServerSideProps = async () => {
-  const title = "Constanza - Login";
-  const description = "Login de Constanza";
-  const image = "images/icon/logo-400.png";
+  const title = 'Constanza - Login';
+  const description = 'Login de Constanza';
+  const image = 'images/icon/logo-400.png';
   return {
     props: {
       title,

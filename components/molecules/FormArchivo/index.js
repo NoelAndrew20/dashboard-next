@@ -52,7 +52,7 @@ const FormularioArchivo = () =>{
           answer: '',
           function: 'AltaProveedores',
           parameters: {
-            path: "/files/"+archivo
+            path: "/home/JocdDev/Documents/A/dashboard-next/pages/api/proveedor/files/"+archivo
           },
         };
 

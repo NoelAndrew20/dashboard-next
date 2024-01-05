@@ -527,11 +527,7 @@ const ChatWindow = ({ title, description, image }) => {
         const data = response.data;
         console.log(data);
         setRespuestaDelServidor(data.answer);
-
-
-
         if (json.answer === "Esperando") {
-
           addMessageToChat(message, true);
           addMessageToChat(data.resultado, false);
         }
@@ -606,7 +602,7 @@ const ChatWindow = ({ title, description, image }) => {
                   >
                     <div className="w-3/4">
                       {message.text}
-                      {!message.isUser && message.text.includes("Por favor seleccione su constancia de situación fiscal") && jsonContent.function === "AltaProveedores" && (
+                      {!message.isUser && jsonContent.function === "AltaProveedores" && (
                         <div>
                           <FormularioArchivo onFormSubmit={handleFormSubmit} />
                         </div>

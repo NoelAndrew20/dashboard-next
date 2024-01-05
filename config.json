@@ -2,7 +2,19 @@
   "apiUrl": "https://api.example.com",
   "apiKey": "your-api-key",
   "mongoprueba": "mongodb://192.168.100.9:27017/proyectoSRS",
-  "mongodesarrollo": "mongodb://pigpig:0iEF&C84k4gqe&d&2D38%5EtNb&xln6d03hXLOGAcbY0LeRGUlGj@192.168.100.10:27017/"
+  "mongodesarrollo": "mongodb://pigpig:0iEF&C84k4gqe&d&2D38%5EtNb&xln6d03hXLOGAcbY0LeRGUlGj@192.168.100.10:27017/",
+  "permisos": {
+    "admin": {
+      "ruta": true
+    },
+    "Veterinario": {
+      "ruta": ["/SolicitudCerdo", "/Graphicator", "PerfilUsuario"]
+    },
+    "Gerente_de_compras": {
+      "ruta": ["/Compras", "/SeleccionProveedor", "/PerfilUsuario"]
+    },
+    "Proveedor": {
+      "ruta": ["/Proveedor"]
+    }
+  }
 }
-
-
