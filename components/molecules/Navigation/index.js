@@ -86,6 +86,9 @@ const Navigation = () => {
         return false;
     }
   };
+  const cerrarSesion = () => {
+    console.log('aqui pones el metodo');
+  };
 
   return (
     <>
@@ -541,6 +544,19 @@ const Navigation = () => {
                   <p>Ver perfil</p>
                 </Link>
               )}
+              <div
+                className="flex pt-2 justify-center cursor-pointer"
+                onClick={cerrarSesion}
+              >
+                <img
+                  src={'/images/svg/sesion.svg'}
+                  width={20}
+                  height={20}
+                  alt="graph"
+                  className="mr-2"
+                />
+                Cerrar sesión
+              </div>
             </div>
           ))}
         </div>
