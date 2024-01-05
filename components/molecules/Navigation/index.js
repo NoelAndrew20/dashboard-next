@@ -9,6 +9,7 @@ import { useDarkMode } from '@/context/DarkModeContext';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import foto from '@/public/images/imagenes/user.png';
+import config from '../../../config.json';
 
 const Navigation = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -34,7 +35,6 @@ const Navigation = () => {
       const decodedToken = jwt.decode(token);
       rango = decodedToken.rango;
       setRango(rango);
-      console.log('rango', rango);
     } else {
       console.error('No se encontró el token en localStorage.');
     }
@@ -69,6 +69,25 @@ const Navigation = () => {
   const userData = usuariojson ? JSON.parse(usuariojson) : null;
 
   const tienePermiso = (rango, ruta) => {
+    const permisosConfig = config.permisos;
+
+    if (permisosConfig.hasOwnProperty(rango)) {
+      const permisoConfig = permisosConfig[rango];
+
+      if (permisoConfig.hasOwnProperty('ruta')) {
+        const rutasPermitidas = permisoConfig.ruta;
+
+        if (rutasPermitidas === true) {
+          return true;
+        } else if (Array.isArray(rutasPermitidas)) {
+          return rutasPermitidas.includes(ruta);
+        }
+      }
+    }
+    return false;
+  };
+
+  /*const tienePermiso = (rango, ruta) => {
     switch (rango) {
       case 'admin':
         return true;
@@ -85,7 +104,8 @@ const Navigation = () => {
       default:
         return false;
     }
-  };
+  };*/
+
   const cerrarSesion = () => {
     console.log('aqui pones el metodo');
   };
