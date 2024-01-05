@@ -16,7 +16,7 @@ const FormularioArchivo = () =>{
     };
 
     const subirDocumentoProveedor = async (formData) => {
-      try {
+      try { 
         const response = await axios.post('http://192.168.100.10:5000/addDocumentoProveedor/', formData);
         return response.data;
       } catch (error) {
@@ -52,7 +52,7 @@ const FormularioArchivo = () =>{
           answer: '',
           function: 'AltaProveedores',
           parameters: {
-            path: "/files/"+archivo
+            path: "/home/JocdDev/Documents/A/dashboard-next/pages/api/proveedor/files/"+archivo
           },
         };
 
