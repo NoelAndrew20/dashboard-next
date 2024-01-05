@@ -64,7 +64,7 @@ def api_chat():
                     print (token)
                     question_json={"Text":question}
                     print("questionjson=",question_json)
-                    cons_state={"answer":"Pensando"}
+                    cons_state={"answer":"Pensando.."}
                     with open("respuesta.json", "w") as archivo_json:
                         json.dump(cons_state, archivo_json)
                     if question.lower() == "no":
@@ -104,7 +104,7 @@ def api_chat():
                                             signal_data = json.load(archivo_json)
                             if signal_data.get("senal") is False:
                                     func={"function": ""}
-                                    cons_state={"answer":"Pensando"}
+                                    cons_state={"answer":"Pensando.."}
                                     with open("respuesta.json", "w") as archivo_json:
                                         json.dump(cons_state, archivo_json)
                                     with open("senal_cons.json", "w") as archivo_json:
@@ -158,11 +158,14 @@ def api_chat():
                     cargar.update({"answer": "Esperando"})
                     with open("respuesta.json", "w") as archivo_json:
                         json.dump(cargar, archivo_json)
-                    jsonrespuesta=json_response.get('answer')
-                    TextToSpeech(jsonrespuesta,'es')
+                    jsonrespuesta=json_response.get('answer')       
                     status_code = json_response.get('status_code', 200)
                     respuestas_por_token[token] = {'respuesta': jsonrespuesta, 'status_code': status_code}
-                    return jsonify({"resultado": jsonrespuesta})
+                    with open("respuesta_servidor.json", "w") as archivo_json:
+                        json.dump(json_response, archivo_json)
+                    formatted_response = str(jsonrespuesta)
+                    TextToSpeech(formatted_response,'pt','com')
+                    return jsonify({"resultado": formatted_response})
                 else:
                     return jsonify({"error": "Texto no proporcionado en la solicitud"}), 400
             except Exception as e:
@@ -183,8 +186,8 @@ def actualizar_json_esperando():
             except Exception as e:
                 logging.error(f'Error al actualizar el JSON: {str(e)}')
 
-def TextToSpeech(text:str, lang:str):
-    tts = gTTS(text, lang = lang)
+def TextToSpeech(text:str, lang:str, tld:str):
+    tts = gTTS(text, lang = lang, tld = tld)
     tts.save('respuesta.mp3')
     print("mp3 hecho")
 
@@ -270,7 +273,7 @@ def get_mp3():
     if request.method == 'POST':
         try:
             text = "Hola y bienvenido a Constanza IA"
-            tts = gTTS(text=text , lang='es')
+            tts = gTTS(text=text , lang='pt', tld='com.br')
             tts.save('respuesta.mp3')
             cargar = {"answer": "Esperando"}
             with open("respuesta.json", "w") as archivo_json:
@@ -302,7 +305,7 @@ def get_user():
 
             # Modifica el campo 'answer' con el valor de 'username'
             respuestacons_data['answer'] = bien
-            TextToSpeech(text=username, lang= 'es')
+            TextToSpeech(text=username, lang= 'es', tld= 'com.br')
             with open('respuestacons.json', 'w') as file:
                 json.dump(respuestacons_data, file)
 
@@ -333,7 +336,7 @@ def enviar_datos():
             nombre_archivo = os.path.basename(path)
             # Puedes realizar cualquier operación adicional con los datos recibidos
             print(f'Answer: {answer}, Function: {function}, Path: {path}')
-            ruta_archivos = "/files/" + nombre_archivo
+            ruta_archivos = "/home/JocdDev/Documents/A/dashboard-next/pages/api/proveedor/files/" + nombre_archivo
             print("ruta_archivos",ruta_archivos)
             # Envia los datos al microservicio
             microservicio_data = {
@@ -372,7 +375,6 @@ def enviar_datos():
                 return jsonify({'success': True, 'message': 'Datos enviados correctamente al microservicio.','Api': respuesta_microservicio})
                 #return jsonify({}"Api respuesta",respuesta_microservicio)
             else:
-                os.remove(ruta_archivos)
                 print(ruta_archivos)
                 return jsonify({'error': 'Error al comunicarse con el microservicio.'}), 500
 
