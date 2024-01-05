@@ -270,7 +270,7 @@ const ChatWindow = ({ title, description, image }) => {
         const data = response.data;
         console.log(data);
         setRespuestaDelServidor(data.answer);
-        if (json.answer === "Esperando") {
+        if (json.answer === 'Esperando') {
           addMessageToChat(message, true);
           addMessageToChat(data.resultado, false);
         }
@@ -321,18 +321,21 @@ const ChatWindow = ({ title, description, image }) => {
     let formattedText = '';
 
     for (const key in parsedObject) {
-
-      const formattedValue = typeof parsedObject[key] === 'number'
-        ? parsedObject[key] % 1 === 0
-          ? parsedObject[key].toLocaleString('en-US')
-          : parsedObject[key].toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-        : parsedObject[key];
+      const formattedValue =
+        typeof parsedObject[key] === 'number'
+          ? parsedObject[key] % 1 === 0
+            ? parsedObject[key].toLocaleString('en-US')
+            : parsedObject[key].toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })
+          : parsedObject[key];
 
       const formattedKey = key
         .replace(/([a-z])([A-Z])/g, '$1 $2')
         .replace(/^([a-z])/, (match) => match.toUpperCase());
 
-        formattedText += `${formattedKey}: ${formattedValue}\n`;
+      formattedText += `${formattedKey}: ${formattedValue}\n`;
     }
 
     formattedText = formattedText.slice(0, -2);
@@ -374,11 +377,14 @@ const ChatWindow = ({ title, description, image }) => {
                   >
                     <div className="w-3/4">
                       {message.text}
-                      {!message.isUser && jsonContent.function === "AltaProveedores" && (
-                        <div>
-                          <FormularioArchivo onFormSubmit={handleFormSubmit} />
-                        </div>
-                      )}
+                      {!message.isUser &&
+                        jsonContent.function === 'AltaProveedores' && (
+                          <div>
+                            <FormularioArchivo
+                              onFormSubmit={handleFormSubmit}
+                            />
+                          </div>
+                        )}
                       {!message.isUser &&
                         message.text.includes(
                           'Por favor seleccione su constancia de situación fiscal'
@@ -407,60 +413,48 @@ const ChatWindow = ({ title, description, image }) => {
                 ))}
               </div>
             </div>
-            <div className="flex mt-20 p">
+            <div className="flex mt-[20px] p">
               <div className="flex flex-col w-full justify-start">
-                {
-                  <div className="flex justify-center w-200 h-100 p-3 rounded-md">
-                    <div>
-                      <Image
-                        src={'/images/icon/logo_blanco.png'}
-                        alt="Constanza Logo"
-                        className="mr-20"
-                        width={30}
-                        height={30}
-                      />
-                    </div>
-                  </div>
-                }
+                {''}
                 <div className="flex justify-start ml-2">
                   <div className="flex justify-start">
                     {json.answer === 'Pensando..' ? (
                       <img
                         src="/images/Constanzapensando.gif"
-                        width={80}
-                        height={80}
+                        width={40}
+                        height={40}
                         alt="gif"
                         className="mr-2"
                       />
                     ) : json.answer === 'Puedes Abrir el cuestionario' ? (
                       <Image
                         src="/images/Constanzaespera.gif"
-                        width={80}
-                        height={80}
+                        width={40}
+                        height={40}
                         alt="pig"
                         className="mr-2"
                       />
                     ) : json.answer.includes('Error') ? (
                       <Image
                         src="/images/ConstanzaLogo_00000.png"
-                        width={80}
-                        height={80}
+                        width={40}
+                        height={40}
                         alt="pig"
                         className="mr-2"
                       />
                     ) : json.answer === 'Esperando' ? (
                       <Image
                         src="/images/ConstanzaLogo_00000.png"
-                        width={80}
-                        height={80}
+                        width={40}
+                        height={40}
                         alt="pig"
                         className="mr-2"
                       />
                     ) : (
                       <Image
                         src="/images/ConstanzaLogo_00000.png"
-                        width={80}
-                        height={80}
+                        width={40}
+                        height={40}
                         alt="pig"
                         className="mr-2"
                       />
