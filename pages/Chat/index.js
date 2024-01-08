@@ -34,12 +34,12 @@ const ChatWindow = ({ title, description, image }) => {
   const serverMessages = chatMessages.filter((message) => !message.isUser);
   const [jsonContent, setJsonContent] = useState(null);
 
-  // useEffect(() => {
-  //   const unlockChatTimeout = setTimeout(() => {
-  //     setIsChatLocked(false);
-  //   }, 4000);
-  //   return () => clearTimeout(unlockChatTimeout);
-  // }, []);
+  useEffect(() => {
+    const unlockChatTimeout = setTimeout(() => {
+      setIsChatLocked(false);
+    }, 4000);
+    return () => clearTimeout(unlockChatTimeout);
+  }, []);
 
   useEffect(() => {
     const playWelcomeAudio = async () => {
@@ -55,7 +55,6 @@ const ChatWindow = ({ title, description, image }) => {
           src: ['./api/python/Constanza_v15/Bienvenida.mp3'],
           onend: () => {
             setIsWelcomeAudioPlayed(true);
-            setIsChatLocked(false);
           },
         });
 
@@ -277,12 +276,18 @@ const ChatWindow = ({ title, description, image }) => {
         }
       } else {
         console.error('Error al comunicarse con Constanza');
+        if (response.status === 500) {
+          addMessageToChat('No te entendí', false);
+        }
       }
       console.log('dew', respuesta.answer);
       console.log(`Mensaje del usuario: ${message}`);
       console.log(`Respuesta del servidor: ${data.answer}`);
     } catch (error) {
-      console.error('Error en la solicitud:', error);
+        console.error('Error en la solicitud:', error);
+        if (error.response && error.response.status === 500) {
+          addMessageToChat('No te entendí', false);
+        }
       }
   };
 
