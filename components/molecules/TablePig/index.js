@@ -47,6 +47,9 @@ const TablePig = ({ data, setData }) => {
           </tbody>
         </table>
       </div>
+      {
+        /*
+      
       <div className="pagination">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
@@ -62,8 +65,8 @@ const TablePig = ({ data, setData }) => {
           className="button"
         >
           Siguiente
-        </button>
-      </div>
+      </button>
+      </div>*/}
     </>
   )
 }
