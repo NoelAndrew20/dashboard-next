@@ -142,7 +142,7 @@ def api_chat():
                     cargar.update({"answer": "Esperando"})
                     with open("respuesta.json", "w") as archivo_json:
                         json.dump(cargar, archivo_json)
-                    jsonrespuesta=json_response.get('answer')       
+                    jsonrespuesta=json_response.get('result')       
                     status_code = json_response.get('status_code', 200)
                     respuestas_por_token[token] = {'respuesta': jsonrespuesta, 'status_code': status_code}
                     with open("respuesta_servidor.json", "w") as archivo_json:
