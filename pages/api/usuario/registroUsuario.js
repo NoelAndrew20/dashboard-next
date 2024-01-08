@@ -9,18 +9,22 @@ const mongoUrl = config.mongodesarrollo;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-mongoose.connect(mongoUrl, {
-  useNewUrlParser: true,
-})
-.then(() => {
-  console.log("Connected to database");
-})
-.catch((e) => console.log(e));
+mongoose
+  .connect(mongoUrl, {
+    useNewUrlParser: true,
+  })
+  .then(() => {
+    console.log('Connected to database');
+  })
+  .catch((e) => console.log(e));
 
 //const db = mongoose.connection.useDb("C3_LaPurisima");
-const db = mongoose.connection.useDb("prototipoGranja");
+const db = mongoose.connection.useDb('prototipoGranja');
 
-db.on('error', console.error.bind(console, 'Error al conectar a la base de datos:'));
+db.on(
+  'error',
+  console.error.bind(console, 'Error al conectar a la base de datos:')
+);
 db.once('open', () => {
   console.log('Conexión exitosa a la base de datos.');
 });
@@ -35,31 +39,31 @@ const UsuarioSchema = new mongoose.Schema(
     granja: String,
     responsabilidad: [
       {
-          nombre: String
-      }
-  ],
+        nombre: String,
+      },
+    ],
     area: String,
     password: String,
-    email: String, 
-    fechaNacimiento: String, 
-    genero: String, 
-    horario: String, 
-    fechaContratacion: String, 
+    email: String,
+    fechaNacimiento: String,
+    genero: String,
+    horario: String,
+    fechaContratacion: String,
     departamento: String,
     status: String,
-    contacto: String, 
+    contacto: String,
     salario: String,
     calle: String,
     numeroI: String,
     numeroE: String,
-    ciudad: String, 
+    ciudad: String,
     estado: String,
-    cp: String, 
-    tarea: String, 
+    cp: String,
+    tarea: String,
     epp: String,
     proveedor: Number,
-    rango: String, 
-},
+    rango: String,
+  },
   {
     //collection: 'usuarios', // Nombre de la colección en la base de datos
     collection: 'usuario',
@@ -69,39 +73,39 @@ const UsuarioSchema = new mongoose.Schema(
 
 const Usuario = db.model('usuario', UsuarioSchema);
 
-
-
-
-app.get("/getAllUsuario", async (req, res) => {
+app.get('/getAllUsuario', async (req, res) => {
   try {
-    const activeUsuarios = await Usuario.find({  })
-    .sort({ fechaContratacion: -1 }) 
-    .limit(30);
-    res.send({ status: "ok", data: activeUsuarios });
+    const activeUsuarios = await Usuario.find({})
+      .sort({ fechaContratacion: -1 })
+      .limit(30);
+    res.send({ status: 'ok', data: activeUsuarios });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ status: "error", message: "Internal server error" });
+    res.status(500).send({ status: 'error', message: 'Internal server error' });
   }
 });
 
-app.get("/getUsuario", async (req, res) => {
+app.get('/getUsuario', async (req, res) => {
   try {
     const { email } = req.query;
     const usuario = await Usuario.findOne({ email });
     if (!usuario) {
-      return res.status(404).send([{ status: "not found", message: "Usuario no encontrado" }]);
+      return res
+        .status(404)
+        .send([{ status: 'not found', message: 'Usuario no encontrado' }]);
     }
 
     // Devuelve un arreglo con el objeto usuario
     res.send([usuario]);
   } catch (error) {
     console.error(error);
-    res.status(500).send([{ status: "error", message: "Internal server error" }]);
+    res
+      .status(500)
+      .send([{ status: 'error', message: 'Internal server error' }]);
   }
 });
 
-
-app.post("/addUsuario", async (req, res) => {
+app.post('/addUsuario', async (req, res) => {
   try {
     const data = req.body;
     const hashedPassword = await bcrypt.hash(data.password, 12);
@@ -112,7 +116,7 @@ app.post("/addUsuario", async (req, res) => {
       apellidop: data.apellidop,
       apellidom: data.apellidom,
       granja: data.granja,
-      responsabilidad: data.responsabilidad,
+      responsabilidad: [],
       area: data.area,
       password: hashedPassword,
       email: data.email,
@@ -160,14 +164,16 @@ app.put('/editUsuario/:fechaContratacion', async (req, res) => {
       return res.status(404).json({ message: 'Transporte no encontrado' });
     }
 
-    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedUsuario });
+    res
+      .status(200)
+      .json({ message: 'Datos actualizados con éxito', data: updatedUsuario });
   } catch (error) {
     console.error('Error al actualizar los datos:', error);
     res.status(500).json({ message: 'Error al actualizar los datos' });
   }
 });
 
-app.post("/login", async (req, res) => {
+app.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await Usuario.findOne({ email });
@@ -207,5 +213,5 @@ app.post("/login", async (req, res) => {
 
 const PORT = 3020;
 app.listen(PORT, () => {
-  console.log('Server is running on port ',{PORT});
+  console.log('Server is running on port ', { PORT });
 });

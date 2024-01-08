@@ -120,23 +120,7 @@ def api_chat():
                                     signal_data = {"senal": False}
                                     with open("senal.json", "w") as archivo_json:
                                         json.dump(signal_data, archivo_json)
-                                    global contador_activo                          
-                                # if json_response:
-                                #     with open("requisitos_2.json", "w") as archivo_json:
-                                #         json.dump(json_response.get('requirements', {}), archivo_json)
-                                #     cargar = {}
-                                #     cargar.update({"answer": "Puedes Abrir el cuestionario"})
-                                #     with open("respuesta.json", "w") as archivo_json:
-                                #         json.dump(cargar, archivo_json)
-                                # else:
-                                #     print("La respuesta JSON está vacía")
-                                # with open("requisitos_2.json", 'r') as json_file:
-                                #     current_data = json.load(json_file)
-                                # if current_data == "Chatpig":
-                                #     # Modificar el archivo con la estructura JSON predefinida
-                                #     predefined_structure = {"Text": ""}
-                                #     with open("requisitos_2.json", 'w') as json_file:
-                                #         json.dump(predefined_structure, json_file, indent=4)
+                                    global contador_activo
                                     contador_activo = True
                                     tiempo_espera = 4
                                     inicio = time.time()
@@ -172,95 +156,12 @@ def api_chat():
                 print(f"Error en la API: {str(e)}")
                 return jsonify({"error": str(e)}), 500
 
-def actualizar_json_esperando():
-    global json_modificado
-    while True:
-        time.sleep(15)  # Espera 30 segundos
-        if not json_modificado:  # Si no ha habido actividad durante 30 segundos
-            try:
-                cargar = {"answer": "Esperando"}
-                with open("respuesta.json", "w") as archivo_json:
-                    json.dump(cargar, archivo_json)
-                json_modificado = True  # Establece json_modificado en True
-                print('JSON actualizado a "Esperando" después de 30 segundos de inactividad.')
-            except Exception as e:
-                logging.error(f'Error al actualizar el JSON: {str(e)}')
-
 def TextToSpeech(text:str, lang:str, tld:str):
     tts = gTTS(text, lang = lang, tld = tld)
     tts.save('respuesta.mp3')
     print("mp3 hecho")
+    return jsonify({"estado_mp3": "mp3_hecho"})
 
-
-
-@app.route('/api/python/Constanza_v15/requisitos_2.json', methods=['POST'])
-def get_json():
-    if request.method == 'OPTIONS':
-        headers = {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Authorization, X-Requested-With',
-        }
-        return ('', 204, headers)
-    if request.method == 'POST':
-        try:
-            cargar = {}
-            cargar.update({"answer": "Pensando.."})
-            with open("respuesta.json", "w") as archivo_json:
-                json.dump(cargar, archivo_json)
-            file_path = './requisitos_2.json'
-            new_data = request.get_json()
-            signal_data = {"senal": True}
-            with open(file_path, 'r') as json_file:
-                data = json.load(json_file)
-
-            data.update(new_data)
-
-            with open(file_path, 'w') as json_file:
-                json.dump(data, json_file, indent=4)
-            print("json info",data)
-            # Crear o modificar el archivo "senal" con el valor "true"
-            with open('senal.json', 'w') as signal_file:
-                json.dump(signal_data, signal_file)
-            with open(file_path, 'r') as json_file:
-                current_data = json.load(json_file)  
-            if "Question" in current_data:
-                print("El contenido actual es igual a {'Question': ''}. Realizar acciones específicas.")
-                print(data)
-                json_completo = {"function":"Chatpig","json":data}
-                print(json_completo)
-                jsonaa = requests.post(os.environ.get("URL_SISTEMAEXPERTO"),json=json_completo)
-                print('Resultado', json_completo)
-                json_response = jsonaa.json()
-                print(json_response)
-                cargar = {"answer": "Esperando"}
-                with open("respuesta.json", "w") as archivo_json:
-                    json.dump(cargar, archivo_json)
-                respuesta = json_response["answer"]
-                with open("respuestacons.json", "w") as archivo_json:
-                    json.dump(respuesta, archivo_json)
-                print("respuesta",respuesta)
-                TextToSpeech(text=respuesta["answer"], lang= 'es')
-                return json_response
-            else:
-                json_completo = {"Parameters":data} 
-                jsonaa = requests.post(os.environ.get("URl_constanza_execution"),json=json_completo)
-                print('Resultado', json_completo)
-                json_response = jsonaa.json()
-                cargar = {"answer": "Esperando"}
-                with open("respuesta.json", "w") as archivo_json:
-                    json.dump(cargar, archivo_json)
-                respuesta = json_response["answer"]
-                print(respuesta)
-                with open("respuestacons.json", "w") as archivo_json:
-                    json.dump(respuesta, archivo_json)
-                TextToSpeech(text=respuesta, lang= 'es')
-                return json_response
-            # return jsonify({'message': 'JSON modified successfully'}), 200
-        except Exception as e:
-            logging.error(f'Error en la solicitud POST: {str(e)}')
-            return jsonify({'error': str(e)}), 500
-        
 @app.route('/api/python/Constanza_v15/respuesta.mp3', methods=['POST'])
 def get_mp3():
     if request.method == 'OPTIONS':
@@ -273,8 +174,8 @@ def get_mp3():
     if request.method == 'POST':
         try:
             text = "Hola y bienvenido a Constanza IA"
-            tts = gTTS(text=text , lang='pt', tld='com.br')
-            tts.save('respuesta.mp3')
+            tts = gTTS(text=text , lang='pt', tld='com')
+            tts.save('Bienvenida.mp3')
             cargar = {"answer": "Esperando"}
             with open("respuesta.json", "w") as archivo_json:
                 json.dump(cargar, archivo_json)

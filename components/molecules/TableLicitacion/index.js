@@ -154,7 +154,7 @@ const TableLicitacion = ({ data, setData }) => {
                   <>
                     <tr>
                       <th>
-                        <div>Nombre de alimento</div>
+                        <div>Nombre</div>
                       </th>
                       <th>
                         <div>Cantidad</div>
@@ -165,13 +165,19 @@ const TableLicitacion = ({ data, setData }) => {
                         <td>{solicitud.nombre}</td>
                         <td>{solicitud.cantidad}</td>
                         <td>
-                          <p>Postularme</p>
+                          {solicitud.estatus === 0 ? 
+                          (
+                            <>
+                            <p>Postularme</p>
                           <button
                             onClick={() => handleEdit(solicitudIndex)}
                             className="edit-btn"
                           >
                             <Image src={send} width={15} height={15} />
                           </button>
+                            </>
+                          ): ""}
+                          
                         </td>
                       </tr>
                     ))}

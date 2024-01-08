@@ -54,8 +54,8 @@ const TableSeleccion = ({ data, setData }) => {
                 <thead>
                     <tr>
                         <th>Solicitud</th>
-                        <th>Nombre del solicitante</th>
-                        <th>Nombre alimento</th>
+                        <th>Nombre del proveedor</th>
+                        <th>Nombre</th>
                         <th>Precio</th>
                         <th>Metodo de entrega</th>
                     </tr>

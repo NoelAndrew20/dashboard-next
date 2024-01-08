@@ -95,7 +95,7 @@ const SolicitudLicitacionSchema = new mongoose.Schema(
       } else if (newAlimento.primerCaracter === 'M') {
           tipoProveedor = "Medicamento";
       } else if (newAlimento.primerCaracter === 'V') {
-          tipoProveedor = "Vacunas";
+          tipoProveedor = "Vientres";
       } else {
           tipoProveedor = "Tipo Desconocido";
       }

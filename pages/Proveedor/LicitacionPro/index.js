@@ -17,9 +17,13 @@ const LicitacionPro = ({ title, description, image }) => {
     const [ data, setData ] = useState([]);
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = "";
+  let usuario = "";
+  let primerosDosCaracteres
   if (token) {
     const decodedToken = jwt.decode(token);
     email = decodedToken.email;
+    usuario = decodedToken.usuario;
+    primerosDosCaracteres = usuario.substring(0, 2);
   } 
   else {
     console.error("No se encontró el token en localStorage.");
@@ -49,7 +53,19 @@ const LicitacionPro = ({ title, description, image }) => {
     .catch(error => {
         console.error(error);
     });
-}, [])
+}, [])*/
+
+/*useEffect(() => {
+  //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+  axios.get('http://192.168.100.10:3086/getAllSolicitudCompra')
+    .then(response => {
+      const jsonData = response.data; // Datos de respuesta en formato JSON
+      setDataLic(jsonData);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, []);*/
 
     return (
         <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
