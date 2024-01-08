@@ -17,10 +17,11 @@ const ChatWindow = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isOpen, setIsOpen] = useState(false);
   const [isChatLocked, setIsChatLocked] = useState(true);
-  const [message, setMessage] = useState(''); // Nuevo estado para el mensaje
+  const [message, setMessage] = useState('');
   const [respuestaDelServidor, setRespuestaDelServidor] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [chatMessages, setChatMessages] = useState([]); // Arreglo para almacenar los mensajes
+  const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
+  const [chatMessages, setChatMessages] = useState([]); 
   const audioSrc = './api/python/Constanza_v15/respuesta.mp3';
   const [prevAnswer, setPrevAnswer] = useState('');
   const audioRef = useRef(null);
@@ -33,19 +34,19 @@ const ChatWindow = ({ title, description, image }) => {
   const serverMessages = chatMessages.filter((message) => !message.isUser);
   const [jsonContent, setJsonContent] = useState(null);
 
-  useEffect(() => {
-    const unlockChatTimeout = setTimeout(() => {
-      setIsChatLocked(false);
-    }, 4000);
-    return () => clearTimeout(unlockChatTimeout);
-  }, []);
+  // useEffect(() => {
+  //   const unlockChatTimeout = setTimeout(() => {
+  //     setIsChatLocked(false);
+  //   }, 4000);
+  //   return () => clearTimeout(unlockChatTimeout);
+  // }, []);
 
   useEffect(() => {
     const playWelcomeAudio = async () => {
       try {
         const username = 'Alfonso';
         await axios.post(
-          'http://192.168.100.10:5003/api/python/Constanza_v15/usuario',
+          'http://192.168.100.10:5003/api/python/Constanza_v15/respuesta.mp3',
           { username }
         );
         setIsUsernameSet(true);
@@ -54,6 +55,7 @@ const ChatWindow = ({ title, description, image }) => {
           src: ['./api/python/Constanza_v15/Bienvenida.mp3'],
           onend: () => {
             setIsWelcomeAudioPlayed(true);
+            setIsChatLocked(false);
           },
         });
 
@@ -180,17 +182,6 @@ const ChatWindow = ({ title, description, image }) => {
   };
 
   const addMessageToChat = (message, isUser) => {
-    if (
-      message === 'Hello ChatPig' ||
-      message === 'Bienvenido' ||
-      message === null
-    ) {
-      return;
-    }
-
-    if (chatMessages.some((msg) => msg.text === message)) {
-      return;
-    }
 
     setChatMessages((prevMessages) => [
       ...prevMessages,
@@ -199,9 +190,9 @@ const ChatWindow = ({ title, description, image }) => {
   };
 
   useEffect(() => {
-    if (respuesta.answer !== prevAnswer && isWelcomeAudioPlayed) {
+    if (submitButtonClicked && respuesta.answer !== prevAnswer && isWelcomeAudioPlayed) {
       setPrevAnswer(respuesta.answer);
-
+  
       if (json.answer === 'Esperando') {
         const timestamp = new Date().getTime();
         setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
@@ -213,8 +204,9 @@ const ChatWindow = ({ title, description, image }) => {
       if (respuesta.answer) {
         addMessageToChat(respuesta.answer, false);
       }
+      setSubmitButtonClicked(false);
     }
-  }, [respuesta.answer, prevAnswer, isWelcomeAudioPlayed]);
+  }, [submitButtonClicked, respuesta.answer, prevAnswer, isWelcomeAudioPlayed]);
 
   useEffect(() => {}, [chatMessages]);
 
@@ -256,6 +248,8 @@ const ChatWindow = ({ title, description, image }) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     console.log('token', token);
+    addMessageToChat(message, true);
+    console.log(message);
     try {
       const response = await axios.post(
         'http://192.168.100.10:5003/api/python/Constanza_v15/apichat_cons_v15',
@@ -270,10 +264,12 @@ const ChatWindow = ({ title, description, image }) => {
         const data = response.data;
         console.log(data);
         setRespuestaDelServidor(data.answer);
-        if (json.answer === 'Esperando') {
-          addMessageToChat(message, true);
-          addMessageToChat(data.resultado, false);
-        }
+        addMessageToChat(data.resultado, false);
+        const timestamp = new Date().getTime();
+        setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+        setTimeout(() => {
+          playAudio();
+        }, 4000);
         if (data.answer === 'Pensando') {
           setIsSpinning(true);
         } else {
@@ -287,7 +283,7 @@ const ChatWindow = ({ title, description, image }) => {
       console.log(`Respuesta del servidor: ${data.answer}`);
     } catch (error) {
       console.error('Error en la solicitud:', error);
-    }
+      }
   };
 
   const combinedMessages = [];
@@ -309,6 +305,7 @@ const ChatWindow = ({ title, description, image }) => {
       .then((response) => response.json())
       .then((data) => {
         setJsonContent(data);
+        console.log("use effect json",data);
       })
       .catch((error) =>
         console.error('Error al cargar el archivo JSON:', error)
