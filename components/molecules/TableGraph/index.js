@@ -133,8 +133,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
         setDataList([...dataList, combinedData]);
         setSelectedFoodData(null);
         
-        //const apiUrl = 'http://localhost:3082/addSolicitudCompraAlimento';
-        const apiUrl = 'http://192.168.100.10:3082/addSolicitudCompraAlimento';
+        const apiUrl = 'http://localhost:3082/addSolicitudCompraAlimento';
             axios.post(apiUrl, combinedData)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);
@@ -168,8 +167,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
       };
 
     useEffect(() => {
-        //axios.get('http://localhost:3081/getAllalimentot0')
-        axios.get('http://192.168.100.10:3081/getAllalimentot0')
+        axios.get('http://localhost:3081/getAllalimentot0')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setDataAux(jsonData)
@@ -181,8 +179,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
     }, [])
 
     useEffect(() => {
-        //axios.get('http://localhost:3081/getAllalimentot1')
-        axios.get('http://192.168.100.10:3081/getAllalimentot1')
+        axios.get('http://localhost:3081/getAllalimentot1')
         .then(response => {
             const jsonData = response.data;
             setComplementoData(jsonData);
@@ -194,8 +191,7 @@ const TableGraph = ({ data, setData, dataOrder, setDataOrder, dataList, setDataL
     }, []);
 
     useEffect(() => {
-        //axios.get('http://localhost:3081/getAllalimentot2')
-        axios.get('http://192.168.100.10:3081/getAllalimentot2')
+        axios.get('http://localhost:3081/getAllalimentot2')
         .then(response => {
             const jsonData = response.data;
             setComplementoData2(jsonData);

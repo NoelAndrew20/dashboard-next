@@ -45,8 +45,7 @@ const NewRaza = ({ alimento }) => {
             setSuccessMessage('Orden guardada exitosamente');
 
             const axios = require("axios");
-                //const apiUrl = 'http://localhost:3081/addAlimento';
-                const apiUrl = 'http://192.168.100.10:3085/addCerdo';
+                const apiUrl = 'http://localhost:3085/addCerdo';
                 axios.post(apiUrl, newData)
                 .then(response => {
                     console.log("Respuesta de la API:", response.data);

@@ -26,7 +26,6 @@ const RegistroAlimentos = ({ title, description, image }) => {
     };
 
     useEffect(() => {
-        //axios.get('http://192.168.100.10:3080/getAllSolicitudAlimento')
         axios.get('http://localhost:3080/getAllSolicitudAlimento')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON

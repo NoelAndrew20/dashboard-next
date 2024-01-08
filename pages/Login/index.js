@@ -63,8 +63,8 @@ const Login = ({ title, description, image }) => {
     );
   };
 
-  const apiUrl = 'http://192.168.100.10:3020/login';
-
+  const apiUrl = 'http://localhost:3020/login';
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

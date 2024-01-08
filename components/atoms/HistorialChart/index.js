@@ -8,7 +8,7 @@ const HistorialChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.100.10:3142/getAllSolicitudHistorial');
+        const response = await axios.get('http://localhost:3142/getAllSolicitudHistorial');
         const jsonData = response.data;
         setData(jsonData);
       } catch (error) {

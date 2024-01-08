@@ -52,7 +52,7 @@ const PerfilUsuario = ({ title, description, image }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.100.10:3020/getUsuario', {
+        const response = await axios.get('http://localhost:3020/getUsuario', {
           params: {
             email: email
           }
@@ -74,47 +74,16 @@ const PerfilUsuario = ({ title, description, image }) => {
     return null;
   }
 
-  /*const [ data, setData ] = useState([]);
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  let email = "";
-  if (token) {
-    const decodedToken = jwt.decode(token);
-    email = decodedToken.email;
-  } 
-  else {
-    console.error("No se encontró el token en localStorage.");
-  }
-  
-  useEffect(() => {
-    axios.get('http://192.168.100.10:3020/getUsuario', {
-      params: {
-        email: email
-      }
-    })
-    .then(response => {
-      const jsonData = response.data;
-      setData(jsonData);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }, []);*/
-
-
-  return (
-    <div className={`${isDarkMode ? "darkMode" : "lightMode"} full-viewport`}>
-      <StaticMeta
-        title={title}
-        description={description}
-        image={image}
-      />
-      <Navigation />
-      <div className="profile-nav w-full" style={{ justifyContent: "center !important" }}>
-        <h1>Perfil de usuario</h1>
-      </div>
-      <div className="wrapper">
-        <div className="mt-5">
-          <ProfileCard data={data} />
+    return(
+      <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
+        <StaticMeta
+          title={title}
+          description={description}
+          image={image}
+        />     
+        <Navigation/>
+        <div className="profile-nav w-full" style={{justifyContent: "center !important"}}>
+          <h1>Perfil de usuario</h1>
         </div>
         <div className="mt-10">
           <ProfileMenu data={data} />

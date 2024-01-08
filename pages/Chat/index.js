@@ -41,8 +41,243 @@ const ChatWindow = ({ title, description, image }) => {
   //   return () => clearTimeout(unlockChatTimeout);
   // }, []);
 
-  useEffect(() => {
-    const playWelcomeAudio = async () => {
+    useEffect(() => {
+      const playWelcomeAudio = async () => {
+        try {
+
+          const username = "Alfonso";
+          await axios.post('http://localhost:5003/api/python/Constanza_v15/usuario', { username });
+          setIsUsernameSet(true);
+
+          const welcomeSound = new Howl({
+            src: ['./api/python/Constanza_v15/Bienvenida.mp3'],
+            onend: () => {
+              setIsWelcomeAudioPlayed(true);
+             
+            },
+          });
+    
+
+          const unlockAudioContext = () => {
+            welcomeSound.once('unlock', () => {
+              
+              welcomeSound.play();
+            });
+          };
+    
+          
+          if (Howler.ctx.state === 'suspended') {
+            unlockAudioContext();
+          } else {
+           
+            welcomeSound.play();
+          }
+        } catch (error) {
+          console.error('Error al reproducir el audio de bienvenida:', error);
+        }
+      };
+    
+
+      if (!isUsernameSet) {
+    playWelcomeAudio();
+  }
+    }, []);
+    
+    const elNavegadorEsCompatible = () => {
+      return (
+        navigator.userAgent.indexOf('Chrome') > -1 ||
+        navigator.userAgent.indexOf('Edge') > -1 ||
+        navigator.userAgent.indexOf('Safari') > -1
+      );
+    };
+
+    const toggleRecognition = () => {
+      if (recognition) {
+        if (isListening) {
+          recognition.stop();
+        } else {
+          recognition.start();
+        }
+        setIsListening(!isListening);
+      }
+    };
+  
+    useEffect(() => {
+      if (elNavegadorEsCompatible()) {
+        const recognitionInstance =
+          new (
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition ||
+            window.mozSpeechRecognition ||
+            window.msSpeechRecognition
+          )();
+  
+        recognitionInstance.continuous = false;
+        recognitionInstance.lang = 'es-ES,en-US';
+        recognitionInstance.interimResults = false;
+        recognitionInstance.maxAlternatives = 1;
+  
+        recognitionInstance.onresult = (event) => {
+          const spokenText = event.results[0][0].transcript.toLowerCase();
+          setMessage(spokenText);
+          addMessageToChat(spokenText, true);
+          if (spokenText.includes("abrir formulario")) {
+            abrirModalVoz();
+          }
+          if (spokenText.includes("consultar manual de operaciones")|| spokenText.includes("consult operations manual")) {
+
+          }
+          handleSubmitVoz(spokenText);  
+
+        };
+        
+        recognitionInstance.onnomatch = (event) => {
+        };
+  
+        recognitionInstance.onerror = (event) => {
+
+        };
+        
+        setRecognition(recognitionInstance);
+        
+      }
+    }, []);
+    
+
+
+    const clearChat = () => {
+      setChatMessages([]);
+    }
+
+    const toggleChat = () => {
+      setIsOpen(!isOpen);
+    };
+
+    const handleChange = (e) => {
+      if (!isChatLocked) {
+        setMessage(e.target.value);
+        messageRef.current = e.target.value;
+      } 
+    };
+
+    const abrirModalVoz = () => {
+      setIsModalOpen(true);
+
+    };
+
+    const abrirModal = (e) => {
+      e.preventDefault();
+      setIsModalOpen(true);
+
+    };
+
+    const handleFormSubmit = (formData) => {
+
+     const question = formData.Question;
+     addMessageToChat(question, true);
+    };
+
+    const cerrarModal = () => {
+      setIsModalOpen(false);
+    }
+
+    const sound = new Howl({
+      src: [audioSrc],
+    });
+
+    const playAudio = (e) => {
+      if (e) {
+        e.preventDefault();
+      }    
+      if (audioRef.current) {
+        audioRef.current.src = audioSource;
+        audioRef.current.play();
+      }
+    };
+    
+    const addMessageToChat = (message, isUser) => {
+      
+      if (message === "Hello ChatPig" || message === "Bienvenido" || message === null) {
+        return;
+      }
+    
+      
+      if (chatMessages.some((msg) => msg.text === message)) {
+        return;
+      }
+
+      
+      setChatMessages((prevMessages) => [
+        ...prevMessages,
+        { text: message, isUser },
+      ]);
+
+    };
+    
+
+    useEffect(() => {
+
+      if (respuesta.answer !== prevAnswer && isWelcomeAudioPlayed) {
+        setPrevAnswer(respuesta.answer);
+    
+        if (json.answer === "Esperando") {
+          
+          const timestamp = new Date().getTime(); 
+          setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+          playAudio();
+        }
+        if (message) {
+          addMessageToChat(message, true);
+        }
+        if (respuesta.answer) {
+          addMessageToChat(respuesta.answer, false);
+        }
+      }
+    }, [respuesta.answer, prevAnswer, isWelcomeAudioPlayed]);
+    
+
+    useEffect(() => {
+
+      }, [chatMessages]);
+
+
+      const handleSubmitVoz = async (spokenText) => {
+
+        try {
+          const response = await axios.post("http://192.168.100.10:5003/api/python/Constanza_v15/apichat_cons_v15", {
+            question: spokenText, 
+          });
+
+          if (response.status === 200) {
+            const data = response.data;
+            setRespuestaDelServidor(data.answer);
+    
+            
+            if (json.answer === "Esperando") {
+              console.log("respuestaant",prevAnswer);
+              addMessageToChat(message, true);
+              addMessageToChat(data.resultado, false);
+            }
+            if (data.answer === "Pensando") {
+              setIsSpinning(true);
+            } else {
+              setIsSpinning(false);
+            }
+          } else {
+            console.error("Error al comunicarse con Constanza");
+          }
+          console.log(respuesta.answer)
+          console.log(`Mensaje del usuario: ${message}`);
+          console.log(`Respuesta del servidor: ${data.answer}`);
+  
+        } catch (error) {
+          console.error("Error en la solicitud:", error);
+        }
+      };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
       try {
         const username = 'Alfonso';
         await axios.post(

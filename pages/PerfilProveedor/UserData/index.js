@@ -25,7 +25,7 @@ const UserData = ({ title, description, image }) => {
     }
   
     useEffect(() => {
-        axios.get('http://192.168.100.10:3020/getUsuario', {
+        axios.get('http://localhost:3020/getUsuario', {
             params: {
                 email: email
             }

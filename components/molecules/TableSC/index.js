@@ -70,9 +70,7 @@ const TableSC = ({ data, setData, dataOrder, setDataOrder, dataList, setDataList
         setDataList([...dataList, combinedData]);
         setSelectedFoodData(null);
         
-        //const apiUrl = 'http://localhost:3082/addSolicitudCompraAlimento';
-        
-        const apiUrl = 'http://192.168.100.10:3086/addSolicitudCompraCerdo';
+        const apiUrl = 'http://localhost:3086/addSolicitudCompraCerdo';
             axios.post(apiUrl, combinedData)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);

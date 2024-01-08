@@ -43,26 +43,27 @@ const ProvForm = ({ data, setData, closeModal }) => {
         setInputPrecio('');
         setSuccessMessage('Producto guardado exitosamente');
 
-        const axios = require('axios');
-        const apiUrl = 'http://192.168.100.10:3070/editProducto/' + usuario;
-        axios
-          .put(apiUrl, newProduct)
-          .then((response) => {
-            console.log('Respuesta de la API:', response.data);
-          })
-          .catch((error) => {
-            console.error('Error al enviar la solicitud:', error);
-          });
-        setErrorMessage('');
-      } else {
-        setErrorMessage('Por favor completa los cambios');
-        setSuccessMessage('');
-        window.history.back();
-      }
-    } catch (error) {
-      setErrorMessage('Hubo un error al guardar el usuario');
-      setSuccessMessage('');
-      window.history.back();
+            const axios = require("axios");
+            const apiUrl = 'http://localhost:3070/editProducto/' + usuario;
+            axios.put(apiUrl, newProduct)
+                .then(response => {
+                    console.log("Respuesta de la API:", response.data);
+                })
+                .catch(error => {
+                    console.error("Error al enviar la solicitud:", error);
+                });
+    
+            setErrorMessage("");
+          } else {
+            setErrorMessage('Por favor completa los cambios');
+            setSuccessMessage("");
+            window.history.back();
+          }
+        } catch (error) {
+          setErrorMessage('Hubo un error al guardar el usuario');
+          setSuccessMessage("");
+          window.history.back();
+        }
     }
   };
 

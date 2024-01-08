@@ -47,7 +47,7 @@ const Licitacion = ({ title, description, image }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento');
+        const response = await axios.get('http://localhost:3082/getAllSolicitudCompraAlimento');
         const jsonData = response.data;
         const newData = jsonData.map(item => ({ ...item, username }));
         setData(newData);

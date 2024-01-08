@@ -25,8 +25,7 @@ const RegistroUsuarios = ({ title, description, image }) => {
     };
 
     useEffect(() => {
-        axios.get('http://192.168.100.10:3020/getAllUsuario')
-        //axios.get('http://localhost:3020/getAllUsuario')
+        axios.get('http://localhost:3020/getAllUsuario')
         .then(response => {
             const jsonData = response.data; // Datos de respuesta en formato JSON
             setData(jsonData.data);

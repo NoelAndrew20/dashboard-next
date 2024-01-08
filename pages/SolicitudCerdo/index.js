@@ -117,8 +117,7 @@ const SolicitudCerdo = ({ title, description, image }) => {
   ]);
 
   useEffect(() => {
-    //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-    axios.get('http://192.168.100.10:3087/getAllSolicitudCerdo')
+    axios.get('http://localhost:3086/getAllSolicitudCompra')
       .then(response => {
         const jsonData = response.data; // Datos de respuesta en formato JSON
         setDataPig(jsonData);
@@ -148,15 +147,23 @@ const SolicitudCerdo = ({ title, description, image }) => {
           router.push('/Login');
           return;
         }
-        const decodedToken = jwt.decode(token);
-        const usuario = decodedToken.usuario;
-        const nombre = decodedToken.nombre;
-        const proveedor = decodedToken.proveedor;
-        setUsername(usuario);
-        setTokenVerified(true);
-      } catch (error) {
-        console.error('Error al verificar el token:', error);
-        setTokenVerified(true);
+      };
+      checkToken();
+    }, [router]);
+    
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:3085/getAllsolicitudCerdo');
+          const jsonData = response.data;
+          setDataGraph(jsonData);
+        } catch (error) {
+          console.error('Error al obtener datos:', error);
+        }
+      };
+    
+      if (tokenVerified) {
+        fetchData();
       }
     };
     checkToken();

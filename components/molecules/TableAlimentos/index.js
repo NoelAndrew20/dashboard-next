@@ -36,8 +36,8 @@ const TableAlimentos = ({ data, setData }) => {
     
 
         
-        const apiUrl = 'http://192.168.100.10:3080/editAlimento';
-        //const apiUrl = 'http://localhost:3080/editAlimento/';
+        
+        const apiUrl = 'http://localhost:3080/editAlimento/';
         axios.put(apiUrl, updatedAlimento)
         .then(response => {
             console.log("Respuesta de la API:", response.data);

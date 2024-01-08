@@ -85,9 +85,7 @@ const TranspForm = ({ data, setData, closeModal }) => {
 
 
             const axios = require("axios");
-            //axios.get('http://localhost:3010/getAllTransporte')
-            //const apiUrl = "./api/transporte/registroTransporte";
-            const apiUrl = 'http://192.168.100.10:3010/addTransporte';
+            const apiUrl = 'http://localhost:3010/addTransporte';
             axios.post(apiUrl, newTranspot)
             .then(response => {
                 console.log("Respuesta de la API:", response.data);
