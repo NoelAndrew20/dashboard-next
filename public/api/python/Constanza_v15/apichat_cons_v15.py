@@ -9,6 +9,7 @@ import time
 from gtts import gTTS
 from gtts.tokenizer import pre_processors
 import gtts.tokenizer.symbols
+from deep_translator import GoogleTranslator
 from stable import * 
 import requests
 
@@ -61,6 +62,8 @@ def api_chat():
                     # resultado = principal(question)
                     
                     print (question)
+                    translated = GoogleTranslator(source='auto',target= 'es').translate(question)
+                    question = translated
                     print (token)
                     question_json={"Text":question}
                     print("questionjson=",question_json)
@@ -154,7 +157,7 @@ def api_chat():
                     return jsonify({"error": "Texto no proporcionado en la solicitud"}), 400
             except Exception as e:
                 print(f"Error en la API: {str(e)}")
-                return jsonify({"error": str(e)}), 500
+                return jsonify({"error": str(e),"resultado": "No te entendí"}), 500
 
 def TextToSpeech(text:str, lang:str, tld:str):
     tts = gTTS(text, lang = lang, tld = tld)
@@ -237,7 +240,7 @@ def enviar_datos():
             nombre_archivo = os.path.basename(path)
             # Puedes realizar cualquier operación adicional con los datos recibidos
             print(f'Answer: {answer}, Function: {function}, Path: {path}')
-            ruta_archivos = "/home/JocdDev/Documents/A/dashboard-next/pages/api/proveedor/files/" + nombre_archivo
+            ruta_archivos = "/files/" + nombre_archivo
             print("ruta_archivos",ruta_archivos)
             # Envia los datos al microservicio
             microservicio_data = {
