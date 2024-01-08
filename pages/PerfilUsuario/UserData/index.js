@@ -89,7 +89,7 @@ const UserData = ({ title, description, image }) => {
                                 <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="correo" name="correo" value={data[0]?.email} disabled/>
                             </div>
                         </div>
-                        <label>Contraseña:</label>
+                        {/*<label>Contraseña:</label>
                         <div className="pb-4">
                             <div className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
                                 <input type="password" className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="contraseña" name="contraseña" 
@@ -97,7 +97,7 @@ const UserData = ({ title, description, image }) => {
                                 onChange={handleNewPswd}
                                 />
                             </div>
-                        </div>
+    </div>*/}
                         {data.password === newPswd 
                         ?
                             ""

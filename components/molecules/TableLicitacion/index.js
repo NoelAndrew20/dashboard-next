@@ -154,7 +154,7 @@ const TableLicitacion = ({ data, setData }) => {
                   <>
                     <tr>
                       <th>
-                        <div>Nombre de alimento</div>
+                        <div>Nombre</div>
                       </th>
                       <th>
                         <div>Cantidad</div>

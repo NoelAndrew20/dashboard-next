@@ -32,75 +32,47 @@ const ProveedorForm = () => {
         
             actividadEconomica: [
                 {
-                    actividad: "Servicios de administración de inmuebles",
+                    actividad: "Instalaciones eléctricas en construcciones",
                     fechaFinal: "N/A",
-                    fechaInicio: "01/09/2021",
+                    fechaInicio: "02/03/2020",
                     numeroOrden: "1",
-                    porcentaje: "20"
+                    porcentaje: "70"
                 },
                 {
-                    actividad: "Alquiler de Oficinas y locales comerciales",
+                    actividad: "Comercio al por menor de lámparas ornamentales y pantallas para lámparas y candiles",
                     fechaFinal: "N/A",
-                    fechaInicio: "01/09/2021",
+                    fechaInicio: "01/07/2003",
                     numeroOrden: "3",
-                    porcentaje: "15"
-                },
-                {
-                    actividad: "Servicios de contabilidad y auditoría",
-                    fechaFinal: "N/A",
-                    fechaInicio: "01/09/2021",
-                    numeroOrden: "4",
-                    porcentaje: "10"
-                },
-                {
-                    actividad: "Servicios de consultoría en administración",
-                    fechaFinal: "N/A",
-                    fechaInicio: "01/09/2021",
-                    numeroOrden: "8",
-                    porcentaje: "10"
-                },
-                {
-                    actividad: "Servicios de ingeniería",
-                    fechaFinal: "N/A",
-                    fechaInicio: "01/09/2021",
-                    numeroOrden: "6",
-                    porcentaje: "10"
-                },
-                {
-                    actividad: "Servicios de dibujo",
-                    fechaFinal: "N/A",
-                    fechaInicio: "01/09/2021",
-                    numeroOrden: "7",
-                    porcentaje: "10"
+                    porcentaje: "30"
                 }
             ],
             datosContribuyente: {
-                calle1: "CALLE 3 NORTE",
-                calle2: "AVENIDA 5 DE MAYO",
-                colonia: "CENTRO",
-                cp: "72810",
+                calle1: "AVENIDA ROSENDO MARQUEZ",
+                calle2: "CALLE 45 SUR",
+                colonia: "BELISARIO DOMINGUEZ",
+                cp: ":72180",
                 entidad: "PUEBLA",
-                localidad: "SAN ANDRES CHOLULA",
-                municipio: "SAN ANDRES\nCHOLULA",
-                numeroExterior: "122",
-                numeroInterior: "8",
-                tipoVialidad: "CALLE",
-                vialidad: "14 PONIENTE"
+                localidad: "HEROICA PUEBLA DE ZARAGOZA",
+                municipio: "PUEBLA",
+                numeroExterior: "4307",
+                numeroInterior: "LETRA A",
+                tipoVialidad: "AVENIDA (AV.)",
+                vialidad: "25 PONIENTE"
             },
             domicilioRegistrado: {
-                denominacion: "BEDIAM CONSULTORES",
+                denominacion: "TERMOMAGNETICOS Y CONTROL DE RADIACIONES",
                 estatusPadron: "ACTIVO",
-                fechaInicioOperacion: "13 DE JUNIO DE 2011",
-                fechaUltimoCambioEstado: "21 DE JULIO DE 2011",
-                nombreComercial: "BEDIAM CONSULTORES",
-                regimenCapital: "SOCIEDAD CIVIL",
-                rfc: "BCO110613TS8"
+                fechaInicioOperacion: "01 DE JULIO DE 2003",
+                fechaUltimoCambioEstado: "01 DE JULIO DE 2003",
+                nombreComercial: "",
+                regimenCapital: "SOCIEDAD ANONIMA DE CAPITAL VARIABLE",
+                rfc: "TCR030701IN7"
             },
             regimen: [
                 {
                     descripcion: "Régimen General de Ley Personas Morales",
                     fechaFin: "N/A",
-                    fechaInicio: "13/06/2011"
+                    fechaInicio: "01/07/2003"
                 }
             ]
         }
@@ -298,9 +270,9 @@ const ProveedorForm = () => {
                         >
                             <option value="">Selecciona un tipo</option>
                             <option value="Alimento">Alimento</option>
-                            <option value="MateriasPrimas">Materias Primas</option>
+                            {/*<option value="MateriasPrimas">Materias Primas</option>
                             <option value="Medicamento">Medicamento</option>
-                            <option value="Vacunas">Vacunas</option>
+                            <option value="Vacunas">Vacunas</option>*/}
                             <option value="Vientres">Vientres</option>
                             <option value="Otro1">Otro 1</option>
                             <option value="Otro2">Otro 2</option>

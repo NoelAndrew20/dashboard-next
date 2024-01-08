@@ -124,6 +124,7 @@ const UsuarioSchema = new mongoose.Schema(
     password: String,
     email: String, 
     proveedor: Number,
+    picture: String,
   },
   {
     collection: 'usuario',
@@ -200,6 +201,7 @@ app.post("/addProveedor", async (req, res) => {
       nombre: newProveedor.nombre,
       telefono: newProveedor.telefono,
       estatuscorreo: 0,
+      picture: newProveedor.picture || '/images/imagenes/user.png',
     });
 
     await nuevoProveedor.save();

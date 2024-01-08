@@ -17,9 +17,13 @@ const LicitacionPro = ({ title, description, image }) => {
     const [ data, setData ] = useState([]);
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = "";
+  let usuario = "";
+  let primerosDosCaracteres
   if (token) {
     const decodedToken = jwt.decode(token);
     email = decodedToken.email;
+    usuario = decodedToken.usuario;
+    primerosDosCaracteres = usuario.substring(0, 2);
   } 
   else {
     console.error("No se encontró el token en localStorage.");
@@ -41,6 +45,28 @@ const LicitacionPro = ({ title, description, image }) => {
   }, []);
 
   useEffect(() => {
+    let apiUrl;
+  
+    if (primerosDosCaracteres === 'Al') {
+      apiUrl = 'http://192.168.100.10:3082/getAllSolicitudCompraAlimento';
+    } else if (primerosDosCaracteres === 'Vi') {
+      apiUrl = 'http://192.168.100.10:3086/getAllSolicitudCompra';
+    } else {
+      console.error('Usuario no reconocido');
+      return;
+    }
+  
+    axios.get(apiUrl)
+      .then(response => {
+        const jsonData = response.data;
+        setDataLic(jsonData);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [primerosDosCaracteres]);
+
+  /*useEffect(() => {
     axios.get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
     .then(response => {
         const jsonData = response.data; // Datos de respuesta en formato JSON
@@ -49,7 +75,19 @@ const LicitacionPro = ({ title, description, image }) => {
     .catch(error => {
         console.error(error);
     });
-}, [])
+}, [])*/
+
+/*useEffect(() => {
+  //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
+  axios.get('http://192.168.100.10:3086/getAllSolicitudCompra')
+    .then(response => {
+      const jsonData = response.data; // Datos de respuesta en formato JSON
+      setDataLic(jsonData);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, []);*/
 
 
     /*const [ data, setData ] = useState([
