@@ -97,7 +97,8 @@ const TableAlimentos = ({ data, setData }) => {
             </tbody>
           </table>
         </div>
-        <div className="pagination">
+        {/*
+        <div className="pagination">s
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -113,7 +114,7 @@ const TableAlimentos = ({ data, setData }) => {
             >
                 Siguiente
             </button>
-        </div>
+              </div>*/}
         </>
     )
 }
