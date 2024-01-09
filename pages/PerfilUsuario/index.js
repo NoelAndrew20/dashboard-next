@@ -12,17 +12,17 @@ const axios = require('axios');
 const PerfilUsuario = ({ title, description, image }) => {
   const router = useRouter();
   const [tokenVerified, setTokenVerified] = useState(false);
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([]);
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  let email = "";
+  const token =
+    typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  let email = '';
   if (token) {
     const decodedToken = jwt.decode(token);
     email = decodedToken.email;
-  }
-  else {
-    console.error("No se encontró el token en localStorage.");
+  } else {
+    console.error('No se encontró el token en localStorage.');
   }
   useEffect(() => {
     const checkToken = async () => {
@@ -52,11 +52,14 @@ const PerfilUsuario = ({ title, description, image }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.100.10:3020/getUsuario', {
-          params: {
-            email: email
+        const response = await axios.get(
+          'http://192.168.100.10:3020/getUsuario',
+          {
+            params: {
+              email: email,
+            },
           }
-        });
+        );
         const jsonData = response.data;
         setData(jsonData);
       } catch (error) {
@@ -68,7 +71,6 @@ const PerfilUsuario = ({ title, description, image }) => {
       fetchData();
     }
   }, [tokenVerified, setUsername]);
-
 
   if (!tokenVerified) {
     return null;
@@ -100,16 +102,14 @@ const PerfilUsuario = ({ title, description, image }) => {
     });
   }, []);*/
 
-
   return (
-    <div className={`${isDarkMode ? "darkMode" : "lightMode"} full-viewport`}>
-      <StaticMeta
-        title={title}
-        description={description}
-        image={image}
-      />
+    <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
+      <StaticMeta title={title} description={description} image={image} />
       <Navigation />
-      <div className="profile-nav w-full" style={{ justifyContent: "center !important" }}>
+      <div
+        className="profile-nav w-full"
+        style={{ justifyContent: 'center !important' }}
+      >
         <h1>Perfil de usuario</h1>
       </div>
       <div className="wrapper">
@@ -121,15 +121,14 @@ const PerfilUsuario = ({ title, description, image }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 export default PerfilUsuario;
 
 export const getServerSideProps = async () => {
-  const title = "Constanza";
-  const description =
-    "Perfil de usuarios";
-  const image = "images/icon/logo-400.png";
+  const title = 'Constanza';
+  const description = 'Perfil de usuarios';
+  const image = 'images/icon/logo-400.png';
   return {
     props: {
       title,

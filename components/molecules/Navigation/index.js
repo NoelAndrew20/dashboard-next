@@ -87,27 +87,9 @@ const Navigation = () => {
     return false;
   };
 
-  /*const tienePermiso = (rango, ruta) => {
-    switch (rango) {
-      case 'admin':
-        return true;
-      case 'Veterinario':
-        return ['/SolicitudCerdo', '/Graphicator', 'PerfilUsuario'].includes(
-          ruta
-        );
-      case 'Gerente_de_compras':
-        return ['/Compras', '/SeleccionProveedor', '/PerfilUsuario'].includes(
-          ruta
-        );
-      case 'Proveedor':
-        return ['/Proveedor'].includes(ruta);
-      default:
-        return false;
-    }
-  };*/
-
   const cerrarSesion = () => {
-    console.log('aqui pones el metodo');
+    localStorage.clear();
+    router.push('/Login');
   };
 
   return (

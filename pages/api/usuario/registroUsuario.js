@@ -137,7 +137,7 @@ app.post('/addUsuario', async (req, res) => {
       tarea: data.tarea,
       epp: data.epp,
       proveedor: 0,
-      rango: 'nuevo',
+      rango: 'Usuario',
     });
 
     await nuevoUsuario.save();

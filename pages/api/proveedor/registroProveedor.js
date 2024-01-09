@@ -11,35 +11,39 @@ const mongoUrl = config.mongodesarrollo;
 app.use(cors());
 app.use(express.json());
 // Conexión a MongoDB
-mongoose.connect(mongoUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose
+  .connect(mongoUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
-    console.log("Connected to the database");
+    console.log('Connected to the database');
   })
   .catch((e) => console.log(e));
-const db = mongoose.connection.useDb("prototipoGranja");
+const db = mongoose.connection.useDb('prototipoGranja');
 // Manejo de eventos de la conexión a la base de datos
-db.on('error', console.error.bind(console, 'Error connecting to the database:'));
+db.on(
+  'error',
+  console.error.bind(console, 'Error connecting to the database:')
+);
 db.once('open', () => {
   console.log('Successful database connection.');
 });
 // Subir archivos
-function uploadFiles(){
+function uploadFiles() {
   const storage = multer.diskStorage({
     destination: './files',
     filename: function (_req, file, cb) {
       const originalname = file.originalname.replace(/\s/g, ''); // Elimina espacios del nombre original
       const filename = `${originalname}`;
       cb(null, filename);
-    }
-  })
+    },
+  });
   const upload = multer({ storage: storage });
   return upload.fields([
     { name: 'constanciaFile', maxCount: 1 },
     { name: 'caratulaFile', maxCount: 1 },
-    { name: 'opinionFile', maxCount: 1 }
+    { name: 'opinionFile', maxCount: 1 },
   ]);
 }
 //Enviar correo de verificación de usuario y contraseña
@@ -87,25 +91,31 @@ const ProveedorSchema = new mongoose.Schema(
     entidad: String,
     //calle1: String,
     //calle2: String,
-    actividadesEconomicas: [{
-      orden: String,
-      actividad: String,
-      porcentaje: String,
-      fechaInicio: String,
-      fechaFin: String
-    }],
-    regimenes: [{
-      descripcion: String,
-      fechaInicio: String,
-      fechaFin: String
-    }],
-    productos: [{
-      ID: String,
-      SKU: String, 
-      nombre: String,
-      unidad: String,
-      precio: Number
-    }],
+    actividadesEconomicas: [
+      {
+        orden: String,
+        actividad: String,
+        porcentaje: String,
+        fechaInicio: String,
+        fechaFin: String,
+      },
+    ],
+    regimenes: [
+      {
+        descripcion: String,
+        fechaInicio: String,
+        fechaFin: String,
+      },
+    ],
+    productos: [
+      {
+        ID: String,
+        SKU: String,
+        nombre: String,
+        unidad: String,
+        precio: Number,
+      },
+    ],
     correo: String,
     nombre: String,
     telefono: Number,
@@ -122,7 +132,7 @@ const UsuarioSchema = new mongoose.Schema(
     usuario: String,
     nombre: String,
     password: String,
-    email: String, 
+    email: String,
     proveedor: Number,
     picture: String,
   },
@@ -134,18 +144,22 @@ const UsuarioSchema = new mongoose.Schema(
 
 const Usuario = db.model('usuario', UsuarioSchema);
 const Proveedor = db.model('Proveedor', ProveedorSchema);
-app.get("/getProducto", async (req, res) => {
+app.get('/getProducto', async (req, res) => {
   try {
     const { email } = req.query;
     const proveedor = await Proveedor.findOne({ correo: email });
     if (!proveedor) {
-      return res.status(404).send([{ status: "not found", message: "Proveedor no encontrado" }]);
+      return res
+        .status(404)
+        .send([{ status: 'not found', message: 'Proveedor no encontrado' }]);
     }
     const productos = proveedor.productos;
     res.send(productos);
   } catch (error) {
     console.error(error);
-    res.status(500).send([{ status: "error", message: "Internal server error" }]);
+    res
+      .status(500)
+      .send([{ status: 'error', message: 'Internal server error' }]);
   }
 });
 
@@ -154,16 +168,13 @@ app.post('/addDocumentoProveedor', uploadFiles(), (req, res) => {
   res.send('ok');
 });
 
-app.post("/addProveedor", async (req, res) => {
+app.post('/addProveedor', async (req, res) => {
   const newProveedor = req.body;
   let primeraLetra = '';
   let segundaLetra = '';
   //Verifica el ultimo ID
   try {
-    const lastId = await Proveedor
-    .findOne({})
-    .sort({ id: -1 })
-    .select('id');
+    const lastId = await Proveedor.findOne({}).sort({ id: -1 }).select('id');
     let nuevoLastid = 1;
     if (lastId) {
       nuevoLastid = lastId.id + 1;
@@ -181,7 +192,7 @@ app.post("/addProveedor", async (req, res) => {
     const nuevoProveedor = new Proveedor({
       fecha: fechaActual,
       id: nuevoLastid,
-      idProveedor: `${primeraLetra}${segundaLetra}${dia}${mes}${anio}${nuevoLastid}`, 
+      idProveedor: `${primeraLetra}${segundaLetra}${dia}${mes}${anio}${nuevoLastid}`,
       tipoProveedor: newProveedor.tipoProveedor,
       denominacion: newProveedor.denominacion,
       rfc: newProveedor.rfc,
@@ -222,7 +233,8 @@ app.post("/addProveedor", async (req, res) => {
 
     const destinatarioCorreo = nuevoProveedor.correo;
     const asuntoCorreo = 'Proveedor Registrado en Constanza';
-    const mensajeCorreo = 'Se ha registrado en nuestro sistema como proveedor confiable, su correo es el proporcionado en el sistema y su contraseña es su RFC.';
+    const mensajeCorreo =
+      'Se ha registrado en nuestro sistema como proveedor confiable, su correo es el proporcionado en el sistema y su contraseña es su RFC.';
     await enviarCorreo(destinatarioCorreo, asuntoCorreo, mensajeCorreo);
     nuevoProveedor.estatuscorreo = 1;
 
@@ -250,12 +262,17 @@ app.put('/editProducto/:usuario', async (req, res) => {
       SKU: newProduct.SKU,
       nombre: newProduct.nombre,
       unidad: newProduct.unidad,
-      precio: newProduct.precio
+      precio: newProduct.precio,
     });
 
     const updatedProveedor = await proveedor.save();
 
-    res.status(200).json({ message: 'Datos actualizados con éxito', data: updatedProveedor });
+    res
+      .status(200)
+      .json({
+        message: 'Datos actualizados con éxito',
+        data: updatedProveedor,
+      });
   } catch (error) {
     console.error('Error al actualizar los datos:', error);
     res.status(500).json({ message: 'Error al actualizar los datos' });
@@ -295,4 +312,3 @@ const PORT = 3070;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-

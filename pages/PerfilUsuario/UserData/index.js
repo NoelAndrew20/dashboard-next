@@ -10,86 +10,155 @@ import jwt from 'jsonwebtoken';
 const axios = require('axios');
 
 const UserData = ({ title, description, image }) => {
-    const { isDarkMode, toggleDarkMode } = useDarkMode();
-    const router = useRouter();
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const router = useRouter();
 
-    const [ data, setData ] = useState([]);
-    const [newPswd, setNewPswd] = useState(data.password);
+  const [data, setData] = useState([]);
+  const [newPswd, setNewPswd] = useState(data.password);
 
-    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-    let email = "";
-    if (token) {
-        const decodedToken = jwt.decode(token);
-        email = decodedToken.email;
-    } 
-    else {
-        console.error("No se encontró el token en localStorage.");
-    }
-  
-    useEffect(() => {
-        axios.get('http://192.168.100.10:3020/getUsuario', {
-            params: {
-                email: email
-            }
-        })
-        .then(response => {
+  const token =
+    typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  let email = '';
+  if (token) {
+    const decodedToken = jwt.decode(token);
+    email = decodedToken.email;
+  } else {
+    console.error('No se encontró el token en localStorage.');
+  }
+
+  useEffect(() => {
+    axios
+      .get('http://192.168.100.10:3020/getUsuario', {
+        params: {
+          email: email,
+        },
+      })
+      .then((response) => {
         const jsonData = response.data;
         setData(jsonData);
-        })
-        .catch(error => {
+      })
+      .catch((error) => {
         console.error(error);
-        });
-    }, []);
+      });
+  }, []);
 
-    const handleNewPswd = (e) => {
-        setNewPswd(e.target.value);
-    };
+  const handleNewPswd = (e) => {
+    setNewPswd(e.target.value);
+  };
 
-    return (
-        <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
-            <StaticMeta
-                title={title}
-                description={description}
-                image={image}
-            />     
-            <Navigation/>
-            <div className="profile-nav w-full" style={{justifyContent: "center !important"}}>
-                <h1>Perfil de usuario</h1>
-                <div className="mt-5">
-                    <ProfileCard data={data}/>
-                </div>
+  return (
+    <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
+      <StaticMeta title={title} description={description} image={image} />
+      <Navigation />
+      <div
+        className="profile-nav w-full"
+        style={{ justifyContent: 'center !important' }}
+      >
+        <h1>Perfil de usuario</h1>
+        <div className="mt-5">
+          <ProfileCard data={data} />
+        </div>
+      </div>
+      <div className="wrapper">
+        <div
+          className="back-link mt-2 text-blue-500 cursor-pointer"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          <span className="back-arrow">&#8592;</span> volver
+        </div>
+        <div className="w-full flex justify-center">
+          <form className="p-4 w-1/2">
+            <label>Nombre:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  id="nombre"
+                  name="nombre"
+                  value={data[0]?.nombre}
+                  disabled
+                />
+              </div>
             </div>
-            <div className="wrapper">
-                <div className="back-link mt-2 text-blue-500 cursor-pointer" onClick={()=> { router.back() }}>
-                    <span className="back-arrow">&#8592;</span> volver
-                </div>
-                <div className="w-full flex justify-center">
-                    <form className="p-4 w-1/2">
-                        <label>Nombre:</label>
-                        <div className="pb-4">
-                            <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                                <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="nombre" name="nombre" value={data[0]?.nombre} disabled/>
-                            </div>
-                        </div>
-                        <label>Apellido paterno:</label>
-                        <div className="pb-4">
-                            <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                                <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidop" name="apellidop" value={data[0]?.apellidop} disabled/>
-                            </div>
-                        </div>
-                        <label>Apellido materno:</label>
-                        <div className="pb-4">
-                            <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                                <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="apellidom" name="apellidom" value={data[0]?.apellidom} disabled/>
-                            </div>
-                        </div>
-                        <label>Correo:</label>
-                        <div className="pb-4">
-                            <div  className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
-                                <input className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="correo" name="correo" value={data[0]?.email} disabled/>
-                            </div>
-                        </div>
-                        {/*<label>Contraseña:</label>
+            <label>Apellido paterno:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  id="apellidop"
+                  name="apellidop"
+                  value={data[0]?.apellidop}
+                  disabled
+                />
+              </div>
+            </div>
+            <label>Apellido materno:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  id="apellidom"
+                  name="apellidom"
+                  value={data[0]?.apellidom}
+                  disabled
+                />
+              </div>
+            </div>
+            <label>Correo:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  id="correo"
+                  name="correo"
+                  value={data[0]?.email}
+                  disabled
+                />
+              </div>
+            </div>
+            {/*<label>Contraseña:</label>
                         <div className="pb-4">
                             <div className={isDarkMode ? "profile-input-container-d h-10" : "profile-input-container h-10"}>
                                 <input type="password" className={isDarkMode ? "modal-input-d h-10 p-1" : "modal-input h-10 p-1"} id="contraseña" name="contraseña" 
@@ -98,34 +167,32 @@ const UserData = ({ title, description, image }) => {
                                 />
                             </div>
     </div>*/}
-                        {data.password === newPswd 
-                        ?
-                            ""
-                        : 
-                        <div className="flex justify-center">
-                            <button type="submit" className="button">
-                                Guardar
-                            </button>
-                        </div>
-                        }
-                    </form>
-                </div>
-            </div>
+            {data.password === newPswd ? (
+              ''
+            ) : (
+              <div className="flex justify-center">
+                <button type="submit" className="button">
+                  Guardar
+                </button>
+              </div>
+            )}
+          </form>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 export default UserData;
 
 export const getServerSideProps = async () => {
-    const title = "Constanza";
-    const description =
-      "Perfil de usuarios";
-    const image = "images/icon/logo-400.png";
-    return {
-      props: {
-        title,
-        description,
-        image,
-      },
-    };
+  const title = 'Constanza';
+  const description = 'Perfil de usuarios';
+  const image = 'images/icon/logo-400.png';
+  return {
+    props: {
+      title,
+      description,
+      image,
+    },
+  };
 };
