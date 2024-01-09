@@ -74,19 +74,20 @@ def api_chat():
                         signal_data = {"senal": False}
                         with open("senal.json", "w") as archivo_json:
                             json.dump(signal_data, archivo_json)
-                            json_response={"answer":"Entendido"}
+                            json_response={"result":"Entendido"}
+                            print(json_response)
                     else:
                         with open("senal.json", "r") as archivo_json:
                             signal_data = json.load(archivo_json)
                         if signal_data.get("senal"):
                             print (question)
-                            question_json={'answer': '', 'function': 'Chatpig', 'parameters': {"text_question":question}}
+                            question_json={"result":{'answer': '', 'function': 'Chatpig', 'parameters': {"text_question":question}}}
                             print("questionjson=  ",question_json)
                             jsonaa = requests.post(os.environ.get("URL_RESPONDS"),json=question_json)
                             print('Resultado', jsonaa.json())
                             json_response = jsonaa.json()
                             json_respuesta=json_response.get("answer",{})
-                            json_response={'answer':json_respuesta.get("answer",{})}
+                            json_response={'result':json_respuesta.get("answer",{})}
                             print("json filtrado",json_response)
                             jsonrespuesta=json_response
                         else:
@@ -94,64 +95,77 @@ def api_chat():
                             jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
                             print('Resultado 1 impresion', jsonaa.json())
                             json_response = jsonaa.json()
-                            if 'Chatpig' in json_response.get("function", "") or signal_data.get("senal") is True:
-                                    print("Manual de operaciones")
-                                    cargar = {}
-                                    cargar.update({"answer": "Claro consultando " + json_response.get("function")})
-                                    with open("respuesta.json", "w") as archivo_json:
-                                        json.dump(cargar, archivo_json)
-                                    signal_data = {"senal": True}
-                                    with open("senal.json", "w") as archivo_json:
-                                        json.dump(signal_data, archivo_json)
-                                    with open("senal.json", "r") as archivo_json:
-                                            signal_data = json.load(archivo_json)
-                            if signal_data.get("senal") is False:
-                                    func={"function": ""}
-                                    cons_state={"answer":"Pensando.."}
-                                    with open("respuesta.json", "w") as archivo_json:
-                                        json.dump(cons_state, archivo_json)
-                                    with open("senal_cons.json", "w") as archivo_json:
-                                        json.dump(func, archivo_json)
-                                    # jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
-                                    print('Resultado 2 impresion', jsonaa.json())
-                                    json_response = jsonaa.json()
-                                    print(f'Valor de "function": {json_response.get("function")}')
-                                    if json_response.get("function") == 'AltaProveedores':
-                                        func={"function": "AltaProveedores"}
-                                    with open("senal_cons.json", "w") as archivo_json:
+                            print(json_response)
+                            print(signal_data.keys())
+                            if "result" in json_response and "function" in json_response["result"]:
+                                print("entra en el if")
+                                if 'Chatpig' in json_response["result"]["function"] or signal_data.get("senal") is True:
+                                        print("Manual de operaciones")
+                                        cargar = {}
+                                        cargar.update({"answer": "Claro consultando " + json_response["result"]["function"]})
+                                        with open("respuesta.json", "w") as archivo_json:
+                                            json.dump(cargar, archivo_json)
+                                        signal_data = {"senal": True}
+                                        with open("senal.json", "w") as archivo_json:
+                                            json.dump(signal_data, archivo_json)
+                                        with open("senal.json", "r") as archivo_json:
+                                                signal_data = json.load(archivo_json)
+                            else:
+                                if signal_data["senal"] is False:
+                                        print("Constan normal")
+                                        func={"function": ""}
+                                        cons_state={"answer":"Pensando.."}
+                                        with open("respuesta.json", "w") as archivo_json:
+                                            json.dump(cons_state, archivo_json)
+                                        with open("senal_cons.json", "w") as archivo_json:
                                             json.dump(func, archivo_json)
-                                    signal_data = {"senal": False}
-                                    with open("senal.json", "w") as archivo_json:
-                                        json.dump(signal_data, archivo_json)
-                                    global contador_activo
-                                    contador_activo = True
-                                    tiempo_espera = 4
-                                    inicio = time.time()
-                                    while contador_activo == True:
-                                            tiempo_transcurrido = time.time() - inicio
-                                            if tiempo_transcurrido >= tiempo_espera:
-                                                print("Pasaron 4 segundos")
-                                                cargar = {}
-                                                cargar.update({"answer": "Esperando"})
-                                                with open("respuesta.json", "w") as archivo_json:
-                                                    json.dump(cargar, archivo_json)
-                                                contador_activo = False
-                                                break
-                                            print(f"Tiempo Transcurrido: {int(tiempo_transcurrido)}segundos")
-                                            time.sleep(1)
-                                            with open("senal.json", "w") as archivo_json:
-                                                json.dump(signal_data, archivo_json)
+                                        # jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
+                                        print('Resultado 2 impresion', jsonaa.json())
+                                        json_response = jsonaa.json()
+                                        print(f'Valor de "function": {json_response.get("function")}')
+                                        if json_response.get("function") == 'AltaProveedores':
+                                            func={"function": "AltaProveedores"}
+                                        with open("senal_cons.json", "w") as archivo_json:
+                                                json.dump(func, archivo_json)
+                                        signal_data = {"senal": False}
+                                        with open("senal.json", "w") as archivo_json:
+                                            json.dump(signal_data, archivo_json)
+                                        global contador_activo
+                                        contador_activo = True
+                                        tiempo_espera = 4
+                                        inicio = time.time()
+                                        while contador_activo == True:
+                                                tiempo_transcurrido = time.time() - inicio
+                                                if tiempo_transcurrido >= tiempo_espera:
+                                                    print("Pasaron 4 segundos")
+                                                    cargar = {}
+                                                    cargar.update({"answer": "Esperando"})
+                                                    with open("respuesta.json", "w") as archivo_json:
+                                                        json.dump(cargar, archivo_json)
+                                                    contador_activo = False
+                                                    break
+                                                print(f"Tiempo Transcurrido: {int(tiempo_transcurrido)}segundos")
+                                                time.sleep(1)
+                                                with open("senal.json", "w") as archivo_json:
+                                                    json.dump(signal_data, archivo_json)
                     cargar = {}
                     cargar.update({"answer": "Esperando"})
                     with open("respuesta.json", "w") as archivo_json:
                         json.dump(cargar, archivo_json)
-                    jsonrespuesta=json_response.get('result')       
+                    print("1",json_response)
+                    jsonrespuesta=json_response.get('result')  
                     status_code = json_response.get('status_code', 200)
                     respuestas_por_token[token] = {'respuesta': jsonrespuesta, 'status_code': status_code}
                     with open("respuesta_servidor.json", "w") as archivo_json:
                         json.dump(json_response, archivo_json)
-                    formatted_response = str(jsonrespuesta)
-                    TextToSpeech(formatted_response,'pt','com')
+                    if 'result' in json_response and 'function' in json_response['result']:
+                        if 'Chatpig' in json_response['result']['function']:
+                            formatted_response = json_response['result']['answer']
+                        else:
+                            formatted_response = str(json_response.get('result', ''))
+                    else:
+                        formatted_response = str(json_response.get('result', ''))  
+                        TextToSpeech(formatted_response,'pt','com')
                     return jsonify({"resultado": formatted_response})
                 else:
                     return jsonify({"error": "Texto no proporcionado en la solicitud"}), 400
