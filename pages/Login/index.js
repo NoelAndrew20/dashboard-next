@@ -129,10 +129,54 @@ const Login = ({ title, description, image }) => {
           </div>
         </motion.div>
       </AnimatePresence>
-      <div>
-        <div className=" flex flex-col pr-5">
-          <div className="flex justify-center">
-            <div>
+      <div className=" flex flex-col pr-5 full-viewport">
+        <div className="flex justify-center">
+          <div>
+            <AnimatePresence>
+              <motion.div
+                initial="initialState"
+                animate="animateState"
+                exit="exitState"
+                variants={{
+                  initialState: {
+                    y: 100,
+                    scale: 4,
+                  },
+                  animateState: {
+                    scale: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.8,
+                      delay: 1,
+                      ease: 'easeInOut',
+                    },
+                  },
+                  exitState: {},
+                }}
+                transition={{ duration: 15 }}
+                className="base-page-size"
+              >
+                <div className="flex flex-col">
+                  <div className="flex justify-center border-b border-solid border-black pb-5">
+                    <img
+                      src="/images/Constanzalogo2.gif"
+                      style={{ width: '200px' }}
+                    />
+                  </div>
+                  <div className="flex justify-center pt-2">
+                    <h1 className="text-2xl font-semibold mb-4 text-[#818cf8]">
+                      Bienvenido!
+                    </h1>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {error && (
+              <div className="text-red-500 font-bold mt-2">{error}</div>
+            )}
+
+            <form onSubmit={handleSubmit}>
               <AnimatePresence>
                 <motion.div
                   initial="initialState"
@@ -140,117 +184,69 @@ const Login = ({ title, description, image }) => {
                   exit="exitState"
                   variants={{
                     initialState: {
+                      opacity: 0,
                       y: 100,
-                      scale: 4,
                     },
                     animateState: {
-                      scale: 1,
+                      opacity: 1,
                       y: 0,
-                      transition: {
-                        duration: 0.8,
-                        delay: 1,
-                        ease: 'easeInOut',
-                      },
                     },
                     exitState: {},
                   }}
-                  transition={{ duration: 15 }}
-                  className="base-page-size"
+                  transition={{ duration: 1, delay: 1.5 }}
+                  className="page"
                 >
-                  <div className="flex flex-col">
-                    <div className="flex justify-center border-b border-solid border-black pb-5">
-                      <img
-                        src="/images/Constanzalogo2.gif"
-                        style={{ width: '200px' }}
-                      />
-                    </div>
-                    <div className="flex justify-center pt-2">
-                      <h1 className="text-2xl font-semibold mb-4 text-[#818cf8]">
-                        Bienvenido!
-                      </h1>
-                    </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm text-xl font-bold text-gray-700"
+                    >
+                      Email:
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
+                      value={email}
+                      onChange={handleEmailChange}
+                    />
+                    {emailError && (
+                      <p className="text-red-500 text-sm">{emailError}</p>
+                    )}
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="password"
+                      className="block text-sm text-xl font-bold text-gray-700"
+                    >
+                      Contraseña:
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
+                      value={password}
+                      onChange={handlePasswordChange}
+                    />
+                    {passwordError && (
+                      <p className="text-red-500 text-sm">{passwordError}</p>
+                    )}
+                  </div>
+                  <div className="flex justify-center">
+                    <button
+                      type="submit"
+                      className={`px-4 py-2 button text-white rounded-md hover:bg-blue-600 ${
+                        isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''
+                      }`}
+                      disabled={isButtonDisabled}
+                    >
+                      Iniciar sesión
+                    </button>
                   </div>
                 </motion.div>
               </AnimatePresence>
-
-              {error && (
-                <div className="text-red-500 font-bold mt-2">{error}</div>
-              )}
-
-              <form onSubmit={handleSubmit}>
-                <AnimatePresence>
-                  <motion.div
-                    initial="initialState"
-                    animate="animateState"
-                    exit="exitState"
-                    variants={{
-                      initialState: {
-                        opacity: 0,
-                        y: 100,
-                      },
-                      animateState: {
-                        opacity: 1,
-                        y: 0,
-                      },
-                      exitState: {},
-                    }}
-                    transition={{ duration: 1, delay: 1.5 }}
-                    className="page"
-                  >
-                    <div className="mb-4">
-                      <label
-                        htmlFor="email"
-                        className="block text-sm text-xl font-bold text-gray-700"
-                      >
-                        Email:
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
-                        value={email}
-                        onChange={handleEmailChange}
-                      />
-                      {emailError && (
-                        <p className="text-red-500 text-sm">{emailError}</p>
-                      )}
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="password"
-                        className="block text-sm text-xl font-bold text-gray-700"
-                      >
-                        Contraseña:
-                      </label>
-                      <input
-                        type="password"
-                        id="password"
-                        className="mt-1 p-2 w-full border rounded-md focus:border-blue-500 focus:outline-none bg-gray-100"
-                        value={password}
-                        onChange={handlePasswordChange}
-                      />
-                      {passwordError && (
-                        <p className="text-red-500 text-sm">{passwordError}</p>
-                      )}
-                    </div>
-                    <div className="flex justify-center">
-                      <button
-                        type="submit"
-                        className={`px-4 py-2 button text-white rounded-md hover:bg-blue-600 ${
-                          isButtonDisabled
-                            ? 'cursor-not-allowed opacity-50'
-                            : ''
-                        }`}
-                        disabled={isButtonDisabled}
-                      >
-                        Iniciar sesión
-                      </button>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </form>
-              <div className="mt-5 text-xs flex justify-center text-blue-500"></div>
-            </div>
+            </form>
+            <div className="mt-5 text-xs flex justify-center text-blue-500"></div>
           </div>
         </div>
       </div>
