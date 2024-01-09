@@ -12,6 +12,8 @@ import respuesta from '../../public/api/python/Constanza_v15/respuestacons.json'
 import { useDarkMode } from '@/context/DarkModeContext';
 import { motion, AnimetePresence, AnimatePresence } from 'framer-motion';
 import StaticMeta from '@/components/atoms/StaticMeta';
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
 
 const ChatWindow = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -33,6 +35,7 @@ const ChatWindow = ({ title, description, image }) => {
   const userMessages = chatMessages.filter((message) => message.isUser);
   const serverMessages = chatMessages.filter((message) => !message.isUser);
   const [jsonContent, setJsonContent] = useState(null);
+  
 
   useEffect(() => {
     const unlockChatTimeout = setTimeout(() => {
@@ -44,7 +47,10 @@ const ChatWindow = ({ title, description, image }) => {
   useEffect(() => {
     const playWelcomeAudio = async () => {
       try {
-        const username = 'Alfonso';
+        const token = localStorage.getItem('token');
+        const decodedToken = jwt.decode(token);
+        const username = decodedToken.nombre;
+        console.log("user",username)
         await axios.post(
           'http://192.168.100.10:5003/api/python/Constanza_v15/respuesta.mp3',
           { username }
@@ -382,9 +388,6 @@ const ChatWindow = ({ title, description, image }) => {
                       {!message.isUser &&
                         jsonContent.function === 'AltaProveedores' && (
                           <div>
-                            <FormularioArchivo
-                              onFormSubmit={handleFormSubmit}
-                            />
                           </div>
                         )}
                       {!message.isUser &&

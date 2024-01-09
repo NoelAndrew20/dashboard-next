@@ -110,6 +110,13 @@ def api_chat():
                                             json.dump(signal_data, archivo_json)
                                         with open("senal.json", "r") as archivo_json:
                                                 signal_data = json.load(archivo_json)
+                                elif 'AltaProveedores' in json_response["result"]["function"]:
+                                        json_response = jsonaa.json()
+                                        print(f'Valor de "function": {json_response["result"]["function"]}')
+                                        if json_response["result"]["function"] == 'AltaProveedores':
+                                            func={"function": "AltaProveedores"}
+                                        with open("senal_cons.json", "w") as archivo_json:
+                                                json.dump(func, archivo_json)
                             else:
                                 if signal_data["senal"] is False:
                                         print("Constan normal")
@@ -122,11 +129,11 @@ def api_chat():
                                         # jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
                                         print('Resultado 2 impresion', jsonaa.json())
                                         json_response = jsonaa.json()
-                                        print(f'Valor de "function": {json_response.get("function")}')
-                                        if json_response.get("function") == 'AltaProveedores':
-                                            func={"function": "AltaProveedores"}
-                                        with open("senal_cons.json", "w") as archivo_json:
-                                                json.dump(func, archivo_json)
+                                        # print(f'Valor de "function": {json_response["result"]["function"]}')
+                                        # if json_response["result"]["function"] == 'AltaProveedores':
+                                        #     func={"function": "AltaProveedores"}
+                                        # with open("senal_cons.json", "w") as archivo_json:
+                                        #         json.dump(func, archivo_json)
                                         signal_data = {"senal": False}
                                         with open("senal.json", "w") as archivo_json:
                                             json.dump(signal_data, archivo_json)
@@ -161,6 +168,8 @@ def api_chat():
                     if 'result' in json_response and 'function' in json_response['result']:
                         if 'Chatpig' in json_response['result']['function']:
                             formatted_response = json_response['result']['answer']
+                        elif 'AltaProveedores' in json_response['result']['function']:
+                            formatted_response = json_response['result']['answer']
                         else:
                             formatted_response = str(json_response.get('result', ''))
                     else:
@@ -190,7 +199,11 @@ def get_mp3():
         return ('', 204, headers)
     if request.method == 'POST':
         try:
-            text = "Hola y bienvenido a Constanza IA"
+            data = request.get_json()
+            
+            username = data.get('username')
+            print(username)
+            text = "Hola y bienvenido a Constanza IA"+ username
             tts = gTTS(text=text , lang='pt', tld='com')
             tts.save('Bienvenida.mp3')
             cargar = {"answer": "Esperando"}
