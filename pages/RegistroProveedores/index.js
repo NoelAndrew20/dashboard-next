@@ -7,39 +7,34 @@ import { useDarkMode } from '@/context/DarkModeContext';
 import svg from '@/public/images/svg/provider.svg';
 
 const RegistroProveedores = ({ title, description, image }) => {
-    const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
-    return(
-        <div className={`${isDarkMode ? "darkMode" : "lightMode" } full-viewport`}>
-        <StaticMeta
-            title={title}
-            description={description}
-            image={image}
-        />     
-        <div>
-            <Navigation/>
-            <NavDashboard section="Registro de proveedores" svg={svg}/>
+  return (
+    <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
+      <StaticMeta title={title} description={description} image={image} />
+      <div>
+        <Navigation />
+        <NavDashboard section="Registro de proveedores" svg={svg} />
+      </div>
+      <div className="wrapper">
+        <div className="mt-3">
+          <ProveedorForm />
         </div>
-        <div className="wrapper">
-          <div className="mt-3">
-            <ProveedorForm/>
-          </div>
-        </div>
+      </div>
     </div>
-    )
-}
+  );
+};
 export default RegistroProveedores;
 
 export const getServerSideProps = async () => {
-const title = "Constanza";
-const description =
-  "Dashboard de proveedores";
-const image = "images/icon/logo-400.png";
-return {
-  props: {
-    title,
-    description,
-    image,
-  },
-};
+  const title = 'Constanza';
+  const description = 'Dashboard de proveedores';
+  const image = 'images/icon/logo-400.png';
+  return {
+    props: {
+      title,
+      description,
+      image,
+    },
+  };
 };

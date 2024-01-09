@@ -13,6 +13,9 @@
     "Gerente_de_compras": {
       "ruta": ["/Compras", "/SeleccionProveedor", "/PerfilUsuario"]
     },
+    "Usuario": {
+      "ruta": ["/PerfilUsuario"]
+    },
     "Proveedor": {
       "ruta": ["/Proveedor"]
     }
