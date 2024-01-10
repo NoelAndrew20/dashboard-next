@@ -209,6 +209,9 @@ def get_mp3():
             cargar = {"answer": "Esperando"}
             with open("respuesta.json", "w") as archivo_json:
                 json.dump(cargar, archivo_json)
+            signal_data = {"senal": False}
+            with open("senal.json", "w") as archivo_json:
+                json.dump(signal_data, archivo_json)
             return jsonify({'message': 'MP3 modified successfully'}), 200
         except Exception as e:
             logging.error(f'Error en la solicitud POST: {str(e)}')

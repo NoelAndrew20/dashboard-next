@@ -23,9 +23,6 @@ chat_pig_token = {}
 
 @app.route('/api/python/Constanza_v15/apichat_cons_v15', methods=['POST'])
 def api_chat():
-    global json_modificado
-    json_modificado = False
-
     if request.method == 'OPTIONS':
             headers = {
                 'Access-Control-Allow-Origin': '*',
@@ -41,20 +38,12 @@ def api_chat():
                 token = data.get('token')
                 signal_data = {}
                 print('Pregunta recibida en la API:', question)
-                cargar = {}
-                cargar.update({"answer": "Pensando.."})
-                with open("respuesta.json", "w") as archivo_json:
-                    json.dump(cargar, archivo_json)
+                cargar = {"answer": "Pensando.."}
                 if question:
                     print (question)
+                    translated = GoogleTranslator(source='auto',target= 'es').translate(question)
+                    question = translated
                     print (token)
                     question_json={"Text":question}
                     print("questionjson=",question_json)
-                    jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
-                    print('Resultado 1 impresion', jsonaa.json())
-                    if 'Chatpig' in json_response.get("function", ""):
-                        chat_pig_token[usuarios] = token
-                    if token in chat_pig_token[usuarios]    
-                        print("Manual de operaciones para usuarios"+ chat_pig_token[usuario])
-                        cargar = {}
-                        cargar.update({"answer": "Claro consultando " + json_response.get("function")})
+                    cons_state={"answer":"Pensando.."}
