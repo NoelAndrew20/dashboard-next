@@ -1,10 +1,11 @@
+/*
+Reestructurar todo
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Import the cors module
-
 const app = express();
 app.use(cors());
-
 app.use(express.json());
 
 //const mongoUrl = "mongodb://192.168.100.8:27017/proyectoSRS";
@@ -31,47 +32,46 @@ app.get("/getAllMateriaPrima", async (req, res) => {
   }
 });
 
-
-/*app.post("/addTransporte", async (req, res) => {
-  try {
-    const data = req.body;
-    console.log(data);
-    const nuevoTransporte = new Transporte({
-      //fecha: data.fecha,
-      granja: data.granja,
-      camion: data.camion,
-      jaula: data.jaula,
-      operador: data.operador,
-      cliente: data.cliente,
-      destino: data.destino,
-      salida: data.salida,
-      hrLlegada: data.hrLlegada,
-      tmpRecorrido: data.tmpRecorrido,
-      hrInicio: data.hrInicio,
-      kgSalida: data.kgSalida,  
-      kgDesembarque: data.kgDesembarque,
-      rango: data.rango,
-      muertos: data.muertos,
-      parada: data.parada,
-      auditor: data.auditor,
-      incidencias: data.incidencias,
-      revision: data.revision,
-      hrFinal: data.hrFinal,
-      merma: data.merma,
-      ctCerdos: data.ctCerdos,
-    });
-
-    await nuevoTransporte.save();
-
-    res.status(200).json({ message: 'Datos guardados con éxito' });
-  } catch (error) {
-    console.error('Error al guardar los datos:', error);
-    res.status(500).json({ message: 'Error al guardar los datos' });
-  }
-});*/
-
 const PORT = 3040;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+*/
 
+/*
+//import mongoose from 'mongoose';
+const mongoose = require("mongoose");
+
+// Definir un esquema para la colección "Transporte"
+const MateriaPrimaSchema = new mongoose.Schema(
+  {
+    AñoRecibo: String,
+    MesRecibo: String,
+    Vendor_Packslip_ID: String,
+    Project_ID: String,
+    Description: String,
+    Employee_ID: String,
+    Receipt_Employee_ID: String,
+    Vendor_ID: String,
+    PO_Name: String,
+    Purch_Order_ID: String,
+    Item_ID: String,
+    Item_Name: String,
+    Purch_Order_Date: String,
+    Unit_of_Measure: String,
+    Uni_Compra: String,
+    Pur_Conv_Factor: String,
+    AP_Currency_Rate: String,
+    Suma_de_Receipt_Qty: String,
+    Suma_de_PO_Unit_Price: String,
+    Suma_de_ImportePartida: String,
+  },
+  {
+    collection: 'ComMPEne-Dic2022',
+    versionKey: false,
+  }
+);
+
+// Crear un modelo basado en el esquema
+mongoose.model('MateriaPrima', MateriaPrimaSchema);
+*/
