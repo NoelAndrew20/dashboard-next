@@ -1,62 +1,67 @@
-import { useDarkMode } from "@/context/DarkModeContext";
-import { useEffect, useState } from "react";
-const CalcuForm = ({addFormData, alimento, selectedFoodData}) => {
-    const { isDarkMode, toggleDarkMode } = useDarkMode();
-    const entriesPerPage = 10;
-    const [currentPage, setCurrentPage] = useState(1);
-    const startIndex = (currentPage - 1) * entriesPerPage;
-    const endIndex = startIndex + entriesPerPage;
-    
-    const [formData, setFormData] = useState(selectedFoodData || {
-        nombreAlimento: '',
-        cantidad: '',
-      });
+import { useDarkMode } from '@/context/DarkModeContext';
+import { useEffect, useState } from 'react';
+const CalcuForm = ({ addFormData, alimento, selectedFoodData }) => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const entriesPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * entriesPerPage;
+  const endIndex = startIndex + entriesPerPage;
 
-    const agregarLote = () => {
-      const nuevoLote = {
-        nombreAlimento: formData.nombreAlimento,
-        cantidad: formData.cantidad,
-        
-      };
-      addFormData(nuevoLote);  
-      // Resto de la lógica
+  const [formData, setFormData] = useState(
+    selectedFoodData || {
+      nombreAlimento: '',
+      cantidad: '',
+    }
+  );
+
+  const agregarLote = () => {
+    const nuevoLote = {
+      nombreAlimento: formData.nombreAlimento,
+      cantidad: formData.cantidad,
     };
-    
-    useEffect(() => {
-      agregarLote(); // Llamar agregarLote después de calcular los valores
-    }, [formData]);
+    addFormData(nuevoLote);
+  };
 
-    return(
-        <div>
-          <div>    
-            {selectedFoodData && (
+  useEffect(() => {
+    agregarLote();
+  }, [formData]);
 
-              <div className="flex">
-                                      
-
-                <div className="modal-item w-1/2">
-                  <p className="font-bold">Nombre de alimento:</p>
-                  <input
-                    className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
-                    type="text"
-                    name="NombreAlimento"
-                    value={formData.nombreAlimento}
-                    onChange={(e) => setFormData({ ...formData, nombreAlimento: e.target.value })}
-                    disabled
-                  />
-                </div>
-                <div className="modal-item w-1/2">
-                  <p className="font-bold">Cantidad:</p>
-                  <input
-                    className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
-                    type="number"
-                    name="cantidad"
-                    value={formData.cantidad}
-                    onChange={(e) => setFormData({ ...formData, cantidad: e.target.value })}
-                    required
-                  />
-                </div>
-                {/*
+  return (
+    <div>
+      <div>
+        {selectedFoodData && (
+          <div className="flex">
+            <div className="modal-item w-1/2">
+              <p className="font-bold">Nombre de alimento:</p>
+              <input
+                className={
+                  isDarkMode ? 'edit-input-container-d' : 'edit-input-container'
+                }
+                type="text"
+                name="NombreAlimento"
+                value={formData.nombreAlimento}
+                onChange={(e) =>
+                  setFormData({ ...formData, nombreAlimento: e.target.value })
+                }
+                disabled
+              />
+            </div>
+            <div className="modal-item w-1/2">
+              <p className="font-bold">Cantidad:</p>
+              <input
+                className={
+                  isDarkMode ? 'edit-input-container-d' : 'edit-input-container'
+                }
+                type="number"
+                name="cantidad"
+                value={formData.cantidad}
+                onChange={(e) =>
+                  setFormData({ ...formData, cantidad: e.target.value })
+                }
+                required
+              />
+            </div>
+            {/*
                 <div className="modal-item w-1/3">
                   <p>% de Proteina:</p>
                   <input
@@ -68,11 +73,11 @@ const CalcuForm = ({addFormData, alimento, selectedFoodData}) => {
                     required
                   />
             </div>*/}
-              </div>
-            )}
-            {/* Otros campos */}
           </div>
-          {/*
+        )}
+        {/* Otros campos */}
+      </div>
+      {/*
           <div className="flex">
             <div className="modal-item w-1/3">
               <p>Precio:</p>
@@ -104,7 +109,7 @@ const CalcuForm = ({addFormData, alimento, selectedFoodData}) => {
             <h2>Total de precio: {isNaN(totalPrecio) ? 0 : totalPrecio}</h2>
           </div>
           <button  className="button" onClick={agregarLote}>Agregar al total</button>*/}
-        </div>
-    )
-}
+    </div>
+  );
+};
 export default CalcuForm;

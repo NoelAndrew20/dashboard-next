@@ -95,7 +95,6 @@ app.get('/getAllSolicitudLicitacion', async (req, res) => {
 app.post('/addSolicitudLicitacion', async (req, res) => {
   try {
     const newAlimento = req.body;
-    console.log(newAlimento);
     const solicitudesCompra = await SolicitudLicitacion.find({
       'solicitud.0.estatus': 1,
       username: newAlimento.usuario,
@@ -103,7 +102,6 @@ app.post('/addSolicitudLicitacion', async (req, res) => {
       'solicitud.0.nombre': newAlimento.nombre,
     });
     if (solicitudesCompra.length > 0) {
-      console.log(solicitudesCompra.length);
       return res.status(400).json({ mensaje: 'Licitación ya creada' });
     }
 

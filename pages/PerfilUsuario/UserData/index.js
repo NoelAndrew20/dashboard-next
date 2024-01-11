@@ -12,10 +12,8 @@ const axios = require('axios');
 const UserData = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const router = useRouter();
-
   const [data, setData] = useState([]);
   const [newPswd, setNewPswd] = useState(data.password);
-
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = '';

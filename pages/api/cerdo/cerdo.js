@@ -63,7 +63,6 @@ app.get('/getAllSolicitudCerdo', async (req, res) => {
 app.post('/addCerdo', async (req, res) => {
   try {
     const newAlimento = req.body[0];
-    console.log(newAlimento);
     const nuevoSolicitudCerdo = new SolicitudCerdo({
       fecha: Date.now(),
       raza: newAlimento.razaV,

@@ -7,12 +7,10 @@ import TableSeleccion from '@/components/molecules/TableSeleccion';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
 import svg from '@/public/images/svg/selection.svg';
-
 const axios = require('axios');
 
 const SeleccionProveedor = ({ title, description, image }) => {
   const router = useRouter();
-
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState([
@@ -47,11 +45,8 @@ const SeleccionProveedor = ({ title, description, image }) => {
         const usuario = decodedToken.usuario;
         const nombre = decodedToken.nombre;
         const proveedor = decodedToken.proveedor;
-        console.log('Usuario:', usuario);
-        console.log('Nombre:', nombre);
-        console.log('Proveedor:', proveedor);
-        setUsername(usuario);
 
+        setUsername(usuario);
         setTokenVerified(true);
       } catch (error) {
         console.error('Error al verificar el token:', error);
@@ -81,7 +76,6 @@ const SeleccionProveedor = ({ title, description, image }) => {
   }, [tokenVerified, setUsuario]);
 
   if (!tokenVerified) {
-    // Puedes mostrar un indicador de carga aquí si lo deseas
     return null;
   }
 

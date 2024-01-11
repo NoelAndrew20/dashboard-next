@@ -9,6 +9,7 @@ import ProfileMenu from '@/components/molecules/ProfileMenu';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
 const axios = require('axios');
+
 const PerfilUsuario = ({ title, description, image }) => {
   const router = useRouter();
   const [tokenVerified, setTokenVerified] = useState(false);
@@ -66,7 +67,6 @@ const PerfilUsuario = ({ title, description, image }) => {
         console.error('Error al obtener datos:', error);
       }
     };
-
     if (tokenVerified) {
       fetchData();
     }
@@ -75,32 +75,6 @@ const PerfilUsuario = ({ title, description, image }) => {
   if (!tokenVerified) {
     return null;
   }
-
-  /*const [ data, setData ] = useState([]);
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  let email = "";
-  if (token) {
-    const decodedToken = jwt.decode(token);
-    email = decodedToken.email;
-  } 
-  else {
-    console.error("No se encontró el token en localStorage.");
-  }
-  
-  useEffect(() => {
-    axios.get('http://192.168.100.10:3020/getUsuario', {
-      params: {
-        email: email
-      }
-    })
-    .then(response => {
-      const jsonData = response.data;
-      setData(jsonData);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }, []);*/
 
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>

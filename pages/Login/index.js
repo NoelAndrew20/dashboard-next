@@ -9,8 +9,8 @@ import Cookies from 'js-cookie';
 import load from '../../components/molecules/Carga/index.js';
 import { motion, AnimetePresence, AnimatePresence } from 'framer-motion';
 import { duration } from 'moment-timezone';
-const axios = require('axios');
 import jwt from 'jsonwebtoken';
+const axios = require('axios');
 
 const Login = ({ title, description, image }) => {
   const [email, setEmail] = useState('');
@@ -71,17 +71,14 @@ const Login = ({ title, description, image }) => {
       const response = await axios.post(apiUrl, { email, password });
       if (response.data.message === 'Inicio de sesión exitoso') {
         localStorage.setItem('token', response.data.token);
-
         const token = localStorage.getItem('token');
         const decodedToken = jwt.decode(token);
         const proveedor = decodedToken.proveedor;
-
         if (proveedor === 0) {
-          router.push('../PerfilUsuario'); // Redirige a la página principal
+          router.push('../PerfilUsuario');
         }
-
         if (proveedor === 1) {
-          router.push('../Proveedor'); // Redirige a la página licitacion
+          router.push('../Proveedor');
         }
       } else {
         setError(response.data.message || 'Error en la autenticación');
