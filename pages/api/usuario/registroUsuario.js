@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import the cors module
-const app = express();
-app.use(cors());
-app.use(express.json());
+const cors = require('cors');
 const config = require('../../../config.json');
 const mongoUrl = config.mongodesarrollo;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 mongoose
   .connect(mongoUrl, {
@@ -18,9 +18,7 @@ mongoose
   })
   .catch((e) => console.log(e));
 
-//const db = mongoose.connection.useDb("C3_LaPurisima");
 const db = mongoose.connection.useDb('prototipoGranja');
-
 db.on(
   'error',
   console.error.bind(console, 'Error al conectar a la base de datos:')
@@ -65,7 +63,6 @@ const UsuarioSchema = new mongoose.Schema(
     rango: String,
   },
   {
-    //collection: 'usuarios', // Nombre de la colección en la base de datos
     collection: 'usuario',
     versionKey: false,
   }
@@ -94,8 +91,6 @@ app.get('/getUsuario', async (req, res) => {
         .status(404)
         .send([{ status: 'not found', message: 'Usuario no encontrado' }]);
     }
-
-    // Devuelve un arreglo con el objeto usuario
     res.send([usuario]);
   } catch (error) {
     console.error(error);
@@ -153,17 +148,14 @@ app.put('/editUsuario/:fechaContratacion', async (req, res) => {
   try {
     const fechaContratacion = req.params.fechaContratacion;
     const newData = req.body;
-
     const updatedUsuario = await Usuario.findOneAndUpdate(
       { fechaContratacion: fechaContratacion },
       { $set: newData },
       { new: true }
     );
-
     if (!updatedUsuario) {
       return res.status(404).json({ message: 'Transporte no encontrado' });
     }
-
     res
       .status(200)
       .json({ message: 'Datos actualizados con éxito', data: updatedUsuario });
@@ -177,7 +169,6 @@ app.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await Usuario.findOne({ email });
-
     if (!user) {
       return res.status(401).json({ message: 'Credenciales incorrectas' });
     }
@@ -194,13 +185,12 @@ app.post('/login', async (req, res) => {
           email: user.email,
           rango: user.rango,
         },
-        'mi_secreto_super_secreto', // Cambia esto a tu secreto real
-        { expiresIn: '15m' } // Tiempo de expiración del token
+        'mi_secreto_super_secreto',
+        { expiresIn: '15m' }
       );
-
       res.status(200).json({
         message: 'Inicio de sesión exitoso',
-        token: token, // Enviar el token al cliente
+        token: token,
       });
     } else {
       res.status(401).json({ message: 'Credenciales incorrectas' });

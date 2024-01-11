@@ -199,7 +199,7 @@ const ComprasForm = () => {
                         </div>
 
                         <div className="modal-item">
-                            <label>Denominación / Razon social:</label>
+                            <label>Denominación / Razón social:</label>
                             <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                                 <input type="text" name="denominacion" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
                             </div>
@@ -297,7 +297,7 @@ const ComprasForm = () => {
                         </div>
                         
                         <div className="modal-item">
-                            <label>Nombre de vialidad:</label>
+                            <label>Nombre de vialidad (calle):</label>
                             <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                                 <input type="text" name="vialidadCompra" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
                             </div>
@@ -345,7 +345,7 @@ const ComprasForm = () => {
                             </div>
                         </div>
                         <div className="modal-item">
-                            <label>Correo Electrónico :</label>
+                            <label>Correo Electrónico 1:</label>
                             <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                                 <input type="email" name="correoCompra1" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
                             </div>
@@ -395,7 +395,7 @@ const ComprasForm = () => {
                 </div>
                 <div className="w-1/6">
                     <ul>
-                        <h2>Unitario</h2>
+                        <h2>Unidad de medida</h2>
                         <li >
                             <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                                 <input type="text" name="unitario" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
@@ -407,7 +407,7 @@ const ComprasForm = () => {
                 </div>
                 <div className="w-1/6">
                     <ul>
-                        <h2>P.U</h2>
+                        <h2>Precio Unitario</h2>
                         <li >
                             <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                                 <input type="text" name="pu" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
@@ -432,7 +432,7 @@ const ComprasForm = () => {
                     <h2 className="font-bold mt-5 pb-2">Facturar a:</h2>
                     <div className="modal-cel mt-2">
                         <div className="modal-item w-1/3">
-                            <label>Ración social o persona física a la que va a facturar:</label>
+                            <label>Razón social o persona física a la que va a facturar:</label>
                             <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
                                 <input type="text" name="nombreFactura" className={isDarkMode ? "modal-input-d" : "modal-input"}/>
                             </div>

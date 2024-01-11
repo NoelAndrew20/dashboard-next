@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import the cors module
+const cors = require('cors');
+const config = require('../../../config.json');
+const mongoUrl = config.mongodesarrollo;
 const app = express();
 app.use(cors());
 app.use(express.json());
-const config = require('../../../config.json');
-const mongoUrl = config.mongodesarrollo;
 
 mongoose
   .connect(mongoUrl, {

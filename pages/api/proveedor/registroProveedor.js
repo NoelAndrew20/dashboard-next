@@ -5,12 +5,11 @@ const multer = require('multer');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const config = require('../../../config.json');
-const app = express();
 const mongoUrl = config.mongodesarrollo;
-// Configuración de CORS y middleware JSON
+const app = express();
 app.use(cors());
 app.use(express.json());
-// Conexión a MongoDB
+
 mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
@@ -21,7 +20,6 @@ mongoose
   })
   .catch((e) => console.log(e));
 const db = mongoose.connection.useDb('prototipoGranja');
-// Manejo de eventos de la conexión a la base de datos
 db.on(
   'error',
   console.error.bind(console, 'Error connecting to the database:')
@@ -29,7 +27,7 @@ db.on(
 db.once('open', () => {
   console.log('Successful database connection.');
 });
-// Subir archivos
+
 function uploadFiles() {
   const storage = multer.diskStorage({
     destination: './files',
@@ -46,7 +44,7 @@ function uploadFiles() {
     { name: 'opinionFile', maxCount: 1 },
   ]);
 }
-//Enviar correo de verificación de usuario y contraseña
+
 async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
   const remitente = 'proyectoConstanza01@gmail.com';
   const password = 'ndqnuiihqxwscxna';
@@ -71,7 +69,7 @@ async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
     throw new Error('Error al enviar el correo');
   }
 }
-//Esquemal de proveedor
+
 const ProveedorSchema = new mongoose.Schema(
   {
     fecha: Date,
@@ -89,8 +87,6 @@ const ProveedorSchema = new mongoose.Schema(
     localidad: String,
     municipio: String,
     entidad: String,
-    //calle1: String,
-    //calle2: String,
     actividadesEconomicas: [
       {
         orden: String,
@@ -126,7 +122,7 @@ const ProveedorSchema = new mongoose.Schema(
     versionKey: false,
   }
 );
-//Esquemal de usuario
+
 const UsuarioSchema = new mongoose.Schema(
   {
     usuario: String,
@@ -164,7 +160,6 @@ app.get('/getProducto', async (req, res) => {
 });
 
 app.post('/addDocumentoProveedor', uploadFiles(), (req, res) => {
-  // Manejo del archivo subido
   res.send('ok');
 });
 
@@ -172,7 +167,7 @@ app.post('/addProveedor', async (req, res) => {
   const newProveedor = req.body;
   let primeraLetra = '';
   let segundaLetra = '';
-  //Verifica el ultimo ID
+
   try {
     const lastId = await Proveedor.findOne({}).sort({ id: -1 }).select('id');
     let nuevoLastid = 1;
@@ -180,7 +175,6 @@ app.post('/addProveedor', async (req, res) => {
       nuevoLastid = lastId.id + 1;
     }
     const tipoProveedor = newProveedor.tipoProveedor;
-    //Agrega las dos primeras letras de un tipo de Proveedor es decir vacunas=va, vientres=vi
     if (tipoProveedor) {
       primeraLetra = tipoProveedor[0];
       segundaLetra = tipoProveedor[1];
@@ -218,7 +212,7 @@ app.post('/addProveedor', async (req, res) => {
     await nuevoProveedor.save();
 
     const hashedPassword = await bcrypt.hash(nuevoProveedor.rfc, 12);
-    //Guarda usuario con id de las primeras dos letras del tipo, la fecha y id
+
     const nuevoUsuario = new Usuario({
       usuario: nuevoProveedor.idProveedor,
       nombre: nuevoProveedor.nombre,
@@ -256,7 +250,6 @@ app.put('/editProducto/:usuario', async (req, res) => {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
     const nuevoID = proveedor.productos.length + 1;
-    // Agrega el nuevo producto con el ID actualizado
     proveedor.productos.push({
       ID: nuevoID.toString(), // Convierte a cadena si es necesario
       SKU: newProduct.SKU,
@@ -267,12 +260,10 @@ app.put('/editProducto/:usuario', async (req, res) => {
 
     const updatedProveedor = await proveedor.save();
 
-    res
-      .status(200)
-      .json({
-        message: 'Datos actualizados con éxito',
-        data: updatedProveedor,
-      });
+    res.status(200).json({
+      message: 'Datos actualizados con éxito',
+      data: updatedProveedor,
+    });
   } catch (error) {
     console.error('Error al actualizar los datos:', error);
     res.status(500).json({ message: 'Error al actualizar los datos' });
@@ -284,8 +275,6 @@ app.put('/editProductos/:email', async (req, res) => {
     const email = req.params.email;
     const updatedProduct = req.body;
     const id = updatedProduct.ID;
-
-    // Buscar y actualizar el producto en la base de datos
     const resultado = await Proveedor.updateOne(
       { correo: email, 'productos.ID': id },
       {

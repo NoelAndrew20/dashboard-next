@@ -1,11 +1,12 @@
+//CRUD Licitacion de Alimentos
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import the cors module
+const cors = require('cors');
+const config = require('../../../config.json');
+const mongoUrl = config.mongodesarrollo;
 const app = express();
 app.use(cors());
 app.use(express.json());
-const config = require('../../../config.json');
-const mongoUrl = config.mongodesarrollo;
 
 mongoose
   .connect(mongoUrl, {
@@ -61,17 +62,13 @@ app.get('/getAllSolicitudLicitacion', async (req, res) => {
   try {
     const solicitudesCompra = await SolicitudLicitacion.find();
     if (solicitudesCompra.length === 0) {
-      return res
-        .status(404)
-        .json({
-          mensaje: 'No se encontraron solicitudes de compra de alimentos',
-        });
+      return res.status(404).json({
+        mensaje: 'No se encontraron solicitudes de compra de alimentos',
+      });
     }
-
     const uniqueAlimentos = Array.from(
       new Set(solicitudesCompra.map((item) => item.solicitud[0].nombre))
     );
-
     const filteredSolicitudes = uniqueAlimentos.map((alimento) => {
       const matchingSolicitudes = solicitudesCompra.filter(
         (item) => item.solicitud[0].nombre === alimento
@@ -83,18 +80,15 @@ app.get('/getAllSolicitudLicitacion', async (req, res) => {
       );
       return lowestPriceSolicitud;
     });
-
     res.status(200).json(filteredSolicitudes);
   } catch (error) {
     console.error(
       'Error al obtener las solicitudes de compra de alimentos:',
       error
     );
-    res
-      .status(500)
-      .json({
-        mensaje: 'Error al obtener las solicitudes de compra de alimentos',
-      });
+    res.status(500).json({
+      mensaje: 'Error al obtener las solicitudes de compra de alimentos',
+    });
   }
 });
 
@@ -132,12 +126,11 @@ app.post('/addSolicitudLicitacion', async (req, res) => {
       solicitud: newAlimento,
     });
 
-    // Guarda la nueva solicitud en la base de datos
     await nuevaSolicitud.save();
     nuevaSolicitud.solicitud[0].estatus = 1;
-    // Guarda la solicitud actualizada en la base de datos
+
     await nuevaSolicitud.save();
-    // Envía una respuesta al cliente
+
     res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
   } catch (error) {
     console.error('Error al guardar la solicitud:', error);
