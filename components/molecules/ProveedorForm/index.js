@@ -195,17 +195,14 @@ const ProveedorForm = () => {
   };
 
   const handleSubmit = (e) => {
-    //const constanciaFile = e.target.constancia.files[0];
     e.preventDefault();
     const constanciaFile = document.getElementById('constancia').files[0];
     const caratulaFile = document.getElementById('caratula').files[0];
     const opinionFile = document.getElementById('opinion').files[0];
-
     const formData2 = new FormData();
     formData2.append('constanciaFile', constanciaFile);
     formData2.append('caratulaFile', caratulaFile);
     formData2.append('opinionFile', opinionFile);
-
     const newFormData = {
       tipoProveedor: formData.tipoProveedor,
       denominacion: e.target.denominacion.value,
@@ -219,8 +216,6 @@ const ProveedorForm = () => {
       localidad: e.target.localidad.value,
       municipio: e.target.municipio.value,
       entidad: e.target.entidad.value,
-      //calle1: e.target.calle1.value,
-      //calle2: e.target.calle2.value,
       actividadesEconomicas: formData.actividadesEconomicas,
       regimenes: formData.regimenes,
       correo: e.target.correo.value,
@@ -228,18 +223,12 @@ const ProveedorForm = () => {
       telefono: e.target.telefono.value,
     };
 
-    console.log(newFormData);
-
-    //const apiUrl = 'http://localhost:3070/addProveedor/';
-    //const apiUrl2 = 'http://localhost:3070/addDocumentoProveedor/';
-
     const apiUrl = 'http://192.168.100.10:3070/addProveedor/';
     const apiUrl2 = 'http://192.168.100.10:3070/addDocumentoProveedor/';
     axios
       .post(apiUrl, newFormData)
       .then((response) => {
         console.log('Respuesta de la primera API:', response.data);
-        // Realiza la segunda solicitud después de que la primera haya terminado
         return axios.post(apiUrl2, formData2);
       })
       .then((response2) => {

@@ -9,133 +9,131 @@ import RazaTable from '@/components/atoms/RazaTable';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
 import TablePig from '@/components/molecules/TablePig';
-
 const axios = require('axios');
+
 const SolicitudCerdo = ({ title, description, image }) => {
   const router = useRouter();
   const [tokenVerified, setTokenVerified] = useState(false);
-  const [usuario, setUsuario] = useState("");
+  const [usuario, setUsuario] = useState('');
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  const [dataOrder, setDataOrder] = useState([])
+  const [dataOrder, setDataOrder] = useState([]);
   const [data, setData] = useState([]);
-  const [dataPig, setDataPig] = useState(
-    [
-      {
-        _id: "65946d858bcf58efd19e7b69",
-        lote: "SWILPAD001",
-        tipo: "Semental",
-        cantidad: 104,
-        fechaLicitacion: "29-01-2030",
-        fechaDia0: "20-11-2029",
-        status: "Requerido"
-      },
-      {
-        _id: "65946d858bcf58efd19e7b6a",
-        lote: "SWILPAE001",
-        tipo: "Semental",
-        cantidad: 104,
-        fechaLicitacion: "26-02-2030",
-        fechaDia0: "18-12-2029",
-        status: "Requerido"
-      }
-    ]
-  );
+  const [dataPig, setDataPig] = useState([
+    {
+      _id: '65946d858bcf58efd19e7b69',
+      lote: 'SWILPAD001',
+      tipo: 'Semental',
+      cantidad: 104,
+      fechaLicitacion: '29-01-2030',
+      fechaDia0: '20-11-2029',
+      status: 'Requerido',
+    },
+    {
+      _id: '65946d858bcf58efd19e7b6a',
+      lote: 'SWILPAE001',
+      tipo: 'Semental',
+      cantidad: 104,
+      fechaLicitacion: '26-02-2030',
+      fechaDia0: '18-12-2029',
+      status: 'Requerido',
+    },
+  ]);
   const [dataList, setDataList] = useState([]);
   const [dataGraph, setDataGraph] = useState([
     {
-      _id: "651c2f33be9c9264651f04fb",
-      fecha: "Nombre del Proveedor",
-      raza: "Landra",
+      _id: '651c2f33be9c9264651f04fb',
+      fecha: 'Nombre del Proveedor',
+      raza: 'Landra',
       precio: 3500,
       precioVariable: 4000,
       pesoMinimo: 100,
-      responsable: "Ivan",
-      lote: "MX0000001",
+      responsable: 'Ivan',
+      lote: 'MX0000001',
       historialMedico: [
         {
-          vacuna: "Vacuna 1"
+          vacuna: 'Vacuna 1',
         },
         {
-          vacuna: "Vacuna 2"
+          vacuna: 'Vacuna 2',
         },
         {
-          vacuna: "Vacuna 3",
+          vacuna: 'Vacuna 3',
         },
         {
-          vacuna: "Vacuna 4",
-        }
-      ]
+          vacuna: 'Vacuna 4',
+        },
+      ],
     },
     {
-      _id: "651d7d5478524b5ca0cd6892",
-      fecha: "Nombre del Proveedor",
-      raza: "puerco",
+      _id: '651d7d5478524b5ca0cd6892',
+      fecha: 'Nombre del Proveedor',
+      raza: 'puerco',
       precio: 3500,
       precioVariable: 4000,
       pesoMinimo: 100,
-      responsable: "Ivan",
-      lote: "MX0000001",
+      responsable: 'Ivan',
+      lote: 'MX0000001',
       historialMedico: [
         {
-          vacuna: "Vacuna 1"
+          vacuna: 'Vacuna 1',
         },
         {
-          vacuna: "Vacuna 2"
+          vacuna: 'Vacuna 2',
         },
         {
-          vacuna: "Vacuna 3",
+          vacuna: 'Vacuna 3',
         },
         {
-          vacuna: "Vacuna 4",
-        }
-      ]
+          vacuna: 'Vacuna 4',
+        },
+      ],
     },
     {
-      _id: "651c2f33be9c9264651f04fa",
-      fecha: "Nombre del Proveedor",
-      raza: "cerdo",
+      _id: '651c2f33be9c9264651f04fa',
+      fecha: 'Nombre del Proveedor',
+      raza: 'cerdo',
       precio: 3500,
       precioVariable: 4000,
       pesoMinimo: 100,
-      responsable: "Ivan",
-      lote: "MX0000001",
+      responsable: 'Ivan',
+      lote: 'MX0000001',
       historialMedico: [
         {
-          vacuna: "Vacuna 1"
+          vacuna: 'Vacuna 1',
         },
         {
-          vacuna: "Vacuna 2"
+          vacuna: 'Vacuna 2',
         },
         {
-          vacuna: "Vacuna 3",
+          vacuna: 'Vacuna 3',
         },
         {
-          vacuna: "Vacuna 4",
-        }
-      ]
-    }
+          vacuna: 'Vacuna 4',
+        },
+      ],
+    },
   ]);
 
   useEffect(() => {
-    //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-    axios.get('http://192.168.100.10:3087/getAllSolicitudCerdo')
-      .then(response => {
-        const jsonData = response.data; // Datos de respuesta en formato JSON
+    axios
+      .get('http://192.168.100.10:3087/getAllSolicitudCerdo')
+      .then((response) => {
+        const jsonData = response.data;
         setDataPig(jsonData);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
 
   useEffect(() => {
-    //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
-    axios.get('http://192.168.100.10:3086/getAllSolicitudCompra')
-      .then(response => {
-        const jsonData = response.data; // Datos de respuesta en formato JSON
+    axios
+      .get('http://192.168.100.10:3086/getAllSolicitudCompra')
+      .then((response) => {
+        const jsonData = response.data;
         setDataList(jsonData);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
@@ -165,7 +163,9 @@ const SolicitudCerdo = ({ title, description, image }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.100.10:3085/getAllsolicitudCerdo');
+        const response = await axios.get(
+          'http://192.168.100.10:3085/getAllsolicitudCerdo'
+        );
         const jsonData = response.data;
         setDataGraph(jsonData);
       } catch (error) {
@@ -177,17 +177,12 @@ const SolicitudCerdo = ({ title, description, image }) => {
     }
   }, [tokenVerified, setUsuario]);
   if (!tokenVerified) {
-    // Puedes mostrar un indicador de carga aquí si lo deseas
     return null;
   }
 
   return (
-    <div className={`${isDarkMode ? "darkMode" : "lightMode"} full-viewport`}>
-      <StaticMeta
-        title={title}
-        description={description}
-        image={image}
-      />
+    <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
+      <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
         <NavDashboard section="Solicitud de Cerdo" svg={svg} />
@@ -214,15 +209,14 @@ const SolicitudCerdo = ({ title, description, image }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 export default SolicitudCerdo;
 
 export const getServerSideProps = async () => {
-  const title = "Constanza";
-  const description =
-    "Menú";
-  const image = "images/icon/logo-400.png";
+  const title = 'Constanza';
+  const description = 'Menú';
+  const image = 'images/icon/logo-400.png';
   return {
     props: {
       title,

@@ -7,7 +7,6 @@ import TableGraph from '@/components/molecules/TableGraph';
 import TableAlimentos from '@/components/molecules/TableAlimentos';
 import MenuTable from '@/components/atoms/MenuTable';
 import svg from '@/public/images/svg/graph.svg';
-
 const axios = require('axios');
 
 const Graphicator = ({ title, description, image }) => {
@@ -135,11 +134,10 @@ const Graphicator = ({ title, description, image }) => {
   };
 
   useEffect(() => {
-    //axios.get('http://localhost:3080/getAllSolicitudAlimento')
     axios
       .get('http://192.168.100.10:3080/getAllSolicitudAlimento')
       .then((response) => {
-        const jsonData = response.data; // Datos de respuesta en formato JSON
+        const jsonData = response.data;
         setData([jsonData]);
       })
       .catch((error) => {
@@ -148,11 +146,10 @@ const Graphicator = ({ title, description, image }) => {
   }, []);
 
   useEffect(() => {
-    //axios.get('http://localhost:3082/getAllSolicitudCompraAlimento')
     axios
       .get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
       .then((response) => {
-        const jsonData = response.data; // Datos de respuesta en formato JSON
+        const jsonData = response.data;
         setDataList(jsonData);
       })
       .catch((error) => {

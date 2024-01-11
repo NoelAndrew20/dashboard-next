@@ -6,7 +6,6 @@ import jwt from 'jsonwebtoken';
 import expand from '@/public/images/svg/expand.svg';
 import expanded from '@/public/images/svg/expanded.svg';
 import send from '@/public/images/svg/send.svg';
-
 const axios = require('axios');
 
 const TableLicitacion = ({ data, setData }) => {
@@ -31,15 +30,12 @@ const TableLicitacion = ({ data, setData }) => {
   const entriesPerPage = 10;
   const totalPages = data ? Math.ceil(data.length / entriesPerPage) : 0;
   const [currentPage, setCurrentPage] = useState(1);
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
   const startIndex = (currentPage - 1) * entriesPerPage;
   const endIndex = startIndex + entriesPerPage;
   const [searchTerm, setSearchTerm] = useState('');
-
   const handleEdit = (solicitudIndex) => {
     setEditingIndex(solicitudIndex);
     const editingSolicitudIndex = solicitudIndex;
@@ -74,7 +70,6 @@ const TableLicitacion = ({ data, setData }) => {
       console.error('No se encontró el token en localStorage.');
     }
     const primerCaracter = usuario[0];
-
     newData[indexGuide].solicitud[editingSolicitudIndex] = {
       fechaSolicitud,
       nombreSolicitante,
@@ -93,7 +88,6 @@ const TableLicitacion = ({ data, setData }) => {
     };
     setDataArray(newData);
 
-    //const apiUrl = 'http://localhost:3083/addSolicitudLicitacion';
     const apiUrl = 'http://192.168.100.10:3083/addSolicitudLicitacion';
     axios
       .post(apiUrl, newData[indexGuide].solicitud[editingSolicitudIndex])

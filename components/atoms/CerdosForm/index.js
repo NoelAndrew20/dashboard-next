@@ -3,23 +3,23 @@ import { useDarkMode } from '@/context/DarkModeContext';
 
 const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  const [inputProveedor, setInputProveedor] = useState("");
-  const [inputSede, setInputSede] = useState("");
-  const [inputSolicitante, setInputSolicitante] = useState("");
-  const [inputGranja, setInputGranja] = useState("");
-  const [cerdos, setCerdos] = useState("");
-  const [cantidad, setCantidad] = useState("");
-  const [inputGastos, setInputGastos] = useState("");
+  const [inputProveedor, setInputProveedor] = useState('');
+  const [inputSede, setInputSede] = useState('');
+  const [inputSolicitante, setInputSolicitante] = useState('');
+  const [inputGranja, setInputGranja] = useState('');
+  const [cerdos, setCerdos] = useState('');
+  const [cantidad, setCantidad] = useState('');
+  const [inputGastos, setInputGastos] = useState('');
   const [lotes, setLotes] = useState([]);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [selectedProveedor, setSelectedProveedor] = useState(null);
-
   const handleProveedorChange = (event) => {
     const selectedNombreProveedor2 = event.target.value;
-    const selectedProveedorData = dataProveedor.find((proveedor) => proveedor.nombreProveedor === selectedNombreProveedor2);
-
-    setSelectedProveedor(selectedProveedorData); 
+    const selectedProveedorData = dataProveedor.find(
+      (proveedor) => proveedor.nombreProveedor === selectedNombreProveedor2
+    );
+    setSelectedProveedor(selectedProveedorData);
     setInputProveedor(selectedProveedorData);
   };
 
@@ -30,8 +30,8 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
         cantidad,
       };
       setLotes([nuevoLote]);
-      setCantidad("");
-      setCerdos("");
+      setCantidad('');
+      setCerdos('');
     }
   };
 
@@ -45,30 +45,28 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
 
   const addPerson = async () => {
     try {
-      if (inputGranja !== "" && inputGastos !== "") {
+      if (inputGranja !== '' && inputGastos !== '') {
         const newPerson = {
           granja: inputGranja,
           gastos: inputGastos,
           proveedores: selectedProveedor,
         };
-
         const newData = [...data, newPerson];
         newPerson.lotes = lotes;
         setData(newData);
-
-        setInputProveedor("");
-        setInputSolicitante("");
-        setInputGranja("");
-        setInputGastos("");
+        setInputProveedor('');
+        setInputSolicitante('');
+        setInputGranja('');
+        setInputGastos('');
         setSuccessMessage('Orden guardada exitosamente');
-        setErrorMessage("");
+        setErrorMessage('');
       } else {
         setErrorMessage('Por favor completa los cambios');
-        setSuccessMessage("");
+        setSuccessMessage('');
       }
     } catch (error) {
       setErrorMessage('Hubo un error al guardar el cerdo');
-      setSuccessMessage("");
+      setSuccessMessage('');
     }
   };
 
@@ -79,7 +77,13 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
           <h1 className="modal-title">Agregar Datos</h1>
         </div>
         <div>
-          <button onClick={() => { closeModal(); setErrorMessage(""); setSuccessMessage(""); }}>
+          <button
+            onClick={() => {
+              closeModal();
+              setErrorMessage('');
+              setSuccessMessage('');
+            }}
+          >
             <img src="images/svg/x.svg" height={15} width={15} />
           </button>
         </div>
@@ -90,35 +94,56 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
         <div className="modal-cel pt-10">
           <div className="modal-item w-1/3">
             <div>
-              <label htmlFor="username" className="modal-label">Proveedor:</label>
+              <label htmlFor="username" className="modal-label">
+                Proveedor:
+              </label>
             </div>
-            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-              <select id="proveedor" name="proveedor" className={isDarkMode ? "modal-input-d" : "modal-input"} onChange={handleProveedorChange}>
+            <div
+              className={
+                isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+              }
+            >
+              <select
+                id="proveedor"
+                name="proveedor"
+                className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                onChange={handleProveedorChange}
+              >
                 <option value="">Selecciona un proveedor</option>
                 {dataProveedor?.map((proveedor) => (
-                  <option key={proveedor.nombreProveedor} value={proveedor.nombreProveedor}>
+                  <option
+                    key={proveedor.nombreProveedor}
+                    value={proveedor.nombreProveedor}
+                  >
                     {proveedor.nombreProveedor}
                   </option>
                 ))}
               </select>
             </div>
           </div>
-          <div className="modal-item w-1/3">
-          </div>
+          <div className="modal-item w-1/3"></div>
         </div>
         {selectedProveedor && (
           <div>
             <div className="modal-cel">
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`nombreContacto`} className="modal-label">Nombre del contacto:</label>
+                  <label htmlFor={`nombreContacto`} className="modal-label">
+                    Nombre del contacto:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`nombreContacto`}
                     name={`nombreContacto`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.Contacto.nombrePersona}
                     disabled
                   />
@@ -126,14 +151,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
               </div>
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`correoContacto`} className="modal-label">Correo del contacto:</label>
+                  <label htmlFor={`correoContacto`} className="modal-label">
+                    Correo del contacto:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`correoContacto`}
                     name={`correoContacto`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.Contacto.correo}
                     disabled
                   />
@@ -141,14 +174,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
               </div>
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`telContacto`} className="modal-label">Tel. del contacto:</label>
+                  <label htmlFor={`telContacto`} className="modal-label">
+                    Tel. del contacto:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`telContacto`}
                     name={`telContacto`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.Contacto.numeroTelefono}
                     disabled
                   />
@@ -158,14 +199,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
             <div className="modal-cel">
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`calle`} className="modal-label">Calle:</label>
+                  <label htmlFor={`calle`} className="modal-label">
+                    Calle:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`calle`}
                     name={`calle`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.direccion.calle}
                     disabled
                   />
@@ -173,14 +222,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
               </div>
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`numero`} className="modal-label">Número:</label>
+                  <label htmlFor={`numero`} className="modal-label">
+                    Número:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`numero`}
                     name={`numero`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.direccion.numero}
                     disabled
                   />
@@ -188,14 +245,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
               </div>
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`colonia`} className="modal-label">Colonia:</label>
+                  <label htmlFor={`colonia`} className="modal-label">
+                    Colonia:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`colonia`}
                     name={`colonia`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.direccion.colonia}
                     disabled
                   />
@@ -205,14 +270,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
             <div className="modal-cel">
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`municipio`} className="modal-label">Municipio:</label>
+                  <label htmlFor={`municipio`} className="modal-label">
+                    Municipio:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`municipio`}
                     name={`municipio`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.direccion.municipio}
                     disabled
                   />
@@ -220,14 +293,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
               </div>
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`estado`} className="modal-label">Estado:</label>
+                  <label htmlFor={`estado`} className="modal-label">
+                    Estado:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`estado`}
                     name={`estado`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.direccion.estado}
                     disabled
                   />
@@ -235,14 +316,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
               </div>
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`codigoPostal`} className="modal-label">Codigo postal:</label>
+                  <label htmlFor={`codigoPostal`} className="modal-label">
+                    Codigo postal:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`codigoPostal`}
                     name={`codigoPostal`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.direccion.codigoPostal}
                     disabled
                   />
@@ -252,14 +341,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
             <div className="modal-cel">
               <div className="modal-item w-1/3">
                 <div>
-                  <label htmlFor={`sede`} className="modal-label">Sede:</label>
+                  <label htmlFor={`sede`} className="modal-label">
+                    Sede:
+                  </label>
                 </div>
-                <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
                   <input
                     type="text"
                     id={`sede`}
                     name={`sede`}
-                    className={isDarkMode ? "modal-input-d" : "modal-input"}
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     value={selectedProveedor.sede}
                     disabled
                   />
@@ -274,10 +371,23 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
         <div className="modal-cel">
           <div className="modal-item w-1/3">
             <div>
-              <label htmlFor="granja" className="modal-label">Granja:</label>
+              <label htmlFor="granja" className="modal-label">
+                Granja:
+              </label>
             </div>
-            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-              <select id="granja" name="granja" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputGranja} onChange={(event) => setInputGranja(event.target.value)} required>
+            <div
+              className={
+                isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+              }
+            >
+              <select
+                id="granja"
+                name="granja"
+                className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                value={inputGranja}
+                onChange={(event) => setInputGranja(event.target.value)}
+                required
+              >
                 <option value=""></option>
                 <option value="granja 1">Granja 1</option>
                 <option value="granja 2">Granja 2</option>
@@ -292,10 +402,22 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
         <div className="modal-cel">
           <div className="modal-item w-1/2">
             <div>
-              <label htmlFor="tipoCerdos" className="modal-label">Tipo de cerdos:</label>
+              <label htmlFor="tipoCerdos" className="modal-label">
+                Tipo de cerdos:
+              </label>
             </div>
-            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-              <select id="tipoCerdos" name="tipoCerdos" className={isDarkMode ? "modal-input-d" : "modal-input"} value={cerdos} onChange={(event) => setCerdos(event.target.value)}>
+            <div
+              className={
+                isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+              }
+            >
+              <select
+                id="tipoCerdos"
+                name="tipoCerdos"
+                className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                value={cerdos}
+                onChange={(event) => setCerdos(event.target.value)}
+              >
                 <option value=""></option>
                 <option value="camborougn">Pic Camborougn</option>
                 <option value="337">Pic 337</option>
@@ -306,34 +428,51 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
           </div>
           <div className="modal-item w-1/2">
             <div>
-              <label htmlFor="cantidad" className="modal-label">Cantidad:</label>
+              <label htmlFor="cantidad" className="modal-label">
+                Cantidad:
+              </label>
             </div>
-            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-              <input type="number" id="cantidad" name="cantidad" className={isDarkMode ? "modal-input-d" : "modal-input"} value={cantidad} onChange={(event) => setCantidad(event.target.value)} />
+            <div
+              className={
+                isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+              }
+            >
+              <input
+                type="number"
+                id="cantidad"
+                name="cantidad"
+                className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                value={cantidad}
+                onChange={(event) => setCantidad(event.target.value)}
+              />
             </div>
           </div>
         </div>
         <div className="flex justify-center">
-          <button className="pronostico-btn" onClick={agregarLote}>Agregar lote</button>
-          <button className="pronostico-btn" onClick={eliminarUltimoLote}>Eliminar último lote</button>
+          <button className="pronostico-btn" onClick={agregarLote}>
+            Agregar lote
+          </button>
+          <button className="pronostico-btn" onClick={eliminarUltimoLote}>
+            Eliminar último lote
+          </button>
         </div>
         <div className="flex justify-center pt-2">
           {lotes.length === 0 ? (
-            ""
+            ''
           ) : (
             <div>
-              <table >
+              <table>
                 <thead>
                   <tr>
-                    <th className='p-3'>Tipo de cerdo</th>
-                    <th className='p-3'>Cantidad</th>
+                    <th className="p-3">Tipo de cerdo</th>
+                    <th className="p-3">Cantidad</th>
                   </tr>
                 </thead>
                 <tbody>
                   {lotes.map((lote, index) => (
                     <tr key={index} className="table-row">
-                      <td className='p-3'>{lote.cerdos}</td>
-                      <td className='p-3 text-center'>{lote.cantidad}</td>
+                      <td className="p-3">{lote.cerdos}</td>
+                      <td className="p-3 text-center">{lote.cantidad}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -344,10 +483,24 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
         <div className="modal-cel">
           <div className="modal-item w-1/3">
             <div>
-              <label htmlFor="gastos" className="modal-label">Gastos de viaje:</label>
+              <label htmlFor="gastos" className="modal-label">
+                Gastos de viaje:
+              </label>
             </div>
-            <div className={isDarkMode ? "modal-input-container-d" : "modal-input-container"}>
-              <input type="number" id="gastos" name="gastos" className={isDarkMode ? "modal-input-d" : "modal-input"} value={inputGastos} onChange={(event) => setInputGastos(event.target.value)} required />
+            <div
+              className={
+                isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+              }
+            >
+              <input
+                type="number"
+                id="gastos"
+                name="gastos"
+                className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                value={inputGastos}
+                onChange={(event) => setInputGastos(event.target.value)}
+                required
+              />
             </div>
           </div>
           <div className="modal-item w-1/3"></div>
@@ -355,7 +508,13 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
         </div>
         <div className="flex justify-center">
           <div>
-            <button id="ButtonG" className="button primary" onClick={() => addPerson()}>Guardar</button>
+            <button
+              id="ButtonG"
+              className="button primary"
+              onClick={() => addPerson()}
+            >
+              Guardar
+            </button>
           </div>
         </div>
       </form>

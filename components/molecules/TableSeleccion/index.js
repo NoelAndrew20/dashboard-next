@@ -7,18 +7,13 @@ const TableSeleccion = ({ data, setData }) => {
   const router = useRouter();
   const entriesPerPage = 10;
   const totalPages = Math.ceil(data?.length / entriesPerPage);
-
   const [currentPage, setCurrentPage] = useState(1);
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
   const startIndex = (currentPage - 1) * entriesPerPage;
   const endIndex = startIndex + entriesPerPage;
-
   const [searchTerm, setSearchTerm] = useState('');
-
   const displayData = searchTerm
     ? data.filter(
         (item) =>
