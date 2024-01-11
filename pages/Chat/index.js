@@ -229,7 +229,6 @@ const ChatWindow = ({ title, description, image }) => {
         setRespuestaDelServidor(data.answer);
 
         if (json.answer === 'Esperando') {
-          console.log('respuestaant', prevAnswer);
           addMessageToChat(message, true);
           addMessageToChat(data.resultado, false);
         }
@@ -263,18 +262,17 @@ const ChatWindow = ({ title, description, image }) => {
           token: token,
         }
       );
-      console.log(message);
-      console.log(token);
       if (response.status === 200) {
         const data = response.data;
-        console.log(data);
         setRespuestaDelServidor(data.answer);
         addMessageToChat(data.resultado, false);
-        const timestamp = new Date().getTime();
-        setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
-        setTimeout(() => {
+        if (data.mensaje === 'MP3 generado con exito') {
+          const timestamp = new Date().getTime();
+          setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+          setTimeout(() => {
           playAudio();
         }, 4000);
+        }
         if (data.answer === 'Pensando') {
           setIsSpinning(true);
         } else {
@@ -284,15 +282,22 @@ const ChatWindow = ({ title, description, image }) => {
         console.error('Error al comunicarse con Constanza');
         if (response.status === 500) {
           addMessageToChat('No te entendí', false);
+          const timestamp = new Date().getTime();
+          setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+          setTimeout(() => {
+          playAudio();
+        }, 100);
         }
       }
-      console.log('dew', respuesta.answer);
-      console.log(`Mensaje del usuario: ${message}`);
-      console.log(`Respuesta del servidor: ${data.answer}`);
     } catch (error) {
         console.error('Error en la solicitud:', error);
         if (error.response && error.response.status === 500) {
           addMessageToChat('No te entendí', false);
+          const timestamp = new Date().getTime();
+          setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+          setTimeout(() => {
+          playAudio();
+        }, 100);
         }
       }
   };
@@ -316,12 +321,11 @@ const ChatWindow = ({ title, description, image }) => {
       .then((response) => response.json())
       .then((data) => {
         setJsonContent(data);
-        console.log("use effect json",data);
       })
       .catch((error) =>
         console.error('Error al cargar el archivo JSON:', error)
       );
-  }, []);
+  },);
 
   const formatText = (text) => {
     const fixedText = text.replace(/'/g, '"');

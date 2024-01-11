@@ -320,4 +320,4 @@ if __name__ == '__main__':
     # actualizar_json_thread = threading.Thread(target=actualizar_json_esperando)
     # actualizar_json_thread.daemon = True
     # actualizar_json_thread.start()
-    app.run(debug=True,port=5003, host="192.168.100.10")
+    app.run(debug=True,port=5003, host="127.0.0.1")
