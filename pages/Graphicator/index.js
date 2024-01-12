@@ -7,9 +7,12 @@ import TableGraph from '@/components/molecules/TableGraph';
 import TableAlimentos from '@/components/molecules/TableAlimentos';
 import MenuTable from '@/components/atoms/MenuTable';
 import svg from '@/public/images/svg/graph.svg';
+import { useRouter } from 'next/router';
+import jwt from 'jsonwebtoken';
 const axios = require('axios');
 
 const Graphicator = ({ title, description, image }) => {
+  const router = useRouter();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dataOrder, setDataOrder] = useState([]);
@@ -133,17 +136,47 @@ const Graphicator = ({ title, description, image }) => {
     setIsModalOpen(false);
   };
 
+  const [username, setUsername] = useState('');
+  const [tokenVerified, setTokenVerified] = useState(false);
+
   useEffect(() => {
-    axios
-      .get('http://192.168.100.10:3080/getAllSolicitudAlimento')
-      .then((response) => {
+    const checkToken = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          router.push('/Login');
+          return;
+        }
+        const decodedToken = jwt.decode(token);
+        const usuario = decodedToken.usuario;
+        setUsername(usuario);
+        setTokenVerified(true);
+      } catch (error) {
+        console.error('Error al verificar el token:', error);
+        setTokenVerified(true);
+      }
+    };
+    checkToken();
+  }, [router]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          'http://192.168.100.10:3080/getAllSolicitudAlimento'
+        );
         const jsonData = response.data;
         setData([jsonData]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+      }
+    };
+
+    if (tokenVerified) {
+      fetchData();
+
+    }
+  }, [tokenVerified, setUsername]);
 
   useEffect(() => {
     axios
@@ -156,6 +189,10 @@ const Graphicator = ({ title, description, image }) => {
         console.error(error);
       });
   }, []);
+
+  if (!tokenVerified) {
+    return null;
+  }
 
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
