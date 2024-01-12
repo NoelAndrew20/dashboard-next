@@ -780,8 +780,7 @@ th {
 .user-message {
   background-color: #F7F9FB;
   padding: 10px;
-  margin: 10px;
-  margin-right: 70%;
+  margin: 10px 10px 10px 60%;
   border-radius: 5px;
 }
 
@@ -789,9 +788,9 @@ th {
   background-color: #C18B11;
   color: white;
   padding: 10px;
-  margin: 10px;
-  margin-left: 60%;
   border-radius: 5px;
+  margin: 10px 70% 10px 10px
+
 }
 .user-message{
   display: flex;
