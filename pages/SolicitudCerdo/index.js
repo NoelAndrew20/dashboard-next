@@ -148,8 +148,6 @@ const SolicitudCerdo = ({ title, description, image }) => {
         }
         const decodedToken = jwt.decode(token);
         const usuario = decodedToken.usuario;
-        const nombre = decodedToken.nombre;
-        const proveedor = decodedToken.proveedor;
         setUsername(usuario);
         setTokenVerified(true);
       } catch (error) {
