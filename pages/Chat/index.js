@@ -37,6 +37,7 @@ const ChatWindow = ({ title, description, image }) => {
   const userMessages = chatMessages.filter((message) => message.isUser);
   const serverMessages = chatMessages.filter((message) => !message.isUser);
   const [jsonContent, setJsonContent] = useState(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   useEffect(() => {
     const unlockChatTimeout = setTimeout(() => {
@@ -272,10 +273,12 @@ const ChatWindow = ({ title, description, image }) => {
         addMessageToChat(data.resultado, false);
         if (data.mensaje === 'MP3 generado con exito') {
           const timestamp = new Date().getTime();
-          setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+          setAudioSource(
+            `./api/python/Constanza_v15/respuesta.mp3?${timestamp}`
+          );
           setTimeout(() => {
-          playAudio();
-        }, 4000);
+            playAudio();
+          }, 4000);
         }
         if (data.answer === 'Pensando') {
           setIsSpinning(true);
@@ -287,19 +290,21 @@ const ChatWindow = ({ title, description, image }) => {
         if (response.status === 500) {
           addMessageToChat('No te entendí', false);
           const timestamp = new Date().getTime();
-          setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+          setAudioSource(
+            `./api/python/Constanza_v15/respuesta.mp3?${timestamp}`
+          );
           setTimeout(() => {
-          playAudio();
-        }, 100);
+            playAudio();
+          }, 100);
         }
       }
     } catch (error) {
-        console.error('Error en la solicitud:', error);
-        if (error.response && error.response.status === 500) {
-          addMessageToChat('No te entendí', false);
-          const timestamp = new Date().getTime();
-          setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
-          setTimeout(() => {
+      console.error('Error en la solicitud:', error);
+      if (error.response && error.response.status === 500) {
+        addMessageToChat('No te entendí', false);
+        const timestamp = new Date().getTime();
+        setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
+        setTimeout(() => {
           playAudio();
         }, 100);
       }
@@ -329,7 +334,7 @@ const ChatWindow = ({ title, description, image }) => {
       .catch((error) =>
         console.error('Error al cargar el archivo JSON:', error)
       );
-  },);
+  });
 
   const formatText = (text) => {
     const fixedText = text.replace(/'/g, '"');
@@ -359,6 +364,16 @@ const ChatWindow = ({ title, description, image }) => {
     return formattedText;
   };
 
+  const hanldeTextChange = () => {
+    message && message.trim() !== ''
+      ? setIsButtonDisabled(false)
+      : setIsButtonDisabled(true);
+  };
+
+  useEffect(() => {
+    hanldeTextChange();
+  }, [message]);
+
   return (
     <>
       <StaticMeta title={title} description={description} image={image} />
@@ -366,7 +381,6 @@ const ChatWindow = ({ title, description, image }) => {
       <NavDashboard section="Habla con Constanza" svg={svg} />
 
       <div className={isDarkMode ? 'darkMode' : 'lightMode'}>
-
         <form
           className={`wrapper min-h-[80vh] pt-5 ${
             isDarkMode ? 'bg-[#151515]' : 'bg-white'
@@ -467,12 +481,21 @@ const ChatWindow = ({ title, description, image }) => {
                   disabled={isChatLocked}
                   className="text-input"
                   value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                    hanldeTextChange;
+                  }}
                 />
               </div>
               <div className="flex justify-between items-center btns-chat">
                 <div>
-                  <button className="button" onClick={handleSubmit}>
+                  <button
+                    className={`button ${
+                      isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''
+                    }`}
+                    onClick={handleSubmit}
+                    disabled={isButtonDisabled}
+                  >
                     <img
                       src="./images/svg/send.svg"
                       alt="Send"
