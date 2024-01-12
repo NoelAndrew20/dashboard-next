@@ -14,6 +14,8 @@ import { motion, AnimetePresence, AnimatePresence } from 'framer-motion';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
+import NavDashboard from '@/components/molecules/NavDashboard';
+import svg from '@/public/images/svg/chat.svg';
 
 const ChatWindow = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -23,7 +25,7 @@ const ChatWindow = ({ title, description, image }) => {
   const [respuestaDelServidor, setRespuestaDelServidor] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
-  const [chatMessages, setChatMessages] = useState([]); 
+  const [chatMessages, setChatMessages] = useState([]);
   const audioSrc = './api/python/Constanza_v15/respuesta.mp3';
   const [prevAnswer, setPrevAnswer] = useState('');
   const audioRef = useRef(null);
@@ -35,7 +37,6 @@ const ChatWindow = ({ title, description, image }) => {
   const userMessages = chatMessages.filter((message) => message.isUser);
   const serverMessages = chatMessages.filter((message) => !message.isUser);
   const [jsonContent, setJsonContent] = useState(null);
-  
 
   useEffect(() => {
     const unlockChatTimeout = setTimeout(() => {
@@ -50,7 +51,7 @@ const ChatWindow = ({ title, description, image }) => {
         const token = localStorage.getItem('token');
         const decodedToken = jwt.decode(token);
         const username = decodedToken.nombre;
-        console.log("user",username)
+        console.log('user', username);
         await axios.post(
           'http://192.168.100.10:5003/api/python/Constanza_v15/respuesta.mp3',
           { username }
@@ -187,7 +188,6 @@ const ChatWindow = ({ title, description, image }) => {
   };
 
   const addMessageToChat = (message, isUser) => {
-
     setChatMessages((prevMessages) => [
       ...prevMessages,
       { text: message, isUser },
@@ -195,9 +195,13 @@ const ChatWindow = ({ title, description, image }) => {
   };
 
   useEffect(() => {
-    if (submitButtonClicked && respuesta.answer !== prevAnswer && isWelcomeAudioPlayed) {
+    if (
+      submitButtonClicked &&
+      respuesta.answer !== prevAnswer &&
+      isWelcomeAudioPlayed
+    ) {
       setPrevAnswer(respuesta.answer);
-  
+
       if (json.answer === 'Esperando') {
         const timestamp = new Date().getTime();
         setAudioSource(`./api/python/Constanza_v15/respuesta.mp3?${timestamp}`);
@@ -298,8 +302,8 @@ const ChatWindow = ({ title, description, image }) => {
           setTimeout(() => {
           playAudio();
         }, 100);
-        }
       }
+    }
   };
 
   const combinedMessages = [];
@@ -356,26 +360,19 @@ const ChatWindow = ({ title, description, image }) => {
   };
 
   return (
-    <div className={isDarkMode ? 'bg-[#151515]' : 'lightMode'}>
+    <>
       <StaticMeta title={title} description={description} image={image} />
       <Navigation toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
+      <NavDashboard section="Habla con Constanza" svg={svg} />
+
       <div className={isDarkMode ? 'darkMode' : 'lightMode'}>
+
         <form
-          className={`wrapper full-viewport ${
+          className={`wrapper min-h-[80vh] pt-5 ${
             isDarkMode ? 'bg-[#151515]' : 'bg-white'
           } `}
         >
-          <div
-            className="absolute inset-0 bg-center"
-            style={{
-              backgroundImage: 'url("./images/icon/Constanza_logo_blanco.png")',
-              transform: 'scale(0.5)',
-              zIndex: 0,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
-          <div className="relative z-10 h-[55vh]">
+          <div className="relative z-10 bg-chat">
             <div className="flex justify-center h-full flex-col rounded-md text-lg text-black">
               <div className="h-full overflow-y-auto rounded-lg">
                 {combinedMessages.map((message, index) => (
@@ -391,8 +388,7 @@ const ChatWindow = ({ title, description, image }) => {
                       {message.text}
                       {!message.isUser &&
                         jsonContent.function === 'AltaProveedores' && (
-                          <div>
-                          </div>
+                          <div></div>
                         )}
                       {!message.isUser &&
                         message.text.includes(
@@ -406,25 +402,12 @@ const ChatWindow = ({ title, description, image }) => {
                           </div>
                         )}
                     </div>
-
-                    <div>
-                      {!message.isUser && (
-                        <Image
-                          src={'/images/icon/logo_blanco.png'}
-                          alt="Constanza Logo"
-                          width={50}
-                          height={50}
-                          loading="lazy"
-                        />
-                      )}
-                    </div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="flex mt-[20px] p">
               <div className="flex flex-col w-full justify-start">
-                {''}
                 <div className="flex justify-start ml-2">
                   <div className="flex justify-start">
                     {json.answer === 'Pensando..' ? (
@@ -482,39 +465,51 @@ const ChatWindow = ({ title, description, image }) => {
                   type="text"
                   placeholder="Escribe tu mensaje..."
                   disabled={isChatLocked}
-                  className={`${
-                    isDarkMode
-                      ? 'bg-[#151515] border border-[#D4AF37]'
-                      : 'modal-input border border-gray-300'
-                  } flex-grow px-3 py-2 w-full h-full text-lg rounded-lg shadow-md`}
+                  className="text-input"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />
-                <div className="absolute right-0 top-10 mt-2 mr-3 text-white border-orange-300 rounded-md focus:outline-none send-btn">
-                  <button onClick={handleSubmit}>
+              </div>
+              <div className="flex justify-between items-center btns-chat">
+                <div>
+                  <button className="button" onClick={handleSubmit}>
                     <img
                       src="./images/svg/send.svg"
                       alt="Send"
-                      className="send-img"
+                      width={30}
+                      height={30}
                     />
                   </button>
                 </div>
-              </div>
-              <div className="flex justify-evenly items-center btns-chat">
-                {/*<div>
-                  <button className="bg-slate-400 text-white border-orange-300 mr-1 px-3 py-2 rounded-md focus:outline-none w-100 text-center shadow-md" onClick={toggleRecognition} type="button">
-                    {isListening ? <img src="./images/svg/record.svg" alt="Play" width={30} height={30} /> : <img src="./images/svg/micro.svg" alt="Play" width={30} height={30} />}
-                  </button>
-                    </div>*/}
                 <div>
                   <button
-                    className="bg-slate-400 text-white border-orange-300 px-3 py-2 rounded-md focus:outline-none w-100 text-center shadow-md"
-                    onClick={playAudio}
+                    className="button"
+                    onClick={toggleRecognition}
+                    type="button"
                   >
+                    {isListening ? (
+                      <img
+                        src="./images/svg/record.svg"
+                        alt="Play"
+                        width={30}
+                        height={30}
+                      />
+                    ) : (
+                      <img
+                        src="./images/svg/micro.svg"
+                        alt="Play"
+                        width={30}
+                        height={30}
+                      />
+                    )}
+                  </button>
+                </div>
+                <div>
+                  <button className="button" onClick={playAudio}>
                     <img
                       src="./images/svg/playblack.svg"
                       alt="Play"
-                      width={20}
+                      width={30}
                     />
                   </button>
                   <audio ref={audioRef}>
@@ -529,7 +524,7 @@ const ChatWindow = ({ title, description, image }) => {
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
