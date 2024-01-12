@@ -786,7 +786,7 @@ th {
 }
 
 .system-message {
-  background-color: #A5B4FC;
+  background-color: #C18B11;
   color: white;
   padding: 10px;
   margin: 10px;
@@ -795,19 +795,19 @@ th {
 }
 .user-message{
   display: flex;
-  background-color: rgba(20, 33, 61, 1);
+  background-color:#123F6B;
   color: #FFFFFF;
   border-radius: 20px;
   justify-content: space-around;
   font-size: 20px;
+  justify-content: flex-end;
 }
 .system-message{
   justify-content: space-around;
   padding: 20px;
   display: flex;
-  justify-content: flex-end;
   border-radius: 20px;
-  background-color: rgba(193, 173, 98, 1);
+  background-color: #C18B11;
   font-size: 20px;
 }
 .send-btn {
@@ -822,7 +822,7 @@ th {
   width: 80%;
 }
 .btns-chat {
-  width: 15%;
+  width: 20%;
 }
 .h-chart {
   padding: 80px;
@@ -831,6 +831,28 @@ th {
   border-bottom: .5px solid #d7d1d1;
   padding: 15px;
   cursor: pointer;
+}
+.text-input{
+  width: 95%;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  resize: none;
+  height: auto;
+  min-height: 40px;
+  border:  solid rgba(0, 0, 0, 0.25) ;
+  border-radius: 15px;
+}
+.text-input:focus {
+  outline: none;
+}
+.bg-chat {
+  height: 55vh;
+  background-image: url("/images/icon/Constanza_logo_blanco.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
 }
 /* Animación de escritura */
 @keyframes typing {
