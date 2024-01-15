@@ -134,7 +134,7 @@ const Alertas = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Dashboard: Alertas" id="alertas" svg={svg} />
+        <NavDashboard section="Alertas recientes" id="alertas" svg={svg} />
       </div>
       <div>
         <Notification data={notificationData} />

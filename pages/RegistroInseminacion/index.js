@@ -835,7 +835,7 @@ const RegistroInseminacion = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Dashboard: Inseminación" svg={svg} />
+        <NavDashboard section="Inseminación" svg={svg} />
       </div>
       <div className="wrapper">
         <h2 className="text-xl mt-5 mb-5">Elementos existentes</h2>

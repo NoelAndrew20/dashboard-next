@@ -84,7 +84,7 @@ const SeleccionProveedor = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Dashboard: Selección de proveedor" svg={svg} />
+        <NavDashboard section="Selección de proveedor" svg={svg} />
       </div>
       <div className="wrapper">
         <h2 className="text-xl mt-5 mb-5">Proveedores existentes</h2>

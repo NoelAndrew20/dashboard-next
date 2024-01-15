@@ -65,7 +65,7 @@ const RFID = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Dashboard: RFID" svg={svg} />
+        <NavDashboard section="RFID registrados" svg={svg} />
       </div>
       <div className="wrapper">
         <h2 className="text-xl mt-5 mb-5">Elementos existentes</h2>
