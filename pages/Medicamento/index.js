@@ -183,7 +183,7 @@ const Medicamento = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Dashboard: Medicamento" svg={svg} />
+        <NavDashboard section="Medicamentos registrados" svg={svg} />
       </div>
       <div className="wrapper">
         <h2 className="text-xl mt-5 mb-5">Medicamentos existentes</h2>

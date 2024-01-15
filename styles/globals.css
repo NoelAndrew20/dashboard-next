@@ -588,6 +588,14 @@ th {
   padding: 2vh;
   margin-right: 20px;
 }
+.row-container-a:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+.row-container-d:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
 .row-user-d {
   justify-content: space-around;
   border-radius: 15px;
