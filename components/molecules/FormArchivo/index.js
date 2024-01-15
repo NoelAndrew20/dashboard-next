@@ -27,7 +27,7 @@ const FormularioArchivo = () =>{
     
     const enviarDatosAlMicroservicio = async (datosParaMicroservicio) => {
       try {
-        const response = await axios.post('http://192.168.100.10:5003/api/enviar-datos', {
+        const response = await axios.post('http://192.168.100.10:5002/api/enviar-datos', {
           datos: datosParaMicroservicio,
         });
         return response.data;

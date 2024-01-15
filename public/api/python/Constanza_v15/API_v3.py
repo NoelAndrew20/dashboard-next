@@ -8,13 +8,20 @@ from gtts.tokenizer import pre_processors
 import gtts.tokenizer.symbols
 import requests
 from deep_translator import GoogleTranslator
+from pymongo import MongoClient
 
 logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
-respuestas_por_token = {}
-chat_pig_token = {}
+client = MongoClient('mongodb://pigpig:0iEF&C84k4gqe&d&2D38%5EtNb&xln6d03hXLOGAcbY0LeRGUlGj@192.168.100.10:27017/')
+db = client['Microservicios']
+coleccion= db['usuario_solicitud']
+solicitud = {
+    'token': None,
+    'function': None,
+    'status': None
+}
 
 @app.route('/api/python/Constanza_v15/apichat_cons_v15', methods=['POST'])
 def api_chat():
@@ -32,6 +39,7 @@ def api_chat():
                 question  = data.get('question')
                 token = data.get('token')
                 signal_data = {}
+                solicitud_nueva = solicitud.copy()
                 print('Pregunta recibida en la API:', question)
                 cargar = {"answer": "Pensando.."}
                 if question:
@@ -41,7 +49,15 @@ def api_chat():
                     print (token)
                     question_json={"Text":question}
                     print("questionjson=",question_json)
-                    
+                    collection = coneccionDB(client,db,colecccion)
+                    jsonaa = requests.post(os.environ.get("URL_constanza_listens"),json=question_json)
+                    print(collection)
+                    json_response = jsonaa.json()
+                    solicitud_nueva['token'] = token
+                    solicitud_nueva['function'] =json_response["result"]["function"]
+                    solicitud_nueva['token'] = 'espera'
+                    usuario = coleccion.insert_one(solicitud_nueva)
+                    print("insercion mongo",usuario)
                     if question.lower() == "no":
                         signal_data = {"senal": False}
                         with open("senal.json", "w") as archivo_json:
@@ -94,7 +110,7 @@ def api_chat():
                         if tts_result["Estado"]:
                             translated = GoogleTranslator(source='es',target= 'es').translate(formatted_response)
                             formatted_response = translated
-                            return jsonify({"resultado": formatted_response, "mensaje": tts_result["message"], "function": func})
+                            return jsonify({"resultado": formatted_response, "mensaje": tts_result["message"]})
                         else:
                             translated = GoogleTranslator(source='es',target= 'es').translate(formatted_response)
                             formatted_response = translated
@@ -126,6 +142,14 @@ def TextToSpeech(text:str, lang:str, tld:str):
     except Exception as e:
         print(f"Error en la función TextToSpeech: {str(e)}")
         return {"Estado": False, "message": f"Error en TextToSpeech: {str(e)}"}
+
+def coneccionDB(mongo_uri:str,database_name:str,collection_name:str):
+    '''Permite realizar una conexion a una colecccion en base de datos'''
+    client = MongoClient(mongo_uri)
+    db = client[database_name]
+    collection = db[collection_name]
+    print(f'coneccion exitosa a la coleccion: {database_name}.{collection_name}')
+    return collection
 
 @app.route('/api/python/Constanza_v15/respuesta.mp3', methods=['POST'])
 def get_mp3():

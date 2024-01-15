@@ -54,7 +54,7 @@ const ChatWindow = ({ title, description, image }) => {
         const username = decodedToken.nombre;
         console.log('user', username);
         await axios.post(
-          'http://192.168.100.10:5003/api/python/Constanza_v15/respuesta.mp3',
+          'http://192.168.100.10:5002/api/python/Constanza_v15/respuesta.mp3',
           { username }
         );
         setIsUsernameSet(true);
@@ -261,7 +261,7 @@ const ChatWindow = ({ title, description, image }) => {
     console.log(message);
     try {
       const response = await axios.post(
-        'http://192.168.100.10:5003/api/python/Constanza_v15/apichat_cons_v15',
+        'http://192.168.100.10:5002/api/python/Constanza_v15/apichat_cons_v15',
         {
           question: message,
           token: token,
@@ -269,6 +269,11 @@ const ChatWindow = ({ title, description, image }) => {
       );
       if (response.status === 200) {
         const data = response.data;
+        console.log("1",data.function);
+        setJsonContent(data.function);
+        if (jsonContent === ''){
+          console.log('no hay func')
+        }
         setRespuestaDelServidor(data.answer);
         addMessageToChat(data.resultado, false);
         if (data.mensaje === 'MP3 generado con exito') {
@@ -325,6 +330,7 @@ const ChatWindow = ({ title, description, image }) => {
     }
   }
 
+<<<<<<< HEAD
   useEffect(() => {
     fetch('./api/python/Constanza_v15/senal_cons.json')
       .then((response) => response.json())
@@ -335,6 +341,18 @@ const ChatWindow = ({ title, description, image }) => {
         console.error('Error al cargar el archivo JSON:', error)
       );
   });
+=======
+  // useEffect(() => {
+  //   fetch('./api/python/Constanza_v15/senal_cons.json')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setJsonContent(data);
+  //     })
+  //     .catch((error) =>
+  //       console.error('Error al cargar el archivo JSON:', error)
+  //     );
+  // },);
+>>>>>>> 89ea17e (feature: Actualizacion API)
 
   const formatText = (text) => {
     const fixedText = text.replace(/'/g, '"');
@@ -401,14 +419,16 @@ const ChatWindow = ({ title, description, image }) => {
                     <div className="w-3/4">
                       {message.text}
                       {!message.isUser &&
-                        jsonContent.function === 'AltaProveedores' && (
-                          <div></div>
+                        jsonContent?.function === 'AltaProveedores' && (
+                          <div>
+                            
+                          </div>
                         )}
                       {!message.isUser &&
                         message.text.includes(
                           'Por favor seleccione su constancia de situación fiscal'
                         ) &&
-                        jsonContent.function === 'AltaProveedores' && (
+                        jsonContent?.function === 'AltaProveedores' && (
                           <div>
                             <FormularioArchivo
                               onFormSubmit={handleFormSubmit}
