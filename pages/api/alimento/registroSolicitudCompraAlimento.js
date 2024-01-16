@@ -85,7 +85,6 @@ app.post('/addSolicitudCompraAlimento', async (req, res) => {
     const ultimaSolicitud = await SolicitudCompraAlimento.findOne({})
       .sort({ numeroSolicitud: -1 })
       .select('numeroSolicitud');
-
     let nuevoNumeroSolicitud = 1;
     if (ultimaSolicitud) {
       nuevoNumeroSolicitud = ultimaSolicitud.numeroSolicitud + 1;

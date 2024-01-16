@@ -66,6 +66,7 @@ const TableSC = ({
       solicitudes: jsonData.map((item) => ({
         raza: item.raza,
         cantidad: item.cantidad,
+        fechaEntrega: item.fechaEntrega,
       })),
       responsable: responsable,
     };

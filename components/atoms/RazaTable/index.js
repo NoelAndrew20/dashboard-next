@@ -70,11 +70,15 @@ const RazaTable = ({ data, setData }) => {
                       <th>
                         <div>Cantidad</div>
                       </th>
+                      <th>
+                        <div>Fecha programada de entrega</div>
+                      </th>
                     </tr>
                     {item.solicitud.map((solicitud, index) => (
                       <tr key={index}>
                         <td>{solicitud.nombre}</td>
                         <td>{solicitud.cantidad}</td>
+                        <td>{solicitud.fechaEntrega}</td>
                       </tr>
                     ))}
                   </>

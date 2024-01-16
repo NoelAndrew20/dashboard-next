@@ -10,6 +10,7 @@ const RazaForm = ({ addFormData, alimento, selectedFoodData }) => {
     selectedFoodData || {
       raza: '',
       cantidad: '',
+      fechaEntrega: '',
     }
   );
 
@@ -17,6 +18,7 @@ const RazaForm = ({ addFormData, alimento, selectedFoodData }) => {
     const nuevoLote = {
       raza: formData.raza,
       cantidad: formData.cantidad,
+      fechaEntrega: formData.fechaEntrega,
     };
     addFormData(nuevoLote);
   };
@@ -60,6 +62,22 @@ const RazaForm = ({ addFormData, alimento, selectedFoodData }) => {
                 required
               />
             </div>
+
+            <div className="modal-item w-1/2">
+              <p className="font-bold">Fecha de entrega:</p>
+              <input
+                className={
+                  isDarkMode ? 'edit-input-container-d' : 'edit-input-container'
+                }
+                type="date"
+                name="fechaEntrega"
+                value={formData.fechaEntrega}
+                onChange={(e) =>
+                  setFormData({ ...formData, fechaEntrega: e.target.value })
+                }
+              />
+            </div>
+            
           </div>
         )}
       </div>

@@ -78,55 +78,9 @@ const CalcuForm = ({ addFormData, alimento, selectedFoodData }) => {
                 }
               />
             </div>
-
-            {/*
-                <div className="modal-item w-1/3">
-                  <p>% de Proteina:</p>
-                  <input
-                    className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
-                    type="number"
-                    name="proteina"
-                    value={formData.proteina}
-                    onChange={(e) => setFormData({ ...formData, proteina: e.target.value })}
-                    required
-                  />
-            </div>*/}
           </div>
         )}
-        {/* Otros campos */}
       </div>
-      {/*
-          <div className="flex">
-            <div className="modal-item w-1/3">
-              <p>Precio:</p>
-              <input
-                className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
-                type="number"
-                name="precio"
-                value={formData.precio}
-                onChange={(e) => setFormData({ ...formData, precio: e.target.value })}
-                required
-              />
-            </div>
-            <div className="modal-item w-1/3">
-              <p>Precio variable:</p>
-              <input
-                className={isDarkMode ? "edit-input-container-d" : "edit-input-container"}
-                type="number"
-                name="precioVariable"
-                value={formData.precioVariable}
-                onChange={(e) => setFormData({ ...formData, precioVariable: e.target.value })}
-                required
-              />
-            </div>
-          </div> 
-          <div className="flex pt-5 justify-center text-lg bold">
-            <h2>Total de proteina: {isNaN(totalProte) ? 0 : totalProte}</h2>
-          </div>
-          <div className="flex pt-5 justify-center text-lg bold">
-            <h2>Total de precio: {isNaN(totalPrecio) ? 0 : totalPrecio}</h2>
-          </div>
-          <button  className="button" onClick={agregarLote}>Agregar al total</button>*/}
     </div>
   );
 };
