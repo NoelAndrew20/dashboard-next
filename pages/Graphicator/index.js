@@ -19,6 +19,8 @@ const Graphicator = ({ title, description, image }) => {
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
   const [dataList, setDataList] = useState([]);
+  const [username, setUsername] = useState();
+  const [tokenVerified, setTokenVerified] = useState(false);
   const [dataGraph, setDataGraph] = useState([
     {
       _id: '651c2f33be9c9264651f04f9',
@@ -136,9 +138,6 @@ const Graphicator = ({ title, description, image }) => {
     setIsModalOpen(false);
   };
 
-  const [username, setUsername] = useState('');
-  const [tokenVerified, setTokenVerified] = useState(false);
-
   useEffect(() => {
     const checkToken = async () => {
       try {
@@ -148,7 +147,7 @@ const Graphicator = ({ title, description, image }) => {
           return;
         }
         const decodedToken = jwt.decode(token);
-        const usuario = decodedToken.usuario;
+        let usuario = decodedToken.usuario;
         setUsername(usuario);
         setTokenVerified(true);
       } catch (error) {
@@ -202,42 +201,20 @@ const Graphicator = ({ title, description, image }) => {
       </div>
       <div className="wrapper">
         <div className="mt-10">
-          {/*<h2 className="text-xl mt-5 mb-5">Pronóstico de compra de alimentos</h2>
-                    <TableAlimentos data={data} setData={setData}/>*/}
         </div>
         <div className="mt-10">
           <h2 className="text-xl mt-5 mb-5">Solicitud de alimento</h2>
           <TableGraph
-            dataList={dataList} //arreglo con el menú que se crea
+            dataList={dataList}
             setDataList={setDataList}
             data={dataGraph}
             setData={setDataGraph}
             dataOrder={dataOrder}
             setDataOrder={setDataOrder}
           />
-          {/*
-                    <div className="mt-10 flex justify-end">
-                        <div className={`modal ${isModalOpen ? 'block' : 'hidden'}`}>
-                            <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
-                            <div className={`${isDarkMode ? "modal-content-d" : "modal-content " } bg-white p-4 rounded shadow-md absolute top-[50vh] left-1/2 transform -translate-x-1/2 overflow-y-auto z-50`}>
-                                <SolicitudForm 
-                                  data={data} 
-                                  dataProveedor={dataProveedor}
-                                  setData={setData} 
-                                  closeModal={closeModal}
-                                />
-                            </div>
-                        </div>                      
-                        <button className="button" onClick={openModal}>Agregar compra</button>
-                    </div>
-    */}
         </div>
         <div className="mt-10">
           <h2 className="text-xl mt-5 mb-5">Solicitudes existentes</h2>
-          {/*si llegas a usar una base de datos diferente para la tabla de solicitud
-                    solo crea un const [dataSolicitud, setDataSolicitud] = useState([])
-                    para manejar la data y cambias data={data} por data={dataSolicitud}
-                    en <TableSolicitud/>*/}
           <MenuTable data={dataList} setData={setDataList} />
         </div>
       </div>

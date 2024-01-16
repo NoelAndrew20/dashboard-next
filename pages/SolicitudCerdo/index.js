@@ -18,6 +18,7 @@ const SolicitudCerdo = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [dataOrder, setDataOrder] = useState([]);
   const [data, setData] = useState([]);
+  const [username, setUsername] = useState();
   const [dataPig, setDataPig] = useState([
     {
       _id: '65946d858bcf58efd19e7b69',
@@ -147,7 +148,7 @@ const SolicitudCerdo = ({ title, description, image }) => {
           return;
         }
         const decodedToken = jwt.decode(token);
-        const usuario = decodedToken.usuario;
+        let usuario = decodedToken.usuario;
         setUsername(usuario);
         setTokenVerified(true);
       } catch (error) {

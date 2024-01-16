@@ -81,6 +81,7 @@ app.get('/getAllSolicitudCompra', async (req, res) => {
 app.post('/addSolicitudCompraCerdo', async (req, res) => {
   try {
     const newAlimento = req.body;
+    console.log(newAlimento);
     let tipoDeLicitacion = "Vientres";
     const ultimaSolicitud = await SolicitudCompra.findOne({})
       .sort({ numeroSolicitud: -1 })
