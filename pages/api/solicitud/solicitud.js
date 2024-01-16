@@ -36,6 +36,7 @@ const SolicitudCompraSchema = new mongoose.Schema(
       {
         nombre: String,
         cantidad: Number,
+        fechaEntrega: String,
         estatus: Number,
       },
     ],
@@ -80,21 +81,7 @@ app.get('/getAllSolicitudCompra', async (req, res) => {
 app.post('/addSolicitudCompraCerdo', async (req, res) => {
   try {
     const newAlimento = req.body;
-    let tipoDeLicitacion;
-    const inicial = newAlimento.responsable.charAt(0).toUpperCase();
-    switch (inicial) {
-      case 'A':
-        tipoDeLicitacion = 'Alimento';
-        break;
-      case 'M':
-        tipoDeLicitacion = 'Medicamento';
-        break;
-      case 'C':
-        tipoDeLicitacion = 'Vientres';
-        break;
-      default:
-        tipoDeLicitacion = 'Otro';
-    }
+    let tipoDeLicitacion = "Vientres";
     const ultimaSolicitud = await SolicitudCompra.findOne({})
       .sort({ numeroSolicitud: -1 })
       .select('numeroSolicitud');
@@ -111,6 +98,7 @@ app.post('/addSolicitudCompraCerdo', async (req, res) => {
       solicitud: req.body.solicitudes.map((item) => ({
         nombre: item.raza,
         cantidad: item.cantidad,
+        fechaEntrega: item.fechaEntrega,
         estatus: 0,
       })),
     };

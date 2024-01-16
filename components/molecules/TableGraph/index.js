@@ -130,6 +130,7 @@ const TableGraph = ({
       solicitudes: jsonData.map((item) => ({
         nombreAlimento: item.nombreAlimento,
         cantidad: item.cantidad,
+        fechaEntrega: item.fechaEntrega,
       })),
       responsable: responsable,
     };
@@ -373,7 +374,7 @@ const TableGraph = ({
           })}
 
           <button className="button mt-2" type="submit">
-            Agregar receta
+            Agregar solicitud
           </button>
         </form>
       ) : (

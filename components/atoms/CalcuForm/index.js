@@ -11,6 +11,7 @@ const CalcuForm = ({ addFormData, alimento, selectedFoodData }) => {
     selectedFoodData || {
       nombreAlimento: '',
       cantidad: '',
+      fechaEntrega: '',
     }
   );
 
@@ -18,6 +19,7 @@ const CalcuForm = ({ addFormData, alimento, selectedFoodData }) => {
     const nuevoLote = {
       nombreAlimento: formData.nombreAlimento,
       cantidad: formData.cantidad,
+      fechaEntrega: formData.fechaEntrega,
     };
     addFormData(nuevoLote);
   };
@@ -61,6 +63,22 @@ const CalcuForm = ({ addFormData, alimento, selectedFoodData }) => {
                 required
               />
             </div>
+
+            <div className="modal-item w-1/2">
+              <p className="font-bold">Fecha de entrega:</p>
+              <input
+                className={
+                  isDarkMode ? 'edit-input-container-d' : 'edit-input-container'
+                }
+                type="date"
+                name="fechaEntrega"
+                value={formData.fechaEntrega}
+                onChange={(e) =>
+                  setFormData({ ...formData, fechaEntrega: e.target.value })
+                }
+              />
+            </div>
+
             {/*
                 <div className="modal-item w-1/3">
                   <p>% de Proteina:</p>
