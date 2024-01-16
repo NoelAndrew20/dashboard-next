@@ -174,7 +174,6 @@ const Graphicator = ({ title, description, image }) => {
 
     if (tokenVerified) {
       fetchData();
-
     }
   }, [tokenVerified, setUsername]);
 
@@ -199,7 +198,7 @@ const Graphicator = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Menú de alimentos" svg={svg} />
+        <NavDashboard section="Solicitud de alimento" svg={svg} />
       </div>
       <div className="wrapper">
         <div className="mt-10">
@@ -207,7 +206,7 @@ const Graphicator = ({ title, description, image }) => {
                     <TableAlimentos data={data} setData={setData}/>*/}
         </div>
         <div className="mt-10">
-          <h2 className="text-xl mt-5 mb-5">Crea tu menú</h2>
+          <h2 className="text-xl mt-5 mb-5">Solicitud de alimento</h2>
           <TableGraph
             dataList={dataList} //arreglo con el menú que se crea
             setDataList={setDataList}

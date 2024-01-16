@@ -37,6 +37,7 @@ const SolicitudCompraAlimentoSchema = new mongoose.Schema(
       {
         nombre: String,
         cantidad: Number,
+        fechaEntrega: String,
         estatus: Number,
       },
     ],
@@ -60,12 +61,10 @@ app.get('/getAllSolicitudCompraAlimento', async (req, res) => {
       fecha: { $gte: unaSemanaAtras },
     });
     if (solicitudesCompra.length === 0) {
-      return res
-        .status(404)
-        .json({
-          mensaje:
-            'No se encontraron solicitudes de compra de alimentos en la última semana',
-        });
+      return res.status(404).json({
+        mensaje:
+          'No se encontraron solicitudes de compra de alimentos en la última semana',
+      });
     }
     res.status(200).json(solicitudesCompra);
   } catch (error) {
@@ -73,33 +72,16 @@ app.get('/getAllSolicitudCompraAlimento', async (req, res) => {
       'Error al obtener las solicitudes de compra de alimentos:',
       error
     );
-    res
-      .status(500)
-      .json({
-        mensaje: 'Error al obtener las solicitudes de compra de alimentos',
-      });
+    res.status(500).json({
+      mensaje: 'Error al obtener las solicitudes de compra de alimentos',
+    });
   }
 });
 
 app.post('/addSolicitudCompraAlimento', async (req, res) => {
   try {
     const newAlimento = req.body;
-    let tipoDeLicitacion;
-    const inicial = newAlimento.responsable.charAt(0).toUpperCase();
-    switch (inicial) {
-      case 'A':
-        tipoDeLicitacion = 'Alimento';
-        break;
-      case 'M':
-        tipoDeLicitacion = 'Medicamento';
-        break;
-      case 'C':
-        tipoDeLicitacion = 'Vientres';
-        break;
-      default:
-        tipoDeLicitacion = 'Otro';
-    }
-
+    let tipoDeLicitacion = "Alimento";
     const ultimaSolicitud = await SolicitudCompraAlimento.findOne({})
       .sort({ numeroSolicitud: -1 })
       .select('numeroSolicitud');
@@ -117,6 +99,7 @@ app.post('/addSolicitudCompraAlimento', async (req, res) => {
       solicitud: req.body.solicitudes.map((item) => ({
         nombre: item.nombreAlimento,
         cantidad: item.cantidad,
+        fechaEntrega: item.fechaEntrega,
         estatus: 0,
       })),
     };
@@ -152,18 +135,14 @@ app.put('/editLicitacion/:nombreAlimento/:cantidad', async (req, res) => {
         { $set: { 'solicitud.$.estatus': updateData.estatus } },
         { new: true }
       );
-      res
-        .status(200)
-        .json({
-          message: 'Estado actualizado con éxito',
-          data: updatedLicitacion,
-        });
+      res.status(200).json({
+        message: 'Estado actualizado con éxito',
+        data: updatedLicitacion,
+      });
     } else {
-      res
-        .status(400)
-        .json({
-          message: 'No se puede actualizar una solicitud con estatus 1',
-        });
+      res.status(400).json({
+        message: 'No se puede actualizar una solicitud con estatus 1',
+      });
     }
   } catch (error) {
     console.error('Error al actualizar el estado:', error);
