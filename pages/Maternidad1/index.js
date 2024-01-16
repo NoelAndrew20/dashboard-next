@@ -3,7 +3,7 @@ import Navigation from '@/components/molecules/Navigation';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import TableMaternidad1 from '@/components/molecules/TableMaternidad1';
+import TableMaternidad1 from '@/components/molecules/TableInventario';
 const axios = require('axios');
 
 const Maternidad1 = ({ title, description, image }) => {

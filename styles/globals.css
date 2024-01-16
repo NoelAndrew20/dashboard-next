@@ -861,6 +861,12 @@ th {
   background-position-x: center;
   background-position-y: center;
 }
+
+.half-graph {
+  width: 30%;
+  border: 1px solid #dbd6d6;
+}
+
 /* Animación de escritura */
 @keyframes typing {
   from {
@@ -873,6 +879,11 @@ th {
   }
 }
 @media (max-width: 850px) {
+
+  .half-graph {
+    width: 100%;
+    margin-bottom: 20px;
+  }
   .responsive-container {
     width: 30%;
     height: auto;
