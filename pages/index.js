@@ -24,6 +24,7 @@ import Footer from '@/components/atoms/Footer';
 import Notification from '@/components/molecules/AlertaNotificacion';
 import { data } from 'autoprefixer';
 import ChatBtn from '@/components/atoms/ChatBtn';
+import Link from 'next/link';
 const axios = require('axios');
 const welcomeMessages = ['¡Bienvenid@!', '¡Hola!', '¡Buen dia!'];
 
@@ -373,7 +374,7 @@ export default function Home({ title, description, image }) {
                     >
                       <div className="flex">
                         <Image
-                          src={'/images/icon/insumos-index.png'}
+                          src={'/images/icon/servicios-index.png'}
                           width={30}
                           height={30}
                           loading="lazy"
@@ -419,21 +420,23 @@ export default function Home({ title, description, image }) {
                           : 'row-container-a mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
+                      <Link href={"./Inventario"}>
                       <div className="flex">
                         <Image
-                          src={'/images/icon/servicios-index.png'}
+                          src={'/images/icon/insumos-index.png'}
                           width={30}
                           height={30}
                           loading="lazy"
                         />
                         <span className=" ml-2 font-bold flex items-center">
-                          Servicios
+                          Inventario
                         </span>
                       </div>
                       <h1 className="text-right text-2xl">${item.Servicios}</h1>
                       <div className="w-full flex">
                         <div className="text-[#42FF00] justify-left">+0.25</div>
                       </div>
+                      </Link>
                     </div>
                   </div>
                 </div>
