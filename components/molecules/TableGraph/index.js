@@ -281,7 +281,7 @@ const TableGraph = ({
             <h2>Nombre de Alimento</h2>
             {data.map((item, index) => (
               <li key={item.nombreAlimento}>
-                <label>
+                <label key={index}>
                   <input
                     type="checkbox"
                     name="alimento"
@@ -302,7 +302,7 @@ const TableGraph = ({
             <h2>Complemento de Alimento</h2>
             {complementoData.map((item, index) => (
               <li key={item.nombreAlimento}>
-                <label>
+                <label key={index}>
                   <input
                     type="checkbox"
                     name="complemento"
