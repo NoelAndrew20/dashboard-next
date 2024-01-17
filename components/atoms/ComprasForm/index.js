@@ -209,567 +209,587 @@ const ComprasForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="position justify-around">
-          <div className="w-1/2 flex justify-center">
-            <div>
-              <h2 className="font-bold pb-2">Empresa que solicita la compra</h2>
-              <div className="modal-item">
-                <label>Nombre de la empresa que solicita la compra:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="empresa"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
+        <div className="justify-around">
+          <h2 className="text-xl font-bold pb-2">
+            Empresa que solicita la compra
+          </h2>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Nombre de la empresa que solicita la compra:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="empresa"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
               </div>
+            </div>
 
-              <div className="modal-item">
-                <label>Denominación / Razón social:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="denominacion"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
+            <div className="modal-item w-1/3">
+              <label>Denominación / Razón social:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="denominacion"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
               </div>
-              <div className="modal-item">
-                <label>RFC:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="rfc"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-
-              <div className="modal-item">
-                <label>Código postal:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="cp"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Nombre de vialidad (calle):</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="vialidad"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Número exterior:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="exterior"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Número Interior:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="interior"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Nombre de la colonia:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="colonia"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Nombre del municipio:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="municipio"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Estado:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="estado"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Celular:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="number"
-                    name="celular"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Número de teléfono:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="number"
-                    name="telefono"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>RFC:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="rfc"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
               </div>
             </div>
           </div>
-          <div className="w-1/2 flex justify-center">
-            <div>
-              <h2 className="font-bold pb-2">Orden de compra</h2>
-              <div className="modal-item">
-                <label>Orden de compra:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="ordenCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
 
-              <div className="modal-item">
-                <label>Fecha:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="date"
-                    name="fechaCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Nombre de la empresa o quien solicita:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="nombreCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Denominación / Razón social:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="denominacionCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-
-              <div className="modal-item">
-                <label>Nombre de vialidad (calle):</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="vialidadCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Número exterior:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="exteriorCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Número Interior:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="interiorCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Nombre de la colonia:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="coloniaCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Código postal:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="cpCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Municipio:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="municipioCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Estado:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="estadoCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Número de teléfono:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="number"
-                    name="telefonoCompra"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Correo Electrónico 1:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="email"
-                    name="correoCompra1"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item">
-                <label>Correo Electrónico 2:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="email"
-                    name="correoCompra2"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Código postal:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="cp"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
               </div>
             </div>
+            <div className="modal-item w-1/3">
+              <label>Nombre de vialidad (calle):</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="vialidad"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Número exterior:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="exterior"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Número Interior:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="interior"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Nombre de la colonia:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="colonia"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Nombre del municipio:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="municipio"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Estado:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="estado"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Celular:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="number"
+                  name="celular"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Número de teléfono:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="number"
+                  name="telefono"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="justify-center">
+          <h2 className="text-xl font-bold pb-2">Orden de compra</h2>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Orden de compra:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="ordenCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+
+            <div className="modal-item w-1/3">
+              <label>Fecha:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="date"
+                  name="fechaCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Nombre de la empresa o quien solicita:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="nombreCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Denominación / Razón social:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="denominacionCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+
+            <div className="modal-item w-1/3">
+              <label>Nombre de vialidad (calle):</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="vialidadCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Número exterior:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="exteriorCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Número Interior:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="interiorCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Nombre de la colonia:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="coloniaCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Código postal:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="cpCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Municipio:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="municipioCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Estado:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="estadoCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Número de teléfono:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="number"
+                  name="telefonoCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Correo Electrónico 1:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="email"
+                  name="correoCompra1"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Correo Electrónico 2:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="email"
+                  name="correoCompra2"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3"></div>
           </div>
         </div>
         <div
           className={`${
-            isDarkMode ? 'fake-table-d' : 'fake-table'
-          } flex justify-around mt-5`}
+            isDarkMode ? 'bg-[#151515]' : 'bg-white'
+          }  justify-around mt-5 p-5 w-100`}
         >
-          <div className="w-1/6">
-            <ul>
-              <h2>Partida</h2>
-              <li>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="partida"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </li>
-            </ul>
+          <div className="flex">
+            <div className="w-1/4">
+              <ul>
+                <h2>Partida</h2>
+                <li>
+                  <div
+                    className={
+                      isDarkMode
+                        ? 'modal-input-container-d'
+                        : 'modal-input-container'
+                    }
+                  >
+                    <input
+                      type="text"
+                      name="partida"
+                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                    />
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="w-3/4">
+              <ul>
+                <h2>Descripción</h2>
+                <li>
+                  <div
+                    className={
+                      isDarkMode
+                        ? 'modal-input-container-d'
+                        : 'modal-input-container'
+                    }
+                    style={{ width: '90%' }}
+                  >
+                    <input
+                      type="text"
+                      name="descripcion"
+                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                    />
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="w-1/6">
-            <ul>
-              <h2>Descripción</h2>
-              <li>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="descripcion"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="w-1/6">
-            <ul>
-              <h2>Cantidad</h2>
-              <li>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="cantidadT"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="w-1/6">
-            <ul>
-              <h2>Unidad de medida</h2>
-              <li>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="unitario"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="w-1/6">
-            <ul>
-              <h2>Precio Unitario</h2>
-              <li>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="pu"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="w-1/6">
-            <ul>
-              <h2>Total</h2>
-              <li>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="total"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </li>
-            </ul>
+          <div className="flex mt-2">
+            <div className="w-1/4">
+              <ul>
+                <h2>Cantidad</h2>
+                <li>
+                  <div
+                    className={
+                      isDarkMode
+                        ? 'modal-input-container-d'
+                        : 'modal-input-container'
+                    }
+                  >
+                    <input
+                      type="text"
+                      name="cantidadT"
+                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                    />
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="w-1/4">
+              <ul>
+                <h2>Unidad de medida</h2>
+                <li>
+                  <div
+                    className={
+                      isDarkMode
+                        ? 'modal-input-container-d'
+                        : 'modal-input-container'
+                    }
+                  >
+                    <input
+                      type="text"
+                      name="unitario"
+                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                    />
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="w-1/4">
+              <ul>
+                <h2>Precio Unitario</h2>
+                <li>
+                  <div
+                    className={
+                      isDarkMode
+                        ? 'modal-input-container-d'
+                        : 'modal-input-container'
+                    }
+                  >
+                    <input
+                      type="text"
+                      name="pu"
+                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                    />
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="w-1/4">
+              <ul>
+                <h2>Total</h2>
+                <li>
+                  <div
+                    className={
+                      isDarkMode
+                        ? 'modal-input-container-d'
+                        : 'modal-input-container'
+                    }
+                  >
+                    <input
+                      type="text"
+                      name="total"
+                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                    />
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div>
           <div>
-            <h2 className="font-bold mt-5 pb-2">Facturar a:</h2>
+            <h2 className="text-xl font-bold mt-5 pb-2">Facturar a:</h2>
             <div className="modal-cel mt-2">
               <div className="modal-item w-1/3">
                 <label>
@@ -1022,8 +1042,8 @@ const ComprasForm = () => {
         </div>
         <div className="w-1/2">
           <div>
-            <h2 className="font-bold mt-5 pb-2">Elaborado por:</h2>
-            <div className="modal-item">
+            <h2 className="text-xl font-bold mt-5 pb-2">Elaborado por:</h2>
+            <div className="modal-item w-3/4">
               <label>Nombre:</label>
               <div
                 className={
@@ -1040,7 +1060,7 @@ const ComprasForm = () => {
               </div>
             </div>
 
-            <div className="modal-item">
+            <div className="modal-item w-3/4">
               <label>Puesto:</label>
               <div
                 className={
