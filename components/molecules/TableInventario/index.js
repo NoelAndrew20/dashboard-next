@@ -78,7 +78,7 @@ const TableInventario = ({ data }) => {
         <table className={isDarkMode ? 'table-container-d' : 'table-container'}>
           <thead>
             <tr>
-              <th>Zona</th>
+              <th>Área</th>
               <th>Numero de cerdos</th>
             </tr>
           </thead>
