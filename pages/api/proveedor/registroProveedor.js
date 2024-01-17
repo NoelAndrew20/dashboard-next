@@ -19,7 +19,7 @@ mongoose
     console.log('Connected to the database');
   })
   .catch((e) => console.log(e));
-const db = mongoose.connection.useDb('prototipoGranja');
+const db = mongoose.connection.useDb('C3_LaPurisima');
 db.on(
   'error',
   console.error.bind(console, 'Error connecting to the database:')
@@ -140,6 +140,7 @@ const UsuarioSchema = new mongoose.Schema(
 
 const Usuario = db.model('usuario', UsuarioSchema);
 const Proveedor = db.model('Proveedor', ProveedorSchema);
+
 app.get('/getProducto', async (req, res) => {
   try {
     const { email } = req.query;

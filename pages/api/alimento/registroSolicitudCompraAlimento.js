@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const config = require('../../../config.json');
 const mongoUrl = config.mongodesarrollo;
+const nodemailer = require('nodemailer');
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -25,6 +26,89 @@ db.on(
 db.once('open', () => {
   console.log('Conexión exitosa a la base de datos.');
 });
+
+const asuntoCorreo = 'Nueva licitacion';
+const mensajeCorreo = 'Hay una nueva licitacion disponible para ti.';
+
+async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
+  const remitente = 'proyectoConstanza01@gmail.com';
+  const password = 'ndqnuiihqxwscxna';
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: remitente,
+      pass: password,
+    },
+  });
+
+  const mensaje = {
+    from: remitente,
+    to: destinatario,
+    subject: asunto,
+    text: cuerpoMensaje,
+  };
+
+  try {
+    const info = await transporter.sendMail(mensaje);
+    console.log('Correo enviado a', destinatario, ':', info.response);
+  } catch (error) {
+    console.error('Error al enviar el correo a', destinatario, ':', error);
+  }
+}
+
+const ProveedorSchema = new mongoose.Schema(
+  {
+    fecha: Date,
+    id: { type: Number, unique: true, required: true, default: 0 },
+    idProveedor: String,
+    tipoProveedor: String,
+    denominacion: String,
+    rfc: String,
+    regimenCapital: String,
+    cp: Number,
+    vialidad: String,
+    exterior: String,
+    interior: String,
+    colonia: String,
+    localidad: String,
+    municipio: String,
+    entidad: String,
+    actividadesEconomicas: [
+      {
+        orden: String,
+        actividad: String,
+        porcentaje: String,
+        fechaInicio: String,
+        fechaFin: String,
+      },
+    ],
+    regimenes: [
+      {
+        descripcion: String,
+        fechaInicio: String,
+        fechaFin: String,
+      },
+    ],
+    productos: [
+      {
+        ID: String,
+        SKU: String,
+        nombre: String,
+        unidad: String,
+        precio: Number,
+      },
+    ],
+    correo: String,
+    nombre: String,
+    telefono: Number,
+    estatuscorreo: Number,
+  },
+  {
+    collection: 'proveedor',
+    versionKey: false,
+  }
+);
 
 const SolicitudCompraAlimentoSchema = new mongoose.Schema(
   {
@@ -48,6 +132,7 @@ const SolicitudCompraAlimentoSchema = new mongoose.Schema(
   }
 );
 
+const Proveedor = db.model('Proveedor', ProveedorSchema);
 const SolicitudCompraAlimento = db.model(
   'SolicitudCompraAlimento',
   SolicitudCompraAlimentoSchema
@@ -78,10 +163,54 @@ app.get('/getAllSolicitudCompraAlimento', async (req, res) => {
   }
 });
 
+app.get('/enviarCorreosProveedoresAlimento', async (req, res) => {
+  try {
+    const proveedores = await Proveedor.find(
+      { tipoProveedor: 'Alimento' },
+      { _id: 0, correo: 1 }
+    );
+
+    for (const proveedor of proveedores) {
+      const destinatarioCorreo = proveedor.correo;
+      await enviarCorreo(destinatarioCorreo, asuntoCorreo, mensajeCorreo);
+    }
+
+    res.json({ mensaje: 'Correos enviados exitosamente.' });
+  } catch (error) {
+    console.error(
+      'Error al obtener los correos de proveedores de alimentos o al enviar los correos: ',
+      error
+    );
+    res.status(500).send('Error al procesar la solicitud.');
+  }
+});
+
+app.get('/enviarCorreosProveedoresVientre', async (req, res) => {
+  try {
+    const proveedores = await Proveedor.find(
+      { tipoProveedor: 'Vientre' },
+      { _id: 0, correo: 1 }
+    );
+
+    for (const proveedor of proveedores) {
+      const destinatarioCorreo = proveedor.correo;
+      await enviarCorreo(destinatarioCorreo, asuntoCorreo, mensajeCorreo);
+    }
+
+    res.json({ mensaje: 'Correos enviados exitosamente.' });
+  } catch (error) {
+    console.error(
+      'Error al obtener los correos de proveedores de alimentos o al enviar los correos: ',
+      error
+    );
+    res.status(500).send('Error al procesar la solicitud.');
+  }
+});
+
 app.post('/addSolicitudCompraAlimento', async (req, res) => {
   try {
     const newAlimento = req.body;
-    let tipoDeLicitacion = "Alimento";
+    let tipoDeLicitacion = 'Alimento';
     const ultimaSolicitud = await SolicitudCompraAlimento.findOne({})
       .sort({ numeroSolicitud: -1 })
       .select('numeroSolicitud');

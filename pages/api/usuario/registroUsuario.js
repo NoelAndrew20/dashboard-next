@@ -18,7 +18,7 @@ mongoose
   })
   .catch((e) => console.log(e));
 
-const db = mongoose.connection.useDb('prototipoGranja');
+const db = mongoose.connection.useDb('C3_LaPurisima');
 db.on(
   'error',
   console.error.bind(console, 'Error al conectar a la base de datos:')
