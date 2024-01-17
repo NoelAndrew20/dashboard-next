@@ -372,21 +372,25 @@ export default function Home({ title, description, image }) {
                           : 'row-container-a mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
-                      <div className="flex">
-                        <Image
-                          src={'/images/icon/servicios-index.png'}
-                          width={30}
-                          height={30}
-                          loading="lazy"
-                        />
-                        <span className=" ml-2 font-bold flex items-center">
-                          Insumos
-                        </span>
-                      </div>
-                      <h1 className="text-right text-2xl">${item.Insumos}</h1>
-                      <div className="w-full flex">
-                        <div className="text-[#42FF00] justify-left">+0.25</div>
-                      </div>
+                      <Link href={'./Inseminaciones'}>
+                        <div className="flex">
+                          <Image
+                            src={'/images/icon/servicios-index.png'}
+                            width={30}
+                            height={30}
+                            loading="lazy"
+                          />
+                          <span className=" ml-2 font-bold flex items-center">
+                            Inseminaciones
+                          </span>
+                        </div>
+                        <h1 className="text-right text-2xl">${item.Insumos}</h1>
+                        <div className="w-full flex">
+                          <div className="text-[#42FF00] justify-left">
+                            +0.25
+                          </div>
+                        </div>
+                      </Link>
                     </div>
                     <div
                       className={`${
@@ -395,23 +399,25 @@ export default function Home({ title, description, image }) {
                           : 'row-container-a mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
-                      <div className="flex">
-                        <Image
-                          src={'/images/icon/mantenimiento-index.png'}
-                          width={30}
-                          height={30}
-                          loading="lazy"
-                        />
-                        <span className=" ml-2 font-bold flex items-center">
-                          Mantenimiento
-                        </span>
-                      </div>
-                      <h1 className="text-right text-2xl">
-                        ${item.Mantenimiento}
-                      </h1>
-                      <div className="w-full flex">
-                        <div className="text-[#F46D22]">-0.25%</div>
-                      </div>
+                      <Link href={'./Montas'}>
+                        <div className="flex">
+                          <Image
+                            src={'/images/icon/mantenimiento-index.png'}
+                            width={30}
+                            height={30}
+                            loading="lazy"
+                          />
+                          <span className=" ml-2 font-bold flex items-center">
+                            Montas
+                          </span>
+                        </div>
+                        <h1 className="text-right text-2xl">
+                          ${item.Mantenimiento}
+                        </h1>
+                        <div className="w-full flex">
+                          <div className="text-[#F46D22]">-0.25%</div>
+                        </div>
+                      </Link>
                     </div>
                     <div
                       className={`${
@@ -420,22 +426,26 @@ export default function Home({ title, description, image }) {
                           : 'row-container-a mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
-                      <Link href={"./Inventario"}>
-                      <div className="flex">
-                        <Image
-                          src={'/images/icon/insumos-index.png'}
-                          width={30}
-                          height={30}
-                          loading="lazy"
-                        />
-                        <span className=" ml-2 font-bold flex items-center">
-                          Inventario
-                        </span>
-                      </div>
-                      <h1 className="text-right text-2xl">${item.Servicios}</h1>
-                      <div className="w-full flex">
-                        <div className="text-[#42FF00] justify-left">+0.25</div>
-                      </div>
+                      <Link href={'./Inventario'}>
+                        <div className="flex">
+                          <Image
+                            src={'/images/icon/insumos-index.png'}
+                            width={30}
+                            height={30}
+                            loading="lazy"
+                          />
+                          <span className=" ml-2 font-bold flex items-center">
+                            Inventario
+                          </span>
+                        </div>
+                        <h1 className="text-right text-2xl">
+                          ${item.Servicios}
+                        </h1>
+                        <div className="w-full flex">
+                          <div className="text-[#42FF00] justify-left">
+                            +0.25
+                          </div>
+                        </div>
                       </Link>
                     </div>
                   </div>

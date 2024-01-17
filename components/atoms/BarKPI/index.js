@@ -1,9 +1,25 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
-ChartJS.register(ArcElement, Tooltip, Legend);
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
-const GraphInventario = ({ data }) => {
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+const BarKPI = ({ data }) => {
   const chartData = {
     labels: data.map(item => item._id),
     datasets: [
@@ -32,10 +48,9 @@ const GraphInventario = ({ data }) => {
 
   return (
     <div>
-      <h2 className="mt-2 text-center font-bold">Cantidad de inventario de cerdos por zona</h2>
-      <Pie data={chartData} />
+      <Bar data={chartData} />
     </div>
   );
 };
 
-export default GraphInventario;
+export default BarKPI;
