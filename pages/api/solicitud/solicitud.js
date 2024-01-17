@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const config = require('../../../config.json');
 const mongoUrl = config.mongodesarrollo;
+const nodemailer = require('nodemailer');
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -24,6 +25,105 @@ db.on(
 db.once('open', () => {
   console.log('Conexión exitosa a la base de datos.');
 });
+
+const asuntoCorreo = 'Nueva licitacion';
+const mensajeCorreo = 'Hay una nueva licitacion disponible para ti.';
+
+async function enviarCorreosProveedoresVientre() {
+  try {
+    const proveedores = await Proveedor.find({ tipoProveedor: 'Vientre' }, { _id: 0, correo: 1 });
+
+    for (const proveedor of proveedores) {
+      const destinatarioCorreo = proveedor.correo;
+      await enviarCorreo(destinatarioCorreo, asuntoCorreo, mensajeCorreo);
+    }
+
+    console.log('Correos enviados exitosamente a proveedores de vientres.');
+  } catch (error) {
+    console.error('Error al obtener los correos de proveedores de vientres o al enviar los correos: ', error);
+    throw new Error('Error al procesar la solicitud de correos a proveedores de vientres.');
+  }
+};
+
+async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
+  const remitente = 'proyectoConstanza01@gmail.com';
+  const password = 'ndqnuiihqxwscxna';
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: remitente,
+      pass: password,
+    },
+  });
+
+  const mensaje = {
+    from: remitente,
+    to: destinatario,
+    subject: asunto,
+    text: cuerpoMensaje,
+  };
+
+  try {
+    const info = await transporter.sendMail(mensaje);
+    console.log('Correo enviado a', destinatario, ':', info.response);
+  } catch (error) {
+    console.error('Error al enviar el correo a', destinatario, ':', error);
+  }
+}
+
+const ProveedorSchema = new mongoose.Schema(
+  {
+    fecha: Date,
+    id: { type: Number, unique: true, required: true, default: 0 },
+    idProveedor: String,
+    tipoProveedor: String,
+    denominacion: String,
+    rfc: String,
+    regimenCapital: String,
+    cp: Number,
+    vialidad: String,
+    exterior: String,
+    interior: String,
+    colonia: String,
+    localidad: String,
+    municipio: String,
+    entidad: String,
+    actividadesEconomicas: [
+      {
+        orden: String,
+        actividad: String,
+        porcentaje: String,
+        fechaInicio: String,
+        fechaFin: String,
+      },
+    ],
+    regimenes: [
+      {
+        descripcion: String,
+        fechaInicio: String,
+        fechaFin: String,
+      },
+    ],
+    productos: [
+      {
+        ID: String,
+        SKU: String,
+        nombre: String,
+        unidad: String,
+        precio: Number,
+      },
+    ],
+    correo: String,
+    nombre: String,
+    telefono: Number,
+    estatuscorreo: Number,
+  },
+  {
+    collection: 'proveedor',
+    versionKey: false,
+  }
+);
 
 const SolicitudCompraSchema = new mongoose.Schema(
   {
@@ -48,6 +148,7 @@ const SolicitudCompraSchema = new mongoose.Schema(
 );
 
 const SolicitudCompra = db.model('SolicitudCompra', SolicitudCompraSchema);
+const Proveedor = db.model('Proveedor', ProveedorSchema);
 
 app.get('/getAllSolicitudCompra', async (req, res) => {
   try {
@@ -67,13 +168,13 @@ app.get('/getAllSolicitudCompra', async (req, res) => {
     res.status(200).json(solicitudesCompra);
   } catch (error) {
     console.error(
-      'Error al obtener las solicitudes de compra de alimentos:',
+      'Error al obtener las solicitudes de compra de vientre:',
       error
     );
     res
       .status(500)
       .json({
-        mensaje: 'Error al obtener las solicitudes de compra de alimentos',
+        mensaje: 'Error al obtener las solicitudes de compra de vientre',
       });
   }
 });
@@ -81,7 +182,6 @@ app.get('/getAllSolicitudCompra', async (req, res) => {
 app.post('/addSolicitudCompraCerdo', async (req, res) => {
   try {
     const newAlimento = req.body;
-    console.log(newAlimento);
     let tipoDeLicitacion = "Vientres";
     const ultimaSolicitud = await SolicitudCompra.findOne({})
       .sort({ numeroSolicitud: -1 })
@@ -106,6 +206,8 @@ app.post('/addSolicitudCompraCerdo', async (req, res) => {
     const nuevaSolicitudCompra = new SolicitudCompra(solicitudCompra);
 
     await nuevaSolicitudCompra.save();
+
+    await enviarCorreosProveedoresVientre();
 
     res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
   } catch (error) {
