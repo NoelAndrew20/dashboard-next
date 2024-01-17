@@ -30,6 +30,22 @@ db.once('open', () => {
 const asuntoCorreo = 'Nueva licitacion';
 const mensajeCorreo = 'Hay una nueva licitacion disponible para ti.';
 
+async function enviarCorreosProveedoresAlimento() {
+  try {
+    const proveedores = await Proveedor.find({ tipoProveedor: 'Alimento' }, { _id: 0, correo: 1 });
+
+    for (const proveedor of proveedores) {
+      const destinatarioCorreo = proveedor.correo;
+      await enviarCorreo(destinatarioCorreo, asuntoCorreo, mensajeCorreo);
+    }
+
+    console.log('Correos enviados exitosamente a proveedores de alimentos.');
+  } catch (error) {
+    console.error('Error al obtener los correos de proveedores de alimentos o al enviar los correos: ', error);
+    throw new Error('Error al procesar la solicitud de correos a proveedores de alimentos.');
+  }
+};
+
 async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
   const remitente = 'proyectoConstanza01@gmail.com';
   const password = 'ndqnuiihqxwscxna';
@@ -163,7 +179,7 @@ app.get('/getAllSolicitudCompraAlimento', async (req, res) => {
   }
 });
 
-app.get('/enviarCorreosProveedoresAlimento', async (req, res) => {
+/*app.get('/enviarCorreosProveedoresAlimento', async (req, res) => {
   try {
     const proveedores = await Proveedor.find(
       { tipoProveedor: 'Alimento' },
@@ -205,7 +221,7 @@ app.get('/enviarCorreosProveedoresVientre', async (req, res) => {
     );
     res.status(500).send('Error al procesar la solicitud.');
   }
-});
+});*/
 
 app.post('/addSolicitudCompraAlimento', async (req, res) => {
   try {
@@ -235,12 +251,16 @@ app.post('/addSolicitudCompraAlimento', async (req, res) => {
 
     await nuevaSolicitudCompra.save();
 
+    await enviarCorreosProveedoresAlimento();
+
     res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
   } catch (error) {
     console.error('Error al guardar la solicitud:', error);
     res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
   }
 });
+
+
 
 app.put('/editLicitacion/:nombreAlimento/:cantidad', async (req, res) => {
   try {
