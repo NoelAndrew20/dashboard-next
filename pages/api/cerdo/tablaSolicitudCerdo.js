@@ -15,7 +15,7 @@ mongoose
     console.log('Connected to database');
   })
   .catch((e) => console.log(e));
-const db = mongoose.connection.useDb('prototipoGranjaChilac');
+const db = mongoose.connection.useDb('C3_LaPurisima');
 db.on(
   'error',
   console.error.bind(console, 'Error al conectar a la base de datos:')

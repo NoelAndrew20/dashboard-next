@@ -265,7 +265,7 @@ const ProveedorForm = () => {
               {/*<option value="MateriasPrimas">Materias Primas</option>
                             <option value="Medicamento">Medicamento</option>
                             <option value="Vacunas">Vacunas</option>*/}
-              <option value="Vientres">Vientres</option>
+              <option value="Vientres">Vientre</option>
               <option value="Otro1">Otro 1</option>
               <option value="Otro2">Otro 2</option>
             </select>
