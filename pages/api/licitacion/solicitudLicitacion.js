@@ -1,4 +1,4 @@
-//CRUD Licitacion de Alimentos
+//CRUD Licitacion de Alimentos guarda modal de solicitudes de licitacion
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -41,7 +41,7 @@ const SolicitudLicitacionSchema = new mongoose.Schema(
         metodo: String,
         nombre: String,
         pago: String,
-        periodo: Date,
+        fechaEntrega: String,
         precio: Number,
         estatus: Number,
       },
@@ -104,13 +104,14 @@ app.post('/addSolicitudLicitacion', async (req, res) => {
     if (solicitudesCompra.length > 0) {
       return res.status(400).json({ mensaje: 'Licitación ya creada' });
     }
-
+    const primerCaracter = newAlimento.usuario[0];
+    const segundoCaracter = newAlimento.usuario[1];
     let tipoProveedor;
-    if (newAlimento.primerCaracter === 'A') {
+    if (primerCaracter === 'A' && segundoCaracter === 'l') {
       tipoProveedor = 'Alimento';
-    } else if (newAlimento.primerCaracter === 'M') {
+    } else if (primerCaracter === 'M' && segundoCaracter === 'e') {
       tipoProveedor = 'Medicamento';
-    } else if (newAlimento.primerCaracter === 'V') {
+    } else if (primerCaracter === 'V' && segundoCaracter === 'i') {
       tipoProveedor = 'Vientres';
     } else {
       tipoProveedor = 'Tipo Desconocido';

@@ -454,7 +454,7 @@ export default function Home({ title, description, image }) {
             ))}
             {data && (
               <>
-                <div className="cover-text position mt-5 p-5">
+                {/*<div className="cover-text position mt-5 p-5">
                   <div
                     className={`${
                       isDarkMode ? 'row-container-d' : 'row-container'
@@ -468,7 +468,7 @@ export default function Home({ title, description, image }) {
                   <div>
                     <TableIndex1 data={data} isDarkMode={isDarkMode} />
                   </div>
-                </div>
+                </div>*/}
                 <div className="flex justify-center">
                   <div
                     className={`${
@@ -486,12 +486,12 @@ export default function Home({ title, description, image }) {
                 </div>
               </>
             )}
-            <div className="h-chart">
+            {/*<div className="h-chart">
               <h1 className="text-lg font-bold">
                 Predicción - Total de alimentos
               </h1>
               <HistorialChart />
-            </div>
+            </div>*/}
           </main>
         </div>
       </motion.div>
