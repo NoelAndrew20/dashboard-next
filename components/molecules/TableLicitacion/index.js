@@ -15,9 +15,11 @@ const TableLicitacion = ({ data, setData }) => {
   const [expandedRow, setExpandedRow] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingIndex, setEditingIndex] = useState(null);
+  const [fechaActual, setFechaActual] = useState(getFechaActual());
   const [editedValues, setEditedValues] = useState({
     nombre: '',
     cantidad: '',
+    fechaEntrega: '',
   });
   const [dataArray, setDataArray] = useState();
   const [indexGuide, setIndexGuide] = useState();
@@ -48,15 +50,18 @@ const TableLicitacion = ({ data, setData }) => {
   const handleSave = () => {
     const nombre = document.querySelector('input[name="nombre"]').value;
     const cantidad = document.querySelector('input[name="cantidad"]').value;
+    const fechaEntrega = document.querySelector(
+      'input[name="fechaEntrega"]'
+    ).value;
     const fecha = document.querySelector('input[name="fecha"]').value;
     const metodo = document.querySelector('select[name="metodo"]').value;
     const lugar = document.querySelector('input[name="lugar"]').value;
-    const periodo = document.querySelector('input[name="periodo"]').value;
     const pago = document.querySelector('select[name="pago"]').value;
     const precio = document.querySelector('input[name="precio"]').value;
     const newData = [...data];
     const elementToModify = newData[indexGuide];
     const fechaSolicitud = elementToModify.fecha;
+    //const fechaEntrega = elementToModify.fechaEntrega;
     const nombreSolicitante = elementToModify.nombreSolicitante;
     const numeroSolicitud = elementToModify.numeroSolicitud;
     const estatus = 0;
@@ -76,10 +81,10 @@ const TableLicitacion = ({ data, setData }) => {
       numeroSolicitud,
       nombre,
       cantidad,
+      fechaEntrega,
       fecha,
       metodo,
       lugar,
-      periodo,
       pago,
       precio,
       estatus,
@@ -101,6 +106,14 @@ const TableLicitacion = ({ data, setData }) => {
     alert('Se ha guardado exitosamente.');
     setShowEditModal(false);
   };
+
+  function getFechaActual() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 
   return (
     <>
@@ -191,7 +204,7 @@ const TableLicitacion = ({ data, setData }) => {
             <div>
               <div className="flex">
                 <div className="modal-item w-1/3">
-                  <p>Fecha:</p>
+                  <p>Nombre:</p>
                   <input
                     className={
                       isDarkMode
@@ -228,7 +241,8 @@ const TableLicitacion = ({ data, setData }) => {
                     }
                     type="date"
                     name="fecha"
-                    onChange={(e) => e.target.value}
+                    value={fechaActual}
+                    disabled
                   />
                 </div>
               </div>
@@ -266,7 +280,7 @@ const TableLicitacion = ({ data, setData }) => {
                   />
                 </div>
                 <div className="modal-item w-1/3">
-                  <p>Periodo de suministro:</p>
+                  <p>Periodo límite de suministro:</p>
                   <input
                     className={
                       isDarkMode
@@ -274,8 +288,9 @@ const TableLicitacion = ({ data, setData }) => {
                         : 'edit-input-container'
                     }
                     type="date"
-                    name="periodo"
-                    onChange={(e) => e.target.value}
+                    name="fechaEntrega"
+                    value={editedValues.fechaEntrega || ''}
+                    disabled
                   />
                 </div>
               </div>
@@ -294,8 +309,8 @@ const TableLicitacion = ({ data, setData }) => {
                     <option value="" defaultValue>
                       Selecciona...
                     </option>
-                    <option value="Credito">Crédito</option>
-                    <option value="Diferido">Diferido</option>
+                    <option value="PUE">PUE</option>
+                    <option value="PPD">PPD</option>
                   </select>
                 </div>
                 <div className="modal-item w-1/3">

@@ -36,9 +36,9 @@ module.exports = {
       cwd: 'pages/api/alimento', // Ruta al directorio de la segunda API
     },
     {
-      name: 'alimento:3083',
-      script: 'licitacionAlimento.js',
-      cwd: 'pages/api/alimento', // Ruta al directorio de la segunda API
+      name: 'licitacion:3083',
+      script: 'solicitudlicitacion.js',
+      cwd: 'pages/api/licitacion', // Ruta al directorio de la segunda API
     },
     {
       name: 'cerdo:3085',
