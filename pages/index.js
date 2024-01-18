@@ -25,6 +25,7 @@ import Notification from '@/components/molecules/AlertaNotificacion';
 import { data } from 'autoprefixer';
 import ChatBtn from '@/components/atoms/ChatBtn';
 import Link from 'next/link';
+import Primerizas from './KPIS/Primerizas';
 const axios = require('axios');
 const welcomeMessages = ['¡Bienvenid@!', '¡Hola!', '¡Buen dia!'];
 
@@ -322,6 +323,7 @@ export default function Home({ title, description, image }) {
                           : 'row-container-a mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
+                      <Link href={"./KPIS/Vacunas"}>
                       <div className="flex">
                         <Image
                           src={'/images/icon/medicamentos-index.png'}
@@ -337,6 +339,7 @@ export default function Home({ title, description, image }) {
                       <div className="w-full flex">
                         <div className="text-[#F46D22]">-0.25%</div>
                       </div>
+                      </Link>
                     </div>
                     <div
                       className={`${
@@ -372,7 +375,7 @@ export default function Home({ title, description, image }) {
                           : 'row-container-a mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
-                      <Link href={'./Inseminaciones'}>
+                      <Link href={'./KPIS/Inseminaciones'}>
                         <div className="flex">
                           <Image
                             src={'/images/icon/servicios-index.png'}
@@ -399,7 +402,7 @@ export default function Home({ title, description, image }) {
                           : 'row-container-a mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
-                      <Link href={'./Montas'}>
+                      <Link href={'./KPIS/Montas'}>
                         <div className="flex">
                           <Image
                             src={'/images/icon/mantenimiento-index.png'}
@@ -426,7 +429,7 @@ export default function Home({ title, description, image }) {
                           : 'row-container-a mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
-                      <Link href={'./Inventario'}>
+                      <Link href={'./KPIS/Inventario'}>
                         <div className="flex">
                           <Image
                             src={'/images/icon/insumos-index.png'}
@@ -450,48 +453,90 @@ export default function Home({ title, description, image }) {
                     </div>
                   </div>
                 </div>
-              </>
-            ))}
-            {data && (
-              <>
-                {/*<div className="cover-text position mt-5 p-5">
-                  <div
-                    className={`${
-                      isDarkMode ? 'row-container-d' : 'row-container'
-                    } w-1/3 flex justify-center text-center`}
-                  >
-                    <h1>Predicción - Total de cerdos en Cuarentena</h1>
-                    <div className="w-full flex justify-center">
-                      <PieChart dataArray={data} />
-                    </div>
-                  </div>
-                  <div>
-                    <TableIndex1 data={data} isDarkMode={isDarkMode} />
-                  </div>
-                </div>*/}
-                <div className="flex justify-center">
+                <div className="cover-text wrapper position mt-5 p-5">
                   <div
                     className={`${
                       isDarkMode
                         ? 'row-container-d mt-10'
-                        : 'row-container mt-10'
-                    } mt-5 mb-5 w-1/2 flex justify-center text-center`}
+                        : 'row-container-g mt-10'
+                    } mt-20 pb-50 w-1/3 flex`}
                   >
-                    <h1>Personal</h1>
-                    <div className="p-2">
-                      <TableIndex isDarkMode={isDarkMode} data={data} />
-                      <p>Total: {data[0]?.SueldosySalarios}</p>
+                    <Link href={"./KPIS/Primerizas"}>
+                    <div className="flex">
+                      <Image
+                        src={'/images/icon/medicamentos-index.png'}
+                        width={30}
+                        height={30}
+                        loading="lazy"
+                      />
+                      <span className=" ml-2 font-bold flex items-center">
+                        Primerizas
+                      </span>
                     </div>
+                    <h1 className="text-right text-2xl">{item.Vacunas}</h1>
+                    <div className="w-full flex">
+                      <div className="text-[#F46D22]">-0.25%</div>
+                    </div>
+                    </Link>
                   </div>
+                  <div
+                      className={`${
+                        isDarkMode
+                          ? 'row-container-d mt-10'
+                          : 'row-container-a mt-10'
+                      } mt-20 pb-50 w-1/3 flex`}
+                    >
+                      <Link href={'./KPIS/Inseminaciones'}>
+                        <div className="flex">
+                          <Image
+                            src={'/images/icon/servicios-index.png'}
+                            width={30}
+                            height={30}
+                            loading="lazy"
+                          />
+                          <span className=" ml-2 font-bold flex items-center">
+                            Inseminaciones
+                          </span>
+                        </div>
+                        <h1 className="text-right text-2xl">${item.Insumos}</h1>
+                        <div className="w-full flex">
+                          <div className="text-[#42FF00] justify-left">
+                            +0.25
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                    <div
+                      className={`${
+                        isDarkMode
+                          ? 'row-container-d mt-10'
+                          : 'row-container-a mt-10'
+                      } mt-20 pb-50 w-1/3 flex`}
+                    >
+                      <Link href={'./KPIS/Inseminaciones'}>
+                        <div className="flex">
+                          <Image
+                            src={'/images/icon/servicios-index.png'}
+                            width={30}
+                            height={30}
+                            loading="lazy"
+                          />
+                          <span className=" ml-2 font-bold flex items-center">
+                            Inseminaciones
+                          </span>
+                        </div>
+                        <h1 className="text-right text-2xl">${item.Insumos}</h1>
+                        <div className="w-full flex">
+                          <div className="text-[#42FF00] justify-left">
+                            +0.25
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
                 </div>
               </>
-            )}
-            {/*<div className="h-chart">
-              <h1 className="text-lg font-bold">
-                Predicción - Total de alimentos
-              </h1>
-              <HistorialChart />
-            </div>*/}
+            ))}
+            
           </main>
         </div>
       </motion.div>

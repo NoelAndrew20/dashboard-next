@@ -73,8 +73,6 @@ input:focus {
 .cover-text {
   background-color: rgba(13, 61, 100);
   align-content: center;
-  flex-wrap: wrap;
-  justify-content: space-around;
   align-items: center;
 }
 
@@ -587,6 +585,20 @@ th {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
   padding: 2vh;
   margin-right: 20px;
+}
+.row-container-g {
+  justify-content: space-around;
+  flex-direction: column;
+  display: flex;
+  border-radius: var(--16, 16px);
+  background-color: #F1F4F5;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  padding: 2vh;
+  margin-right: 20px;
+}
+.row-container-g:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 .row-container-a:hover {
   transform: scale(1.05);
