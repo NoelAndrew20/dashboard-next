@@ -1,31 +1,16 @@
 import Navigation from '@/components/molecules/Navigation';
-import PieChart from '@/components/atoms/PieChart';
-import BarChart from '@/components/atoms/BarChart';
-import BarChart1 from '@/components/atoms/BarChart1';
 import StaticMeta from '@/components/atoms/StaticMeta';
-import TableIndex from '@/components/atoms/TableIndex';
-import TableIndex1 from '@/components/atoms/TableGeneralCerdos';
-import jsonData from '../public/api/output.json';
-import jsonData1 from '../public/api/config.json';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import TableIndexZona from '@/components/atoms/TableIndexZona';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Cookies from 'js-cookie';
-import { motion, AnimetePresence, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import io from 'socket.io-client';
-import BarGranja from '@/components/atoms/BarGranja';
-import HistorialChart from '@/components/atoms/HistorialChart';
-import BarGestación2 from '@/components/atoms/BarGestación2';
-import BarZen from '@/components/atoms/BarZen';
-import Footer from '@/components/atoms/Footer';
 import Notification from '@/components/molecules/AlertaNotificacion';
-import { data } from 'autoprefixer';
 import ChatBtn from '@/components/atoms/ChatBtn';
 import Link from 'next/link';
-import Primerizas from './KPIS/Primerizas';
 const axios = require('axios');
 const welcomeMessages = ['¡Bienvenid@!', '¡Hola!', '¡Buen dia!'];
 
@@ -34,7 +19,6 @@ export default function Home({ title, description, image }) {
   const [name, setName] = useState('');
   const usuariocookie = Cookies.get('userData');
   const userinfo = usuariocookie ? JSON.parse(usuariocookie) : null;
-  const [welcomeIndex, setWelcomeIndex] = useState(0);
   const [notificationData, setNotificationData] = useState(null);
   const [audio] = useState(new Audio('./audio/pig-oink.wav'));
   const [data, setData] = useState([
@@ -160,15 +144,6 @@ export default function Home({ title, description, image }) {
     };
   }, [audio]);
 
-  useEffect(() => {
-    // Usar un temporizador para cambiar el mensaje cada 3 segundos
-    const intervalId = setInterval(() => {
-      setWelcomeIndex((prevIndex) => (prevIndex + 1) % welcomeMessages.length);
-    }, 3000);
-
-    // Limpiar el temporizador cuando el componente se desmonte
-    return () => clearInterval(intervalId);
-  }, []);
 
   useEffect(() => {
     const userDataString = localStorage.getItem('userData');
@@ -483,10 +458,10 @@ export default function Home({ title, description, image }) {
                       className={`${
                         isDarkMode
                           ? 'row-container-d mt-10'
-                          : 'row-container-a mt-10'
+                          : 'row-container-g mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
-                      <Link href={'./KPIS/Inseminaciones'}>
+                      <Link href={'./KPIS/ConsumoAlimentos'}>
                         <div className="flex">
                           <Image
                             src={'/images/icon/servicios-index.png'}
@@ -495,7 +470,7 @@ export default function Home({ title, description, image }) {
                             loading="lazy"
                           />
                           <span className=" ml-2 font-bold flex items-center">
-                            Inseminaciones
+                            Pronóstico de consumo de alimentos
                           </span>
                         </div>
                         <h1 className="text-right text-2xl">${item.Insumos}</h1>
