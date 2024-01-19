@@ -42,6 +42,13 @@ const RFIDSchema = new mongoose.Schema(
     zona: String,
     nave: String,
     status: String,
+    causaMuerte: [
+      {
+        causa: String,
+        responsable: String,
+        fecha: Date,
+      },
+    ],
     historialMedico: [String],
     usuario: String,
   },
@@ -60,6 +67,45 @@ app.get('/getAllRFID', async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send({ status: 'error', message: 'Internal server error' });
+  }
+});
+
+app.get('/muertes', async (req, res) => {
+  try {
+    const rfidData = await RFID.find();
+
+    const groupedData = rfidData.reduce((result, item) => {
+      const key = `${item.granja}_${item.nave}_${item.zona}`;
+      if (!result[key]) {
+        result[key] = {
+          granja: item.granja,
+          nave: item.nave,
+          zona: item.zona,
+          muertos: 0,
+          detalles: [],
+        };
+      }
+
+      if (item.status === 'Muerto' && item.causaMuerte.length > 0) {
+        result[key].muertos += 1;
+
+        item.causaMuerte.forEach((causa) => {
+          result[key].detalles.push({
+            rfid: item.rfid,
+            causa: causa.causa,
+            fecha: causa.fecha,
+          });
+        });
+      }
+
+      return result;
+    }, {});
+
+    const groupedArray = Object.values(groupedData);
+    res.json(groupedArray);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
