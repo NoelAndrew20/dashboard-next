@@ -30,6 +30,9 @@ const Primerizas = ({ title, description, image }) => {
         <h2 className="text-xl mt-5 mb-5">Primerizas de cerdos existente</h2>
         <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">
+          <h2 className="mt-2 text-center font-bold">
+              Cantidad de cerdos primerizos
+            </h2>
             <BarKPI data={data} setData={setData} />
           </div>
           <div>

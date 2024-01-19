@@ -6,7 +6,6 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
@@ -16,15 +15,14 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
 );
 
-const BarKPI = ({ data }) => {
+const BarConsumo = ({ data }) => {
   const chartData = {
-    labels: data.map(item => item._id),
+    labels: data.map(item => item.nombreAlimento),
     datasets: [
       {
-        data: data.map(item => item.count),
+        data: data.map(item => item.cantidad),
         backgroundColor: [
             'rgba(235,148,12, 0.2)',
             'rgba(22, 104, 246, 0.2)',
@@ -42,8 +40,9 @@ const BarKPI = ({ data }) => {
             'rgba(255, 159, 64, 1)',
           ],
           borderWidth: 1,
-      }
-    ]
+          
+      },
+    ],
   };
   const chartOptions = {
     plugins: {
@@ -53,11 +52,12 @@ const BarKPI = ({ data }) => {
     },
   };
 
+
   return (
     <div>
-      <Bar data={chartData} options={chartOptions} />
+      <Bar data={chartData} options={chartOptions}/>
     </div>
   );
 };
 
-export default BarKPI;
+export default BarConsumo;
