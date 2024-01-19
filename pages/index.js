@@ -380,7 +380,7 @@ export default function Home({ title, description, image }) {
                       <Link href={'./KPIS/Montas'}>
                         <div className="flex">
                           <Image
-                            src={'/images/icon/mantenimiento-index.png'}
+                            src={'/images/icon/montas-index.png'}
                             width={30}
                             height={30}
                             loading="lazy"
@@ -407,7 +407,7 @@ export default function Home({ title, description, image }) {
                       <Link href={'./KPIS/Inventario'}>
                         <div className="flex">
                           <Image
-                            src={'/images/icon/insumos-index.png'}
+                            src={'/images/icon/pig-index.png'}
                             width={30}
                             height={30}
                             loading="lazy"
@@ -439,7 +439,7 @@ export default function Home({ title, description, image }) {
                     <Link href={"./KPIS/Primerizas"}>
                     <div className="flex">
                       <Image
-                        src={'/images/icon/medicamentos-index.png'}
+                        src={'/images/icon/primerizas-index.png'}
                         width={30}
                         height={30}
                         loading="lazy"
@@ -464,7 +464,7 @@ export default function Home({ title, description, image }) {
                       <Link href={'./KPIS/ConsumoAlimentos'}>
                         <div className="flex">
                           <Image
-                            src={'/images/icon/servicios-index.png'}
+                            src={'/images/icon/alimentos-cerdo-index.png'}
                             width={30}
                             height={30}
                             loading="lazy"
