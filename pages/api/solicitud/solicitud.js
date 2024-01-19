@@ -4,6 +4,8 @@ const cors = require('cors');
 const config = require('../../../config.json');
 const mongoUrl = config.mongodesarrollo;
 const nodemailer = require('nodemailer');
+//const fs = require('fs');
+//const path = require('path');
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -31,7 +33,10 @@ const mensajeCorreo = 'Hay una nueva licitacion disponible para ti.';
 
 async function enviarCorreosProveedoresVientre() {
   try {
-    const proveedores = await Proveedor.find({ tipoProveedor: 'Vientre' }, { _id: 0, correo: 1 });
+    const proveedores = await Proveedor.find(
+      { tipoProveedor: 'Vientre' },
+      { _id: 0, correo: 1 }
+    );
 
     for (const proveedor of proveedores) {
       const destinatarioCorreo = proveedor.correo;
@@ -40,10 +45,15 @@ async function enviarCorreosProveedoresVientre() {
 
     console.log('Correos enviados exitosamente a proveedores de vientres.');
   } catch (error) {
-    console.error('Error al obtener los correos de proveedores de vientres o al enviar los correos: ', error);
-    throw new Error('Error al procesar la solicitud de correos a proveedores de vientres.');
+    console.error(
+      'Error al obtener los correos de proveedores de vientres o al enviar los correos: ',
+      error
+    );
+    throw new Error(
+      'Error al procesar la solicitud de correos a proveedores de vientres.'
+    );
   }
-};
+}
 
 async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
   const remitente = 'proyectoConstanza01@gmail.com';
@@ -57,11 +67,21 @@ async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
     },
   });
 
+  //const firmaImagen = fs.readFileSync(path.join(__dirname, '/ConstanzaCorreo.jpg'), 'base64');
+  //<img src="data:image/jpg;base64,${firmaImagen}" alt="Firma">
+  const firmaImagenURL =
+    'https://images.unsplash.com/photo-1705179910388-2e27559c3f39?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+  const firmaHTML = `
+  <p>Atentamente: </p>
+  <img src="${firmaImagenURL}" alt="Firma">
+`;
+
   const mensaje = {
     from: remitente,
     to: destinatario,
     subject: asunto,
-    text: cuerpoMensaje,
+    //text: cuerpoMensaje,
+    html: `${cuerpoMensaje}<br><br>${firmaHTML}`,
   };
 
   try {
@@ -158,12 +178,10 @@ app.get('/getAllSolicitudCompra', async (req, res) => {
       fecha: { $gte: unaSemanaAtras },
     });
     if (solicitudesCompra.length === 0) {
-      return res
-        .status(404)
-        .json({
-          mensaje:
-            'No se encontraron solicitudes de compra de alimentos en la última semana',
-        });
+      return res.status(404).json({
+        mensaje:
+          'No se encontraron solicitudes de compra de alimentos en la última semana',
+      });
     }
     res.status(200).json(solicitudesCompra);
   } catch (error) {
@@ -171,18 +189,16 @@ app.get('/getAllSolicitudCompra', async (req, res) => {
       'Error al obtener las solicitudes de compra de vientre:',
       error
     );
-    res
-      .status(500)
-      .json({
-        mensaje: 'Error al obtener las solicitudes de compra de vientre',
-      });
+    res.status(500).json({
+      mensaje: 'Error al obtener las solicitudes de compra de vientre',
+    });
   }
 });
 
 app.post('/addSolicitudCompraCerdo', async (req, res) => {
   try {
     const newAlimento = req.body;
-    let tipoDeLicitacion = "Vientres";
+    let tipoDeLicitacion = 'Vientres';
     const ultimaSolicitud = await SolicitudCompra.findOne({})
       .sort({ numeroSolicitud: -1 })
       .select('numeroSolicitud');
@@ -237,18 +253,14 @@ app.put('/editLicitacion/:nombreAlimento/:cantidad', async (req, res) => {
         { $set: { 'solicitud.$.estatus': updateData.estatus } },
         { new: true }
       );
-      res
-        .status(200)
-        .json({
-          message: 'Estado actualizado con éxito',
-          data: updatedLicitacion,
-        });
+      res.status(200).json({
+        message: 'Estado actualizado con éxito',
+        data: updatedLicitacion,
+      });
     } else {
-      res
-        .status(400)
-        .json({
-          message: 'No se puede actualizar una solicitud con estatus 1',
-        });
+      res.status(400).json({
+        message: 'No se puede actualizar una solicitud con estatus 1',
+      });
     }
   } catch (error) {
     console.error('Error al actualizar el estado:', error);

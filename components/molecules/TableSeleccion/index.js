@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 
@@ -22,6 +23,10 @@ const TableSeleccion = ({ data, setData }) => {
       )
     : data;
   const displayDataFinal = displayData?.slice(startIndex, endIndex);
+
+  const handleRowClick = (numeroSolicitud) => {
+    router.push(`/Compras`);
+  };
 
   useEffect(() => {
     setCurrentPage(1);
@@ -82,7 +87,11 @@ const TableSeleccion = ({ data, setData }) => {
           </thead>
           <tbody>
             {displayDataFinal?.map((item, index) => (
-              <tr className="table-row" key={index}>
+              <tr
+                className="table-row"
+                key={index}
+                onClick={() => handleRowClick(item.numeroSolicitud)}
+              >
                 <td>{item.numeroSolicitud}</td>
                 <td>{item.username}</td>
                 <td>

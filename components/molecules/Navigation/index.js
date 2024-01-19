@@ -340,7 +340,7 @@ const Navigation = () => {
                     alt="graph"
                     className="mr-2"
                   />
-                  Menú de alimentos
+                  Solicitud de alimentos
                 </div>
               </Link>
             )}

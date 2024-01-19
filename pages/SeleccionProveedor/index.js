@@ -13,6 +13,7 @@ const SeleccionProveedor = ({ title, description, image }) => {
   const router = useRouter();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [username, setUsername] = useState();
   const [data, setData] = useState([
     {
       numeroSolicitud: 'lorem',
@@ -42,10 +43,7 @@ const SeleccionProveedor = ({ title, description, image }) => {
         }
 
         const decodedToken = jwt.decode(token);
-        const usuario = decodedToken.usuario;
-        const nombre = decodedToken.nombre;
-        const proveedor = decodedToken.proveedor;
-
+        let usuario = decodedToken.usuario;
         setUsername(usuario);
         setTokenVerified(true);
       } catch (error) {

@@ -12,34 +12,37 @@ const axios = require('axios');
 const RFID = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [total, setTotal] = useState([]);
+  const [muertes, setMuertos] = useState([]);
   const [diferenciaDias, setDiferenciaDias] = useState([]);
-  const [data, setData] = useState([{
-    fechaPreBautizo: "07-12-2023 13:57:03",
-    lote: "mx1",
-    rfid: "71DF8BBE",
-    tipo: "F1",
-    peso: 85,
-    ciclo: [],
-    cicloFallido: [],
-    fechaIngresoGranja: null,
-    granja: "La Purisima",
-    fechaNaveEntrada: "07-12-2023 13:57:03",
-    fechaNaveSalida: "07-12-2023 14:44:39",
-    zona: "Gestacion",
-    nave: "1",
-    status: "Vivo",
-    causaMuerte: [
-      {
-        causa: "robo",
-        responsable: "Ivan hablando de chelito",
-        fecha: {
-          $date: "2023-12-06T00:00:00.000Z"
+  const [data, setData] = useState([
+    {
+      fechaPreBautizo: '07-12-2023 13:57:03',
+      lote: 'mx1',
+      rfid: '71DF8BBE',
+      tipo: 'F1',
+      peso: 85,
+      ciclo: [],
+      cicloFallido: [],
+      fechaIngresoGranja: null,
+      granja: 'La Purisima',
+      fechaNaveEntrada: '07-12-2023 13:57:03',
+      fechaNaveSalida: '07-12-2023 14:44:39',
+      zona: 'Gestacion',
+      nave: '1',
+      status: 'Vivo',
+      historialMedico: [],
+      usuario: 'Ivan Romero Flores',
+      causaMuerte: [
+        {
+          causa: 'robo',
+          responsable: 'Ivan hablando de chelito',
+          fecha: {
+            $date: '2023-12-06T00:00:00.000Z',
+          },
         },
-        historialMedico: [],
-        usuario: "Ivan Romero Flores"
-      }
-    ]
-  }]);
+      ],
+    },
+  ]);
 
   useEffect(() => {
     axios
@@ -87,6 +90,18 @@ const RFID = ({ title, description, image }) => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get('http://192.168.100.10:3060/muertes')
+      .then((response) => {
+        const jsonData = response.data;
+        setMuertos(jsonData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
@@ -95,7 +110,7 @@ const RFID = ({ title, description, image }) => {
         <NavDashboard section="RFID registrados" svg={svg} />
       </div>
       <div className="wrapper">
-        <h2 className="text-xl mt-5 mb-5">RFID Vivos</h2>
+        <h2 className="text-xl mt-5 mb-5">RFID en granja</h2>
         <div className="mt-10">
           <TableRFID
             data={data}
@@ -104,13 +119,13 @@ const RFID = ({ title, description, image }) => {
           />
         </div>
         <div className="flex justify-end">
-          <span>Total de cerdos: {total.totalUniqueRFID}</span>
+          <span>Total de RFID's registrados: {total.totalUniqueRFID}</span>
         </div>
         <h2 className="text-xl mt-5 mb-5">RFID Muertos</h2>
         <div className="mt-10">
           <TableRFIDead
-            data={data}
-            setData={setData}
+            data={muertes}
+            setData={setMuertos}
             diferenciaDias={diferenciaDias}
           />
         </div>
