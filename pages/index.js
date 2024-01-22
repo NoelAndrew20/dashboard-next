@@ -485,10 +485,10 @@ export default function Home({ title, description, image }) {
                       className={`${
                         isDarkMode
                           ? 'row-container-d mt-10'
-                          : 'row-container-a mt-10'
+                          : 'row-container-g mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
-                      <Link href={'./KPIS/Inseminaciones'}>
+                      <Link href={'./KPIS/NuevosLechones'}>
                         <div className="flex">
                           <Image
                             src={'/images/icon/servicios-index.png'}
@@ -497,7 +497,7 @@ export default function Home({ title, description, image }) {
                             loading="lazy"
                           />
                           <span className=" ml-2 font-bold flex items-center">
-                            Inseminaciones
+                            Nuevos Lechones
                           </span>
                         </div>
                         <h1 className="text-right text-2xl">${item.Insumos}</h1>

@@ -39,8 +39,8 @@ const PieVacunas = ({ dataArray }) => {
     setData(chartData);
   };
 
-  const calculateSum = (nestedObject) => {
-    return Object.values(nestedObject).reduce((acc, value) => {
+  const calculateSum = (sum) => {
+    return Object.values(sum).reduce((acc, value) => {
       return acc + (typeof value === 'number' ? value : 0);
     }, 0);
   };
