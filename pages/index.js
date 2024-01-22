@@ -491,7 +491,7 @@ export default function Home({ title, description, image }) {
                       <Link href={'./KPIS/NuevosLechones'}>
                         <div className="flex">
                           <Image
-                            src={'/images/icon/servicios-index.png'}
+                            src={'/images/icon/little-pig-index.png'}
                             width={30}
                             height={30}
                             loading="lazy"

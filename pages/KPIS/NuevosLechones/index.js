@@ -3,7 +3,7 @@ import Navigation from '@/components/molecules/Navigation';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import svg from '@/public/images/icon/servicios-index.png';
+import svg from '@/public/images/icon/little-pig-index.png';
 import TableNL from '@/components/atoms/TableNL';
 import BubbleGraph from '@/components/atoms/NLChart';
 
