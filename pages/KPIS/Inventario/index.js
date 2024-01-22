@@ -5,7 +5,7 @@ import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
 import TableInventario from '@/components/molecules/TableInventario';
 import GraphInventario from '@/components/atoms/GraphInventario';
-import svg from '@/public/images/icon/insumos-index.png';
+import svg from '@/public/images/icon/pig-index.png';
 
 const axios = require('axios');
 
@@ -75,6 +75,48 @@ const Inventario = ({ title, description, image }) => {
       </div>
       <div className="wrapper">
         <h2 className="text-xl mt-5 mb-5">Inventario de cerdos existente</h2>
+        <div className="flex justify-center pb-5">
+          <div className="w-1/3">
+            <div>
+              <label htmlFor="inicial" className="modal-label">
+                Fecha inicial:
+              </label>
+            </div>
+            <div
+              className={
+                isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+              }
+            >
+              <input
+                type="date"
+                id="inicial"
+                name="inicial"
+                className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                value=""
+              />
+            </div>
+          </div>
+          <div className="w-1/3">
+            <div>
+              <label htmlFor="sku" className="modal-label">
+                Fecha final:
+              </label>
+            </div>
+            <div
+              className={
+                isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+              }
+            >
+              <input
+                type="date"
+                id="final"
+                name="final"
+                className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                value=""
+              />
+            </div>
+          </div>
+        </div>
         <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">
             <GraphInventario data={data} setData={setData} />

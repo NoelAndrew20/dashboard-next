@@ -3,9 +3,7 @@ import Navigation from '@/components/molecules/Navigation';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import TableInventario from '@/components/molecules/TableInventario';
-import svg from '@/public/images/icon/servicios-index.png';
-import BarKPI from '@/components/atoms/BarKPI';
+import svg from '@/public/images/icon/medicamentos-index.png';
 import TableVacunas from '@/components/atoms/TableVacunas';
 import PieVacunas from '@/components/atoms/PieVacunas';
 
@@ -28,19 +26,65 @@ const Vacunas = ({ title, description, image }) => {
         <NavDashboard section="Total de vacunas" svg={svg} />
       </div>
       <div className="wrapper">
-      <h2 className="text-xl mt-5 mb-5">Registro de vacunas</h2>
+        <h2 className="text-xl mt-5 mb-5">Registro de vacunas</h2>
 
-      <div className="position justify-around">
+        <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">
             <h2 className="mt-2 text-center font-bold">
               Total de vacunas por tipo
             </h2>
+            <div className="flex justify-center pb-5">
+              <div className="w-1/3">
+                <div>
+                  <label htmlFor="inicial" className="modal-label">
+                    Fecha inicial:
+                  </label>
+                </div>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
+                  <input
+                    type="date"
+                    id="inicial"
+                    name="inicial"
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                    value=""
+                  />
+                </div>
+              </div>
+              <div className="w-1/3">
+                <div>
+                  <label htmlFor="sku" className="modal-label">
+                    Fecha final:
+                  </label>
+                </div>
+                <div
+                  className={
+                    isDarkMode
+                      ? 'modal-input-container-d'
+                      : 'modal-input-container'
+                  }
+                >
+                  <input
+                    type="date"
+                    id="final"
+                    name="final"
+                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
             <PieVacunas dataArray={data} setData={setData} />
           </div>
-          <div className='w-1/2'>
+          <div className="w-1/2">
             <TableVacunas data={data} setData={setData} />
           </div>
-          </div>
+        </div>
       </div>
     </div>
   );

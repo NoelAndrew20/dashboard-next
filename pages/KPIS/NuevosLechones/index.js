@@ -3,22 +3,34 @@ import Navigation from '@/components/molecules/Navigation';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import TableInventario from '@/components/molecules/TableInventario';
-import svg from '@/public/images/icon/montas-index.png';
-import LineKPI from '@/components/atoms/LineKPI';
+import svg from '@/public/images/icon/servicios-index.png';
+import TableNL from '@/components/atoms/TableNL';
+import BubbleGraph from '@/components/atoms/NLChart';
 
 const axios = require('axios');
 
-const Montas = ({ title, description, image }) => {
+const NuevosLechones = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([
     {
-      _id: 'CIA',
-      count: 936,
+      _id: '729A5230FF981',
+      count: 13,
     },
     {
-      _id: 'Gestacion',
-      count: 1500,
+      _id: '7255324299901',
+      count: 12,
+    },
+    {
+      _id: '7295B4AB634E1',
+      count: 12,
+    },
+    {
+      _id: '72413AD230A81',
+      count: 12,
+    },
+    {
+      _id: '72CCA0E63F2D1',
+      count: 14,
     },
   ]);
 
@@ -27,14 +39,15 @@ const Montas = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Total de montas de cerdos" svg={svg} />
+        <NavDashboard section="Nuevos lechones" svg={svg} />
       </div>
       <div className="wrapper">
-        <h2 className="text-xl mt-5 mb-5">Registro de montas</h2>
+        <h2 className="text-xl mt-5 mb-5">Registro de nuevos lechones</h2>
+
         <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">
             <h2 className="mt-2 text-center font-bold">
-              Cantidad de montas de cerdos por zona
+              Total de nuevos lechones registrados
             </h2>
             <div className="flex justify-center pb-5">
               <div className="w-1/3">
@@ -82,22 +95,22 @@ const Montas = ({ title, description, image }) => {
                 </div>
               </div>
             </div>
-            <LineKPI data={data} setData={setData} />
+            <BubbleGraph dataArr={data} setData={setData} />
           </div>
-          <div>
-            <TableInventario data={data} setData={setData} />
+          <div className="w-1/2">
+            <TableNL data={data} setData={setData} />
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default Montas;
+export default NuevosLechones;
 
 export const getServerSideProps = async () => {
   const title = 'Constanza';
-  const description = 'Dashboard de Montas';
-  const image = 'images/icon/logo-400.png';
+  const description = 'Dashboard de Nuevos Lechones';
+  const image = '/images/icon/logo-400.png';
   return {
     props: {
       title,
