@@ -1,11 +1,10 @@
+//CRUD Registro de Solicitudes
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const config = require('../../../config.json');
 const mongoUrl = config.mongodesarrollo;
 const nodemailer = require('nodemailer');
-//const fs = require('fs');
-//const path = require('path');
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -31,10 +30,10 @@ db.once('open', () => {
 const asuntoCorreo = 'Nueva licitacion';
 const mensajeCorreo = 'Hay una nueva licitacion disponible para ti.';
 
-async function enviarCorreosProveedoresVientre() {
+async function enviarCorreosProveedores(tipoProveedor) {
   try {
     const proveedores = await Proveedor.find(
-      { tipoProveedor: 'Vientre' },
+      { tipoProveedor },
       { _id: 0, correo: 1 }
     );
 
@@ -43,14 +42,16 @@ async function enviarCorreosProveedoresVientre() {
       await enviarCorreo(destinatarioCorreo, asuntoCorreo, mensajeCorreo);
     }
 
-    console.log('Correos enviados exitosamente a proveedores de vientres.');
+    console.log(
+      `Correos enviados exitosamente a proveedores de ${tipoProveedor.toLowerCase()}.`
+    );
   } catch (error) {
     console.error(
-      'Error al obtener los correos de proveedores de vientres o al enviar los correos: ',
+      `Error al obtener los correos de proveedores de ${tipoProveedor.toLowerCase()} o al enviar los correos: `,
       error
     );
     throw new Error(
-      'Error al procesar la solicitud de correos a proveedores de vientres.'
+      `Error al procesar la solicitud de correos a proveedores de ${tipoProveedor.toLowerCase()}.`
     );
   }
 }
@@ -168,29 +169,34 @@ const SolicitudCompraSchema = new mongoose.Schema(
 );
 
 const SolicitudCompra = db.model('SolicitudCompra', SolicitudCompraSchema);
+const SolicitudCompraAlimento = db.model(
+  'SolicitudCompraAlimento',
+  SolicitudCompraSchema
+);
 const Proveedor = db.model('Proveedor', ProveedorSchema);
 
 app.get('/getAllSolicitudCompra', async (req, res) => {
   try {
+    const { tipoDeLicitacion } = req.query;
     const unaSemanaAtras = new Date();
     unaSemanaAtras.setDate(unaSemanaAtras.getDate() - 7);
     const solicitudesCompra = await SolicitudCompra.find({
+      tipoDeLicitacion,
       fecha: { $gte: unaSemanaAtras },
     });
+
     if (solicitudesCompra.length === 0) {
       return res.status(404).json({
         mensaje:
-          'No se encontraron solicitudes de compra de alimentos en la última semana',
+          'No se encontraron solicitudes de compra para el tipo de licitación en la última semana',
       });
     }
+
     res.status(200).json(solicitudesCompra);
   } catch (error) {
-    console.error(
-      'Error al obtener las solicitudes de compra de vientre:',
-      error
-    );
+    console.error('Error al obtener las solicitudes de compra:', error);
     res.status(500).json({
-      mensaje: 'Error al obtener las solicitudes de compra de vientre',
+      mensaje: 'Error al obtener las solicitudes de compra',
     });
   }
 });
@@ -223,7 +229,7 @@ app.post('/addSolicitudCompraCerdo', async (req, res) => {
 
     await nuevaSolicitudCompra.save();
 
-    await enviarCorreosProveedoresVientre();
+    await enviarCorreosProveedores('Vientre');
 
     res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
   } catch (error) {
@@ -232,22 +238,59 @@ app.post('/addSolicitudCompraCerdo', async (req, res) => {
   }
 });
 
-app.put('/editLicitacion/:nombreAlimento/:cantidad', async (req, res) => {
+app.post('/addSolicitudCompraAlimento', async (req, res) => {
   try {
-    const nombreAlimento = req.params.nombreAlimento;
+    const newAlimento = req.body;
+    let tipoDeLicitacion = 'Alimento';
+    const ultimaSolicitud = await SolicitudCompra.findOne({})
+      .sort({ numeroSolicitud: -1 })
+      .select('numeroSolicitud');
+    let nuevoNumeroSolicitud = 1;
+    if (ultimaSolicitud) {
+      nuevoNumeroSolicitud = ultimaSolicitud.numeroSolicitud + 1;
+    }
+    const solicitudCompra = {
+      fecha: Date.now(),
+      numeroSolicitud: nuevoNumeroSolicitud,
+      nombreSolicitante: req.body.responsable,
+      estadoSolicitud: 0,
+      tipoDeLicitacion: tipoDeLicitacion,
+      solicitud: req.body.solicitudes.map((item) => ({
+        nombre: item.nombreAlimento,
+        cantidad: item.cantidad,
+        fechaEntrega: item.fechaEntrega,
+        estatus: 0,
+      })),
+    };
+    const nuevaSolicitudCompra = new SolicitudCompra(solicitudCompra);
+
+    await nuevaSolicitudCompra.save();
+
+    await enviarCorreosProveedores('Alimento');
+
+    res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
+  } catch (error) {
+    console.error('Error al guardar la solicitud:', error);
+    res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
+  }
+});
+
+app.put('/editLicitacion/:nombre/:cantidad', async (req, res) => {
+  try {
+    const nombreAlimento = req.params.nombre;
     const cantidad = req.params.cantidad;
     const updateData = { estatus: 1 };
-    const existingLicitacion = await SolicitudCompraAlimento.findOne({
-      'solicitud.nombreAlimento': nombreAlimento,
+    const existingLicitacion = await SolicitudCompra.findOne({
+      'solicitud.nombre': nombre,
       'solicitud.cantidad': cantidad,
     });
     if (!existingLicitacion) {
       return res.status(404).json({ message: 'Licitación no encontrada' });
     }
     if (existingLicitacion.solicitud.estatus !== 1) {
-      const updatedLicitacion = await SolicitudCompraAlimento.findOneAndUpdate(
+      const updatedLicitacion = await SolicitudCompra.findOneAndUpdate(
         {
-          'solicitud.nombreAlimento': nombreAlimento,
+          'solicitud.nombre': nombre,
           'solicitud.cantidad': cantidad,
         },
         { $set: { 'solicitud.$.estatus': updateData.estatus } },

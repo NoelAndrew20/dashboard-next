@@ -1,34 +1,18 @@
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useEffect, useState } from 'react';
+
 const axios = require('axios');
 
 const ProveedorForm = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [selectedFile, setSelectedFile] = useState(null);
+
   const [formData, setFormData] = useState({
     actividadesEconomicas: [],
     regimenes: [],
   });
 
-  const [fiscalData, setfiscalData] = useState({});
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/python/Constanza_v15/ConsF.json'); // Ruta relativa al archivo JSON en la carpeta public
-        const data = await response.json();
-
-        setfiscalData(data.answer);
-        console.log('Índice "answer":', data.answer);
-      } catch (error) {
-        console.error('Error al cargar el archivo JSON:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  console.log('fiscalData:', fiscalData);
-  const [fiscaldata, setfiscaldata] = useState({
+  const [fiscalData, setfiscaldata] = useState({
     actividadEconomica: [
       {
         actividad: 'Instalaciones eléctricas en construcciones',
@@ -50,7 +34,7 @@ const ProveedorForm = () => {
       calle1: 'AVENIDA ROSENDO MARQUEZ',
       calle2: 'CALLE 45 SUR',
       colonia: 'BELISARIO DOMINGUEZ',
-      cp: ':72180',
+      cp: '72180',
       entidad: 'PUEBLA',
       localidad: 'HEROICA PUEBLA DE ZARAGOZA',
       municipio: 'PUEBLA',
@@ -76,22 +60,50 @@ const ProveedorForm = () => {
       },
     ],
   });
-  const cpAux = fiscalData?.datosContribuyente?.cp || '';
-  const denominacionAux = fiscalData?.domicilioRegistrado?.denominacion || '';
-  const rfcAux = fiscalData?.domicilioRegistrado?.rfc || '';
-  const regimenAux = fiscalData?.domicilioRegistrado?.regimenCapital || '';
-  const vialidadAux = fiscalData?.datosContribuyente?.vialidad || '';
-  const exteriorAux = fiscalData?.datosContribuyente?.numeroExterior || '';
-  const interiorAux = fiscalData?.datosContribuyente?.numeroInterior || '';
-  const coloniaAux = fiscalData?.datosContribuyente?.colonia || '';
-  const localidadAux = fiscalData?.datosContribuyente?.localidad || '';
-  const municipioAux = fiscalData?.datosContribuyente?.municipio || '';
-  const entidadAux = fiscalData?.datosContribuyente?.entidad || '';
+  /*Aqui se debe esperar la respuesta de Pedrito en el codigo de su api 
+  de obtener los datos del pdf*/
+
+  const [cpAux, setCpAux] = useState(fiscalData.datosContribuyente.cp);
+  const [denominacionAux, setDenominacionAux] = useState(
+    fiscalData.domicilioRegistrado.denominacion
+  );
+  const [rfcAux, setRfcAux] = useState(fiscalData.domicilioRegistrado.rfc);
+  const [regimenAux, setRegimenAux] = useState(
+    fiscalData.domicilioRegistrado.regimenCapital
+  );
+  const [vialidadAux, setVialidadAux] = useState(
+    fiscalData.datosContribuyente.vialidad
+  );
+  const [exteriorAux, setExteriorAux] = useState(
+    fiscalData.datosContribuyente.numeroExterior
+  );
+  const [interiorAux, setInteriorAux] = useState(
+    fiscalData.datosContribuyente.numeroInterior
+  );
+  const [coloniaAux, setColiniaAux] = useState(
+    fiscalData.datosContribuyente.colonia
+  );
+  const [localidadAux, setLocalidadAux] = useState(
+    fiscalData.datosContribuyente.localidad
+  );
+  const [municipioAux, setMunicipioAux] = useState(
+    fiscalData.datosContribuyente.municipio
+  );
+  const [entidadAux, setEntidadAux] = useState(
+    fiscalData.datosContribuyente.entidad
+  );
 
   const handleTipoProveedorChange = (event) => {
     setFormData({
       ...formData,
       tipoProveedor: event.target.value,
+    });
+  };
+
+  const handleProcedenciaChange = (event) => {
+    setFormData({
+      ...formData,
+      procedencia: event.target.value,
     });
   };
 
@@ -195,16 +207,20 @@ const ProveedorForm = () => {
   };
 
   const handleSubmit = (e) => {
+    //const constanciaFile = e.target.constancia.files[0];
     e.preventDefault();
     const constanciaFile = document.getElementById('constancia').files[0];
     const caratulaFile = document.getElementById('caratula').files[0];
     const opinionFile = document.getElementById('opinion').files[0];
+
     const formData2 = new FormData();
     formData2.append('constanciaFile', constanciaFile);
     formData2.append('caratulaFile', caratulaFile);
     formData2.append('opinionFile', opinionFile);
+
     const newFormData = {
       tipoProveedor: formData.tipoProveedor,
+      procedencia: formData.procedencia,
       denominacion: e.target.denominacion.value,
       rfc: e.target.rfc.value,
       regimenCapital: e.target.regimenCapital.value,
@@ -216,6 +232,8 @@ const ProveedorForm = () => {
       localidad: e.target.localidad.value,
       municipio: e.target.municipio.value,
       entidad: e.target.entidad.value,
+      //calle1: e.target.calle1.value,
+      //calle2: e.target.calle2.value,
       actividadesEconomicas: formData.actividadesEconomicas,
       regimenes: formData.regimenes,
       correo: e.target.correo.value,
@@ -223,12 +241,18 @@ const ProveedorForm = () => {
       telefono: e.target.telefono.value,
     };
 
+    console.log(newFormData);
+
+    //const apiUrl = 'http://localhost:3070/addProveedor/';
+    //const apiUrl2 = 'http://localhost:3070/addDocumentoProveedor/';
+
     const apiUrl = 'http://192.168.100.10:3070/addProveedor/';
     const apiUrl2 = 'http://192.168.100.10:3070/addDocumentoProveedor/';
     axios
       .post(apiUrl, newFormData)
       .then((response) => {
         console.log('Respuesta de la primera API:', response.data);
+        // Realiza la segunda solicitud después de que la primera haya terminado
         return axios.post(apiUrl2, formData2);
       })
       .then((response2) => {
@@ -262,15 +286,36 @@ const ProveedorForm = () => {
             >
               <option value="">Selecciona un tipo</option>
               <option value="Alimento">Alimento</option>
-              {/*<option value="MateriasPrimas">Materias Primas</option>
-                            <option value="Medicamento">Medicamento</option>
-                            <option value="Vacunas">Vacunas</option>*/}
-              <option value="Vientres">Vientre</option>
+              <option value="Vacunas">Vacunas</option>
+              <option value="Medicamento">Medicamento</option>
+              <option value="MateriasPrimas">Materias Primas</option>
               <option value="Otro1">Otro 1</option>
               <option value="Otro2">Otro 2</option>
             </select>
           </div>
         </div>
+
+        <div className="modal-item w-1/3">
+          <label className="font-bold text-cyan-800">Procedencia:</label>
+          <div
+            className={
+              isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+            }
+          >
+            <select
+              name="procedencia"
+              value={formData.procedencia}
+              onChange={handleProcedenciaChange}
+              className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+            >
+              <option value="">Selecciona un tipo</option>
+              <option value="Nacional">Nacional</option>
+              <option value="Importacion">Importación</option>
+              <option value="Interna">Interna</option>
+            </select>
+          </div>
+        </div>
+
         <div className="modal-item w-1/3"></div>
       </div>
       <h2 className="font-bold text-lg">
@@ -476,7 +521,7 @@ const ProveedorForm = () => {
       </div>
       <h2 className="font-bold text-lg">Actividades económicas</h2>
       <div>
-        {fiscaldata?.actividadEconomica.map((act, index) => (
+        {fiscalData.actividadEconomica.map((act, index) => (
           <div>
             <div className="modal-cel">
               <div key={index} className="modal-item w-1/3">
@@ -708,7 +753,7 @@ const ProveedorForm = () => {
       </div>
       <h2 className="font-bold text-lg">Regímenes</h2>
       <div>
-        {fiscaldata?.regimen.map((regimen, index) => (
+        {fiscalData.regimen.map((regimen, index) => (
           <div className="modal-cel">
             <div key={index} className="modal-item w-1/3">
               <label className="font-bold text-cyan-800">Descripción:</label>

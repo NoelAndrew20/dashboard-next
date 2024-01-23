@@ -24,7 +24,9 @@ const TableSeleccion = ({ data, setData }) => {
     : data;
   const displayDataFinal = displayData?.slice(startIndex, endIndex);
 
-  const handleRowClick = (numeroSolicitud) => {
+  const handleRowClick = (numeroSolicitud, username) => {
+    localStorage.setItem('selectedUsername', username);
+    localStorage.setItem('selectedNumeroSolicitud', numeroSolicitud);
     router.push(`/Compras`);
   };
 
@@ -90,7 +92,9 @@ const TableSeleccion = ({ data, setData }) => {
               <tr
                 className="table-row"
                 key={index}
-                onClick={() => handleRowClick(item.numeroSolicitud)}
+                onClick={() =>
+                  handleRowClick(item.numeroSolicitud, item.username)
+                }
               >
                 <td>{item.numeroSolicitud}</td>
                 <td>{item.username}</td>

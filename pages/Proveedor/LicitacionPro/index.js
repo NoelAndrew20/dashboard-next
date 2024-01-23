@@ -46,19 +46,23 @@ const LicitacionPro = ({ title, description, image }) => {
   }, []);
 
   useEffect(() => {
-    let apiUrl;
+    let tipoDeLicitacion;
 
     if (primerosDosCaracteres === 'Al') {
-      apiUrl = 'http://192.168.100.10:3082/getAllSolicitudCompraAlimento';
+      tipoDeLicitacion = 'Alimento';
     } else if (primerosDosCaracteres === 'Vi') {
-      apiUrl = 'http://192.168.100.10:3086/getAllSolicitudCompra';
+      tipoDeLicitacion = 'Vientres';
     } else {
       console.error('Usuario no reconocido');
       return;
     }
-
+    const apiUrl = `http://192.168.100.10:3086/getAllSolicitudCompra`;
     axios
-      .get(apiUrl)
+      .get(apiUrl, {
+        params: {
+          tipoDeLicitacion: tipoDeLicitacion,
+        },
+      })
       .then((response) => {
         const jsonData = response.data;
         setDataLic(jsonData);

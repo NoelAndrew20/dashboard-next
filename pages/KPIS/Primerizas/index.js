@@ -18,6 +18,30 @@ const Primerizas = ({ title, description, image }) => {
     },
   ]);
 
+  const apiUrl = 'http://192.168.100.10:3144/KPI';
+  const current = '01-01-2022';
+  const lag = 300;
+
+  useEffect(() => {
+    const requestData = {
+      function: 'primerizasLlegadasPrimerServicio',
+      parameters: {
+        current: current,
+        lag: lag,
+      },
+    };
+
+    axios
+      .post(apiUrl, requestData)
+      .then((response) => {
+        const jsonData = response.data;
+        setData(jsonData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
