@@ -34,7 +34,7 @@ const TableNL = ({ data }) => {
             <input
               type="text"
               className={isDarkMode ? 'bg-black' : 'bg-white'}
-              placeholder="Buscar por id"
+              placeholder="Buscar por RFID"
               value={searchTerm}
               onChange={(e) =>
                 setSearchTerm(e.target.value.toLocaleLowerCase())
@@ -70,14 +70,16 @@ const TableNL = ({ data }) => {
         <table className={isDarkMode ? 'table-container-d' : 'table-container'}>
           <thead>
             <tr>
-              <th>ID</th>
               <th>Numero de cerdos</th>
+              <th>RFID</th>
+              <th>Numero de parto</th>
             </tr>
           </thead>
           <tbody>
             {displayDataFinal?.map((item, index) => (
               <tr className="table-row" key={index}>
-                <td>{item._id}</td>
+                <td>{item._id.slice(0, -1)}</td>
+                <td>{item._id.slice(-1)}</td>
                 <td>{item.count}</td>
               </tr>
             ))}
