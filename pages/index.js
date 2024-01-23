@@ -144,7 +144,6 @@ export default function Home({ title, description, image }) {
     };
   }, [audio]);
 
-
   useEffect(() => {
     const userDataString = localStorage.getItem('userData');
 
@@ -202,7 +201,7 @@ export default function Home({ title, description, image }) {
             <div className="absolute inset-0 background-cover"></div>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-2xl font-bold">
               <Image
-                src={'/images/imagenes/logo_main.gif'}
+                src={'/images/imagenes/com-1--unscreen.gif'}
                 alt="Logo"
                 width={150}
                 height={150}
@@ -298,22 +297,22 @@ export default function Home({ title, description, image }) {
                           : 'row-container-a mt-10'
                       } mt-20 pb-50 w-1/3 flex`}
                     >
-                      <Link href={"./KPIS/Vacunas"}>
-                      <div className="flex">
-                        <Image
-                          src={'/images/icon/medicamentos-index.png'}
-                          width={30}
-                          height={30}
-                          loading="lazy"
-                        />
-                        <span className=" ml-2 font-bold flex items-center">
-                          Vacunas
-                        </span>
-                      </div>
-                      <h1 className="text-right text-2xl">{item.Vacunas}</h1>
-                      <div className="w-full flex">
-                        <div className="text-[#F46D22]">-0.25%</div>
-                      </div>
+                      <Link href={'./KPIS/Vacunas'}>
+                        <div className="flex">
+                          <Image
+                            src={'/images/icon/medicamentos-index.png'}
+                            width={30}
+                            height={30}
+                            loading="lazy"
+                          />
+                          <span className=" ml-2 font-bold flex items-center">
+                            Vacunas
+                          </span>
+                        </div>
+                        <h1 className="text-right text-2xl">{item.Vacunas}</h1>
+                        <div className="w-full flex">
+                          <div className="text-[#F46D22]">-0.25%</div>
+                        </div>
                       </Link>
                     </div>
                     <div
@@ -428,7 +427,9 @@ export default function Home({ title, description, image }) {
                     </div>
                   </div>
                 </div>
-                <div className="cover-text wrapper position mt-5 p-5">
+                <div className="cover-text wrapper mt-5 p-5">
+                      <div className='position'>
+                  
                   <div
                     className={`${
                       isDarkMode
@@ -436,82 +437,155 @@ export default function Home({ title, description, image }) {
                         : 'row-container-g mt-10'
                     } mt-20 pb-50 w-1/3 flex`}
                   >
-                    <Link href={"./KPIS/Primerizas"}>
-                    <div className="flex">
-                      <Image
-                        src={'/images/icon/primerizas-index.png'}
-                        width={30}
-                        height={30}
-                        loading="lazy"
-                      />
-                      <span className=" ml-2 font-bold flex items-center">
-                        Primerizas
-                      </span>
-                    </div>
-                    <h1 className="text-right text-2xl">{item.Vacunas}</h1>
-                    <div className="w-full flex">
-                      <div className="text-[#F46D22]">-0.25%</div>
-                    </div>
+                    <Link href={'./KPIS/Primerizas'}>
+                      <div className="flex">
+                        <Image
+                          src={'/images/icon/primerizas-index.png'}
+                          width={30}
+                          height={30}
+                          loading="lazy"
+                        />
+                        <span className=" ml-2 font-bold flex items-center">
+                          Primerizas
+                        </span>
+                      </div>
+                      <h1 className="text-right text-2xl">{item.Vacunas}</h1>
+                      <div className="w-full flex">
+                        <div className="text-[#F46D22]">-0.25%</div>
+                      </div>
                     </Link>
                   </div>
                   <div
-                      className={`${
-                        isDarkMode
-                          ? 'row-container-d mt-10'
-                          : 'row-container-g mt-10'
-                      } mt-20 pb-50 w-1/3 flex`}
-                    >
-                      <Link href={'./KPIS/ConsumoAlimentos'}>
-                        <div className="flex">
-                          <Image
-                            src={'/images/icon/alimentos-cerdo-index.png'}
-                            width={30}
-                            height={30}
-                            loading="lazy"
-                          />
-                          <span className=" ml-2 font-bold flex items-center">
-                            Pronóstico de consumo de alimentos
-                          </span>
-                        </div>
-                        <h1 className="text-right text-2xl">${item.Insumos}</h1>
-                        <div className="w-full flex">
-                          <div className="text-[#42FF00] justify-left">
-                            +0.25
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                    <div
-                      className={`${
-                        isDarkMode
-                          ? 'row-container-d mt-10'
-                          : 'row-container-g mt-10'
-                      } mt-20 pb-50 w-1/3 flex`}
-                    >
-                      <Link href={'./KPIS/NuevosLechones'}>
-                        <div className="flex">
-                          <Image
-                            src={'/images/icon/little-pig-index.png'}
-                            width={30}
-                            height={30}
-                            loading="lazy"
-                          />
-                          <span className=" ml-2 font-bold flex items-center">
-                            Nuevos Lechones
-                          </span>
-                        </div>
-                        <h1 className="text-right text-2xl">${item.Insumos}</h1>
-                        <div className="w-full flex">
-                          <div className="text-[#42FF00] justify-left">
-                            +0.25
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
+                    className={`${
+                      isDarkMode
+                        ? 'row-container-d mt-10'
+                        : 'row-container-g mt-10'
+                    } mt-20 pb-50 w-1/3 flex`}
+                  >
+                    <Link href={'./KPIS/ConsumoAlimentos'}>
+                      <div className="flex">
+                        <Image
+                          src={'/images/icon/alimentos-cerdo-index.png'}
+                          width={30}
+                          height={30}
+                          loading="lazy"
+                        />
+                        <span className=" ml-2 font-bold flex items-center">
+                          Pronóstico de consumo de alimentos
+                        </span>
+                      </div>
+                      <h1 className="text-right text-2xl">${item.Insumos}</h1>
+                      <div className="w-full flex">
+                        <div className="text-[#42FF00] justify-left">+0.25</div>
+                      </div>
+                    </Link>
+                  </div>
+                  <div
+                    className={`${
+                      isDarkMode
+                        ? 'row-container-d mt-10'
+                        : 'row-container-g mt-10'
+                    } mt-20 pb-50 w-1/3 flex`}
+                  >
+                    <Link href={'./KPIS/NuevosLechones'}>
+                      <div className="flex">
+                        <Image
+                          src={'/images/icon/little-pig-index.png'}
+                          width={30}
+                          height={30}
+                          loading="lazy"
+                        />
+                        <span className=" ml-2 font-bold flex items-center">
+                          Nuevos Lechones
+                        </span>
+                      </div>
+                      <h1 className="text-right text-2xl">${item.Insumos}</h1>
+                      <div className="w-full flex">
+                        <div className="text-[#42FF00] justify-left">+0.25</div>
+                      </div>
+                    </Link>
+                  </div>
+                  </div>
+                  <div className='position'>
+                  <div
+                    className={`${
+                      isDarkMode
+                        ? 'row-container-d mt-10'
+                        : 'row-container-g mt-10'
+                    } mt-20 pb-50 w-1/3 flex`}
+                  >
+                    <Link href={'./KPIS/LechonesNacidos'}>
+                      <div className="flex">
+                        <Image
+                          src={'/images/icon/primerizas-index.png'}
+                          width={30}
+                          height={30}
+                          loading="lazy"
+                        />
+                        <span className=" ml-2 font-bold flex items-center">
+                          Peso de lechones nacidos
+                        </span>
+                      </div>
+                      <h1 className="text-right text-2xl">{item.Vacunas}</h1>
+                      <div className="w-full flex">
+                        <div className="text-[#F46D22]">-0.25%</div>
+                      </div>
+                    </Link>
+                  </div>
+                  <div
+                    className={`${
+                      isDarkMode
+                        ? 'row-container-d mt-10'
+                        : 'row-container-g mt-10'
+                    } mt-20 pb-50 w-1/3 flex`}
+                  >
+                    <Link href={'./KPIS/VacunasAplicar'}>
+                      <div className="flex">
+                        <Image
+                          src={'/images/icon/alimentos-cerdo-index.png'}
+                          width={30}
+                          height={30}
+                          loading="lazy"
+                        />
+                        <span className=" ml-2 font-bold flex items-center">
+                          WIP
+                        </span>
+                      </div>
+                      <h1 className="text-right text-2xl">${item.Insumos}</h1>
+                      <div className="w-full flex">
+                        <div className="text-[#42FF00] justify-left">+0.25</div>
+                      </div>
+                    </Link>
+                  </div>
+                  <div
+                    className={`${
+                      isDarkMode
+                        ? 'row-container-d mt-10'
+                        : 'row-container-g mt-10'
+                    } mt-20 pb-50 w-1/3 flex`}
+                  >
+                    <Link href={'./KPIS/NuevosLechones'}>
+                      <div className="flex">
+                        <Image
+                          src={'/images/icon/little-pig-index.png'}
+                          width={30}
+                          height={30}
+                          loading="lazy"
+                        />
+                        <span className=" ml-2 font-bold flex items-center">
+                          Nuevos Lechones
+                        </span>
+                      </div>
+                      <h1 className="text-right text-2xl">${item.Insumos}</h1>
+                      <div className="w-full flex">
+                        <div className="text-[#42FF00] justify-left">+0.25</div>
+                      </div>
+                    </Link>
+                  </div>
+                  </div>
                 </div>
               </>
             ))}
-            
           </main>
         </div>
       </motion.div>

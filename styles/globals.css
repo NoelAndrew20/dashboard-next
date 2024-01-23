@@ -65,8 +65,9 @@ input:focus {
 }
 
 .background-cover {
-  background-color: rgba(13, 61, 100, 0.57);
+  background-color: rgb(5 168 190 / 60%);
 }
+
 .index-cover {
   height: 300px;
 }
