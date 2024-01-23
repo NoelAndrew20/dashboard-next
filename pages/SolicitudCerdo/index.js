@@ -128,8 +128,13 @@ const SolicitudCerdo = ({ title, description, image }) => {
   }, []);
 
   useEffect(() => {
+    const tipoDeLicitacion = 'Vientres';
     axios
-      .get('http://192.168.100.10:3086/getAllSolicitudCompra')
+      .get('http://192.168.100.10:3086/getAllSolicitudCompra', {
+        params: {
+          tipoDeLicitacion: tipoDeLicitacion,
+        },
+      })
       .then((response) => {
         const jsonData = response.data;
         setDataList(jsonData);

@@ -177,8 +177,13 @@ const Graphicator = ({ title, description, image }) => {
   }, [tokenVerified, setUsername]);
 
   useEffect(() => {
+    const tipoDeLicitacion = 'Alimento';
     axios
-      .get('http://192.168.100.10:3082/getAllSolicitudCompraAlimento')
+      .get('http://192.168.100.10:3086/getAllSolicitudCompra', {
+        params: {
+          tipoDeLicitacion: tipoDeLicitacion,
+        },
+      })
       .then((response) => {
         const jsonData = response.data;
         setDataList(jsonData);
@@ -200,8 +205,7 @@ const Graphicator = ({ title, description, image }) => {
         <NavDashboard section="Solicitud de alimento" svg={svg} />
       </div>
       <div className="wrapper">
-        <div className="mt-10">
-        </div>
+        <div className="mt-10"></div>
         <div className="mt-10">
           <h2 className="text-xl mt-5 mb-5">Solicitud de alimento</h2>
           <TableGraph

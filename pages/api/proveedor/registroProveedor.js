@@ -76,6 +76,7 @@ const ProveedorSchema = new mongoose.Schema(
     id: { type: Number, unique: true, required: true, default: 0 },
     idProveedor: String,
     tipoProveedor: String,
+    procedencia: String,
     denominacion: String,
     rfc: String,
     regimenCapital: String,
@@ -141,6 +142,25 @@ const UsuarioSchema = new mongoose.Schema(
 const Usuario = db.model('usuario', UsuarioSchema);
 const Proveedor = db.model('Proveedor', ProveedorSchema);
 
+app.get('/getDatosProveedor', async (req, res) => {
+  try {
+    const { usuario } = req.query;
+    const proveedor = await Proveedor.findOne({ idProveedor: usuario });
+    if (proveedor) {
+      res.status(200).json(proveedor);
+    } else {
+      res
+        .status(404)
+        .json({ success: false, message: 'Proveedor no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al obtener datos del proveedor:', error);
+    res
+      .status(500)
+      .json({ success: false, message: 'Error interno del servidor' });
+  }
+});
+
 app.get('/getProducto', async (req, res) => {
   try {
     const { email } = req.query;
@@ -189,6 +209,7 @@ app.post('/addProveedor', async (req, res) => {
       id: nuevoLastid,
       idProveedor: `${primeraLetra}${segundaLetra}${dia}${mes}${anio}${nuevoLastid}`,
       tipoProveedor: newProveedor.tipoProveedor,
+      procedencia: newProveedor.procedencia,
       denominacion: newProveedor.denominacion,
       rfc: newProveedor.rfc,
       regimenCapital: newProveedor.regimenCapital,

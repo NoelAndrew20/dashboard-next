@@ -139,7 +139,7 @@ const TableGraph = ({
     setDataList([...dataList, combinedData]);
     setSelectedFoodData(null);
 
-    const apiUrl = 'http://192.168.100.10:3082/addSolicitudCompraAlimento';
+    const apiUrl = 'http://192.168.100.10:3086/addSolicitudCompraAlimento';
     axios
       .post(apiUrl, combinedData)
       .then((response) => {

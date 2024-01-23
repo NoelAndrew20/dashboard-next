@@ -29,12 +29,151 @@ const styles = StyleSheet.create({
     borderBottom: '1px solid black',
   },
 });
+import jwt from 'jsonwebtoken';
+const axios = require('axios');
+
 const ComprasForm = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [selectedFile, setSelectedFile] = useState(null);
   const [formData, setFormData] = useState([]);
   const [pdfGenerated, setPdfGenerated] = useState(false);
   const [showPdf, setShowPdf] = useState(false);
+
+  const [fiscaldata, setfiscaldata] = useState({
+    actividadEconomica: [
+      {
+        actividad: 'Instalaciones eléctricas en construcciones',
+        fechaFinal: 'N/A',
+        fechaInicio: '02/03/2020',
+        numeroOrden: '1',
+        porcentaje: '70',
+      },
+      {
+        actividad:
+          'Comercio al por menor de lámparas ornamentales y pantallas para lámparas y candiles',
+        fechaFinal: 'N/A',
+        fechaInicio: '01/07/2003',
+        numeroOrden: '3',
+        porcentaje: '30',
+      },
+    ],
+    datosContribuyente: {
+      calle1: 'AVENIDA ROSENDO MARQUEZ',
+      calle2: 'CALLE 45 SUR',
+      colonia: 'BELISARIO DOMINGUEZ',
+      cp: '72180',
+      entidad: 'PUEBLA',
+      localidad: 'HEROICA PUEBLA DE ZARAGOZA',
+      municipio: 'PUEBLA',
+      numeroExterior: '4307',
+      numeroInterior: 'LETRA A',
+      tipoVialidad: 'AVENIDA (AV.)',
+      vialidad: '25 PONIENTE',
+    },
+    domicilioRegistrado: {
+      denominacion: 'TERMOMAGNETICOS Y CONTROL DE RADIACIONES',
+      estatusPadron: 'ACTIVO',
+      fechaInicioOperacion: '01 DE JULIO DE 2003',
+      fechaUltimoCambioEstado: '01 DE JULIO DE 2003',
+      nombreComercial: '',
+      regimenCapital: 'SOCIEDAD ANONIMA DE CAPITAL VARIABLE',
+      rfc: 'TCR030701IN7',
+    },
+    contacto: {
+      nombre: 'Miguel Osorio Moreda',
+      telefono: '2222576165',
+      celular: '2211389377',
+    },
+    regimen: [
+      {
+        descripcion: 'Régimen General de Ley Personas Morales',
+        fechaFin: 'N/A',
+        fechaInicio: '01/07/2003',
+      },
+    ],
+  });
+
+  const [dataFiscal2, setDataFiscal2] = useState({
+    denominacionCompra: '',
+    ordenCompra: '',
+    fechaCompra: '',
+    nombreCompra: '',
+    vialidadCompra: '',
+    exteriorCompra: '',
+    interiorCompra: '',
+    coloniaCompra: '',
+    cpCompra: '',
+    municipioCompra: '',
+    estadoCompra: '',
+    telefonoCompra: '',
+    correoCompra1: '',
+    correoCompra2: '',
+  });
+
+  useEffect(() => {
+    const usuario = localStorage.getItem('selectedUsername');
+    const solicitud = localStorage.getItem('selectedNumeroSolicitud');
+    axios
+      .get('http://192.168.100.10:3070/getDatosProveedor', {
+        params: {
+          usuario: usuario,
+        },
+      })
+      .then((response) => {
+        const jsonData = response.data;
+        setDataFiscal2({
+          denominacionCompra: jsonData.denominacion || '',
+          nombreCompra: jsonData.nombre || '',
+          vialidadCompra: jsonData.vialidad || '',
+          exteriorCompra: jsonData.exterior || '',
+          interiorCompra: jsonData.interior || '',
+          coloniaCompra: jsonData.colonia || '',
+          cpCompra: jsonData.cp || '',
+          municipioCompra: jsonData.municipio || '',
+          estadoCompra: jsonData.entidad || '',
+          telefonoCompra: jsonData.telefono || '',
+          correoCompra1: jsonData.correo || '',
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleInputChangeDataFiscal2 = (e) => {
+    const { name, value } = e.target;
+
+    setDataFiscal2((prevDataFiscal2) => {
+      return {
+        ...prevDataFiscal2,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setfiscaldata((prevFiscaldata) => {
+      const updatedData = {
+        ...prevFiscaldata,
+        domicilioRegistrado: {
+          ...prevFiscaldata.domicilioRegistrado,
+          [name]: value,
+        },
+        datosContribuyente: {
+          ...prevFiscaldata.datosContribuyente,
+          [name]: value,
+        },
+        contacto: {
+          ...prevFiscaldata.contacto,
+          [name]: value,
+        },
+      };
+
+      return updatedData;
+    });
+  };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -70,7 +209,6 @@ const ComprasForm = () => {
       estadoCompra: e.target.estadoCompra.value,
       telefonoCompra: e.target.telefonoCompra.value,
       correoCompra1: e.target.correoCompra1.value,
-      correoCompra2: e.target.correoCompra2.value,
       partida: e.target.partida.value,
       descripcion: e.target.descripcion.value,
       cantidadT: e.target.cantidadT.value,
@@ -131,7 +269,6 @@ const ComprasForm = () => {
               <Text>Estado de compra: {formData[0].estadoCompra}</Text>
               <Text>Teféfono de compra: {formData[0].telefonoCompra}</Text>
               <Text>Correo de compra: {formData[0].correoCompra1}</Text>
-              <Text>Correo de compra 2: {formData[0].correoCompra2}</Text>
               <Text>Partida: {formData[0].partida}</Text>
               <Text>Descripción: {formData[0].descripcion}</Text>
               <Text>Cantidad: {formData[0].cantidadT}</Text>
@@ -214,24 +351,7 @@ const ComprasForm = () => {
             Empresa que solicita la compra
           </h2>
           <div className="modal-cel">
-            <div className="modal-item w-1/3">
-              <label>Nombre de la empresa que solicita la compra:</label>
-              <div
-                className={
-                  isDarkMode
-                    ? 'modal-input-container-d'
-                    : 'modal-input-container'
-                }
-              >
-                <input
-                  type="text"
-                  name="empresa"
-                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                />
-              </div>
-            </div>
-
-            <div className="modal-item w-1/3">
+            <div className="modal-item w-1/2">
               <label>Denominación / Razón social:</label>
               <div
                 className={
@@ -243,45 +363,17 @@ const ComprasForm = () => {
                 <input
                   type="text"
                   name="denominacion"
+                  value={fiscaldata.domicilioRegistrado.denominacion}
+                  onChange={handleInputChange}
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                 />
               </div>
             </div>
             <div className="modal-item w-1/3">
-              <label>RFC:</label>
-              <div
-                className={
-                  isDarkMode
-                    ? 'modal-input-container-d'
-                    : 'modal-input-container'
-                }
-              >
-                <input
-                  type="text"
-                  name="rfc"
-                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                />
-              </div>
+              <label></label>
             </div>
           </div>
-
           <div className="modal-cel">
-            <div className="modal-item w-1/3">
-              <label>Código postal:</label>
-              <div
-                className={
-                  isDarkMode
-                    ? 'modal-input-container-d'
-                    : 'modal-input-container'
-                }
-              >
-                <input
-                  type="text"
-                  name="cp"
-                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                />
-              </div>
-            </div>
             <div className="modal-item w-1/3">
               <label>Nombre de vialidad (calle):</label>
               <div
@@ -294,40 +386,8 @@ const ComprasForm = () => {
                 <input
                   type="text"
                   name="vialidad"
-                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                />
-              </div>
-            </div>
-            <div className="modal-item w-1/3">
-              <label>Número exterior:</label>
-              <div
-                className={
-                  isDarkMode
-                    ? 'modal-input-container-d'
-                    : 'modal-input-container'
-                }
-              >
-                <input
-                  type="text"
-                  name="exterior"
-                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="modal-cel">
-            <div className="modal-item w-1/3">
-              <label>Número Interior:</label>
-              <div
-                className={
-                  isDarkMode
-                    ? 'modal-input-container-d'
-                    : 'modal-input-container'
-                }
-              >
-                <input
-                  type="text"
-                  name="interior"
+                  value={fiscaldata.datosContribuyente.vialidad}
+                  onChange={handleInputChange}
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                 />
               </div>
@@ -344,6 +404,8 @@ const ComprasForm = () => {
                 <input
                   type="text"
                   name="colonia"
+                  value={fiscaldata.datosContribuyente.colonia}
+                  onChange={handleInputChange}
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                 />
               </div>
@@ -360,6 +422,8 @@ const ComprasForm = () => {
                 <input
                   type="text"
                   name="municipio"
+                  value={fiscaldata.datosContribuyente.municipio}
+                  onChange={handleInputChange}
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                 />
               </div>
@@ -377,7 +441,65 @@ const ComprasForm = () => {
               >
                 <input
                   type="text"
-                  name="estado"
+                  name="entidad"
+                  value={fiscaldata.datosContribuyente.entidad}
+                  onChange={handleInputChange}
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Código postal:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="cp"
+                  value={fiscaldata.datosContribuyente.cp}
+                  onChange={handleInputChange}
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+            <div className="modal-item w-1/3">
+              <label>Número exterior:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="numeroExterior"
+                  value={fiscaldata.datosContribuyente.numeroExterior}
+                  onChange={handleInputChange}
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Número Interior:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="numeroInterior"
+                  value={fiscaldata.datosContribuyente.numeroInterior}
+                  onChange={handleInputChange}
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                 />
               </div>
@@ -392,8 +514,10 @@ const ComprasForm = () => {
                 }
               >
                 <input
-                  type="number"
+                  type="text"
                   name="celular"
+                  value={fiscaldata.contacto.celular}
+                  onChange={handleInputChange}
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                 />
               </div>
@@ -408,8 +532,10 @@ const ComprasForm = () => {
                 }
               >
                 <input
-                  type="number"
+                  type="text"
                   name="telefono"
+                  value={fiscaldata.contacto.telefono}
+                  onChange={handleInputChange}
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                 />
               </div>
@@ -417,7 +543,7 @@ const ComprasForm = () => {
           </div>
         </div>
         <div className="justify-center">
-          <h2 className="text-xl font-bold pb-2">Orden de compra</h2>
+          <h2 className="text-xl font-bold pb-2">Vendedor</h2>
           <div className="modal-cel">
             <div className="modal-item w-1/3">
               <label>Orden de compra:</label>
@@ -452,22 +578,6 @@ const ComprasForm = () => {
                 />
               </div>
             </div>
-            <div className="modal-item w-1/3">
-              <label>Nombre de la empresa o quien solicita:</label>
-              <div
-                className={
-                  isDarkMode
-                    ? 'modal-input-container-d'
-                    : 'modal-input-container'
-                }
-              >
-                <input
-                  type="text"
-                  name="nombreCompra"
-                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                />
-              </div>
-            </div>
           </div>
           <div className="modal-cel">
             <div className="modal-item w-1/3">
@@ -483,6 +593,8 @@ const ComprasForm = () => {
                   type="text"
                   name="denominacionCompra"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.denominacionCompra}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
@@ -500,6 +612,8 @@ const ComprasForm = () => {
                   type="text"
                   name="vialidadCompra"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.vialidadCompra}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
@@ -516,6 +630,8 @@ const ComprasForm = () => {
                   type="text"
                   name="exteriorCompra"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.exteriorCompra}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
@@ -534,6 +650,8 @@ const ComprasForm = () => {
                   type="text"
                   name="interiorCompra"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.interiorCompra}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
@@ -550,6 +668,8 @@ const ComprasForm = () => {
                   type="text"
                   name="coloniaCompra"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.coloniaCompra}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
@@ -566,6 +686,8 @@ const ComprasForm = () => {
                   type="text"
                   name="cpCompra"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.cpCompra}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
@@ -584,6 +706,8 @@ const ComprasForm = () => {
                   type="text"
                   name="municipioCompra"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.municipioCompra}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
@@ -600,6 +724,8 @@ const ComprasForm = () => {
                   type="text"
                   name="estadoCompra"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.estadoCompra}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
@@ -613,16 +739,18 @@ const ComprasForm = () => {
                 }
               >
                 <input
-                  type="number"
+                  type="text"
                   name="telefonoCompra"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.telefonoCompra}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
           </div>
           <div className="modal-cel">
             <div className="modal-item w-1/3">
-              <label>Correo Electrónico 1:</label>
+              <label>Correo Electrónico:</label>
               <div
                 className={
                   isDarkMode
@@ -634,22 +762,8 @@ const ComprasForm = () => {
                   type="email"
                   name="correoCompra1"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                />
-              </div>
-            </div>
-            <div className="modal-item w-1/3">
-              <label>Correo Electrónico 2:</label>
-              <div
-                className={
-                  isDarkMode
-                    ? 'modal-input-container-d'
-                    : 'modal-input-container'
-                }
-              >
-                <input
-                  type="email"
-                  name="correoCompra2"
-                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={dataFiscal2.correoCompra1}
+                  onChange={handleInputChangeDataFiscal2}
                 />
               </div>
             </div>
