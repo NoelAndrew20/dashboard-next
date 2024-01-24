@@ -26,6 +26,18 @@ db.once('open', () => {
   console.log('Conexión exitosa a la base de datos.');
 });
 
+const generarCodigo = (fecha, metodo, nombre) => {
+  const fechaSolicitud = new Date(fecha);
+  const parte1 = `${fechaSolicitud.getFullYear()}${
+    fechaSolicitud.getMonth() + 1
+  }${fechaSolicitud.getDate()}`;
+  const parte2 = metodo.substring(0, 2);
+  const parte3 = nombre.substring(0, 2);
+  const codigo = `${parte3}${parte1}${parte2}`;
+
+  return codigo;
+};
+
 const SolicitudLicitacionSchema = new mongoose.Schema(
   {
     fechaSolicitud: Date,
@@ -35,6 +47,7 @@ const SolicitudLicitacionSchema = new mongoose.Schema(
     tipoProveedor: String,
     solicitud: [
       {
+        codigo: String,
         cantidad: Number,
         fecha: Date,
         lugar: String,
@@ -116,17 +129,32 @@ app.post('/addSolicitudLicitacion', async (req, res) => {
     } else {
       tipoProveedor = 'Tipo Desconocido';
     }
+    const codigo = generarCodigo(
+      newAlimento.fechaSolicitud,
+      newAlimento.metodo,
+      newAlimento.nombre
+    );
     const nuevaSolicitud = new SolicitudLicitacion({
       fechaSolicitud: newAlimento.fechaSolicitud,
       numeroSolicitud: newAlimento.numeroSolicitud,
       nombreSolicitante: newAlimento.nombreSolicitante,
       username: newAlimento.usuario,
       tipoProveedor: tipoProveedor,
-      solicitud: newAlimento,
+      solicitud: [
+        {
+          codigo: codigo,
+          cantidad: newAlimento.cantidad,
+          fecha: newAlimento.fecha,
+          lugar: newAlimento.lugar,
+          metodo: newAlimento.metodo,
+          nombre: newAlimento.nombre,
+          pago: newAlimento.pago,
+          fechaEntrega: newAlimento.fechaEntrega,
+          precio: newAlimento.precio,
+          estatus: 1,
+        },
+      ],
     });
-
-    await nuevaSolicitud.save();
-    nuevaSolicitud.solicitud[0].estatus = 1;
 
     await nuevaSolicitud.save();
 

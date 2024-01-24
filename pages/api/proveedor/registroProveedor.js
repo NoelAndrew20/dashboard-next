@@ -116,6 +116,7 @@ const ProveedorSchema = new mongoose.Schema(
     correo: String,
     nombre: String,
     telefono: Number,
+    celular: Number,
     estatuscorreo: Number,
   },
   {
@@ -227,6 +228,7 @@ app.post('/addProveedor', async (req, res) => {
       correo: newProveedor.correo,
       nombre: newProveedor.nombre,
       telefono: newProveedor.telefono,
+      celular: newProveedor.celular,
       estatuscorreo: 0,
       picture: newProveedor.picture || '/images/imagenes/user.png',
     });
