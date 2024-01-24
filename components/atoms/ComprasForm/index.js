@@ -763,11 +763,11 @@ const ComprasForm = () => {
             isDarkMode ? 'bg-[#151515]' : 'bg-white'
           }  justify-around mt-5 p-5 w-100`}
         >
-          <div className="flex">
-            <div className="w-1/4">
-              <ul>
+          <div className="position">
+            <div className="w-1/12 flex flex-col justify-between">
+              
                 <h2>Partida</h2>
-                <li>
+                
                   <div
                     className={
                       isDarkMode
@@ -781,20 +781,20 @@ const ComprasForm = () => {
                       className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     />
                   </div>
-                </li>
-              </ul>
+                
+              
             </div>
-            <div className="w-3/4">
-              <ul>
+            <div className="w-1/2 flex flex-col justify-between">
+              
                 <h2>Descripción</h2>
-                <li>
+                
                   <div
                     className={
                       isDarkMode
                         ? 'modal-input-container-d'
                         : 'modal-input-container'
                     }
-                    style={{ width: '90%' }}
+                    style={{ width: '95%' }}
                   >
                     <input
                       type="text"
@@ -802,15 +802,13 @@ const ComprasForm = () => {
                       className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     />
                   </div>
-                </li>
-              </ul>
+                
+              
             </div>
-          </div>
-          <div className="flex mt-2">
-            <div className="w-1/4">
-              <ul>
+            <div className="w-1/12 flex flex-col justify-between">
+              
                 <h2>Cantidad</h2>
-                <li>
+                
                   <div
                     className={
                       isDarkMode
@@ -824,13 +822,13 @@ const ComprasForm = () => {
                       className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     />
                   </div>
-                </li>
-              </ul>
+                
+              
             </div>
-            <div className="w-1/4">
-              <ul>
+            <div className="w-1/12 flex flex-col justify-between">
+              
                 <h2>Unidad de medida</h2>
-                <li>
+                
                   <div
                     className={
                       isDarkMode
@@ -844,13 +842,13 @@ const ComprasForm = () => {
                       className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     />
                   </div>
-                </li>
-              </ul>
+                
+              
             </div>
-            <div className="w-1/4">
-              <ul>
+            <div className="w-1/12 flex flex-col justify-between">
+              
                 <h2>Precio Unitario</h2>
-                <li>
+                
                   <div
                     className={
                       isDarkMode
@@ -864,13 +862,13 @@ const ComprasForm = () => {
                       className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     />
                   </div>
-                </li>
-              </ul>
+                
+              
             </div>
-            <div className="w-1/4">
-              <ul>
+            <div className="w-1/12 flex flex-col justify-between">
+              
                 <h2>Total</h2>
-                <li>
+                
                   <div
                     className={
                       isDarkMode
@@ -884,10 +882,11 @@ const ComprasForm = () => {
                       className={isDarkMode ? 'modal-input-d' : 'modal-input'}
                     />
                   </div>
-                </li>
-              </ul>
+                
+              
             </div>
           </div>
+            
         </div>
         <div>
           <div>

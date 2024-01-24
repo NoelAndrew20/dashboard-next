@@ -6,10 +6,12 @@ import { useState, useEffect } from 'react';
 import svg from '@/public/images/icon/alimentos-cerdo-index.png';
 import TableConsumoAlimentos from '@/components/atoms/TableConsumoAlimentos';
 import BarConsumo from '@/components/atoms/BarConsumo';
+import { useRouter } from 'next/router';
 
 const axios = require('axios');
 
 const ConsumoAlimentos = ({ title, description, image }) => {
+  const router = useRouter();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([
     {
@@ -80,8 +82,15 @@ const ConsumoAlimentos = ({ title, description, image }) => {
       <Navigation />
       <NavDashboard section="Pronóstico de consumo de alimentos" svg={svg} />
       <div className="wrapper">
+        <div
+          className="back-link mt-2 text-blue-500 cursor-pointer"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          <span className="back-arrow">&#8592;</span> Volver
+        </div>
         <h2 className="text-xl mt-5 mb-5">Consumo de alimentos</h2>
-
         <div className="flex justify-center pb-5">
           <div className="w-1/3">
             <div>

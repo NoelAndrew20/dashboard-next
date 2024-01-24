@@ -6,10 +6,12 @@ import { useState, useEffect } from 'react';
 import svg from '@/public/images/icon/little-pig-index.png';
 import TableNL from '@/components/atoms/TableNL';
 import BubbleGraph from '@/components/atoms/NLChart';
+import { useRouter } from 'next/router';
 
 const axios = require('axios');
 
 const NuevosLechones = ({ title, description, image }) => {
+  const router = useRouter();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([
     {
@@ -37,13 +39,18 @@ const NuevosLechones = ({ title, description, image }) => {
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
-      <div>
-        <Navigation />
-        <NavDashboard section="Nuevos lechones" svg={svg} />
-      </div>
+      <Navigation />
+      <NavDashboard section="Nuevos lechones" svg={svg} />
       <div className="wrapper">
+        <div
+          className="back-link mt-2 text-blue-500 cursor-pointer"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          <span className="back-arrow">&#8592;</span> Volver
+        </div>
         <h2 className="text-xl mt-5 mb-5">Registro de nuevos lechones</h2>
-
         <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">
             <h2 className="mt-2 text-center font-bold">
