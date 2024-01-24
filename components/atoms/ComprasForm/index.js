@@ -38,6 +38,16 @@ const ComprasForm = () => {
   const [formData, setFormData] = useState([]);
   const [pdfGenerated, setPdfGenerated] = useState(false);
   const [showPdf, setShowPdf] = useState(false);
+  const [ordenCompra, setOrdenCompra] = useState('');
+const [fechaCompra, setFechaCompra] = useState('');
+  const [solicitudData, setSolicitudData] = useState({
+    codigo: '',
+    descripcion: '',
+    cantidad: '',
+    unidad: '',
+    pu: '',
+    total: '',
+  });
 
   const [fiscaldata, setfiscaldata] = useState({
     denominacionCompra: '',
@@ -116,7 +126,6 @@ const ComprasForm = () => {
       })
       .then((response) => {
         const jsonData = response.data;
-        console.log(jsonData);
         setDataFiscal2({
           denominacionCompra: jsonData.denominacion || '',
           nombreCompra: jsonData.nombre || '',
@@ -131,6 +140,31 @@ const ComprasForm = () => {
           celularCompra: jsonData.celular || '',
           correoCompra1: jsonData.correo || '',
         });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    const apiUrl = `http://192.168.100.10:3083/getOneSolicitudLicitacion`;
+    axios
+      .get(apiUrl, {
+        params: {
+          usuario: usuario,
+          solicitud: solicitud,
+        },
+      })
+      .then((response) => {
+        const jsonData = response.data;
+        setSolicitudData({
+          codigo: jsonData.solicitud[0].codigo || '',
+          descripcion: jsonData.solicitud[0].nombre || '',
+          cantidad: jsonData.solicitud[0].cantidad || '',
+          unitario: jsonData.solicitud[0].metodo || '',
+          pu: jsonData.solicitud[0].precio || '',
+          total: jsonData.solicitud[0].cantidad * jsonData.solicitud[0].precio || '',
+        });
+        setOrdenCompra(jsonData.numeroSolicitud || '');
+        setFechaCompra(new Date().toISOString().split('T')[0]);
       })
       .catch((error) => {
         console.error(error);
@@ -158,6 +192,33 @@ const ComprasForm = () => {
       };
     });
   };
+
+  /*useEffect(() => {
+    let tipoDeLicitacion;
+
+    if (primerosDosCaracteres === 'Al') {
+      tipoDeLicitacion = 'Alimento';
+    } else if (primerosDosCaracteres === 'Vi') {
+      tipoDeLicitacion = 'Vientres';
+    } else {
+      console.error('Usuario no reconocido');
+      return;
+    }
+    const apiUrl = `http://192.168.100.10:3086/getAllSolicitudCompra`;
+    axios
+      .get(apiUrl, {
+        params: {
+          tipoDeLicitacion: tipoDeLicitacion,
+        },
+      })
+      .then((response) => {
+        const jsonData = response.data;
+        setDataLic(jsonData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [primerosDosCaracteres]);*/
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -534,41 +595,6 @@ const ComprasForm = () => {
           <h2 className="text-xl font-bold pb-2">Vendedor</h2>
           <div className="modal-cel">
             <div className="modal-item w-1/3">
-              <label>Orden de compra:</label>
-              <div
-                className={
-                  isDarkMode
-                    ? 'modal-input-container-d'
-                    : 'modal-input-container'
-                }
-              >
-                <input
-                  type="text"
-                  name="ordenCompra"
-                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                />
-              </div>
-            </div>
-
-            <div className="modal-item w-1/3">
-              <label>Fecha:</label>
-              <div
-                className={
-                  isDarkMode
-                    ? 'modal-input-container-d'
-                    : 'modal-input-container'
-                }
-              >
-                <input
-                  type="date"
-                  name="fechaCompra"
-                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="modal-cel">
-            <div className="modal-item w-1/3">
               <label>Denominación / Razón social:</label>
               <div
                 className={
@@ -758,6 +784,52 @@ const ComprasForm = () => {
             </div>
           </div>
         </div>
+
+        <div className="justify-center">
+          <h2 className="text-xl font-bold pb-2">Factura</h2>
+          <div className="modal-cel">
+            <div className="modal-item w-1/3">
+              <label>Orden de compra:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="ordenCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={ordenCompra}
+                  onChange={(e) => setOrdenCompra(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="modal-item w-1/3">
+              <label>Fecha:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="date"
+                  name="fechaCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={fechaCompra}
+                  onChange={(e) => setFechaCompra(e.target.value)}
+                  readOnly
+                />
+              </div>
+            </div>
+          </div>
+          </div>
+
+
         <div
           className={`${
             isDarkMode ? 'bg-[#151515]' : 'bg-white'
@@ -765,285 +837,118 @@ const ComprasForm = () => {
         >
           <div className="position">
             <div className="w-1/12 flex flex-col justify-between">
-              
-                <h2>Partida</h2>
-                
-                  <div
-                    className={
-                      isDarkMode
-                        ? 'modal-input-container-d'
-                        : 'modal-input-container'
-                    }
-                  >
-                    <input
-                      type="text"
-                      name="partida"
-                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                    />
-                  </div>
-                
-              
+              <h2>Código</h2>
+
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="partida"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={solicitudData.codigo}
+                />
+              </div>
             </div>
             <div className="w-1/2 flex flex-col justify-between">
-              
-                <h2>Descripción</h2>
-                
-                  <div
-                    className={
-                      isDarkMode
-                        ? 'modal-input-container-d'
-                        : 'modal-input-container'
-                    }
-                    style={{ width: '95%' }}
-                  >
-                    <input
-                      type="text"
-                      name="descripcion"
-                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                    />
-                  </div>
-                
-              
+              <h2>Descripción</h2>
+
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+                style={{ width: '95%' }}
+              >
+                <input
+                  type="text"
+                  name="descripcion"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={solicitudData.descripcion}
+                />
+              </div>
             </div>
             <div className="w-1/12 flex flex-col justify-between">
-              
-                <h2>Cantidad</h2>
-                
-                  <div
-                    className={
-                      isDarkMode
-                        ? 'modal-input-container-d'
-                        : 'modal-input-container'
-                    }
-                  >
-                    <input
-                      type="text"
-                      name="cantidadT"
-                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                    />
-                  </div>
-                
-              
+              <h2>Cantidad</h2>
+
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="cantidadT"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={solicitudData.cantidad}
+                />
+              </div>
             </div>
             <div className="w-1/12 flex flex-col justify-between">
-              
-                <h2>Unidad de medida</h2>
-                
-                  <div
-                    className={
-                      isDarkMode
-                        ? 'modal-input-container-d'
-                        : 'modal-input-container'
-                    }
-                  >
-                    <input
-                      type="text"
-                      name="unitario"
-                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                    />
-                  </div>
-                
-              
+              <h2>Unidad de medida</h2>
+
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="unitario"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={solicitudData.unidad}
+                />
+              </div>
             </div>
             <div className="w-1/12 flex flex-col justify-between">
-              
-                <h2>Precio Unitario</h2>
-                
-                  <div
-                    className={
-                      isDarkMode
-                        ? 'modal-input-container-d'
-                        : 'modal-input-container'
-                    }
-                  >
-                    <input
-                      type="text"
-                      name="pu"
-                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                    />
-                  </div>
-                
-              
+              <h2>Precio Unitario</h2>
+
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="pu"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={solicitudData.pu}
+                />
+              </div>
             </div>
             <div className="w-1/12 flex flex-col justify-between">
-              
-                <h2>Total</h2>
-                
-                  <div
-                    className={
-                      isDarkMode
-                        ? 'modal-input-container-d'
-                        : 'modal-input-container'
-                    }
-                  >
-                    <input
-                      type="text"
-                      name="total"
-                      className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                    />
-                  </div>
-                
-              
+              <h2>Total</h2>
+
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="text"
+                  name="total"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={solicitudData.total}
+                />
+              </div>
             </div>
           </div>
-            
         </div>
         <div>
           <div>
-            <h2 className="text-xl font-bold mt-5 pb-2">Facturar a:</h2>
-            <div className="modal-cel mt-2">
-              <div className="modal-item w-1/3">
-                <label>
-                  Razón social o persona física a la que va a facturar:
-                </label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="nombreFactura"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-
-              <div className="modal-item w-1/3">
-                <label>RFC:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="rfcFactura"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item w-1/3">
-                <label>Nombre de vialidad:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="vialidadFactura"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="modal-cel mt-2">
-              <div className="modal-item w-1/3">
-                <label>Número exterior:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="exteriorFactura"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item w-1/3">
-                <label>Número Interior:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="interiorFactura"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item w-1/3">
-                <label>Nombre de la colonia:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="coloniaFactura"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="modal-cel mt-2">
-              <div className="modal-item w-1/3">
-                <label>Código postal:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="cpFactura"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item w-1/3">
-                <label>Municipio:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="municipioFactura"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-              <div className="modal-item w-1/3">
-                <label>Estado:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="estadoFactura"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
-              </div>
-            </div>
             <div className="modal-cel mt-2">
               <div className="modal-item w-1/3">
                 <label>Pago:</label>
@@ -1067,21 +972,25 @@ const ComprasForm = () => {
                 </div>
               </div>
               <div className="modal-item w-1/3">
-                <label>Tiempo de entrega:</label>
-                <div
-                  className={
-                    isDarkMode
-                      ? 'modal-input-container-d'
-                      : 'modal-input-container'
-                  }
-                >
-                  <input
-                    type="text"
-                    name="tiempoEntrega"
-                    className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  />
-                </div>
+              <label>Tiempo de entrega:</label>
+              <div
+                className={
+                  isDarkMode
+                    ? 'modal-input-container-d'
+                    : 'modal-input-container'
+                }
+              >
+                <input
+                  type="date"
+                  name="fechaCompra"
+                  className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                  value={fechaCompra}
+                  onChange={(e) => setFechaCompra(e.target.value)}
+                />
               </div>
+            </div>
+
+
               <div className="modal-item w-1/3">
                 <label>Condiciones de entrega:</label>
                 <div

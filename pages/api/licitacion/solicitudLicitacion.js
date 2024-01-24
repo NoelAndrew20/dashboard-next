@@ -105,6 +105,27 @@ app.get('/getAllSolicitudLicitacion', async (req, res) => {
   }
 });
 
+app.get('/getOneSolicitudLicitacion', async (req, res) => {
+  try {
+    const { usuario, solicitud } = req.query;
+    const solicitudEncontrada = await SolicitudLicitacion.findOne({
+      'username': usuario,
+      'numeroSolicitud': solicitud,
+    });
+    if (!solicitudEncontrada) {
+      return res.status(404).json({
+        mensaje: 'No se encontró la solicitud de licitación para el usuario y número de solicitud proporcionados.',
+      });
+    }
+    res.status(200).json(solicitudEncontrada);
+  } catch (error) {
+    console.error('Error al obtener la solicitud de licitación:', error);
+    res.status(500).json({
+      mensaje: 'Error al obtener la solicitud de licitación',
+    });
+  }
+});
+
 app.post('/addSolicitudLicitacion', async (req, res) => {
   try {
     const newAlimento = req.body;
