@@ -14,7 +14,7 @@ const Compras = ({ title, description, image }) => {
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     const [username, setUsername] = useState('');
     const [tokenVerified, setTokenVerified] = useState(false);
-
+/*
     useEffect(() => {
       const checkToken = async () => {
         try {
@@ -35,9 +35,9 @@ const Compras = ({ title, description, image }) => {
         }
       };
       checkToken();
-    }, [router]);
+    }, [router]);*/
 
-    useEffect(() => {
+    //useEffect(() => {
       /*const fetchData = async () => {
         try {
           const response = await axios.get(
@@ -51,15 +51,15 @@ const Compras = ({ title, description, image }) => {
         }
       };*/
   
-      if (tokenVerified) {
+      //if (tokenVerified) {
         //fetchData(); la logica va aqui
 
-      }
-    }, [tokenVerified, setUsername]);
+      //}
+    //}, [tokenVerified, setUsername]);
   
-    if (!tokenVerified) {
-      return null;
-    }
+    //if (!tokenVerified) {
+      //return null;
+    //}
   
   
 

@@ -6,10 +6,12 @@ import { useState, useEffect } from 'react';
 import svg from '@/public/images/icon/medicamentos-index.png';
 import TableVacunas from '@/components/atoms/TableVacunas';
 import PieVacunas from '@/components/atoms/PieVacunas';
+import { useRouter } from 'next/router';
 
 const axios = require('axios');
 
 const Vacunas = ({ title, description, image }) => {
+  const router = useRouter();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([
     { tipo: 'EPL', vacunas: { F1: 260, L: 11846 } },
@@ -21,11 +23,17 @@ const Vacunas = ({ title, description, image }) => {
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
-      <div>
-        <Navigation />
-        <NavDashboard section="Total de vacunas" svg={svg} />
-      </div>
+      <Navigation />
+      <NavDashboard section="Total de vacunas" svg={svg} />
       <div className="wrapper">
+        <div
+          className="back-link mt-2 text-blue-500 cursor-pointer"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          <span className="back-arrow">&#8592;</span> Volver
+        </div>
         <h2 className="text-xl mt-5 mb-5">Registro de vacunas</h2>
         <div className="flex justify-center pb-5">
           <div className="w-1/3">

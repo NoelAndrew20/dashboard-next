@@ -6,10 +6,12 @@ import { useState, useEffect } from 'react';
 import svg from '@/public/images/icon/medicamentos-index.png';
 import VATable from '@/components/atoms/VATable';
 import BarLN from '@/components/atoms/BarLN';
+import { useRouter } from 'next/router';
 
 const axios = require('axios');
 
 const LechonesNacidos = ({ title, description, image }) => {
+  const router = useRouter();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([
     {
@@ -70,11 +72,17 @@ const LechonesNacidos = ({ title, description, image }) => {
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
-      <div>
-        <Navigation />
-        <NavDashboard section="Total vacunas por tipo de cerdo" svg={svg} />
-      </div>
+      <Navigation />
+      <NavDashboard section="Total vacunas por tipo de cerdo" svg={svg} />
       <div className="wrapper">
+        <div
+          className="back-link mt-2 text-blue-500 cursor-pointer"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          <span className="back-arrow">&#8592;</span> Volver
+        </div>
         <h2 className="text-xl mt-5 mb-5">
           Registro de vacunas por tipo de cerdo
         </h2>

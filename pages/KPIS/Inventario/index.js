@@ -6,10 +6,12 @@ import { useState, useEffect } from 'react';
 import TableInventario from '@/components/molecules/TableInventario';
 import GraphInventario from '@/components/atoms/GraphInventario';
 import svg from '@/public/images/icon/pig-index.png';
+import { useRouter } from 'next/router';
 
 const axios = require('axios');
 
 const Inventario = ({ title, description, image }) => {
+  const router = useRouter();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([
     {
@@ -69,11 +71,17 @@ const Inventario = ({ title, description, image }) => {
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
-      <div>
         <Navigation />
         <NavDashboard section="Total de inventario" svg={svg} />
-      </div>
       <div className="wrapper">
+      <div
+          className="back-link mt-2 text-blue-500 cursor-pointer"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          <span className="back-arrow">&#8592;</span> Volver
+        </div>
         <h2 className="text-xl mt-5 mb-5">Inventario de cerdos existente</h2>
         <div className="flex justify-center pb-5">
           <div className="w-1/3">
