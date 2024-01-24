@@ -239,13 +239,8 @@ const ProveedorForm = () => {
       correo: e.target.correo.value,
       nombre: e.target.nombre.value,
       telefono: e.target.telefono.value,
+      celular: e.target.celular.value,
     };
-
-    console.log(newFormData);
-
-    //const apiUrl = 'http://localhost:3070/addProveedor/';
-    //const apiUrl2 = 'http://localhost:3070/addDocumentoProveedor/';
-
     const apiUrl = 'http://192.168.100.10:3070/addProveedor/';
     const apiUrl2 = 'http://192.168.100.10:3070/addDocumentoProveedor/';
     axios
@@ -902,20 +897,6 @@ const ProveedorForm = () => {
       <h2 className="font-bold text-lg">Datos de contacto</h2>
       <div className="modal-cel mt-2">
         <div className="modal-item w-1/3">
-          <label className="font-bold text-cyan-800">Correo:</label>
-          <div
-            className={
-              isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
-            }
-          >
-            <input
-              type="text"
-              name="correo"
-              className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-            />
-          </div>
-        </div>
-        <div className="modal-item w-1/3">
           <label className="font-bold text-cyan-800">Nombre:</label>
           <div
             className={
@@ -939,6 +920,36 @@ const ProveedorForm = () => {
             <input
               type="number"
               name="telefono"
+              className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+            />
+          </div>
+        </div>
+        <div className="modal-item w-1/3">
+          <label className="font-bold text-cyan-800">Celular:</label>
+          <div
+            className={
+              isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+            }
+          >
+            <input
+              type="number"
+              name="celular"
+              className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="modal-cel">
+        <div className="modal-item w-1/3">
+          <label className="font-bold text-cyan-800">Correo:</label>
+          <div
+            className={
+              isDarkMode ? 'modal-input-container-d' : 'modal-input-container'
+            }
+          >
+            <input
+              type="email"
+              name="correo"
               className={isDarkMode ? 'modal-input-d' : 'modal-input'}
             />
           </div>
