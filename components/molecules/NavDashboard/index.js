@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const NavDashboard = ({ svg, section, id }) => {
     return (
-        <div className="dashboard-nav">
+        <div className={`dashboard-nav ${id}`}>
             <div className="rounded-full object-cover border-solid border-4 border-white mb-5">
                 <Image src={ svg } width={ 50 } height={ 50 } alt="icon" className="p-3" />
             </div>

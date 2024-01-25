@@ -79,7 +79,7 @@ const SeleccionProveedor = ({ title, description, image }) => {
 
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
-      <StaticMeta title={title} description={description} image={image} />
+      <StaticMeta title={title} description={description} id={"box-bg"} image={image} />
       <div>
         <Navigation />
         <NavDashboard section="Selección de proveedor" svg={svg} />

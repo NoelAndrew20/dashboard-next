@@ -189,7 +189,7 @@ const SolicitudCerdo = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Solicitud de Cerdo" svg={svg} />
+        <NavDashboard section="Solicitud de Cerdo" id={"pig-bg"} svg={svg} />
       </div>
       <div className="wrapper">
         <div className="mt-10">
