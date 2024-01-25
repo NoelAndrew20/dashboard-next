@@ -273,6 +273,30 @@ th {
   padding: 20px;
   height: 30vh;
 }
+.users {
+  background-image: url("/images/bg-users.gif");
+  background-size: contain;
+}
+.truck {
+  background-image: url("/images/truck.gif");
+  background-size: contain;
+}
+.box-bg {
+  background-image: url("/images/bg-box.gif");
+  background-size: contain;
+}
+.menu-bg {
+  background-image: url("/images/menu-bg.gif");
+  background-size: cover;
+}
+.pig-bg{
+  background-image: url("/images/pig-bg.gif");
+  background-size: auto;
+}
+.lici-bg{
+  background-image: url("/images/licitacion-bg.gif");
+  background-size: cover;
+}
 .profile-nav {
   background-color: #a78bfa;
   display: flex;

@@ -14,7 +14,7 @@ const RegistroProveedores = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Registro de proveedores" svg={svg} />
+        <NavDashboard section="Registro de proveedores" id={"box-bg"} svg={svg} />
       </div>
       <div className="wrapper">
         <div className="mt-3">

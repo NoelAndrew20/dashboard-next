@@ -202,7 +202,7 @@ const Graphicator = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Solicitud de alimento" svg={svg} />
+        <NavDashboard section="Solicitud de alimento" id={"menu-bg"} svg={svg} />
       </div>
       <div className="wrapper">
         <div className="mt-10"></div>

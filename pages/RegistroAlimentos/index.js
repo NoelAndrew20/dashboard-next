@@ -40,7 +40,7 @@ const RegistroAlimentos = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Alimentos registrados" svg={svg} />
+        <NavDashboard section="Alimentos registrados" id={"menu-bg"} svg={svg} />
       </div>
       <div className="wrapper">
         <h2 className="text-xl mt-5 mb-5">Alimentos existentes</h2>

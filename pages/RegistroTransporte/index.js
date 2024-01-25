@@ -209,7 +209,7 @@ const RegistroTransporte = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <div>
         <Navigation />
-        <NavDashboard section="Registro de transporte" svg={svg} />
+        <NavDashboard section="Registro de transporte" id={"truck"} svg={svg} />
       </div>
       <div className="wrapper">
         <h2 className="text-xl mt-5 mb-5">Transportes existentes</h2>
