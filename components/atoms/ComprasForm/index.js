@@ -10,6 +10,7 @@ import {
 } from '@react-pdf/renderer';
 import srs from '@/public/Logos/ACELogo.png';
 import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import Image from 'next/image';
 const styles = StyleSheet.create({
   page: {
@@ -39,51 +40,10 @@ const ComprasForm = () => {
   const [pdfGenerated, setPdfGenerated] = useState(false);
   const [showPdf, setShowPdf] = useState(false);
   const [ordenCompra, setOrdenCompra] = useState('');
-const [fechaCompra, setFechaCompra] = useState('');
-  const [solicitudData, setSolicitudData] = useState({
-    codigo: '',
-    descripcion: '',
-    cantidad: '',
-    unidad: '',
-    pu: '',
-    total: '',
-  });
-
-  const [fiscaldata, setfiscaldata] = useState({
-    denominacionCompra: '',
-    ordenCompra: '',
-    fechaCompra: '',
-    nombreCompra: '',
-    vialidadCompra: '',
-    exteriorCompra: '',
-    interiorCompra: '',
-    coloniaCompra: '',
-    cpCompra: '',
-    municipioCompra: '',
-    estadoCompra: '',
-    telefonoCompra: '',
-    celularCompra: '',
-    correoCompra1: '',
-    correoCompra2: '',
-  });
-
-  const [dataFiscal2, setDataFiscal2] = useState({
-    denominacionCompra: '',
-    ordenCompra: '',
-    fechaCompra: '',
-    nombreCompra: '',
-    vialidadCompra: '',
-    exteriorCompra: '',
-    interiorCompra: '',
-    coloniaCompra: '',
-    cpCompra: '',
-    municipioCompra: '',
-    estadoCompra: '',
-    telefonoCompra: '',
-    celularCompra: '',
-    correoCompra1: '',
-    correoCompra2: '',
-  });
+  const [fechaCompra, setFechaCompra] = useState('');
+  const [solicitudData, setSolicitudData] = useState({});
+  const [fiscaldata, setfiscaldata] = useState({});
+  const [dataFiscal2, setDataFiscal2] = useState({});
 
   useEffect(() => {
     const usuario = 'IMPI';
@@ -128,7 +88,7 @@ const [fechaCompra, setFechaCompra] = useState('');
         const jsonData = response.data;
         setDataFiscal2({
           denominacionCompra: jsonData.denominacion || '',
-          nombreCompra: jsonData.nombre || '',
+          //nombreCompra: jsonData.nombre || '',
           vialidadCompra: jsonData.vialidad || '',
           exteriorCompra: jsonData.exterior || '',
           interiorCompra: jsonData.interior || '',
@@ -162,6 +122,7 @@ const [fechaCompra, setFechaCompra] = useState('');
           unitario: jsonData.solicitud[0].metodo || '',
           pu: jsonData.solicitud[0].precio || '',
           total: jsonData.solicitud[0].cantidad * jsonData.solicitud[0].precio || '',
+          fechaEntrega: jsonData.solicitud[0].fechaEntrega || '',
         });
         setOrdenCompra(jsonData.numeroSolicitud || '');
         setFechaCompra(new Date().toISOString().split('T')[0]);
@@ -193,33 +154,6 @@ const [fechaCompra, setFechaCompra] = useState('');
     });
   };
 
-  /*useEffect(() => {
-    let tipoDeLicitacion;
-
-    if (primerosDosCaracteres === 'Al') {
-      tipoDeLicitacion = 'Alimento';
-    } else if (primerosDosCaracteres === 'Vi') {
-      tipoDeLicitacion = 'Vientres';
-    } else {
-      console.error('Usuario no reconocido');
-      return;
-    }
-    const apiUrl = `http://192.168.100.10:3086/getAllSolicitudCompra`;
-    axios
-      .get(apiUrl, {
-        params: {
-          tipoDeLicitacion: tipoDeLicitacion,
-        },
-      })
-      .then((response) => {
-        const jsonData = response.data;
-        setDataLic(jsonData);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [primerosDosCaracteres]);*/
-
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -229,21 +163,20 @@ const [fechaCompra, setFechaCompra] = useState('');
     e.preventDefault();
 
     const newFormData = {
-      empresa: e.target.empresa.value,
       denominacion: e.target.denominacion.value,
-      rfc: e.target.rfc.value,
       cp: e.target.cp.value,
       vialidad: e.target.vialidad.value,
-      exterior: e.target.exterior.value,
-      interior: e.target.interior.value,
+      exterior: e.target.numeroExterior.value,
+      interior: e.target.numeroInterior.value,
       colonia: e.target.colonia.value,
       municipio: e.target.municipio.value,
-      estado: e.target.estado.value,
+      estado: e.target.entidad.value,
       telefono: e.target.telefono.value,
-      celular: e.target.celular.value,
+      correo: e.target.correo.value,
+      //celular: e.target.celular.value,
       ordenCompra: e.target.ordenCompra.value,
-      fechaCompra: e.target.fechaCompra.value,
-      nombreCompra: e.target.nombreCompra.value,
+      fechaCompra: fechaCompra,
+      //nombreCompra: e.target.nombreCompra.value,
       denominacionCompra: e.target.denominacionCompra.value,
       vialidadCompra: e.target.vialidadCompra.value,
       exteriorCompra: e.target.exteriorCompra.value,
@@ -253,7 +186,7 @@ const [fechaCompra, setFechaCompra] = useState('');
       municipioCompra: e.target.municipioCompra.value,
       estadoCompra: e.target.estadoCompra.value,
       telefonoCompra: e.target.telefonoCompra.value,
-      celularCompra: e.target.celularCompra.value,
+      //celularCompra: e.target.celularCompra.value,
       correoCompra1: e.target.correoCompra1.value,
       partida: e.target.partida.value,
       descripcion: e.target.descripcion.value,
@@ -261,15 +194,6 @@ const [fechaCompra, setFechaCompra] = useState('');
       unitario: e.target.unitario.value,
       pu: e.target.pu.value,
       total: e.target.total.value,
-      nombreFactura: e.target.nombreFactura.value,
-      rfcFactura: e.target.rfcFactura.value,
-      vialidadFactura: e.target.vialidadFactura.value,
-      exteriorFactura: e.target.exteriorFactura.value,
-      interiorFactura: e.target.interiorFactura.value,
-      coloniaFactura: e.target.coloniaFactura.value,
-      cpFactura: e.target.cpFactura.value,
-      municipioFactura: e.target.municipioFactura.value,
-      estadoFactura: e.target.estadoFactura.value,
       pagoFactura: e.target.pagoFactura.value,
       tiempoEntrega: e.target.tiempoEntrega.value,
       condicionesEntrega: e.target.condicionesEntrega.value,
@@ -278,19 +202,146 @@ const [fechaCompra, setFechaCompra] = useState('');
       nombreElaborado: e.target.nombreElaborado.value,
       puestoElaborado: e.target.puestoElaborado.value,
     };
-
+    
     setFormData([...formData, newFormData]);
+    console.log(newFormData);
+    generatePdf(newFormData);
+    
+  };  
+
+  const generatePdf = (formData) => {
     setShowPdf(true);
+    const doc = new jsPDF();
+    doc.setFontSize(20);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Factura', 20, 20);
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Fecha de Emisión: ' + new Date().toLocaleDateString(), 20, 30);
+    doc.text('Orden de Compra: ' + formData.ordenCompra, 140, 30);
+
+    const vendedorData = [
+      ['Denominación:', formData.denominacion],
+      ['Vialidad:', formData.vialidad],
+      ['Colonia:', formData.colonia],
+      ['Municipio:', formData.municipio],
+      ['Estado:', formData.estado],
+      ['Código postal:', formData.cp],
+      ['No. exterior:', formData.exterior],
+      ['No. interior:', formData.interior],
+      ['Teléfono:', formData.telefono],
+      ['Correo:', formData.correo],
+    ];
+
+    const compradorData = [
+      ['Denominacion:', formData.denominacionCompra],
+      ['Vialidad:', formData.vialidadCompra],
+      ['Colonia:', formData.coloniaCompra],
+      ['Municipio:', formData.municipioCompra],
+      ['Estado:', formData.estadoCompra],
+      ['Código Postal:', formData.cpCompra],
+      ['No. exterior:', formData.exteriorCompra],
+      ['No. interior:', formData.interiorCompra],
+      ['Teléfono:', formData.telefonoCompra],
+      ['Correo:', formData.correoCompra1],
+    ];
+
+    const combinedData = vendedorData.map((vendedor, index) => vendedor.concat(compradorData[index]));
+
+    let yOffset = 38;
+    yOffset = createTable(doc, combinedData, 20, yOffset);
+  
+    const productosData = [
+      {
+        producto: formData.partida,
+        descripcion: formData.descripcion,
+        cantidad: formData.cantidadT,
+        precio: formData.pu,
+        total: formData.total,
+      },
+    ];
+    
+    yOffset = createTable2(doc, productosData, 20, yOffset + 10);
+  
+      doc.text('Tipo de pago de la factura: ' + formData.pagoFactura, 20, yOffset + 10);
+      doc.text('Tiempo de entrega: ' + formData.tiempoEntrega, 110, yOffset + 10);
+      doc.text('Condiciones de entrega: ' + formData.condicionesEntrega, 20, yOffset + 18);
+      doc.text('Forma de la factura: ' + formData.formaFactura, 110, yOffset + 18);
+      doc.text('Tipo de cambio: ' + formData.tipoCambio, 20, yOffset + 26);
+      doc.text('Nombre de quién la elaboró: ' + formData.nombreElaborado, 110, yOffset + 26);
+      doc.text('Puesto de quién la elaboró: ' + formData.puestoElaborado, 20, yOffset + 34);
+    window.open(doc.output('bloburl'), '_blank');
   };
-  useEffect(() => {
+  const createTable = (doc, data, startX, startY) => {
+    const cellPadding = 2;
+
+    const tableStyles = {
+      lineWidth: 0.2, // Ancho de línea
+      lineColor: [0, 0, 0], // Color de línea (negro)
+    };
+
+    const columnStyles = {
+      0: { cellWidth: 40, fillColor: [173, 216, 230] },
+      1: { cellWidth: 40, fillColor: [173, 216, 230] },
+      2: { cellWidth: 40, fillColor: [144, 238, 144] },
+      3: { cellWidth: 40, fillColor: [144, 238, 144]},
+    };
+
+    doc.autoTable({
+      head: [
+        [{ content: 'Vendedor', colSpan: 2, styles: { fillColor: [173, 216, 230], textColor: [0, 0, 0], halign: 'center' } }, { content: 'Comprador', colSpan: 2, styles: { fillColor: [144, 238, 144], textColor: [0, 0, 0], halign: 'center' } }],
+      ],
+      body: data,
+      theme: 'grid',
+      styles: tableStyles,
+      columnStyles: columnStyles,
+      margin: { left: startX },
+      startY: startY,
+    });
+
+    return doc.autoTable.previous.finalY + cellPadding;
+  };
+
+  const createTable2 = (doc, data, startX, startY) => {
+    const cellPadding = 2;
+  
+    const tableStyles = {
+      lineWidth: 0.2,
+      lineColor: [0, 0, 0],
+    };
+  
+    const columns = ['Producto', 'Descripción', 'Cantidad', 'Precio Unitario', 'Total'];
+    const rows = data.map((producto) => [
+      producto.producto,
+      producto.descripcion,
+      producto.cantidad,
+      `$${producto.precio}`,
+      `$${producto.precio * producto.cantidad}`,
+    ]);
+  
+    doc.autoTable({
+      startY: startY,
+      head: [columns],
+      body: rows,
+      theme: 'grid',
+      styles: tableStyles,
+      margin: { left: startX },
+    });
+  
+    return doc.autoTable.previous.finalY + cellPadding;
+  };
+
+
+
+
+
+  /*useEffect(() => {
     if (pdfGenerated) {
       const pdfDoc = (
         <Document>
           <Page size="A4" style={styles.page}>
             <View style={styles.section}>
-              <Text>Empresa: {formData[0].empresa}</Text>
               <Text>Denominación: {formData[0].denominacion}</Text>
-              <Text>RFC: {formData[0].rfc}</Text>
               <Text>Código postal: {formData[0].cp}</Text>
               <Text>Vialidad: {formData[0].vialidad}</Text>
               <Text>No. exterior: {formData[0].exterior}</Text>
@@ -299,10 +350,8 @@ const [fechaCompra, setFechaCompra] = useState('');
               <Text>Municipio: {formData[0].municipio}</Text>
               <Text>Estado: {formData[0].estado}</Text>
               <Text>Teléfono: {formData[0].telefono}</Text>
-              <Text>Celular: {formData[0].celular}</Text>
               <Text>Orden de compra: {formData[0].ordenCompra}</Text>
               <Text>Fecha de compra: {formData[0].fechaCompra}</Text>
-              <Text>Nombre de compra: {formData[0].nombreCompra}</Text>
               <Text>
                 Denominación de compra: {formData[0].denominacionCompra}
               </Text>
@@ -314,7 +363,6 @@ const [fechaCompra, setFechaCompra] = useState('');
               <Text>Municipio de compra: {formData[0].municipioCompra}</Text>
               <Text>Estado de compra: {formData[0].estadoCompra}</Text>
               <Text>Teféfono de compra: {formData[0].telefonoCompra}</Text>
-              <Text>Celular de compra: {formData[0].celularCompra}</Text>
               <Text>Correo de compra: {formData[0].correoCompra1}</Text>
               <Text>Partida: {formData[0].partida}</Text>
               <Text>Descripción: {formData[0].descripcion}</Text>
@@ -322,23 +370,6 @@ const [fechaCompra, setFechaCompra] = useState('');
               <Text>Unitario: {formData[0].unitario}</Text>
               <Text>PU: {formData[0].pu}</Text>
               <Text>Total: {formData[0].total}</Text>
-              <Text>Nombre de la factura: {formData[0].nombreFactura}</Text>
-              <Text>FRC de la factura: {formData[0].rfcFactura}</Text>
-              <Text>Vialidad de la factura: {formData[0].vialidadFactura}</Text>
-              <Text>
-                No. exterior de la factura: {formData[0].exteriorFactura}
-              </Text>
-              <Text>
-                No. interior de la factura: {formData[0].interiorFactura}
-              </Text>
-              <Text>Colonia de la factura: {formData[0].coloniaFactura}</Text>
-              <Text>
-                Código postal de la factura: {formData[0].coloniaFactura}
-              </Text>
-              <Text>
-                Municipio de la factura: {formData[0].municipioFactura}
-              </Text>
-              <Text>Estado de la factura: {formData[0].estadoFactura}</Text>
               <Text>Tipo de pago de la factura: {formData[0].pagoFactura}</Text>
               <Text>Tempo de entrega: {formData[0].tiempoEntrega}</Text>
               <Text>
@@ -352,21 +383,6 @@ const [fechaCompra, setFechaCompra] = useState('');
               <Text>
                 Puesto de quien la elaboró: {formData[0].puestoElaborado}
               </Text>
-
-              {/*     empresa: e.target.empresa.value,
-            denominacion: e.target.denominacion.value,
-            rfc: e.target.rfc.value,
-            cp: e.target.cp.value,
-            vialidad: e.target.vialidad.value,
-            exterior: e.target.exterior.value,
-            interior: e.target.interior.value,
-            colonia: e.target.colonia.value,
-            municipio: e.target.municipio.value,
-            estado: e.target.estado.value,
-            telefono: e.target.telefono.value,
-            celular: e.target.celular.value,
-            ordenCompra: e.target.ordenCompra.value,
-            fechaCompra: e.target.fechaCompra.value, */}
             </View>
           </Page>
         </Document>
@@ -374,15 +390,13 @@ const [fechaCompra, setFechaCompra] = useState('');
 
       pdfViewer.current.updateContainer(pdfDoc);
     }
-  }, [pdfGenerated, formData]);
+  }, [pdfGenerated, formData]);*/
   const PDFDocument = (
     <Document>
       {formData.map((data, index) => (
         <Page key={index} size="A4" style={styles.page}>
           <View style={styles.section}>
-            <Text style={styles.heading}>Empresa: {data.empresa}</Text>
             <Text>Denominación: {data.denominacion}</Text>
-            <Text>RFC: {data.rfc}</Text>
             {/* ... (agrega el resto de los campos del formulario) */}
           </View>
         </Page>
@@ -966,8 +980,8 @@ const [fechaCompra, setFechaCompra] = useState('');
                     <option value="" defaultValue>
                       Selecciona una opción...
                     </option>
-                    <option value="credito">Credito</option>
-                    <option value="pago inmediato">Pago inmediato</option>
+                    <option value="Crédito">Credito</option>
+                    <option value="PagoInmediato">Pago inmediato</option>
                   </select>
                 </div>
               </div>
@@ -982,10 +996,11 @@ const [fechaCompra, setFechaCompra] = useState('');
               >
                 <input
                   type="date"
-                  name="fechaCompra"
+                  name="tiempoEntrega"
                   className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                  value={fechaCompra}
+                  value={solicitudData.fechaEntrega}
                   onChange={(e) => setFechaCompra(e.target.value)}
+                  readOnly
                 />
               </div>
             </div>
@@ -1025,8 +1040,8 @@ const [fechaCompra, setFechaCompra] = useState('');
                     <option value="" defaultValue>
                       Selecciona una opción...
                     </option>
-                    <option value="transferencia">Transferencia</option>
-                    <option value="efectivo">Efectivo</option>
+                    <option value="Transferencia">Transferencia</option>
+                    <option value="Efectivo">Efectivo</option>
                   </select>
                 </div>
               </div>
@@ -1101,9 +1116,7 @@ const [fechaCompra, setFechaCompra] = useState('');
               <Page size="A4" style={styles.page}>
                 <View style={styles.section}>
                   <Text style={styles.heading}>Datos del formulario</Text>
-                  <Text>Empresa: {formData[0].empresa}</Text>
                   <Text>Denominación: {formData[0].denominacion}</Text>
-                  <Text>RFC: {formData[0].rfc}</Text>
                   <Text>Código postal: {formData[0].cp}</Text>
                   <Text>Vialidad: {formData[0].vialidad}</Text>
                   <Text>No. exterior: {formData[0].exterior}</Text>
@@ -1112,10 +1125,8 @@ const [fechaCompra, setFechaCompra] = useState('');
                   <Text>Municipio: {formData[0].municipio}</Text>
                   <Text>Estado: {formData[0].estado}</Text>
                   <Text>Teléfono: {formData[0].telefono}</Text>
-                  <Text>Celular: {formData[0].celular}</Text>
                   <Text>Orden de compra: {formData[0].ordenCompra}</Text>
                   <Text>Fecha de compra: {formData[0].fechaCompra}</Text>
-                  <Text>Nombre de compra: {formData[0].nombreCompra}</Text>
                   <Text>
                     Denominación de compra: {formData[0].denominacionCompra}
                   </Text>
@@ -1137,27 +1148,6 @@ const [fechaCompra, setFechaCompra] = useState('');
                   <Text>Unitario: {formData[0].unitario}</Text>
                   <Text>PU: {formData[0].pu}</Text>
                   <Text>Total: {formData[0].total}</Text>
-                  <Text>Nombre de la factura: {formData[0].nombreFactura}</Text>
-                  <Text>FRC de la factura: {formData[0].rfcFactura}</Text>
-                  <Text>
-                    Vialidad de la factura: {formData[0].vialidadFactura}
-                  </Text>
-                  <Text>
-                    No. exterior de la factura: {formData[0].exteriorFactura}
-                  </Text>
-                  <Text>
-                    No. interior de la factura: {formData[0].interiorFactura}
-                  </Text>
-                  <Text>
-                    Colonia de la factura: {formData[0].coloniaFactura}
-                  </Text>
-                  <Text>
-                    Código postal de la factura: {formData[0].coloniaFactura}
-                  </Text>
-                  <Text>
-                    Municipio de la factura: {formData[0].municipioFactura}
-                  </Text>
-                  <Text>Estado de la factura: {formData[0].estadoFactura}</Text>
                   <Text>
                     Tipo de pago de la factura: {formData[0].pagoFactura}
                   </Text>
