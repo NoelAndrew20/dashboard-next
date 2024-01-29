@@ -70,9 +70,9 @@ const TableNL = ({ data }) => {
         <table className={isDarkMode ? 'table-container-d' : 'table-container'}>
           <thead>
             <tr>
-              <th>Numero de cerdos</th>
               <th>RFID</th>
               <th>Numero de parto</th>
+              <th>Cantidad de cerdos nacidos</th>
             </tr>
           </thead>
           <tbody>
