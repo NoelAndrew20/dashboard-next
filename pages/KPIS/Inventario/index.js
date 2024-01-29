@@ -71,10 +71,10 @@ const Inventario = ({ title, description, image }) => {
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
-        <Navigation />
-        <NavDashboard section="Total de inventario" svg={svg} />
+      <Navigation />
+      <NavDashboard section="Total de inventario" svg={svg} />
       <div className="wrapper">
-      <div
+        <div
           className="back-link mt-2 text-blue-500 cursor-pointer"
           onClick={() => {
             router.back();
@@ -121,6 +121,9 @@ const Inventario = ({ title, description, image }) => {
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
               />
             </div>
+          </div>
+          <div className="w-1/3 contents">
+            <button className="button">Calcular</button>
           </div>
         </div>
         <div className="position justify-around">
