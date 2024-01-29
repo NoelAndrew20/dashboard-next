@@ -36,6 +36,55 @@ const NuevosLechones = ({ title, description, image }) => {
     },
   ]);
 
+
+  const [current, setFechaInicial] = useState('');
+  const [current2, setFechaFinal] = useState('');
+  const [lag, setLag] = useState(0);
+  
+  const handleFechaChange = (e) => {
+    setFechaInicial(e.target.value);
+  };
+
+  const handleFechaFinalChange = (e) => {
+    setFechaFinal(e.target.value);
+  };
+
+  const apiUrl = 'http://192.168.100.10:3144/KPI';
+  const clicData = () => {
+    if (current && current2) {
+      const fechaInicialDate = new Date(current);
+      const fechaFinalDate = new Date(current2);
+
+      fechaInicialDate.setUTCHours(0, 0, 0, 0);
+      const formattedCurrent = `${fechaInicialDate.getUTCDate().toString().padStart(2, '0')}-${(fechaInicialDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${fechaInicialDate.getUTCFullYear()}`;
+      const diferenciaEnMilisegundos = fechaFinalDate - fechaInicialDate;
+      const lag = diferenciaEnMilisegundos / (1000 * 60 * 60 * 24);
+      setLag(lag);
+      const requestData = {
+        function: 'TotalParicion',
+        parameters: {
+          current: formattedCurrent,
+          lag: lag,
+        },
+      };
+
+      axios
+        .post(apiUrl, requestData)
+        .then((response) => {
+          const jsonData = response.data;
+          setData(jsonData);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    clicData();
+  }, [current, current2]);
+
+
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
@@ -68,6 +117,8 @@ const NuevosLechones = ({ title, description, image }) => {
                 id="inicial"
                 name="inicial"
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                value={current}
+                onChange={handleFechaChange}
               />
             </div>
           </div>
@@ -87,6 +138,8 @@ const NuevosLechones = ({ title, description, image }) => {
                 id="final"
                 name="final"
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                value={current2}
+                onChange={handleFechaFinalChange}
               />
             </div>
           </div>

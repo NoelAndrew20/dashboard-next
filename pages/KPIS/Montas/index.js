@@ -24,6 +24,43 @@ const Montas = ({ title, description, image }) => {
     },
   ]);
 
+  const [current, setFechaInicial] = useState('');
+  
+  const handleFechaChange = (e) => {
+    setFechaInicial(e.target.value);
+  };
+
+  const apiUrl = 'http://192.168.100.10:3144/KPI';
+  const clicData = () => {
+    if (current) {
+      const fechaInicialDate = new Date(current);
+      fechaInicialDate.setUTCHours(0, 0, 0, 0);
+      const formattedCurrent = `${fechaInicialDate.getUTCDate().toString().padStart(2, '0')}-${(fechaInicialDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${fechaInicialDate.getUTCFullYear()}`;
+      const requestData = {
+        function: 'totalMontas',
+        parameters: {
+          current: formattedCurrent,
+        },
+      };
+
+      axios
+        .post(apiUrl, requestData)
+        .then((response) => {
+          const jsonData = response.data;
+          console.log(jsonData);
+          setData(jsonData);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    clicData();
+  }, [current]);
+
+
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
@@ -56,10 +93,12 @@ const Montas = ({ title, description, image }) => {
                 id="inicial"
                 name="inicial"
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
+                value={current}
+                onChange={handleFechaChange}
               />
             </div>
           </div>
-          <div className="w-1/3">
+          {/*<div className="w-1/3">
             <div>
               <label htmlFor="sku" className="modal-label">
                 Fecha final:
@@ -77,10 +116,7 @@ const Montas = ({ title, description, image }) => {
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
               />
             </div>
-          </div>
-          <div className="w-1/3 contents">
-            <button className="button">Calcular</button>
-          </div>
+          </div>*/}
         </div>
         <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">

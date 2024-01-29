@@ -20,29 +20,53 @@ const Primerizas = ({ title, description, image }) => {
     },
   ]);
 
+  const [current, setFechaInicial] = useState('');
+  const [current2, setFechaFinal] = useState('');
+  const [lag, setLag] = useState(0);
+  
+  const handleFechaChange = (e) => {
+    setFechaInicial(e.target.value);
+  };
+
+  const handleFechaFinalChange = (e) => {
+    setFechaFinal(e.target.value);
+  };
+
   const apiUrl = 'http://192.168.100.10:3144/KPI';
-  const current = '01-01-2022';
-  const lag = 300;
+  const clicData = () => {
+    if (current && current2) {
+      const fechaInicialDate = new Date(current);
+      const fechaFinalDate = new Date(current2);
+
+      fechaInicialDate.setUTCHours(0, 0, 0, 0);
+      const formattedCurrent = `${fechaInicialDate.getUTCDate().toString().padStart(2, '0')}-${(fechaInicialDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${fechaInicialDate.getUTCFullYear()}`;
+      const diferenciaEnMilisegundos = fechaFinalDate - fechaInicialDate;
+      const lag = diferenciaEnMilisegundos / (1000 * 60 * 60 * 24);
+      setLag(lag);
+      const requestData = {
+        function: 'totalInseminaciones',
+        parameters: {
+          current: formattedCurrent,
+          lag: lag,
+        },
+      };
+
+      axios
+        .post(apiUrl, requestData)
+        .then((response) => {
+          const jsonData = response.data;
+          setData(jsonData);
+          console.log(jsonData);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
 
   useEffect(() => {
-    const requestData = {
-      function: 'primerizasLlegadasPrimerServicio',
-      parameters: {
-        current: current,
-        lag: lag,
-      },
-    };
-
-    axios
-      .post(apiUrl, requestData)
-      .then((response) => {
-        const jsonData = response.data;
-        setData(jsonData);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    clicData();
+  }, [current, current2]);
 
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
