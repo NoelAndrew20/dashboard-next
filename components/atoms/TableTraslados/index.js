@@ -49,7 +49,7 @@ const TableTraslados = ({ data }) => {
             <input
               type="text"
               className={isDarkMode ? 'bg-black' : 'bg-white'}
-              placeholder="Buscar por nombre"
+              placeholder="Buscar por lote"
               value={searchTerm}
               onChange={(e) =>
                 setSearchTerm(e.target.value.toLocaleLowerCase())
@@ -81,49 +81,25 @@ const TableTraslados = ({ data }) => {
           </div>
         </div>
       </div>
-      <div
-        className={`${
-          isDarkMode ? 'fake-table-d' : 'fake-table'
-        } flex justify-around`}
-      >
-        {' '}
-        <ul className="w-full text-center">
-          <div className="flex pb-2">
-            <div className="w-1/2 text-[#818cf8] font-bold text-lg">Area anterior</div>
-            <div className="w-1/2 text-[#818cf8] font-bold text-lg">
-              Cantidad de regístros
-            </div>
-            <div className="w-1/2 text-[#818cf8] font-bold text-lg">Fecha de cambio de área</div>
-            <div className="w-1/2 text-[#818cf8] font-bold text-lg">Lote</div>
-
-          </div>
-          {displayDataFinal?.map((item, index) => (
-            <div
-              key={index}
-              onClick={() => handleRowClick(index)}
-              className="cursor-pointer border-b border-[#c6c6c6]"
-            >
-              <div className="flex w-full">
-                <div className="w-1/2 ">{formatText(item.areaAnterior)}</div>
-                <div className="w-1/2 ">{formatNumber(item.cantidadRegistros)}</div>
-                <div className="w-1/2 ">{item.fechaCambioArea}</div>
-                <div className="w-1/2 ">{item.lote}</div>
-              </div>
-
-              {expandedRow === index && (
-                <ul>
-                  {Object.entries(item.rfidList)
-                    .slice(0, 10)
-                    .map(([key, value]) => (
-                      <li key={key}>
-                        <div className="flex justify-center">{value}</div>
-                      </li>
-                    ))}
-                </ul>
-              )}
-            </div>
-          ))}
-        </ul>
+      <div className={isDarkMode ? 'table-d' : 'table'}>
+        <table className={isDarkMode ? 'table-container-d' : 'table-container'}>
+          <thead>
+            <tr>
+              <th>Lote</th>
+              <th>Primer área</th>
+              <th>Última área</th>
+            </tr>
+          </thead>
+          <tbody>
+            {displayDataFinal?.map((item, index) => (
+              <tr className="table-row" key={index}>
+                <td>{item.lote}</td>
+                <td>{formatText(item.primerArea)}</td>
+                <td>{formatText(item.ultimaArea)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <div className="flex justify-center items-center mt-2">
         <button
