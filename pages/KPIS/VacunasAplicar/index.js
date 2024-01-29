@@ -358,7 +358,6 @@ const VacunasAplicar = ({ title, description, image }) => {
         .post(apiUrl, requestData)
         .then((response) => {
           const jsonData = response.data;
-          console.log(jsonData);
           setData(jsonData);
         })
         .catch((error) => {
