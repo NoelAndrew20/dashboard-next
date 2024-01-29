@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 
-const TableConsumoAlimentos = ({ data }) => {
+const TableTraslados = ({ data }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [searchTerm, setSearchTerm] = useState('');
   const entriesPerPage = 10;
@@ -89,10 +89,13 @@ const TableConsumoAlimentos = ({ data }) => {
         {' '}
         <ul className="w-full text-center">
           <div className="flex pb-2">
-            <div className="w-1/2 text-[#818cf8] font-bold text-lg">Nombre</div>
+            <div className="w-1/2 text-[#818cf8] font-bold text-lg">Area anterior</div>
             <div className="w-1/2 text-[#818cf8] font-bold text-lg">
-              Cantidad
+              Cantidad de regístros
             </div>
+            <div className="w-1/2 text-[#818cf8] font-bold text-lg">Fecha de cambio de área</div>
+            <div className="w-1/2 text-[#818cf8] font-bold text-lg">Lote</div>
+
           </div>
           {displayDataFinal?.map((item, index) => (
             <div
@@ -101,17 +104,19 @@ const TableConsumoAlimentos = ({ data }) => {
               className="cursor-pointer border-b border-[#c6c6c6]"
             >
               <div className="flex w-full">
-                <div className="w-1/2 ">{item._id.tipoAlimento}</div>
-                <div className="w-1/2 ">{formatNumber(item.count)}</div>
+                <div className="w-1/2 ">{formatText(item.areaAnterior)}</div>
+                <div className="w-1/2 ">{formatNumber(item.cantidadRegistros)}</div>
+                <div className="w-1/2 ">{item.fechaCambioArea}</div>
+                <div className="w-1/2 ">{item.lote}</div>
               </div>
 
               {expandedRow === index && (
                 <ul>
-                  {Object.entries(item._id)
+                  {Object.entries(item.rfidList)
                     .slice(0, 10)
                     .map(([key, value]) => (
                       <li key={key}>
-                        <div className="flex justify-center"><span className="font-bold">{key === "area" ? "Area" : "Tipo de Alimento"}: </span>&nbsp;{formatText(value)}</div>
+                        <div className="flex justify-center">{value}</div>
                       </li>
                     ))}
                 </ul>
@@ -143,4 +148,4 @@ const TableConsumoAlimentos = ({ data }) => {
   );
 };
 
-export default TableConsumoAlimentos;
+export default TableTraslados;

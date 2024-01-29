@@ -17,12 +17,12 @@ ChartJS.register(
   Tooltip,
 );
 
-const BarConsumo = ({ data }) => {
+const BarTraslados = ({ data }) => {
   const chartData = {
-    labels: data.map(item => item._id.area),
+    labels: data.slice(0,10).map(item => item.lote),
     datasets: [
       {
-        data: data.map(item => item.count),
+        data: data.map(item => item.cantidadRegistros),
         backgroundColor: [
             'rgba(235,148,12, 0.2)',
             'rgba(22, 104, 246, 0.2)',
@@ -60,4 +60,4 @@ const BarConsumo = ({ data }) => {
   );
 };
 
-export default BarConsumo;
+export default BarTraslados;

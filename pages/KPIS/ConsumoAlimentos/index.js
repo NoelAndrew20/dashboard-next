@@ -15,65 +15,222 @@ const ConsumoAlimentos = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Enrriquecedor',
-      cantidad: 10140,
+      _id: {
+        area: "Zen2",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 2497.257
     },
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Intermedio1',
-      cantidad: 36140,
+      _id: {
+        area: "Zen4",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 2501.642
     },
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Adaptador1',
-      cantidad: 8580,
+      _id: {
+        area: "Gestacion7",
+        tipoAlimento: "Intermedio1"
+      },
+      count: 28757.243
     },
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Alimento1',
-      cantidad: 1638,
+      _id: {
+        area: "CerdoEngordaD",
+        tipoAlimento: "Finalizador"
+      },
+      count: 141474.369
     },
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Intermedio2',
-      cantidad: 37024,
+      _id: {
+        area: "Maternidad1",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 30033.694
     },
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Adaptador2',
-      cantidad: 6864,
+      _id: {
+        area: "Maternidad6",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 10500.99
     },
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Finalizador',
-      cantidad: 899147,
+      _id: {
+        area: "CerdoEngordaA",
+        tipoAlimento: "Entreno"
+      },
+      count: 145146.36
     },
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Entreno',
-      cantidad: 1133686,
+      _id: {
+        area: "Maternidad4",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 10496.995
     },
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Papilla',
-      cantidad: 365887,
+      _id: {
+        area: "Lechon",
+        tipoAlimento: "Papilla"
+      },
+      count: 33835.051
     },
     {
-      fechaInicial: '01-01-2024',
-      fechaFinal: '01-02-2024',
-      nombreAlimento: 'Preentreno',
-      cantidad: 117796,
+      _id: {
+        area: "Cuarentena",
+        tipoAlimento: "Adaptador2"
+      },
+      count: 12021.626
     },
+    {
+      _id: {
+        area: "Gestacion5",
+        tipoAlimento: "Intermedio1"
+      },
+      count: 28788.139
+    },
+    {
+      _id: {
+        area: "Cuarentena",
+        tipoAlimento: "Adaptador1"
+      },
+      count: 14995.326
+    },
+    {
+      _id: {
+        area: "Transporte",
+        tipoAlimento: "Alimento1"
+      },
+      count: 1257.581
+    },
+    {
+      _id: {
+        area: "CIA",
+        tipoAlimento: "Intermedio2"
+      },
+      count: 278738.095
+    },
+    {
+      _id: {
+        area: "Gestacion1",
+        tipoAlimento: "Intermedio1"
+      },
+      count: 28833.005
+    },
+    {
+      _id: {
+        area: "Zen3",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 2491.354
+    },
+    {
+      _id: {
+        area: "Maternidad2",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 10494.442000000001
+    },
+    {
+      _id: {
+        area: "Gestacion3",
+        tipoAlimento: "Intermedio1"
+      },
+      count: 28739.652
+    },
+    {
+      _id: {
+        area: "Maternidad7",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 10479.648
+    },
+    {
+      _id: {
+        area: "Zen6",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 2500.018
+    },
+    {
+      _id: {
+        area: "Gestacion6",
+        tipoAlimento: "Intermedio1"
+      },
+      count: 28673.379
+    },
+    {
+      _id: {
+        area: "Gestacion4",
+        tipoAlimento: "Intermedio1"
+      },
+      count: 28821.434
+    },
+    {
+      _id: {
+        area: "DesarrrolloB",
+        tipoAlimento: "Entreno"
+      },
+      count: 38415.366
+    },
+    {
+      _id: {
+        area: "Zen5",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 2499.139
+    },
+    {
+      _id: {
+        area: "Zen1",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 1493.673
+    },
+    {
+      _id: {
+        area: "CerdoEngordaB",
+        tipoAlimento: "Entreno"
+      },
+      count: 142699.57200000001
+    },
+    {
+      _id: {
+        area: "Maternidad5",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 10505.526
+    },
+    {
+      _id: {
+        area: "Maternidad3",
+        tipoAlimento: "Enrriquecedor"
+      },
+      count: 10490.474
+    },
+    {
+      _id: {
+        area: "DesarrrolloA",
+        tipoAlimento: "Preentreno"
+      },
+      count: 14518.852
+    },
+    {
+      _id: {
+        area: "CerdoEngordaC",
+        tipoAlimento: "Finalizador"
+      },
+      count: 140440.248
+    },
+    {
+      _id: {
+        area: "Gestacion2",
+        tipoAlimento: "Intermedio1"
+      },
+      count: 28756.048
+    }
   ]);
 
   return (
@@ -108,7 +265,6 @@ const ConsumoAlimentos = ({ title, description, image }) => {
                 id="inicial"
                 name="inicial"
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                value=""
               />
             </div>
           </div>
@@ -128,7 +284,6 @@ const ConsumoAlimentos = ({ title, description, image }) => {
                 id="final"
                 name="final"
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                value=""
               />
             </div>
           </div>
@@ -137,7 +292,7 @@ const ConsumoAlimentos = ({ title, description, image }) => {
           <TableConsumoAlimentos data={data} setData={setData} />
         </div>
 
-        <div className="bg-white rounded-lg p-2">
+        <div className="bg-white rounded-lg p-2 mt-5">
           <h2 className="mt-2 text-center font-bold">
             Cantidad de inseminaciones de cerdos por zona
           </h2>

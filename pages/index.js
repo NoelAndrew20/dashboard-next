@@ -564,7 +564,7 @@ export default function Home({ title, description, image }) {
                         : 'row-container-g mt-10'
                     } mt-20 pb-50 w-1/3 flex`}
                   >
-                    <Link href={'./KPIS/NuevosLechones'}>
+                    <Link href={'./KPIS/Traslados'}>
                       <div className="flex">
                         <Image
                           src={'/images/icon/little-pig-index.png'}
@@ -573,7 +573,7 @@ export default function Home({ title, description, image }) {
                           loading="lazy"
                         />
                         <span className=" ml-2 font-bold flex items-center">
-                          Nuevos Lechones
+                          Traslados
                         </span>
                       </div>
                       <h1 className="text-right text-2xl">${item.Insumos}</h1>

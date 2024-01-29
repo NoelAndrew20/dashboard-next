@@ -52,7 +52,6 @@ const Vacunas = ({ title, description, image }) => {
                 id="inicial"
                 name="inicial"
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                value=""
               />
             </div>
           </div>
@@ -72,7 +71,6 @@ const Vacunas = ({ title, description, image }) => {
                 id="final"
                 name="final"
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
-                value=""
               />
             </div>
           </div>
