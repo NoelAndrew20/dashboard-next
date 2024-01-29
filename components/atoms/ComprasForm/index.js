@@ -191,7 +191,7 @@ const ComprasForm = () => {
       partida: e.target.partida.value,
       descripcion: e.target.descripcion.value,
       cantidadT: e.target.cantidadT.value,
-      unitario: e.target.unitario.value,
+      //unitario: e.target.unitario.value,
       pu: e.target.pu.value,
       total: e.target.total.value,
       pagoFactura: e.target.pagoFactura.value,
@@ -203,10 +203,21 @@ const ComprasForm = () => {
       puestoElaborado: e.target.puestoElaborado.value,
     };
     
-    setFormData([...formData, newFormData]);
-    console.log(newFormData);
-    generatePdf(newFormData);
-    
+    console.log(newFormData); 
+
+    const axios = require('axios');
+    const apiUrl = 'http://192.168.100.10:3090/addCompra';
+    axios
+      .post(apiUrl, newFormData)
+      .then((response) => {
+        console.log('Respuesta de la API:', response.data);
+      })
+      .catch((error) => {
+        console.error('Error al enviar la solicitud:', error);
+      });
+      
+      setFormData([...formData, newFormData]);
+      generatePdf(newFormData);
   };  
 
   const generatePdf = (formData) => {
@@ -905,7 +916,7 @@ const ComprasForm = () => {
                 />
               </div>
             </div>
-            <div className="w-1/12 flex flex-col justify-between">
+           {/* <div className="w-1/12 flex flex-col justify-between">
               <h2>Unidad de medida</h2>
 
               <div
@@ -922,7 +933,7 @@ const ComprasForm = () => {
                   value={solicitudData.unidad}
                 />
               </div>
-            </div>
+            </div>*/}
             <div className="w-1/12 flex flex-col justify-between">
               <h2>Precio Unitario</h2>
 
