@@ -376,6 +376,9 @@ const VacunasAplicar = ({ title, description, image }) => {
               />
             </div>
           </div>
+          <div className="w-1/3 contents">
+            <button className="button">Calcular</button>
+          </div>
         </div>
         <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">

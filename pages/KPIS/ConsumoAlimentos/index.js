@@ -16,221 +16,221 @@ const ConsumoAlimentos = ({ title, description, image }) => {
   const [data, setData] = useState([
     {
       _id: {
-        area: "Zen2",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Zen2',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 2497.257
+      count: 2497.257,
     },
     {
       _id: {
-        area: "Zen4",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Zen4',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 2501.642
+      count: 2501.642,
     },
     {
       _id: {
-        area: "Gestacion7",
-        tipoAlimento: "Intermedio1"
+        area: 'Gestacion7',
+        tipoAlimento: 'Intermedio1',
       },
-      count: 28757.243
+      count: 28757.243,
     },
     {
       _id: {
-        area: "CerdoEngordaD",
-        tipoAlimento: "Finalizador"
+        area: 'CerdoEngordaD',
+        tipoAlimento: 'Finalizador',
       },
-      count: 141474.369
+      count: 141474.369,
     },
     {
       _id: {
-        area: "Maternidad1",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Maternidad1',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 30033.694
+      count: 30033.694,
     },
     {
       _id: {
-        area: "Maternidad6",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Maternidad6',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 10500.99
+      count: 10500.99,
     },
     {
       _id: {
-        area: "CerdoEngordaA",
-        tipoAlimento: "Entreno"
+        area: 'CerdoEngordaA',
+        tipoAlimento: 'Entreno',
       },
-      count: 145146.36
+      count: 145146.36,
     },
     {
       _id: {
-        area: "Maternidad4",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Maternidad4',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 10496.995
+      count: 10496.995,
     },
     {
       _id: {
-        area: "Lechon",
-        tipoAlimento: "Papilla"
+        area: 'Lechon',
+        tipoAlimento: 'Papilla',
       },
-      count: 33835.051
+      count: 33835.051,
     },
     {
       _id: {
-        area: "Cuarentena",
-        tipoAlimento: "Adaptador2"
+        area: 'Cuarentena',
+        tipoAlimento: 'Adaptador2',
       },
-      count: 12021.626
+      count: 12021.626,
     },
     {
       _id: {
-        area: "Gestacion5",
-        tipoAlimento: "Intermedio1"
+        area: 'Gestacion5',
+        tipoAlimento: 'Intermedio1',
       },
-      count: 28788.139
+      count: 28788.139,
     },
     {
       _id: {
-        area: "Cuarentena",
-        tipoAlimento: "Adaptador1"
+        area: 'Cuarentena',
+        tipoAlimento: 'Adaptador1',
       },
-      count: 14995.326
+      count: 14995.326,
     },
     {
       _id: {
-        area: "Transporte",
-        tipoAlimento: "Alimento1"
+        area: 'Transporte',
+        tipoAlimento: 'Alimento1',
       },
-      count: 1257.581
+      count: 1257.581,
     },
     {
       _id: {
-        area: "CIA",
-        tipoAlimento: "Intermedio2"
+        area: 'CIA',
+        tipoAlimento: 'Intermedio2',
       },
-      count: 278738.095
+      count: 278738.095,
     },
     {
       _id: {
-        area: "Gestacion1",
-        tipoAlimento: "Intermedio1"
+        area: 'Gestacion1',
+        tipoAlimento: 'Intermedio1',
       },
-      count: 28833.005
+      count: 28833.005,
     },
     {
       _id: {
-        area: "Zen3",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Zen3',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 2491.354
+      count: 2491.354,
     },
     {
       _id: {
-        area: "Maternidad2",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Maternidad2',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 10494.442000000001
+      count: 10494.442000000001,
     },
     {
       _id: {
-        area: "Gestacion3",
-        tipoAlimento: "Intermedio1"
+        area: 'Gestacion3',
+        tipoAlimento: 'Intermedio1',
       },
-      count: 28739.652
+      count: 28739.652,
     },
     {
       _id: {
-        area: "Maternidad7",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Maternidad7',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 10479.648
+      count: 10479.648,
     },
     {
       _id: {
-        area: "Zen6",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Zen6',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 2500.018
+      count: 2500.018,
     },
     {
       _id: {
-        area: "Gestacion6",
-        tipoAlimento: "Intermedio1"
+        area: 'Gestacion6',
+        tipoAlimento: 'Intermedio1',
       },
-      count: 28673.379
+      count: 28673.379,
     },
     {
       _id: {
-        area: "Gestacion4",
-        tipoAlimento: "Intermedio1"
+        area: 'Gestacion4',
+        tipoAlimento: 'Intermedio1',
       },
-      count: 28821.434
+      count: 28821.434,
     },
     {
       _id: {
-        area: "DesarrrolloB",
-        tipoAlimento: "Entreno"
+        area: 'DesarrrolloB',
+        tipoAlimento: 'Entreno',
       },
-      count: 38415.366
+      count: 38415.366,
     },
     {
       _id: {
-        area: "Zen5",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Zen5',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 2499.139
+      count: 2499.139,
     },
     {
       _id: {
-        area: "Zen1",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Zen1',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 1493.673
+      count: 1493.673,
     },
     {
       _id: {
-        area: "CerdoEngordaB",
-        tipoAlimento: "Entreno"
+        area: 'CerdoEngordaB',
+        tipoAlimento: 'Entreno',
       },
-      count: 142699.57200000001
+      count: 142699.57200000001,
     },
     {
       _id: {
-        area: "Maternidad5",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Maternidad5',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 10505.526
+      count: 10505.526,
     },
     {
       _id: {
-        area: "Maternidad3",
-        tipoAlimento: "Enrriquecedor"
+        area: 'Maternidad3',
+        tipoAlimento: 'Enrriquecedor',
       },
-      count: 10490.474
+      count: 10490.474,
     },
     {
       _id: {
-        area: "DesarrrolloA",
-        tipoAlimento: "Preentreno"
+        area: 'DesarrrolloA',
+        tipoAlimento: 'Preentreno',
       },
-      count: 14518.852
+      count: 14518.852,
     },
     {
       _id: {
-        area: "CerdoEngordaC",
-        tipoAlimento: "Finalizador"
+        area: 'CerdoEngordaC',
+        tipoAlimento: 'Finalizador',
       },
-      count: 140440.248
+      count: 140440.248,
     },
     {
       _id: {
-        area: "Gestacion2",
-        tipoAlimento: "Intermedio1"
+        area: 'Gestacion2',
+        tipoAlimento: 'Intermedio1',
       },
-      count: 28756.048
-    }
+      count: 28756.048,
+    },
   ]);
 
   return (
@@ -286,6 +286,9 @@ const ConsumoAlimentos = ({ title, description, image }) => {
                 className={isDarkMode ? 'modal-input-d' : 'modal-input'}
               />
             </div>
+          </div>
+          <div className="w-1/3 contents">
+            <button className="button">Calcular</button>
           </div>
         </div>
         <div className="mt-3">
