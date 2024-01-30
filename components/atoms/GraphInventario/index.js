@@ -5,7 +5,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const GraphInventario = ({ data }) => {
   const chartData = {
-    labels: data.map(item => item._id),
+    labels: data.map(item => item._id.area),
     datasets: [
       {
         data: data.map(item => item.count),

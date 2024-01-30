@@ -13,16 +13,7 @@ const axios = require('axios');
 const Inventario = ({ title, description, image }) => {
   const router = useRouter();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  const [data, setData] = useState([
-    {
-      _id: 'Gestacion1',
-      count: 130,
-    },
-    {
-      _id: 'Gestacion2',
-      count: 130,
-    },
-  ]);
+  const [data, setData] = useState();
 
   const [current, setFechaInicial] = useState('');
   const [current2, setFechaFinal] = useState('');
@@ -67,7 +58,9 @@ const Inventario = ({ title, description, image }) => {
         });
     }
   };
-
+  useEffect(()=> {
+    console.log(data)
+  })
   useEffect(() => {
     clicData();
   }, [current, current2]);
@@ -132,15 +125,12 @@ const Inventario = ({ title, description, image }) => {
               />
             </div>
           </div>
-          <div className="w-1/3 contents">
-            <button className="button">Calcular</button>
-          </div>
         </div>
         <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">
             <BarKPI data={data} setData={setData} />
           </div>
-          <div>
+          <div className="w-1/2">
             <TableInventario data={data} setData={setData} />
           </div>
         </div>
