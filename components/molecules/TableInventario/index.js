@@ -5,6 +5,7 @@ const TableInventario = ({ data }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [searchTerm, setSearchTerm] = useState('');
   const entriesPerPage = 10;
+  const [expandedRow, setExpandedRow] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -19,6 +20,9 @@ const TableInventario = ({ data }) => {
     : data;
   const displayDataFinal = displayData?.slice(startIndex, endIndex);
   const totalPages = Math.ceil(displayData?.length / entriesPerPage);
+  const handleRowClick = (index) => {
+    setExpandedRow(expandedRow === index ? null : index);
+  };
 
   useEffect(() => {
     setCurrentPage(1);
@@ -29,8 +33,8 @@ const TableInventario = ({ data }) => {
   };
 
   const formatNumber = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };  
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
 
   return (
     <>
@@ -74,23 +78,42 @@ const TableInventario = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className={isDarkMode ? 'table-d' : 'table'}>
-        <table className={isDarkMode ? 'table-container-d' : 'table-container'}>
-          <thead>
-            <tr>
-              <th>Área</th>
-              <th>Numero de cerdos</th>
-            </tr>
-          </thead>
-          <tbody>
-            {displayDataFinal?.map((item, index) => (
-              <tr className="table-row" key={index}>
-                <td>{formatText(item._id)}</td>
-                <td>{formatNumber(item.count)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div
+        className={`${
+          isDarkMode ? 'fake-table-d' : 'fake-table'
+        } flex justify-around`}
+      >
+        <ul className="w-full text-center">
+          <div className="flex pb-2">
+            <div className="w-1/2 text-[#818cf8] font-bold text-lg">
+              Numero de cerdos
+            </div>
+            <div className="w-1/2 text-[#818cf8] font-bold text-lg">Área</div>
+          </div>
+          {displayDataFinal?.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => handleRowClick(index)}
+              className="cursor-pointer border-b border-[#c6c6c6]"
+            >
+              <div className="flex w-full">
+                <div className="w-1/2">{item?.count}</div>
+                <div className="w-1/2">{formatText(item?._id?.area)}</div>
+              </div>
+              {expandedRow === index && (
+                <ul>
+                  {Object.entries(item.uniqueRfids)
+                    .slice(0, 10)
+                    .map(([key, value]) => (
+                      <li key={key}>
+                        <div className="flex justify-center">{value}</div>
+                      </li>
+                    ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </ul>
       </div>
       <div className="flex justify-center items-center mt-2">
         <button

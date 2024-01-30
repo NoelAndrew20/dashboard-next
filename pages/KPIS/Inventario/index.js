@@ -14,63 +14,8 @@ const Inventario = ({ title, description, image }) => {
   const router = useRouter();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([
-    {
-      _id: 'CerdoEngordaD',
-      count: 11455,
-    },
-    {
-      _id: 'CerdoEngordaA',
-      count: 11465,
-    },
-    {
-      _id: 'CerdoEngordaC',
-      count: 11498,
-    },
-    {
-      _id: 'CerdoEngordaB',
-      count: 11450,
-    },
-    {
-      _id: 'DesarrrolloB',
-      count: 11450,
-    },
-    {
-      _id: 'CIA',
-      count: 936,
-    },
-    {
-      _id: 'Transporte',
-      count: 234,
-    },
-    {
-      _id: 'Maternidad1',
-      count: 130,
-    },
-    {
-      _id: 'DesarrrolloA',
-      count: 11500,
-    },
-    {
-      _id: 'Gestacion1',
-      count: 520,
-    },
-    {
-      _id: 'Cuarentena',
-      count: 468,
-    },
-    {
-      _id: 'Lechon',
-      count: 11432,
-    },
-    {
-      _id: 'Gestacion2',
-      count: 520,
-    },
+  
   ]);
-
-
-  /*############################3el formato es diferente, por eso no jala */
-
   const [current, setFechaInicial] = useState('');
   const [current2, setFechaFinal] = useState('');
   const [lag, setLag] = useState(0);
@@ -177,15 +122,12 @@ const Inventario = ({ title, description, image }) => {
               />
             </div>
           </div>
-          <div className="w-1/3 contents">
-            <button className="button">Calcular</button>
-          </div>
         </div>
         <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">
             <GraphInventario data={data} setData={setData} />
           </div>
-          <div>
+          <div className='w-1/2'>
             <TableInventario data={data} setData={setData} />
           </div>
         </div>

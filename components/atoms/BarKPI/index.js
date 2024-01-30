@@ -21,10 +21,10 @@ ChartJS.register(
 
 const BarKPI = ({ data }) => {
   const chartData = {
-    labels: data.map(item => item._id),
+    labels: data?.map(item => item?._id?.area),
     datasets: [
       {
-        data: data.map(item => item.count),
+        data: data?.map(item => item?.count),
         backgroundColor: [
             'rgba(235,148,12, 0.2)',
             'rgba(22, 104, 246, 0.2)',
