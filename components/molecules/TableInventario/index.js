@@ -29,11 +29,15 @@ const TableInventario = ({ data }) => {
   }, [searchTerm]);
 
   const formatText = (text) => {
-    return text.replace(/([A-Z])|(\d+)/g, ' $1$2').trim();
+    if(text) {
+      return text.replace(/([A-Z])|(\d+)/g, ' $1$2').trim();
+    }
   };
 
   const formatNumber = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if(number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
   };
 
   return (
@@ -97,7 +101,7 @@ const TableInventario = ({ data }) => {
               className="cursor-pointer border-b border-[#c6c6c6]"
             >
               <div className="flex w-full">
-                <div className="w-1/2">{item?.count}</div>
+                <div className="w-1/2">{formatNumber(item?.count)}</div>
                 <div className="w-1/2">{formatText(item?._id?.area)}</div>
               </div>
               {expandedRow === index && (
