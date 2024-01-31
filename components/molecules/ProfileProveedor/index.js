@@ -10,7 +10,7 @@ const PerfilProveedor = ({ data }) => {
   return (
     <div>
         <div className="expanded-menu" >
-            <div className="font-bold text-blue-600 flex justify-between" onClick={() => router.push("./PerfilProveedor/UserData")}>
+            <div className="font-bold flex justify-between" onClick={() => router.push("./PerfilProveedor/UserData")}>
                 <div>
                     Datos de Usuario
                 </div>
@@ -25,7 +25,7 @@ const PerfilProveedor = ({ data }) => {
             </div>
         </div>
         <div className="expanded-menu" >
-            <div className="font-bold text-blue-600 flex justify-between" onClick={() => router.push("./Proveedor/Productos")}>
+            <div className="font-bold flex justify-between" onClick={() => router.push("./Proveedor/Productos")}>
                 <div>
                     Producto
                 </div>
@@ -50,7 +50,7 @@ const PerfilProveedor = ({ data }) => {
             )}
         </div>
         <div className="expanded-menu" >
-            <div className="font-bold text-blue-600 flex justify-between" onClick={() => router.push("./Proveedor/LicitacionPro")}>
+            <div className="font-bold flex justify-between" onClick={() => router.push("./Proveedor/LicitacionPro")}>
                 <div>
                     Licitación
                 </div>

@@ -16,6 +16,7 @@ const PerfilUsuario = ({ title, description, image }) => {
   const [username, setUsername] = useState('');
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([]);
+  
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = '';

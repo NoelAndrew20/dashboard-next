@@ -14,6 +14,7 @@ const Proveedor = ({ title, description, image }) => {
   const [username, setUsername] = useState('');
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [data, setData] = useState([]);
+  
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = '';
@@ -77,7 +78,7 @@ const Proveedor = ({ title, description, image }) => {
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
       <Navigation />
-      <div className="profile-nav w-full flex-col">
+      <div className="prov-nav w-full flex-col">
         <h1>Perfil de Proveedor</h1>
         <div className="mt-5">
           <ProfileCard2 data={data} />

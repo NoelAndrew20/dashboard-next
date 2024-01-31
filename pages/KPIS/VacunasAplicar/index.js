@@ -375,7 +375,7 @@ const VacunasAplicar = ({ title, description, image }) => {
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
       <Navigation />
-      <NavDashboard section="" svg={svg} />
+      <NavDashboard section="Registro de vacunas a aplicar" svg={svg} />
       <div className="wrapper">
         <div
           className="back-link mt-2 text-blue-500 cursor-pointer"
@@ -385,7 +385,7 @@ const VacunasAplicar = ({ title, description, image }) => {
         >
           <span className="back-arrow">&#8592;</span> Volver
         </div>
-        <h2 className="text-xl mt-5 mb-5"></h2>
+        <h2 className="text-xl mt-5 mb-5">Registro de vacunas</h2>
         <div className="flex justify-center pb-5">
           <div className="w-1/3">
             <div>
@@ -432,7 +432,7 @@ const VacunasAplicar = ({ title, description, image }) => {
         </div>
         <div className="position justify-around">
           <div className="half-graph bg-white rounded-lg p-2">
-            <h2 className="mt-2 text-center font-bold"></h2>
+            <h2 className="mt-2 text-center font-bold">Vacunas a aplicar</h2>
             <VAChart data={data} setData={setData} />
           </div>
           <div className="w-1/2">

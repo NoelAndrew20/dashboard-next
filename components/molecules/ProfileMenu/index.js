@@ -12,7 +12,7 @@ const ProfileMenu = ({ data }) => {
   return (
     <div>
         <div className="expanded-menu" >
-            <div className="font-bold text-blue-600 flex justify-between" onClick={() => router.push("./PerfilUsuario/UserData")}>
+            <div className="font-bold flex justify-between" onClick={() => router.push("./PerfilUsuario/UserData")}>
                 <div>
                     Datos de Usuario
                 </div>
@@ -27,7 +27,7 @@ const ProfileMenu = ({ data }) => {
             </div>
         </div>
         <div className="expanded-menu" >
-            <div className="font-bold text-blue-600 flex justify-between" onClick={() => setResponsabilidadesExpandido(!responsabilidadesExpandido)}>
+            <div className="font-bold flex justify-between" onClick={() => setResponsabilidadesExpandido(!responsabilidadesExpandido)}>
                 <div>
                     Responsabilidades
                 </div>
@@ -52,7 +52,7 @@ const ProfileMenu = ({ data }) => {
             )}
         </div>
         <div className="expanded-menu" >
-            <div className="font-bold text-blue-600 flex justify-between" onClick={() => setUbicacionTrabajoExpandido(!ubicacionTrabajoExpandido)}>
+            <div className="font-bold flex justify-between" onClick={() => setUbicacionTrabajoExpandido(!ubicacionTrabajoExpandido)}>
                 <div>
                     Ubicación de Trabajo
                 </div>
@@ -75,7 +75,7 @@ const ProfileMenu = ({ data }) => {
             )}
         </div>
         <div className="expanded-menu" >
-            <div className="font-bold text-blue-600 flex justify-between" onClick={() => setEppExpandido(!eppExpandido)}>
+            <div className="font-bold flex justify-between" onClick={() => setEppExpandido(!eppExpandido)}>
                 <div>
                     EPP
                 </div>
