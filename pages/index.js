@@ -537,6 +537,7 @@ export default function Home({ title, description, image }) {
                         </div>
                       </Link>
                     </div>
+                    {/*
                     <div
                       className={`${
                         isDarkMode
@@ -563,7 +564,7 @@ export default function Home({ title, description, image }) {
                           </div>
                         </div>
                       </Link>
-                    </div>
+                    </div>*/}
                     <div
                       className={`${
                         isDarkMode
