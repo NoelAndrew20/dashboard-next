@@ -298,13 +298,24 @@ th {
   background-size: cover;
 }
 .profile-nav {
-  background-color: #a78bfa;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #ffffff;
   padding: 20px;
   flex-direction: column;
+  background-image: url("/images/bg-users.gif");
+  background-size: cover;
+}
+.prov-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  padding: 20px;
+  flex-direction: column;
+  background-image: url("/images/bg-box.gif");
+  background-size: cover;
 }
 
 .dashboard-nav h1 {
@@ -315,6 +326,13 @@ th {
   line-height: 40px;
 }
 .profile-nav h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+}
+.prov-nav h1 {
   font-family: 'Montserrat', sans-serif;
   font-style: bold;
   font-weight: 700;
@@ -346,7 +364,9 @@ th {
 .dashboard-filtro label {
   padding-right: 10px;
 }
-
+.index-img{
+  height: 30px;
+}
 .inner-search {
   background-color: #ccc;
   border-radius: 8px;

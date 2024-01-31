@@ -3,12 +3,9 @@ import Navigation from '@/components/molecules/Navigation';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import svg from '@/public/images/icon/alimentos-cerdo-index.png';
-import TableConsumoAlimentos from '@/components/atoms/TableConsumoAlimentos';
-import BarConsumo from '@/components/atoms/BarConsumo';
+import svg from '@/public/images/icon/traslados-index.png';
 import { useRouter } from 'next/router';
 import TableTraslados from '@/components/atoms/TableTraslados';
-import BarTraslados from '@/components/atoms/BarTraslados';
 
 const axios = require('axios');
 

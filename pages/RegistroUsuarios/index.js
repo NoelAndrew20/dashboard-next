@@ -3,7 +3,6 @@ import Navigation from '@/components/molecules/Navigation';
 import Table from '@/components/molecules/Table';
 import Modal from '@/components/atoms/Modal';
 import UserForm from '@/components/atoms/UserForm';
-import Search from '@/components/atoms/Search';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';

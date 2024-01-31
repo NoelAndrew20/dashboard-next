@@ -3,7 +3,7 @@ import Navigation from '@/components/molecules/Navigation';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import svg from '@/public/images/icon/medicamentos-index.png';
+import svg from '@/public/images/icon/ln-index.png';
 import VATable from '@/components/atoms/VATable';
 import BarLN from '@/components/atoms/BarLN';
 import { useRouter } from 'next/router';
