@@ -439,6 +439,25 @@ const Navigation = () => {
                 </div>
               </Link>
             )}
+            {tienePermiso(rango, '/SolicitudVacunas') && (
+              <Link
+                href="../../SolicitudVacunas"
+                className={`hover:font-semibold ${
+                  currentPage === '/SolicitudVacunas' ? 'font-semibold' : ''
+                } pt-5`}
+              >
+                <div className="flex">
+                  <img
+                    src={'/images/svg/vaccine.svg'}
+                    width={20}
+                    height={20}
+                    alt="graph"
+                    className="mr-2"
+                  />
+                  Solicitud de vacunas
+                </div>
+              </Link>
+            )}
             {tienePermiso(rango, '/Chat') && (
               <Link
                 href="../../Chat"
