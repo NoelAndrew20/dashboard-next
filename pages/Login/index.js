@@ -64,6 +64,7 @@ const Login = ({ title, description, image }) => {
   };
 
   const apiUrl = 'http://192.168.100.10:3020/login';
+  const apiUrl2 = 'http://192.168.100.10:7000/constanza/load'; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,9 +72,24 @@ const Login = ({ title, description, image }) => {
       const response = await axios.post(apiUrl, { email, password });
       if (response.data.message === 'Inicio de sesión exitoso') {
         localStorage.setItem('token', response.data.token);
+
+        //Aqui se va a cambiar para mandar los servicios dependiendo el usuario
+        const serviceData = { service: 'Farming' };
+        localStorage.setItem('servicio', serviceData.service)
+        
         const token = localStorage.getItem('token');
         const decodedToken = jwt.decode(token);
         const proveedor = decodedToken.proveedor;
+
+        axios.post(apiUrl2, serviceData)
+        .then((response) => {
+          const jsonData = response.data;
+          console.log('Servicio levantado:', jsonData);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
         if (proveedor === 0) {
           router.push('../PerfilUsuario');
         }
@@ -86,7 +102,6 @@ const Login = ({ title, description, image }) => {
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
       setError('Error al comunicarse con el servidor');
-
       setEmail('usuario1@example.com');
       setPassword('contraseña1');
       setIsButtonDisabled(false);

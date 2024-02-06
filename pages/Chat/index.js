@@ -19,6 +19,351 @@ import svg from '@/public/images/svg/chat.svg';
 
 const ChatWindow = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const [message, setMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState([]);
+  const userMessages = chatMessages.filter((message) => message.isUser);
+  const serverMessages = chatMessages.filter((message) => !message.isUser);
+  const [listening, setListening] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const textareaRef = useRef(null);
+  const audioRef = useRef(null);
+  const chatContainerRef = useRef(null);
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }, []);
+
+  const addMessageToChat = (message, isUser) => {
+    setChatMessages((prevMessages) => [
+      ...prevMessages,
+      { text: message, isUser },
+    ]);
+  };
+
+  const setFocusOnTextarea = () => {
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  };
+
+  /*
+  //Modulo que va mas en putiza
+  const speakMessage = (message) => {
+    const synthesis = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(message);
+    synthesis.speak(utterance);
+};*/
+
+  const speakMessage = async (message) => {
+    try {
+      const apiUrl = 'http://192.168.100.10:7000/constanza/heard';
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
+    } catch (error) {
+      console.error('Error de red:', error);
+    }
+  };
+  useEffect(() => {}, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    addMessageToChat(message, true);
+    //reproduce lo que envias
+    //speakMessage(message);
+    setMessage('');
+    setIsButtonDisabled(true);
+    setFocusOnTextarea();
+    try {
+      const apiUrl = 'http://192.168.100.10:7000/constanza/listens';
+      const service = localStorage.getItem('servicio');
+      const requestData = {
+        text: message,
+        service: service,
+      };
+
+      const response = await axios.post(apiUrl, requestData);
+      const result = response.data;
+      console.log(response);
+      if (result.result === null || (result.result.answer && result.result.answer.length === 0)) {
+        addMessageToChat('¡No se encontró información disponible! Vuelve a solicitarla con distintos parámetros por favor.', false);
+        speakMessage('¡No se encontró información disponible! Vuelve a solicitarla con distintos parámetros por favor.');
+        console.log(result.result);
+      } else if (
+        result.result === '¡Lo siento! no entiendo tu petición. Vuelve a solicitarla de distinta forma.'
+      ) {
+        addMessageToChat(result.result, false);
+        speakMessage(result.result);
+        console.log(result.result);
+      } else {
+        if (result.result.answer) {
+          addMessageToChat(result.result.answer, false);
+        }
+      }
+    } catch (error) {
+      console.error('Error al enviar la solicitud al servidor:', error);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      if (message.trim() !== '') {
+        e.preventDefault();
+        handleSubmit(e);
+      }
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [userMessages, serverMessages]);
+
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  };
+
+  const combinedMessages = userMessages.reduce((acc, userMsg, index) => {
+    acc.push(userMsg);
+    const serverMsg = serverMessages[index];
+    if (serverMsg) {
+      acc.push(serverMsg);
+    }
+    return acc;
+  }, []);
+  
+
+  const hanldeTextChange = () => {
+    message && message.trim() !== ''
+      ? setIsButtonDisabled(false)
+      : setIsButtonDisabled(true);
+  };
+
+  useEffect(() => {
+    hanldeTextChange();
+  }, [message]);
+
+  let recognition = null;
+  const startListening = () => {
+    if (recognition && recognition.running) {
+      recognition.stop();
+      setListening(false);
+    } else {
+      recognition = new window.webkitSpeechRecognition();
+      recognition.lang = 'en-US, es-ES, pt-BR'; 
+
+      recognition.onresult = event => {
+        const speechToText = event.results[0][0].transcript;
+        console.log('Texto reconocido:', speechToText);
+      };
+
+      recognition.onerror = event => {
+        console.error('Error en el reconocimiento de voz:', event.error);
+        recognition.stop();
+        setListening(false);
+      };
+
+      recognition.onend = () => {
+        console.log('Fin del reconocimiento de voz.');
+        setListening(false);
+      };
+
+      recognition.start();
+      setListening(true);
+    }
+  };
+
+  return (
+    <>
+      <StaticMeta title={title} description={description} image={image} />
+      <Navigation toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
+      <NavDashboard section="Habla con Constanza" svg={svg} />
+
+      <div className={isDarkMode ? 'darkMode' : 'lightMode'}>
+        <form
+          className={`wrapper min-h-[80vh] pt-5 ${
+            isDarkMode ? 'bg-[#151515]' : 'bg-white'
+          } `}
+        >
+          <div className="relative z-10 bg-chat">
+            <div className="flex justify-center h-full flex-col rounded-md text-lg text-black">
+              <div ref={chatContainerRef} className="h-full overflow-y-auto rounded-lg">
+                {combinedMessages.map((message, index) => (
+                  <div
+                    key={index}
+                    className={
+                      message.isUser === true
+                        ? 'user-message flex'
+                        : 'system-message flex'
+                    }
+                  >
+                    <div className="w-3/4">
+                      {message.text}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex mt-[20px] p">
+              <div className="flex flex-col w-full justify-start">
+                <div className="flex justify-start ml-2">
+                  <div className="flex justify-start">
+                    {json.answer === 'Pensando..' ? (
+                      <img
+                        src="/images/Constanzapensando.gif"
+                        width={40}
+                        height={40}
+                        alt="gif"
+                        className="mr-2"
+                      />
+                    ) : json.answer === 'Puedes Abrir el cuestionario' ? (
+                      <Image
+                        src="/images/Constanzaespera.gif"
+                        width={40}
+                        height={40}
+                        alt="pig"
+                        className="mr-2"
+                      />
+                    ) : json.answer.includes('Error') ? (
+                      <Image
+                        src="/images/ConstanzaLogo_00000.png"
+                        width={40}
+                        height={40}
+                        alt="pig"
+                        className="mr-2"
+                      />
+                    ) : json.answer === 'Esperando' ? (
+                      <Image
+                        src="/images/ConstanzaLogo_00000.png"
+                        width={40}
+                        height={40}
+                        alt="pig"
+                        className="mr-2"
+                      />
+                    ) : (
+                      <Image
+                        src="/images/ConstanzaLogo_00000.png"
+                        width={40}
+                        height={40}
+                        alt="pig"
+                        className="mr-2"
+                      />
+                    )}
+                  </div>
+                  <div className="flex justify-start text-const w-3/4 items-center">
+                    {<p className="font-bold text-center">{json.answer}</p>}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex pb-5 mt-3">
+              <div className="relative flex text-chat mr-2">
+                <textarea
+                  id="message-input"
+                  type="text"
+                  placeholder="Escribe tu mensaje..."
+                  className="text-input"
+                  value={message}
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                    hanldeTextChange();
+                  }}
+                  onKeyDown={handleKeyDown}
+                  ref={textareaRef}
+                />
+              </div>
+              <div className="flex justify-between items-center btns-chat">
+                <div>
+                  <button
+                    className={`button ${
+                      isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''
+                    }`}
+                    onClick={handleSubmit}
+                    disabled={isButtonDisabled}
+                  >
+                    <img
+                      src="./images/svg/send.svg"
+                      alt="Send"
+                      width={30}
+                      height={30}
+                    />
+                  </button>
+                </div>
+                <audio ref={audioRef}>
+                  <source src="/audio/audio.mp3" type="audio/mpeg" />
+                  Tu navegador no soporta el elemento de audio.
+                </audio>
+                <div>
+                  <button
+                    className="button"
+                    onClick={startListening}
+                    type="button"
+                  >
+                    {listening ? (
+                      <img
+                        src="./images/svg/record.svg"
+                        alt="Play"
+                        width={30}
+                        height={30}
+                      />
+                    ) : (
+                      <img
+                        src="./images/svg/micro.svg"
+                        alt="Play"
+                        width={30}
+                        height={30}
+                      />
+                    )}
+                  </button>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default ChatWindow;
+export const getServerSideProps = async () => {
+  const title = 'Constanza';
+  const description = 'Chat de Constanza';
+  const image = 'images/icon/logo-400.png';
+  return {
+    props: {
+      title,
+      description,
+      image,
+    },
+  };
+};
+
+/*import React, { useEffect, useState, useRef } from 'react';
+import Navigation from '@/components/molecules/Navigation';
+import axios from 'axios';
+import { Howl } from 'howler';
+import json from '../../public/api/python/Constanza_v15/respuesta.json';
+import Image from 'next/image';
+import jsondata from '../../public/api/python/Constanza_v15/requisitos_2.json';
+import FormularioArchivo from '@/components/molecules/FormArchivo';
+import Formulario from '@/components/molecules/Formulariodinamico';
+import Modal from '../../components/atoms/Modal';
+import respuesta from '../../public/api/python/Constanza_v15/respuestacons.json';
+import { useDarkMode } from '@/context/DarkModeContext';
+import { motion, AnimetePresence, AnimatePresence } from 'framer-motion';
+import StaticMeta from '@/components/atoms/StaticMeta';
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
+import NavDashboard from '@/components/molecules/NavDashboard';
+import svg from '@/public/images/svg/chat.svg';
+
+const ChatWindow = ({ title, description, image }) => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isOpen, setIsOpen] = useState(false);
   const [isChatLocked, setIsChatLocked] = useState(true);
   const [message, setMessage] = useState('');
@@ -564,3 +909,4 @@ export const getServerSideProps = async () => {
     },
   };
 };
+*/
