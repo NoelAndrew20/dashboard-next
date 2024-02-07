@@ -32,7 +32,7 @@ const CalcuOtherSV = ({ alimento }) => {
           tipo: tipo,
           dosis: dosis,
           nomenclatura: nomenclatura,
-          componenteActivo: activos
+          activos: activos
         };
 
         const newData = [...data, newOrder];
@@ -44,6 +44,18 @@ const CalcuOtherSV = ({ alimento }) => {
         setNomenclatura('');
         setActivos('');
         setSuccessMessage('Orden guardada exitosamente');
+
+        const axios = require('axios');
+        const apiUrl = 'http://192.168.100.10:3088/addVacuna';
+        axios
+          .post(apiUrl, newData)
+          .then((response) => {
+            console.log('Respuesta de la API:', response.data);
+          })
+          .catch((error) => {
+            console.error('Error al enviar la solicitud:', error);
+          });
+
         setErrorMessage('');
       } else {
         setErrorMessage('Por favor completa los cambios');
@@ -73,7 +85,7 @@ const CalcuOtherSV = ({ alimento }) => {
                 isDarkMode ? 'edit-input-container-d' : 'edit-input-container'
               }
               type="text"
-              name="NombreAlimento"
+              name="Nombre"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
               required
@@ -93,6 +105,22 @@ const CalcuOtherSV = ({ alimento }) => {
           </div>
           <div className="modal-item w-1/3">
             <p>Tipo:</p>
+            <select
+              className={
+                isDarkMode ? 'edit-input-container-d' : 'edit-input-container'
+              }
+              name="proteina"
+              value={tipo}
+              onChange={(e) => setTipo(e.target.value)}
+              required
+            >
+              <option value=""></option>
+              <option value="preventivo">Preventivo</option>
+              <option value="correctivo">Correctivo</option>
+            </select>
+            </div>
+         {/* <div className="modal-item w-1/3">
+            <p>Tipo:</p>
             <input
               className={
                 isDarkMode ? 'edit-input-container-d' : 'edit-input-container'
@@ -103,7 +131,7 @@ const CalcuOtherSV = ({ alimento }) => {
               onChange={(e) => setTipo(e.target.value)}
               required
             />
-          </div>
+          </div>*/}
         </div>
         <div className="flex">
           <div className="modal-item w-1/3">

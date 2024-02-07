@@ -74,7 +74,7 @@ const MenuVacuna = ({ data, setdata }) => {
                         <div>Fecha programada de entrega</div>
                       </th>
                     </tr>
-                    {item.solicitudes.map((solicitud, index) => (
+                    {item.solicitud.map((solicitud, index) => (
                       <tr key={index}>
                         <td>{solicitud.nombre}</td>
                         <td>{solicitud.cantidad}</td>

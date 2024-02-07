@@ -128,7 +128,7 @@ const SolicitudCerdo = ({ title, description, image }) => {
   }, []);
 
   useEffect(() => {
-    const tipoDeLicitacion = 'Vientres';
+    const tipoDeLicitacion = 'Vientre';
     axios
       .get('http://192.168.100.10:3086/getAllSolicitudCompra', {
         params: {
