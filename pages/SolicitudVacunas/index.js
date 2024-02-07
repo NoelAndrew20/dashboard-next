@@ -19,48 +19,7 @@ const SolicitudVacunas = ({ title, description, image }) => {
   const [dataList, setDataList] = useState([]);
   const [username, setUsername] = useState();
   const [tokenVerified, setTokenVerified] = useState(false);
-  const [data, setData] = useState([
-    {
-      tipo: 0,
-      precio: 7.5,
-      nomenclatura: 'P-EPL-F1',
-      componenteActivo: 8.25,
-      tipoDeCerdo: 'F1R',
-      dosis: '2ml/ animal IM',
-      aguja: '2 pulgadas',
-      nombre: 'Ery+parvo+lepto',
-    },
-    {
-      tipo: 0,
-      precio: 6.5,
-      nomenclatura: 'Otra vacuna',
-      componenteActivo: 7.25,
-      tipoDeCerdo: 'F2R',
-      dosis: '1ml/ animal IM',
-      aguja: '1 pulgada',
-      nombre: 'Otra vacuna',
-    },
-    {
-      tipo: 1,
-      precio: 8.5,
-      nomenclatura: 'Vacuna X',
-      componenteActivo: 9.25,
-      tipoDeCerdo: 'F1R',
-      dosis: '2ml/ animal IM',
-      aguja: '2 pulgadas',
-      nombre: 'Vacuna X',
-    },
-    {
-      tipo: 1,
-      precio: 9.5,
-      nomenclatura: 'Vacuna Y',
-      componenteActivo: 10.25,
-      tipoDeCerdo: 'F2R',
-      dosis: '1ml/ animal IM',
-      aguja: '1 pulgada',
-      nombre: 'Vacuna Y',
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -69,6 +28,37 @@ const SolicitudVacunas = ({ title, description, image }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+
+  useEffect(() => {
+    axios
+      .get('http://192.168.100.10:3088/getAllvacunas')
+      .then((response) => {
+        const jsonData = response.data;
+        //setDataAux(jsonData);
+        setData(jsonData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const tipoDeLicitacion = 'Vacuna';
+    axios
+      .get('http://192.168.100.10:3086/getAllSolicitudCompra', {
+        params: {
+          tipoDeLicitacion: tipoDeLicitacion,
+        },
+      })
+      .then((response) => {
+        const jsonData = response.data;
+        setDataList(jsonData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     const checkToken = async () => {
@@ -89,6 +79,7 @@ const SolicitudVacunas = ({ title, description, image }) => {
     };
     checkToken();
   }, [router]);
+
   
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>

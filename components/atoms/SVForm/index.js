@@ -34,7 +34,7 @@ const SVForm = ({ addFormData, nombre, selectedFoodData }) => {
         {selectedFoodData && (
           <div className="flex">
             <div className="modal-item w-1/2">
-              <p className="font-bold">Nombre de nombre:</p>
+              <p className="font-bold">Nombre de medicamento:</p>
               <input
                 className={
                   isDarkMode ? 'edit-input-container-d' : 'edit-input-container'

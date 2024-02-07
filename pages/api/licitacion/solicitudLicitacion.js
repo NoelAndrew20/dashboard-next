@@ -143,8 +143,8 @@ app.post('/addSolicitudLicitacion', async (req, res) => {
     let tipoProveedor;
     if (primerCaracter === 'A' && segundoCaracter === 'l') {
       tipoProveedor = 'Alimento';
-    } else if (primerCaracter === 'M' && segundoCaracter === 'e') {
-      tipoProveedor = 'Medicamento';
+    } else if (primerCaracter === 'V' && segundoCaracter === 'a') {
+      tipoProveedor = 'Vacuna';
     } else if (primerCaracter === 'V' && segundoCaracter === 'i') {
       tipoProveedor = 'Vientres';
     } else {

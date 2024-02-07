@@ -204,7 +204,7 @@ app.get('/getAllSolicitudCompra', async (req, res) => {
 app.post('/addSolicitudCompraCerdo', async (req, res) => {
   try {
     const newAlimento = req.body;
-    let tipoDeLicitacion = 'Vientres';
+    let tipoDeLicitacion = 'Vientre';
     const ultimaSolicitud = await SolicitudCompra.findOne({})
       .sort({ numeroSolicitud: -1 })
       .select('numeroSolicitud');
@@ -274,6 +274,45 @@ app.post('/addSolicitudCompraAlimento', async (req, res) => {
     res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
   }
 });
+
+app.post('/addSolicitudCompraVacuna', async (req, res) => {
+  try {
+    const newAlimento = req.body;
+    let tipoDeLicitacion = 'Vacuna';
+    const ultimaSolicitud = await SolicitudCompra.findOne({})
+      .sort({ numeroSolicitud: -1 })
+      .select('numeroSolicitud');
+    let nuevoNumeroSolicitud = 1;
+    if (ultimaSolicitud) {
+      nuevoNumeroSolicitud = ultimaSolicitud.numeroSolicitud + 1;
+    }
+    const solicitudCompra = {
+      fecha: Date.now(),
+      numeroSolicitud: nuevoNumeroSolicitud,
+      nombreSolicitante: req.body.responsable,
+      estadoSolicitud: 0,
+      tipoDeLicitacion: tipoDeLicitacion,
+      solicitud: req.body.solicitudes.map((item) => ({
+        nombre: item.nombre,
+        cantidad: item.cantidad,
+        fechaEntrega: item.fechaEntrega,
+        estatus: 0,
+      })),
+    };
+    const nuevaSolicitudCompra = new SolicitudCompra(solicitudCompra);
+
+    await nuevaSolicitudCompra.save();
+
+    await enviarCorreosProveedores('Vacuna');
+
+    res.status(201).json({ mensaje: 'Solicitud guardada correctamente' });
+  } catch (error) {
+    console.error('Error al guardar la solicitud:', error);
+    res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
+  }
+});
+
+
 
 app.put('/editLicitacion/:nombre/:cantidad', async (req, res) => {
   try {

@@ -60,7 +60,18 @@ const TableSV = ({ data, setData, dataList, setDataList }) => {
     setShowForms({});
     setDataList([...dataList, combinedData]);
     setSelectedFoodData(null);
-  };
+
+  const apiUrl = 'http://192.168.100.10:3086/addSolicitudCompraVacuna';
+  axios
+    .post(apiUrl, combinedData)
+    .then((response) => {
+      console.log('Respuesta de la API:', response.data);
+    })
+    .catch((error) => {
+      console.error('Error al enviar la solicitud:', error);
+    });
+};
+
 
   const handleCheckboxChange = (event, item) => {
     setSelectedCheckboxIndex(true);
