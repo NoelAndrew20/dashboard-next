@@ -8,7 +8,7 @@
       "ruta": true
     },
     "Veterinario": {
-      "ruta": ["/SolicitudCerdo", "/Graphicator", "PerfilUsuario"]
+      "ruta": ["/SolicitudCerdo", "/Graphicator", "/PerfilUsuario", "/SolicitudVacunas"]
     },
     "Gerente_de_compras": {
       "ruta": ["/Compras", "/SeleccionProveedor", "/PerfilUsuario"]
