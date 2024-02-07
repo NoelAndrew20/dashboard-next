@@ -321,6 +321,24 @@ app.put('/editProductos/:email', async (req, res) => {
   }
 });
 
+app.get('/catalogoProductos', async (req, res) => {
+  try {
+    const proveedores = await Proveedor.find({});
+    let catalogoProductos = [];
+    proveedores.forEach(proveedor => {
+      const proveedorConProductos = {
+        denominacion: proveedor.denominacion,
+        productos: proveedor.productos
+      };
+      catalogoProductos.push(proveedorConProductos);
+    });
+    res.json(catalogoProductos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ status: 'error', message: 'Internal server error' });
+  }
+});
+    
 const PORT = 3070;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
