@@ -129,9 +129,12 @@ const UsuarioSchema = new mongoose.Schema(
   {
     usuario: String,
     nombre: String,
+    denominacion: String,
     password: String,
     email: String,
     proveedor: Number,
+    telefono: String,
+    celular: String,
     picture: String,
   },
   {
@@ -240,9 +243,12 @@ app.post('/addProveedor', async (req, res) => {
     const nuevoUsuario = new Usuario({
       usuario: nuevoProveedor.idProveedor,
       nombre: nuevoProveedor.nombre,
+      denominacion: nuevoProveedor.denominacion,
       password: hashedPassword,
       email: nuevoProveedor.correo,
       proveedor: 1,
+      telefono: nuevoProveedor.telefono,
+      celular: nuevoProveedor.celular,
       picture: '/images/imagenes/user.png',
       rango: 'Proveedor',
     });
