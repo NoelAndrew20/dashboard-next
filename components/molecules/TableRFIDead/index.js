@@ -91,14 +91,14 @@ const TableRFIDead = ({ data, setData, diferenciaDias }) => {
                     >
                       {expandedRow === index ? (
                         <Image
-                          src="images/svg/expanded.svg"
+                          src="images/svg/expanded.png"
                           width={25}
                           height={25}
                           loading="lazy"
                         />
                       ) : (
                         <Image
-                          src="images/svg/expand.svg"
+                          src="images/svg/expand.png"
                           width={25}
                           height={25}
                           loading="lazy"

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Modal from '@/components/atoms/Modal';
 import CerdosForm from '@/components/atoms/CerdosForm';
 import TableCerdos from '@/components/molecules/TableCerdos';
-import svg from '@/public/images/svg/pig.svg';
+import svg from '@/public/images/svg/pig.png';
 const axios = require('axios');
 
 const RegistroCerdos = ({ title, description, image }) => {

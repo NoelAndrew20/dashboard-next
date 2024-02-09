@@ -93,7 +93,7 @@ const Formulario = ({ jsonFile, onSubmit, onFormSubmit }) => {
 
   return (
     <div key={formKey} >
-      <button type="button" class="transition hover:rounded-md hover:bg-orange-300" className="text-white border-blue-500 rounded-md focus:outline-none" onClick={handleFormReload}><img src={"/images/svg/update.svg"} width={20} height={20} ></img></button>
+      <button type="button" class="transition hover:rounded-md hover:bg-orange-300" className="text-white border-blue-500 rounded-md focus:outline-none" onClick={handleFormReload}><img src={"/images/svg/update.png"} width={20} height={20} ></img></button>
       {Object.keys(jsonDescription).map((key) => (
         <div key={key}>
           <label className={`text-2xl flex flex-col items-center mt-3`}>
@@ -109,7 +109,7 @@ const Formulario = ({ jsonFile, onSubmit, onFormSubmit }) => {
         </div>
       ))}
         <div className='flex justify-end'>
-          <button type="submit" onClick={guardardatosjson}><img src='./images/svg/send.svg' width={40}></img></button>
+          <button type="submit" onClick={guardardatosjson}><img src='./images/svg/send.png' width={40}></img></button>
         </div>
       </div>
   );

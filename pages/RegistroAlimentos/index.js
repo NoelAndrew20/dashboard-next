@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import Modal from '@/components/atoms/Modal';
 import AlimentosForm from '@/components/atoms/AlimentosForm';
 import TableAlimentos from '@/components/molecules/TableAlimentos';
-import svg from '@/public/images/svg/food.svg';
+import svg from '@/public/images/svg/food.png';
 const axios = require('axios');
 
 const RegistroAlimentos = ({ title, description, image }) => {

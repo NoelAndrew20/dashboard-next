@@ -5,7 +5,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import TableRFID from '@/components/molecules/TableRFID';
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
-import svg from '@/public/images/svg/label.svg';
+import svg from '@/public/images/svg/label.png';
 import TableRFIDead from '@/components/molecules/TableRFIDead';
 const axios = require('axios');
 

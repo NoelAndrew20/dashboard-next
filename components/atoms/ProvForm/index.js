@@ -78,7 +78,7 @@ const ProvForm = ({ data, setData, closeModal }) => {
               closeModal(), setErrorMessage(''), setSuccessMessage('');
             }}
           >
-            <img src="images/svg/x.svg" height={15} width={15} />
+            <img src="images/svg/x.png" height={15} width={15} />
           </button>
         </div>
       </div>

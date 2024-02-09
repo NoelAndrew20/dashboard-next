@@ -5,7 +5,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import TableMedicamentos from '@/components/molecules/TableMedicamento';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import svg from '@/public/images/svg/medicine.svg';
+import svg from '@/public/images/svg/medicine.png';
 const axios = require('axios');
 const Medicamento = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();

@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import io from 'socket.io-client';
 import Notification from '@/components/molecules/AlertaNotificacion';
-import svg from '@/public/images/svg/alerts.svg';
+import svg from '@/public/images/svg/alerts.png';
 
 const axios = require('axios');
 

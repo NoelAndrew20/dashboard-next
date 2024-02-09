@@ -15,7 +15,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import NavDashboard from '@/components/molecules/NavDashboard';
-import svg from '@/public/images/svg/chat.svg';
+import svg from '@/public/images/svg/chat.png';
 
 const ChatWindow = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -284,7 +284,7 @@ const ChatWindow = ({ title, description, image }) => {
                     disabled={isButtonDisabled}
                   >
                     <img
-                      src="./images/svg/send.svg"
+                      src="./images/svg/send.png"
                       alt="Send"
                       width={30}
                       height={30}
@@ -303,14 +303,14 @@ const ChatWindow = ({ title, description, image }) => {
                   >
                     {listening ? (
                       <img
-                        src="./images/svg/record.svg"
+                        src="./images/svg/record.png"
                         alt="Play"
                         width={30}
                         height={30}
                       />
                     ) : (
                       <img
-                        src="./images/svg/micro.svg"
+                        src="./images/svg/micro.png"
                         alt="Play"
                         width={30}
                         height={30}
@@ -360,7 +360,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import NavDashboard from '@/components/molecules/NavDashboard';
-import svg from '@/public/images/svg/chat.svg';
+import svg from '@/public/images/svg/chat.png';
 
 const ChatWindow = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -842,7 +842,7 @@ const ChatWindow = ({ title, description, image }) => {
                     disabled={isButtonDisabled}
                   >
                     <img
-                      src="./images/svg/send.svg"
+                      src="./images/svg/send.png"
                       alt="Send"
                       width={30}
                       height={30}
@@ -857,14 +857,14 @@ const ChatWindow = ({ title, description, image }) => {
                   >
                     {isListening ? (
                       <img
-                        src="./images/svg/record.svg"
+                        src="./images/svg/record.png"
                         alt="Play"
                         width={30}
                         height={30}
                       />
                     ) : (
                       <img
-                        src="./images/svg/micro.svg"
+                        src="./images/svg/micro.png"
                         alt="Play"
                         width={30}
                         height={30}
@@ -875,7 +875,7 @@ const ChatWindow = ({ title, description, image }) => {
                 <div>
                   <button className="button" onClick={playAudio}>
                     <img
-                      src="./images/svg/playblack.svg"
+                      src="./images/svg/playblack.png"
                       alt="Play"
                       width={30}
                     />

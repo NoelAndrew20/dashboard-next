@@ -142,7 +142,7 @@ export default class Interests {
       // Museums
       {
         'image': '/images/img-mcba.jpg',
-        'logo': '/images/logo-mcba.svg',
+        'logo': '/images/logo-mcba.png',
         'title': 'Musée Cantonal des Beaux-Arts Lausanne',
         'lead': 'Opened in 1841, the Vaud Museum of Fine Arts in Lausanne is one of the oldest Swiss museums exclusively dedicated to art. Now located in Plateforme 10, it presents several temporary exhibitions a year from its collection of 10,000 works.',
         'description': `Ducros, Gleyre, Steinlen, Vallotton and Soutter: these are some of the Vaudois painters for which the Vaud Museum of Fine Arts (MCBA) is known, nationally and internationally. Their works form a large part of the museum’s collection, currently comprising some 10,000 paintings. <br><br>
@@ -164,7 +164,7 @@ export default class Interests {
       },
       {
         'image': '/images/img-mudac.jpg',
-        'logo': '/images/logo-mudac.svg',
+        'logo': '/images/logo-mudac.png',
         'title': 'Musée Cantonal de Design et d’Arts Appliqués Contemporains',
         'lead': 'mudac – Lausanne’s Museum of Contemporary Design and Applied Arts – is the only institution in Western Switzerland entirely dedicated to design.',
         'description': `It has developed its identity and international reputation through hundreds of ambitious and often unusual exhibitions and continues to pursue a policy of openness and exchange between the many disciplines of contemporary creation. <br><br>
@@ -187,7 +187,7 @@ export default class Interests {
       },
       {
         'image': '/images/img-elysee.jpg',
-        'logo': '/images/logo-elysee.svg',
+        'logo': '/images/logo-elysee.png',
         'title': 'Photo Elysée',
         'lead': 'Photo Elysée is one of the most important museums entirely dedicated to the photographic medium. Each year, we produce demanding exhibitions, distribute reference editorial content, conceive innovative events and offer events open to all.',
         'description': `Since its creation in 1985 as a “museum for photography”, Photo Elysée has been questioning the permanent reinvention of the medium through the great figures who have marked its history by imagining new ways of seeing or making people see, while revealing in a privileged way the emerging photography which, through unseen views, bears witness to the world of today and prefigures that of tomorrow. In other words: to cover all the subjects of photography, to discover them sometimes, and above all to make them rediscovered. <br><br>
@@ -210,7 +210,7 @@ export default class Interests {
       // Restaurants & Cafés
       {
         'image': '/images/img-arcadia.jpg',
-        'logo': '/images/logo-arcadia.svg',
+        'logo': '/images/logo-arcadia.png',
         'title': 'Arcadia Restaurant',
         'lead': `Authentic Mediterranean dining at the heart of Lausanne's arts district`,
         'description': `Arcadia Restaurant, with its seven iconic arches, opens the door to a la carte Mediterranean cuisine, balancing fresh flavours with seasonal local ingredients and products. Our menu is served alongside an inspired cocktail offering and a selection of local beer and wines. <br><br>
@@ -232,7 +232,7 @@ export default class Interests {
       },
       {
         'image': '/images/img-nabi.jpg',
-        'logo': '/images/logo-nabi.svg',
+        'logo': '/images/logo-nabi.png',
         'title': 'Le Nabi Café-Restaurant',
         'lead': `Traditional cuisine to savour before or after a visit to Plateforme 10!`,
         'description': `The menu aims to be inviting, familial, yet inventive. Traditional cooking is restyled while the menu follows the seasons by adapting to the harvest of local producers. The drinks are artisanal. Meticulous service at reasonable prices for a convivial moment that everyone can afford to enjoy. Kids are very much welcome, too. Menu selections are designed for savory discoveries, and a play area encourages creativity.`,
@@ -253,7 +253,7 @@ export default class Interests {
       },
       {
         'image': '/images/img-lumen.jpg',
-        'logo': '/images/logo-lumen.svg',
+        'logo': '/images/logo-lumen.png',
         'title': 'Lumen Café',
         'lead': `A spontaneous and fast cuisine with authentic artisanal products`,
         'description': `Le Café Lumen invites you to discover its menu of quick and spontaneous dishes that use artisanal products served simply on a board, in a clay bowl, or nestled between two slices of focaccia. Here you will find the best of the region’s culinary tradition. All our drinks are artisanal with a fine selection of craft cider and beer, wine, and homemade non-alcoholic beverages. Our coffee is freshly roasted. We’re a stop along the region’s greenway, the Voie Verte foot and bicycle path, with takeaway service available.`,

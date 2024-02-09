@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import TableGraph from '@/components/molecules/TableGraph';
 import TableAlimentos from '@/components/molecules/TableAlimentos';
 import MenuTable from '@/components/atoms/MenuTable';
-import svg from '@/public/images/svg/graph.svg';
+import svg from '@/public/images/svg/graph.png';
 import { useRouter } from 'next/router';
 import jwt from 'jsonwebtoken';
 const axios = require('axios');

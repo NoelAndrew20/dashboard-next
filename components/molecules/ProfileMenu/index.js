@@ -17,7 +17,7 @@ const ProfileMenu = ({ data }) => {
                     Datos de Usuario
                 </div>
                 <div>
-                    <Image src={"/images/svg/black-arrow.svg"} 
+                    <Image src={"/images/svg/black-arrow.png"} 
                         width={30}
                         height={30}
                         alt="Black Arrow" className="ml-2"
@@ -32,7 +32,7 @@ const ProfileMenu = ({ data }) => {
                     Responsabilidades
                 </div>
                 <div>
-                    <Image src={"/images/svg/black-arrow.svg"} 
+                    <Image src={"/images/svg/black-arrow.png"} 
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !responsabilidadesExpandido ? "" : "transition-transform transform rotate-90"} ml-2`} 
@@ -57,7 +57,7 @@ const ProfileMenu = ({ data }) => {
                     Ubicación de Trabajo
                 </div>
                 <div>
-                    <Image src={"/images/svg/black-arrow.svg"} 
+                    <Image src={"/images/svg/black-arrow.png"} 
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !ubicacionTrabajoExpandido ? "" : "transition-transform transform rotate-90"} ml-2`} 
@@ -80,7 +80,7 @@ const ProfileMenu = ({ data }) => {
                     EPP
                 </div>
                 <div>
-                    <Image src={"/images/svg/black-arrow.svg"} 
+                    <Image src={"/images/svg/black-arrow.png"} 
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !eppExpandido ? "" : "transition-transform transform rotate-90"} ml-2`}

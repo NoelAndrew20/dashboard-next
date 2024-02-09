@@ -4,7 +4,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import ProveedorForm from '@/components/molecules/ProveedorForm';
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
-import svg from '@/public/images/svg/provider.svg';
+import svg from '@/public/images/svg/provider.png';
 
 const RegistroProveedores = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();

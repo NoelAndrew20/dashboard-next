@@ -3,7 +3,7 @@ import Navigation from '@/components/molecules/Navigation';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import svg from '@/public/images/svg/solicitud.svg';
+import svg from '@/public/images/svg/solicitud.png';
 import TableSC from '@/components/molecules/TableSC';
 import RazaTable from '@/components/atoms/RazaTable';
 import jwt from 'jsonwebtoken';
