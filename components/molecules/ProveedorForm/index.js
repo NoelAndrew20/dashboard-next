@@ -282,8 +282,7 @@ const ProveedorForm = () => {
               <option value="">Selecciona un tipo</option>
               <option value="Alimento">Alimento</option>
               <option value="Vacuna">Vacunas</option>
-              <option value="Medicamento">Medicamento</option>
-              <option value="MateriasPrimas">Materias Primas</option>
+              <option value="Vientre">Vientres</option>
               <option value="Otro1">Otro 1</option>
               <option value="Otro2">Otro 2</option>
             </select>
