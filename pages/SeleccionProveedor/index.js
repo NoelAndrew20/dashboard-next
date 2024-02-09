@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import TableSeleccion from '@/components/molecules/TableSeleccion';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
-import svg from '@/public/images/svg/selection.svg';
+import svg from '@/public/images/svg/selection.png';
 const axios = require('axios');
 
 const SeleccionProveedor = ({ title, description, image }) => {

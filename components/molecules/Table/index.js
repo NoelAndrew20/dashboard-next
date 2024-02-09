@@ -201,7 +201,7 @@ const Table = ({ data, setData }) => {
                     onClick={() => handleEdit(index)}
                     className="edit-btn"
                   >
-                    <img src="images/svg/edit.svg" width={15} height={15} />
+                    <img src="images/svg/edit.png" width={15} height={15} />
                   </button>
                 </td>
                 <td>
@@ -209,7 +209,7 @@ const Table = ({ data, setData }) => {
                     className="delete-btn"
                     onClick={() => handleDelete(index)}
                   >
-                    <img src="images/svg/trash.svg" width={10} height={10} />
+                    <img src="images/svg/trash.png" width={10} height={10} />
                   </button>
                 </td>
               </tr>

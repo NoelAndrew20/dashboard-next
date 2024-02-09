@@ -15,7 +15,7 @@ const PerfilProveedor = ({ data }) => {
                     Datos de Usuario
                 </div>
                 <div>
-                    <Image src={"/images/svg/black-arrow.svg"} 
+                    <Image src={"/images/svg/black-arrow.png"} 
                         width={30}
                         height={30}
                         alt="Black Arrow" className="ml-2"
@@ -30,7 +30,7 @@ const PerfilProveedor = ({ data }) => {
                     Producto
                 </div>
                 <div>
-                    <Image src={"/images/svg/black-arrow.svg"} 
+                    <Image src={"/images/svg/black-arrow.png"} 
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !productoExpandido ? "" : "transition-transform transform rotate-90"} ml-2`} 
@@ -55,7 +55,7 @@ const PerfilProveedor = ({ data }) => {
                     Licitación
                 </div>
                 <div>
-                    <Image src={"/images/svg/black-arrow.svg"} 
+                    <Image src={"/images/svg/black-arrow.png"} 
                         width={30}
                         height={30}
                         alt="Black Arrow" className={`${ !licitacionExpandido ? "" : "transition-transform transform rotate-90"} ml-2`} 

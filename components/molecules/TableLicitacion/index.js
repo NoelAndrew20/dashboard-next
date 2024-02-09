@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import { useDarkMode } from '@/context/DarkModeContext';
 import Image from 'next/image';
 import jwt from 'jsonwebtoken';
-import expand from '@/public/images/svg/expand.svg';
-import expanded from '@/public/images/svg/expanded.svg';
-import send from '@/public/images/svg/send.svg';
+import expand from '@/public/images/svg/expand.png';
+import expanded from '@/public/images/svg/expanded.png';
+import send from '@/public/images/svg/send.png';
 const axios = require('axios');
 
 const TableLicitacion = ({ data, setData }) => {

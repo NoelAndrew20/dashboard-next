@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import burguer from '@/public/images/svg/hamburguer.svg';
+import burguer from '@/public/images/svg/hamburguer.png';
 import srs from '@/public/Logos/ACELogo.png';
 import logo from '@/public/images/icon/logo_blanco.png';
 import { useEffect, useState } from 'react';
@@ -142,18 +142,18 @@ const Navigation = () => {
           onClick={toggleSidebar}
           className="flex justify-end items-end pt-1"
         >
-          <img src={'/images/svg/x-w.svg'} width={20} height={20} alt="x" />
+          <img src={'/images/svg/x-w.png'} width={20} height={20} alt="x" />
         </div>
         <div className="flex pt-5" onClick={toggleDarkMode}>
           {isDarkMode ? (
             <img
-              src={'/images/svg/moon.svg'}
+              src={'/images/svg/moon.png'}
               width={30}
               height={30}
               alt="moon"
             />
           ) : (
-            <img src={'/images/svg/sun.svg'} width={30} height={30} alt="sun" />
+            <img src={'/images/svg/sun.png'} width={30} height={30} alt="sun" />
           )}
         </div>
         <div className="side flex flex-col space-y-2 overflow-hidden">
@@ -205,7 +205,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/home.svg'}
+                    src={'/images/svg/home.png'}
                     width={20}
                     height={20}
                     alt="user"
@@ -224,7 +224,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/user.svg'}
+                    src={'/images/svg/user.png'}
                     width={20}
                     height={20}
                     alt="user"
@@ -243,7 +243,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/truck.svg'}
+                    src={'/images/svg/truck.png'}
                     width={20}
                     height={20}
                     alt="transporte"
@@ -262,7 +262,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/medicine.svg'}
+                    src={'/images/svg/medicine.png'}
                     width={20}
                     height={20}
                     alt="medicine"
@@ -274,7 +274,7 @@ const Navigation = () => {
             )}
             {/*<Link href="../../MateriasPrimas" className={`hover:font-semibold ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <img src={"/images/svg/hammer.svg"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
+                            <img src={"/images/svg/hammer.png"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
                         </div>
                     </Link>*/}
             {tienePermiso(rango, '/RFID') && (
@@ -286,7 +286,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/label.svg'}
+                    src={'/images/svg/label.png'}
                     width={20}
                     height={20}
                     alt="label"
@@ -298,7 +298,7 @@ const Navigation = () => {
             )}
             {/*<Link href="../../RegistroAlimentos" className={`hover:font-semibold ${currentPage === '/RegistroAlimentos' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <img src={"/images/svg/food.svg"} width={20} height={20} alt="label" className="mr-2" />Alimentos
+                            <img src={"/images/svg/food.png"} width={20} height={20} alt="label" className="mr-2" />Alimentos
                         </div>
                     </Link>*/}
             {tienePermiso(rango, '/RegistroCerdos') && (
@@ -310,7 +310,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/pig.svg'}
+                    src={'/images/svg/pig.png'}
                     width={20}
                     height={20}
                     alt="pig"
@@ -322,7 +322,7 @@ const Navigation = () => {
             )}
             {/*<Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RegistroInseminacion' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <img src={"/images/svg/drop.svg"} width={20} height={20} alt="drop" className="mr-2" />Inseminacion
+                            <img src={"/images/svg/drop.png"} width={20} height={20} alt="drop" className="mr-2" />Inseminacion
                         </div>
                     </Link>*/}
             {tienePermiso(rango, '/Graphicator') && (
@@ -334,7 +334,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/graph.svg'}
+                    src={'/images/svg/graph.png'}
                     width={25}
                     height={25}
                     alt="graph"
@@ -353,7 +353,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/provider.svg'}
+                    src={'/images/svg/provider.png'}
                     width={20}
                     height={20}
                     alt="graph"
@@ -372,7 +372,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/licitacion.svg'}
+                    src={'/images/svg/licitacion.png'}
                     width={20}
                     height={20}
                     alt="graph"
@@ -391,7 +391,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/shopping.svg'}
+                    src={'/images/svg/shopping.png'}
                     width={20}
                     height={20}
                     alt="graph"
@@ -410,7 +410,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/solicitud.svg'}
+                    src={'/images/svg/solicitud.png'}
                     width={20}
                     height={20}
                     alt="graph"
@@ -429,7 +429,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/selection.svg'}
+                    src={'/images/svg/selection.png'}
                     width={20}
                     height={20}
                     alt="graph"
@@ -448,7 +448,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/vaccine.svg'}
+                    src={'/images/svg/vaccine.png'}
                     width={20}
                     height={20}
                     alt="graph"
@@ -467,7 +467,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/chat.svg'}
+                    src={'/images/svg/chat.png'}
                     width={20}
                     height={20}
                     alt="graph"
@@ -486,7 +486,7 @@ const Navigation = () => {
               >
                 <div className="flex">
                   <img
-                    src={'/images/svg/box.svg'}
+                    src={'/images/svg/box.png'}
                     width={20}
                     height={20}
                     alt="graph"
@@ -500,7 +500,7 @@ const Navigation = () => {
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleGestation}>
                             Gestaciones
-                            <img src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isGestationOpen ? 'rotate-90' : ''}`} />
+                            <img src={"/images/svg/arrow.png"} width={20} height={20} alt="arrow" className={`transform ${isGestationOpen ? 'rotate-90' : ''}`} />
                         </div>
                         {isGestationOpen && (
                             <div className="pl-5 grid">
@@ -515,7 +515,7 @@ const Navigation = () => {
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleMaternidad}>
                             Maternidades
-                            <img src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isMaternidadOpen ? 'rotate-90' : ''}`} />
+                            <img src={"/images/svg/arrow.png"} width={20} height={20} alt="arrow" className={`transform ${isMaternidadOpen ? 'rotate-90' : ''}`} />
                         </div>
                         {isMaternidadOpen && (
                             <div className="pl-5 grid">
@@ -531,7 +531,7 @@ const Navigation = () => {
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleZen}>
                             Zen
-                            <img src={"/images/svg/arrow.svg"} width={20} height={20} alt="arrow" className={`transform ${isZenOpen ? 'rotate-90' : ''}`} />
+                            <img src={"/images/svg/arrow.png"} width={20} height={20} alt="arrow" className={`transform ${isZenOpen ? 'rotate-90' : ''}`} />
                         </div>
                         {isZenOpen && (
                             <div className="pl-5 grid">
@@ -570,7 +570,7 @@ const Navigation = () => {
                 onClick={cerrarSesion}
               >
                 <img
-                  src={'/images/svg/sesion.svg'}
+                  src={'/images/svg/sesion.png'}
                   width={20}
                   height={20}
                   alt="graph"

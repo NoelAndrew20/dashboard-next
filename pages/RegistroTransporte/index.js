@@ -7,7 +7,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import TableTransporte from '@/components/molecules/TableTransporte';
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
-import svg from '@/public/images/svg/truck.svg';
+import svg from '@/public/images/svg/truck.png';
 const axios = require('axios');
 
 const RegistroTransporte = ({ title, description, image }) => {

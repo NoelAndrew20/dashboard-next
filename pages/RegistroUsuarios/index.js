@@ -6,7 +6,7 @@ import UserForm from '@/components/atoms/UserForm';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import svg from '@/public/images/svg/user.svg';
+import svg from '@/public/images/svg/user.png';
 const axios = require('axios');
 
 const RegistroUsuarios = ({ title, description, image }) => {

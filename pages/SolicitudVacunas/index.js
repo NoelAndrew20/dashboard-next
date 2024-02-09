@@ -3,7 +3,7 @@ import Navigation from '@/components/molecules/Navigation';
 import StaticMeta from '@/components/atoms/StaticMeta';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import svg from '@/public/images/svg/vaccine.svg';
+import svg from '@/public/images/svg/vaccine.png';
 import { useRouter } from 'next/router';
 import jwt from 'jsonwebtoken';
 import TableSV from '@/components/molecules/TableSV';

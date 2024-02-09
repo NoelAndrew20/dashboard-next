@@ -5,7 +5,7 @@ import ProveedorForm from '@/components/molecules/ProveedorForm';
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 import ComprasForm from '@/components/atoms/ComprasForm';
-import svg from '@/public/images/svg/shopping.svg';
+import svg from '@/public/images/svg/shopping.png';
 import { useRouter } from 'next/router';
 import jwt from 'jsonwebtoken';
 

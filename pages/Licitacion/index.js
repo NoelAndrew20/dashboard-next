@@ -8,7 +8,7 @@ import { useDarkMode } from '@/context/DarkModeContext';
 import TableLicitacion from '@/components/molecules/TableLicitacion';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
-import svg from '@/public/images/svg/licitacion.svg';
+import svg from '@/public/images/svg/licitacion.png';
 const axios = require('axios');
 
 const Licitacion = ({ title, description, image }) => {

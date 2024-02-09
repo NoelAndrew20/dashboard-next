@@ -80,7 +80,7 @@ const TableAlimentos = ({ data, setData }) => {
                           >
                             <Link href="../RegistroAlimentos">
                               <img
-                                src="images/svg/send.svg"
+                                src="images/svg/send.png"
                                 width={15}
                                 height={15}
                               />

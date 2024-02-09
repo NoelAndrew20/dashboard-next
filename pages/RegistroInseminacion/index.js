@@ -5,7 +5,7 @@ import StaticMeta from '@/components/atoms/StaticMeta';
 import Table from '@/components/molecules/Table';
 import { useDarkMode } from '@/context/DarkModeContext';
 import { useState, useEffect } from 'react';
-import svg from '@/public/images/svg/drop.svg';
+import svg from '@/public/images/svg/drop.png';
 const axios = require('axios');
 
 const RegistroInseminacion = ({ title, description, image }) => {
