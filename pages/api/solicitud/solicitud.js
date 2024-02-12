@@ -150,6 +150,7 @@ const SolicitudCompraSchema = new mongoose.Schema(
   {
     fecha: Date,
     numeroSolicitud: Number,
+    nombreSolicitud: String,
     nombreSolicitante: String,
     estadoSolicitud: Number,
     tipoDeLicitacion: String,
@@ -159,6 +160,7 @@ const SolicitudCompraSchema = new mongoose.Schema(
         cantidad: Number,
         fechaEntrega: String,
         estatus: Number,
+        unidad: String,
       },
     ],
   },
@@ -169,10 +171,6 @@ const SolicitudCompraSchema = new mongoose.Schema(
 );
 
 const SolicitudCompra = db.model('SolicitudCompra', SolicitudCompraSchema);
-const SolicitudCompraAlimento = db.model(
-  'SolicitudCompraAlimento',
-  SolicitudCompraSchema
-);
 const Proveedor = db.model('Proveedor', ProveedorSchema);
 
 app.get('/getAllSolicitudCompra', async (req, res) => {
@@ -205,6 +203,7 @@ app.post('/addSolicitudCompraCerdo', async (req, res) => {
   try {
     const newAlimento = req.body;
     let tipoDeLicitacion = 'Vientre';
+    let unidad = 'Pza';
     const ultimaSolicitud = await SolicitudCompra.findOne({})
       .sort({ numeroSolicitud: -1 })
       .select('numeroSolicitud');
@@ -223,6 +222,7 @@ app.post('/addSolicitudCompraCerdo', async (req, res) => {
         cantidad: item.cantidad,
         fechaEntrega: item.fechaEntrega,
         estatus: 0,
+        unidad: unidad,
       })),
     };
     const nuevaSolicitudCompra = new SolicitudCompra(solicitudCompra);
@@ -242,6 +242,10 @@ app.post('/addSolicitudCompraAlimento', async (req, res) => {
   try {
     const newAlimento = req.body;
     let tipoDeLicitacion = 'Alimento';
+
+    const nombresAlimentos = req.body.solicitudes.map(item => item.nombreAlimento);
+    let nombreSolicitud = `Abastecimiento de ${nombresAlimentos.join(', ')}`;
+    
     const ultimaSolicitud = await SolicitudCompra.findOne({})
       .sort({ numeroSolicitud: -1 })
       .select('numeroSolicitud');
@@ -252,6 +256,7 @@ app.post('/addSolicitudCompraAlimento', async (req, res) => {
     const solicitudCompra = {
       fecha: Date.now(),
       numeroSolicitud: nuevoNumeroSolicitud,
+      nombreSolicitud: nombreSolicitud,
       nombreSolicitante: req.body.responsable,
       estadoSolicitud: 0,
       tipoDeLicitacion: tipoDeLicitacion,
@@ -260,6 +265,7 @@ app.post('/addSolicitudCompraAlimento', async (req, res) => {
         cantidad: item.cantidad,
         fechaEntrega: item.fechaEntrega,
         estatus: 0,
+        unidad: item.unidad,
       })),
     };
     const nuevaSolicitudCompra = new SolicitudCompra(solicitudCompra);
@@ -297,6 +303,7 @@ app.post('/addSolicitudCompraVacuna', async (req, res) => {
         cantidad: item.cantidad,
         fechaEntrega: item.fechaEntrega,
         estatus: 0,
+        unidad: item.unidad,
       })),
     };
     const nuevaSolicitudCompra = new SolicitudCompra(solicitudCompra);

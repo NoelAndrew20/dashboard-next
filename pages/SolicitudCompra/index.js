@@ -26,7 +26,7 @@ const SolicitudCompra = ({ title, description, image }) => {
 
   useEffect(() => {
     axios
-      .get('http://192.168.100.20:3020/getAllUsuario')
+      .get('http://192.168.100.10:3020/getAllUsuario')
       .then((response) => {
         const jsonData = response.data;
         setData(jsonData.data);
