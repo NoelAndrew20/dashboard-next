@@ -6,9 +6,9 @@ import Navigation from '@/components/molecules/Navigation';
 import ProfileCard2 from '@/components/atoms/ProfileCard2';
 import { useRouter } from 'next/router';
 import TablePProducts from '@/components/molecules/TablePProducts';
-import jwt from 'jsonwebtoken';
 import ProductCarrousell from '@/components/atoms/ProductCarrousell';
 import Link from 'next/link';
+import jwt from 'jsonwebtoken';
 const axios = require('axios');
 
 const Productos = ({ title, description, image }) => {
@@ -48,13 +48,17 @@ const Productos = ({ title, description, image }) => {
       solicitud: { nombre: 'hola' },
     },
   ]);
-  /*
+
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = '';
+  let usuario = '';
+  let primerosDosCaracteres;
   if (token) {
     const decodedToken = jwt.decode(token);
     email = decodedToken.email;
+    usuario = decodedToken.usuario;
+    primerosDosCaracteres = usuario.substring(0, 2);
   } else {
     console.error('No se encontró el token en localStorage.');
   }
@@ -73,7 +77,46 @@ const Productos = ({ title, description, image }) => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);*/
+  }, []);
+
+  useEffect(() => {
+    let tipoDeLicitacion;
+
+    if (primerosDosCaracteres === 'Al') {
+      tipoDeLicitacion = 'Alimento';
+    } else if (primerosDosCaracteres === 'Vi') {
+      tipoDeLicitacion = 'Vientres';
+    } else {
+      console.error('Usuario no reconocido');
+      return;
+    }
+    const apiUrl = `http://192.168.100.10:3086/getAllSolicitudCompra`;
+    axios
+      .get(apiUrl, {
+        params: {
+          tipoDeLicitacion: tipoDeLicitacion,
+        },
+      })
+      .then((response) => {
+        const jsonData = response.data;
+        setLicData(jsonData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [primerosDosCaracteres]);
+
+  useEffect(() => {
+    axios
+      .get('http://192.168.100.10:3070/catalogoProductos')
+      .then((response) => {
+        const jsonData = response.data;
+        setFutureData(jsonData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
@@ -102,7 +145,7 @@ const Productos = ({ title, description, image }) => {
           <h2 className='font-bold text-lg'>Licitaciones:</h2>
             <div class="grid grid-cols-3 flex justify-center">
               {licData.map((item, index) => (
-                <div className="flex justify-center">
+                <div className="flex justify-center"  key={index}>
                   <div
                     className={`${
                       isDarkMode
@@ -116,7 +159,7 @@ const Productos = ({ title, description, image }) => {
                     <p>{item.numeroSolicitud}</p>
                     <div>
                       <button>
-                      <Link href="../../Licitacion">
+                      <Link href="../../Proveedor/LicitacionPro">
                         Ver más
                         </Link>
 

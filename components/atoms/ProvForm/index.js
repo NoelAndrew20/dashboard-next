@@ -5,11 +5,13 @@ import jwt from 'jsonwebtoken';
 const ProvForm = ({ data, setData, closeModal }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [inputSku, setInputSku] = useState('');
-  const [inputNombre, setInputNombre] = useState('');
   const [inputUnidad, setInputUnidad] = useState('');
+  const [inputNombre, setInputNombre] = useState('');
   const [inputPrecio, setInputPrecio] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const axios = require('axios');
+
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let usuario = '';
@@ -20,52 +22,31 @@ const ProvForm = ({ data, setData, closeModal }) => {
     console.error('No se encontró el token en localStorage.');
   }
 
-  const addPerson = async () => {
-    try {
-      if (
-        (inputSku !== '',
-        inputNombre !== '',
-        inputUnidad !== '',
-        inputPrecio !== '')
-      ) {
-        const newProduct = {
-          SKU: inputSku,
-          nombre: inputNombre,
-          unidad: inputUnidad,
-          precio: inputPrecio,
-        };
-
-        const newData = [...data, newProduct];
-        setData(newData);
-        setInputSku('');
-        setInputNombre('');
-        setInputUnidad('');
-        setInputPrecio('');
-        setSuccessMessage('Producto guardado exitosamente');
-
-        const axios = require('axios');
-        const apiUrl = 'http://192.168.100.10:3070/editProducto/' + usuario;
+  const addPerson = () => {
+    const newData = {
+      SKU: inputSku,
+      unidad: inputUnidad,
+      nombre: inputNombre,
+      precio: inputPrecio
+    };
+    
+        const apiUrl = 'http://192.168.100.10:3070/addProducto/' + usuario;
         axios
-          .put(apiUrl, newProduct)
+          .put(apiUrl, newData)
           .then((response) => {
             console.log('Respuesta de la API:', response.data);
           })
           .catch((error) => {
             console.error('Error al enviar la solicitud:', error);
           });
-        setErrorMessage('');
-      } else {
-        setErrorMessage('Por favor completa los cambios');
-        setSuccessMessage('');
-        window.history.back();
-      }
-    } catch (error) {
-      setErrorMessage('Hubo un error al guardar el usuario');
-      setSuccessMessage('');
-      window.history.back();
-    }
+
+    setInputSku('');
+    setInputUnidad('');
+    setInputNombre('');
+    setInputPrecio('');
   };
 
+  
   return (
     <>
       <div className="flex justify-between modal-header">
