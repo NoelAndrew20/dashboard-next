@@ -12,14 +12,22 @@ const SVForm = ({ addFormData, nombre, selectedFoodData }) => {
       nombre: '',
       cantidad: '',
       fechaEntrega: '',
+      unidad: '',
     }
   );
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
 
   const agregarLote = () => {
     const nuevoLote = {
       nombre: formData.nombre,
       cantidad: formData.cantidad,
       fechaEntrega: formData.fechaEntrega,
+      unidad: formData.unidad
     };
     addFormData(nuevoLote);
   };
@@ -63,6 +71,33 @@ const SVForm = ({ addFormData, nombre, selectedFoodData }) => {
                 required
               />
             </div>
+
+            
+            <div className="modal-item w-1/2">
+            <p className="font-bold">Unidad de medida:</p>
+                  <select
+                    className={
+                      isDarkMode
+                        ? 'edit-input-container-d'
+                        : 'edit-input-container'
+                    }
+                    name="unidad"
+                    value={formData.unidad}
+                    onChange={handleInputChange}
+                  >
+                    <option value="" defaultValue>
+                      Selecciona...
+                    </option>
+                    <option value="Kg">Kg</option>
+                    <option value="Ton">Ton</option>
+                    <option value="Pza">Pza</option>
+                    <option value="M3">M3</option>
+                    <option value="L">L</option>
+                    <option value="ml">ml</option>
+                    <option value="mg">mg</option>
+                    <option value="g">g</option>
+                  </select>
+                </div>
 
             <div className="modal-item w-1/2">
               <p className="font-bold">Fecha de entrega:</p>
