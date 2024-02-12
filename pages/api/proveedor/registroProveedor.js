@@ -271,7 +271,7 @@ app.post('/addProveedor', async (req, res) => {
   }
 });
 
-app.put('/editProducto/:usuario', async (req, res) => {
+app.put('/addProducto/:usuario', async (req, res) => {
   try {
     const usuario = req.params.usuario;
     const newProduct = req.body;
@@ -327,7 +327,7 @@ app.put('/editProductos/:email', async (req, res) => {
   }
 });
 
-app.get('/catalogoProductos', async (req, res) => {
+/*app.get('/catalogoProductos', async (req, res) => {
   try {
     const proveedores = await Proveedor.find({});
     let catalogoProductos = [];
@@ -343,7 +343,46 @@ app.get('/catalogoProductos', async (req, res) => {
     console.error(error);
     res.status(500).send({ status: 'error', message: 'Internal server error' });
   }
+});*/
+/*app.get('/catalogoProductos', async (req, res) => {
+  try {
+    const proveedores = await Proveedor.find({});
+    let catalogoProductos = [];
+    proveedores.forEach(proveedor => {
+      proveedor.productos.forEach(producto => {
+        // Solo agregamos el producto al catálogo
+        catalogoProductos.push(producto);
+      });
+    });
+    res.json(catalogoProductos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ status: 'error', message: 'Internal server error' });
+  }
+});*/
+app.get('/catalogoProductos', async (req, res) => {
+  try {
+    const proveedores = await Proveedor.find({});
+    let catalogoProductos = [];
+    proveedores.forEach(proveedor => {
+      proveedor.productos.forEach(producto => {
+        // Crear un objeto con el formato deseado y agregarlo al catálogo
+        catalogoProductos.push({
+          SKU: producto.SKU,
+          unidad: producto.unidad,
+          nombre: producto.nombre,
+          precio: producto.precio.toString() // Convertir el precio a cadena
+        });
+      });
+    });
+    res.json(catalogoProductos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ status: 'error', message: 'Internal server error' });
+  }
 });
+
+
     
 const PORT = 3070;
 app.listen(PORT, () => {
