@@ -145,7 +145,7 @@ const TablePProducts = () => {
                     className="delete-btn"
                     onClick={() => handleDelete(index)}
                   >
-                    <img src="images/svg/trash.png" width={10} height={10} />
+                    <img src="../images/svg/trash.png" width={10} height={10} />
                   </button>
                 </td>
               </tr>

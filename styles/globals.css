@@ -367,6 +367,11 @@ th {
 .index-img{
   height: 30px;
 }
+.carrousel {
+  width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
+}
 .inner-search {
   background-color: #ccc;
   border-radius: 8px;
@@ -630,6 +635,26 @@ th {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
   padding: 2vh;
   margin-right: 20px;
+}
+.row-container-a2 {
+  justify-content: space-around;
+  flex-direction: column;
+  display: flex;
+  border-radius: var(--16, 16px);
+  background: rgba(13, 61, 100);
+  color: #ffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  padding: 2vh;
+}
+.row-container-a2 button {
+  margin-top: 7px;
+  background-color: #FFB800;
+  color: #000;
+  padding: 8px;
+  border-radius: 10px;
+}
+.row-container-a2 button:hover {
+  padding: 10px;
 }
 .row-container-g {
   justify-content: space-around;
@@ -1034,6 +1059,9 @@ th {
     display: grid;
     justify-content: center; 
     background-color: #fff;
+  }
+  .carrousel {
+    width: 0;
   }
   .fake-table-d {
     overflow-x: auto; 

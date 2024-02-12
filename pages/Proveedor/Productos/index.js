@@ -7,12 +7,48 @@ import ProfileCard2 from '@/components/atoms/ProfileCard2';
 import { useRouter } from 'next/router';
 import TablePProducts from '@/components/molecules/TablePProducts';
 import jwt from 'jsonwebtoken';
+import ProductCarrousell from '@/components/atoms/ProductCarrousell';
+import Link from 'next/link';
 const axios = require('axios');
 
 const Productos = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const router = useRouter();
   const [data, setData] = useState([]);
+  const [futureData, setFutureData] = useState([
+    { SKU: '1', unidad: '2', nombre: 'hola', precio: '4' },
+    { SKU: '3', unidad: '4', nombre: 'hola', precio: '6' },
+    { SKU: '3', unidad: '44', nombre: 'hola5', precio: '6' },
+    { SKU: '33', unidad: '43', nombre: 'hola89', precio: '6' },
+  ]);
+  const [licData, setLicData] = useState([
+    {
+      fecha: '24-12-2024',
+      numeroSolicitud: '1',
+      solicitud: { nombre: 'hola' },
+    },
+    {
+      fecha: '24-12-2024',
+      numeroSolicitud: '1',
+      solicitud: { nombre: 'hola' },
+    },
+    {
+      fecha: '24-12-2024',
+      numeroSolicitud: '1',
+      solicitud: { nombre: 'hola' },
+    },
+    {
+      fecha: '24-12-2024',
+      numeroSolicitud: '1',
+      solicitud: { nombre: 'hola' },
+    },
+    {
+      fecha: '24-12-2024',
+      numeroSolicitud: '1',
+      solicitud: { nombre: 'hola' },
+    },
+  ]);
+  /*
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = '';
@@ -37,21 +73,21 @@ const Productos = ({ title, description, image }) => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, []);*/
 
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
       <Navigation />
       <div
-        className="profile-nav w-full"
+        className="prov-nav w-full"
         style={{ justifyContent: 'center !important' }}
       >
         <h1>Perfil de Proveedor</h1>
       </div>
       <div className="wrapper">
         <div
-          className="back-link mt-2 text-blue-500 cursor-pointer"
+          className="back-link mt-2 text-blue-500 text-lg cursor-pointer"
           onClick={() => {
             router.back();
           }}
@@ -61,7 +97,44 @@ const Productos = ({ title, description, image }) => {
         <div className="mt-5">
           <ProfileCard2 data={data} />
         </div>
-        <div className="w-full flex justify-center mt-5">
+        <div className="w-full justify-center mt-5">
+          <div className="mt-5">
+          <h2 className='font-bold text-lg'>Licitaciones:</h2>
+            <div class="grid grid-cols-3 flex justify-center">
+              {licData.map((item, index) => (
+                <div className="flex justify-center">
+                  <div
+                    className={`${
+                      isDarkMode
+                        ? 'row-container-d mt-10'
+                        : 'row-container-a2 mt-10'
+                    } w-3/4 flex text-center font-bold`}
+                    key={index}
+                  >
+                    <p>{item.solicitud.nombre}</p>
+                    <p>{item.fecha}</p>
+                    <p>{item.numeroSolicitud}</p>
+                    <div>
+                      <button>
+                      <Link href="../../Licitacion">
+                        Ver más
+                        </Link>
+
+                        </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <h2 className='mt-10 font-bold text-lg'>Productos futuros:</h2>
+          <div
+            className="mt-5"
+            style={{ marginBottom: '10rem', marginTop: '10rem' }}
+          >
+            <ProductCarrousell futureData={futureData} />
+          </div>
+          <h2 className='mt-10 mb-10 font-bold text-lg'>Productos existentes:</h2>
           <TablePProducts />
         </div>
       </div>
