@@ -53,10 +53,12 @@ const TableSV = ({ data, setData, dataList, setDataList }) => {
         nombre: item.nombre,
         cantidad: item.cantidad,
         fechaEntrega: item.fechaEntrega,
+        unidad: item.unidad,
       })),
       responsable: responsable,
     };
 
+    console.log(combinedData);
     setShowForms({});
     setDataList([...dataList, combinedData]);
     setSelectedFoodData(null);

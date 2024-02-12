@@ -203,6 +203,8 @@ app.post('/addSolicitudCompraCerdo', async (req, res) => {
   try {
     const newAlimento = req.body;
     let tipoDeLicitacion = 'Vientre';
+    const nombresRaza = req.body.solicitudes.map(item => item.raza);
+    let nombreSolicitud = `Abastecimiento de ${nombresRaza.join(', ')}`;
     let unidad = 'Pza';
     const ultimaSolicitud = await SolicitudCompra.findOne({})
       .sort({ numeroSolicitud: -1 })
@@ -217,6 +219,7 @@ app.post('/addSolicitudCompraCerdo', async (req, res) => {
       nombreSolicitante: req.body.responsable,
       estadoSolicitud: 0,
       tipoDeLicitacion: tipoDeLicitacion,
+      nombreSolicitud: nombreSolicitud,
       solicitud: req.body.solicitudes.map((item) => ({
         nombre: item.raza,
         cantidad: item.cantidad,
@@ -285,6 +288,9 @@ app.post('/addSolicitudCompraVacuna', async (req, res) => {
   try {
     const newAlimento = req.body;
     let tipoDeLicitacion = 'Vacuna';
+    const nombresVacuna = req.body.solicitudes.map(item => item.nombre); 
+    let nombreSolicitud = `Abastecimiento de ${nombresVacuna.join(', ')}`;
+
     const ultimaSolicitud = await SolicitudCompra.findOne({})
       .sort({ numeroSolicitud: -1 })
       .select('numeroSolicitud');
@@ -298,6 +304,7 @@ app.post('/addSolicitudCompraVacuna', async (req, res) => {
       nombreSolicitante: req.body.responsable,
       estadoSolicitud: 0,
       tipoDeLicitacion: tipoDeLicitacion,
+      nombreSolicitud: nombreSolicitud,
       solicitud: req.body.solicitudes.map((item) => ({
         nombre: item.nombre,
         cantidad: item.cantidad,
@@ -318,8 +325,6 @@ app.post('/addSolicitudCompraVacuna', async (req, res) => {
     res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
   }
 });
-
-
 
 app.put('/editLicitacion/:nombre/:cantidad', async (req, res) => {
   try {
