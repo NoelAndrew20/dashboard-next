@@ -223,6 +223,9 @@ th {
   width: 1.25rem;
   color: #9CA3AF;
 }
+.nav-icon {
+  height: 20px;
+}
 .item {
   color: #4a5568;
   display: block;
@@ -678,6 +681,9 @@ th {
   transform: scale(1.05);
   transition: transform 0.3s ease;
 }
+.chat-icon {
+  height: 35px;
+}
 .row-user-d {
   justify-content: space-around;
   border-radius: 15px;
@@ -988,6 +994,7 @@ th {
     padding-bottom: 50px;
     padding: 0px 15px;
   }
+  
   .row-user {
     width: fit-content;
   }

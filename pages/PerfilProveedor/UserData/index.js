@@ -74,7 +74,7 @@ const UserData = ({ title, description, image }) => {
         </div>
         <div className="w-full flex justify-center">
           <form className="p-4 w-1/2">
-          <label>Usuario:</label>
+            <label>Usuario:</label>
             <div className="pb-4">
               <div
                 className={
@@ -91,9 +91,8 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="usuario"
                   name="usuario"
-                  value={data[0]?.usuario}
-                                    disabled={!editMode} // Controla el estado disabled según editMode
-
+                  value={data[0]?.usuario ? data[0]?.usuario : ""}
+                  disabled={!editMode} 
                 />
               </div>
             </div>
@@ -114,9 +113,8 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="nombre"
                   name="nombre"
-                  value={data[0]?.usuario}
-                                    disabled={!editMode} // Controla el estado disabled según editMode
-
+                  value={data[0]?.usuario ? data[0]?.usuario : ""}
+                  disabled={!editMode} 
                 />
               </div>
             </div>
@@ -137,9 +135,8 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="correo"
                   name="correo"
-                  value={data[0]?.email}
-                                    disabled={!editMode} // Controla el estado disabled según editMode
-
+                  value={data[0]?.email ? data[0]?.email : ""}
+                  disabled={!editMode} 
                 />
               </div>
             </div>
@@ -160,9 +157,8 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="contraseña"
                   name="contraseña"
-                  value={data[0]?.contraseña}
-                                    disabled={!editMode} // Controla el estado disabled según editMode
-
+                  value={data[0]?.contraseña ? data[0]?.contraseña : ""}
+                  disabled={!editMode} 
                 />
               </div>
             </div>
@@ -183,9 +179,8 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="denominacion"
                   name="denominacion"
-                  value={data[0]?.denominacion}
-                                    disabled={!editMode} // Controla el estado disabled según editMode
-
+                  value={data[0]?.denominacion ? data[0]?.denominacion : ""}
+                  disabled={!editMode} 
                 />
               </div>
             </div>
@@ -206,9 +201,8 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="telefono"
                   name="telefono"
-                  value={data[0]?.telefono}
-                                    disabled={!editMode} // Controla el estado disabled según editMode
-
+                  value={data[0]?.telefono ? data[0]?.telefono : ""}
+                  disabled={!editMode} 
                 />
               </div>
             </div>
@@ -229,9 +223,8 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="celular"
                   name="celular"
-                  value={data[0]?.celular}
-                                    disabled={!editMode} // Controla el estado disabled según editMode
-
+                  value={data[0]?.celular ?  data[0]?.celular : ""}
+                  disabled={!editMode} 
                 />
               </div>
             </div>
@@ -250,15 +243,14 @@ const UserData = ({ title, description, image }) => {
                       ? 'modal-input-d h-10 p-1'
                       : 'modal-input h-10 p-1'
                   }
-                  type='file'
+                  type="file"
                   id="picture"
                   name="picture"
-                  value={data[0]?.picture}
-                  
+                  value={data[0]?.picture ? data[0]?.picture : ""}
                 />
               </div>
             </div>
-             <button type="button" onClick={toggleEditMode} className='button'>
+            <button type="button" onClick={toggleEditMode} className="button">
               {editMode ? 'Guardar' : 'Editar'}
             </button>
           </form>

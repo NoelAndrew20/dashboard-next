@@ -84,7 +84,7 @@ const Navigation = () => {
         }
       }
     }
-    return false;
+    return true ;
   };
 
   const cerrarSesion = () => {
@@ -142,18 +142,18 @@ const Navigation = () => {
           onClick={toggleSidebar}
           className="flex justify-end items-end pt-1"
         >
-          <img src={'/images/svg/x-w.png'} width={20} height={20} alt="x" />
+          <Image src={'/images/svg/x-w.png'} width={20} height={20} alt="x" />
         </div>
         <div className="flex pt-5" onClick={toggleDarkMode}>
           {isDarkMode ? (
-            <img
+            <Image
               src={'/images/svg/moon.png'}
               width={30}
               height={30}
               alt="moon"
             />
           ) : (
-            <img src={'/images/svg/sun.png'} width={30} height={30} alt="sun" />
+            <Image src={'/images/svg/sun.png'} width={30} height={30} alt="sun" />
           )}
         </div>
         <div className="side flex flex-col space-y-2 overflow-hidden">
@@ -170,11 +170,11 @@ const Navigation = () => {
                     strokeWidth="1.5"
                     viewBox="0 0 24 24"
                     fill="none"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M18.1336 11C18.7155 16.3755 21 18 21 18H3C3 18 6 15.8667 6 8.4C6 6.70261 6.63214 5.07475 7.75736 3.87452C8.88258 2.67428 10.4087 2 12 2C12.3373 2 12.6717 2.0303 13 2.08949"
+                      d="M18.1336 11C18.7155 16.3755 21 18 21 18H3C3 18 6 15.8667 6 8.4C6 6.70261 6.63214 5.07475 7.75736 3.87452C8.88208 2.67428 10.4087 2 12 2C12.3373 2 12.6717 2.0303 13 2.08949"
                       stroke="#ffffff"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -204,12 +204,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/home.png'}
                     width={20}
                     height={20}
                     alt="user"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />{' '}
                   Home
                 </div>
@@ -223,12 +223,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/user.png'}
                     width={20}
                     height={20}
                     alt="user"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />{' '}
                   Usuarios
                 </div>
@@ -242,12 +242,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/truck.png'}
                     width={20}
                     height={20}
                     alt="transporte"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Transportes
                 </div>
@@ -261,12 +261,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/medicine.png'}
                     width={20}
                     height={20}
                     alt="medicine"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Medicamento
                 </div>
@@ -274,7 +274,7 @@ const Navigation = () => {
             )}
             {/*<Link href="../../MateriasPrimas" className={`hover:font-semibold ${currentPage === '/MateriasPrimas' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <img src={"/images/svg/hammer.png"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
+                            <Image src={"/images/svg/hammer.png"} width={20} height={20} alt="hammer" className="mr-2" />Materias primas
                         </div>
                     </Link>*/}
             {tienePermiso(rango, '/RFID') && (
@@ -285,12 +285,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/label.png'}
                     width={20}
                     height={20}
                     alt="label"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Cerdos
                 </div>
@@ -298,7 +298,7 @@ const Navigation = () => {
             )}
             {/*<Link href="../../RegistroAlimentos" className={`hover:font-semibold ${currentPage === '/RegistroAlimentos' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <img src={"/images/svg/food.png"} width={20} height={20} alt="label" className="mr-2" />Alimentos
+                            <Image src={"/images/svg/food.png"} width={20} height={20} alt="label" className="mr-2" />Alimentos
                         </div>
                     </Link>*/}
             {tienePermiso(rango, '/RegistroCerdos') && (
@@ -309,12 +309,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/pig.png'}
                     width={20}
                     height={20}
                     alt="pig"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Registro Cerdos
                 </div>
@@ -322,7 +322,7 @@ const Navigation = () => {
             )}
             {/*<Link href="../../RegistroInseminacion" className={`hover:font-semibold ${currentPage === '/RegistroInseminacion' ? 'font-semibold' : ''} pt-5`}>
                         <div className="flex">
-                            <img src={"/images/svg/drop.png"} width={20} height={20} alt="drop" className="mr-2" />Inseminacion
+                            <Image src={"/images/svg/drop.png"} width={20} height={20} alt="drop" className="mr-2" />Inseminacion
                         </div>
                     </Link>*/}
             {tienePermiso(rango, '/Graphicator') && (
@@ -333,12 +333,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/graph.png'}
-                    width={25}
-                    height={25}
+                    width={20}
+                    height={20}
                     alt="graph"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Solicitud de alimentos
                 </div>
@@ -352,12 +352,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/provider.png'}
                     width={20}
                     height={20}
                     alt="graph"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Registro de proveedores
                 </div>
@@ -371,12 +371,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/licitacion.png'}
                     width={20}
                     height={20}
                     alt="graph"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Licitación
                 </div>
@@ -390,12 +390,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/shopping.png'}
                     width={20}
                     height={20}
                     alt="graph"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Compras
                 </div>
@@ -409,12 +409,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/solicitud.png'}
                     width={20}
                     height={20}
                     alt="graph"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Solicitud de cerdo
                 </div>
@@ -428,12 +428,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/selection.png'}
                     width={20}
                     height={20}
                     alt="graph"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Seleccion de proveedor
                 </div>
@@ -447,12 +447,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/vaccine.png'}
                     width={20}
                     height={20}
                     alt="graph"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Solicitud de vacunas
                 </div>
@@ -466,12 +466,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/chat.png'}
                     width={20}
                     height={20}
                     alt="graph"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Chat
                 </div>
@@ -485,12 +485,12 @@ const Navigation = () => {
                 } pt-5`}
               >
                 <div className="flex">
-                  <img
+                  <Image
                     src={'/images/svg/box.png'}
                     width={20}
                     height={20}
                     alt="graph"
-                    className="mr-2"
+                    className="mr-2 nav-icon"
                   />
                   Perfil proveedor
                 </div>
@@ -500,7 +500,7 @@ const Navigation = () => {
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleGestation}>
                             Gestaciones
-                            <img src={"/images/svg/arrow.png"} width={20} height={20} alt="arrow" className={`transform ${isGestationOpen ? 'rotate-90' : ''}`} />
+                            <Image src={"/images/svg/arrow.png"} width={20} height={20} alt="arrow" className={`transform ${isGestationOpen ? 'rotate-90' : ''}`} />
                         </div>
                         {isGestationOpen && (
                             <div className="pl-5 grid">
@@ -515,7 +515,7 @@ const Navigation = () => {
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleMaternidad}>
                             Maternidades
-                            <img src={"/images/svg/arrow.png"} width={20} height={20} alt="arrow" className={`transform ${isMaternidadOpen ? 'rotate-90' : ''}`} />
+                            <Image src={"/images/svg/arrow.png"} width={20} height={20} alt="arrow" className={`transform ${isMaternidadOpen ? 'rotate-90' : ''}`} />
                         </div>
                         {isMaternidadOpen && (
                             <div className="pl-5 grid">
@@ -531,7 +531,7 @@ const Navigation = () => {
                     <div className="pt-5">
                         <div className="flex justify-between cursor-pointer" onClick={toggleZen}>
                             Zen
-                            <img src={"/images/svg/arrow.png"} width={20} height={20} alt="arrow" className={`transform ${isZenOpen ? 'rotate-90' : ''}`} />
+                            <Image src={"/images/svg/arrow.png"} width={20} height={20} alt="arrow" className={`transform ${isZenOpen ? 'rotate-90' : ''}`} />
                         </div>
                         {isZenOpen && (
                             <div className="pl-5 grid">
@@ -569,12 +569,12 @@ const Navigation = () => {
                 className="flex pt-2 justify-center cursor-pointer"
                 onClick={cerrarSesion}
               >
-                <img
+                <Image
                   src={'/images/svg/sesion.png'}
                   width={20}
                   height={20}
                   alt="graph"
-                  className="mr-2"
+                  className="mr-2 nav-icon"
                 />
                 Cerrar sesión
               </div>
