@@ -164,13 +164,13 @@ const TableSolicitud = ({ data, setData }) => {
                     onClick={() => handleEdit(index)}
                     className="edit-btn"
                   >
-                    <img src="images/svg/edit.png" width={15} height={15} />
+                    <Image src={"/images/svg/edit.png"} width={15} height={15} />
                   </button>
                 </td>
                 <td>
                   <button className="edit-btn">
                     <Link href="../Graphicator">
-                      <img src="images/svg/send.png" width={10} height={10} />
+                      <Image src={"/images/svg/send.png"} width={10} height={10} />
                     </Link>
                   </button>
                 </td>

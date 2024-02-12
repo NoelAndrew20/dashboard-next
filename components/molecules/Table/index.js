@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
+import Image from 'next/image';
 
 const Table = ({ data, setData }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -201,7 +202,7 @@ const Table = ({ data, setData }) => {
                     onClick={() => handleEdit(index)}
                     className="edit-btn"
                   >
-                    <img src="images/svg/edit.png" width={15} height={15} />
+                    <Image src={"/images/svg/edit.png"} width={15} height={15} />
                   </button>
                 </td>
                 <td>
@@ -209,7 +210,7 @@ const Table = ({ data, setData }) => {
                     className="delete-btn"
                     onClick={() => handleDelete(index)}
                   >
-                    <img src="images/svg/trash.png" width={10} height={10} />
+                    <Image src={"/images/svg/trash.png"} width={10} height={10} />
                   </button>
                 </td>
               </tr>

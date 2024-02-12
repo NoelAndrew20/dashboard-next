@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
+import Image from 'next/image';
 
 const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -84,7 +85,7 @@ const CerdosForm = ({ data, setData, closeModal, dataProveedor }) => {
               setSuccessMessage('');
             }}
           >
-            <img src="images/svg/x.png" height={15} width={15} />
+            <Image src={"/images/svg/x.png"} height={15} width={15} />
           </button>
         </div>
       </div>

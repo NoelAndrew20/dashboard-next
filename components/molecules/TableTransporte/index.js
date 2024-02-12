@@ -152,7 +152,7 @@ const TableTransporte = ({ data, setData }) => {
                     onClick={() => handleEdit(index)}
                     className="edit-btn"
                   >
-                    <img src="images/svg/edit.png" width={15} height={15} />
+                    <img src={"/images/svg/edit.png"} width={15} height={15} />
                   </button>
                 </td>
                 <td>
