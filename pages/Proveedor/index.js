@@ -84,7 +84,6 @@ const Proveedor = ({ title, description, image }) => {
           <ProfileCard2 data={data} />
         </div>
       </div>
-
       <div className="wrapper">
         <div className="mt-10">
           <PerfilProveedor data={data} />

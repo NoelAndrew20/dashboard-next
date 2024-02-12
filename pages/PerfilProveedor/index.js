@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import foto from '@/public/images/imagenes/user.png';
 import ProfileMenu from '@/components/molecules/ProfileMenu';
 import jwt from 'jsonwebtoken';
+import PerfilProveedor from '@/components/molecules/ProfileProveedor';
 const axios = require('axios');
 const PerfilUsuario = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -52,7 +53,7 @@ const PerfilUsuario = ({ title, description, image }) => {
           <ProfileCard2 data={data} />
         </div>
         <div className="mt-10">
-          <ProfileProveedor data={data} />
+          <PerfilProveedor data={data} />
         </div>
       </div>
     </div>

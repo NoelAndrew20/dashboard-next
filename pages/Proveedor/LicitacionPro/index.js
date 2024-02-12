@@ -77,7 +77,7 @@ const LicitacionPro = ({ title, description, image }) => {
       <StaticMeta title={title} description={description} image={image} />
       <Navigation />
       <div
-        className="profile-nav w-full"
+        className="prov-nav w-full"
         style={{ justifyContent: 'center !important' }}
       >
         <h1>Perfil de Proveedor</h1>

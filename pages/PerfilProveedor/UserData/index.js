@@ -14,6 +14,12 @@ const UserData = ({ title, description, image }) => {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [newPswd, setNewPswd] = useState(data.password);
+  const [editMode, setEditMode] = useState(false);
+
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
+
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = '';
@@ -68,6 +74,29 @@ const UserData = ({ title, description, image }) => {
         </div>
         <div className="w-full flex justify-center">
           <form className="p-4 w-1/2">
+          <label>Usuario:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  id="usuario"
+                  name="usuario"
+                  value={data[0]?.usuario}
+                                    disabled={!editMode} // Controla el estado disabled según editMode
+
+                />
+              </div>
+            </div>
             <label>Nombre:</label>
             <div className="pb-4">
               <div
@@ -86,7 +115,8 @@ const UserData = ({ title, description, image }) => {
                   id="nombre"
                   name="nombre"
                   value={data[0]?.usuario}
-                  disabled
+                                    disabled={!editMode} // Controla el estado disabled según editMode
+
                 />
               </div>
             </div>
@@ -108,19 +138,129 @@ const UserData = ({ title, description, image }) => {
                   id="correo"
                   name="correo"
                   value={data[0]?.email}
-                  disabled
+                                    disabled={!editMode} // Controla el estado disabled según editMode
+
                 />
               </div>
             </div>
-            {data.password === newPswd ? (
-              ''
-            ) : (
-              <div className="flex justify-center">
-                <button type="submit" className="button">
-                  Guardar
-                </button>
+            <label>Contraseña:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  id="contraseña"
+                  name="contraseña"
+                  value={data[0]?.contraseña}
+                                    disabled={!editMode} // Controla el estado disabled según editMode
+
+                />
               </div>
-            )}
+            </div>
+            <label>Denominación:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  id="denominacion"
+                  name="denominacion"
+                  value={data[0]?.denominacion}
+                                    disabled={!editMode} // Controla el estado disabled según editMode
+
+                />
+              </div>
+            </div>
+            <label>Teléfono:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  id="telefono"
+                  name="telefono"
+                  value={data[0]?.telefono}
+                                    disabled={!editMode} // Controla el estado disabled según editMode
+
+                />
+              </div>
+            </div>
+            <label>Celular:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  id="celular"
+                  name="celular"
+                  value={data[0]?.celular}
+                                    disabled={!editMode} // Controla el estado disabled según editMode
+
+                />
+              </div>
+            </div>
+            <label>foto:</label>
+            <div className="pb-4">
+              <div
+                className={
+                  isDarkMode
+                    ? 'profile-input-container-d h-10'
+                    : 'profile-input-container h-10'
+                }
+              >
+                <input
+                  className={
+                    isDarkMode
+                      ? 'modal-input-d h-10 p-1'
+                      : 'modal-input h-10 p-1'
+                  }
+                  type='file'
+                  id="picture"
+                  name="picture"
+                  value={data[0]?.picture}
+                  
+                />
+              </div>
+            </div>
+             <button type="button" onClick={toggleEditMode} className='button'>
+              {editMode ? 'Guardar' : 'Editar'}
+            </button>
           </form>
         </div>
       </div>
