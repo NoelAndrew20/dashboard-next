@@ -9,6 +9,7 @@ import MenuTable from '@/components/atoms/MenuTable';
 import svg from '@/public/images/svg/graph.png';
 import { useRouter } from 'next/router';
 import jwt from 'jsonwebtoken';
+import Image from 'next/image';
 const axios = require('axios');
 
 const Graphicator = ({ title, description, image }) => {

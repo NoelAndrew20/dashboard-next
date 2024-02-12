@@ -46,14 +46,14 @@ const MenuTable = ({ data, setData }) => {
                     >
                       {expandedRow === index ? (
                         <Image
-                          src="images/svg/expanded.png"
+                          src={"/images/svg/expanded.png"}
                           width={25}
                           height={25}
                           loading="lazy"
                         />
                       ) : (
                         <Image
-                          src="images/svg/expand.png"
+                          src={"/images/svg/expand.png"}
                           width={25}
                           height={25}
                           loading="lazy"

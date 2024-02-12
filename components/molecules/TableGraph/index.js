@@ -131,6 +131,7 @@ const TableGraph = ({
         nombreAlimento: item.nombreAlimento,
         cantidad: item.cantidad,
         fechaEntrega: item.fechaEntrega,
+        unidad: item.unidad,
       })),
       responsable: responsable,
     };

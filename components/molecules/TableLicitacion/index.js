@@ -20,6 +20,7 @@ const TableLicitacion = ({ data, setData }) => {
     nombre: '',
     cantidad: '',
     fechaEntrega: '',
+    unidad: '',
   });
   const [dataArray, setDataArray] = useState();
   const [indexGuide, setIndexGuide] = useState();
@@ -53,11 +54,22 @@ const TableLicitacion = ({ data, setData }) => {
     const fechaEntrega = document.querySelector(
       'input[name="fechaEntrega"]'
     ).value;
+    const unidad = document.querySelector('input[name="unidad"]').value;
     const fecha = document.querySelector('input[name="fecha"]').value;
     const metodo = document.querySelector('select[name="metodo"]').value;
-    const lugar = document.querySelector('input[name="lugar"]').value;
+    const lugar = document.querySelector('select[name="lugar"]').value;
     const pago = document.querySelector('select[name="pago"]').value;
-    const precio = document.querySelector('input[name="precio"]').value;
+    const costoUnitario = document.querySelector(
+      'input[name="costoUnitario"]'
+    ).value;
+    const tipoM = document.querySelector('select[name="tipoM"]').value;
+    const impuesto = document.querySelector('select[name="impuesto"]').value;
+    let precio;
+    if (impuesto === 'IVA') {
+      precio = cantidad * costoUnitario * 1.16;
+    } else {
+      precio = cantidad * costoUnitario;
+    }
     const newData = [...data];
     const elementToModify = newData[indexGuide];
     const fechaSolicitud = elementToModify.fecha;
@@ -74,22 +86,25 @@ const TableLicitacion = ({ data, setData }) => {
     } else {
       console.error('No se encontró el token en localStorage.');
     }
-    const primerCaracter = usuario[0];
+    
     newData[indexGuide].solicitud[editingSolicitudIndex] = {
       fechaSolicitud,
       nombreSolicitante,
       numeroSolicitud,
       nombre,
       cantidad,
+      unidad,
       fechaEntrega,
       fecha,
       metodo,
       lugar,
       pago,
       precio,
+      costoUnitario,
+      tipoM,
+      impuesto,
       estatus,
       usuario,
-      primerCaracter,
     };
     setDataArray(newData);
 
@@ -115,6 +130,95 @@ const TableLicitacion = ({ data, setData }) => {
     return `${year}-${month}-${day}`;
   }
 
+  const [metodoEntrega, setMetodoEntrega] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [costoUnitario, setCostoUnitario] = useState(0);
+  const [impuesto, setImpuesto] = useState('');
+  const [precio, setPrecio] = useState(0);
+  const [metodo, setMetodo] = useState('');
+  const [lugarOptions, setLugarOptions] = useState([
+    <option key="default" value="" defaultValue>
+      Selecciona...
+    </option>,
+    <option key="1" value="D">
+      25 PONIENTE NÚMERO: 4307 BELISARIO DOMINGUEZ, PUEBLA, PUEBLA
+    </option>,
+  ]);
+
+  const handleMetodoChange = (e) => {
+    const selectedMetodo = e.target.value;
+    setMetodo(selectedMetodo);
+    if (selectedMetodo === 'CIF' || selectedMetodo === 'CIP') {
+      setLugarOptions([
+        <option key="default" value="" defaultValue>
+          Selecciona...
+        </option>,
+        <option key="1" value="Direccion1">
+          25 PONIENTE NÚMERO: 4307 BELISARIO DOMINGUEZ, PUEBLA, PUEBLA
+        </option>,
+      ]);
+    } else {
+      setLugarOptions([
+        <option key="default" value="" defaultValue>
+          Selecciona...
+        </option>,
+        <option key="2" value="Ad1">
+          Aduana 1
+        </option>,
+        <option key="3" value="Ad2">
+          Aduana 2
+        </option>,
+        <option key="4" value="Ad3">
+          Aduana 3
+        </option>,
+      ]);
+    }
+  };
+
+  const handleCostoUnitarioChange = (e) => {
+    const newCostoUnitario = e.target.value;
+    setCostoUnitario(newCostoUnitario); 
+
+    let newPrecio;
+    if (impuesto === 'IVA') {
+      newPrecio = editedValues.cantidad * newCostoUnitario * 1.16;
+    } else {
+      newPrecio = editedValues.cantidad * newCostoUnitario;
+    }
+
+    setEditedValues((prevState) => ({
+      ...prevState,
+      precio: newPrecio, 
+    }));
+  };
+
+  const handleImpuestoChange = (e) => {
+    const newImpuesto = e.target.value;
+    setImpuesto(newImpuesto); 
+
+    let newPrecio;
+    if (newImpuesto === 'IVA') {
+      newPrecio = editedValues.cantidad * costoUnitario * 1.16;
+    } else {
+      newPrecio = editedValues.cantidad * costoUnitario;
+    }
+
+    setEditedValues((prevState) => ({
+      ...prevState,
+      precio: newPrecio, 
+    }));
+  };
+
+  const calculatePrice = (costoUnitario, cantidad, impuesto) => {
+    let newPrecio;
+    if (impuesto === 'IVA') {
+      newPrecio = cantidad * costoUnitario * 1.16;
+    } else {
+      newPrecio = cantidad * costoUnitario;
+    }
+    return newPrecio;
+  };
+
   return (
     <>
       <div className={isDarkMode ? 'table-d' : 'table'}>
@@ -122,7 +226,7 @@ const TableLicitacion = ({ data, setData }) => {
           <thead>
             <tr>
               <th>Fecha</th>
-              <th>No. de Solicitud</th>
+              <th>Solicitud</th>
               <th>Detalles</th>
             </tr>
           </thead>
@@ -131,7 +235,7 @@ const TableLicitacion = ({ data, setData }) => {
               <React.Fragment key={index}>
                 <tr className="table-row">
                   <td>{item.fecha}</td>
-                  <td>{item.numeroSolicitud}</td>
+                  <td>{item.nombreSolicitud}</td>
                   <td className="p-1 flex justify-center">
                     <button
                       className="flex align-center"
@@ -166,11 +270,15 @@ const TableLicitacion = ({ data, setData }) => {
                       <th>
                         <div>Cantidad</div>
                       </th>
+                      <th>
+                        <div>Unidad</div>
+                      </th>
                     </tr>
                     {item.solicitud.map((solicitud, solicitudIndex) => (
                       <tr key={solicitudIndex}>
                         <td>{solicitud.nombre}</td>
                         <td>{solicitud.cantidad}</td>
+                        <td>{solicitud.unidad}</td>
                         <td>
                           {solicitud.estatus === 0 ? (
                             <>
@@ -232,6 +340,19 @@ const TableLicitacion = ({ data, setData }) => {
                   />
                 </div>
                 <div className="modal-item w-1/3">
+                  <p>Unidad:</p>
+                  <input
+                    className={
+                      isDarkMode
+                        ? 'edit-input-container-d'
+                        : 'edit-input-container'
+                    }
+                    name="unidad"
+                    value={editedValues.unidad || ''}
+                    disabled
+                  />
+                </div>
+                <div className="modal-item w-1/3">
                   <p>Fecha:</p>
                   <input
                     className={
@@ -250,37 +371,36 @@ const TableLicitacion = ({ data, setData }) => {
                 <div className="modal-item w-1/3">
                   <p>Método de entrega:</p>
                   <select
-                    className={
+                     className={
                       isDarkMode
                         ? 'edit-input-container-d'
                         : 'edit-input-container'
                     }
                     name="metodo"
-                    onChange={(e) => e.target.value}
+                    onChange={handleMetodoChange}
                   >
                     <option value="" defaultValue>
                       Selecciona...
                     </option>
                     <option value="CIF">CIF</option>
-                    <option value="LAB">LAB</option>
                     <option value="FOB">FOB</option>
+                    <option value="CIP">CIP</option>
                   </select>
                 </div>
+
                 <div className="modal-item w-1/3">
                   <p>Lugar:</p>
-                  <input
-                    className={
-                      isDarkMode
-                        ? 'edit-input-container-d'
-                        : 'edit-input-container'
-                    }
-                    type="text"
+                  <select
+                    className={'edit-input-container'}
                     name="lugar"
                     onChange={(e) => e.target.value}
-                  />
+                  >
+                    {lugarOptions}
+                  </select>
                 </div>
+
                 <div className="modal-item w-1/3">
-                  <p>Periodo límite de suministro:</p>
+                  <p>Fecha de entrega:</p>
                   <input
                     className={
                       isDarkMode
@@ -294,6 +414,63 @@ const TableLicitacion = ({ data, setData }) => {
                   />
                 </div>
               </div>
+
+              <div className="flex">
+                <div className="modal-item w-1/3">
+                  <p>Costo unitario:</p>
+                  <input
+                    className={
+                      isDarkMode
+                        ? 'edit-input-container-d'
+                        : 'edit-input-container'
+                    }
+                    type="number"
+                    name="costoUnitario"
+                    value={editedValues.costoUnitario}
+                    onChange={handleCostoUnitarioChange}
+                  />
+                </div>
+
+                <div className="modal-item w-1/3">
+                  <p>Tipo de moneda:</p>
+                  <select
+                    className={
+                      isDarkMode
+                        ? 'edit-input-container-d'
+                        : 'edit-input-container'
+                    }
+                    name="tipoM"
+                    onChange={(e) => e.target.value}
+                  >
+                    <option value="" defaultValue>
+                      Selecciona...
+                    </option>
+                    <option value="PesoM">Peso Mexicano</option>
+                    <option value="Dolar">Dolar</option>
+                    <option value="Euro">Euro</option>
+                  </select>
+                </div>
+
+                <div className="modal-item w-1/3">
+                  <p>Impuestos:</p>
+                  <select
+                    className={
+                      isDarkMode
+                        ? 'edit-input-container-d'
+                        : 'edit-input-container'
+                    }
+                    name="impuesto"
+                    onChange={handleImpuestoChange}
+                  >
+                    <option value="" defaultValue>
+                      Selecciona...
+                    </option>
+                    <option value="IVA">Con IVA</option>
+                    <option value="NIVA">Sin IVA</option>
+                  </select>
+                </div>
+              </div>
+
               <div className="flex">
                 <div className="modal-item w-1/3">
                   <p>Forma de pago:</p>
@@ -323,11 +500,27 @@ const TableLicitacion = ({ data, setData }) => {
                     }
                     type="number"
                     name="precio"
-                    onChange={(e) => e.target.value}
+                    value={editedValues.precio}
+                    onChange={(e) =>
+                      setEditedValues((prevState) => ({
+                        ...prevState,
+                        precio: e.target.value,
+                      }))
+                    }
                   />
                 </div>
               </div>
             </div>
+
+            <p style={{ fontSize: 'smaller' }}>
+              *Método de entrega: CIF(cost insurance and freight), CIP(Carriage
+              and Insurance Paid to) y FOB(Free On Board){' '}
+            </p>
+
+            <p style={{ fontSize: 'smaller' }}>
+              *Forma de pago: PUE(Pago En Una Sola Exhibición), PPD(Pago en
+              Parcialidades o Diferido)
+            </p>
 
             <div className="mt-5 flex justify-between">
               <button className="button" onClick={handleSave}>
