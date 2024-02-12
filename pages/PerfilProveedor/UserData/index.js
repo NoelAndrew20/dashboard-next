@@ -246,7 +246,6 @@ const UserData = ({ title, description, image }) => {
                   type="file"
                   id="picture"
                   name="picture"
-                  value={data[0]?.picture ? data[0]?.picture : ""}
                 />
               </div>
             </div>
