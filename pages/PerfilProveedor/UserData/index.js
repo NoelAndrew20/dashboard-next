@@ -7,13 +7,49 @@ import ProfileCard2 from '@/components/atoms/ProfileCard2';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import jwt from 'jsonwebtoken';
+import { set } from 'mongoose';
 const axios = require('axios');
 
 const UserData = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const router = useRouter();
-  const [data, setData] = useState([]);
-  const [newPswd, setNewPswd] = useState(data.password);
+  const [data, setData] = useState([
+    {
+      _id: "65c66d83caf732483e7addf6",
+      usuario: "Al92202469",
+      nombre: "Jocd",
+      denominacion: "JOCD",
+      password: "12345",
+      email: "ramirez.martinez.josedejesus0@gmail.com",
+      proveedor: 1,
+      telefono: "2211847999",
+      celular: "2211847999",
+      picture: "/images/imagenes/user.png",
+      responsabilidad: []
+    }
+  ]);
+  const [userAux, setUserAux] = useState(
+    data[0]?.usuario
+  );
+  const [nombreAux, setNombreAux] = useState(
+    data[0]?.nombre
+  );
+  const [emailAux, setEmailAux] = useState(
+    data[0]?.email
+  );
+  const [contraseñaAux, setContraseñaAux] = useState(
+    data[0]?.contraseña
+  );
+  const [denominacionAux, setDenominacionAux] = useState(
+    data[0]?.denominacion
+  );
+  const [telefonoAux, setTelefono] = useState(
+    data[0]?.telefono
+  );
+  const [celularAux, setCelularAux] = useState(
+    data[0]?.celular
+  );
+    const [newPswd, setNewPswd] = useState(data.password);
   const [editMode, setEditMode] = useState(false);
 
   const toggleEditMode = () => {
@@ -49,7 +85,28 @@ const UserData = ({ title, description, image }) => {
   const handleNewPswd = (e) => {
     setNewPswd(e.target.value);
   };
-
+ 
+  const handleUserChange = (e) => {
+    setUserAux(e.target.value);
+  };
+  const handleNombreChange = (e) => {
+    setNombreAux(e.target.value);
+  };
+  const handleEmailChange = (e) => {
+    setEmailAux(e.target.value);
+  };
+  const handleContraseñaChange = (e) => {
+    setContraseñaAux(e.target.value);
+  };
+  const handleDenoChange = (e) => {
+    setDenominacionAux(e.target.value);
+  };
+  const handleTelefonoChange = (e) => {
+    setTelefono(e.target.value);
+  };
+  const handleCelularChange = (e) => {
+    setCelularAux(e.target.value);
+  };
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
@@ -60,7 +117,6 @@ const UserData = ({ title, description, image }) => {
       >
         <h1>Perfil de Proveedor</h1>
         <div className="mt-5">
-          <ProfileCard2 data={data} />
         </div>
       </div>
       <div className="wrapper">
@@ -91,7 +147,9 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="usuario"
                   name="usuario"
-                  value={data[0]?.usuario ? data[0]?.usuario : ""}
+                  value={userAux}
+                  onChange={handleUserChange}
+
                   disabled={!editMode} 
                 />
               </div>
@@ -113,7 +171,9 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="nombre"
                   name="nombre"
-                  value={data[0]?.usuario ? data[0]?.usuario : ""}
+                  value={nombreAux}
+                  onChange={handleNombreChange}
+
                   disabled={!editMode} 
                 />
               </div>
@@ -135,7 +195,9 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="correo"
                   name="correo"
-                  value={data[0]?.email ? data[0]?.email : ""}
+                  value={emailAux}
+                  onChange={handleEmailChange}
+
                   disabled={!editMode} 
                 />
               </div>
@@ -157,7 +219,9 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="contraseña"
                   name="contraseña"
-                  value={data[0]?.contraseña ? data[0]?.contraseña : ""}
+                  value={contraseñaAux}
+                  onChange={handleContraseñaChange}
+
                   disabled={!editMode} 
                 />
               </div>
@@ -179,7 +243,9 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="denominacion"
                   name="denominacion"
-                  value={data[0]?.denominacion ? data[0]?.denominacion : ""}
+                  value={denominacionAux}
+                  onChange={handleDenoChange}
+
                   disabled={!editMode} 
                 />
               </div>
@@ -201,7 +267,9 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="telefono"
                   name="telefono"
-                  value={data[0]?.telefono ? data[0]?.telefono : ""}
+                  value={telefonoAux}
+                  onChange={handleTelefonoChange}
+
                   disabled={!editMode} 
                 />
               </div>
@@ -223,7 +291,8 @@ const UserData = ({ title, description, image }) => {
                   }
                   id="celular"
                   name="celular"
-                  value={data[0]?.celular ?  data[0]?.celular : ""}
+                  value={celularAux}
+                  onChange={handleCelularChange}
                   disabled={!editMode} 
                 />
               </div>
