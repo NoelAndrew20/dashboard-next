@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
+const fs = require('fs');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const config = require('../../../config.json');
@@ -136,6 +137,8 @@ const UsuarioSchema = new mongoose.Schema(
     telefono: String,
     celular: String,
     picture: String,
+    rango: String,
+    cambioC: Number,
   },
   {
     collection: 'usuario',
@@ -251,6 +254,7 @@ app.post('/addProveedor', async (req, res) => {
       celular: nuevoProveedor.celular,
       picture: '/images/imagenes/user.png',
       rango: 'Proveedor',
+      cambioC: 0,
     });
 
     await nuevoUsuario.save();
@@ -327,6 +331,58 @@ app.put('/editProductos/:email', async (req, res) => {
   }
 });
 
+const upload = multer({ dest: '../../public/images/imagenes/' });
+
+app.put('/editUsuario/:usuario', upload.single('picture'), async (req, res) => {
+  try {
+    const usuarioId = req.params.usuario;
+    const { nombre, email, password, denominacion, telefono, celular } =
+      req.body;
+    const pictureFile = req.file;
+    if (
+      pictureFile &&
+      (nombre || email || password || denominacion || telefono || celular)
+    ) {
+      const imagePath = `../../public/images/imagenes/${denominacion}.${pictureFile.originalname
+        .split('.')
+        .pop()}`;
+      const imagePath2 = `/images/imagenes/${denominacion}.${pictureFile.originalname
+        .split('.')
+        .pop()}`;
+      fs.renameSync(pictureFile.path, imagePath);
+
+      const hashedPassword = password ? await bcrypt.hash(password, 12) : '';
+
+      await Usuario.findOneAndUpdate(
+        { usuario: usuarioId },
+        {
+          $set: {
+            nombre: nombre || '',
+            email: email || '',
+            password: hashedPassword || '',
+            denominacion: denominacion || '',
+            telefono: telefono || '',
+            celular: celular || '',
+            picture: imagePath2,
+            cambioC: 1,
+          },
+        }
+      );
+
+      res.status(200).send('Usuario actualizado correctamente');
+    } else {
+      res
+        .status(400)
+        .send(
+          'Se requiere al menos una imagen o datos de usuario para actualizar'
+        );
+    }
+  } catch (error) {
+    console.error('Error al actualizar el usuario:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+});
+
 /*app.get('/catalogoProductos', async (req, res) => {
   try {
     const proveedores = await Proveedor.find({});
@@ -364,14 +420,14 @@ app.get('/catalogoProductos', async (req, res) => {
   try {
     const proveedores = await Proveedor.find({});
     let catalogoProductos = [];
-    proveedores.forEach(proveedor => {
-      proveedor.productos.forEach(producto => {
+    proveedores.forEach((proveedor) => {
+      proveedor.productos.forEach((producto) => {
         // Crear un objeto con el formato deseado y agregarlo al catálogo
         catalogoProductos.push({
           SKU: producto.SKU,
           unidad: producto.unidad,
           nombre: producto.nombre,
-          precio: producto.precio.toString() // Convertir el precio a cadena
+          precio: producto.precio.toString(), // Convertir el precio a cadena
         });
       });
     });
@@ -382,8 +438,6 @@ app.get('/catalogoProductos', async (req, res) => {
   }
 });
 
-
-    
 const PORT = 3070;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
