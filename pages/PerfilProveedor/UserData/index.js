@@ -26,12 +26,16 @@ const UserData = ({ title, description, image }) => {
       celular: '2211847999',
       picture: '/images/imagenes/user.png',
       responsabilidad: [],
+      cambioC: 0,
     },
   ]);
+  useEffect(() => {
+    console.log(data[0].cambioC);
+  });
   const [userAux, setUserAux] = useState(data[0]?.usuario);
   const [nombreAux, setNombreAux] = useState(data[0]?.nombre);
   const [emailAux, setEmailAux] = useState(data[0]?.email);
-  const [contraseñaAux, setContraseñaAux] = useState(data[0]?.contraseña);
+  const [contraseñaAux, setContraseñaAux] = useState(data[0]?.password);
   const [denominacionAux, setDenominacionAux] = useState(data[0]?.denominacion);
   const [telefonoAux, setTelefono] = useState(data[0]?.telefono);
   const [celularAux, setCelularAux] = useState(data[0]?.celular);
@@ -71,32 +75,6 @@ const UserData = ({ title, description, image }) => {
         console.error(error);
       });
   }, []);
-
-  const handleNewPswd = (e) => {
-    setNewPswd(e.target.value);
-  };
-
-  const handleUserChange = (e) => {
-    setUserAux(e.target.value);
-  };
-  const handleNombreChange = (e) => {
-    setNombreAux(e.target.value);
-  };
-  const handleEmailChange = (e) => {
-    setEmailAux(e.target.value);
-  };
-  const handleContraseñaChange = (e) => {
-    setContraseñaAux(e.target.value);
-  };
-  const handleDenoChange = (e) => {
-    setDenominacionAux(e.target.value);
-  };
-  const handleTelefonoChange = (e) => {
-    setTelefono(e.target.value);
-  };
-  const handleCelularChange = (e) => {
-    setCelularAux(e.target.value);
-  };
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
@@ -228,29 +206,38 @@ const UserData = ({ title, description, image }) => {
                 />
               </div>
             </div>
-            <label>Contraseña:</label>
-            <div className="pb-4">
-              <div
-                className={
-                  isDarkMode
-                    ? 'profile-input-container-d h-10'
-                    : 'profile-input-container h-10'
-                }
-              >
-                <input
-                  className={
-                    isDarkMode
-                      ? 'modal-input-d h-10 p-1'
-                      : 'modal-input h-10 p-1'
-                  }
-                  id="contraseña"
-                  name="contraseña"
-                  value={contraseñaAux}
-                  onChange={(e) => setContraseñaAux(e.target.value)}
-                  disabled={!editMode}
-                />
-              </div>
-            </div>
+            {data[0]?.cambioC === 0 ||
+            data[0]?.cambioC === undefined ||
+            data[0]?.cambioC === null ? (
+              <>
+                <label>Contraseña:</label>
+                <div className="pb-4">
+                  <div
+                    className={
+                      isDarkMode
+                        ? 'profile-input-container-d h-10'
+                        : 'profile-input-container h-10'
+                    }
+                  >
+                    <input
+                      className={
+                        isDarkMode
+                          ? 'modal-input-d h-10 p-1'
+                          : 'modal-input h-10 p-1'
+                      }
+                      id="contraseña"
+                      name="contraseña"
+                      value={contraseñaAux}
+                      onChange={(e) => setContraseñaAux(e.target.value)}
+                      disabled={!editMode}
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              ''
+            )}
+
             <label>Denominación:</label>
             <div className="pb-4">
               <div
