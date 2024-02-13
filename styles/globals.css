@@ -290,15 +290,15 @@ th {
 }
 .menu-bg {
   background-image: url("/images/menu-bg.gif");
-  background-size: cover;
+  background-size: contain;
 }
 .pig-bg{
   background-image: url("/images/pig-bg.gif");
-  background-size: auto;
+  background-size: contain;
 }
 .lici-bg{
   background-image: url("/images/licitacion-bg.gif");
-  background-size: cover;
+  background-size: contain;
 }
 .profile-nav {
   display: flex;
@@ -308,7 +308,7 @@ th {
   padding: 20px;
   flex-direction: column;
   background-image: url("/images/bg-users.gif");
-  background-size: cover;
+  background-size: contain;
 }
 .prov-nav {
   display: flex;
@@ -318,7 +318,7 @@ th {
   padding: 20px;
   flex-direction: column;
   background-image: url("/images/bg-box.gif");
-  background-size: cover;
+  background-size: contain;
 }
 
 .dashboard-nav h1 {
