@@ -206,7 +206,7 @@ const RegistroTransporte = ({ title, description, image }) => {
 
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
-      <StaticMeta title={title} description={description} image={image} />
+      <StaticMeta title={title} description={description} image={svg} />
       <div>
         <Navigation />
         <NavDashboard section="Registro de transporte" id={"truck"} svg={svg} />

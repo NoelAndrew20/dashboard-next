@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
+import Image from 'next/image';
 
 const TranspForm = ({ data, setData, closeModal }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();

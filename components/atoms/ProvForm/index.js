@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 import jwt from 'jsonwebtoken';
+import { Image } from 'react-bootstrap';
 
 const ProvForm = ({ data, setData, closeModal }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
