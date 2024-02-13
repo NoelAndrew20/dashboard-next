@@ -15,41 +15,27 @@ const UserData = ({ title, description, image }) => {
   const router = useRouter();
   const [data, setData] = useState([
     {
-      _id: "65c66d83caf732483e7addf6",
-      usuario: "Al92202469",
-      nombre: "Jocd",
-      denominacion: "JOCD",
-      password: "12345",
-      email: "ramirez.martinez.josedejesus0@gmail.com",
+      _id: '65c66d83caf732483e7addf6',
+      usuario: 'Al92202469',
+      nombre: 'Jocd',
+      denominacion: 'JOCD',
+      password: '12345',
+      email: 'ramirez.martinez.josedejesus0@gmail.com',
       proveedor: 1,
-      telefono: "2211847999",
-      celular: "2211847999",
-      picture: "/images/imagenes/user.png",
-      responsabilidad: []
-    }
+      telefono: '2211847999',
+      celular: '2211847999',
+      picture: '/images/imagenes/user.png',
+      responsabilidad: [],
+    },
   ]);
-  const [userAux, setUserAux] = useState(
-    data[0]?.usuario
-  );
-  const [nombreAux, setNombreAux] = useState(
-    data[0]?.nombre
-  );
-  const [emailAux, setEmailAux] = useState(
-    data[0]?.email
-  );
-  const [contraseñaAux, setContraseñaAux] = useState(
-    data[0]?.contraseña
-  );
-  const [denominacionAux, setDenominacionAux] = useState(
-    data[0]?.denominacion
-  );
-  const [telefonoAux, setTelefono] = useState(
-    data[0]?.telefono
-  );
-  const [celularAux, setCelularAux] = useState(
-    data[0]?.celular
-  );
-    const [newPswd, setNewPswd] = useState(data.password);
+  const [userAux, setUserAux] = useState(data[0]?.usuario);
+  const [nombreAux, setNombreAux] = useState(data[0]?.nombre);
+  const [emailAux, setEmailAux] = useState(data[0]?.email);
+  const [contraseñaAux, setContraseñaAux] = useState(data[0]?.contraseña);
+  const [denominacionAux, setDenominacionAux] = useState(data[0]?.denominacion);
+  const [telefonoAux, setTelefono] = useState(data[0]?.telefono);
+  const [celularAux, setCelularAux] = useState(data[0]?.celular);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [editMode, setEditMode] = useState(false);
 
   const toggleEditMode = () => {
@@ -76,6 +62,10 @@ const UserData = ({ title, description, image }) => {
       .then((response) => {
         const jsonData = response.data;
         setData(jsonData);
+        const cambioC = jsonData[0]?.cambioC;
+        if (cambioC === 1) {
+          setContraseñaAux('La contraseña está oculta.');
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -85,7 +75,7 @@ const UserData = ({ title, description, image }) => {
   const handleNewPswd = (e) => {
     setNewPswd(e.target.value);
   };
- 
+
   const handleUserChange = (e) => {
     setUserAux(e.target.value);
   };
@@ -107,6 +97,46 @@ const UserData = ({ title, description, image }) => {
   const handleCelularChange = (e) => {
     setCelularAux(e.target.value);
   };
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const handleSave = () => {
+    const formData = new FormData();
+    formData.append('usuario', userAux);
+    formData.append('nombre', nombreAux);
+    formData.append('email', emailAux);
+    formData.append('password', contraseñaAux);
+    formData.append('denominacion', denominacionAux);
+    formData.append('telefono', telefonoAux);
+    formData.append('celular', celularAux);
+    formData.append('picture', selectedFile);
+    const usuarioValue = formData.get('usuario');
+    const apiUrl = `http://192.168.100.10:3070/editUsuario/${usuarioValue}`;
+    axios
+      .put(apiUrl, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Asegúrate de establecer el encabezado Content-Type correctamente
+        },
+      })
+      .then((response) => {
+        console.log('Respuesta de la API:', response.data);
+      })
+      .catch((error) => {
+        console.error('Error al enviar la solicitud:', error);
+      });
+  };
+
+  const handleButton = () => {
+    if (editMode) {
+      handleSave();
+      setEditMode(!editMode);
+    } else {
+      toggleEditMode();
+    }
+  };
+
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>
       <StaticMeta title={title} description={description} image={image} />
@@ -116,8 +146,7 @@ const UserData = ({ title, description, image }) => {
         style={{ justifyContent: 'center !important' }}
       >
         <h1>Perfil de Proveedor</h1>
-        <div className="mt-5">
-        </div>
+        <div className="mt-5"></div>
       </div>
       <div className="wrapper">
         <div
@@ -148,9 +177,8 @@ const UserData = ({ title, description, image }) => {
                   id="usuario"
                   name="usuario"
                   value={userAux}
-                  onChange={handleUserChange}
-
-                  disabled={!editMode} 
+                  onChange={(e) => setUserAux(e.target.value)}
+                  disabled
                 />
               </div>
             </div>
@@ -172,9 +200,8 @@ const UserData = ({ title, description, image }) => {
                   id="nombre"
                   name="nombre"
                   value={nombreAux}
-                  onChange={handleNombreChange}
-
-                  disabled={!editMode} 
+                  onChange={(e) => setNombreAux(e.target.value)}
+                  disabled={!editMode}
                 />
               </div>
             </div>
@@ -196,9 +223,8 @@ const UserData = ({ title, description, image }) => {
                   id="correo"
                   name="correo"
                   value={emailAux}
-                  onChange={handleEmailChange}
-
-                  disabled={!editMode} 
+                  onChange={(e) => setEmailAux(e.target.value)}
+                  disabled
                 />
               </div>
             </div>
@@ -220,9 +246,8 @@ const UserData = ({ title, description, image }) => {
                   id="contraseña"
                   name="contraseña"
                   value={contraseñaAux}
-                  onChange={handleContraseñaChange}
-
-                  disabled={!editMode} 
+                  onChange={(e) => setContraseñaAux(e.target.value)}
+                  disabled={!editMode}
                 />
               </div>
             </div>
@@ -244,9 +269,8 @@ const UserData = ({ title, description, image }) => {
                   id="denominacion"
                   name="denominacion"
                   value={denominacionAux}
-                  onChange={handleDenoChange}
-
-                  disabled={!editMode} 
+                  onChange={(e) => setDenominacionAux(e.target.value)}
+                  disabled
                 />
               </div>
             </div>
@@ -268,9 +292,8 @@ const UserData = ({ title, description, image }) => {
                   id="telefono"
                   name="telefono"
                   value={telefonoAux}
-                  onChange={handleTelefonoChange}
-
-                  disabled={!editMode} 
+                  onChange={(e) => setTelefono(e.target.value)}
+                  disabled={!editMode}
                 />
               </div>
             </div>
@@ -292,12 +315,12 @@ const UserData = ({ title, description, image }) => {
                   id="celular"
                   name="celular"
                   value={celularAux}
-                  onChange={handleCelularChange}
-                  disabled={!editMode} 
+                  onChange={(e) => setCelularAux(e.target.value)}
+                  disabled={!editMode}
                 />
               </div>
             </div>
-            <label>foto:</label>
+            <label>Foto:</label>
             <div className="pb-4">
               <div
                 className={
@@ -315,10 +338,11 @@ const UserData = ({ title, description, image }) => {
                   type="file"
                   id="picture"
                   name="picture"
+                  onChange={handleFileChange}
                 />
               </div>
             </div>
-            <button type="button" onClick={toggleEditMode} className="button">
+            <button type="button" onClick={handleButton} className="button">
               {editMode ? 'Guardar' : 'Editar'}
             </button>
           </form>
