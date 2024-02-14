@@ -16,6 +16,8 @@ const TableLicitacion = ({ data, setData }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingIndex, setEditingIndex] = useState(null);
   const [fechaActual, setFechaActual] = useState(getFechaActual());
+  const [tipoMoneda, setTipoMoneda] = useState('');
+  const [tipoImpuesto, setTipoImpuesto] = useState('');
   const [editedValues, setEditedValues] = useState({
     nombre: '',
     cantidad: '',
@@ -39,6 +41,7 @@ const TableLicitacion = ({ data, setData }) => {
   const startIndex = (currentPage - 1) * entriesPerPage;
   const endIndex = startIndex + entriesPerPage;
   const [searchTerm, setSearchTerm] = useState('');
+
   const handleEdit = (solicitudIndex) => {
     setEditingIndex(solicitudIndex);
     const editingSolicitudIndex = solicitudIndex;
@@ -62,8 +65,8 @@ const TableLicitacion = ({ data, setData }) => {
     const costoUnitario = document.querySelector(
       'input[name="costoUnitario"]'
     ).value;
-    const tipoM = document.querySelector('select[name="tipoM"]').value;
-    const impuesto = document.querySelector('select[name="impuesto"]').value;
+ const tipoM = tipoMoneda;
+    const impuesto = tipoImpuesto;
     let precio;
     if (impuesto === 'IVA') {
       precio = cantidad * costoUnitario * 1.16;
@@ -86,7 +89,7 @@ const TableLicitacion = ({ data, setData }) => {
     } else {
       console.error('No se encontró el token en localStorage.');
     }
-    
+
     newData[indexGuide].solicitud[editingSolicitudIndex] = {
       fechaSolicitud,
       nombreSolicitante,
@@ -177,7 +180,7 @@ const TableLicitacion = ({ data, setData }) => {
 
   const handleCostoUnitarioChange = (e) => {
     const newCostoUnitario = e.target.value;
-    setCostoUnitario(newCostoUnitario); 
+    setCostoUnitario(newCostoUnitario);
 
     let newPrecio;
     if (impuesto === 'IVA') {
@@ -188,13 +191,14 @@ const TableLicitacion = ({ data, setData }) => {
 
     setEditedValues((prevState) => ({
       ...prevState,
-      precio: newPrecio, 
+      precio: newPrecio,
     }));
   };
+  
 
   const handleImpuestoChange = (e) => {
     const newImpuesto = e.target.value;
-    setImpuesto(newImpuesto); 
+    setImpuesto(newImpuesto);
 
     let newPrecio;
     if (newImpuesto === 'IVA') {
@@ -205,7 +209,7 @@ const TableLicitacion = ({ data, setData }) => {
 
     setEditedValues((prevState) => ({
       ...prevState,
-      precio: newPrecio, 
+      precio: newPrecio,
     }));
   };
 
@@ -352,6 +356,8 @@ const TableLicitacion = ({ data, setData }) => {
                     disabled
                   />
                 </div>
+              </div>
+              <div className="flex">
                 <div className="modal-item w-1/3">
                   <p>Fecha:</p>
                   <input
@@ -366,12 +372,14 @@ const TableLicitacion = ({ data, setData }) => {
                     disabled
                   />
                 </div>
+                <div className="modal-item w-1/3"></div>
+                <div className="modal-item w-1/3"></div>
               </div>
-              <div className="flex">
+              <div className="flex mt-2">
                 <div className="modal-item w-1/3">
                   <p>Método de entrega:</p>
                   <select
-                     className={
+                    className={
                       isDarkMode
                         ? 'edit-input-container-d'
                         : 'edit-input-container'
@@ -440,7 +448,10 @@ const TableLicitacion = ({ data, setData }) => {
                         : 'edit-input-container'
                     }
                     name="tipoM"
-                    onChange={(e) => e.target.value}
+                    onChange={(e) => {
+                      e.target.value;
+                      setTipoMoneda(e.target.value);
+                    }}
                   >
                     <option value="" defaultValue>
                       Selecciona...
@@ -452,22 +463,32 @@ const TableLicitacion = ({ data, setData }) => {
                 </div>
 
                 <div className="modal-item w-1/3">
-                  <p>Impuestos:</p>
-                  <select
-                    className={
-                      isDarkMode
-                        ? 'edit-input-container-d'
-                        : 'edit-input-container'
-                    }
-                    name="impuesto"
-                    onChange={handleImpuestoChange}
-                  >
-                    <option value="" defaultValue>
-                      Selecciona...
-                    </option>
-                    <option value="IVA">Con IVA</option>
-                    <option value="NIVA">Sin IVA</option>
-                  </select>
+                  {tipoMoneda === 'Dolar' || tipoMoneda === 'Euro' ? (
+                    ''
+                  ) : (
+                    <>
+                      <p>Impuestos:</p>
+                      <select
+                        className={
+                          isDarkMode
+                            ? 'edit-input-container-d'
+                            : 'edit-input-container'
+                        }
+                        name="impuesto"
+                        onChange={(e) => {
+                          e.target.value;
+                          setTipoImpuesto(e.target.value);
+                          handleImpuestoChange
+                        }}
+                      >
+                        <option value="" defaultValue>
+                          Selecciona...
+                        </option>
+                        <option value="IVA">Con IVA</option>
+                        <option value="NIVA">Sin IVA</option>
+                      </select>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -512,12 +533,12 @@ const TableLicitacion = ({ data, setData }) => {
               </div>
             </div>
 
-            <p style={{ fontSize: 'smaller' }}>
+            <p className="text-xs mt-5">
               *Método de entrega: CIF(cost insurance and freight), CIP(Carriage
               and Insurance Paid to) y FOB(Free On Board){' '}
             </p>
 
-            <p style={{ fontSize: 'smaller' }}>
+            <p className="text-xs">
               *Forma de pago: PUE(Pago En Una Sola Exhibición), PPD(Pago en
               Parcialidades o Diferido)
             </p>

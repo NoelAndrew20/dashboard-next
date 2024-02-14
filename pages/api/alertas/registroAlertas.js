@@ -1,15 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Import the cors module
-
-
 const app = express();
 app.use(cors());
-
 app.use(express.json());
-
-//const mongoUrl = "mongodb://192.168.100.8:27017/maindb";
-const mongoUrl = "mongodb://192.168.100.10:27017/basePruebaJesus";
+const config = require('../../../config.json');
+const mongoUrl = config.mongodesarrollo;
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
@@ -19,16 +15,39 @@ mongoose.connect(mongoUrl, {
 })
 .catch((e) => console.log(e));
 
-require("../schema/schemaAlerta.js");
-const Alerta = mongoose.model("Alerta");
+const db = mongoose.connection.useDb("C3_LaPurisima");
+db.on('error', console.error.bind(console, 'Error al conectar a la base de datos:'));
+db.once('open', () => {
+  console.log('Conexión exitosa a la base de datos.');
+});
 
-app.get("/getAllAlerta", async (req, res) => {
+const AlertaSensorSchema = new mongoose.Schema(
+  {
+    fecha: Date,
+    config: {
+      sensor: String,
+      puerta: String,
+      nave: String,
+      granja: String,
+    },
+    message: String,
+  },
+  {
+    collection: 'AlertasSensor', // Nombre de la colección en la base de datos
+    versionKey: false, // Evitar la inclusión del campo "__v" de versión
+  }
+);
+
+const AlertaSensor = db.model('AlertaSensor',AlertaSensorSchema);
+
+
+app.get("/getAllAlertaSensor", async (req, res) => {
   try {
-    const allAlerta = await Alerta.find({})
+    const allAlertaSensor = await AlertaSensor.find({})
     .sort({ fecha: -1 })
     .limit(30);
 
-    res.send({ status: "ok", data: allAlerta });
+    res.send({ status: "ok", data: allAlertaSensor });
   } catch (error) {
     console.log(error);
     res.status(500).send({ status: "error", message: "Internal server error" });
