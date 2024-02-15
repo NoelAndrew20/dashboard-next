@@ -7,6 +7,7 @@ import TableSeleccion from '@/components/molecules/TableSeleccion';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
 import svg from '@/public/images/svg/selection.png';
+import TableGandores from '@/components/atoms/TableGanadores';
 const axios = require('axios');
 
 const SeleccionProveedor = ({ title, description, image }) => {
@@ -14,14 +15,52 @@ const SeleccionProveedor = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username, setUsername] = useState();
-  const [data, setData] = useState([
-    {
-      numeroSolicitud: 'lorem',
-      nombreAlimento: 'lorem',
-      precio: 'lorem',
-      metodoDeEntrega: 'lorem',
-    },
-  ]);
+  const [data, setData] = useState([]);
+  const [winnerData, setWinnerData] = useState([{
+    _id: "6570eaa38553fff25b20ea27",
+    fechaSolicitud: "2024-02-06T20:24:41.586Z",
+    nombreSolicitante: "Proveedor Base",
+    numeroSolicitud: 1,
+    username: "A612202327",
+    tipoProveedor: "Alimento",
+    solicitud: [
+      {
+        cantidad: 90,
+        fecha: "2023-12-06T00:00:00.000Z",
+        lugar: "",
+        metodo: "LAB",
+        nombreAlimento: "Trigo",
+        pago: "Credito",
+        periodo: "2023-12-08T00:00:00.000Z",
+        precio: 87,
+        estatus: 1,
+        _id: "6570eaa38553fff25b20ea28"
+      }
+    ]
+  },
+  {
+    _id: "6570eaa38553fff25b20ea27",
+    fechaSolicitud: "2024-02-06T20:24:41.586Z",
+    nombreSolicitante: "Proveedor Base",
+    numeroSolicitud: 1,
+    username: "A612202327",
+    tipoProveedor: "Alimento",
+    solicitud: [
+      {
+        cantidad: 90,
+        fecha: "2023-12-06T00:00:00.000Z",
+        lugar: "",
+        metodo: "LAB",
+        nombreAlimento: "Trigo",
+        pago: "Credito",
+        periodo: "2023-12-08T00:00:00.000Z",
+        precio: 87,
+        estatus: 1,
+        _id: "6570eaa38553fff25b20ea28"
+      }
+    ]
+  }
+]);
   const [usuario, setUsuario] = useState('');
   const [tokenVerified, setTokenVerified] = useState(false);
 
@@ -88,6 +127,10 @@ const SeleccionProveedor = ({ title, description, image }) => {
         <h2 className="text-xl mt-5 mb-5">Proveedores existentes</h2>
         <div className="mt-10">
           <TableSeleccion data={data} setData={setData} />
+        </div>
+        <div className="mt-10">
+          <h2 className="text-xl mt-5 mb-5">Proveedores ganadores</h2>
+          <TableGandores data={winnerData} setData={setWinnerData} />
         </div>
       </div>
     </div>
