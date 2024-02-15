@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '@/context/DarkModeContext';
 
-const TableSeleccion = ({ data, setData }) => {
+const TableGandores = ({ data, setData }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const router = useRouter();
   const entriesPerPage = 10;
@@ -23,12 +23,6 @@ const TableSeleccion = ({ data, setData }) => {
       )
     : data;
   const displayDataFinal = displayData?.slice(startIndex, endIndex);
-
-  const handleRowClick = (numeroSolicitud, username) => {
-    localStorage.setItem('selectedUsername', username);
-    localStorage.setItem('selectedNumeroSolicitud', numeroSolicitud);
-    router.push(`/Compras`);
-  };
 
   useEffect(() => {
     setCurrentPage(1);
@@ -76,8 +70,8 @@ const TableSeleccion = ({ data, setData }) => {
           </div>
         </div>
       </div>
-      <div className={isDarkMode ? 'table-d' : 'table'}>
-        <table className={isDarkMode ? 'table-container-d' : 'table-container'}>
+      <div className={isDarkMode ? 'table-d' : 'table-a'}>
+        <table className={isDarkMode ? 'table-container-d' : 'table-container-a'}>
           <thead>
             <tr>
               <th>Solicitud</th>
@@ -92,15 +86,12 @@ const TableSeleccion = ({ data, setData }) => {
               <tr
                 className="table-row"
                 key={index}
-                onClick={() =>
-                  handleRowClick(item.numeroSolicitud, item.username)
-                }
               >
                 <td>{item.numeroSolicitud}</td>
-                <td>{item.username}</td>
+                <td>{item.nombreSolicitante}</td>
                 <td>
                   {item.solicitud && item.solicitud[0]
-                    ? item.solicitud[0].nombre
+                    ? item.solicitud[0].nombreAlimento
                     : ''}
                 </td>
                 <td>
@@ -140,4 +131,4 @@ const TableSeleccion = ({ data, setData }) => {
     </>
   );
 };
-export default TableSeleccion;
+export default TableGandores;

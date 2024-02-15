@@ -420,6 +420,13 @@ th {
   border-radius: 10px;
   border: 1px solid #dbd6d6;
 }
+.table-a {
+  padding: 20px;
+  background-color: rgba(13, 61, 100);
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #dbd6d6;
+}
 .fake-table {
   padding: 20px;
   background-color: #fff;
@@ -443,6 +450,12 @@ th {
   width: 100%;
   text-align: center;
   background-color: #ffff;
+}
+.table-container-a {
+  width: 100%;
+  text-align: center;
+  background-color: rgba(13, 61, 100);
+  color: #fff;
 }
 .table-index {
   padding: 20px;
@@ -1050,6 +1063,13 @@ th {
     justify-content: center; 
     background-color: #fff;
   }
+  .table-a {
+    overflow-x: auto; 
+    white-space: nowrap;
+    padding: 0;
+    display: grid;
+    justify-content: center; 
+  }
   .table-d {
     overflow-x: auto; 
     white-space: nowrap;
@@ -1085,6 +1105,14 @@ th {
     min-width: 100%; 
     padding: 10px; 
     background-color: #fff;
+    display: inline-block;
+    transition: transform 0.3s ease; 
+  }
+  .table-container-a {
+    max-width: 100%; 
+    width: 100%; 
+    min-width: 100%; 
+    padding: 10px; 
     display: inline-block;
     transition: transform 0.3s ease; 
   }
