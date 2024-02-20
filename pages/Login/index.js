@@ -64,7 +64,7 @@ const Login = ({ title, description, image }) => {
   };
 
   const apiUrl = 'http://192.168.100.10:3020/login';
-  const apiUrl2 = 'http://192.168.100.10:7000/constanza/load'; 
+  const apiUrl2 = 'http://192.168.100.10:7003/constanza/load'; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

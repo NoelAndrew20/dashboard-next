@@ -65,14 +65,7 @@ const TableLicitacion = ({ data, setData }) => {
     const costoUnitario = document.querySelector(
       'input[name="costoUnitario"]'
     ).value;
- const tipoM = tipoMoneda;
-    const impuesto = tipoImpuesto;
-    let precio;
-    if (impuesto === 'IVA') {
-      precio = cantidad * costoUnitario * 1.16;
-    } else {
-      precio = cantidad * costoUnitario;
-    }
+    const tipoM = tipoMoneda;
     const newData = [...data];
     const elementToModify = newData[indexGuide];
     const fechaSolicitud = elementToModify.fecha;
@@ -108,6 +101,8 @@ const TableLicitacion = ({ data, setData }) => {
       impuesto,
       estatus,
       usuario,
+      plazo,
+      plazoTipo,
     };
     setDataArray(newData);
 
@@ -116,12 +111,12 @@ const TableLicitacion = ({ data, setData }) => {
       .post(apiUrl, newData[indexGuide].solicitud[editingSolicitudIndex])
       .then((response) => {
         console.log('Respuesta de la API:', response.data);
+        alert('Se ha guardado exitosamente.');
+        window.location.reload();
       })
       .catch((error) => {
         console.error('Error al enviar la solicitud:', error);
       });
-
-    alert('Se ha guardado exitosamente.');
     setShowEditModal(false);
   };
 
@@ -194,7 +189,6 @@ const TableLicitacion = ({ data, setData }) => {
       precio: newPrecio,
     }));
   };
-  
 
   const handleImpuestoChange = (e) => {
     const newImpuesto = e.target.value;
@@ -213,15 +207,134 @@ const TableLicitacion = ({ data, setData }) => {
     }));
   };
 
-  const calculatePrice = (costoUnitario, cantidad, impuesto) => {
-    let newPrecio;
-    if (impuesto === 'IVA') {
-      newPrecio = cantidad * costoUnitario * 1.16;
-    } else {
-      newPrecio = cantidad * costoUnitario;
+  const [formaPago, setFormaPago] = useState('');
+  const [plazo, setPlazo] = useState('');
+  const [plazoTipo, setPlazoTipo] = useState('dias');
+  const handleChangeFormaPago = (e) => {
+    setFormaPago(e.target.value);
+    if (e.target.value === 'PPD') {
+      setPlazo('');
     }
-    return newPrecio;
   };
+
+  const handleChangePlazo = (e) => {
+    setPlazo(e.target.value);
+  };
+
+  const handleChangePlazoTipo = (e) => {
+    setPlazoTipo(e.target.value);
+  };
+
+  const [data2, setData2] = useState([]);
+  const [tipoDeLicitacion, setTipoDeLicitacion] = useState(null);
+  useEffect(() => {
+    if (data.length > 0 && data[0].hasOwnProperty('tipoDeLicitacion')) {
+      setTipoDeLicitacion(data[0].tipoDeLicitacion);
+    }
+  }, [data]);
+
+  /*useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token =
+          typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+        let usuario = '';
+        if (token) {
+          const decodedToken = jwt.decode(token);
+          usuario = decodedToken.usuario;
+        } else {
+          console.error('No se encontró el token en localStorage.');
+        }
+        const responseCompra = await axios.get(
+          'http://192.168.100.10:3086/getAllSolicitudCompra',
+          {
+            params: {
+              tipoDeLicitacion: tipoDeLicitacion,
+            },
+          }
+        );
+        console.log(responseCompra.data);
+        const responseEstatus1 = await axios.get(
+          'http://192.168.100.10:3083/getSolicitudEstatus1',
+          {
+            params: {
+              usuario: usuario,
+            },
+          }
+        );
+        console.log(responseEstatus1.data);
+        const solicitudesEstatus1 = responseEstatus1.data.map(item => item.solicitud);
+      const resultadosActualizados = responseCompra.data.map(item => {
+        const solicitudIndex = solicitudesEstatus1.findIndex(solicitud => solicitud.nombre === item.solicitud.nombre);
+        if (solicitudIndex !== -1) {
+          item.solicitud.estatus = 1;
+        }
+        return item;
+      });
+      setData2(resultadosActualizados);
+      console.log(resultadosActualizados);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  fetchData();
+}, [tipoDeLicitacion]);*/
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token =
+          typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+        let usuario = '';
+        if (token) {
+          const decodedToken = jwt.decode(token);
+          usuario = decodedToken.usuario;
+        } else {
+          console.error('No se encontró el token en localStorage.');
+        }
+
+        // Obtener todas las solicitudes de compra
+        const responseCompra = await axios.get(
+          'http://192.168.100.10:3086/getAllSolicitudCompra',
+          {
+            params: {
+              tipoDeLicitacion: tipoDeLicitacion,
+            },
+          }
+        );
+        console.log(responseCompra.data);
+        const responseEstatus1 = await axios.get(
+          'http://192.168.100.10:3083/getSolicitudEstatus1',
+          {
+            params: {
+              usuario: usuario,
+            },
+          }
+        );
+
+        const comprasActualizadas = responseCompra.data.map((compra) => {
+          const solicitudActualizada = compra.solicitud.map((item) => {
+            const solicitudEstatus1 = responseEstatus1.data.find(
+              (solicitud) => solicitud.solicitud.nombre === item.nombre
+            );
+            if (solicitudEstatus1) {
+              return { ...item, estatus: 1 };
+            } else {
+              return item;
+            }
+          });
+          return { ...compra, solicitud: solicitudActualizada };
+        });
+
+        console.log(comprasActualizadas);
+        setData2(comprasActualizadas);
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      }
+    };
+
+    fetchData();
+  }, [tipoDeLicitacion]);
 
   return (
     <>
@@ -235,7 +348,7 @@ const TableLicitacion = ({ data, setData }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {data2.map((item, index) => (
               <React.Fragment key={index}>
                 <tr className="table-row">
                   <td>{item.fecha}</td>
@@ -277,16 +390,18 @@ const TableLicitacion = ({ data, setData }) => {
                       <th>
                         <div>Unidad</div>
                       </th>
+                      <th>
+                        <div>Postularme</div>
+                      </th>
                     </tr>
                     {item.solicitud.map((solicitud, solicitudIndex) => (
-                      <tr key={solicitudIndex}>
+                      <tr key={solicitudIndex} className="mb-5">
                         <td>{solicitud.nombre}</td>
                         <td>{solicitud.cantidad}</td>
                         <td>{solicitud.unidad}</td>
                         <td>
                           {solicitud.estatus === 0 ? (
                             <>
-                              <p>Postularme</p>
                               <button
                                 onClick={() => handleEdit(solicitudIndex)}
                                 className="edit-btn"
@@ -475,11 +590,8 @@ const TableLicitacion = ({ data, setData }) => {
                             : 'edit-input-container'
                         }
                         name="impuesto"
-                        onChange={(e) => {
-                          e.target.value;
-                          setTipoImpuesto(e.target.value);
-                          handleImpuestoChange
-                        }}
+                        value={impuesto}
+                        onChange={handleImpuestoChange}
                       >
                         <option value="" defaultValue>
                           Selecciona...
@@ -502,7 +614,8 @@ const TableLicitacion = ({ data, setData }) => {
                         : 'edit-input-container'
                     }
                     name="pago"
-                    onChange={(e) => e.target.value}
+                    onChange={handleChangeFormaPago}
+                    value={formaPago}
                   >
                     <option value="" defaultValue>
                       Selecciona...
@@ -511,6 +624,7 @@ const TableLicitacion = ({ data, setData }) => {
                     <option value="PPD">PPD</option>
                   </select>
                 </div>
+
                 <div className="modal-item w-1/3">
                   <p>Precio:</p>
                   <input
@@ -530,7 +644,47 @@ const TableLicitacion = ({ data, setData }) => {
                     }
                   />
                 </div>
+                {formaPago === 'PPD' ? (
+                  <div className="modal-item w-1/3">
+                    <p>Plazo:</p>
+                    <input
+                      type="number"
+                      value={plazo}
+                      onChange={handleChangePlazo}
+                      className={
+                        isDarkMode
+                          ? 'edit-input-container-d'
+                          : 'edit-input-container'
+                      }
+                    />
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
+              {formaPago === 'PPD' && (
+                <div className="flex">
+                                    <div className="modal-item w-1/3">
+                                    <p>Plazo:</p>
+
+
+                  <select
+                    value={plazoTipo}
+                    onChange={handleChangePlazoTipo}
+                    className={
+                      isDarkMode
+                        ? 'edit-input-container-d'
+                        : 'edit-input-container'
+                    }
+                  >
+                    <option value="dias">Días</option>
+                    <option value="semanas">Semanas</option>
+                  </select>
+                  </div>
+                  <div className="modal-item w-1/3"></div>
+                  <div className="modal-item w-1/3"></div>
+                </div>
+              )}
             </div>
 
             <p className="text-xs mt-5">
