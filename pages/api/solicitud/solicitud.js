@@ -58,7 +58,8 @@ async function enviarCorreosProveedores(tipoProveedor) {
 
 async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
   const remitente = 'proyectoConstanza01@gmail.com';
-  const password = 'ndqnuiihqxwscxna';
+  //const password = 'ndqnuiihqxwscxna';
+  const password = 'hpcvxvomnsldglnr';
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',

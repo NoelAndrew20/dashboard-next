@@ -47,15 +47,15 @@ const ChatWindow = ({ title, description, image }) => {
     }
   };
 
-  /*
+  
   //Modulo que va mas en putiza
   const speakMessage = (message) => {
     const synthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(message);
     synthesis.speak(utterance);
-};*/
+};
 
-  const speakMessage = async (message) => {
+  /*const speakMessage = async (message) => {
     try {
       const apiUrl = 'http://192.168.100.10:7000/constanza/heard';
       if (audioRef.current) {
@@ -65,7 +65,7 @@ const ChatWindow = ({ title, description, image }) => {
       console.error('Error de red:', error);
     }
   };
-  useEffect(() => {}, []);
+  useEffect(() => {}, []);*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,7 +76,7 @@ const ChatWindow = ({ title, description, image }) => {
     setIsButtonDisabled(true);
     setFocusOnTextarea();
     try {
-      const apiUrl = 'http://192.168.100.10:7000/constanza/listens';
+      const apiUrl = 'http://192.168.100.10:7003/constanza/listens';
       const service = localStorage.getItem('servicio');
       const requestData = {
         text: message,
@@ -86,6 +86,7 @@ const ChatWindow = ({ title, description, image }) => {
       const response = await axios.post(apiUrl, requestData);
       const result = response.data;
       console.log(response);
+      console.log(response.data.result.answer);
       if (result.result === null || (result.result.answer && result.result.answer.length === 0)) {
         addMessageToChat('¡No se encontró información disponible! Vuelve a solicitarla con distintos parámetros por favor.', false);
         speakMessage('¡No se encontró información disponible! Vuelve a solicitarla con distintos parámetros por favor.');
