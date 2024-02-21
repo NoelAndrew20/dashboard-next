@@ -1,6 +1,6 @@
 import { useDarkMode } from '@/context/DarkModeContext';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const ProfileCard2 = ({ data }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,7 +10,9 @@ const ProfileCard2 = ({ data }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+useEffect(() =>{
+  console.log(data)
+})
   return (
     <>
       {data.map((item, index) => (

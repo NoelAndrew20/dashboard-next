@@ -14,25 +14,10 @@ const UserData = ({ title, description, image }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const router = useRouter();
   const [data, setData] = useState([
-    {
-      _id: '65c66d83caf732483e7addf6',
-      usuario: 'Al92202469',
-      nombre: 'Jocd',
-      denominacion: 'JOCD',
-      password: '12345',
-      email: 'ramirez.martinez.josedejesus0@gmail.com',
-      proveedor: 1,
-      telefono: '2211847999',
-      celular: '2211847999',
-      picture: '/images/imagenes/user.png',
-      responsabilidad: [],
-      cambioC: 0,
-    },
+
   ]);
-  useEffect(() => {
-    console.log(data[0].cambioC);
-  });
-  const [userAux, setUserAux] = useState(data[0]?.usuario);
+
+  const [userAux, setUserAux] = useState();
   const [nombreAux, setNombreAux] = useState(data[0]?.nombre);
   const [emailAux, setEmailAux] = useState(data[0]?.email);
   const [contraseñaAux, setContraseñaAux] = useState(data[0]?.password);
@@ -41,11 +26,13 @@ const UserData = ({ title, description, image }) => {
   const [celularAux, setCelularAux] = useState(data[0]?.celular);
   const [selectedFile, setSelectedFile] = useState(null);
   const [editMode, setEditMode] = useState(false);
+  
+  const [tokenVerified, setTokenVerified] = useState(false);
+  const [username, setUsername] = useState('');
 
   const toggleEditMode = () => {
     setEditMode(!editMode);
   };
-
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   let email = '';
@@ -55,42 +42,100 @@ const UserData = ({ title, description, image }) => {
   } else {
     console.error('No se encontró el token en localStorage.');
   }
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          router.push('/Login');
+          return;
+        }
+
+        const decodedToken = jwt.decode(token);
+        const usuario = decodedToken.usuario;
+        const nombre = decodedToken.nombre;
+        const proveedor = decodedToken.proveedor;
+        const email = decodedToken.email;
+        setUsername(usuario);
+        setTokenVerified(true);
+      } catch (error) {
+        console.error('Error al verificar el token:', error);
+        setTokenVerified(true);
+      }
+    };
+    checkToken();
+  }, [router]);
 
   useEffect(() => {
-    axios
-      .get('http://192.168.100.10:3020/getUsuario', {
-        params: {
-          email: email,
-        },
-      })
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          'http://192.168.100.10:3020/getUsuario',
+          {
+            params: {
+              email: email,
+            },
+          }
+        );
         const jsonData = response.data;
         setData(jsonData);
         const cambioC = jsonData[0]?.cambioC;
         if (cambioC === 1) {
           setContraseñaAux('La contraseña está oculta.');
         }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+      }
+    };
+    if (tokenVerified) {
+      fetchData();
+    }
+  }, [tokenVerified, setUsername]);
+  useEffect(()=>{
+    setUserAux(data[0]?.usuario )
+    setNombreAux(data[0]?.nombre)
+    setEmailAux(data[0]?.email)
+    setContraseñaAux(data[0]?.password)
+    setDenominacionAux(data[0]?.denominacion)
+    setTelefono(data[0]?.telefono)
+    setCelularAux(data[0]?.celular)
+ 
+  },[data])
+
+  if (!tokenVerified) {
+    return null;
+  }
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
 
   const handleSave = () => {
-    const formData = new FormData();
-    formData.append('usuario', userAux);
-    formData.append('nombre', nombreAux);
-    formData.append('email', emailAux);
-    formData.append('password', contraseñaAux);
-    formData.append('denominacion', denominacionAux);
-    formData.append('telefono', telefonoAux);
-    formData.append('celular', celularAux);
-    formData.append('picture', selectedFile);
-    const usuarioValue = formData.get('usuario');
+    let formData = [];
+    if(selectedFile !== null ) {
+     formData = {
+      usuario: userAux,
+      nombre: nombreAux,
+      email: emailAux,
+      password: contraseñaAux,
+      denominacion: denominacionAux,
+      telefono: telefonoAux,
+      celular: celularAux,
+      picture: selectedFile
+    }}
+    else {
+       formData = {
+        usuario: userAux,
+        nombre: nombreAux,
+        email: emailAux,
+        password: contraseñaAux,
+        denominacion: denominacionAux,
+        telefono: telefonoAux,
+        celular: celularAux,
+        picture: data[0].picture
+      }
+    }
+    const usuarioValue = userAux;
     const apiUrl = `http://192.168.100.10:3070/editUsuario/${usuarioValue}`;
     axios
       .put(apiUrl, formData, {
@@ -114,6 +159,7 @@ const UserData = ({ title, description, image }) => {
       toggleEditMode();
     }
   };
+ 
 
   return (
     <div className={`${isDarkMode ? 'darkMode' : 'lightMode'} full-viewport`}>

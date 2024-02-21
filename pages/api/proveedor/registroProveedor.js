@@ -336,52 +336,55 @@ const upload = multer({ dest: '../../public/images/imagenes/' });
 app.put('/editUsuario/:usuario', upload.single('picture'), async (req, res) => {
   try {
     const usuarioId = req.params.usuario;
-    const { nombre, email, password, denominacion, telefono, celular } =
+    const { nombre, email, password, denominacion, telefono, celular, picture } =
       req.body;
     const pictureFile = req.file;
-    if (
-      pictureFile &&
-      (nombre || email || password || denominacion || telefono || celular)
-    ) {
-      const imagePath = `../../public/images/imagenes/${denominacion}.${pictureFile.originalname
+
+    if (!pictureFile && !(nombre || email || password || denominacion || telefono || celular)) {
+      return res.status(400).send('Se requiere al menos algun dato de usuario para actualizar');
+    }
+
+    let imagePath2 = '';
+    if (pictureFile) {
+      const imagePath = `../../../public/images/imagenes/${denominacion}.${pictureFile.originalname
         .split('.')
         .pop()}`;
-      const imagePath2 = `/images/imagenes/${denominacion}.${pictureFile.originalname
+      imagePath2 = `/images/imagenes/${denominacion}.${pictureFile.originalname
         .split('.')
         .pop()}`;
       fs.renameSync(pictureFile.path, imagePath);
-
-      const hashedPassword = password ? await bcrypt.hash(password, 12) : '';
-
-      await Usuario.findOneAndUpdate(
-        { usuario: usuarioId },
-        {
-          $set: {
-            nombre: nombre || '',
-            email: email || '',
-            password: hashedPassword || '',
-            denominacion: denominacion || '',
-            telefono: telefono || '',
-            celular: celular || '',
-            picture: imagePath2,
-            cambioC: 1,
-          },
-        }
-      );
-
-      res.status(200).send('Usuario actualizado correctamente');
     } else {
-      res
-        .status(400)
-        .send(
-          'Se requiere al menos una imagen o datos de usuario para actualizar'
-        );
+      imagePath2 = picture; 
     }
+
+    const hashedPassword = password ? await bcrypt.hash(password, 12) : '';
+
+    const updateFields = {
+      nombre: nombre || '',
+      email: email || '',
+      password: hashedPassword || '',
+      denominacion: denominacion || '',
+      telefono: telefono || '',
+      celular: celular || '',
+      cambioC: 1,
+    };
+
+    if (imagePath2) {
+      updateFields.picture = imagePath2;
+    }
+
+    await Usuario.findOneAndUpdate(
+      { usuario: usuarioId },
+      { $set: updateFields }
+    );
+
+    res.status(200).send('Usuario actualizado correctamente');
   } catch (error) {
     console.error('Error al actualizar el usuario:', error);
     res.status(500).send('Error interno del servidor');
   }
 });
+
 
 /*app.get('/catalogoProductos', async (req, res) => {
   try {
