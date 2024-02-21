@@ -201,7 +201,7 @@ export default function Home({ title, description, image }) {
             <div className="absolute inset-0 background-cover"></div>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-2xl font-bold">
               <Image
-                src={'/images/imagenes/com-1--unscreen.gif'}
+                src={'/images/imagenes/logo-c-unscreen.gif'}
                 alt="Logo"
                 width={150}
                 height={150}

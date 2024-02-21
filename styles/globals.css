@@ -65,7 +65,7 @@ input:focus {
 }
 
 .background-cover {
-  background-color: rgb(5 168 190 / 60%);
+  background-color: rgba(13, 61, 100, 0.57);
 }
 
 .index-cover {
