@@ -53,7 +53,7 @@ const PerfilUsuario = ({ title, description, image }) => {
           <ProfileCard2 data={data} />
         </div>
         <div className="mt-10">
-          <PerfilProveedor data={data} />
+          <PerfilProveedor data={data} setData={setData} />
         </div>
       </div>
     </div>
