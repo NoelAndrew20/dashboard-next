@@ -48,7 +48,8 @@ function uploadFiles() {
 
 async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
   const remitente = 'proyectoConstanza01@gmail.com';
-  const password = 'ndqnuiihqxwscxna';
+  //const password = 'ndqnuiihqxwscxna';
+  const password = 'hpcvxvomnsldglnr';
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -60,7 +61,7 @@ async function enviarCorreo(destinatario, asunto, cuerpoMensaje) {
     from: remitente,
     to: destinatario,
     subject: asunto,
-    text: cuerpoMensaje,
+    html: cuerpoMensaje,
   };
   try {
     const info = await transporter.sendMail(mensaje);
@@ -261,8 +262,8 @@ app.post('/addProveedor', async (req, res) => {
 
     const destinatarioCorreo = nuevoProveedor.correo;
     const asuntoCorreo = 'Proveedor Registrado en Constanza';
-    const mensajeCorreo =
-      'Se ha registrado en nuestro sistema como proveedor confiable, su correo es el proporcionado en el sistema y su contraseña es su RFC.';
+    const link = 'http://192.168.100.10:3000/Login';
+    const mensajeCorreo = `Se ha registrado en nuestro sistema como proveedor confiable, tu correo es el proporcionado en el sistema y su contraseña es su RFC.<br><br>Es recomendable verificar en "Datos de Usuario" que los datos sean correctos y cambiar la contraseña por seguridad.<br><br>Haz clic en el siguiente enlace para acceder a tu cuenta: <a href="${link}">${link}</a>`;
     await enviarCorreo(destinatarioCorreo, asuntoCorreo, mensajeCorreo);
     nuevoProveedor.estatuscorreo = 1;
 
@@ -336,12 +337,24 @@ const upload = multer({ dest: '../../public/images/imagenes/' });
 app.put('/editUsuario/:usuario', upload.single('picture'), async (req, res) => {
   try {
     const usuarioId = req.params.usuario;
-    const { nombre, email, password, denominacion, telefono, celular, picture } =
-      req.body;
+    const {
+      nombre,
+      email,
+      password,
+      denominacion,
+      telefono,
+      celular,
+      picture,
+    } = req.body;
     const pictureFile = req.file;
 
-    if (!pictureFile && !(nombre || email || password || denominacion || telefono || celular)) {
-      return res.status(400).send('Se requiere al menos algun dato de usuario para actualizar');
+    if (
+      !pictureFile &&
+      !(nombre || email || password || denominacion || telefono || celular)
+    ) {
+      return res
+        .status(400)
+        .send('Se requiere al menos algun dato de usuario para actualizar');
     }
 
     let imagePath2 = '';
@@ -354,7 +367,7 @@ app.put('/editUsuario/:usuario', upload.single('picture'), async (req, res) => {
         .pop()}`;
       fs.renameSync(pictureFile.path, imagePath);
     } else {
-      imagePath2 = picture; 
+      imagePath2 = picture;
     }
 
     const hashedPassword = password ? await bcrypt.hash(password, 12) : '';
@@ -384,7 +397,6 @@ app.put('/editUsuario/:usuario', upload.single('picture'), async (req, res) => {
     res.status(500).send('Error interno del servidor');
   }
 });
-
 
 /*app.get('/catalogoProductos', async (req, res) => {
   try {

@@ -43,7 +43,7 @@ useEffect(() =>{
           </div>
 
           <div className="flex justify-center font-bold mt-3">
-            <p>{item.usuario} </p>
+            <p>{item.denominacion} </p>
           </div>
         </div>
       ))}

@@ -27,8 +27,9 @@ db.once('open', () => {
   console.log('Conexión exitosa a la base de datos.');
 });
 
+const link = 'http://192.168.100.10:3000/Login';
 const asuntoCorreo = 'Nueva licitacion';
-const mensajeCorreo = 'Hay una nueva licitacion disponible para ti.';
+const mensajeCorreo =  `Hay una nueva licitacion disponible para ti. Haz clic en el siguiente enlace para acceder a tu cuenta: ${link} `;
 
 async function enviarCorreosProveedores(tipoProveedor) {
   try {
