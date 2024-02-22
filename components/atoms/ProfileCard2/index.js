@@ -10,9 +10,6 @@ const ProfileCard2 = ({ data }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-useEffect(() =>{
-  console.log(data)
-})
   return (
     <>
       {data.map((item, index) => (

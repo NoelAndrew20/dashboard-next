@@ -105,7 +105,6 @@ const TableLicitacion = ({ data, setData }) => {
       plazoTipo,
     };
     setDataArray(newData);
-
     const apiUrl = 'http://192.168.100.10:3083/addSolicitudLicitacion';
     axios
       .post(apiUrl, newData[indexGuide].solicitud[editingSolicitudIndex])
@@ -327,7 +326,7 @@ const TableLicitacion = ({ data, setData }) => {
         });
 
         console.log(comprasActualizadas);
-        setData2(comprasActualizadas);
+        setData(comprasActualizadas);
       } catch (error) {
         console.error('Error al obtener los datos:', error);
       }
@@ -348,7 +347,7 @@ const TableLicitacion = ({ data, setData }) => {
             </tr>
           </thead>
           <tbody>
-            {data2.map((item, index) => (
+            {data.map((item, index) => (
               <React.Fragment key={index}>
                 <tr className="table-row">
                   <td>{item.fecha}</td>
@@ -366,6 +365,7 @@ const TableLicitacion = ({ data, setData }) => {
                           width={25}
                           height={25}
                           loading="lazy"
+                          alt="expanded"
                         />
                       ) : (
                         <Image
@@ -373,6 +373,7 @@ const TableLicitacion = ({ data, setData }) => {
                           width={25}
                           height={25}
                           loading="lazy"
+                          alt="expanded"
                         />
                       )}
                     </button>
@@ -406,7 +407,12 @@ const TableLicitacion = ({ data, setData }) => {
                                 onClick={() => handleEdit(solicitudIndex)}
                                 className="edit-btn"
                               >
-                                <Image src={send} width={15} height={15} />
+                                <Image
+                                  src={send}
+                                  width={15}
+                                  height={15}
+                                  alt="edit"
+                                />
                               </button>
                             </>
                           ) : (
@@ -625,64 +631,57 @@ const TableLicitacion = ({ data, setData }) => {
                   </select>
                 </div>
 
-                <div className="modal-item w-1/3">
-                  <p>Precio:</p>
-                  <input
-                    className={
-                      isDarkMode
-                        ? 'edit-input-container-d'
-                        : 'edit-input-container'
-                    }
-                    type="number"
-                    name="precio"
-                    value={editedValues.precio}
-                    onChange={(e) =>
-                      setEditedValues((prevState) => ({
-                        ...prevState,
-                        precio: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-                {formaPago === 'PPD' ? (
+                {formaPago === 'PPD' && (
+                  <>
+                    <div className="modal-item w-1/3">
+                      <p>Plazo:</p>
+                      <input
+                        type="number"
+                        value={plazo}
+                        onChange={handleChangePlazo}
+                        className={
+                          isDarkMode
+                            ? 'edit-input-container-d'
+                            : 'edit-input-container'
+                        }
+                      />
+                    </div>
+                    <div className="modal-item w-1/3 self-end">
+                      <input
+                        type="text"
+                        value={'Meses'}
+                        className={
+                          isDarkMode
+                            ? 'edit-input-container-d'
+                            : 'edit-input-container'
+                        }
+                        disabled
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+              {formaPago === 'PPD' && (
+                <div className="flex">
                   <div className="modal-item w-1/3">
-                    <p>Plazo:</p>
+                    <p>Precio:</p>
                     <input
-                      type="number"
-                      value={plazo}
-                      onChange={handleChangePlazo}
                       className={
                         isDarkMode
                           ? 'edit-input-container-d'
                           : 'edit-input-container'
                       }
+                      type="number"
+                      name="precio"
+                      value={editedValues.precio}
+                      onChange={(e) =>
+                        setEditedValues((prevState) => ({
+                          ...prevState,
+                          precio: e.target.value,
+                        }))
+                      }
                     />
                   </div>
-                ) : (
-                  ''
-                )}
-              </div>
-              {formaPago === 'PPD' && (
-                <div className="flex">
-                                    <div className="modal-item w-1/3">
-                                    <p>Plazo:</p>
-
-
-                  <select
-                    value={plazoTipo}
-                    onChange={handleChangePlazoTipo}
-                    className={
-                      isDarkMode
-                        ? 'edit-input-container-d'
-                        : 'edit-input-container'
-                    }
-                  >
-                    <option value="dias">Días</option>
-                    <option value="semanas">Semanas</option>
-                  </select>
-                  </div>
-                  <div className="modal-item w-1/3"></div>
-                  <div className="modal-item w-1/3"></div>
                 </div>
               )}
             </div>

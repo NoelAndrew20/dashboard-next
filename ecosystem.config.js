@@ -37,7 +37,7 @@ module.exports = {
     },
     {
       name: 'licitacion:3083',
-      script: 'solicitudlicitacion.js',
+      script: 'solicitudLicitacion.js',
       cwd: 'pages/api/licitacion', // Ruta al directorio de la segunda API
     },
     {
