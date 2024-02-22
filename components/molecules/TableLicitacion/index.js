@@ -326,7 +326,7 @@ const TableLicitacion = ({ data, setData }) => {
         });
 
         console.log(comprasActualizadas);
-        setData(comprasActualizadas);
+        setData2(comprasActualizadas);
       } catch (error) {
         console.error('Error al obtener los datos:', error);
       }
@@ -347,91 +347,96 @@ const TableLicitacion = ({ data, setData }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
-              <React.Fragment key={index}>
-                <tr className="table-row">
-                  <td>{item.fecha}</td>
-                  <td>{item.nombreSolicitud}</td>
-                  <td className="p-1 flex justify-center">
-                    <button
-                      className="flex align-center"
-                      onClick={() => {
-                        handleExpand(index), setIndexGuide(index);
-                      }}
-                    >
-                      {expandedRow === index ? (
-                        <Image
-                          src={expand}
-                          width={25}
-                          height={25}
-                          loading="lazy"
-                          alt="expanded"
-                        />
-                      ) : (
-                        <Image
-                          src={expanded}
-                          width={25}
-                          height={25}
-                          loading="lazy"
-                          alt="expanded"
-                        />
-                      )}
-                    </button>
-                  </td>
-                </tr>
-                {expandedRow === index && (
-                  <>
-                    <tr>
-                      <th>
-                        <div>Nombre</div>
-                      </th>
-                      <th>
-                        <div>Cantidad</div>
-                      </th>
-                      <th>
-                        <div>Unidad</div>
-                      </th>
-                      <th>
-                        <div>Postularme</div>
-                      </th>
-                    </tr>
-                    {item.solicitud.map((solicitud, solicitudIndex) => (
-                      <tr key={solicitudIndex} className="mb-5">
-                        <td>{solicitud.nombre}</td>
-                        <td>{solicitud.cantidad}</td>
-                        <td>{solicitud.unidad}</td>
-                        <td>
-                          {solicitud.estatus === 0 ? (
-                            <>
-                              <button
-                                onClick={() => handleEdit(solicitudIndex)}
-                                className="edit-btn"
-                              >
-                                <Image
-                                  src={send}
-                                  width={15}
-                                  height={15}
-                                  alt="edit"
-                                />
-                              </button>
-                            </>
-                          ) : (
-                            ''
-                          )}
-                        </td>
+            {data2.map(
+              (
+                item,
+                index //cambiar a data 2
+              ) => (
+                <React.Fragment key={index}>
+                  <tr className="table-row">
+                    <td>{item.fecha}</td>
+                    <td>{item.nombreSolicitud}</td>
+                    <td className="p-1 flex justify-center">
+                      <button
+                        className="flex align-center"
+                        onClick={() => {
+                          handleExpand(index), setIndexGuide(index);
+                        }}
+                      >
+                        {expandedRow === index ? (
+                          <Image
+                            src={expand}
+                            width={25}
+                            height={25}
+                            loading="lazy"
+                            alt="expanded"
+                          />
+                        ) : (
+                          <Image
+                            src={expanded}
+                            width={25}
+                            height={25}
+                            loading="lazy"
+                            alt="expanded"
+                          />
+                        )}
+                      </button>
+                    </td>
+                  </tr>
+                  {expandedRow === index && (
+                    <>
+                      <tr>
+                        <th>
+                          <div>Nombre</div>
+                        </th>
+                        <th>
+                          <div>Cantidad</div>
+                        </th>
+                        <th>
+                          <div>Unidad</div>
+                        </th>
+                        <th>
+                          <div>Postularme</div>
+                        </th>
                       </tr>
-                    ))}
-                  </>
-                )}
-              </React.Fragment>
-            ))}
+                      {item.solicitud.map((solicitud, solicitudIndex) => (
+                        <tr key={solicitudIndex} className="mb-5">
+                          <td>{solicitud.nombre}</td>
+                          <td>{solicitud.cantidad}</td>
+                          <td>{solicitud.unidad}</td>
+                          <td>
+                            {solicitud.estatus === 0 ? (
+                              <>
+                                <button
+                                  onClick={() => handleEdit(solicitudIndex)}
+                                  className="edit-btn"
+                                >
+                                  <Image
+                                    src={send}
+                                    width={15}
+                                    height={15}
+                                    alt="edit"
+                                  />
+                                </button>
+                              </>
+                            ) : (
+                              ''
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </>
+                  )}
+                </React.Fragment>
+              )
+            )}
           </tbody>
         </table>
         {showEditModal && (
           <div
             className={`${
-              isDarkMode ? 'edit-modal-d' : 'edit-modal'
-            } bg-white p-4 rounded shadow-md absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-4/4`}
+              isDarkMode ? 'modal-content-d' : 'modal-content '
+            } bg-white p-4 rounded shadow-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-auto z-50`}
           >
             <h2>Editar Datos</h2>
             <div>
@@ -630,7 +635,27 @@ const TableLicitacion = ({ data, setData }) => {
                     <option value="PPD">PPD</option>
                   </select>
                 </div>
-
+                {formaPago === 'PUE' && (
+                  <div className="modal-item w-1/3">
+                    <p>Precio:</p>
+                    <input
+                      className={
+                        isDarkMode
+                          ? 'edit-input-container-d'
+                          : 'edit-input-container'
+                      }
+                      type="number"
+                      name="precio"
+                      value={editedValues.precio}
+                      onChange={(e) =>
+                        setEditedValues((prevState) => ({
+                          ...prevState,
+                          precio: e.target.value,
+                        }))
+                      }
+                    />
+                  </div>
+                )}
                 {formaPago === 'PPD' && (
                   <>
                     <div className="modal-item w-1/3">
