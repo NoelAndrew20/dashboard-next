@@ -155,8 +155,8 @@ const TablePProducts = () => {
         {showEditModal && (
           <div
             className={`${
-              isDarkMode ? 'edit-modal-d' : 'edit-modal'
-            } bg-white p-4 rounded shadow-md absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-4/4`}
+              isDarkMode ? 'modal-content-d' : 'modal-content '
+            } bg-white p-4 rounded shadow-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-auto z-50`}
           >
             <h2 className="font-bold">Editar Datos</h2>
             <div>
