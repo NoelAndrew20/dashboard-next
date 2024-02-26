@@ -80,35 +80,13 @@ const SolicitudLicitacion = db.model(
 
 app.get('/getAllSolicitudLicitacion', async (req, res) => {
   try {
-    const solicitudesCompra = await SolicitudLicitacion.find();
-    if (solicitudesCompra.length === 0) {
-      return res.status(404).json({
-        mensaje: 'No se encontraron solicitudes de compra de alimentos',
-      });
-    }
-    const uniqueAlimentos = Array.from(
-      new Set(solicitudesCompra.map((item) => item.solicitud[0].nombre))
-    );
-    const filteredSolicitudes = uniqueAlimentos.map((alimento) => {
-      const matchingSolicitudes = solicitudesCompra.filter(
-        (item) => item.solicitud[0].nombre === alimento
-      );
-      const lowestPriceSolicitud = matchingSolicitudes.reduce(
-        (min, current) =>
-          current.solicitud[0].precio < min.solicitud[0].precio ? current : min,
-        matchingSolicitudes[0]
-      );
-      return lowestPriceSolicitud;
-    });
-    res.status(200).json(filteredSolicitudes);
+    const solicitudes = await SolicitudLicitacion.find( );
+    res.json(solicitudes);
   } catch (error) {
-    console.error(
-      'Error al obtener las solicitudes de compra de alimentos:',
-      error
-    );
-    res.status(500).json({
-      mensaje: 'Error al obtener las solicitudes de compra de alimentos',
-    });
+    console.error('Error al obtener las solicitudes de alimentos:', error);
+    res
+      .status(500)
+      .json({ mensaje: 'Error al obtener las solicitudes de alimentos' });
   }
 });
 
@@ -247,44 +225,6 @@ app.post('/addSolicitudLicitacion', async (req, res) => {
     res.status(500).json({ mensaje: 'Error al guardar la solicitud' });
   }
 });
-/*app.post('/addSolicitudLicitacion', async (req, res) => {
-  try {
-      const nuevaSolicitud = new SolicitudLicitacion({
-          fecha: req.body.fechaSolicitud,
-          nombreSolicitante: req.body.nombreSolicitante,
-          numeroSolicitud: req.body.numeroSolicitud,
-          solicitud: {
-              codigo: req.body.codigo,
-              cantidad: req.body.cantidad,
-              unidad: req.body.unidad,
-              fecha: req.body.fecha,
-              lugar: req.body.lugar,
-              metodo: req.body.metodo,
-              nombre: req.body.nombre,
-              pago: req.body.pago,
-              plazo: req.body.plazo,
-              plazoTipo: req.body.plazoTipo,
-              fechaEntrega: req.body.fechaEntrega,
-              precio: req.body.precio,
-              costoUnitario: req.body.costoUnitario,
-              tipoM: req.body.tipoM,
-              impuesto: req.body.impuesto,
-              estatus: req.body.estatus,
-          },
-      });
-
-      // Guardar la nueva solicitud en la base de datos
-      await nuevaSolicitud.save();
-
-      // Si todo ha ido bien, responder con un mensaje de éxito
-      res.status(201).send('Solicitud de licitación creada exitosamente');
-  } catch (error) {
-      // Si ocurre un error, responder con un mensaje de error y el estado correspondiente
-      console.error('Error al guardar la solicitud de licitación:', error);
-      res.status(500).send('Error al guardar la solicitud de licitación');
-  }
-});*/
-
 
 const PORT = 3083;
 app.listen(PORT, () => {

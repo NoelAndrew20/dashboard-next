@@ -65,7 +65,6 @@ const LicitacionPro = ({ title, description, image }) => {
       })
       .then((response) => {
         const jsonData = response.data;
-        console.log('daasuydgh', jsonData);
         setDataLic(jsonData);
       })
       .catch((error) => {

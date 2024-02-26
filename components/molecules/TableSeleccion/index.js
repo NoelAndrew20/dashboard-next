@@ -23,13 +23,6 @@ const TableSeleccion = ({ data, setData }) => {
       )
     : data;
   const displayDataFinal = displayData?.slice(startIndex, endIndex);
-
-  const handleRowClick = (numeroSolicitud, username) => {
-    localStorage.setItem('selectedUsername', username);
-    localStorage.setItem('selectedNumeroSolicitud', numeroSolicitud);
-    router.push(`/Compras`);
-  };
-
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm]);
@@ -81,7 +74,7 @@ const TableSeleccion = ({ data, setData }) => {
           <thead>
             <tr>
               <th>Solicitud</th>
-              <th>Nombre del proveedor</th>
+              <th>ID del proveedor</th>
               <th>Nombre</th>
               <th>Precio</th>
               <th>Metodo de entrega</th>
@@ -92,9 +85,6 @@ const TableSeleccion = ({ data, setData }) => {
               <tr
                 className="table-row"
                 key={index}
-                onClick={() =>
-                  handleRowClick(item.numeroSolicitud, item.username)
-                }
               >
                 <td>{item.numeroSolicitud}</td>
                 <td>{item.username}</td>

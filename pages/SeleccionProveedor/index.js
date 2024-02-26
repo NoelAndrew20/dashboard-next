@@ -94,19 +94,28 @@ const SeleccionProveedor = ({ title, description, image }) => {
   }, [router]);
 
   useEffect(() => {
+
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          'http://192.168.100.10:3083/getAllSolicitudLicitacion'
-        );
-        const jsonData = response.data;
-        const newData = jsonData.map((item) => ({ ...item, usuario }));
-        setData(newData);
+        const response = await axios.get('http://192.168.100.10:3083/getAllSolicitudLicitacion');
+        const solicitudes = response.data;
+        setData(solicitudes);
+        
+        const uniqueAlimentos = Array.from(new Set(solicitudes.map(item => item.solicitud[0].nombre)));
+        const filteredSolicitudes = uniqueAlimentos.map(alimento => {
+          const matchingSolicitudes = solicitudes.filter(item => item.solicitud[0].nombre === alimento);
+          const lowestPriceSolicitud = matchingSolicitudes.reduce((min, current) => 
+            current.solicitud[0].precio < min.solicitud[0].precio ? current : min,
+            matchingSolicitudes[0]
+          );
+          return lowestPriceSolicitud;
+        });
+
+        setWinnerData(filteredSolicitudes);
       } catch (error) {
         console.error('Error al obtener datos:', error);
       }
     };
-
     if (tokenVerified) {
       fetchData();
     }
@@ -124,14 +133,15 @@ const SeleccionProveedor = ({ title, description, image }) => {
         <NavDashboard section="Selección de proveedor" svg={svg} />
       </div>
       <div className="wrapper">
-        <h2 className="text-xl mt-5 mb-5">Proveedores existentes</h2>
-        <div className="mt-10">
-          <TableSeleccion data={data} setData={setData} />
-        </div>
         <div className="mt-10">
           <h2 className="text-xl mt-5 mb-5">Proveedores ganadores</h2>
           <TableGandores data={winnerData} setData={setWinnerData} />
         </div>
+        <h2 className="text-xl mt-5 mb-5">Proveedores existentes</h2>
+        <div className="mt-10">
+          <TableSeleccion data={data} setData={setData} />
+        </div>
+        
       </div>
     </div>
   );

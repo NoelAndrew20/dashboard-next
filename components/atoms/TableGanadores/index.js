@@ -24,6 +24,12 @@ const TableGandores = ({ data, setData }) => {
     : data;
   const displayDataFinal = displayData?.slice(startIndex, endIndex);
 
+  const handleRowClick = (numeroSolicitud, username) => {
+    localStorage.setItem('selectedUsername', username);
+    localStorage.setItem('selectedNumeroSolicitud', numeroSolicitud);
+    router.push(`/Compras`);
+  };
+
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm]);
@@ -75,7 +81,7 @@ const TableGandores = ({ data, setData }) => {
           <thead>
             <tr>
               <th>Solicitud</th>
-              <th>Nombre del proveedor</th>
+              <th>ID del proveedor</th>
               <th>Nombre</th>
               <th>Precio</th>
               <th>Metodo de entrega</th>
@@ -86,12 +92,14 @@ const TableGandores = ({ data, setData }) => {
               <tr
                 className="table-row"
                 key={index}
+                onClick={() =>
+                  handleRowClick(item.numeroSolicitud, item.username)}
               >
                 <td>{item.numeroSolicitud}</td>
-                <td>{item.nombreSolicitante}</td>
+                <td>{item.username}</td>
                 <td>
                   {item.solicitud && item.solicitud[0]
-                    ? item.solicitud[0].nombreAlimento
+                    ? item.solicitud[0].nombre
                     : ''}
                 </td>
                 <td>
