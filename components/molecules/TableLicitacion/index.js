@@ -69,10 +69,10 @@ const TableLicitacion = ({ data, setData }) => {
     const newData = [...data];
     const elementToModify = newData[indexGuide];
     const fechaSolicitud = elementToModify.fecha;
-    //const fechaEntrega = elementToModify.fechaEntrega;
     const nombreSolicitante = elementToModify.nombreSolicitante;
     const numeroSolicitud = elementToModify.numeroSolicitud;
     const estatus = 0;
+    const precio = editedValues.precio;
     const token =
       typeof window !== 'undefined' ? localStorage.getItem('token') : null;
     let usuario = '';
@@ -104,6 +104,7 @@ const TableLicitacion = ({ data, setData }) => {
       plazo,
       plazoTipo,
     };
+
     setDataArray(newData);
     const apiUrl = 'http://192.168.100.10:3083/addSolicitudLicitacion';
     axios
@@ -232,53 +233,6 @@ const TableLicitacion = ({ data, setData }) => {
     }
   }, [data]);
 
-  /*useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token =
-          typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-        let usuario = '';
-        if (token) {
-          const decodedToken = jwt.decode(token);
-          usuario = decodedToken.usuario;
-        } else {
-          console.error('No se encontró el token en localStorage.');
-        }
-        const responseCompra = await axios.get(
-          'http://192.168.100.10:3086/getAllSolicitudCompra',
-          {
-            params: {
-              tipoDeLicitacion: tipoDeLicitacion,
-            },
-          }
-        );
-        console.log(responseCompra.data);
-        const responseEstatus1 = await axios.get(
-          'http://192.168.100.10:3083/getSolicitudEstatus1',
-          {
-            params: {
-              usuario: usuario,
-            },
-          }
-        );
-        console.log(responseEstatus1.data);
-        const solicitudesEstatus1 = responseEstatus1.data.map(item => item.solicitud);
-      const resultadosActualizados = responseCompra.data.map(item => {
-        const solicitudIndex = solicitudesEstatus1.findIndex(solicitud => solicitud.nombre === item.solicitud.nombre);
-        if (solicitudIndex !== -1) {
-          item.solicitud.estatus = 1;
-        }
-        return item;
-      });
-      setData2(resultadosActualizados);
-      console.log(resultadosActualizados);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  fetchData();
-}, [tipoDeLicitacion]);*/
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -291,8 +245,6 @@ const TableLicitacion = ({ data, setData }) => {
         } else {
           console.error('No se encontró el token en localStorage.');
         }
-
-        // Obtener todas las solicitudes de compra
         const responseCompra = await axios.get(
           'http://192.168.100.10:3086/getAllSolicitudCompra',
           {
@@ -301,7 +253,6 @@ const TableLicitacion = ({ data, setData }) => {
             },
           }
         );
-        console.log(responseCompra.data);
         const responseEstatus1 = await axios.get(
           'http://192.168.100.10:3083/getSolicitudEstatus1',
           {
@@ -325,7 +276,6 @@ const TableLicitacion = ({ data, setData }) => {
           return { ...compra, solicitud: solicitudActualizada };
         });
 
-        console.log(comprasActualizadas);
         setData2(comprasActualizadas);
       } catch (error) {
         console.error('Error al obtener los datos:', error);
